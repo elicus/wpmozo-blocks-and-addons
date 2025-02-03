@@ -23,7 +23,7 @@ const Edit = (props) => {
 
     const wraperTemplate = [
         [ 'wpmozo/content-wraper', {
-            className: 'wpmozo-adfgu-content-toggle-one',
+            className: 'wpmozo-adfgu-content-toggle-one wpmozo-adfgu-content-toggle-active',
             lock: { 
                 remove: true 
             }
@@ -86,11 +86,11 @@ const Edit = (props) => {
     function wpmozo_toggle_switch( input, main ){
 
         if( input.is(':checked') ){
-            main.find('.wpmozo-adfgu-content-toggle-one').hide();
-            main.find('.wpmozo-adfgu-content-toggle-two').show();
+            main.find('.wpmozo-adfgu-content-toggle-one').removeClass('wpmozo-adfgu-content-toggle-active');
+            main.find('.wpmozo-adfgu-content-toggle-two').addClass('wpmozo-adfgu-content-toggle-active');
         }else{
-            main.find('.wpmozo-adfgu-content-toggle-one').show();
-            main.find('.wpmozo-adfgu-content-toggle-two').hide();
+            main.find('.wpmozo-adfgu-content-toggle-one').addClass('wpmozo-adfgu-content-toggle-active');
+            main.find('.wpmozo-adfgu-content-toggle-two').removeClass('wpmozo-adfgu-content-toggle-active');
         }
 
     }

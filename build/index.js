@@ -999,7 +999,7 @@ const Edit = props => {
     className: 'wpmozo-adfgu-content-toggle-main'
   });
   const wraperTemplate = [['wpmozo/content-wraper', {
-    className: 'wpmozo-adfgu-content-toggle-one',
+    className: 'wpmozo-adfgu-content-toggle-one wpmozo-adfgu-content-toggle-active',
     lock: {
       remove: true
     }
@@ -1042,11 +1042,11 @@ const Edit = props => {
   });
   function wpmozo_toggle_switch(input, main) {
     if (input.is(':checked')) {
-      main.find('.wpmozo-adfgu-content-toggle-one').hide();
-      main.find('.wpmozo-adfgu-content-toggle-two').show();
+      main.find('.wpmozo-adfgu-content-toggle-one').removeClass('wpmozo-adfgu-content-toggle-active');
+      main.find('.wpmozo-adfgu-content-toggle-two').addClass('wpmozo-adfgu-content-toggle-active');
     } else {
-      main.find('.wpmozo-adfgu-content-toggle-one').show();
-      main.find('.wpmozo-adfgu-content-toggle-two').hide();
+      main.find('.wpmozo-adfgu-content-toggle-one').addClass('wpmozo-adfgu-content-toggle-active');
+      main.find('.wpmozo-adfgu-content-toggle-two').removeClass('wpmozo-adfgu-content-toggle-active');
     }
   }
   const iconOne = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -1641,7 +1641,7 @@ const Style = attributes => {
       },
       additional: convertedStyle.toggleSwitchDimensions
     }, {
-      selector: '.wpmozo-adfgu-toggle-title-one',
+      selector: '.wpmozo-adfgu-toggle-title-one, .wpmozo-adfgu-toggle-title-one > h5',
       style: {
         'color': attributes.titleOneColor,
         'gap': {
@@ -1651,7 +1651,7 @@ const Style = attributes => {
       },
       additional: convertedStyle.titleOne
     }, {
-      selector: '.wpmozo-adfgu-toggle-title-two',
+      selector: '.wpmozo-adfgu-toggle-title-two, .wpmozo-adfgu-toggle-title-two > h5',
       style: {
         'color': attributes.titleTwoColor,
         'gap': {
@@ -5878,18 +5878,18 @@ const attributes = {
     }
   },
   overlayColor: {
-    type: "String"
+    type: "string"
   },
   titleLavel: {
-    type: "String",
+    type: "string",
     default: "h2"
   },
   titleNormalColor: {
-    type: "String",
+    type: "string",
     default: "#222222"
   },
   titleHoverColor: {
-    type: "String",
+    type: "string",
     default: "#000000"
   },
   titleNormalFontSize: {
@@ -5953,7 +5953,7 @@ const attributes = {
     default: "center"
   },
   contentColor: {
-    type: "String",
+    type: "string",
     default: "#222222"
   },
   contentFontSize: {
