@@ -18,6 +18,16 @@ const Edit = (props) => {
 
     attributes.clientId = clientId;
 
+    useEffect(() => {
+        jQuery(document).ready(function(e) {
+            e("body").find(".wpmozo-adfgu-tilt-image").length > 0 && e("body").find(".wpmozo-adfgu-tilt-image").each(function() {
+                e(this).on("mouseenter mouseleave", function(t) {
+                    "mouseenter" === t.type && e(this).find(".dipl_tilt_content_wrapper").addClass("et-animated"), "mouseleave" === t.type && e(this).find(".dipl_tilt_content_wrapper").removeClass("et-animated")
+                })
+            })
+        });
+    });
+
 	return (
         <Fragment>
             <Inspector {...props} />

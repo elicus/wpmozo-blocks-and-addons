@@ -14,7 +14,7 @@ const Save = ({ attributes }) => {
         <div {...useBlockProps.save({ className: 'wpmozo-adfgu-interactive-image-card-main' })} id={`block-${clientId}`}>
             <Style {...attributes} />
             <div className="wpmozo-adfgu-interactive-image-card-wrap">
-                <figure className={`effect-${ attributes.layout }`}>
+                <figure>
                     <img className="wpmozo-adfgu-interactive-image-card-image" src={ backImage } />
                     <figcaption>
                         <div className="wpmozo-adfgu-interactive-image-card-inner">
