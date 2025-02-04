@@ -173,7 +173,7 @@ const Style = (attributes) => {
 	return (
 		<>
 			{ ! wpmozoCoreFun.wpmozo_is_empty( css ) &&
-				<style>{css}</style>
+				<style className="wpmozo-dynamic-style">{css}</style>
 			}
 		</>
 	);

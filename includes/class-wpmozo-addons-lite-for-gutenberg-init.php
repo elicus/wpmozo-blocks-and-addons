@@ -205,6 +205,55 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 		$loader->add_action( 'enqueue_block_editor_assets', $instance, 'enqueue_block_editor_assets' );
 		$loader->add_action( 'wp_enqueue_scripts', $instance, 'enqueue_block_assets' );
 
+		add_action('wp', function(){
+
+			global $post,$wpdb;
+			$post_ID = $post->ID;
+			$kjkl = get_post_meta( $post_ID, 'wpmozo_inline_style', true );
+
+			wp_add_inline_style( $this->plugin_name . '-blocks-style', $kjkl );
+
+		});
+
+		add_filter( 'render_block', function( $block_content, $block ){
+
+			if ( str_starts_with( $block['blockName'], 'wpmozo/' ) ) {
+
+				$block_content = preg_replace('/<style\b[^>]*>.*?<\/style>/is', '', $block_content);
+
+			}
+
+			return $block_content;
+
+		}, 10, 2 );
+
+		add_filter( 'wp_insert_post_data', function( $data, $postarr ){
+
+			 if (defined('REST_REQUEST') && REST_REQUEST) {
+			        // Modify the content (example: remove certain words)
+			        $content = $data['post_content'];
+
+			        $targetClass = 'wpmozo-dynamic-style'; // The class you want to extract
+
+$pattern = '/<style[^>]*class="wpmozo-dynamic-style"[^>]*>(.*?)<\/style>/s';  // Match <style> tags with specific class
+
+preg_match_all($pattern, $html, $matches);
+
+			        //$style = $matches[1];
+			        echo '<pre>';
+					var_dump($matches);
+					echo '</pre>';
+					die();
+
+
+			    }
+
+			
+
+			return $data;
+
+		}, 10, 2 );
+
 	}
 
 }

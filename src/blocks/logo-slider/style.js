@@ -29,7 +29,7 @@ const Style = (attributes) => {
     }
 
 	return (
-		<style>{css}</style>
+		<style className="wpmozo-dynamic-style">{css}</style>
 	);
 
 }

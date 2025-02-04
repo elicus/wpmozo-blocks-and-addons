@@ -702,7 +702,9 @@ const Style = attributes => {
         }
         `;
   }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !window.wpmozo.wpmozo_is_empty(css) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, css));
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !window.wpmozo.wpmozo_is_empty(css) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    className: "wpmozo-dynamic-style"
+  }, css));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
 
@@ -1703,7 +1705,9 @@ const Style = attributes => {
             }
         `;
   }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !window.wpmozo.wpmozo_is_empty(css) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, css));
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !window.wpmozo.wpmozo_is_empty(css) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    className: "wpmozo-dynamic-style"
+  }, css));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
 
@@ -2550,7 +2554,9 @@ const Style = attributes => {
 	    	}
 	    `;
   }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !window.wpmozo.wpmozo_is_empty(css) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, css));
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !window.wpmozo.wpmozo_is_empty(css) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    className: "wpmozo-dynamic-style"
+  }, css));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
 
@@ -3151,7 +3157,9 @@ const Style = attributes => {
 	    	}
 	    `;
   }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !wpmozoCoreFun.wpmozo_is_empty(css) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, css));
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !wpmozoCoreFun.wpmozo_is_empty(css) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    className: "wpmozo-dynamic-style"
+  }, css));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
 
@@ -5105,7 +5113,9 @@ const Style = attributes => {
 	    	}
 	    `;
   }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, css);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    className: "wpmozo-dynamic-style"
+  }, css);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
 
@@ -5510,7 +5520,9 @@ const Style = attributes => {
             }
         `;
   }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, css);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    className: "wpmozo-dynamic-style"
+  }, css);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
 
@@ -5827,7 +5839,9 @@ const Style = attributes => {
             }
         `;
   }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, css);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    className: "wpmozo-dynamic-style"
+  }, css);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
 
@@ -6561,7 +6575,9 @@ const Style = attributes => {
 	    	}
 	    `;
   }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !wpmozoCoreFun.wpmozo_is_empty(css) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, css));
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !wpmozoCoreFun.wpmozo_is_empty(css) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    className: "wpmozo-dynamic-style"
+  }, css));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
 
@@ -6878,7 +6894,9 @@ const Style = attributes => {
             }
         `;
   }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, css);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    className: "wpmozo-dynamic-style"
+  }, css);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
 
@@ -7770,7 +7788,9 @@ const Style = attributes => {
             }
         `;
   }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, css);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    className: "wpmozo-dynamic-style"
+  }, css);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
 
