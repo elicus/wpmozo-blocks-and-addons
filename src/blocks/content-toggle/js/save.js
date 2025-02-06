@@ -1,6 +1,4 @@
 
-import Style from "./style";
-
 import { useBlockProps, InnerBlocks } from "@wordpress/block-editor";
 
 const Save = ({ attributes }) => {
@@ -51,7 +49,6 @@ const Save = ({ attributes }) => {
 
     return (
         <div {...useBlockProps.save({ className: 'wpmozo-adfgu-content-toggle-main' })} id={`block-${clientId}`}>
-            <Style {...attributes} />
             <div className={`wpmozo-adfgu-toggle-button-wrap${toggleSwitchTypeClass}`}>
                 { 'toggle' === attributes.toggleSwitchType && (
                     <>

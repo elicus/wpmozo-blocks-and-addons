@@ -1,6 +1,4 @@
 
-import Style from "./style";
-
 import { useBlockProps, RichText } from "@wordpress/block-editor";
 const WPMozoEditorObj = wpmozo_adfgu_editor_object;
 
@@ -12,7 +10,6 @@ const Save = ({ attributes }) => {
 
     return (
         <div {...useBlockProps.save({ className: 'wpmozo-adfgu-interactive-image-card-main' })} id={`block-${clientId}`}>
-            <Style {...attributes} />
             <div className="wpmozo-adfgu-interactive-image-card-wrap">
                 <figure className={`effect-${ attributes.layout }`}>
                     <img className="wpmozo-adfgu-interactive-image-card-image" src={ backImage } />

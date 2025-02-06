@@ -1,6 +1,4 @@
 
-import Style from "./style";
-
 import { useBlockProps } from "@wordpress/block-editor";
 
 const Save = ({attributes}) => {
@@ -12,7 +10,6 @@ const Save = ({attributes}) => {
  
     return (
        <div className="floating-image-item" id={`block-${clientId}`}>
-            <Style {...attributes} />
             <img className="floating-image" src={ attributes.image.url } alt={altText} />
         </div>
     );

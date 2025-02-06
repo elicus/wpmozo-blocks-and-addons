@@ -1,6 +1,4 @@
 
-import Style from "./style";
-
 import { useBlockProps } from "@wordpress/block-editor";
 import { createElement } from "@wordpress/element";
 
@@ -22,7 +20,6 @@ const Save = ({ attributes }) => {
 
     return (
         <div {...useBlockProps.save({ className: 'wpmozo-adfgu-fancy-heading-wrap' })} id={`block-${clientId}`}>
-            <Style {...attributes} />
             {heading}
         </div>
     );

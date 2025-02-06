@@ -191,6 +191,18 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 		return $icons;
 	}
 
+	function handle_gutenberg_save(WP_REST_Request $request) {
+
+	    $post_id = $request->get_param('post_id');
+	    $style = $request->get_param('style');
+
+	    update_post_meta( $post_id, 'wpmozo_inline_style', $style );
+
+	    return rest_ensure_response([
+	        'message' => 'Style saved successfully'
+	    ]);
+	}
+
 	/**
 	 * Add all hooks.
 	 *
@@ -207,52 +219,21 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 
 		add_action('wp', function(){
 
-			global $post,$wpdb;
+			global $post,$wp_query;
 			$post_ID = $post->ID;
-			$kjkl = get_post_meta( $post_ID, 'wpmozo_inline_style', true );
+			var_dump($wp_query->query,get_queried_object());die();
+			$inline_style = get_post_meta( $post_ID, 'wpmozo_inline_style', true );
 
-			wp_add_inline_style( $this->plugin_name . '-blocks-style', $kjkl );
+			wp_add_inline_style( $this->plugin_name . '-blocks-style', $inline_style );
 
 		});
 
-		add_filter( 'render_block', function( $block_content, $block ){
-
-			if ( str_starts_with( $block['blockName'], 'wpmozo/' ) ) {
-
-				$block_content = preg_replace('/<style\b[^>]*>.*?<\/style>/is', '', $block_content);
-
-			}
-
-			return $block_content;
-
-		}, 10, 2 );
-
-		add_filter( 'wp_insert_post_data', function( $data, $postarr ){
-
-			 if (defined('REST_REQUEST') && REST_REQUEST) {
-			        // Modify the content (example: remove certain words)
-			        $content = $data['post_content'];
-
-			        $targetClass = 'wpmozo-dynamic-style'; // The class you want to extract
-
-$pattern = '/<style[^>]*class="wpmozo-dynamic-style"[^>]*>(.*?)<\/style>/s';  // Match <style> tags with specific class
-
-preg_match_all($pattern, $html, $matches);
-
-			        //$style = $matches[1];
-			        echo '<pre>';
-					var_dump($matches);
-					echo '</pre>';
-					die();
-
-
-			    }
-
-			
-
-			return $data;
-
-		}, 10, 2 );
+		add_action('rest_api_init', function() {
+		    register_rest_route('wpmozo/v1', '/save-gutenberg-data/', array(
+		        'methods'  => 'POST',
+		        'callback' => array($this, 'handle_gutenberg_save'),
+		    ));
+		});
 
 	}
 

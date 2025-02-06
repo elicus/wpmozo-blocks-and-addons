@@ -275,3 +275,27 @@ window.wpmozo.wpmozo_generate_style = function( styles ){
 
 	return styleStr;
 }
+
+window.wpmozo.extractCssByClass = function() {
+    let extractedCSS = '';
+    
+    jQuery('.wpmozo-dynamic-style').each(function(key, el){
+
+        let css = jQuery(el).html(),
+        minifedCss = window.wpmozo.minifyCSS( css );
+
+        extractedCSS += minifedCss;
+
+    });
+
+    return extractedCSS;
+}
+
+window.wpmozo.minifyCSS = function(css) {
+    return css
+        .replace(/\/\*[\s\S]*?\*\//g, '')
+        .replace(/\s+/g, ' ')
+        .replace(/\s*({|}|;|:|,)\s*/g, '$1')
+        .replace(/;}/g, '}')
+        .trim();
+}
