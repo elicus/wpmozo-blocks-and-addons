@@ -221,7 +221,7 @@ abstract class WPMozo_Addons_Lite_Gutenberg_Block {
         
         $this->init();
 
-        $args = apply_filters( 'wpmozo_addons_litefor_gutenberg_block_' . $this->get_name() . '_args', $this->args );
+        $args = apply_filters( 'wpmozo_addons_lite_gutenberg_block_' . $this->get_name() . '_args', $this->args );
         $full_name = $this->get_full_name();
 
         register_block_type( $full_name, $args );

@@ -187,7 +187,7 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 		$none_obj->value  = '';
 		$icons[]          = $none_obj;
 		$default_icons    = array_merge( $icons, $default_icons );
-		$icons            = apply_filters( 'wpmozo_addons_litegutenberg_block_icons', $default_icons );
+		$icons            = apply_filters( 'wpmozo_addons_lite_gutenberg_block_icons', $default_icons );
 		return $icons;
 	}
 

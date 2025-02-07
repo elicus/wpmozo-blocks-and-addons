@@ -90,7 +90,7 @@ function wpmozo_adfgu() {
  *
  * @since    1.0.0
  */
-function wpmozo_addons_litefor_gutenberg_run() {
+function wpmozo_addons_lite_gutenberg_run() {
 
 	global $wp_version;
 	$wpmozo_adfgu = wpmozo_adfgu();
@@ -102,4 +102,4 @@ function wpmozo_addons_litefor_gutenberg_run() {
 	}
 
 }
-add_action( 'plugins_loaded', 'wpmozo_addons_litefor_gutenberg_run' );
+add_action( 'plugins_loaded', 'wpmozo_addons_lite_gutenberg_run' );

@@ -43,7 +43,7 @@ class WPMozo_Addons_Lite_For_Gutenberg {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      WPMozo_Addons_Lite_For_Gutenberg_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      WPMozo_Addons_Lite_Gutenberg_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -251,7 +251,7 @@ class WPMozo_Addons_Lite_For_Gutenberg {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    WPMozo_Addons_Lite_For_Gutenberg_Loader    Orchestrates the hooks of the plugin.
+	 * @return    WPMozo_Addons_Lite_Gutenberg_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;
