@@ -277,9 +277,14 @@ window.wpmozo.wpmozo_generate_style = function( styles ){
 }
 
 window.wpmozo.extractCssByClass = function() {
-    let extractedCSS = '';
-    
-    jQuery('.wpmozo-dynamic-style').each(function(key, el){
+	
+    let extractedCSS = '',
+    	editorIfram = jQuery('body').find('[name="editor-canvas"]').contents(),
+    	styleEl = ( editorIfram.length > 0 ) 
+    		? jQuery(editorIfram).find('.wpmozo-dynamic-style')
+    		: jQuery('.wpmozo-dynamic-style');
+
+    jQuery.each(styleEl, function(key, el){
 
         let css = jQuery(el).html(),
         minifedCss = window.wpmozo.minifyCSS( css );

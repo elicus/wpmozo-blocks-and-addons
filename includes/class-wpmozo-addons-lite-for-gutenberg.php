@@ -113,6 +113,7 @@ class WPMozo_Addons_Lite_For_Gutenberg {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
+	 * - Defines core functions available on both the front-end and admin.
 	 * - WPMozo_Addons_Lite_Gutenberg_Loader. Orchestrates the hooks of the plugin.
 	 * - WPMozo_Addons_Lite_Gutenberg_i18n. Defines internationalization functionality.
 	 * - WPMozo_Addons_Lite_Gutenberg_Init. Define the hooks for WP initialization.
@@ -124,6 +125,11 @@ class WPMozo_Addons_Lite_For_Gutenberg {
 	 * @access   private
 	 */
 	private function load_dependencies() {
+
+		/**
+		 * The core functions available on both the front-end and admin of the plugin.
+		 */
+		require_once WPMOZO_ADDONS_LITE_GUTENBERG_INC_DIR_PATH . 'wpmozo-addons-lite-for-gutenberg-functions.php';
 
 		/**
 		 * The class responsible for orchestrating the actions and filters of the

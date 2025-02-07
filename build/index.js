@@ -9129,20 +9129,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_11__.subscribe)(() => {
-  const isSavingPost = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_11__.select)('core/editor').isSavingPost();
-  const isAutosavingPost = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_11__.select)('core/editor').isAutosavingPost();
-  const postId = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_11__.select)('core/editor').getCurrentPostId();
+  const isSavingPost = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_11__.select)('core/editor').isSavingPost(),
+    isAutosavingPost = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_11__.select)('core/editor').isAutosavingPost(),
+    postId = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_11__.select)('core/editor').getCurrentPostId(),
+    postType = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_11__.select)('core/editor').getCurrentPostType(),
+    currentPost = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_11__.select)('core/editor').getCurrentPost();
   if (isSavingPost && !isAutosavingPost) {
-    const siteUrl = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_11__.select)("core").getSite();
-    const apiUrl = siteUrl.url + '/wp-json/wpmozo/v1/save-gutenberg-data';
-    let style = window.wpmozo.extractCssByClass();
+    const siteUrl = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_11__.select)("core").getSite(),
+      apiUrl = siteUrl.url + '/wp-json/wpmozo/v1/save-dynamic-style';
+    let style = window.wpmozo.extractCssByClass(),
+      ID = currentPost.hasOwnProperty('wp_id') ? currentPost.wp_id : postId;
     fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        post_id: postId,
+        post_id: ID,
         style: style
       })
     });
