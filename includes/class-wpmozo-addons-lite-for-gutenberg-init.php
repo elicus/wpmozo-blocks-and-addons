@@ -206,9 +206,21 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 
 	    update_post_meta( $post_id, 'wpmozo_dynamic_style', $style );
 
-	    return rest_ensure_response([
-	        'message' => esc_html( 'Style saved successfully' )
-	    ]);
+	    $get_style = get_post_meta( $post_id, 'wpmozo_dynamic_style', true );
+
+	    if ( ! empty( trim( $get_style ) ) ) {
+	    	$response = array(
+	    		'success' => true,
+	    		'message' => esc_html( 'Style saved successfully' )
+	    	);
+	    }else{
+	    	$response = array(
+	    		'success' => false,
+	    		'message' => esc_html( 'Style not saved successfully' )
+	    	);
+	    }
+
+	    return rest_ensure_response( $response );
 	}
 
 	/**
@@ -221,6 +233,7 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 		register_rest_route('wpmozo/v1', '/save-dynamic-style/', array(
 	        'methods'  => 'POST',
 	        'callback' => array( $this, 'handle_save_dynamic_style' ),
+	        'permission_callback' => '__return_true'
 	    ));
 
 	}
