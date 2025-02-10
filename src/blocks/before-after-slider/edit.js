@@ -10,11 +10,12 @@ const WPMozoEditorObj = wpmozo_adfgu_editor_object;
 const Edit = (props) => {
 
     const attributes = props.attributes,
-    clientId = props.clientId;
-    attributes.clientId = clientId;
+    clientId = props.clientId,
+    ID = window.wpmozo.getIdByClientid( clientId );
+    attributes.ID = ID;
 
 	const blockProps = useBlockProps({
-        className: 'wpmozo-adfgu-before-after-main',
+        className: 'wpmozo-adfgu-before-after-main'
     });
     let init = false;
 
@@ -122,7 +123,11 @@ const Edit = (props) => {
         <Fragment>
             <Inspector {...props} />
             <div {...blockProps}>
-                <Style {...attributes} />
+                <Style 
+                    attributes={attributes} 
+                    ID={ID}
+                    clientId={clientId}  
+                />
                 <div className="wpmozo-adfgu-before-after-image-wrapper">
                     <img src={beforeImage} />
                     <img src={afterImage} />

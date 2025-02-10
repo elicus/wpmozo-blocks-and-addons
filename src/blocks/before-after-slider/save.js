@@ -4,7 +4,7 @@ const WPMozoEditorObj = wpmozo_adfgu_editor_object;
 
 const Save = ({ attributes }) => {
     
-    const elId = 'block-'+attributes.clientId;
+    const elId = `block-${attributes.ID}`;
 
     let beforeImage = ( attributes.beforeImage ) ? attributes.beforeImage : WPMozoEditorObj.placeholderImg,
     afterImage = ( attributes.afterImage ) ? attributes.afterImage : WPMozoEditorObj.placeholderImg,

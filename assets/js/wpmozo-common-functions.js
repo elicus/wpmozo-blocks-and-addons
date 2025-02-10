@@ -287,8 +287,13 @@ window.wpmozo.extractCssByClass = function() {
     jQuery.each(styleEl, function(key, el){
 
         let css = jQuery(el).html(),
-        minifedCss = window.wpmozo.minifyCSS( css );
+        	ID = jQuery(el).data('id'),
+        	clientId = jQuery(el).data('client-id'),
+        	minifedCss = window.wpmozo.minifyCSS( css ),
+        	$regExp = new RegExp(`block-${clientId}`, "gi");
 
+        minifedCss = minifedCss.replace( $regExp, `block-${ID}` );
+        	
         extractedCSS += minifedCss;
 
     });
@@ -303,4 +308,16 @@ window.wpmozo.minifyCSS = function(css) {
         .replace(/\s*({|}|;|:|,)\s*/g, '$1')
         .replace(/;}/g, '}')
         .trim();
+}
+
+window.wpmozo.getIdByClientid = function( clientId ){
+ 
+	if( window.wpmozo.wpmozo_is_empty( clientId ) ){
+		return '';
+	}
+
+	let clientIdArr = clientId.split('-'),
+		Id = clientIdArr[4];
+
+	return Id;
 }

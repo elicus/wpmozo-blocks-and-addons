@@ -14,17 +14,22 @@ const Edit = (props) => {
     const attributes = props.attributes,
     setAttributes = props.setAttributes,
     clientId = props.clientId,
+    ID = window.wpmozo.getIdByClientid( clientId ),
     altText = ! window.wpmozo.wpmozo_is_empty( attributes.altText ) 
         ? attributes.altText
         : 'alt';
         
-    attributes.clientId = clientId;
+    attributes.ID = ID;
 
 	return (
         <Fragment>
             <Inspector {...props} />
             <div className="floating-image-item" id={`block-${clientId}`}>
-                <Style {...attributes} />
+                <Style 
+                attributes={attributes} 
+                ID={ID}
+                clientId={clientId}  
+            />
                 <img className="floating-image" src={ attributes.image.url } alt={altText} />
             </div>
         </Fragment>

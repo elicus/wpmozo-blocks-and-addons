@@ -3,7 +3,7 @@ import { __ } from "@wordpress/i18n";
 const WPMozoEditorObj = wpmozo_adfgu_editor_object; 
 
 const attributes = {
-	clientId: {
+    ID: {
         type: "string",
     },
     fancyText: {

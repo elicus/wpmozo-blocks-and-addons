@@ -3,7 +3,7 @@ import { useBlockProps, InnerBlocks } from "@wordpress/block-editor";
 
 const Save = ({ attributes }) => {
 
-    const clientId = attributes.clientId,
+    const ID = attributes.ID,
     toggleSwitchTypeClass = ' wpmozo_'+attributes.toggleSwitchType,
     titleWrapClass = ( 'toggle' === attributes.toggleSwitchType ) ? ' wpmozo_switch_trigger' : '';
 
@@ -48,7 +48,7 @@ const Save = ({ attributes }) => {
     );
 
     return (
-        <div {...useBlockProps.save({ className: 'wpmozo-adfgu-content-toggle-main' })} id={`block-${clientId}`}>
+        <div {...useBlockProps.save({ className: 'wpmozo-adfgu-content-toggle-main' })} id={`block-${ID}`}>
             <div className={`wpmozo-adfgu-toggle-button-wrap${toggleSwitchTypeClass}`}>
                 { 'toggle' === attributes.toggleSwitchType && (
                     <>

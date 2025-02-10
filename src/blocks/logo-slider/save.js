@@ -6,7 +6,7 @@ import { useEffect } from '@wordpress/element';
     const Save = ({ attributes }) => {
 
         const wpmozoCoreFun = window.wpmozo,
-            clientId = attributes.clientId,
+            ID = attributes.ID,
             blockProps = useBlockProps.save();
 
         let innerBlocks = [],
@@ -40,8 +40,8 @@ import { useEffect } from '@wordpress/element';
         }
 
         return (
-            <div {...innerBlocksProps} id={`block-${clientId}`}>
-                <div className="swiper" data-client-id={clientId}>
+            <div {...innerBlocksProps} id={`block-${ID}`}>
+                <div className="swiper" data-client-id={ID}>
                     <div className="swiper-wrapper">
                         { innerBlocksProps.children }
                     </div>

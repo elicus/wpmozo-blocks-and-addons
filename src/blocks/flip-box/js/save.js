@@ -3,7 +3,7 @@ import { useBlockProps, RichText } from "@wordpress/block-editor";
 
 const Save = ({ attributes }) => {
 
-    const clientId = attributes.clientId,
+    const ID = attributes.ID,
     wpmozoCoreFun = window.wpmozo,
     layoutType = ( 'flip' === attributes.animationType ) ? ' layout1' : ' layout2';
 
@@ -27,7 +27,7 @@ const Save = ({ attributes }) => {
     );
 
     return (
-        <div {...useBlockProps.save({ className: 'wpmozo-adfgu-flip-box-main' })} id={`block-${clientId}`}>
+        <div {...useBlockProps.save({ className: 'wpmozo-adfgu-flip-box-main' })} id={`block-${ID}`}>
             <div className={`wpmozo-adfgu-flip-box-wrap${layoutType}`} flip-direction={ attributes.flipDirection }>
                 <div className="wpmozo-adfgu-flip-box-side wpmozo-adfgu-flip-box-front">
                     <div className="wpmozo-adfgu-flip-box-inner">

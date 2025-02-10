@@ -1,8 +1,7 @@
 
-const Style = (attributes) => {
+const Style = ({attributes, ID, clientId}) => {
 
-	const clientId = attributes.clientId,
-    parent = '#block-'+clientId,
+	const parent = '#block-'+clientId,
     toConvertStyles = [ 
     	'titleOne', 
     	'titleTwo', 
@@ -148,7 +147,7 @@ const Style = (attributes) => {
     return (
         <>
             { ! window.wpmozo.wpmozo_is_empty( css ) &&
-                <style className="wpmozo-dynamic-style">{css}</style>
+                <style className="wpmozo-dynamic-style" data-id={ID} data-client-id={clientId}>{css}</style>
             }
         </>
     );

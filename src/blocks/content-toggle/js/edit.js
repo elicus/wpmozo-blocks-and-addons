@@ -11,11 +11,11 @@ const Edit = (props) => {
 
     const attributes = props.attributes,
     clientId = props.clientId,
+    ID = window.wpmozo.getIdByClientid( clientId ),
     toggleSwitchTypeClass = ' wpmozo_'+attributes.toggleSwitchType,
-    parent = '#block-'+clientId,
     titleWrapClass = ( 'toggle' === attributes.toggleSwitchType ) ? ' wpmozo_switch_trigger' : '';
 
-    attributes.clientId = clientId;
+    attributes.ID = ID;
 
 	const blockProps = useBlockProps({
         className: 'wpmozo-adfgu-content-toggle-main',
@@ -138,7 +138,11 @@ const Edit = (props) => {
 	return (
         <Fragment>
             <Inspector {...props} />
-            <Style {...attributes} />
+            <Style 
+                attributes={attributes} 
+                ID={ID}
+                clientId={clientId}  
+            />
             <div {...blockProps}>
                 <div className={`wpmozo-adfgu-toggle-button-wrap${toggleSwitchTypeClass}`}>
                     { 'toggle' === attributes.toggleSwitchType && (

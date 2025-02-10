@@ -4,7 +4,7 @@ import { createElement } from "@wordpress/element";
 
 const Save = ({ attributes }) => {
 
-    const clientId = attributes.clientId;
+    const ID = attributes.ID;
 
     const allText = (
         <>
@@ -19,7 +19,7 @@ const Save = ({ attributes }) => {
     }, allText );
 
     return (
-        <div {...useBlockProps.save({ className: 'wpmozo-adfgu-fancy-heading-wrap' })} id={`block-${clientId}`}>
+        <div {...useBlockProps.save({ className: 'wpmozo-adfgu-fancy-heading-wrap' })} id={`block-${ID}`}>
             {heading}
         </div>
     );
