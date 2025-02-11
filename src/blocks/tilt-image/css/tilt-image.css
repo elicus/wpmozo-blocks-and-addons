@@ -1,0 +1,76 @@
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-image-inner-wrapper {
+    display: flex;
+    position: relative;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-image-inner-wrapper:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-image-inner-wrapper img {
+    width: 100%;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-content-wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-title {
+    width: 100%;
+    line-height: 1.5em;
+    font-size: 18px;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-desc {
+    width: 100%;
+    line-height: 1.5em;
+    font-size: 14px;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-icon.et-pb-icon {
+    padding-bottom: 10px;
+    font-size: 32px;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-image-button-wrapper {
+    display: inherit;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-content-on-hover .wpmozo-adfgu-tilt-content-wrapper {
+    opacity: 0;
+}
+.wpmozo-adfgu-tilt-image:hover .wpmozo-adfgu-tilt-content-on-hover .wpmozo-adfgu-tilt-content-wrapper {
+    opacity: 1;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-align-top-center .wpmozo-adfgu-tilt-content-wrapper {
+    align-items: center;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-align-top-right .wpmozo-adfgu-tilt-content-wrapper {
+    align-items: flex-end;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-align-center-left .wpmozo-adfgu-tilt-content-wrapper {
+    justify-content: flex-start;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-align-center-left .wpmozo-adfgu-tilt-content-wrapper {
+    justify-content: center;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-align-center .wpmozo-adfgu-tilt-content-wrapper {
+    justify-content: center;
+    align-items: center;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-align-center-right .wpmozo-adfgu-tilt-content-wrapper {
+    justify-content: center;
+    align-items: flex-end;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-align-bottom-left .wpmozo-adfgu-tilt-content-wrapper {
+    justify-content: flex-end;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-align-bottom-center .wpmozo-adfgu-tilt-content-wrapper {
+    justify-content: flex-end;
+    align-items: center;
+}
+.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-align-bottom-right .wpmozo-adfgu-tilt-content-wrapper {
+    justify-content: flex-end;
+    align-items: flex-end;
+}

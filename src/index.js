@@ -11,6 +11,7 @@ import "./blocks/logo-slider/index.js";
 import "./blocks/logo-slide/index.js";
 import "./blocks/floating-image-item/index.js";
 import "./blocks/floating-image/index.js";
+import "./blocks/tilt-image/js/index.js";
 
 // Add additional functionality
 import "./save-dynamic-style.js";
