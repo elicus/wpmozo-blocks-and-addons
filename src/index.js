@@ -1,3 +1,5 @@
+
+// Add all blocks
 import "./blocks/before-after-slider/index.js";
 import "./blocks/content-toggle/js/index.js";
 import "./blocks/content-wraper/index.js";
@@ -10,5 +12,5 @@ import "./blocks/logo-slide/index.js";
 import "./blocks/floating-image-item/index.js";
 import "./blocks/floating-image/index.js";
 
-
+// Add additional functionality
 import "./save-dynamic-style.js";

@@ -9029,12 +9029,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/url */ "@wordpress/url");
 /* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_url__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
 
 
-
-let successApiCall = false;
 (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.subscribe)(() => {
   const isSavingPost = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.select)('core/editor').isSavingPost(),
     isAutosavingPost = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.select)('core/editor').isAutosavingPost(),
@@ -9049,8 +9045,6 @@ let successApiCall = false;
     const apiUrl = siteUrl.url + '/wp-json/wpmozo/v1/save-dynamic-style';
     let style = window.wpmozo.extractCssByClass(),
       ID = currentPost.hasOwnProperty('wp_id') ? currentPost.wp_id : postId;
-
-    //if ( ! successApiCall ) {
     fetch(apiUrl, {
       method: 'POST',
       headers: {
@@ -9060,16 +9054,9 @@ let successApiCall = false;
         post_id: ID,
         style: style
       })
-    }).then(function (response) {
-      return response.json();
-    }).then(function (responseData) {
-      successApiCall = responseData.success;
     });
-    //}
-  } else {
-    successApiCall = false;
   }
-}, []);
+});
 
 /***/ }),
 
@@ -9240,6 +9227,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blocks_floating_image_item_index_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./blocks/floating-image-item/index.js */ "./src/blocks/floating-image-item/index.js");
 /* harmony import */ var _blocks_floating_image_index_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./blocks/floating-image/index.js */ "./src/blocks/floating-image/index.js");
 /* harmony import */ var _save_dynamic_style_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./save-dynamic-style.js */ "./src/save-dynamic-style.js");
+// Add all blocks
 
 
 
@@ -9251,6 +9239,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+// Add additional functionality
 
 })();
 
