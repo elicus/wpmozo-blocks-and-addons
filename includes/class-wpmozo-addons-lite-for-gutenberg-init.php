@@ -114,6 +114,7 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 		$all_options = array(
 			'placeholderImg' => WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'images/placeholder.webp',
 			'icons'          => $icons,
+			'url'			 => get_site_url()
 		);
 		wp_localize_script( $this->plugin_name . '-editor-script', 'wpmozo_adfgu_editor_object', $all_options );
 
