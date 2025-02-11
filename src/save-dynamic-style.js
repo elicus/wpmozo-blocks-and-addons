@@ -8,17 +8,16 @@ subscribe(() => {
         isAutosavingPost = select('core/editor').isAutosavingPost(),
         postId = select('core/editor').getCurrentPostId(),
         postType = select('core/editor').getCurrentPostType(),
-        currentPost = select('core/editor').getCurrentPost();
+        currentPost = select('core/editor').getCurrentPost(),
+        siteUrl = wpmozo_adfgu_editor_object.url;
 
     if (isSavingPost && !isAutosavingPost ) {
 
-        const siteUrl = select("core").getSite();
-
-        if ( window.wpmozo.wpmozo_is_empty( siteUrl ) || ! siteUrl.hasOwnProperty('url') ) {
+        if ( window.wpmozo.wpmozo_is_empty( siteUrl ) ) {
             return;
         }
 
-        const apiUrl = siteUrl.url + '/wp-json/wpmozo/v1/save-dynamic-style';
+        const apiUrl = siteUrl + '/wp-json/wpmozo/v1/save-dynamic-style';
 
         let style = window.wpmozo.extractCssByClass(),
             ID = currentPost.hasOwnProperty('wp_id') ? currentPost.wp_id : postId;
