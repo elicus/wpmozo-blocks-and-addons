@@ -16,6 +16,7 @@ const Edit = (props) => {
     const wpmozoCoreFun = window.wpmozo,
     attributes = props.attributes,
     clientId = props.clientId,
+    ID = window.wpmozo.getIdByClientid( clientId ),
     isSelected = props.isSelected,
     setAttributes = props.setAttributes,
     layoutType = ( 'flip' === attributes.animationType ) ? ' layout1' : ' layout2',
@@ -23,7 +24,7 @@ const Edit = (props) => {
     [ editMode, setEditMode ] = useState(false),
     editModeLabel = ( ! editMode ) ? __( 'Front', 'wpmozo-addons-lite-for-gutenberg' ) : __( 'Back', 'wpmozo-addons-lite-for-gutenberg' );
 
-    attributes.clientId = clientId;
+    attributes.ID = ID;
 
     let editModeSide = ( ! editMode ) ? ' edit-front' : ' edit-back';
     if ( ! isSelected ){
@@ -74,7 +75,11 @@ const Edit = (props) => {
 	return (
         <Fragment>
             <Inspector {...props} />
-            <Style {...attributes} />
+            <Style 
+                attributes={attributes} 
+                ID={ID}
+                clientId={clientId}  
+            />
             <BlockControls>
                 <ToolbarGroup>
                     <ToolbarButton>

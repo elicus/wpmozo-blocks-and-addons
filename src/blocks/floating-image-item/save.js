@@ -1,18 +1,15 @@
 
-import Style from "./style";
-
 import { useBlockProps } from "@wordpress/block-editor";
 
 const Save = ({attributes}) => {
   
-    const clientId = attributes.clientId,
+    const ID = attributes.ID,
     altText = ! window.wpmozo.wpmozo_is_empty( attributes.altText ) 
     	? attributes.altText
     	: 'alt';
  
     return (
-       <div className="floating-image-item" id={`block-${clientId}`}>
-            <Style {...attributes} />
+       <div className="floating-image-item" id={`block-${ID}`}>
             <img className="floating-image" src={ attributes.image.url } alt={altText} />
         </div>
     );

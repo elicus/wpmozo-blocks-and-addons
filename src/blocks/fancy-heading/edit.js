@@ -15,10 +15,11 @@ const Edit = (props) => {
 
     const attributes = props.attributes,
     clientId = props.clientId,
+    ID = window.wpmozo.getIdByClientid( clientId ),
     isSelected = props.isSelected,
     setAttributes = props.setAttributes;
 
-    attributes.clientId = clientId;
+    attributes.ID = ID;
 
     const blockProps = useBlockProps();
     const [ currentHeadingType, setcurrentHeadingType ] = useState('');
@@ -77,7 +78,11 @@ const Edit = (props) => {
 	return (
         <Fragment>
             <Inspector {...props} />
-            <Style {...attributes} />
+            <Style 
+                attributes={attributes} 
+                ID={ID}
+                clientId={clientId}  
+            />
             <BlockControls>
                 <ToolbarGroup>
                     <p>{activeTypeText()}</p>

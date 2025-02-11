@@ -1,7 +1,7 @@
 import { __ } from "@wordpress/i18n";
 
 const attributes = {
-    clientId: {
+    ID: {
         type: "string",
     },
     globalcolorHandle: {

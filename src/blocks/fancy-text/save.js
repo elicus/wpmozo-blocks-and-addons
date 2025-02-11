@@ -1,15 +1,12 @@
 
-import Style from "./style";
-
 import { useBlockProps, RichText } from "@wordpress/block-editor";
 
 const Save = ({ attributes }) => {
 
-    const clientId = attributes.clientId;
+    const ID = attributes.ID;
 
     return (
-        <div {...useBlockProps.save({className: 'wpmozo-adfgu-fancy-text-wrap'})} id={`block-${clientId}`}>
-            <Style {...attributes} />
+        <div {...useBlockProps.save({className: 'wpmozo-adfgu-fancy-text-wrap'})} id={`block-${ID}`}>
             <div
                 className={`wpmozo-adfgu-fancy-text-inner ${attributes.textStyle}`}
             >

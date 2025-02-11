@@ -11,11 +11,11 @@ const Edit = (props) => {
 
     const attributes = props.attributes,
     clientId = props.clientId,
+    ID = window.wpmozo.getIdByClientid( clientId ),
     toggleSwitchTypeClass = ' wpmozo_'+attributes.toggleSwitchType,
-    parent = '#block-'+clientId,
     titleWrapClass = ( 'toggle' === attributes.toggleSwitchType ) ? ' wpmozo_switch_trigger' : '';
 
-    attributes.clientId = clientId;
+    attributes.ID = ID;
 
 	const blockProps = useBlockProps({
         className: 'wpmozo-adfgu-content-toggle-main',
@@ -23,7 +23,7 @@ const Edit = (props) => {
 
     const wraperTemplate = [
         [ 'wpmozo/content-wraper', {
-            className: 'wpmozo-adfgu-content-toggle-one',
+            className: 'wpmozo-adfgu-content-toggle-one wpmozo-adfgu-content-toggle-active',
             lock: { 
                 remove: true 
             }
@@ -86,11 +86,11 @@ const Edit = (props) => {
     function wpmozo_toggle_switch( input, main ){
 
         if( input.is(':checked') ){
-            main.find('.wpmozo-adfgu-content-toggle-one').hide();
-            main.find('.wpmozo-adfgu-content-toggle-two').show();
+            main.find('.wpmozo-adfgu-content-toggle-one').removeClass('wpmozo-adfgu-content-toggle-active');
+            main.find('.wpmozo-adfgu-content-toggle-two').addClass('wpmozo-adfgu-content-toggle-active');
         }else{
-            main.find('.wpmozo-adfgu-content-toggle-one').show();
-            main.find('.wpmozo-adfgu-content-toggle-two').hide();
+            main.find('.wpmozo-adfgu-content-toggle-one').addClass('wpmozo-adfgu-content-toggle-active');
+            main.find('.wpmozo-adfgu-content-toggle-two').removeClass('wpmozo-adfgu-content-toggle-active');
         }
 
     }
@@ -138,7 +138,11 @@ const Edit = (props) => {
 	return (
         <Fragment>
             <Inspector {...props} />
-            <Style {...attributes} />
+            <Style 
+                attributes={attributes} 
+                ID={ID}
+                clientId={clientId}  
+            />
             <div {...blockProps}>
                 <div className={`wpmozo-adfgu-toggle-button-wrap${toggleSwitchTypeClass}`}>
                     { 'toggle' === attributes.toggleSwitchType && (

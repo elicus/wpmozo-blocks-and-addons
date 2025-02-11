@@ -1,18 +1,15 @@
 
-import Style from "./style";
-
 import { useBlockProps } from "@wordpress/block-editor";
 
 const Save = ({attributes}) => {
   
-    const clientId = attributes.clientId,
+    const ID = attributes.ID,
     altText = ! window.wpmozo.wpmozo_is_empty( attributes.altText ) 
     	? attributes.altText
     	: 'alt';
  
     return (
-        <div className="swiper-slide" id={`block-${clientId}`}>
-            <Style {...attributes} />
+        <div className="swiper-slide" id={`block-${ID}`}>
             <div className="logo-wrap">
                 <img className="logo-img" src={ attributes.logo.url } alt={altText} />
             </div>

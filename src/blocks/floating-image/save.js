@@ -1,11 +1,10 @@
 
-import Style from "./style";
 import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
 
     const Save = ({ attributes }) => {
 
         const wpmozoCoreFun = window.wpmozo,
-            clientId = attributes.clientId,
+            ID = attributes.ID,
             blockProps = useBlockProps.save();
 
         let innerBlocks = [],
@@ -36,8 +35,7 @@ import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
         }
 
         return (
-            <div {...innerBlocksProps} id={`block-${clientId}`}>
-                <Style {...attributes} />
+            <div {...innerBlocksProps} id={`block-${ID}`}>
                 <div className="wpmozo-adfgu-floating-image-wrapper">
                     { innerBlocksProps.children }
                 </div>

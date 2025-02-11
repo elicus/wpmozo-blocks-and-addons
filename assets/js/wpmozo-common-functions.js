@@ -275,3 +275,49 @@ window.wpmozo.wpmozo_generate_style = function( styles ){
 
 	return styleStr;
 }
+
+window.wpmozo.extractCssByClass = function() {
+	
+    let extractedCSS = '',
+    	editorIfram = jQuery('body').find('[name="editor-canvas"]').contents(),
+    	styleEl = ( editorIfram.length > 0 ) 
+    		? jQuery(editorIfram).find('.wpmozo-dynamic-style')
+    		: jQuery('.wpmozo-dynamic-style');
+
+    jQuery.each(styleEl, function(key, el){
+
+        let css = jQuery(el).html(),
+        	ID = jQuery(el).data('id'),
+        	clientId = jQuery(el).data('client-id'),
+        	minifedCss = window.wpmozo.minifyCSS( css ),
+        	$regExp = new RegExp(`block-${clientId}`, "gi");
+
+        minifedCss = minifedCss.replace( $regExp, `block-${ID}` );
+        	
+        extractedCSS += minifedCss;
+
+    });
+
+    return extractedCSS;
+}
+
+window.wpmozo.minifyCSS = function(css) {
+    return css
+        .replace(/\/\*[\s\S]*?\*\//g, '')
+        .replace(/\s+/g, ' ')
+        .replace(/\s*({|}|;|:|,)\s*/g, '$1')
+        .replace(/;}/g, '}')
+        .trim();
+}
+
+window.wpmozo.getIdByClientid = function( clientId ){
+ 
+	if( window.wpmozo.wpmozo_is_empty( clientId ) ){
+		return '';
+	}
+
+	let clientIdArr = clientId.split('-'),
+		Id = clientIdArr[4];
+
+	return Id;
+}

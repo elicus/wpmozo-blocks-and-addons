@@ -18,9 +18,10 @@ const Edit = (props) => {
     attributes = props.attributes,
     setAttributes = props.setAttributes,
     clientId = props.clientId,
+    ID = window.wpmozo.getIdByClientid( clientId ),
     blockProps = useBlockProps();
 
-    attributes.clientId = clientId;
+    attributes.ID = ID;
 
     let innerBlocks = [];
 
@@ -73,7 +74,11 @@ const Edit = (props) => {
             <Fragment>
                 <Inspector {...props} />
                 <div { ...blockProps } id={`block-${clientId}`}>
-                    <Style {...attributes} />
+                    <Style 
+                attributes={attributes} 
+                ID={ID}
+                clientId={clientId}  
+            />
                     <div className="wpmozo-adfgu-floating-image-wrapper">
                         { innerBlocksProps.children }
                     </div>

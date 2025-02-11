@@ -1,18 +1,15 @@
 
-import Style from "./style";
-
 import { useBlockProps, RichText } from "@wordpress/block-editor";
 const WPMozoEditorObj = wpmozo_adfgu_editor_object;
 
 const Save = ({ attributes }) => {
 
-    const clientId = attributes.clientId;
+    const ID = attributes.ID;
 
     let backImage = ( attributes.backImage ) ? attributes.backImage : WPMozoEditorObj.placeholderImg;
 
     return (
-        <div {...useBlockProps.save({ className: 'wpmozo-adfgu-interactive-image-card-main' })} id={`block-${clientId}`}>
-            <Style {...attributes} />
+        <div {...useBlockProps.save({ className: 'wpmozo-adfgu-interactive-image-card-main' })} id={`block-${ID}`}>
             <div className="wpmozo-adfgu-interactive-image-card-wrap">
                 <figure className={`effect-${ attributes.layout }`}>
                     <img className="wpmozo-adfgu-interactive-image-card-image" src={ backImage } />

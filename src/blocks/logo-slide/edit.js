@@ -14,6 +14,7 @@ const Edit = (props) => {
     const attributes = props.attributes,
     setAttributes = props.setAttributes,
     clientId = props.clientId,
+    ID = window.wpmozo.getIdByClientid( clientId ),
     altText = ! window.wpmozo.wpmozo_is_empty( attributes.altText ) 
         ? attributes.altText
         : 'alt',
@@ -21,13 +22,17 @@ const Edit = (props) => {
         className:"swiper-slide"
     });
 
-    attributes.clientId = clientId;
+    attributes.ID = ID;
 
 	return (
         <Fragment>
             <Inspector {...props} />
             <div className="swiper-slide" id={`block-${clientId}`}>
-                <Style {...attributes} />
+                <Style 
+                attributes={attributes} 
+                ID={ID}
+                clientId={clientId}  
+            />
                 <div className="logo-wrap">
                     <img className="logo-img" src={ attributes.logo.url } alt={altText} />
                 </div>

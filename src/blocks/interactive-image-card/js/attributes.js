@@ -2,7 +2,7 @@
 import { __ } from "@wordpress/i18n";
 
 const attributes = {
-	clientId: {
+    ID: {
         type: "string",
     },
     title: {
@@ -33,18 +33,18 @@ const attributes = {
         }
     },
     overlayColor: {
-        type: "String",
+        type: "string",
     },
     titleLavel: {
-        type: "String",
+        type: "string",
         default: "h2",
     },
     titleNormalColor: {
-        type: "String",
+        type: "string",
         default: "#222222",
     },
     titleHoverColor: {
-        type: "String",
+        type: "string",
         default: "#000000",
     },
     titleNormalFontSize: {
@@ -108,7 +108,7 @@ const attributes = {
         default: "center",
     },
     contentColor: {
-        type: "String",
+        type: "string",
         default: "#222222",
     },
     contentFontSize: {

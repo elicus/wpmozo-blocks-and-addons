@@ -1,8 +1,6 @@
 
-const Style = (attributes) => {
-
-	const clientId = attributes.clientId;
-
+const Style = ({attributes, ID, clientId}) => {
+    
 	const parent = '#block-'+clientId,
     toConvertStyles = [ 'beforeLabel', 'afterLabel' ],
     convertedStyle = window.wpmozo.convetInlineStyleStr( toConvertStyles, attributes ),
@@ -93,6 +91,30 @@ const Style = (attributes) => {
 
     let generateStyle = window.wpmozo.wpmozo_generate_style(allInline);
 
+    if ( no_overlay ) {
+        generateStyle += `
+            .twentytwenty-overlay:hover{
+                background: unset;
+            }
+        `
+    }
+
+    if ( ! attributes.beforeLabelOnHover ) {
+        generateStyle += `
+            .twentytwenty-before-label{
+                opacity: 1;
+            }
+        `
+    }
+
+    if ( ! attributes.afterLabelOnHover ) {
+        generateStyle += `
+            .twentytwenty-after-label{
+                opacity: 1;
+            }
+        `
+    }
+
     if ( ! window.wpmozo.wpmozo_is_empty( generateStyle ) ) {
         css += `
             ${parent} {
@@ -101,40 +123,10 @@ const Style = (attributes) => {
         `;
     }
 
-    if ( no_overlay ) {
-        css += `
-        ${parent} {
-            .twentytwenty-overlay:hover{
-                background: unset;
-            }
-        }
-        `
-    }
-
-    if ( ! attributes.beforeLabelOnHover ) {
-        css += `
-        ${parent} {
-            .twentytwenty-before-label{
-                opacity: 1;
-            }
-        }
-        `
-    }
-
-    if ( ! attributes.afterLabelOnHover ) {
-        css += `
-        ${parent} {
-            .twentytwenty-after-label{
-                opacity: 1;
-            }
-        }
-        `
-    }
-
 	return (
         <>
             { ! window.wpmozo.wpmozo_is_empty( css ) &&
-                <style>{css}</style>
+                <style className="wpmozo-dynamic-style" data-id={ID} data-client-id={clientId}>{css}</style>
             }
         </>
     );

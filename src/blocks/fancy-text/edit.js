@@ -10,9 +10,10 @@ const Edit = (props) => {
 
     const attributes = props.attributes,
     clientId = props.clientId,
+    ID = window.wpmozo.getIdByClientid( clientId ),
     setAttributes = props.setAttributes;
 
-    attributes.clientId = clientId;
+    attributes.ID = ID;
 
     const blockProps = useBlockProps({
         className: 'wpmozo-adfgu-fancy-text-wrap',
@@ -21,7 +22,11 @@ const Edit = (props) => {
 	return (
         <Fragment>
             <Inspector {...props} />
-            <Style {...attributes} />
+            <Style 
+                attributes={attributes} 
+                ID={ID}
+                clientId={clientId}  
+            />
             <div {...blockProps}>
                 <RichText
                     className={`wpmozo-adfgu-fancy-text-inner ${attributes.textStyle}`}

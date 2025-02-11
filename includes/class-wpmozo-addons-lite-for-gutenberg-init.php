@@ -187,8 +187,87 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 		$none_obj->value  = '';
 		$icons[]          = $none_obj;
 		$default_icons    = array_merge( $icons, $default_icons );
-		$icons            = apply_filters( 'wpmozo_addons_litegutenberg_block_icons', $default_icons );
+		$icons            = apply_filters( 'wpmozo_addons_lite_gutenberg_block_icons', $default_icons );
 		return $icons;
+	}
+
+	/**
+	 * Callback fun to save dynamic style.
+	 *
+	 * @since 1.0.0
+	 * @return a new WP_REST_Response instance.
+	 */
+	public function handle_save_dynamic_style( WP_REST_Request $request ) {
+
+	    $post_id_param = $request->get_param('post_id');
+	    $style_param = $request->get_param('style');
+	    $post_id = wpmozo_adfgu_sanitize_text_field( $post_id_param );
+	    $style = wpmozo_adfgu_sanitize_text_field( $style_param );
+
+	    update_post_meta( $post_id, 'wpmozo_dynamic_style', $style );
+
+	    $get_style = get_post_meta( $post_id, 'wpmozo_dynamic_style', true );
+
+	    if ( ! empty( trim( $get_style ) ) ) {
+	    	$response = array(
+	    		'success' => true,
+	    		'message' => esc_html( 'Style saved successfully' )
+	    	);
+	    }else{
+	    	$response = array(
+	    		'success' => false,
+	    		'message' => esc_html( 'Style not saved successfully' )
+	    	);
+	    }
+
+	    return rest_ensure_response( $response );
+	}
+
+	/**
+	 * Register rest api endpoints.
+	 *
+	 * @since 1.0.0
+	 */
+	public function register_rest_api_endpoints() {
+
+		register_rest_route('wpmozo/v1', '/save-dynamic-style/', array(
+	        'methods'  => 'POST',
+	        'callback' => array( $this, 'handle_save_dynamic_style' ),
+	        'permission_callback' => '__return_true'
+	    ));
+
+	}
+
+	/**
+	 * Enqueue frontend dynamic assets.
+	 *
+	 * @since 1.0.0
+	 */
+	public function enqueue_dynamic_assets() {
+
+		global $post,$_wp_current_template_id;
+
+		if ( empty( $post ) ) {
+			return;
+		}
+
+		$post_ID = $post->ID;
+		$block_data = get_block_template( $_wp_current_template_id );
+		$wp_id = null;
+		$inline_style = '';
+
+		if ( ! empty( $block_data ) && isset( $block_data->wp_id ) ) {
+			$wp_id = $block_data->wp_id;
+		}
+
+		if ( ! empty( $wp_id ) ) {
+			$inline_style .= get_post_meta( $wp_id, 'wpmozo_dynamic_style', true );
+		}
+
+		$inline_style .= get_post_meta( $post_ID, 'wpmozo_dynamic_style', true );
+
+		wp_add_inline_style( $this->plugin_name . '-blocks-style', $inline_style );
+
 	}
 
 	/**
@@ -204,6 +283,8 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 		$loader->add_action( 'init', $instance, 'wpmozo_register_blocks' );
 		$loader->add_action( 'enqueue_block_editor_assets', $instance, 'enqueue_block_editor_assets' );
 		$loader->add_action( 'wp_enqueue_scripts', $instance, 'enqueue_block_assets' );
+		$loader->add_action( 'wp_enqueue_scripts', $instance, 'enqueue_dynamic_assets' );
+		$loader->add_action( 'rest_api_init', $instance, 'register_rest_api_endpoints' );
 
 	}
 
