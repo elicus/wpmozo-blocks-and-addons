@@ -8612,7 +8612,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 
 const attributes = {
-  clientId: {
+  ID: {
+    type: "string"
+  },
+  image: {
     type: "string"
   },
   title: {
@@ -8622,9 +8625,6 @@ const attributes = {
   content: {
     type: "string",
     default: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Your content goes here. Edit this text inline or in the widget Content settings. You can also style every aspect of this content in the widget Design settings.', 'wpmozo-addons-lite-for-gutenberg')
-  },
-  image: {
-    type: "string"
   },
   overlayColor: {
     type: "string"
@@ -8702,6 +8702,84 @@ const attributes = {
   contentAlign: {
     type: "string",
     default: "left"
+  },
+  useIcon: {
+    type: "boolean",
+    default: false
+  },
+  icon: {
+    type: "string"
+  },
+  showButton: {
+    type: "boolean",
+    default: false
+  },
+  buttonUrl: {
+    type: "string"
+  },
+  buttonLinkTarget: {
+    type: "string",
+    default: "same"
+  },
+  tiltMax: {
+    type: "number",
+    default: 20
+  },
+  tiltPerspective: {
+    type: "number",
+    default: 1000
+  },
+  tiltScale: {
+    type: "number",
+    default: 1
+  },
+  tiltSpeed: {
+    type: "number",
+    default: 300
+  },
+  tiltMobile: {
+    type: "boolean",
+    default: false
+  },
+  useGlare: {
+    type: "boolean",
+    default: false
+  },
+  tiltMaxGlare: {
+    type: "number",
+    default: 1
+  },
+  use3dEffect: {
+    type: "boolean",
+    default: false
+  },
+  tilt3dValue: {
+    type: "number",
+    default: 1
+  },
+  useDisableAxis: {
+    type: "boolean",
+    default: false
+  },
+  tiltDisableAxis: {
+    type: "string"
+  },
+  useOverlay: {
+    type: "boolean",
+    default: false
+  },
+  overlayColor: {
+    type: "string"
+  },
+  iconColor: {
+    type: "string"
+  },
+  useIconFontSize: {
+    type: "boolean",
+    default: false
+  },
+  iconFontSize: {
+    type: "string"
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (attributes);
@@ -8744,7 +8822,7 @@ const Edit = props => {
     });
   let image = attributes.image ? attributes.image : WPMozoEditorObj.placeholderImg;
   attributes.clientId = clientId;
-  useEffect(() => {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
     jQuery(document).ready(function (e) {
       e("body").find(".wpmozo-adfgu-tilt-image").length > 0 && e("body").find(".wpmozo-adfgu-tilt-image").each(function () {
         e(this).on("mouseenter mouseleave", function (t) {
@@ -8916,6 +8994,12 @@ const Inspector = props => {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
     key: "controls"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Tilt Image', 'wpmozo-addons-lite-for-gutenberg'),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoMediaUploader, {
+    attrKye: "image",
+    props: props
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Content', 'wpmozo-addons-lite-for-gutenberg'),
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TextControl, {
@@ -8930,16 +9014,196 @@ const Inspector = props => {
       content: newValue
     }),
     value: attributes.content
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Image', 'wpmozo-addons-lite-for-gutenberg'),
-    initialOpen: false
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoMediaUploader, {
-    attrKye: "image",
-    props: props
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Use Icon', 'wpmozo-addons-lite-for-gutenberg'),
+    checked: attributes.useIcon,
+    onChange: newValue => setAttributes({
+      useIcon: newValue
+    })
+  }), attributes.useIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoIconpicker, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon', 'wpmozo-addons-lite-for-gutenberg'),
+    iconPickerKey: "icon",
+    props: props,
+    value: attributes.icon,
+    onChange: newValue => setAttributes({
+      icon: newValue
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Show Button', 'wpmozo-addons-lite-for-gutenberg'),
+    checked: attributes.showButton,
+    onChange: newValue => setAttributes({
+      showButton: newValue
+    })
+  }), attributes.showButton && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Button Url', 'wpmozo-addons-lite-for-gutenberg'),
+    onChange: newValue => setAttributes({
+      buttonUrl: newValue
+    }),
+    value: attributes.buttonUrl
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.BaseControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Link Target', 'wpmozo-addons-lite-for-gutenberg'),
+    className: "wpmozo-button-tabs-wrap"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ButtonGroup, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
+    className: "wpmozo-button-tabs-btn",
+    isPressed: 'same' === attributes.buttonLinkTarget ? true : false,
+    onClick: () => setAttributes({
+      buttonLinkTarget: 'same'
+    }),
+    icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Icon, {
+      icon: "admin-links"
+    }),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Same Window', 'wpmozo-addons-lite-for-gutenberg')
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
+    className: "wpmozo-button-tabs-btn",
+    isPressed: 'external' === attributes.buttonLinkTarget ? true : false,
+    onClick: () => setAttributes({
+      buttonLinkTarget: 'external'
+    }),
+    icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Icon, {
+      icon: "external"
+    }),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('External', 'wpmozo-addons-lite-for-gutenberg')
+  })))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
     key: "styles",
     group: "styles"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Tilt Setting', 'wpmozo-addons-lite-for-gutenberg'),
+    className: "wpmozo-typography-panel",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Max Rotation', 'wpmozo-addons-lite-for-gutenberg'),
+    value: attributes.tiltMax,
+    onChange: newValue => setAttributes({
+      tiltMax: newValue
+    }),
+    min: 1,
+    max: 100
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Perspective', 'wpmozo-addons-lite-for-gutenberg'),
+    value: attributes.tiltPerspective,
+    onChange: newValue => setAttributes({
+      tiltPerspective: newValue
+    }),
+    min: 100,
+    max: 2000
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Scale on Hover', 'wpmozo-addons-lite-for-gutenberg'),
+    value: attributes.tiltScale,
+    onChange: newValue => setAttributes({
+      tiltScale: newValue
+    }),
+    min: 1,
+    step: 0.1,
+    max: 3
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Speed', 'wpmozo-addons-lite-for-gutenberg'),
+    value: attributes.tiltSpeed,
+    onChange: newValue => setAttributes({
+      tiltSpeed: newValue
+    }),
+    min: 10,
+    max: 1000
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Disable on Mobile', 'wpmozo-addons-lite-for-gutenberg'),
+    checked: attributes.tiltMobile,
+    onChange: newValue => setAttributes({
+      tiltMobile: newValue
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Use Glare', 'wpmozo-addons-lite-for-gutenberg'),
+    checked: attributes.useGlare,
+    onChange: newValue => setAttributes({
+      useGlare: newValue
+    })
+  }), attributes.useGlare && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Max Glare', 'wpmozo-addons-lite-for-gutenberg'),
+    value: attributes.tiltMaxGlare,
+    onChange: newValue => setAttributes({
+      tiltMaxGlare: newValue
+    }),
+    min: 0.1,
+    max: 1,
+    step: 0.1
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Use 3D Effect', 'wpmozo-addons-lite-for-gutenberg'),
+    checked: attributes.use3dEffect,
+    onChange: newValue => setAttributes({
+      use3dEffect: newValue
+    })
+  }), attributes.use3dEffect && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('3D Effect', 'wpmozo-addons-lite-for-gutenberg'),
+    value: attributes.tilt3dValue,
+    onChange: newValue => setAttributes({
+      tilt3dValue: newValue
+    }),
+    min: 10,
+    max: 100
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Use Disable X/Y axis', 'wpmozo-addons-lite-for-gutenberg'),
+    checked: attributes.useDisableAxis,
+    onChange: newValue => setAttributes({
+      useDisableAxis: newValue
+    })
+  }), attributes.useDisableAxis && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.BaseControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Disable X/Y axis', 'wpmozo-addons-lite-for-gutenberg'),
+    className: "wpmozo-button-tabs-wrap"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ButtonGroup, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
+    className: "wpmozo-button-tabs-btn",
+    isPressed: 'x' === attributes.tiltDisableAxis ? true : false,
+    onClick: () => setAttributes({
+      tiltDisableAxis: 'x'
+    }),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('X axis', 'wpmozo-addons-lite-for-gutenberg'),
+    text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('X axis', 'wpmozo-addons-lite-for-gutenberg')
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
+    className: "wpmozo-button-tabs-btn",
+    isPressed: 'y' === attributes.tiltDisableAxis ? true : false,
+    onClick: () => setAttributes({
+      tiltDisableAxis: 'y'
+    }),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Y axis', 'wpmozo-addons-lite-for-gutenberg'),
+    text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Y axis', 'wpmozo-addons-lite-for-gutenberg')
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Overlay', 'wpmozo-addons-lite-for-gutenberg'),
+    className: "wpmozo-typography-panel",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Image Overlay', 'wpmozo-addons-lite-for-gutenberg'),
+    checked: attributes.useOverlay,
+    onChange: newValue => setAttributes({
+      useOverlay: newValue
+    })
+  }), attributes.useOverlay && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoColorPicker, {
+    ColorKey: "overlay",
+    props: props,
+    ColorTypes: [{
+      key: 'Color',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Overlay Color', 'wpmozo-addons-lite-for-gutenberg')
+    }]
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon', 'wpmozo-addons-lite-for-gutenberg'),
+    className: "wpmozo-typography-panel",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoColorPicker, {
+    ColorKey: "icon",
+    props: props,
+    ColorTypes: [{
+      key: 'Color',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon Color', 'wpmozo-addons-lite-for-gutenberg')
+    }]
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Use Icon Font Size', 'wpmozo-addons-lite-for-gutenberg'),
+    checked: attributes.useIconFontSize,
+    onChange: newValue => setAttributes({
+      useIconFontSize: newValue
+    })
+  }), attributes.useIconFontSize && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.HeightControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon Font Size', 'wpmozo-addons-lite-for-gutenberg'),
+    value: attributes.iconFontSize,
+    onChange: newValue => setAttributes({
+      iconFontSize: newValue
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Title', 'wpmozo-addons-lite-for-gutenberg'),
     className: "wpmozo-typography-panel",
     initialOpen: false

@@ -3,7 +3,7 @@ import Inspector from "./inspector";
 import Style from "./style";
 
 import { __ } from "@wordpress/i18n";
-import { Fragment } from "@wordpress/element";
+import { useEffect, Fragment } from "@wordpress/element";
 import { useBlockProps, RichText } from "@wordpress/block-editor";
 const WPMozoEditorObj = wpmozo_adfgu_editor_object;
 

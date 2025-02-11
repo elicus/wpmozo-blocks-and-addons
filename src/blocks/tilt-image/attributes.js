@@ -2,7 +2,10 @@
 import { __ } from "@wordpress/i18n";
 
 const attributes = {
-	clientId: {
+	ID: {
+        type: "string"
+    },
+    image: {
         type: "string"
     },
     title: {
@@ -12,9 +15,6 @@ const attributes = {
     content: {
         type: "string",
         default: __( 'Your content goes here. Edit this text inline or in the widget Content settings. You can also style every aspect of this content in the widget Design settings.', 'wpmozo-addons-lite-for-gutenberg' )
-    },
-    image: {
-        type: "string"
     },
     overlayColor: {
         type: "string"
@@ -93,6 +93,84 @@ const attributes = {
         type: "string",
         default: "left"
     },
+    useIcon: {
+        type: "boolean",
+        default: false,
+    },
+    icon: {
+        type: "string",
+    },
+    showButton: {
+        type: "boolean",
+        default: false,
+    },
+    buttonUrl: {
+        type: "string",
+    },
+    buttonLinkTarget: {
+        type: "string",
+        default: "same"
+    },
+    tiltMax: {
+        type: "number",
+        default: 20
+    },
+    tiltPerspective: {
+        type: "number",
+        default: 1000
+    },
+    tiltScale: {
+        type: "number",
+        default: 1
+    },
+    tiltSpeed: {
+        type: "number",
+        default: 300
+    },
+    tiltMobile: {
+        type: "boolean",
+        default: false,
+    },
+    useGlare: {
+        type: "boolean",
+        default: false,
+    },
+    tiltMaxGlare: {
+        type: "number",
+        default: 1
+    },
+    use3dEffect: {
+        type: "boolean",
+        default: false,
+    },
+    tilt3dValue: {
+        type: "number",
+        default: 1
+    },
+    useDisableAxis: {
+        type: "boolean",
+        default: false,
+    },
+    tiltDisableAxis: {
+        type: "string"
+    },
+    useOverlay: {
+        type: "boolean",
+        default: false,
+    },
+    overlayColor: {
+        type: "string"
+    },
+    iconColor: {
+        type: "string"
+    },
+    useIconFontSize: {
+        type: "boolean",
+        default: false,
+    },
+    iconFontSize: {
+        type: "string"
+    }
 };
 
 export default attributes;
