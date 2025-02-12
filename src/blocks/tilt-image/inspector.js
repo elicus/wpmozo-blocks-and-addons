@@ -1,5 +1,5 @@
 
-import { WpmozoIconpicker, WpmozoBorder, WpmozoAlignment, WpmozoColorPicker, WpmozoTypography, WpmozoMediaUploader } from '../../components/index';
+import { WpmozoDimensions, WpmozoIconpicker, WpmozoBorder, WpmozoAlignment, WpmozoColorPicker, WpmozoTypography, WpmozoMediaUploader } from '../../components/index';
 import { __ } from "@wordpress/i18n";
 import { InspectorControls, HeightControl } from "@wordpress/block-editor";
 import { useState } from "@wordpress/element";
@@ -44,6 +44,66 @@ const Inspector = (props) => {
         {
             label: __( 'H6', 'wpmozo-addons-lite-for-gutenberg' ),
             value: 'h6'
+        }
+    ],
+    contentAlignment = [
+        {
+            label: __('Top Left', 'wpmozo-addons-lite-for-gutenberg'),
+            value: 'top-left'
+        },
+        {
+            label: __('Top Center', 'wpmozo-addons-lite-for-gutenberg'),
+            value: 'top-center'
+        },
+        {
+            label: __('Top Right', 'wpmozo-addons-lite-for-gutenberg'),
+            value: 'top-right'
+        },
+        {
+            label: __('Center Left', 'wpmozo-addons-lite-for-gutenberg'),
+            value: 'center-left'
+        },
+        {
+            label: __('Center', 'wpmozo-addons-lite-for-gutenberg'),
+            value: 'center'
+        },
+        {
+            label: __('Center Right', 'wpmozo-addons-lite-for-gutenberg'),
+            value: 'center-right'
+        },
+        {
+            label: __('Bottom Left', 'wpmozo-addons-lite-for-gutenberg'),
+            value: 'bottom-left'
+        },
+        {
+            label: __('Bottom Center', 'wpmozo-addons-lite-for-gutenberg'),
+            value: 'bottom-center'
+        },
+        {
+            label: __('Bottom Right', 'wpmozo-addons-lite-for-gutenberg'),
+            value: 'bottom-right'
+        },
+    ],
+    contentAnimationDirection = [
+        {
+            label: __('Top To Bottom', 'wpmozo-addons-lite-for-gutenberg'),
+            value: 'top'
+        },
+        {
+            label: __('Left To Right', 'wpmozo-addons-lite-for-gutenberg'),
+            value: 'left'
+        },
+        {
+            label: __('Right To Left', 'wpmozo-addons-lite-for-gutenberg'),
+            value: 'right'
+        },
+        {
+            label: __('Bottom To Top', 'wpmozo-addons-lite-for-gutenberg'),
+            value: 'bottom'
+        },
+        {
+            label: __('No Animation', 'wpmozo-addons-lite-for-gutenberg'),
+            value: 'off'
         }
     ];
 
@@ -257,6 +317,34 @@ const Inspector = (props) => {
                         />
                     }
                 </PanelBody>
+                <PanelBody title={ __( 'Content Styling', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <WpmozoDimensions
+                        DimensionKey='content'
+                        DimensionsTypes={{
+                            padding: true
+                        }}
+                        props={props}
+                    />
+                    <SelectControl
+                        label={ __( 'Content Alignment', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        value={ attributes.contentAlignment }
+                        options={ contentAlignment }
+                        onChange={ ( newValue ) => setAttributes( { contentAlignment: newValue } ) }
+                    />
+                    <ToggleControl
+                        label={ __( 'Content on Hover', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        checked={ attributes.useIconFontSize }
+                        onChange={ ( newValue ) => setAttributes( { useIconFontSize: newValue } ) }
+                    />
+                    { attributes.useIconFontSize &&
+                        <SelectControl
+                            label={ __( 'Content Alignment', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            value={ attributes.contentAnimationDirection }
+                            options={ contentAnimationDirection }
+                            onChange={ ( newValue ) => setAttributes( { contentAnimationDirection: newValue } ) }
+                        />
+                    }
+                </PanelBody>
                 <PanelBody title={ __( 'Title', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoColorPicker  
                         ColorKey="title"
@@ -268,6 +356,20 @@ const Inspector = (props) => {
                             }
                         ]}
                     />
+                    <BaseControl
+                        label={ __( 'Heading Lavel', 'wpmozo-addons-lite-for-gutenberg' ) }
+                    >    
+                        <ButtonGroup>
+                            {headingLavels.map((item, key) => (
+                                <Button
+                                    isPressed={ ( item.value === attributes.headingLavel ) ? true : false }
+                                    onClick={ ( newValue ) => setAttributes( { headingLavel: item.value } ) }
+                                >
+                                    { item.label }
+                                </Button>
+                            ))}
+                        </ButtonGroup>
+                    </BaseControl>
                     <WpmozoTypography
                         TypographyKey="title"
                         props={props}
@@ -278,9 +380,9 @@ const Inspector = (props) => {
                         value={ attributes.titleAlign }
                     />
                 </PanelBody>
-                <PanelBody title={ __( 'Content', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                <PanelBody title={ __( 'Description', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoColorPicker  
-                        ColorKey="content"
+                        ColorKey="description"
                         props={props}
                         ColorTypes={[ 
                             {
@@ -290,11 +392,11 @@ const Inspector = (props) => {
                         ]}
                     />
                     <WpmozoTypography
-                        TypographyKey="content"
+                        TypographyKey="description"
                         props={props}
                     />
                     <WpmozoAlignment
-                        label={ __( 'Content Alignment', 'wpmozo-addons-lite-for-gutenberg') }
+                        label={ __( 'Description Alignment', 'wpmozo-addons-lite-for-gutenberg') }
                         onChange={ ( newValue ) => setAttributes( { contentAlign: newValue } ) }
                         value={ attributes.contentAlign }
                     />

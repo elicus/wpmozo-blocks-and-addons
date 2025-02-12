@@ -1,36 +1,32 @@
 
-import Style from "./style";
-
 import { useBlockProps, RichText } from "@wordpress/block-editor";
 const WPMozoEditorObj = wpmozo_adfgu_editor_object;
 
 const Save = ({ attributes }) => {
 
-    const clientId = attributes.clientId;
+    const ID = attributes.ID;
 
-    let backImage = ( attributes.backImage ) ? attributes.backImage : WPMozoEditorObj.placeholderImg;
+    let image = ( attributes.image ) ? attributes.image : WPMozoEditorObj.placeholderImg,
+        contentAlignment = attributes.contentAlignment;
 
     return (
-        <div {...useBlockProps.save({ className: 'wpmozo-adfgu-interactive-image-card-main' })} id={`block-${clientId}`}>
-            <Style {...attributes} />
-            <div className="wpmozo-adfgu-interactive-image-card-wrap">
-                <figure>
-                    <img className="wpmozo-adfgu-interactive-image-card-image" src={ backImage } />
-                    <figcaption>
-                        <div className="wpmozo-adfgu-interactive-image-card-inner">
-                            <RichText.Content
-                                className="wpmozo-adfgu-interactive-image-card-title"
-                                tagName={ attributes.titleLavel }
-                                value={ attributes.title }
-                            />
-                            <RichText.Content
-                                className="wpmozo-adfgu-interactive-image-card-content"
-                                tagName="div"
-                                value={ attributes.content }
-                            />
-                        </div>
-                    </figcaption>
-                </figure>
+        <div {...useBlockProps.save({ className: 'wpmozo-adfgu-tilt-image' })} id={`block-${ID}`}>
+            <div className={ `wpmozo-adfgu-tilt-image-wrapper wpmozo-editor wpmozo-adfgu-tilt-align-${contentAlignment}` }>
+                <div className="wpmozo-adfgu-tilt-image-inner-wrapper">
+                    <img className="wpmozo-adfgu-tilt-image-image" src={ image } />
+                    <div className="wpmozo-adfgu-tilt-content-wrapper">
+                        <RichText.Content
+                            className="wpmozo-adfgu-tilt-title"
+                            tagName={ attributes.titleLavel }
+                            value={ attributes.title }
+                        />
+                        <RichText.Content
+                            className="wpmozo-adfgu-tilt-desc"
+                            tagName="div"
+                            value={ attributes.content }
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     );

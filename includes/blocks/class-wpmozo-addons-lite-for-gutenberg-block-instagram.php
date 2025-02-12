@@ -17,7 +17,7 @@
  * @subpackage WPMozo_Addons_For_Gutenberg/includes
  * @author     Elicus <hello@elicus.com>
  */
-class WPMozo_Addons_Gutenberg_Block_Instagram extends WPMozo_Addons_Gutenberg_Block {
+class WPMozo_Addons_Lite_Gutenberg_Block_Instagram extends WPMozo_Addons_Lite_Gutenberg_Block {
 
     /**
      * The name of block.

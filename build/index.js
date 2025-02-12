@@ -8668,13 +8668,13 @@ const attributes = {
     type: "string",
     default: "left"
   },
-  contentColor: {
+  descriptionColor: {
     type: "String"
   },
-  contentFontSize: {
+  descriptionFontSize: {
     type: "string"
   },
-  contentFontAppearance: {
+  descriptionFontAppearance: {
     type: "object",
     fontStyle: {
       type: "string"
@@ -8687,19 +8687,19 @@ const attributes = {
       fontWeight: ""
     }
   },
-  contentLetterSpacing: {
+  descriptionLetterSpacing: {
     type: "string"
   },
-  contentDecoration: {
+  descriptionDecoration: {
     type: "string"
   },
-  contentLetterCase: {
+  descriptionLetterCase: {
     type: "string"
   },
-  contentLineHeight: {
+  descriptionLineHeight: {
     type: "string"
   },
-  contentAlign: {
+  descriptionAlign: {
     type: "string",
     default: "left"
   },
@@ -8780,6 +8780,17 @@ const attributes = {
   },
   iconFontSize: {
     type: "string"
+  },
+  contentAlignment: {
+    type: "string",
+    default: "center"
+  },
+  contentAnimationDirection: {
+    type: "string",
+    default: "off"
+  },
+  contentpadding: {
+    type: "object"
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (attributes);
@@ -8816,36 +8827,73 @@ const WPMozoEditorObj = wpmozo_adfgu_editor_object;
 const Edit = props => {
   const attributes = props.attributes,
     clientId = props.clientId,
+    ID = window.wpmozo.getIdByClientid(clientId),
     setAttributes = props.setAttributes,
     blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
-      className: 'wpmozo-adfgu-tilt-image-main'
+      className: 'wpmozo-adfgu-tilt-image'
     });
-  let image = attributes.image ? attributes.image : WPMozoEditorObj.placeholderImg;
-  attributes.clientId = clientId;
+  let image = attributes.image ? attributes.image : WPMozoEditorObj.placeholderImg,
+    contentAlignment = attributes.contentAlignment;
+  attributes.ID = ID;
+  let wpmozo_init_tilt_img = (element, attributes) => {
+    let axis = attributes.useDisableAxis ? attributes.tiltDisableAxis : null;
+    element.find('.wpmozo-adfgu-tilt-image-inner-wrapper').tilt({
+      maxTilt: attributes.tiltMax,
+      perspective: attributes.tiltPerspective,
+      scale: attributes.tiltScale,
+      speed: attributes.tiltSpeed,
+      disableAxis: axis,
+      reset: true,
+      glare: attributes.useGlare,
+      maxGlare: attributes.tiltMaxGlare
+    });
+  };
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
     jQuery(document).ready(function (e) {
       e("body").find(".wpmozo-adfgu-tilt-image").length > 0 && e("body").find(".wpmozo-adfgu-tilt-image").each(function () {
-        e(this).on("mouseenter mouseleave", function (t) {
-          "mouseenter" === t.type && e(this).find(".dipl_tilt_content_wrapper").addClass("et-animated"), "mouseleave" === t.type && e(this).find(".dipl_tilt_content_wrapper").removeClass("et-animated");
-        });
+        let $this = jQuery(this);
+        wpmozo_init_tilt_img($this, attributes);
       });
     });
   });
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
+    jQuery(document).ready(function (e) {
+      e("body").find(".wpmozo-adfgu-tilt-image").length > 0 && e("body").find(".wpmozo-adfgu-tilt-image").each(function () {
+        let $this = jQuery(this);
+        wpmozo_init_tilt_img($this, attributes);
+      });
+    });
+  }, [attributes.tiltMax, attributes.tiltPerspective, attributes.tiltScale, attributes.tiltSpeed, attributes.useDisableAxis, attributes.useGlare, attributes.tiltMaxGlare]);
+  const icon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "wpmozo-adfgu-tilt-icon"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+    className: `${attributes.icon}`
+  }));
+  const button = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "wpmozo-adfgu-tilt-image-button-wrapper"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    class: "wpmozo-adfgu-tilt-image-button",
+    target: ""
+  }));
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_1__["default"], {
     ...props
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_style__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    ...attributes
+    attributes: attributes,
+    ID: ID,
+    clientId: clientId
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "wpmozo-adfgu-tilt-image-wrap wpmozo-editor"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("figure", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    className: `wpmozo-adfgu-tilt-image-wrapper wpmozo-editor wpmozo-adfgu-tilt-align-${contentAlignment}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "wpmozo-adfgu-tilt-image-inner-wrapper"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     className: "wpmozo-adfgu-tilt-image-image",
     src: image
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("figcaption", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "wpmozo-adfgu-tilt-image-inner"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.RichText, {
-    className: "wpmozo-adfgu-tilt-image-title",
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "wpmozo-adfgu-tilt-content-wrapper"
+  }, attributes.useIcon && icon, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.RichText, {
+    className: "wpmozo-adfgu-tilt-title",
     tagName: attributes.titleLavel,
     value: attributes.title,
     onChange: newValue => setAttributes({
@@ -8853,14 +8901,14 @@ const Edit = props => {
     }),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Image Card Title', 'wpmozo-addons-lite-for-gutenberg')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.RichText, {
-    className: "wpmozo-adfgu-tilt-image-content",
+    className: "wpmozo-adfgu-tilt-desc",
     tagName: "div",
     value: attributes.content,
     onChange: newValue => setAttributes({
       content: newValue
     }),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Your content goes here. Edit this text inline or in the widget Content settings. You can also style every aspect of this content in the widget Design settings.', 'wpmozo-addons-lite-for-gutenberg')
-  })))))));
+  }))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
@@ -8989,6 +9037,50 @@ const Inspector = props => {
     }, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('H6', 'wpmozo-addons-lite-for-gutenberg'),
       value: 'h6'
+    }],
+    contentAlignment = [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Top Left', 'wpmozo-addons-lite-for-gutenberg'),
+      value: 'top-left'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Top Center', 'wpmozo-addons-lite-for-gutenberg'),
+      value: 'top-center'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Top Right', 'wpmozo-addons-lite-for-gutenberg'),
+      value: 'top-right'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Center Left', 'wpmozo-addons-lite-for-gutenberg'),
+      value: 'center-left'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Center', 'wpmozo-addons-lite-for-gutenberg'),
+      value: 'center'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Center Right', 'wpmozo-addons-lite-for-gutenberg'),
+      value: 'center-right'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Bottom Left', 'wpmozo-addons-lite-for-gutenberg'),
+      value: 'bottom-left'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Bottom Center', 'wpmozo-addons-lite-for-gutenberg'),
+      value: 'bottom-center'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Bottom Right', 'wpmozo-addons-lite-for-gutenberg'),
+      value: 'bottom-right'
+    }],
+    contentAnimationDirection = [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Top To Bottom', 'wpmozo-addons-lite-for-gutenberg'),
+      value: 'top'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Left To Right', 'wpmozo-addons-lite-for-gutenberg'),
+      value: 'left'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Right To Left', 'wpmozo-addons-lite-for-gutenberg'),
+      value: 'right'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Bottom To Top', 'wpmozo-addons-lite-for-gutenberg'),
+      value: 'bottom'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('No Animation', 'wpmozo-addons-lite-for-gutenberg'),
+      value: 'off'
     }];
   const [titleStyleType, setTitleStyleType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('normal');
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
@@ -9204,6 +9296,36 @@ const Inspector = props => {
       iconFontSize: newValue
     })
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Content Styling', 'wpmozo-addons-lite-for-gutenberg'),
+    className: "wpmozo-typography-panel",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoDimensions, {
+    DimensionKey: "content",
+    DimensionsTypes: {
+      padding: true
+    },
+    props: props
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Content Alignment', 'wpmozo-addons-lite-for-gutenberg'),
+    value: attributes.contentAlignment,
+    options: contentAlignment,
+    onChange: newValue => setAttributes({
+      contentAlignment: newValue
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Content on Hover', 'wpmozo-addons-lite-for-gutenberg'),
+    checked: attributes.useIconFontSize,
+    onChange: newValue => setAttributes({
+      useIconFontSize: newValue
+    })
+  }), attributes.useIconFontSize && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Content Alignment', 'wpmozo-addons-lite-for-gutenberg'),
+    value: attributes.contentAnimationDirection,
+    options: contentAnimationDirection,
+    onChange: newValue => setAttributes({
+      contentAnimationDirection: newValue
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Title', 'wpmozo-addons-lite-for-gutenberg'),
     className: "wpmozo-typography-panel",
     initialOpen: false
@@ -9214,7 +9336,14 @@ const Inspector = props => {
       key: 'Color',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Title Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoTypography, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.BaseControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Heading Lavel', 'wpmozo-addons-lite-for-gutenberg')
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ButtonGroup, null, headingLavels.map((item, key) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
+    isPressed: item.value === attributes.headingLavel ? true : false,
+    onClick: newValue => setAttributes({
+      headingLavel: item.value
+    })
+  }, item.label)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoTypography, {
     TypographyKey: "title",
     props: props
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoAlignment, {
@@ -9224,21 +9353,21 @@ const Inspector = props => {
     }),
     value: attributes.titleAlign
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Content', 'wpmozo-addons-lite-for-gutenberg'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Description', 'wpmozo-addons-lite-for-gutenberg'),
     className: "wpmozo-typography-panel",
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoColorPicker, {
-    ColorKey: "content",
+    ColorKey: "description",
     props: props,
     ColorTypes: [{
       key: 'Color',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Text Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoTypography, {
-    TypographyKey: "content",
+    TypographyKey: "description",
     props: props
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoAlignment, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Content Alignment', 'wpmozo-addons-lite-for-gutenberg'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Description Alignment', 'wpmozo-addons-lite-for-gutenberg'),
     onChange: newValue => setAttributes({
       contentAlign: newValue
     }),
@@ -9261,41 +9390,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style */ "./src/blocks/tilt-image/style.js");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 
 
 const WPMozoEditorObj = wpmozo_adfgu_editor_object;
 const Save = ({
   attributes
 }) => {
-  const clientId = attributes.clientId;
-  let backImage = attributes.backImage ? attributes.backImage : WPMozoEditorObj.placeholderImg;
+  const ID = attributes.ID;
+  let image = attributes.image ? attributes.image : WPMozoEditorObj.placeholderImg,
+    contentAlignment = attributes.contentAlignment;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
-      className: 'wpmozo-adfgu-interactive-image-card-main'
+    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
+      className: 'wpmozo-adfgu-tilt-image'
     }),
-    id: `block-${clientId}`
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_style__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    ...attributes
+    id: `block-${ID}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `wpmozo-adfgu-tilt-image-wrapper wpmozo-editor wpmozo-adfgu-tilt-align-${contentAlignment}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "wpmozo-adfgu-tilt-image-inner-wrapper"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    className: "wpmozo-adfgu-tilt-image-image",
+    src: image
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "wpmozo-adfgu-interactive-image-card-wrap"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("figure", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    className: "wpmozo-adfgu-interactive-image-card-image",
-    src: backImage
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("figcaption", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "wpmozo-adfgu-interactive-image-card-inner"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
-    className: "wpmozo-adfgu-interactive-image-card-title",
+    className: "wpmozo-adfgu-tilt-content-wrapper"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    className: "wpmozo-adfgu-tilt-title",
     tagName: attributes.titleLavel,
     value: attributes.title
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
-    className: "wpmozo-adfgu-interactive-image-card-content",
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    className: "wpmozo-adfgu-tilt-desc",
     tagName: "div",
     value: attributes.content
-  }))))));
+  })))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
 

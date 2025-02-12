@@ -58,13 +58,13 @@ const attributes = {
         type: "string",
         default: "left"
     },
-    contentColor: {
+    descriptionColor: {
         type: "String"
     },
-    contentFontSize: {
+    descriptionFontSize: {
         type: "string"
     },
-    contentFontAppearance: {
+    descriptionFontAppearance: {
         type: "object",
         fontStyle: {
             type: "string"
@@ -77,19 +77,19 @@ const attributes = {
             fontWeight: ""
         }
     },
-    contentLetterSpacing: {
+    descriptionLetterSpacing: {
         type: "string"
     },
-    contentDecoration: {
+    descriptionDecoration: {
         type: "string"
     },
-    contentLetterCase: {
+    descriptionLetterCase: {
         type: "string"
     },
-    contentLineHeight: {
+    descriptionLineHeight: {
         type: "string"
     },
-    contentAlign: {
+    descriptionAlign: {
         type: "string",
         default: "left"
     },
@@ -170,6 +170,17 @@ const attributes = {
     },
     iconFontSize: {
         type: "string"
+    },
+    contentAlignment: {
+        type: "string",
+        default: "center"
+    },
+    contentAnimationDirection: {
+        type: "string",
+        default: "off"
+    },
+    contentpadding: {
+        type: "object"
     }
 };
 

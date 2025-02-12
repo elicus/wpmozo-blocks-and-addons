@@ -56,7 +56,9 @@ class WPMozo_Addons_Lite_Gutenberg_Blocks {
 			'contenttoggle'     => 'Contenttoggle',
 			'flipbox'			=> 'Flipbox',
 			'interactiveimagecard' => 'Interactiveimagecard',
-			'logoslider' => 'Logoslider'
+			'logoslider' => 'Logoslider',
+			'instagram' => 'Instagram',
+			'tiltimage' => 'Tiltimage'
 		);
 
 		return $blocks;
