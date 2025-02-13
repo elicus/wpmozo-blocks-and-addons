@@ -151,6 +151,11 @@ const Inspector = (props) => {
                     { attributes.showButton &&
                         <>
                             <TextControl
+                                label={ __( 'Button Text', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                value={ attributes.buttonText }
+                                onChange={ ( newValue ) => setAttributes( { buttonText: newValue } ) }
+                            />
+                            <TextControl
                                 label={ __( 'Button Url', 'wpmozo-addons-lite-for-gutenberg' ) }
                                 onChange={ ( newValue ) => setAttributes( { buttonUrl: newValue } ) }
                                 value={ attributes.buttonUrl }
@@ -333,10 +338,10 @@ const Inspector = (props) => {
                     />
                     <ToggleControl
                         label={ __( 'Content on Hover', 'wpmozo-addons-lite-for-gutenberg' ) }
-                        checked={ attributes.useIconFontSize }
-                        onChange={ ( newValue ) => setAttributes( { useIconFontSize: newValue } ) }
+                        checked={ attributes.contentOnHover }
+                        onChange={ ( newValue ) => setAttributes( { contentOnHover: newValue } ) }
                     />
-                    { attributes.useIconFontSize &&
+                    { attributes.contentOnHover &&
                         <SelectControl
                             label={ __( 'Content Alignment', 'wpmozo-addons-lite-for-gutenberg' ) }
                             value={ attributes.contentAnimationDirection }
@@ -362,8 +367,8 @@ const Inspector = (props) => {
                         <ButtonGroup>
                             {headingLavels.map((item, key) => (
                                 <Button
-                                    isPressed={ ( item.value === attributes.headingLavel ) ? true : false }
-                                    onClick={ ( newValue ) => setAttributes( { headingLavel: item.value } ) }
+                                    isPressed={ ( item.value === attributes.titleLavel ) ? true : false }
+                                    onClick={ ( newValue ) => setAttributes( { titleLavel: item.value } ) }
                                 >
                                     { item.label }
                                 </Button>
@@ -397,8 +402,8 @@ const Inspector = (props) => {
                     />
                     <WpmozoAlignment
                         label={ __( 'Description Alignment', 'wpmozo-addons-lite-for-gutenberg') }
-                        onChange={ ( newValue ) => setAttributes( { contentAlign: newValue } ) }
-                        value={ attributes.contentAlign }
+                        onChange={ ( newValue ) => setAttributes( { descriptionAlign: newValue } ) }
+                        value={ attributes.descriptionAlign }
                     />
                 </PanelBody>
             </InspectorControls>

@@ -4,17 +4,48 @@ const WPMozoEditorObj = wpmozo_adfgu_editor_object;
 
 const Save = ({ attributes }) => {
 
-    const ID = attributes.ID;
+    const coreFunc = window.wpmozo,
+        ID = attributes.ID;
 
     let image = ( attributes.image ) ? attributes.image : WPMozoEditorObj.placeholderImg,
-        contentAlignment = attributes.contentAlignment;
+        contentAlignment = attributes.contentAlignment,
+        linkTarget = ( 'external' === attributes.buttonLinkTarget ) ? '_blank' : '_self',
+        animationDirection = attributes.contentAnimationDirection,
+        animationClass = ( attributes.contentOnHover && 'off' !== animationDirection ) ? ` wpmozo-animation wpmozo-animation-${attributes.contentAnimationDirection}` : '',
+        axis = ( attributes.useDisableAxis ) ? attributes.tiltDisableAxis : null,
+        glare = ( attributes.useGlare ) ? attributes.tiltMaxGlare : false;
+
+    const icon = (
+        <span className="wpmozo-adfgu-tilt-icon">
+            <i className={`${ attributes.icon }`}></i>
+        </span>
+    );
+
+    const button = (
+        <div className="wpmozo-adfgu-tilt-image-button-wrapper">
+            <a href={ attributes.buttonUrl } className="wpmozo-adfgu-tilt-image-button wp-block-button__link wp-element-button" target={ linkTarget }>{ attributes.buttonText }</a>
+        </div>
+    );
 
     return (
-        <div {...useBlockProps.save({ className: 'wpmozo-adfgu-tilt-image' })} id={`block-${ID}`}>
+        <div 
+            {...useBlockProps.save({ className: 'wpmozo-adfgu-tilt-image' })} 
+            id={`block-${ID}`}
+            data-max-tilt={ attributes.tiltMax }
+            data-perspective={ attributes.tiltPerspective }
+            data-scale={ attributes.tiltScale }
+            data-speed={ attributes.tiltSpeed }
+            data-disable-axis={ axis }
+            data-glare={ attributes.useGlare }
+            data-max-alare={ attributes.tiltMaxGlare }
+        >
             <div className={ `wpmozo-adfgu-tilt-image-wrapper wpmozo-editor wpmozo-adfgu-tilt-align-${contentAlignment}` }>
                 <div className="wpmozo-adfgu-tilt-image-inner-wrapper">
                     <img className="wpmozo-adfgu-tilt-image-image" src={ image } />
-                    <div className="wpmozo-adfgu-tilt-content-wrapper">
+                    <div className={ `wpmozo-adfgu-tilt-content-wrapper${animationClass}`}>
+                        { attributes.useIcon &&
+                            icon
+                        }
                         <RichText.Content
                             className="wpmozo-adfgu-tilt-title"
                             tagName={ attributes.titleLavel }
@@ -25,6 +56,9 @@ const Save = ({ attributes }) => {
                             tagName="div"
                             value={ attributes.content }
                         />
+                        { attributes.showButton && ! coreFunc.wpmozo_is_empty( attributes.buttonText ) &&
+                            button
+                        }
                     </div>
                 </div>
             </div>

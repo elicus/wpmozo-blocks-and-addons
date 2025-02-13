@@ -92,4 +92,28 @@ jQuery(document).ready(function($){
 
     });
 
+    jQuery("body").find(".wpmozo-adfgu-tilt-image").each(function() {
+
+        let $this = jQuery(this),
+        maxTilt = $this.data('max-tilt'),
+        perspective = $this.data('perspective'),
+        scale = $this.data('scale'),
+        speed = $this.data('speed'),
+        axis = $this.data('disable-axis'),
+        glare = $this.data('glare'),
+        maxGlare = $this.data('max-alare');
+
+        $this.find('.wpmozo-adfgu-tilt-image-inner-wrapper').tilt({
+            maxTilt:        maxTilt,
+            perspective:    perspective,
+            scale:          scale,
+            speed:          speed,
+            disableAxis:    axis,
+            reset:          true,
+            glare:          glare,
+            maxGlare:       maxGlare 
+        });
+
+    })
+
 })

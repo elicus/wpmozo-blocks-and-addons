@@ -9,12 +9,10 @@ const attributes = {
         type: "string"
     },
     title: {
-        type: "string",
-        default: __( 'Tilt Image Title', 'wpmozo-addons-lite-for-gutenberg' ),
+        type: "string"
     },
     content: {
-        type: "string",
-        default: __( 'Your content goes here. Edit this text inline or in the widget Content settings. You can also style every aspect of this content in the widget Design settings.', 'wpmozo-addons-lite-for-gutenberg' )
+        type: "string"
     },
     overlayColor: {
         type: "string"
@@ -104,6 +102,10 @@ const attributes = {
         type: "boolean",
         default: false,
     },
+    buttonText: {
+        type: "string",
+        default: __( 'Read More', 'wpmozo-addons-lite-for-gutenberg' )
+    },
     buttonUrl: {
         type: "string",
     },
@@ -170,6 +172,10 @@ const attributes = {
     },
     iconFontSize: {
         type: "string"
+    },
+    contentOnHover: {
+        type: "boolean",
+        default: false,
     },
     contentAlignment: {
         type: "string",

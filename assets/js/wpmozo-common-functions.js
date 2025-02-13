@@ -321,3 +321,13 @@ window.wpmozo.getIdByClientid = function( clientId ){
 
 	return Id;
 }
+
+window.wpmozo.getMainEl = function( clientId ){
+
+	let editorIfram = jQuery('body').find('[name="editor-canvas"]').contents(),
+    mainFromIfram = editorIfram.find('body').find('#block-'+clientId),
+    mainFromBody = jQuery('body').find('#block-'+clientId),
+    main = ( mainFromIfram.length > 0 ) ? mainFromIfram : mainFromBody;
+
+    return main;
+}

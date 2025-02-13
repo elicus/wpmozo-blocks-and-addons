@@ -19,6 +19,14 @@
     width: 100%;
     height: 100%;
     z-index: 9;
+    box-sizing: border-box;
+}
+.wpmozo-adfgu-tilt-content-wrapper.wpmozo-on-hover {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+.wpmozo-adfgu-tilt-content-wrapper.wpmozo-on-hover:hover {
+    opacity: 1;
 }
 .wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-title {
     width: 100%;

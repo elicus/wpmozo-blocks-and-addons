@@ -80,3 +80,41 @@
     justify-content: center;
 }
 /* logo-slide style end */
+
+@keyframes wpmozoTopToBottom {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes wpmozoLeftToRight {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes wpmozoRightToLeft {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes wpmozoBottomToTop {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.wpmozo-animation{
+    opacity: 0;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+.wpmozo-animation.wpmozo-animation-top:hover { 
+    animation-name: wpmozoTopToBottom; 
+}
+.wpmozo-animation.wpmozo-animation-left:hover { 
+    animation-name: wpmozoLeftToRight; 
+}
+.wpmozo-animation.wpmozo-animation-right:hover { 
+    animation-name: wpmozoRightToLeft; 
+}
+.wpmozo-animation.wpmozo-animation-bottom:hover { 
+    animation-name: wpmozoBottomToTop; 
+}
