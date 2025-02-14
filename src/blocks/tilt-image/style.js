@@ -48,6 +48,36 @@ const Style = ({attributes, ID, clientId}) => {
         }
     ];
 
+    if ( attributes.use3dEffect ) {
+        allInline.push({
+            selector: '.wpmozo-adfgu-tilt-image-wrapper',
+            style: {
+                'transform-style': 'preserve-3d'
+            }
+        });
+        allInline.push({
+            selector: '.wpmozo-adfgu-tilt-image-inner-wrapper',
+            style: {
+                'transform-style': 'preserve-3d'
+            }
+        })
+        allInline.push({
+            selector: '.wpmozo-adfgu-tilt-content-wrapper',
+            style: {
+                'transform': `translateZ(${attributes.tilt3dValue}px)`
+            }
+        })
+    }
+
+    if ( ! attributes.tiltMobile ) {
+        allInline.push({
+            selector: '.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-image-inner-wrapper',
+            style: {
+                'transform': 'unset !important'
+            }
+        });
+    }
+
     let generateStyle = wpmozoCoreFun.wpmozo_generate_style(allInline);
     
     if ( ! wpmozoCoreFun.wpmozo_is_empty( generateStyle ) ) {

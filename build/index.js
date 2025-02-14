@@ -9443,7 +9443,8 @@ const Save = ({
     "data-speed": attributes.tiltSpeed,
     "data-disable-axis": axis,
     "data-glare": attributes.useGlare,
-    "data-max-alare": attributes.tiltMaxGlare
+    "data-max-alare": attributes.tiltMaxGlare,
+    "data-disable-mobile": attributes.tiltMobile
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: `wpmozo-adfgu-tilt-image-wrapper wpmozo-editor wpmozo-adfgu-tilt-align-${contentAlignment}`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -9519,6 +9520,34 @@ const Style = ({
     },
     additional: convertedStyle.description
   }];
+  if (attributes.use3dEffect) {
+    allInline.push({
+      selector: '.wpmozo-adfgu-tilt-image-wrapper',
+      style: {
+        'transform-style': 'preserve-3d'
+      }
+    });
+    allInline.push({
+      selector: '.wpmozo-adfgu-tilt-image-inner-wrapper',
+      style: {
+        'transform-style': 'preserve-3d'
+      }
+    });
+    allInline.push({
+      selector: '.wpmozo-adfgu-tilt-content-wrapper',
+      style: {
+        'transform': `translateZ(${attributes.tilt3dValue}px)`
+      }
+    });
+  }
+  if (!attributes.tiltMobile) {
+    allInline.push({
+      selector: '.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-image-inner-wrapper',
+      style: {
+        'transform': 'unset !important'
+      }
+    });
+  }
   let generateStyle = wpmozoCoreFun.wpmozo_generate_style(allInline);
   if (!wpmozoCoreFun.wpmozo_is_empty(generateStyle)) {
     css += `

@@ -38,6 +38,7 @@ const Save = ({ attributes }) => {
             data-disable-axis={ axis }
             data-glare={ attributes.useGlare }
             data-max-alare={ attributes.tiltMaxGlare }
+            data-disable-mobile={ attributes.tiltMobile }
         >
             <div className={ `wpmozo-adfgu-tilt-image-wrapper wpmozo-editor wpmozo-adfgu-tilt-align-${contentAlignment}` }>
                 <div className="wpmozo-adfgu-tilt-image-inner-wrapper">

@@ -1,5 +1,39 @@
 jQuery(document).ready(function($){
 
+    let wpmozoIsMobile = function(){
+        return jQuery( window ).width() < 767;
+    };
+
+    let wpmozoInitTilt = function( element ){
+
+        let $this = element,
+            disableMobile = $this.data('disable-mobile');
+
+        if ( ! disableMobile || ( disableMobile && ! wpmozoIsMobile() ) ) {
+
+            let maxTilt = parseInt( $this.data('max-tilt') ),
+            perspective = parseInt( $this.data('perspective') ),
+            scale = parseFloat( $this.data('scale') ),
+            speed = parseInt( $this.data('speed') ),
+            axis = $this.data('disable-axis'),
+            glare = $this.data('glare'),
+            maxGlare = parseFloat( $this.data('max-alare') );
+
+            $this.find('.wpmozo-adfgu-tilt-image-inner-wrapper').tilt({
+                maxTilt:        maxTilt,
+                perspective:    perspective,
+                scale:          scale,
+                speed:          speed,
+                disableAxis:    axis,
+                reset:          true,
+                glare:          glare,
+                maxGlare:       maxGlare 
+            });
+
+        }
+
+    };
+
     jQuery('.wpmozo-adfgu-before-after-image-wrapper').each(function( key, el ){
 
         let $this = jQuery(this),
@@ -93,27 +127,17 @@ jQuery(document).ready(function($){
     });
 
     jQuery("body").find(".wpmozo-adfgu-tilt-image").each(function() {
+        wpmozoInitTilt( $(this) );
+    });
 
-        let $this = jQuery(this),
-        maxTilt = $this.data('max-tilt'),
-        perspective = $this.data('perspective'),
-        scale = $this.data('scale'),
-        speed = $this.data('speed'),
-        axis = $this.data('disable-axis'),
-        glare = $this.data('glare'),
-        maxGlare = $this.data('max-alare');
+    jQuery( window ).resize(
+        function(){
 
-        $this.find('.wpmozo-adfgu-tilt-image-inner-wrapper').tilt({
-            maxTilt:        maxTilt,
-            perspective:    perspective,
-            scale:          scale,
-            speed:          speed,
-            disableAxis:    axis,
-            reset:          true,
-            glare:          glare,
-            maxGlare:       maxGlare 
-        });
+            jQuery("body").find(".wpmozo-adfgu-tilt-image").each(function() {
+                wpmozoInitTilt( $(this) );
+            });
 
-    })
+        }
+    );
 
 })
