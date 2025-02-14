@@ -71,7 +71,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Flipbox extends WPMozo_Addons_Lite_Gute
 
 		$this->styles[] = array(
 			'handle' => $this->plugin_name . '-flip-box-style',
-			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_SRC_DIR_URL . 'blocks/flip-box/css/flip-box.css',
+			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'css/blocks/flip-box.css',
 			'deps'   => array(),
 			'ver'    => time(),
 		);

@@ -63,7 +63,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Interactiveimagecard extends WPMozo_Add
 
 		$this->styles[] = array(
 			'handle' => $this->plugin_name . '-interactive-image-card-style',
-			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_SRC_DIR_URL . 'blocks/interactive-image-card/css/interactive-image-card.css',
+			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'css/blocks/interactive-image-card.css',
 			'deps'   => array(),
 			'ver'    => time(),
 		);

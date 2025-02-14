@@ -71,7 +71,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Contenttoggle extends WPMozo_Addons_Lit
 
 		$this->styles[] = array(
 			'handle' => $this->plugin_name . '-content-toggle-style',
-			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_SRC_DIR_URL . 'blocks/content-toggle/css/content-toggle.css',
+			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'css/blocks/content-toggle.css',
 			'deps'   => array(),
 			'ver'    => time(),
 		);

@@ -70,7 +70,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Tiltimage extends WPMozo_Addons_Lite_Gu
 
 		$this->styles[] = array(
 			'handle' => $this->plugin_name . '-tilt-image-style',
-			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_SRC_DIR_URL . 'blocks/tilt-image/css/tilt-image.css',
+			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'css/blocks/tilt-image.css',
 			'deps'   => array(),
 			'ver'    => time(),
 		);

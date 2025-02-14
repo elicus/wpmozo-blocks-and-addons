@@ -106,19 +106,6 @@ abstract class WPMozo_Addons_Lite_Gutenberg_Block {
     }
 
     /**
-     * Get block dir uri.
-     * 
-     * @since 1.0.0
-     * @return string The uri of block.
-     */
-    public function get_uri(){
-        return sprintf( '%1$s%2$s', 
-            WPMOZO_ADDONS_LITE_GUTENBERG_SRC_DIR_URL, 
-            $this->block_name 
-        );
-    }
-
-    /**
      * Get script handle.
      * 
      * @since 1.0.0
