@@ -12,7 +12,6 @@ import "./blocks/logo-slide/index.js";
 import "./blocks/floating-image-item/index.js";
 import "./blocks/floating-image/index.js";
 import "./blocks/tilt-image/index.js";
-import "./blocks/instagram/js/index.js";
 
 // Add additional functionality
 import "./save-dynamic-style.js";
