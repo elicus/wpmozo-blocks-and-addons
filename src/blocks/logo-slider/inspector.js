@@ -162,8 +162,6 @@ const Inspector = (props) => {
             value: 'square_dot'
         },
     ];
-    
-    props = Object.assign({}, props, {preAttributes: {}});
 
 	return (
         <>

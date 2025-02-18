@@ -24,7 +24,10 @@ const Edit = (props) => {
     clientId = props.clientId,
     ID = window.wpmozo.getIdByClientid( clientId ),
     blockProps = useBlockProps({ className: 'wpmozo-adfgu-logo-slider-main' }),
-    swiperElRef = useRef(null);
+    swiperElRef = useRef(null),
+    buttonNextClass = ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.nextSlideArrow ) ) 
+            ? `custom-swiper-button-next ${attributes.nextSlideArrow}`
+            : 'swiper-button-next';
 
     attributes.ID = ID;
 
@@ -57,7 +60,20 @@ const Edit = (props) => {
         let productsPerSlide = parseInt( attributes.logoPerSlide ),
         spaceBetweenSlides = parseInt( attributes.spaceBetweenSlides ),
         slidesPerGroup = parseInt( attributes.slidesPerGroup ),
-        autoHeightSlider = false;
+        tabletLogoPerSlide = parseInt( attributes.tabletLogoPerSlide ),
+        tabletSlidesPerGroup = parseInt( attributes.tabletSlidesPerGroup ),
+        tabletSpaceBetweenSlides = parseInt( attributes.tabletSpaceBetweenSlides ),
+        mobileLogoPerSlide = parseInt( attributes.mobileLogoPerSlide ),
+        mobileSpaceBetweenSlides = parseInt( attributes.mobileSpaceBetweenSlides ),
+        mobileSlidesPerGroup = parseInt( attributes.mobileSlidesPerGroup ),
+        autoHeightSlider = false,
+        buttonNextClass = ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.nextSlideArrow ) ) 
+            ? '.custom-swiper-button-next'
+            : '.swiper-button-next';
+
+        let klsdjfklsdjf = jQuery('body').find( buttonNextClass )[0];
+
+        console.log( klsdjfklsdjf );
 
         let loop =  false,
             arrows = false,
@@ -78,7 +94,7 @@ const Edit = (props) => {
 
         //if ('on' === showArrow) {
             arrows = {
-                nextEl: '.swiper-button-next',
+                nextEl: klsdjfklsdjf,
                 prevEl: '.swiper-button-prev'
             };
         //}
@@ -94,7 +110,7 @@ const Edit = (props) => {
 
         let options = {
             slidesPerView: productsPerSlide,
-            spaceBetween: spaceBetweenSlides,
+            spaceBetween: slidesPerGroup,
             slidesPerGroup: slidesPerGroup,
             cubeEffect: cube,
             coverflowEffect: coverflow,
@@ -113,20 +129,23 @@ const Edit = (props) => {
                     slidesPerGroup: slidesPerGroup,
                 },
                 768: {
-                    slidesPerView: productsPerSlide,
-                    spaceBetween: spaceBetweenSlides,
-                    slidesPerGroup: slidesPerGroup,
-                    slidesPerGroupSkip: slidesPerGroupSkip,
+                    slidesPerView: tabletLogoPerSlide,
+                    spaceBetween: tabletSlidesPerGroup,
+                    slidesPerGroup: tabletSpaceBetweenSlides,
                 },
                 0: {
-                    slidesPerView: productsPerSlide,
-                    spaceBetween: spaceBetweenSlides,
-                    slidesPerGroup: slidesPerGroup,
+                    slidesPerView: mobileLogoPerSlide,
+                    spaceBetween: mobileSpaceBetweenSlides,
+                    slidesPerGroup: mobileSlidesPerGroup
                 }
             },
         };
 
-        const swiper = new Swiper('.swiper[data-client-id="'+clientId+'"]', options );   
+        console.log( options );
+
+        const swiper = new Swiper('.swiper[data-client-id="'+clientId+'"]', options );
+
+        swiper.update();   
 
         return swiper;
     }
@@ -141,14 +160,14 @@ const Edit = (props) => {
 
         let el = jQuery( '.swiper[data-client-id="'+clientId+'"]' )[0],
             swiperInstance = ( el.hasOwnProperty( 'swiper' ) ) ? el.swiper : null;
-
         if ( ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) && ! wpmozoCoreFun.wpmozo_is_empty( swiperInstance ) ) {
             swiperInstance.destroy(true, true);
             initSwiper( attributes );
         }
 
     }, [
-        attributes.logoPerSlide
+        attributes.logoPerSlide,
+        attributes.nextSlideArrow
     ]);
 
 	return (
@@ -191,7 +210,7 @@ const Edit = (props) => {
                     </div>
                     <div className="swiper-pagination"></div>
                     <div className="swiper-button-prev"></div>
-                    <div className="swiper-button-next"></div>
+                    <div className={buttonNextClass}></div>
                 </div>
             </div>
         </Fragment>

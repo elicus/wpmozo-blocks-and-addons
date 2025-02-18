@@ -118,7 +118,8 @@ const attributes = {
 		default: '1'
 	},
 	mobileSpaceBetweenSlides: {
-		type: "number"
+		type: "number",
+		default: 20
 	}
 };
 

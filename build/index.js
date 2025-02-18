@@ -6799,9 +6799,6 @@ __webpack_require__.r(__webpack_exports__);
 const Inspector = props => {
   const attributes = props.attributes,
     setAttributes = props.setAttributes;
-  props = Object.assign({}, props, {
-    preAttributes: {}
-  });
   const [contentType, setContentType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)('front');
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
     key: "controls"
@@ -7061,7 +7058,8 @@ const attributes = {
     default: '1'
   },
   mobileSpaceBetweenSlides: {
-    type: "number"
+    type: "number",
+    default: 20
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (attributes);
@@ -7104,7 +7102,8 @@ const Edit = props => {
     blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
       className: 'wpmozo-adfgu-logo-slider-main'
     }),
-    swiperElRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+    swiperElRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null),
+    buttonNextClass = !wpmozoCoreFun.wpmozo_is_empty(attributes.nextSlideArrow) ? `custom-swiper-button-next ${attributes.nextSlideArrow}` : 'swiper-button-next';
   attributes.ID = ID;
   let innerBlocks = [],
     swiperInstance = null;
@@ -7126,7 +7125,16 @@ const Edit = props => {
     let productsPerSlide = parseInt(attributes.logoPerSlide),
       spaceBetweenSlides = parseInt(attributes.spaceBetweenSlides),
       slidesPerGroup = parseInt(attributes.slidesPerGroup),
-      autoHeightSlider = false;
+      tabletLogoPerSlide = parseInt(attributes.tabletLogoPerSlide),
+      tabletSlidesPerGroup = parseInt(attributes.tabletSlidesPerGroup),
+      tabletSpaceBetweenSlides = parseInt(attributes.tabletSpaceBetweenSlides),
+      mobileLogoPerSlide = parseInt(attributes.mobileLogoPerSlide),
+      mobileSpaceBetweenSlides = parseInt(attributes.mobileSpaceBetweenSlides),
+      mobileSlidesPerGroup = parseInt(attributes.mobileSlidesPerGroup),
+      autoHeightSlider = false,
+      buttonNextClass = !wpmozoCoreFun.wpmozo_is_empty(attributes.nextSlideArrow) ? '.custom-swiper-button-next' : '.swiper-button-next';
+    let klsdjfklsdjf = jQuery('body').find(buttonNextClass)[0];
+    console.log(klsdjfklsdjf);
     let loop = false,
       arrows = false,
       dots = false,
@@ -7145,7 +7153,7 @@ const Edit = props => {
 
     //if ('on' === showArrow) {
     arrows = {
-      nextEl: '.swiper-button-next',
+      nextEl: klsdjfklsdjf,
       prevEl: '.swiper-button-prev'
     };
     //}
@@ -7161,7 +7169,7 @@ const Edit = props => {
 
     let options = {
       slidesPerView: productsPerSlide,
-      spaceBetween: spaceBetweenSlides,
+      spaceBetween: slidesPerGroup,
       slidesPerGroup: slidesPerGroup,
       cubeEffect: cube,
       coverflowEffect: coverflow,
@@ -7180,19 +7188,20 @@ const Edit = props => {
           slidesPerGroup: slidesPerGroup
         },
         768: {
-          slidesPerView: productsPerSlide,
-          spaceBetween: spaceBetweenSlides,
-          slidesPerGroup: slidesPerGroup,
-          slidesPerGroupSkip: slidesPerGroupSkip
+          slidesPerView: tabletLogoPerSlide,
+          spaceBetween: tabletSlidesPerGroup,
+          slidesPerGroup: tabletSpaceBetweenSlides
         },
         0: {
-          slidesPerView: productsPerSlide,
-          spaceBetween: spaceBetweenSlides,
-          slidesPerGroup: slidesPerGroup
+          slidesPerView: mobileLogoPerSlide,
+          spaceBetween: mobileSpaceBetweenSlides,
+          slidesPerGroup: mobileSlidesPerGroup
         }
       }
     };
+    console.log(options);
     const swiper = new Swiper('.swiper[data-client-id="' + clientId + '"]', options);
+    swiper.update();
     return swiper;
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
@@ -7207,7 +7216,7 @@ const Edit = props => {
       swiperInstance.destroy(true, true);
       initSwiper(attributes);
     }
-  }, [attributes.logoPerSlide]);
+  }, [attributes.logoPerSlide, attributes.nextSlideArrow]);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, wpmozoCoreFun.wpmozo_is_empty(attributes.images) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.MediaPlaceholder, {
     multiple: true,
     onSelect: media => setAttributes({
@@ -7241,7 +7250,7 @@ const Edit = props => {
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "swiper-button-prev"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "swiper-button-next"
+    className: buttonNextClass
   }))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
@@ -7453,9 +7462,6 @@ const Inspector = props => {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Squared Dot', 'wpmozo-addons-lite-for-gutenberg'),
     value: 'square_dot'
   }];
-  props = Object.assign({}, props, {
-    preAttributes: {}
-  });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
     key: "controls"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {

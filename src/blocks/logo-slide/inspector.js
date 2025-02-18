@@ -19,8 +19,6 @@ const Inspector = (props) => {
 
     const attributes = props.attributes,
     setAttributes = props.setAttributes;
-    
-    props = Object.assign({}, props, {preAttributes: {}});
 
     const [ contentType, setContentType ] = useState('front');
 
