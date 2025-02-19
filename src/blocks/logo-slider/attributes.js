@@ -21,7 +21,8 @@ const attributes = {
 		default: 20
 	},
 	sliderLoop: {
-		type: "boolean"
+		type: "boolean",
+		default: false
 	},
 	autoplay: {
 		type: "boolean",
@@ -47,6 +48,9 @@ const attributes = {
 		default: true
 	},
 	previousSlideArrow: {
+		type: "string"
+	},
+	nextSlideArrow: {
 		type: "string"
 	},
 	showArrowOnHover: {

@@ -6961,7 +6961,8 @@ const attributes = {
     default: 20
   },
   sliderLoop: {
-    type: "boolean"
+    type: "boolean",
+    default: false
   },
   autoplay: {
     type: "boolean",
@@ -6987,6 +6988,9 @@ const attributes = {
     default: true
   },
   previousSlideArrow: {
+    type: "string"
+  },
+  nextSlideArrow: {
     type: "string"
   },
   showArrowOnHover: {
@@ -7098,12 +7102,14 @@ const Edit = props => {
     attributes = props.attributes,
     setAttributes = props.setAttributes,
     clientId = props.clientId,
-    ID = window.wpmozo.getIdByClientid(clientId),
+    ID = wpmozoCoreFun.getIdByClientid(clientId),
     blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
       className: 'wpmozo-adfgu-logo-slider-main'
     }),
     swiperElRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null),
-    buttonNextClass = !wpmozoCoreFun.wpmozo_is_empty(attributes.nextSlideArrow) ? `custom-swiper-button-next ${attributes.nextSlideArrow}` : 'swiper-button-next';
+    buttonNextClass = !wpmozoCoreFun.wpmozo_is_empty(attributes.nextSlideArrow) ? `custom-swiper-button-next swiper-button-next ${attributes.nextSlideArrow}` : 'swiper-button-next',
+    buttonPrevClass = !wpmozoCoreFun.wpmozo_is_empty(attributes.previousSlideArrow) ? `custom-swiper-button-prev swiper-button-prev ${attributes.previousSlideArrow}` : 'swiper-button-prev',
+    paginationClass = attributes.enableDynamicDots ? ' swiper-pagination-bullets-dynamic' : '';
   attributes.ID = ID;
   let innerBlocks = [],
     swiperInstance = null;
@@ -7131,51 +7137,51 @@ const Edit = props => {
       mobileLogoPerSlide = parseInt(attributes.mobileLogoPerSlide),
       mobileSpaceBetweenSlides = parseInt(attributes.mobileSpaceBetweenSlides),
       mobileSlidesPerGroup = parseInt(attributes.mobileSlidesPerGroup),
-      autoHeightSlider = false,
-      buttonNextClass = !wpmozoCoreFun.wpmozo_is_empty(attributes.nextSlideArrow) ? '.custom-swiper-button-next' : '.swiper-button-next';
-    let klsdjfklsdjf = jQuery('body').find(buttonNextClass)[0];
-    console.log(klsdjfklsdjf);
-    let loop = false,
+      buttonNextClass = !wpmozoCoreFun.wpmozo_is_empty(attributes.nextSlideArrow) ? '.custom-swiper-button-next' : '.swiper-button-next',
+      buttonPrevClass = !wpmozoCoreFun.wpmozo_is_empty(attributes.previousSlideArrow) ? '.custom-swiper-button-prev' : '.swiper-button-prev';
+    let loop = attributes.sliderLoop,
+      speed = attributes.transitionDuration,
       arrows = false,
       dots = false,
       autoplaySlides = false,
-      cube = false,
-      coverflow = false,
-      fade = false,
-      slidesPerGroupSkip = 0,
-      slidesPerGroupIpad = 1,
-      slidesPerGroupMobile = 1,
-      slidesPerGroupSkipIpad = 0,
-      slidesPerGroupSkipMobile = 0;
+      slidesPerGroupSkip = 0;
     if (productsPerSlide > slidesPerGroup && 1 !== slidesPerGroup) {
       slidesPerGroupSkip = productsPerSlide - slidesPerGroup;
     }
-
-    //if ('on' === showArrow) {
-    arrows = {
-      nextEl: klsdjfklsdjf,
-      prevEl: '.swiper-button-prev'
-    };
-    //}
-
-    //if ('on' === showControlDot) {
-    const dynamicBullets = false;
-    dots = {
-      el: '.swiper-pagination',
-      dynamicBullets: dynamicBullets,
-      clickable: true
-    };
-    //}
-
+    if (attributes.showArrow) {
+      arrows = {
+        nextEl: buttonNextClass,
+        prevEl: buttonPrevClass
+      };
+    }
+    if (attributes.showControlDot) {
+      const dynamicBullets = false;
+      dots = {
+        el: '.swiper-pagination',
+        dynamicBullets: attributes.dynamicBullets,
+        clickable: true
+      };
+    }
+    if (attributes.autoplay) {
+      if (attributes.pauseOnHover) {
+        autoplaySlides = {
+          delay: attributes.autoplaySpeed,
+          disableOnInteraction: true
+        };
+      } else {
+        autoplaySlides = {
+          delay: attributes.autoplaySpeed,
+          disableOnInteraction: false
+        };
+      }
+    }
     let options = {
       slidesPerView: productsPerSlide,
       spaceBetween: slidesPerGroup,
       slidesPerGroup: slidesPerGroup,
-      cubeEffect: cube,
-      coverflowEffect: coverflow,
-      fadeEffect: fade,
+      autoplay: autoplaySlides,
       loop: loop,
-      autoHeight: autoHeightSlider,
+      speed: speed,
       pagination: dots,
       navigation: arrows,
       grabCursor: true,
@@ -7199,9 +7205,7 @@ const Edit = props => {
         }
       }
     };
-    console.log(options);
     const swiper = new Swiper('.swiper[data-client-id="' + clientId + '"]', options);
-    swiper.update();
     return swiper;
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
@@ -7216,7 +7220,7 @@ const Edit = props => {
       swiperInstance.destroy(true, true);
       initSwiper(attributes);
     }
-  }, [attributes.logoPerSlide, attributes.nextSlideArrow]);
+  }, [attributes.logoPerSlide, attributes.spaceBetweenSlides, attributes.slidesPerGroup, attributes.tabletLogoPerSlide, attributes.tabletSlidesPerGroup, attributes.tabletSpaceBetweenSlides, attributes.mobileLogoPerSlide, attributes.mobileSpaceBetweenSlides, attributes.mobileSlidesPerGroup, attributes.nextSlideArrow, attributes.previousSlideArrow, attributes.sliderLoop, attributes.showArrow, attributes.showControlDot, attributes.dynamicBullets, attributes.autoplay, attributes.autoplaySpeed, attributes.transitionDuration]);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, wpmozoCoreFun.wpmozo_is_empty(attributes.images) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.MediaPlaceholder, {
     multiple: true,
     onSelect: media => setAttributes({
@@ -7240,18 +7244,24 @@ const Edit = props => {
     ID: ID,
     clientId: clientId
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "swiper",
+    className: "wpmozo-adfgu-logo-slider-inner-wrap"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "swiper swiper-container",
     ref: swiperElRef,
     "data-client-id": clientId
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "swiper-wrapper"
-  }, !wpmozoCoreFun.wpmozo_is_empty(innerBlocks) && innerBlocksProps.children), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "swiper-pagination"
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "swiper-button-prev"
+  }, !wpmozoCoreFun.wpmozo_is_empty(innerBlocks) && innerBlocksProps.children), attributes.showControlDot && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "wpmozo-adfgu-logo-slider-pagination"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `swiper-pagination ${attributes.controlDotStyle}${paginationClass}`
+  })), attributes.showArrow && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `wpmozo-adfgu-logo-slider-navigation wpmozo-adfgu-arrows-${attributes.arrowsPosition}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: buttonPrevClass
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: buttonNextClass
-  }))));
+  })))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
@@ -7508,7 +7518,7 @@ const Inspector = props => {
     onChange: newValue => setAttributes({
       enableLinearTransition: newValue
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+  }), attributes.autoplay && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Autoplay Delay', 'wpmozo-addons-lite-for-gutenberg'),
     value: attributes.autoplaySpeed,
     onChange: newValue => setAttributes({
@@ -7574,7 +7584,7 @@ const Inspector = props => {
     onChange: newValue => setAttributes({
       controlDotStyle: newValue
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
+  }), 'stretched_dot' != attributes.controlDotStyle && 'line' != attributes.controlDotStyle && 'rounded_line' != attributes.controlDotStyle && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Enable Dynamic Dots', 'wpmozo-addons-lite-for-gutenberg'),
     checked: attributes.enableDynamicDots,
     onChange: newValue => setAttributes({
@@ -7817,6 +7827,22 @@ const Style = ({
       'height': attributes.logoHeight + 'px'
     }
   }];
+  if (!wpmozoCoreFun.wpmozo_is_empty(attributes.nextSlideArrow)) {
+    allInline.push({
+      selector: '.custom-swiper-button-next:after',
+      style: {
+        'display': 'none !important;'
+      }
+    });
+  }
+  if (!wpmozoCoreFun.wpmozo_is_empty(attributes.previousSlideArrow)) {
+    allInline.push({
+      selector: '.custom-swiper-button-prev:after',
+      style: {
+        'display': 'none !important;'
+      }
+    });
+  }
   let generateStyle = wpmozoCoreFun.wpmozo_generate_style(allInline);
   if (!wpmozoCoreFun.wpmozo_is_empty(generateStyle)) {
     css += `

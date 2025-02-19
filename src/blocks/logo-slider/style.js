@@ -17,6 +17,24 @@ const Style = ({attributes, ID, clientId}) => {
         }
     ];
 
+    if ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.nextSlideArrow ) ) {
+        allInline.push({
+            selector: '.custom-swiper-button-next:after',
+            style: {
+                'display': 'none !important;',
+            },
+        });
+    }
+
+    if ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.previousSlideArrow ) ) {
+        allInline.push({
+            selector: '.custom-swiper-button-prev:after',
+            style: {
+                'display': 'none !important;',
+            },
+        });
+    }
+
     let generateStyle = wpmozoCoreFun.wpmozo_generate_style(allInline);
     
     if ( ! wpmozoCoreFun.wpmozo_is_empty( generateStyle ) ) {
