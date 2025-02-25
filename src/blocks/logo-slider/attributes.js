@@ -10,11 +10,11 @@ const attributes = {
 	},
 	logoPerSlide: {
 		type: "string",
-		default: '4'
+		default: "4"
 	},
 	slidesPerGroup: {
 		type: "string",
-		default: '1'
+		default: "1"
 	},
 	spaceBetweenSlides: {
 		type: "number",
@@ -33,7 +33,7 @@ const attributes = {
 	},
 	autoplaySpeed: {
 		type: "string",
-		default: '3000'
+		default: "3000"
 	},
 	pauseOnHover: {
 		type: "boolean",
@@ -41,7 +41,7 @@ const attributes = {
 	},
 	transitionDuration: {
 		type: "string",
-		default: '1000'
+		default: "1000"
 	},
 	showArrow: {
 		type: "boolean",
@@ -57,17 +57,20 @@ const attributes = {
 		type: "boolean"
 	},
 	arrowsPosition: {
-		type: "string"
+		type: "string",
+		default: "inside"
 	},
 	showControlDot: {
 		type: "boolean",
 		default: true
 	},
 	controlDotStyle: {
-		type: "string"
+		type: "string",
+		default: "solid_dot"
 	},
 	enableDynamicDots: {
-		type: "boolean"
+		type: "boolean",
+		default: false
 	},
 	containerbackground: {
 		type: "string"
@@ -88,7 +91,7 @@ const attributes = {
 		type: "string"
 	},
 	arrowFontSize: {
-        type: "string",
+        type: "string"
     },
 	arrowpadding: {
 		type: "object"
@@ -103,11 +106,11 @@ const attributes = {
 	},
 	tabletLogoPerSlide: {
 		type: "string",
-		default: '3'
+		default: "3"
 	},
 	tabletSlidesPerGroup: {
 		type: "string",
-		default: '1'
+		default: "1"
 	},
 	tabletSpaceBetweenSlides: {
 		type: "number",
@@ -115,11 +118,11 @@ const attributes = {
 	},
 	mobileLogoPerSlide: {
 		type: "string",
-		default: '1'
+		default: "1"
 	},
 	mobileSlidesPerGroup: {
 		type: "string",
-		default: '1'
+		default: "1"
 	},
 	mobileSpaceBetweenSlides: {
 		type: "number",

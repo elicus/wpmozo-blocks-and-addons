@@ -1,3 +1,5 @@
+const { dispatch, select } = wp.data;
+
 window.wpmozo = {};
 
 window.wpmozo.convetInlineStyle = function( options, atts ){

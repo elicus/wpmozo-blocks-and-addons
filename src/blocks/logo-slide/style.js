@@ -1,19 +1,30 @@
 
 const Style = ({attributes, ID, clientId}) => {
 
-    const parent = '#block-'+clientId,
-    wpmozoCoreFun = window.wpmozo;
+    const wpmozoCoreFun = window.wpmozo,
+        parent = '#block-'+clientId,
+        toConvertStyles = [
+        'logo'
+        ],
+        convertedStyle = wpmozoCoreFun.convetInlineStyleStr( toConvertStyles, attributes );
+
+    let css = '';
     
-    let allInline = [],
-    css = '';
+    let allInline = [
+        {
+            selector: parent,
+            style: {
+                'background': attributes.logoBackground
+            },
+            additional: convertedStyle['logo']
+        }
+    ];
 
     let generateStyle = wpmozoCoreFun.wpmozo_generate_style(allInline);
     
     if ( ! wpmozoCoreFun.wpmozo_is_empty( generateStyle ) ) {
         css += `
-            ${parent} {
-                ${generateStyle}
-            }
+            ${generateStyle}
         `;
     }
 

@@ -1,16 +1,21 @@
 
 import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
-import { useSelect } from '@wordpress/data';
-import { useEffect } from '@wordpress/element';
 
     const Save = ({ attributes }) => {
 
         const wpmozoCoreFun = window.wpmozo,
             ID = attributes.ID,
-            blockProps = useBlockProps.save();
+            blockProps = useBlockProps.save({ className: 'wpmozo-adfgu-logo-slider-main' });
 
         let innerBlocks = [],
-           innerBlocksProps = null;
+            innerBlocksProps = null,
+            buttonNextClass = ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.nextSlideArrow ) ) 
+                ? `custom-swiper-button-next swiper-button-next ${attributes.nextSlideArrow}`
+                : 'swiper-button-next',
+            buttonPrevClass = ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.previousSlideArrow ) ) 
+                ? `custom-swiper-button-prev swiper-button-prev ${attributes.previousSlideArrow}`
+                : 'swiper-button-prev',
+            paginationClass = ( attributes.enableDynamicDots ) ? ' swiper-pagination-bullets-dynamic' : '';
 
         if (  ! wpmozoCoreFun.wpmozo_is_empty( attributes.images ) ) {
               
@@ -39,15 +44,51 @@ import { useEffect } from '@wordpress/element';
             return null;
         }
 
+        let dataAttr = {
+            logoPerSlide: attributes.logoPerSlide,
+            spaceBetweenSlides: attributes.spaceBetweenSlides,
+            slidesPerGroup: attributes.slidesPerGroup,
+            tabletLogoPerSlide: attributes.tabletLogoPerSlide,
+            tabletSlidesPerGroup: attributes.tabletSlidesPerGroup,
+            tabletSpaceBetweenSlides: attributes.tabletSpaceBetweenSlides,
+            mobileLogoPerSlide: attributes.mobileLogoPerSlide,
+            mobileSpaceBetweenSlides: attributes.mobileSpaceBetweenSlides,
+            mobileSlidesPerGroup: attributes.mobileSlidesPerGroup,
+            nextSlideArrow: attributes.nextSlideArrow,
+            previousSlideArrow: attributes.previousSlideArrow,
+            sliderLoop: attributes.sliderLoop,
+            transitionDuration: attributes.transitionDuration,
+            showArrow: attributes.showArrow,
+            showControlDot: attributes.showControlDot,
+            dynamicBullets: attributes.dynamicBullets,
+            autoplay: attributes.autoplay,
+            pauseOnHover: attributes.pauseOnHover,
+            autoplaySpeed: attributes.autoplaySpeed
+        }
+
         return (
-            <div {...innerBlocksProps} id={`block-${ID}`}>
-                <div className="swiper" data-client-id={ID}>
-                    <div className="swiper-wrapper">
-                        { innerBlocksProps.children }
+            <div { ...innerBlocksProps } id={`block-${ID}`}>
+                <div className="wpmozo-adfgu-logo-slider-wrap" data-attr={JSON.stringify(dataAttr)}>
+                    <div className="wpmozo-adfgu-logo-slider-inner-wrap">
+                        <div className="swiper swiper-container">
+                            <div className="swiper-wrapper">
+                                { innerBlocksProps.children }
+                            </div>
+                        </div>
+                        { attributes.showControlDot &&
+                            <div className="wpmozo-adfgu-logo-slider-pagination">
+                                <div className={`swiper-pagination ${attributes.controlDotStyle}${paginationClass}`}></div>
+                            </div>
+                        }
+                        { attributes.showArrow && 
+                            <>
+                                <div className={`wpmozo-adfgu-logo-slider-navigation wpmozo-adfgu-arrows-${attributes.arrowsPosition}`}>
+                                    <div className={buttonNextClass}></div>
+                                    <div className={buttonPrevClass}></div>
+                                </div>
+                            </>
+                        }
                     </div>
-                    <div className="swiper-pagination"></div>
-                    <div className="swiper-button-prev"></div>
-                    <div className="swiper-button-next"></div>
                 </div>
             </div>
         );

@@ -20,6 +20,8 @@ const Inspector = (props) => {
     setAttributes = props.setAttributes,
     [ deviceType, setDeviceType ] = useState('tablet');
 
+    props = Object.assign({}, props, {preAttributes: {}});
+
     const oneToTwenty = [
         {
             label: __( '1', 'wpmozo-addons-lite-for-gutenberg' ),
@@ -359,7 +361,7 @@ const Inspector = (props) => {
                             {
                                 key: 'background',
                                 label: __( 'Background Color', 'wpmozo-addons-lite-for-gutenberg' ),
-                            },
+                            }
                         ]}
                     />
                     <WpmozoDimensions

@@ -72,15 +72,6 @@
 }
 /* floating-image-item style end */
 
-/* logo-slide style start */
-.logo-wrap{ 
-    display: flex;
-    padding: 10px;
-    margin-bottom: 0 !important;
-    justify-content: center;
-}
-/* logo-slide style end */
-
 @keyframes wpmozoTopToBottom {
     from { opacity: 0; transform: translateY(-50px); }
     to { opacity: 1; transform: translateY(0); }

@@ -3,21 +3,33 @@ import { __ } from "@wordpress/i18n";
 
 const attributes = {
     ID: {
-        type: "string",
+        type: "string"
     },
 	logo: {
-		type: "object",
+		type: "object"
 	},
 	altText: {
-		type: "string",
+		type: "string"
 	},
 	link: {
-		type: "string",
+		type: "string"
 	},
 	linkTarget: {
 		type: "string",
-		default: "same",
+		default: "same"
 	},
+	logoBackground: {
+		type: "string"
+	},
+	logopadding: {
+		type: "object"
+	},
+	logoborderRadius: {
+        type: "string"
+    },
+    logoborder: {
+        type: "object"
+    }
 };
 
 export default attributes;
