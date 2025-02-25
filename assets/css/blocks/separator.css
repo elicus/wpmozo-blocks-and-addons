@@ -1,3 +1,21 @@
+.wpmozo-adfgu-separator .hexagon {
+    width: 100%;
+    aspect-ratio: 20/11;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+}
+.wpmozo-adfgu-separator .hexagon::before,
+.wpmozo-adfgu-separator .hexagon::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 0;
+}
 .wpmozo-adfgu-separator .wpmozo-adfgu-separator-container {
     display: flex;
     align-items: center;
@@ -10,8 +28,9 @@
 .wpmozo-adfgu-separator .wpmozo-adfgu-shadow {
     height: 3px;
 }
-.wpmozo-adfgu-separator .et-pb-icon {
+.wpmozo-adfgu-separator .wpmozo-adfgu-icon-wrapper i {
     font-size: 32px;
+    z-index: 1;
 }
 .wpmozo-adfgu-separator .wpmozo-adfgu-separator-container .wpmozo-adfgu-text-wrapper {
     max-width: 80%;
@@ -42,60 +61,16 @@
     padding: 16px;
     border-radius: 50%;
 }
-.wpmozo-adfgu-separator .wpmozo-adfgu-icon-square {
+.wpmozo-adfgu-separator .wpmozo-adfgu-icon-square,
+.wpmozo-adfgu-separator .wpmozo-adfgu-icon-wrapper.shape-hexagon {
     padding: 16px;
+    box-sizing: content-box;
+}
+
+.wpmozo-adfgu-separator .wpmozo-adfgu-icon-wrapper.shape-hexagon {
+    padding: 16px 0px;
+    box-sizing: content-box;
 }
 .wpmozo-adfgu-separator .wpmozo-adfgu-icon-shape-border {
     border: 2px solid;
-}
-.wpmozo-adfgu-separator .et-pb-icon.wpmozo-adfgu-icon-hexagon {
-    position: relative;
-    z-index: 99;
-    margin-left: -40.25%;
-    padding: 15px;
-    -webkit-transform: rotate(-30deg);
-    transform: rotate(-30deg);
-}
-.wpmozo-adfgu-separator .hexagon-wrapper {
-    display: inline-block;
-    position: relative;
-}
-.wpmozo-adfgu-separator .hexagon-wrapper .hex {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transform: rotate(30deg);
-    transform: rotate(30deg);
-}
-.wpmozo-adfgu-separator .hexagon {
-    width: 57.735%;
-    height: 100%;
-    margin: auto;
-}
-.wpmozo-adfgu-separator .hexagon:before {
-    -webkit-transform: rotate(60deg) translateZ(0);
-    transform: rotate(60deg) translateZ(0);
-}
-.wpmozo-adfgu-separator .hexagon:after,
-.wpmozo-adfgu-separator .hexagon:before {
-    position: absolute;
-    top: 0;
-    right: 21.1325%;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    background-color: inherit;
-    width: inherit;
-    height: inherit;
-    content: "";
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-.wpmozo-adfgu-separator .hexagon:after {
-    -webkit-transform: rotate(-60deg) translateZ(0);
-    transform: rotate(-60deg) translateZ(0);
-}
-.wpmozo-adfgu-separator .hexagon.wpmozo-adfgu-icon-shape-border:after,
-.wpmozo-adfgu-separator .hexagon.wpmozo-adfgu-icon-shape-border:before {
-    border-top: 2px solid;
-    border-bottom: 2px solid;
-    border-color: inherit;
 }

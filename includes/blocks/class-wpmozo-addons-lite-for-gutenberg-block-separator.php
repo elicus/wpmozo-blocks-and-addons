@@ -61,6 +61,14 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Separator extends WPMozo_Addons_Lite_Gu
 
 		parent::__construct();
 
+		// rgister fontawesome style.
+		$this->styles[] = array(
+			'handle' => $this->plugin_name . '-fontawesome-style',
+			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'libs/fontawesome/all.min.css',
+			'deps'   => array(),
+			'ver'    => time(),
+		);
+
 		$this->styles[] = array(
 			'handle' => $this->plugin_name . '-separator-style',
 			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'css/blocks/separator.css',
@@ -71,6 +79,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Separator extends WPMozo_Addons_Lite_Gu
 		$this->args = array(
 			'style_handles' => array(
 				$this->plugin_name . '-separator-style',
+				$this->plugin_name . '-fontawesome-style',
 			),
 		);
 	}

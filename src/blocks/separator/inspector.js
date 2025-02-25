@@ -89,6 +89,7 @@ const Inspector = (props) => {
 
     const [ titleStyleType, setTitleStyleType ] = useState('normal');
     const [ textStyleType, setTextStyleType ] = useState('normal');
+    console.log(attributes);
 
 	return (
         <>
@@ -142,14 +143,14 @@ const Inspector = (props) => {
                             onChange={ ( newValue ) => setAttributes( { lineUseWith: newValue } ) }
                         />
                     }
-                    { 'textSeparator' === attributes.lineUseWith &&
+                    { 'line' === attributes.separatorType && 'textSeparator' === attributes.lineUseWith &&
                         <TextareaControl
                             label={ __( 'Separator Text', 'wpmozo-addons-lite-for-gutenberg' ) }
                             onChange={ ( newValue ) => setAttributes( { separatorText: newValue } ) }
                             value={ attributes.separatorText }
                         />
                     }
-                    { 'iconSeparator' === attributes.lineUseWith &&
+                    { 'line' === attributes.separatorType && 'iconSeparator' === attributes.lineUseWith &&
                         <WpmozoIconpicker
                             label={ __( 'Icon', 'wpmozo-addons-lite-for-gutenberg' ) }
                             iconPickerKey='separatorIcon'
@@ -158,25 +159,12 @@ const Inspector = (props) => {
                             onChange={ ( newValue ) => setAttributes( { separatorIcon: newValue } ) }
                         />
                     }
-                    { 'imageSeparator' === attributes.lineUseWith &&
+                    { 'line' === attributes.separatorType && 'imageSeparator' === attributes.lineUseWith &&
                         <WpmozoMediaUploader 
                             attrKye="separatorImage" 
                             props={props} 
                         />
                     }
-                </PanelBody>
-{/*Background*/}
-                <PanelBody title={ __( 'Background', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
-                    <WpmozoColorPicker  
-                        ColorKey="background"
-                        props={props}
-                        ColorTypes={[ 
-                            {
-                                key: 'separator-background-color',
-                                label: __( 'Background Color', 'wpmozo-addons-lite-for-gutenberg' ),
-                            },
-                        ]}
-                    />
                 </PanelBody>
            	</InspectorControls>
 {/*Styling*/}
@@ -227,11 +215,11 @@ const Inspector = (props) => {
                     }
                     {'shadow' === attributes.separatorType &&
                         <WpmozoColorPicker  
-                            ColorKey="shadowColor"
+                            ColorKey="shadow"
                             props={props}
                             ColorTypes={[ 
                                 {
-                                    key: 'shadowColor',
+                                    key: 'Color',
                                     label: __( 'Separator Color', 'wpmozo-addons-lite-for-gutenberg' ),
                                 },
                             ]}
@@ -239,7 +227,7 @@ const Inspector = (props) => {
                     }
                 </PanelBody>
 {/*Image Styling*/}
-                { 'imageSeparator' === attributes.lineUseWith &&
+                { 'line' === attributes.separatorType && 'imageSeparator' === attributes.lineUseWith &&
                     <PanelBody title={ __( 'Image Styling', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
                         <SelectControl
                             label={ __( 'Image Position', 'wpmozo-addons-lite-for-gutenberg' ) }
@@ -271,7 +259,7 @@ const Inspector = (props) => {
                     </PanelBody>
                 }
 {/*Icon Styling*/}
-                { 'iconSeparator' === attributes.lineUseWith &&
+                { 'line' === attributes.separatorType && 'iconSeparator' === attributes.lineUseWith &&
                     <PanelBody title={ __( 'Icon Styling', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
                         <SelectControl
                             label={ __( 'Icon Position', 'wpmozo-addons-lite-for-gutenberg' ) }
@@ -293,11 +281,11 @@ const Inspector = (props) => {
                             onChange={ ( newValue ) => setAttributes( { iconPosition: newValue } ) }
                         />
                         <WpmozoColorPicker  
-                            ColorKey="iconColor"
+                            ColorKey="icon"
                             props={props}
                             ColorTypes={[ 
                                 {
-                                    key: 'iconColor',
+                                    key: 'Color',
                                     label: __( 'Icon Color', 'wpmozo-addons-lite-for-gutenberg' ),
                                 },
                             ]}
@@ -345,11 +333,11 @@ const Inspector = (props) => {
                         }
                         { true === attributes.styleIcon && 
                             <WpmozoColorPicker  
-                                ColorKey="shapeBakcground"
+                                ColorKey="shape"
                                 props={props}
                                 ColorTypes={[ 
                                     {
-                                        key: 'shapeBakcground',
+                                        key: 'Background',
                                         label: __( 'Shape Background', 'wpmozo-addons-lite-for-gutenberg' ),
                                     },
                                 ]}
@@ -368,7 +356,7 @@ const Inspector = (props) => {
                                 props={props}
                                 ColorTypes={[ 
                                     {
-                                        key: 'shapeBorder',
+                                        key: 'Color',
                                         label: __( 'Shape Border Color', 'wpmozo-addons-lite-for-gutenberg' ),
                                     },
                                 ]}
@@ -376,149 +364,72 @@ const Inspector = (props) => {
                         }
                     </PanelBody>
                 }
-{/*Title Styling*/}
-                <PanelBody title={ __( 'Title Styling', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-title-styling-panel" initialOpen={false}>
-                    <BaseControl
-                        label={ __( 'Title Heading Lavel', 'wpmozo-addons-lite-for-gutenberg' ) }
-                    >    
-                        <ButtonGroup>
-                            {headingLavels.map((item, key) => (
-                                <Button
-                                    key={ 'title-lavel-'+item.value }
-                                    isPressed={ ( item.value === attributes.titleLavel ) ? true : false }
-                                    onClick={ ( newValue ) => setAttributes( { titleLavel: item.value } ) }
-                                >
-                                    { item.label }
-                                </Button>
-                            ))}
-                        </ButtonGroup>
-                    </BaseControl>
-                    <BaseControl
-                        className="wpmozo-button-tabs-wrap"
-                    >    
-                        <ButtonGroup>
-                            <Button
-                                className="wpmozo-button-tabs-btn"
-                                isPressed={ ( 'normal' === titleStyleType ) ? true : false }
-                                onClick={ () => setTitleStyleType( 'normal' ) }
-                            >
-                                { __( 'Normal', 'wpmozo-addons-lite-for-gutenberg' ) }
-                            </Button>
-                            <Button 
-                                className="wpmozo-button-tabs-btn"
-                                isPressed={ ( 'hover' === titleStyleType ) ? true : false }
-                                onClick={ () => setTitleStyleType( 'hover' ) }
-                            >
-                                { __( 'Hover', 'wpmozo-addons-lite-for-gutenberg' ) }
-                            </Button>
-                        </ButtonGroup>
-                        { 'normal' === titleStyleType &&
-                            <>
-                                <WpmozoColorPicker  
-                                    ColorKey="titleNormal"
-                                    props={props}
-                                    ColorTypes={[ 
-                                        {
-                                            key: 'Color',
-                                            label: __( 'Title Color', 'wpmozo-addons-lite-for-gutenberg' ),
-                                        },
-                                    ]}
-                                />
-                                <WpmozoTypography
-                                    TypographyKey="titleNormal"
-                                    props={props}
-                                />
-                            </>
-                        }
-                        { 'hover' === titleStyleType &&
-                            <>
-                                <WpmozoColorPicker  
-                                    ColorKey="titleHover"
-                                    props={props}
-                                    ColorTypes={[ 
-                                        {
-                                            key: 'Color',
-                                            label: __( 'Title Color', 'wpmozo-addons-lite-for-gutenberg' ),
-                                        },
-                                    ]}
-                                />
-                                <WpmozoTypography
-                                    TypographyKey="titleHover"
-                                    props={props}
-                                />
-                            </>
-                        }
-                    </BaseControl>
-                    <WpmozoAlignment
-                        label={ __( 'Title Alignment', 'wpmozo-addons-lite-for-gutenberg') }
-                        onChange={ ( newValue ) => setAttributes( { titleAlign: newValue } ) }
-                        value={ attributes.titleAlign }
-                    />
-                </PanelBody>
 {/*Text Styling*/}
-                <PanelBody title={ __( 'Text Styling', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-text-styling-panel" initialOpen={false}>
-                    <BaseControl
-                        className="wpmozo-button-tabs-wrap"
-                    >    
-                        <ButtonGroup>
-                            <Button
-                                className="wpmozo-button-tabs-btn"
-                                isPressed={ ( 'normal' === textStyleType ) ? true : false }
-                                onClick={ () => setTextStyleType( 'normal' ) }
-                            >
-                                { __( 'Normal', 'wpmozo-addons-lite-for-gutenberg' ) }
-                            </Button>
-                            <Button 
-                                className="wpmozo-button-tabs-btn"
-                                isPressed={ ( 'hover' === textStyleType ) ? true : false }
-                                onClick={ () => setTextStyleType( 'hover' ) }
-                            >
-                                { __( 'Hover', 'wpmozo-addons-lite-for-gutenberg' ) }
-                            </Button>
-                        </ButtonGroup>
-                        { 'normal' === textStyleType &&
-                            <>
-                                <WpmozoColorPicker  
-                                    ColorKey="textNormal"
-                                    props={props}
-                                    ColorTypes={[ 
-                                        {
-                                            key: 'Color',
-                                            label: __( 'Text Color', 'wpmozo-addons-lite-for-gutenberg' ),
-                                        },
-                                    ]}
-                                />
-                                <WpmozoTypography
-                                    TypographyKey="textNormal"
-                                    props={props}
-                                />
-                            </>
-                        }
-                        { 'hover' === textStyleType &&
-                            <>
-                                <WpmozoColorPicker  
-                                    ColorKey="textHover"
-                                    props={props}
-                                    ColorTypes={[ 
-                                        {
-                                            key: 'Color',
-                                            label: __( 'Text Color', 'wpmozo-addons-lite-for-gutenberg' ),
-                                        },
-                                    ]}
-                                />
-                                <WpmozoTypography
-                                    TypographyKey="textHover"
-                                    props={props}
-                                />
-                            </>
-                        }
-                    </BaseControl>
-                    <WpmozoAlignment
-                        label={ __( 'Text Alignment', 'wpmozo-addons-lite-for-gutenberg') }
-                        onChange={ ( newValue ) => setAttributes( { textAlign: newValue } ) }
-                        value={ attributes.textAlign }
-                    />
-                </PanelBody>
+                { 'line' === attributes.separatorType && 'textSeparator' === attributes.lineUseWith &&
+                    <PanelBody title={ __( 'Text Styling', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-text-styling-panel wpmozo-typography-panel" initialOpen={false}>
+                        <BaseControl
+                            className="wpmozo-button-tabs-wrap"
+                        >    
+                            <ButtonGroup>
+                                <Button
+                                    className="wpmozo-button-tabs-btn"
+                                    isPressed={ ( 'normal' === textStyleType ) ? true : false }
+                                    onClick={ () => setTextStyleType( 'normal' ) }
+                                >
+                                    { __( 'Normal', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                </Button>
+                                <Button 
+                                    className="wpmozo-button-tabs-btn"
+                                    isPressed={ ( 'hover' === textStyleType ) ? true : false }
+                                    onClick={ () => setTextStyleType( 'hover' ) }
+                                >
+                                    { __( 'Hover', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                </Button>
+                            </ButtonGroup>
+                            { 'normal' === textStyleType &&
+                                <>
+                                    <WpmozoColorPicker  
+                                        ColorKey="textNormal"
+                                        props={props}
+                                        ColorTypes={[ 
+                                            {
+                                                key: 'Color',
+                                                label: __( 'Text Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                            },
+                                        ]}
+                                    />
+                                    <WpmozoTypography
+                                        TypographyKey="textNormal"
+                                        props={props}
+                                    />
+                                </>
+                            }
+                            { 'hover' === textStyleType &&
+                                <>
+                                    <WpmozoColorPicker  
+                                        ColorKey="textHover"
+                                        props={props}
+                                        ColorTypes={[ 
+                                            {
+                                                key: 'Color',
+                                                label: __( 'Text Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                            },
+                                        ]}
+                                    />
+                                    <WpmozoTypography
+                                        TypographyKey="textHover"
+                                        props={props}
+                                    />
+                                </>
+                            }
+                        </BaseControl>
+                        <WpmozoAlignment
+                            label={ __( 'Text Alignment', 'wpmozo-addons-lite-for-gutenberg') }
+                            onChange={ ( newValue ) => setAttributes( { textAlign: newValue } ) }
+                            value={ attributes.textAlign }
+                        />
+                    </PanelBody>
+                }
             </InspectorControls>
         </>
     );

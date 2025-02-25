@@ -7878,6 +7878,9 @@ const attributes = {
     type: "number",
     default: 32
   },
+  iconColor: {
+    type: "string"
+  },
   styleIcon: {
     type: "boolean",
     default: false
@@ -7886,13 +7889,15 @@ const attributes = {
     type: "string",
     default: "square"
   },
+  shapeBackground: {
+    type: "string"
+  },
   enableShapeBorder: {
     type: "boolean",
     default: false
   },
-  shapeBorder: {
-    type: "string",
-    default: ""
+  shapeBorderColor: {
+    type: "string"
   },
   separatorImage: {
     type: "string",
@@ -7917,79 +7922,12 @@ const attributes = {
     type: "string"
   },
   separatorColor: {
-    type: "string"
-  },
-  titleLavel: {
     type: "string",
-    default: "h2"
+    default: "#2b87da"
   },
-  titleNormalColor: {
+  shadowColor: {
     type: "string",
-    default: "#222222"
-  },
-  titleHoverColor: {
-    type: "string",
-    default: "#000000"
-  },
-  titleNormalFontSize: {
-    type: "string"
-  },
-  titleNormalFontAppearance: {
-    type: "object",
-    fontStyle: {
-      type: "string"
-    },
-    fontWeight: {
-      type: "string"
-    },
-    default: {
-      fontStyle: "",
-      fontWeight: ""
-    }
-  },
-  titleNormalLetterSpacing: {
-    type: "string"
-  },
-  titleNormalDecoration: {
-    type: "string"
-  },
-  titleNormalLetterCase: {
-    type: "string"
-  },
-  titleNormalLineHeight: {
-    type: "string"
-  },
-  titleHoverFontSize: {
-    type: "string"
-  },
-  titleHoverFontAppearance: {
-    type: "object",
-    fontStyle: {
-      type: "string"
-    },
-    fontWeight: {
-      type: "string"
-    },
-    default: {
-      fontStyle: "",
-      fontWeight: ""
-    }
-  },
-  titleHoverLetterSpacing: {
-    type: "string"
-  },
-  titleHoverDecoration: {
-    type: "string"
-  },
-  titleHoverLetterCase: {
-    type: "string"
-  },
-  titleHoverLineHeight: {
-    type: "string"
-  },
-  titleAlign: {
-    type: "string",
-    default: "center"
+    default: "#2b87da"
   },
   textNormalColor: {
     type: "string",
@@ -8105,7 +8043,7 @@ const Edit = props => {
     if ('onlySeparator' === attributes.lineUseWith) {
       position = 'align-none';
     } else if ('textSeparator' === attributes.lineUseWith) {
-      position = `align-${attributes.textAlign}`;
+      position = `align-${undefined !== attributes.textAlign ? attributes.textAlign : 'none'}`;
     } else if ('iconSeparator' === attributes.lineUseWith) {
       position = `align-${attributes.iconPosition}`;
     } else {
@@ -8126,6 +8064,8 @@ const Edit = props => {
       }
     });
   });
+  let html = "<div>";
+  let closeHtml = "</div>";
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_1__["default"], {
     ...props
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_style__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -8140,11 +8080,21 @@ const Edit = props => {
     className: "wpmozo-adfgu-line wpmozo-adfgu-line-before"
   }), "textSeparator" === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "wpmozo-adfgu-text-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, `${attributes.separatorText}`)), "iconSeparator" === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, `${attributes.separatorText}`)), "iconSeparator" === attributes.lineUseWith && true !== attributes.styleIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "wpmozo-adfgu-icon-wrapper"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
     className: attributes.separatorIcon
-  })), "imageSeparator" === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+  })), "iconSeparator" === attributes.lineUseWith && true === attributes.styleIcon && ('square' === attributes.iconShape || 'circle' === attributes.iconShape) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "wpmozo-adfgu-icon-wrapper"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+    className: attributes.separatorIcon + ' wpmozo-adfgu-icon-' + attributes.iconShape + (true === attributes.enableShapeBorder ? ' wpmozo-adfgu-icon-shape-border' : '')
+  })), "iconSeparator" === attributes.lineUseWith && true === attributes.styleIcon && 'hexagon' === attributes.iconShape && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "wpmozo-adfgu-icon-wrapper shape-hexagon"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "hexagon" + (true === attributes.enableShapeBorder ? ' wpmozo-adfgu-border-hex' : '')
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+    className: attributes.separatorIcon
+  }))), "imageSeparator" === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     className: "wpmozo-adfgu-separator-image",
     src: attributes.separatorImage ? attributes.separatorImage : WPMozoEditorObj.placeholderImg
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -8308,6 +8258,7 @@ const Inspector = props => {
   });
   const [titleStyleType, setTitleStyleType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('normal');
   const [textStyleType, setTextStyleType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('normal');
+  console.log(attributes);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
     key: "controls"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
@@ -8352,13 +8303,13 @@ const Inspector = props => {
     onChange: newValue => setAttributes({
       lineUseWith: newValue
     })
-  }), 'textSeparator' === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TextareaControl, {
+  }), 'line' === attributes.separatorType && 'textSeparator' === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TextareaControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Separator Text', 'wpmozo-addons-lite-for-gutenberg'),
     onChange: newValue => setAttributes({
       separatorText: newValue
     }),
     value: attributes.separatorText
-  }), 'iconSeparator' === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoIconpicker, {
+  }), 'line' === attributes.separatorType && 'iconSeparator' === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoIconpicker, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon', 'wpmozo-addons-lite-for-gutenberg'),
     iconPickerKey: "separatorIcon",
     props: props,
@@ -8366,19 +8317,9 @@ const Inspector = props => {
     onChange: newValue => setAttributes({
       separatorIcon: newValue
     })
-  }), 'imageSeparator' === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoMediaUploader, {
+  }), 'line' === attributes.separatorType && 'imageSeparator' === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoMediaUploader, {
     attrKye: "separatorImage",
     props: props
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Background', 'wpmozo-addons-lite-for-gutenberg'),
-    initialOpen: false
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoColorPicker, {
-    ColorKey: "background",
-    props: props,
-    ColorTypes: [{
-      key: 'separator-background-color',
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Background Color', 'wpmozo-addons-lite-for-gutenberg')
-    }]
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
     key: "styles",
     group: "styles"
@@ -8428,13 +8369,13 @@ const Inspector = props => {
       separatorGradient: newValue
     })
   }), 'shadow' === attributes.separatorType && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoColorPicker, {
-    ColorKey: "shadowColor",
+    ColorKey: "shadow",
     props: props,
     ColorTypes: [{
-      key: 'shadowColor',
+      key: 'Color',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Separator Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
-  })), 'imageSeparator' === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+  })), 'line' === attributes.separatorType && 'imageSeparator' === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Image Styling', 'wpmozo-addons-lite-for-gutenberg'),
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.SelectControl, {
@@ -8462,7 +8403,7 @@ const Inspector = props => {
     min: 0,
     step: 1,
     max: 100
-  })), 'iconSeparator' === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+  })), 'line' === attributes.separatorType && 'iconSeparator' === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon Styling', 'wpmozo-addons-lite-for-gutenberg'),
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.SelectControl, {
@@ -8482,10 +8423,10 @@ const Inspector = props => {
       iconPosition: newValue
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoColorPicker, {
-    ColorKey: "iconColor",
+    ColorKey: "icon",
     props: props,
     ColorTypes: [{
-      key: 'iconColor',
+      key: 'Color',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
@@ -8526,10 +8467,10 @@ const Inspector = props => {
       iconShape: newValue
     })
   }), true === attributes.styleIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoColorPicker, {
-    ColorKey: "shapeBakcground",
+    ColorKey: "shape",
     props: props,
     ColorTypes: [{
-      key: 'shapeBakcground',
+      key: 'Background',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Shape Background', 'wpmozo-addons-lite-for-gutenberg')
     }]
   }), true === attributes.styleIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
@@ -8542,60 +8483,12 @@ const Inspector = props => {
     ColorKey: "shapeBorder",
     props: props,
     ColorTypes: [{
-      key: 'shapeBorder',
+      key: 'Color',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Shape Border Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Title Styling', 'wpmozo-addons-lite-for-gutenberg'),
-    className: "wpmozo-title-styling-panel",
-    initialOpen: false
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.BaseControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Title Heading Lavel', 'wpmozo-addons-lite-for-gutenberg')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ButtonGroup, null, headingLavels.map((item, key) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
-    key: 'title-lavel-' + item.value,
-    isPressed: item.value === attributes.titleLavel ? true : false,
-    onClick: newValue => setAttributes({
-      titleLavel: item.value
-    })
-  }, item.label)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.BaseControl, {
-    className: "wpmozo-button-tabs-wrap"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ButtonGroup, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
-    className: "wpmozo-button-tabs-btn",
-    isPressed: 'normal' === titleStyleType ? true : false,
-    onClick: () => setTitleStyleType('normal')
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Normal', 'wpmozo-addons-lite-for-gutenberg')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
-    className: "wpmozo-button-tabs-btn",
-    isPressed: 'hover' === titleStyleType ? true : false,
-    onClick: () => setTitleStyleType('hover')
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Hover', 'wpmozo-addons-lite-for-gutenberg'))), 'normal' === titleStyleType && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoColorPicker, {
-    ColorKey: "titleNormal",
-    props: props,
-    ColorTypes: [{
-      key: 'Color',
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Title Color', 'wpmozo-addons-lite-for-gutenberg')
-    }]
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoTypography, {
-    TypographyKey: "titleNormal",
-    props: props
-  })), 'hover' === titleStyleType && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoColorPicker, {
-    ColorKey: "titleHover",
-    props: props,
-    ColorTypes: [{
-      key: 'Color',
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Title Color', 'wpmozo-addons-lite-for-gutenberg')
-    }]
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoTypography, {
-    TypographyKey: "titleHover",
-    props: props
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoAlignment, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Title Alignment', 'wpmozo-addons-lite-for-gutenberg'),
-    onChange: newValue => setAttributes({
-      titleAlign: newValue
-    }),
-    value: attributes.titleAlign
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+  })), 'line' === attributes.separatorType && 'textSeparator' === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Text Styling', 'wpmozo-addons-lite-for-gutenberg'),
-    className: "wpmozo-text-styling-panel",
+    className: "wpmozo-text-styling-panel wpmozo-typography-panel",
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.BaseControl, {
     className: "wpmozo-button-tabs-wrap"
@@ -8685,11 +8578,17 @@ const Save = ({
     className: "wpmozo-adfgu-line wpmozo-adfgu-line-before"
   }), "textSeparator" === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "wpmozo-adfgu-text-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, `${attributes.separatorText}`)), "iconSeparator" === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, `${attributes.separatorText}`)), "iconSeparator" === attributes.lineUseWith && true !== attributes.styleIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "wpmozo-adfgu-icon-wrapper"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
     className: attributes.separatorIcon
-  })), "imageSeparator" === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+  })), "iconSeparator" === attributes.lineUseWith && true === attributes.styleIcon && ('square' === attributes.iconShape || 'circle' === attributes.iconShape) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "wpmozo-adfgu-icon-wrapper"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "hexagon" + (true === attributes.enableShapeBorder ? ' wpmozo-adfgu-border-hex' : '')
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+    className: attributes.separatorIcon
+  }))), "imageSeparator" === attributes.lineUseWith && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     className: "wpmozo-adfgu-separator-image",
     src: attributes.separatorImage ? attributes.separatorImage : WPMozoEditorObj.placeholderImg
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -8722,38 +8621,228 @@ const Style = ({
 }) => {
   const wpmozoCoreFun = window.wpmozo,
     parent = '#block-' + clientId,
-    toConvertStyles = ['titleNormal', 'titleHover', 'content', 'layout'];
+    toConvertStyles = ['textNormal', 'textHover', 'content', 'layout'];
   let css = '',
     convertedStyle = wpmozoCoreFun.convetInlineStyleStr(toConvertStyles, attributes);
   let allInline = [{
-    selector: '.wpmozo-adfgu-interactive-image-card-image',
+    selector: '.wpmozo-adfgu-text-wrapper',
     style: {
-      'opacity': attributes.imageOpacity
-    }
+      'color': attributes.textNormalColor
+    },
+    additional: convertedStyle.textNormal
+  }, {
+    selector: '.wpmozo-adfgu-text-wrapper:hover',
+    style: {
+      'color': attributes.textHoverColor
+    },
+    additional: convertedStyle.textHover
   }];
   if ('line' === attributes.separatorType) {
     allInline.push({
       selector: '.wpmozo-adfgu-line',
       style: {
-        'border-top-width': attributes.separatorThickness + 'px'
-      }
-    }, {
-      selector: '.wpmozo-adfgu-line',
-      style: {
-        'border-color': attributes.separatorColor
-      }
-    }, {
-      selector: '.wpmozo-adfgu-line',
-      style: {
-        'border-style': attributes.lineStyle
+        'border-top-width': `${attributes.separatorThickness}px`,
+        'border-top-color': attributes.separatorColor,
+        'border-top-style': attributes.lineStyle
       }
     });
+    if ('solid' === attributes.lineStyle && undefined === attributes.separatorColor) {
+      allInline.push({
+        selector: '.wpmozo-adfgu-line',
+        style: {
+          'border-top-width': `${attributes.separatorThickness}px`,
+          'border-image-slice': 1,
+          'border-image-source': attributes.separatorGradient,
+          'border-top-style': attributes.lineStyle
+        }
+      });
+    }
+    if ('iconSeparator' === attributes.lineUseWith) {
+      allInline.push({
+        selector: '.wpmozo-adfgu-icon-wrapper i',
+        style: {
+          'color': attributes.iconColor
+        }
+      });
+      if (true === attributes.enableIconFontSize && true === attributes.styleIcon) {
+        if ('hexagon' === attributes.iconShape) {
+          if (true === attributes.enableShapeBorder) {
+            allInline.push({
+              selector: '.wpmozo-adfgu-icon-wrapper .hexagon.wpmozo-adfgu-border-hex',
+              style: {
+                'box-shadow': `2px 0px 0px 0px inset ${attributes.shapeBorderColor}, -2px 0px 0px 0px inset ${attributes.shapeBorderColor}`
+              }
+            }, {
+              selector: '.wpmozo-adfgu-icon-wrapper .hexagon.wpmozo-adfgu-border-hex:after',
+              style: {
+                'border-right': `2px solid ${attributes.shapeBorderColor}`,
+                'border-bottom': `2px solid ${attributes.shapeBorderColor}`,
+                'transform': 'rotate(45deg) skew(-15.8deg, -15.8deg) translate( 72%, 27%)',
+                'width': 55 + "%",
+                'height': 100 + "%"
+              }
+            }, {
+              selector: '.wpmozo-adfgu-icon-wrapper .hexagon.wpmozo-adfgu-border-hex:before',
+              style: {
+                'border-top': `2px solid ${attributes.shapeBorderColor}`,
+                'border-left': `2px solid ${attributes.shapeBorderColor}`,
+                'transform': 'rotate(45deg) skew(-15.8deg, -15.8deg) translate(-27%, -72%)',
+                'width': 55 + "%",
+                'height': 100 + "%"
+              }
+            });
+          } else {
+            allInline.push({
+              selector: '.wpmozo-adfgu-icon-wrapper .hexagon',
+              style: {}
+            }, {
+              selector: '.wpmozo-adfgu-icon-wrapper .hexagon:after',
+              style: {
+                'transform': 'rotate(45deg) skew(-16deg, -16deg) translate( 72%, 27%)',
+                'width': 55 + "%"
+              }
+            }, {
+              selector: '.wpmozo-adfgu-icon-wrapper .hexagon:before',
+              style: {
+                'transform': 'rotate(45deg) skew(-16deg, -16deg) translate(-27%, -72%)',
+                'width': 55 + "%"
+              }
+            });
+          }
+          allInline.push({
+            selector: '.wpmozo-adfgu-icon-wrapper',
+            style: {
+              'width': `calc( ${attributes.iconFontSize}px + ${attributes.iconFontSize / 1.15}px )`
+            }
+          }, {
+            selector: '.wpmozo-adfgu-icon-wrapper i',
+            style: {
+              'font-size': `${attributes.iconFontSize}px`
+            }
+          }, {
+            selector: '.wpmozo-adfgu-icon-wrapper .hexagon:before, .wpmozo-adfgu-icon-wrapper .hexagon:after, .wpmozo-adfgu-icon-wrapper .hexagon',
+            style: {
+              'background-color': attributes.shapeBackground
+            }
+          });
+        } else {
+          if (true === attributes.enableShapeBorder) {
+            allInline.push({
+              selector: '.wpmozo-adfgu-icon-wrapper i',
+              style: {
+                'border': `2px solid ${attributes.shapeBorderColor}`
+              }
+            }, {
+              selector: '.wpmozo-adfgu-icon-wrapper i',
+              style: {
+                'font-size': `${attributes.iconFontSize}px`
+              }
+            });
+          } else {}
+        }
+        allInline.push({
+          selector: '.wpmozo-adfgu-icon-wrapper i',
+          style: {
+            'background-color': attributes.shapeBackground
+          }
+        });
+      } else if (true === attributes.enableIconFontSize && true !== attributes.styleIcon) {
+        allInline.push({
+          selector: '.wpmozo-adfgu-icon-wrapper i',
+          style: {
+            'font-size': `${attributes.iconFontSize}px`
+          }
+        });
+      } else if (true !== attributes.enableIconFontSize && true === attributes.styleIcon) {
+        if ('hexagon' === attributes.iconShape) {
+          if (true === attributes.enableShapeBorder) {
+            allInline.push({
+              selector: '.wpmozo-adfgu-icon-wrapper .hexagon.wpmozo-adfgu-border-hex',
+              style: {
+                'border-left': `2px solid ${attributes.shapeBorderColor}`,
+                'border-right': `2px solid ${attributes.shapeBorderColor}`
+              }
+            }, {
+              selector: '.wpmozo-adfgu-icon-wrapper .hexagon.wpmozo-adfgu-border-hex:after',
+              style: {
+                'border-right': `2px solid ${attributes.shapeBorderColor}`,
+                'border-bottom': `2px solid ${attributes.shapeBorderColor}`,
+                'transform': 'rotate(45deg) skew(-13deg, -13deg) translate( 57%, 19%)',
+                'width': 'calc( ' + 55 + "% + 4px )",
+                'height': 'calc( ' + 100 + "% + 4px )"
+              }
+            }, {
+              selector: '.wpmozo-adfgu-icon-wrapper .hexagon.wpmozo-adfgu-border-hex:before',
+              style: {
+                'border-top': `2px solid ${attributes.shapeBorderColor}`,
+                'border-left': `2px solid ${attributes.shapeBorderColor}`,
+                'transform': 'rotate(45deg) skew(-13deg, -13deg) translate(-28%, -65%)',
+                'width': 'calc( ' + 55 + "% + 4px )",
+                'height': 'calc( ' + 100 + "% + 4px )"
+              }
+            });
+          } else {
+            allInline.push({
+              selector: '.wpmozo-adfgu-icon-wrapper .hexagon.wpmozo-adfgu-icon-border-hex',
+              style: {}
+            }, {
+              selector: '.wpmozo-adfgu-icon-wrapper .hexagon:before',
+              style: {
+                'transform': 'rotate(45deg) skew(-16deg, -16deg) translate(-27%, -72%)',
+                'width': 55 + "%"
+              }
+            }, {
+              selector: '.wpmozo-adfgu-icon-wrapper .hexagon:after',
+              style: {
+                'transform': 'rotate(45deg) skew(-16deg, -16deg) translate( 72%, 27%)',
+                'width': 55 + "%"
+              }
+            });
+          }
+          allInline.push({
+            selector: '.wpmozo-adfgu-icon-wrapper',
+            style: {
+              'width': 72 + 'px'
+            }
+          }, {
+            selector: '.wpmozo-adfgu-icon-wrapper .hexagon, .wpmozo-adfgu-icon-wrapper .hexagon:before, .wpmozo-adfgu-icon-wrapper .hexagon:after ',
+            style: {
+              'background-color': attributes.shapeBackground
+            }
+          });
+        } else {
+          if (true === attributes.enableShapeBorder) {
+            allInline.push({
+              selector: '.wpmozo-adfgu-icon-wrapper .wpmozo-adfgu-icon-square.wpmozo-adfgu-icon-shape-border, .wpmozo-adfgu-icon-wrapper .wpmozo-adfgu-icon-circle.wpmozo-adfgu-icon-shape-border',
+              style: {
+                'border': `2px solid ${attributes.shapeBorderColor}`
+              }
+            });
+          } else {}
+          allInline.push({
+            selector: '.wpmozo-adfgu-icon-wrapper .wpmozo-adfgu-icon-square, .wpmozo-adfgu-icon-wrapper .wpmozo-adfgu-icon-circle',
+            style: {
+              'background-color': attributes.shapeBackground
+            }
+          });
+        }
+      } else {}
+    }
+    if ('imageSeparator' === attributes.lineUseWith) {
+      allInline.push({
+        selector: '.wpmozo-adfgu-separator-image',
+        style: {
+          'width': `${attributes.imageWidth}px`
+        }
+      });
+    }
   }
   if ('shadow' === attributes.separatorType) {
     allInline.push({
       selector: '.wpmozo-adfgu-shadow',
       style: {
-        'height': attributes.separatorThickness + 'px'
+        'height': `${attributes.separatorThickness}px`,
+        'background': `radial-gradient(ellipse at 50% -50% ,${attributes.shadowColor} 0%, rgba(0, 0, 0, 0) 75%), repeat scroll`
       }
     }, {
       selector: '.wpmozo-adfgu-interactive-image-card-content',

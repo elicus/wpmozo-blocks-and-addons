@@ -37,6 +37,9 @@ const attributes = {
         type: "number",
         default: 32,
     },
+    iconColor: {
+        type: "string",
+    },
     styleIcon: {
         type: "boolean",
         default: false,
@@ -45,13 +48,15 @@ const attributes = {
         type: "string",
         default: "square",
     },
+    shapeBackground: {
+        type: "string",
+    },
     enableShapeBorder: {
         type: "boolean",
         default: false,
     },
-    shapeBorder: {
+    shapeBorderColor: {
         type: "string",
-        default: "",
     },
     separatorImage: {
         type: "string",
@@ -77,78 +82,11 @@ const attributes = {
     },
     separatorColor: {
         type: "string",
+        default: "#2b87da",
     },
-    titleLavel: {
+    shadowColor: {
         type: "string",
-        default: "h2",
-    },
-    titleNormalColor: {
-        type: "string",
-        default: "#222222",
-    },
-    titleHoverColor: {
-        type: "string",
-        default: "#000000",
-    },
-    titleNormalFontSize: {
-        type: "string",
-    },
-    titleNormalFontAppearance: {
-        type: "object",
-        fontStyle: {
-            type: "string",
-        },
-        fontWeight: {
-            type: "string",
-        },
-        default: {
-            fontStyle: "",
-            fontWeight: "",
-        }
-    },
-    titleNormalLetterSpacing: {
-        type: "string",
-    },
-    titleNormalDecoration: {
-        type: "string",
-    },
-    titleNormalLetterCase: {
-        type: "string",
-    },
-    titleNormalLineHeight: {
-        type: "string",
-    },
-    titleHoverFontSize: {
-        type: "string",
-    },
-    titleHoverFontAppearance: {
-        type: "object",
-        fontStyle: {
-            type: "string",
-        },
-        fontWeight: {
-            type: "string",
-        },
-        default: {
-            fontStyle: "",
-            fontWeight: "",
-        }
-    },
-    titleHoverLetterSpacing: {
-        type: "string",
-    },
-    titleHoverDecoration: {
-        type: "string",
-    },
-    titleHoverLetterCase: {
-        type: "string",
-    },
-    titleHoverLineHeight: {
-        type: "string",
-    },
-    titleAlign: {
-        type: "string",
-        default: "center",
+        default: "#2b87da",
     },
     textNormalColor: {
         type: "string",

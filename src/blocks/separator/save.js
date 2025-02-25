@@ -32,9 +32,16 @@ const Save = ({ attributes }) => {
                                 <p>{`${attributes.separatorText}`}</p>
                             </div>
                         )}
-                        {"iconSeparator" === attributes.lineUseWith && (
+                        {"iconSeparator" === attributes.lineUseWith && true !== attributes.styleIcon && (
                             <div className="wpmozo-adfgu-icon-wrapper">
                                 <i className={ attributes.separatorIcon }></i>
+                            </div>
+                        )}
+                        {"iconSeparator" === attributes.lineUseWith && true === attributes.styleIcon && ('square' === attributes.iconShape || 'circle' === attributes.iconShape) && (
+                            <div className="wpmozo-adfgu-icon-wrapper">
+                                <div className={"hexagon" + ( true === attributes.enableShapeBorder ? (' wpmozo-adfgu-border-hex') : '' )}>
+                                    <i className={ attributes.separatorIcon }></i>
+                                </div>
                             </div>
                         )}
                         {"imageSeparator" === attributes.lineUseWith && (
