@@ -20,7 +20,7 @@ const Edit = (props) => {
     setAttributes = props.setAttributes,
     clientId = props.clientId,
     ID = wpmozoCoreFun.getIdByClientid( clientId ),
-    blockProps = useBlockProps({ className: 'wpmozo-adfgu-logo-slider-main' }),
+    blockProps = useBlockProps({ className: 'wpmozo-adfgu-team-slider-main' }),
     buttonNextClass = ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.nextSlideArrow ) ) 
             ? `custom-swiper-button-next swiper-button-next ${attributes.nextSlideArrow}`
             : 'swiper-button-next',
@@ -240,8 +240,8 @@ const Edit = (props) => {
                             ID={ID}
                             clientId={clientId}  
                         />
-                        <div className="wpmozo-adfgu-logo-slider-wrap">
-                            <div className="wpmozo-adfgu-logo-slider-inner-wrap">
+                        <div className="wpmozo-adfgu-team-slider-wrap">
+                            <div className="wpmozo-adfgu-team-slider-inner-wrap">
                                 <div className="swiper swiper-container" data-client-id={clientId}>
                                     <div className="swiper-wrapper">
                                         { innerBlocksProps.children }
@@ -249,7 +249,7 @@ const Edit = (props) => {
                                 </div>
                                 { attributes.showArrow && 
                                     <>
-                                        <div className={`wpmozo-adfgu-logo-slider-navigation wpmozo-adfgu-arrows-${attributes.arrowsPosition}`}>
+                                        <div className={`wpmozo-adfgu-team-slider-navigation wpmozo-adfgu-arrows-${attributes.arrowsPosition}`}>
                                             <div className={buttonNextClass}></div>
                                             <div className={buttonPrevClass}></div>
                                         </div>
@@ -257,7 +257,7 @@ const Edit = (props) => {
                                 }
                                 { attributes.showControlDot &&
                                     <>
-                                        <div className="wpmozo-adfgu-logo-slider-pagination">
+                                        <div className="wpmozo-adfgu-team-slider-pagination">
                                             <div className={`swiper-pagination ${attributes.controlDotStyle}${paginationClass}`}></div>
                                         </div>
                                     </>

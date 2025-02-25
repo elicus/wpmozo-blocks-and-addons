@@ -13,6 +13,7 @@ import "./blocks/floating-image-item/index.js";
 import "./blocks/floating-image/index.js";
 import "./blocks/tilt-image/index.js";
 import "./blocks/separator/index.js";
+import "./blocks/team-slider/index.js";
 
 // Add additional functionality
 import "./save-dynamic-style.js";

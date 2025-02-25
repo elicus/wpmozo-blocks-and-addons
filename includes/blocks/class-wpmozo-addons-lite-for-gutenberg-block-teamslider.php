@@ -1,6 +1,6 @@
 <?php
 /**
- * Define methods for before after slider block.
+ * Define methods for team slider block.
  *
  * @link       https://elicus.com
  * @since      1.0.0
@@ -17,7 +17,7 @@
  * @subpackage WPMozo_Addons_Lite_For_Gutenberg/includes
  * @author     Elicus <hello@elicus.com>
  */
-class WPMozo_Addons_Lite_Gutenberg_Block_Logoslider extends WPMozo_Addons_Lite_Gutenberg_Block {
+class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_Gutenberg_Block {
 
 	/**
 	 * The name of block.
@@ -26,7 +26,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Logoslider extends WPMozo_Addons_Lite_G
 	 * @access protected
 	 * @var string $block_name The name of block.
 	 */
-	protected $block_name = 'logo-slider';
+	protected $block_name = 'team-slider';
 
 	/**
 	 * The single instance of the class.
@@ -75,20 +75,13 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Logoslider extends WPMozo_Addons_Lite_G
 			'ver'    => time(),
 		);
 
-		$this->styles[] = array(
-			'handle' => $this->plugin_name . '-logo-slider-style',
-			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'css/blocks/logo-slider.css',
-			'deps'   => array( $this->plugin_name . '-fontawesome-style' ),
-			'ver'    => time(),
-		);
-
 		$this->args = array(
 			'script_handles' => array(
 				$this->plugin_name . '-swiper-script',
 			),
 			'style_handles'  => array(
 				$this->plugin_name . '-swiper-style',
-				$this->plugin_name . '-logo-slider-style',
+				$this->plugin_name . '-team-slider-style',
 			),
 		);
 

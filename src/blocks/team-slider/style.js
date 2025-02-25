@@ -20,7 +20,7 @@ const Style = ({attributes, ID, clientId}) => {
             }
         },
         {
-            selector: '.wpmozo-adfgu-logo-slider-inner-wrap',
+            selector: '.wpmozo-adfgu-team-slider-inner-wrap',
             additional: convertedStyle['container']
         },
         {
@@ -81,19 +81,19 @@ const Style = ({attributes, ID, clientId}) => {
 
     if ( attributes.showArrowOnHover ) {
         allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-navigation .swiper-button-prev',
+            selector:     '.wpmozo-adfgu-team-slider-navigation .swiper-button-prev',
             additional:  `visibility: hidden; opacity: 0; transition: all 300ms ease;`,
         });
         allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-navigation .swiper-button-next',
+            selector:     '.wpmozo-adfgu-team-slider-navigation .swiper-button-next',
             additional:  `visibility: hidden; opacity: 0; transition: all 300ms ease;`,
         });
          allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-logo-slider-navigation .swiper-button-prev, .wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-logo-slider-navigation .swiper-button-next',
+            selector:     '.wpmozo-adfgu-team-slider-wrap:hover .wpmozo-adfgu-team-slider-navigation .swiper-button-prev, .wpmozo-adfgu-team-slider-wrap:hover .wpmozo-adfgu-team-slider-navigation .swiper-button-next',
             additional:  `visibility: visible; opacity: 1;`,
         });
         allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-logo-slider-navigation .swiper-button-prev.swiper-button-disabled, .wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-logo-slider-navigation .swiper-button-next.swiper-button-disabled',
+            selector:     '.wpmozo-adfgu-team-slider-wrap:hover .wpmozo-adfgu-team-slider-navigation .swiper-button-prev.swiper-button-disabled, .wpmozo-adfgu-team-slider-wrap:hover .wpmozo-adfgu-team-slider-navigation .swiper-button-next.swiper-button-disabled',
             additional:  `opacity: 0.35;`,
         });
         /* Outside Slider */
@@ -106,11 +106,11 @@ const Style = ({attributes, ID, clientId}) => {
             additional:  `right: 50px;`,
         });
         allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-arrows-outside .swiper-button-prev',
+            selector:     '.wpmozo-adfgu-team-slider-wrap:hover .wpmozo-adfgu-arrows-outside .swiper-button-prev',
             additional:  `left: 0;`,
         });
         allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-arrows-outside .swiper-button-next',
+            selector:     '.wpmozo-adfgu-team-slider-wrap:hover .wpmozo-adfgu-arrows-outside .swiper-button-next',
             additional:  `right: 0;`,
         });
         /* Inside Slider */
@@ -123,11 +123,11 @@ const Style = ({attributes, ID, clientId}) => {
             additional:  `right: -50px;`,
         });
         allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-arrows-inside .swiper-button-prev',
+            selector:     '.wpmozo-adfgu-team-slider-wrap:hover .wpmozo-adfgu-arrows-inside .swiper-button-prev',
             additional:  `left: 0;`,
         });
         allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-arrows-inside .swiper-button-next',
+            selector:     '.wpmozo-adfgu-team-slider-wrap:hover .wpmozo-adfgu-arrows-inside .swiper-button-next',
             additional:  `right: 0;`,
         });
     }

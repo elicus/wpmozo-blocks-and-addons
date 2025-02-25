@@ -1,13 +1,10 @@
 
-import { WpmozoAlignment, WpmozoDimensions, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker } from '../../components/index';
+import { WpmozoMediaUploader, WpmozoBorder, WpmozoDimensions, WpmozoColorPicker } from '../../components/index';
 import { __ } from "@wordpress/i18n";
 import { InspectorControls } from "@wordpress/block-editor";
 import { 
     PanelBody,
-    ToggleControl,
     TextControl,
-    SelectControl,
-    RangeControl,
     BaseControl,
     ButtonGroup,
     Button,
@@ -19,15 +16,20 @@ const Inspector = (props) => {
 
     const attributes = props.attributes,
     setAttributes = props.setAttributes;
-    
-    props = Object.assign({}, props, {preAttributes: {}});
 
     const [ contentType, setContentType ] = useState('front');
+    props = Object.assign({}, props, {preAttributes: {}});
 
 	return (
         <>
             <InspectorControls key="controls">
                 <PanelBody title={ __( 'General Settings', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
+                    <WpmozoMediaUploader 
+                        attrKye="logo" 
+                        props={props}
+                        imageSrc={ attributes.logo.url }
+                        onSelect={ ( media ) => setAttributes( { logo: media } ) }
+                    />
                     <TextControl
                         label={ __( 'Alt Text', 'wpmozo-addons-lite-for-gutenberg' ) }
                         value={ attributes.altText }
@@ -62,8 +64,28 @@ const Inspector = (props) => {
                 </PanelBody>
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
-                <PanelBody title={ __( '', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
-                    
+                <PanelBody title={ __( 'Logo Style', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
+                    <WpmozoColorPicker  
+                        ColorKey="logo"
+                        props={props}
+                        ColorTypes={[ 
+                            {
+                                key: 'Background',
+                                label: __( 'Background Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                            }
+                        ]}
+                    />
+                    <WpmozoDimensions
+                        DimensionKey='logo'
+                        DimensionsTypes={{
+                            padding: true
+                        }}
+                        props={props}
+                    />
+                    <WpmozoBorder
+                        BorderKey="logo"
+                        props={props}
+                    />
                 </PanelBody>
             </InspectorControls>
         </>
