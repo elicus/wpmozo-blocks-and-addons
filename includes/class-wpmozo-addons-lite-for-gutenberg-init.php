@@ -67,6 +67,14 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 
 		wp_register_script(
 			$this->plugin_name . '-editor-script',
+			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'js/editor.js',
+			array('jquery'),
+			time(),
+			true
+		);
+
+		wp_register_script(
+			$this->plugin_name . '-build-script',
 			WPMOZO_ADDONS_LITE_GUTENBERG_PLUGIN_DIR_URL . 'build/index.js',
 			array( 'react', 'wp-polyfill', 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-api', 'wp-api-fetch', 'lodash', 'wp-editor', 'wp-dom-ready', 'jquery' ),
 			time(),
@@ -95,6 +103,13 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 			time()
 		);
 
+		wp_register_style(
+			$this->plugin_name . '-fontawesome-style',
+			WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'libs/fontawesome/all.min.css',
+			array(),
+			time()
+		);
+
 		$this->wpmozo_blocks->register_blocks();
 
 	}
@@ -108,6 +123,7 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 
 		wp_enqueue_script( $this->plugin_name . '-common-function-script' );
 		wp_enqueue_script( $this->plugin_name . '-editor-script' );
+		wp_enqueue_script( $this->plugin_name . '-build-script' );
 
 		$icons = $this->wpmozo_get_icons();
 
@@ -116,7 +132,7 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 			'icons'          => $icons,
 			'url'			 => get_site_url()
 		);
-		wp_localize_script( $this->plugin_name . '-editor-script', 'wpmozo_adfgu_editor_object', $all_options );
+		wp_localize_script( $this->plugin_name . '-build-script', 'wpmozo_adfgu_editor_object', $all_options );
 
 		wp_enqueue_style( $this->plugin_name . '-editor-style' );
 		wp_enqueue_style( $this->plugin_name . '-blocks-style' );

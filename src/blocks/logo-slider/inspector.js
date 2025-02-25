@@ -20,6 +20,8 @@ const Inspector = (props) => {
     setAttributes = props.setAttributes,
     [ deviceType, setDeviceType ] = useState('tablet');
 
+    props = Object.assign({}, props, {preAttributes: {}});
+
     const oneToTwenty = [
         {
             label: __( '1', 'wpmozo-addons-lite-for-gutenberg' ),
@@ -162,8 +164,6 @@ const Inspector = (props) => {
             value: 'square_dot'
         },
     ];
-    
-    props = Object.assign({}, props, {preAttributes: {}});
 
 	return (
         <>
@@ -204,11 +204,13 @@ const Inspector = (props) => {
                         checked={ attributes.enableLinearTransition }
                         onChange={ ( newValue ) => setAttributes( { enableLinearTransition: newValue } ) }
                     />
-                    <TextControl
-                        label={ __( 'Autoplay Delay', 'wpmozo-addons-lite-for-gutenberg' ) }
-                        value={ attributes.autoplaySpeed }
-                        onChange={ ( newValue ) => setAttributes( { autoplaySpeed: newValue } ) }
-                    />
+                    { attributes.autoplay &&
+                        <TextControl
+                            label={ __( 'Autoplay Delay', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            value={ attributes.autoplaySpeed }
+                            onChange={ ( newValue ) => setAttributes( { autoplaySpeed: newValue } ) }
+                        />
+                    }
                     <ToggleControl
                         label={ __( 'Pause On Hover', 'wpmozo-addons-lite-for-gutenberg' ) }
                         checked={ attributes.pauseOnHover }
@@ -266,11 +268,16 @@ const Inspector = (props) => {
                                 options={controlDotStyles}
                                 onChange={ ( newValue ) => setAttributes( { controlDotStyle: newValue } ) }
                             />
-                            <ToggleControl
-                                label={ __( 'Enable Dynamic Dots', 'wpmozo-addons-lite-for-gutenberg' ) }
-                                checked={ attributes.enableDynamicDots }
-                                onChange={ ( newValue ) => setAttributes( { enableDynamicDots: newValue } ) }
-                            />
+                            { 
+                                'stretched_dot' != attributes.controlDotStyle && 
+                                'line' != attributes.controlDotStyle &&
+                                'rounded_line' != attributes.controlDotStyle &&
+                                <ToggleControl
+                                    label={ __( 'Enable Dynamic Dots', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                    checked={ attributes.enableDynamicDots }
+                                    onChange={ ( newValue ) => setAttributes( { enableDynamicDots: newValue } ) }
+                                />
+                            }
                         </>
                     }
                 </PanelBody>
@@ -354,7 +361,7 @@ const Inspector = (props) => {
                             {
                                 key: 'background',
                                 label: __( 'Background Color', 'wpmozo-addons-lite-for-gutenberg' ),
-                            },
+                            }
                         ]}
                     />
                     <WpmozoDimensions

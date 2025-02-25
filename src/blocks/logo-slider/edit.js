@@ -7,14 +7,11 @@ import { Fragment } from "@wordpress/element";
 import {
     useBlockProps,
     MediaPlaceholder,
-    MediaUpload,
-    MediaUploadCheck,
-    BlockControls,
-    InnerBlocks,
     useInnerBlocksProps
 } from '@wordpress/block-editor';
 
-import { useRef, useEffect } from 'react';
+import { useEffect } from 'react';
+import { dispatch } from "@wordpress/data";
 
 const Edit = (props) => {
 
@@ -22,14 +19,31 @@ const Edit = (props) => {
     attributes = props.attributes,
     setAttributes = props.setAttributes,
     clientId = props.clientId,
-    ID = window.wpmozo.getIdByClientid( clientId ),
+    ID = wpmozoCoreFun.getIdByClientid( clientId ),
     blockProps = useBlockProps({ className: 'wpmozo-adfgu-logo-slider-main' }),
-    swiperElRef = useRef(null);
+    buttonNextClass = ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.nextSlideArrow ) ) 
+            ? `custom-swiper-button-next swiper-button-next ${attributes.nextSlideArrow}`
+            : 'swiper-button-next',
+    buttonPrevClass = ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.previousSlideArrow ) ) 
+            ? `custom-swiper-button-prev swiper-button-prev ${attributes.previousSlideArrow}`
+            : 'swiper-button-prev';
 
     attributes.ID = ID;
 
     let innerBlocks = [],
-    swiperInstance = null;
+    swiperInstance = null,
+    paginationClass = ( attributes.enableDynamicDots ) ? ' swiper-pagination-bullets-dynamic' : '';
+
+    if ( 
+        attributes.enableDynamicDots &&
+        ( 
+            'stretched_dot' === attributes.controlDotStyle || 
+            'line' === attributes.controlDotStyle ||
+            'rounded_line' === attributes.controlDotStyle
+        )
+    ) {
+        paginationClass = '';
+    }
 
     if (  ! wpmozoCoreFun.wpmozo_is_empty( attributes.images ) ) {
         attributes.images.map((logo) => {
@@ -39,7 +53,8 @@ const Edit = (props) => {
                     {
                         logo: logo,
                         lock: { 
-                            remove: true 
+                            remove: true,
+                            move: false
                         }
                     },
                 ]
@@ -52,58 +67,79 @@ const Edit = (props) => {
         template: innerBlocks,
     });
 
-    const initSwiper = ( attributes ) => {
+    const initSwiper = ( attributes, props ) => {
 
         let productsPerSlide = parseInt( attributes.logoPerSlide ),
         spaceBetweenSlides = parseInt( attributes.spaceBetweenSlides ),
         slidesPerGroup = parseInt( attributes.slidesPerGroup ),
-        autoHeightSlider = false;
+        tabletLogoPerSlide = parseInt( attributes.tabletLogoPerSlide ),
+        tabletSlidesPerGroup = parseInt( attributes.tabletSlidesPerGroup ),
+        tabletSpaceBetweenSlides = parseInt( attributes.tabletSpaceBetweenSlides ),
+        mobileLogoPerSlide = parseInt( attributes.mobileLogoPerSlide ),
+        mobileSpaceBetweenSlides = parseInt( attributes.mobileSpaceBetweenSlides ),
+        mobileSlidesPerGroup = parseInt( attributes.mobileSlidesPerGroup ),
+        buttonNextClass = ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.nextSlideArrow ) ) 
+            ? '.custom-swiper-button-next'
+            : '.swiper-button-next',
+        buttonPrevClass = ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.previousSlideArrow ) ) 
+            ? '.custom-swiper-button-prev'
+            : '.swiper-button-prev';
 
-        let loop =  false,
+        let loop =  attributes.sliderLoop,
+            speed = attributes.transitionDuration,
             arrows = false,
             dots = false,
             autoplaySlides = false,
-            cube = false,
-            coverflow = false,
-            fade = false,
-            slidesPerGroupSkip = 0,
-            slidesPerGroupIpad = 1,
-            slidesPerGroupMobile = 1,
-            slidesPerGroupSkipIpad = 0,
-            slidesPerGroupSkipMobile = 0;
+            slidesPerGroupSkip = 0;
 
         if ( productsPerSlide > slidesPerGroup && 1 !== slidesPerGroup ) {
             slidesPerGroupSkip = productsPerSlide - slidesPerGroup;
         }
 
-        //if ('on' === showArrow) {
+        if ( attributes.showArrow ) {
             arrows = {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev'
+                nextEl: '#block-'+props.clientId+' '+buttonNextClass,
+                prevEl: '#block-'+props.clientId+' '+buttonPrevClass
             };
-        //}
+        }
 
-        //if ('on' === showControlDot) {
-            const dynamicBullets = false;
+        if ( attributes.showControlDot ) {
             dots = {
-                el: '.swiper-pagination',
-                dynamicBullets: dynamicBullets,
-                clickable: true
+                el: '#block-'+props.clientId+' .swiper-pagination',
+                dynamicBullets: attributes.enableDynamicDots,
+                clickable: true,
             };
-        //}
+        }
+
+        if ( attributes.autoplay ) {
+            if ( attributes.pauseOnHover ) {
+                autoplaySlides = {
+                    delay: attributes.autoplaySpeed,
+                    disableOnInteraction: true,
+                }
+            }else{
+                autoplaySlides = {
+                    delay: attributes.autoplaySpeed,
+                    disableOnInteraction: false,
+                }
+            }
+        }
 
         let options = {
             slidesPerView: productsPerSlide,
-            spaceBetween: spaceBetweenSlides,
+            spaceBetween: slidesPerGroup, 
             slidesPerGroup: slidesPerGroup,
-            cubeEffect: cube,
-            coverflowEffect: coverflow,
-            fadeEffect: fade,
+            on: {
+                tap: function(swiper, event){
+                    dispatch( 'core/block-editor' ).selectBlock( props.clientId );
+                }
+            },
+            autoplay: autoplaySlides,
             loop: loop,
-            autoHeight: autoHeightSlider,
+            speed: speed,
             pagination: dots,
             navigation: arrows,
-            grabCursor   : true,
+            grabCursor: true,
             observer: true,
             observeParents: true,
             breakpoints: {
@@ -113,87 +149,124 @@ const Edit = (props) => {
                     slidesPerGroup: slidesPerGroup,
                 },
                 768: {
-                    slidesPerView: productsPerSlide,
-                    spaceBetween: spaceBetweenSlides,
-                    slidesPerGroup: slidesPerGroup,
-                    slidesPerGroupSkip: slidesPerGroupSkip,
+                    slidesPerView: tabletLogoPerSlide,
+                    spaceBetween: tabletSpaceBetweenSlides,
+                    slidesPerGroup: tabletSlidesPerGroup,
                 },
                 0: {
-                    slidesPerView: productsPerSlide,
-                    spaceBetween: spaceBetweenSlides,
-                    slidesPerGroup: slidesPerGroup,
+                    slidesPerView: mobileLogoPerSlide,
+                    spaceBetween: mobileSpaceBetweenSlides,
+                    slidesPerGroup: mobileSlidesPerGroup
                 }
             },
         };
 
-        const swiper = new Swiper('.swiper[data-client-id="'+clientId+'"]', options );   
+        const swiper = new Swiper('.swiper[data-client-id="'+props.clientId+'"]', options );
 
         return swiper;
     }
 
     useEffect(() => {
         if ( ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) && ! jQuery('.swiper[data-client-id="'+clientId+'"]').hasClass('swiper-initialized') ) {
-            swiperInstance = initSwiper( attributes );
+            swiperInstance = initSwiper( attributes, props );
         }
     });
 
     useEffect(() => {
 
-        let el = jQuery( '.swiper[data-client-id="'+clientId+'"]' )[0],
-            swiperInstance = ( el.hasOwnProperty( 'swiper' ) ) ? el.swiper : null;
+        if ( ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) ) {
 
-        if ( ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) && ! wpmozoCoreFun.wpmozo_is_empty( swiperInstance ) ) {
-            swiperInstance.destroy(true, true);
-            initSwiper( attributes );
+            let el = jQuery( '.swiper[data-client-id="'+clientId+'"]' )[0],
+                swiperInstance = ( el.hasOwnProperty( 'swiper' ) ) ? el.swiper : null;
+            if ( ! wpmozoCoreFun.wpmozo_is_empty( swiperInstance ) ) {
+                swiperInstance.destroy(true, true);
+                initSwiper( attributes, props );
+            }
+
         }
 
     }, [
-        attributes.logoPerSlide
+        attributes.logoPerSlide,
+        attributes.spaceBetweenSlides,
+        attributes.slidesPerGroup,
+        attributes.tabletLogoPerSlide,
+        attributes.tabletSlidesPerGroup,
+        attributes.tabletSpaceBetweenSlides,
+        attributes.mobileLogoPerSlide,
+        attributes.mobileSpaceBetweenSlides,
+        attributes.mobileSlidesPerGroup,
+        attributes.nextSlideArrow,
+        attributes.previousSlideArrow,
+        attributes.sliderLoop,
+        attributes.showArrow,
+        attributes.showControlDot,
+        attributes.enableDynamicDots,
+        attributes.autoplay,
+        attributes.autoplaySpeed,
+        attributes.transitionDuration
     ]);
 
 	return (
         <Fragment>
-        { wpmozoCoreFun.wpmozo_is_empty( attributes.images ) &&
-           <MediaPlaceholder
-                multiple={true}
-                onSelect={(media) =>
-                    setAttributes({
-                        images: media,
-                    })
-                }
-                onFilesPreUpload={(media) =>
-                    setAttributes({
-                        images: media,
-                    })
-                }
-                onSelectURL={false}
-                allowedTypes={['image']}
-                labels={{
-                    title: __(
-                        'Add Logos',
-                        'wpmozo-addons-lite-for-gutenberg'
-                    ),
-                }}
-            />
-        }
-            <Inspector {...props} />
-            <div { ...blockProps } id={`block-${clientId}`}>
-                <Style 
-                attributes={attributes} 
-                ID={ID}
-                clientId={clientId}  
-            />
-                <div className="swiper" ref={swiperElRef} data-client-id={clientId}>
-                    <div className="swiper-wrapper">
-                        { ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) &&
-                            innerBlocksProps.children
-                        }
+            { wpmozoCoreFun.wpmozo_is_empty( attributes.images ) &&
+               <MediaPlaceholder
+                    multiple={true}
+                    onSelect={(media) =>
+                        setAttributes({
+                            images: media,
+                        })
+                    }
+                    onFilesPreUpload={(media) =>
+                        setAttributes({
+                            images: media,
+                        })
+                    }
+                    onSelectURL={false}
+                    allowedTypes={['-','image']}
+                    labels={{
+                        title: __(
+                            'Add Logos',
+                            'wpmozo-addons-lite-for-gutenberg'
+                        ),
+                    }}
+                />
+            }
+            { ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) &&
+                <>
+                    <Inspector {...props} />
+                    <div { ...blockProps } id={`block-${clientId}`}>
+                        <Style 
+                            attributes={attributes} 
+                            ID={ID}
+                            clientId={clientId}  
+                        />
+                        <div className="wpmozo-adfgu-logo-slider-wrap">
+                            <div className="wpmozo-adfgu-logo-slider-inner-wrap">
+                                <div className="swiper swiper-container" data-client-id={clientId}>
+                                    <div className="swiper-wrapper">
+                                        { innerBlocksProps.children }
+                                    </div>
+                                </div>
+                                { attributes.showArrow && 
+                                    <>
+                                        <div className={`wpmozo-adfgu-logo-slider-navigation wpmozo-adfgu-arrows-${attributes.arrowsPosition}`}>
+                                            <div className={buttonNextClass}></div>
+                                            <div className={buttonPrevClass}></div>
+                                        </div>
+                                    </>
+                                }
+                                { attributes.showControlDot &&
+                                    <>
+                                        <div className="wpmozo-adfgu-logo-slider-pagination">
+                                            <div className={`swiper-pagination ${attributes.controlDotStyle}${paginationClass}`}></div>
+                                        </div>
+                                    </>
+                                }
+                            </div>
+                        </div>
                     </div>
-                    <div className="swiper-pagination"></div>
-                    <div className="swiper-button-prev"></div>
-                    <div className="swiper-button-next"></div>
-                </div>
-            </div>
+                </>
+            }
         </Fragment>
     );
 
