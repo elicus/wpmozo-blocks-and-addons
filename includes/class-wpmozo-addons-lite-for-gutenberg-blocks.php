@@ -57,7 +57,8 @@ class WPMozo_Addons_Lite_Gutenberg_Blocks {
 			'flipbox'			=> 'Flipbox',
 			'interactiveimagecard' => 'Interactiveimagecard',
 			'logoslider' => 'Logoslider',
-			'tiltimage' => 'Tiltimage'
+			'tiltimage' => 'Tiltimage',
+			'separator' => 'Separator'
 		);
 
 		return $blocks;
