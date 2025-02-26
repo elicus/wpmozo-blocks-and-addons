@@ -157,6 +157,14 @@ const Style = ({attributes, ID, clientId}) => {
     				} else { 
 
     				}
+			    	allInline.push(
+				    	{
+				    		selector: '.wpmozo-adfgu-icon-wrapper i',
+				    		style: {
+				    			'font-size': `${attributes.iconFontSize}px`,
+				    		}
+				    	},
+			    	);
     			}
 		    	allInline.push(
 			    	{

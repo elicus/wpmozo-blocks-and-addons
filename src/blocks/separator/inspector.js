@@ -89,7 +89,6 @@ const Inspector = (props) => {
 
     const [ titleStyleType, setTitleStyleType ] = useState('normal');
     const [ textStyleType, setTextStyleType ] = useState('normal');
-    console.log(attributes);
 
 	return (
         <>

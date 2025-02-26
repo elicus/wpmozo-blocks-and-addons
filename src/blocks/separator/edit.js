@@ -44,10 +44,6 @@ const Edit = (props) => {
             }
         });
     });
-    let html = "<div>";
-    let closeHtml = "</div>";
-
-    
 
 	return (
         <Fragment>
