@@ -60,6 +60,7 @@ class WPMozo_Addons_Lite_Gutenberg_Blocks {
 			'tiltimage' => 'Tiltimage',
 			'separator' => 'Separator',
 			'teamslider' => 'Teamslider',
+			'list' => 'List',
 		);
 
 		return $blocks;
