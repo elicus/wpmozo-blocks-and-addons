@@ -99,159 +99,164 @@ $allowed_html = array(
 );
 
 ?>
-<div class="wpmozo_panel_field">
-    <div class="wpmozo_panel_label_control">
-        <label for="wpmozo_team_member_short_desc">
-            <?php esc_html_e( 'Short Description', 'divi-plus' ); ?>
-        </label>
+<div class="wpmozo_panel_wrapper">
+    <div class="wpmozo_panel_field">
+        <div class="wpmozo_panel_label_control">
+            <label for="wpmozo_team_member_short_desc">
+                <?php esc_html_e( 'Short Description', 'divi-plus' ); ?>
+            </label>
+        </div>
+        <div class="wpmozo_panel_field_control">
+            <textarea type="text" name="wpmozo_team_member_short_desc" id="wpmozo_team_member_short_desc"><?php echo wp_kses( $short_desc, $allowed_html ); ?></textarea>
+            <p class="info"><?php echo esc_html__( 'Support for few HTML tags like h1,h2,h3,h4,h5,h6,p,ul,ol,li,span,strong,b,a,br', 'divi-plus' ); ?></p>
+        </div>
     </div>
-    <div class="wpmozo_panel_field_control">
-        <textarea type="text" name="wpmozo_team_member_short_desc" id="wpmozo_team_member_short_desc"><?php echo wp_kses( $short_desc, $allowed_html ); ?></textarea>
-        <span class="info"><?php echo esc_html__( 'Support for few HTML tags like h1,h2,h3,h4,h5,h6,p,ul,ol,li,span,strong,b,a,br', 'divi-plus' ); ?></span>
+    <div class="wpmozo_panel_field">
+        <div class="wpmozo_panel_label_control">
+            <label for="wpmozo_team_member_designation">
+                <?php esc_html_e( 'Designation', 'divi-plus' ); ?>
+            </label>
+        </div>
+        <div class="wpmozo_panel_field_control">
+            <input class="wpmozo_panel_textfield" type="text" name="wpmozo_team_member_designation" id="wpmozo_team_member_designation" value="<?php echo esc_attr( $designation ); ?>" />
+        </div>
     </div>
-</div>
-<div class="wpmozo_panel_field">
-    <div class="wpmozo_panel_label_control">
-        <label for="wpmozo_team_member_designation">
-            <?php esc_html_e( 'Designation', 'divi-plus' ); ?>
-        </label>
+    <div class="wpmozo_panel_field">
+        <div class="wpmozo_panel_label_control">
+            <label for="wpmozo_team_member_email">
+                <?php esc_html_e( 'Email Address', 'divi-plus' ); ?>
+            </label>
+        </div>
+        <div class="wpmozo_panel_field_control">
+            <input class="wpmozo_panel_textfield" type="email" name="wpmozo_team_member_email" id="wpmozo_team_member_email" value="<?php echo esc_attr( $email ); ?>" />
+        </div>
     </div>
-    <div class="wpmozo_panel_field_control">
-        <input type="text" name="wpmozo_team_member_designation" id="wpmozo_team_member_designation" value="<?php echo esc_attr( $designation ); ?>" />
+    <div class="wpmozo_panel_field">
+        <div class="wpmozo_panel_label_control">
+            <label for="wpmozo_team_member_phone">
+                <?php esc_html_e( 'Phone Number', 'divi-plus' ); ?>
+            </label>
+        </div>
+        <div class="wpmozo_panel_field_control">
+            <input class="wpmozo_panel_textfield" type="tel" name="wpmozo_team_member_phone" id="wpmozo_team_member_phone" value="<?php echo esc_attr( $phone ); ?>" />
+        </div>
     </div>
-</div>
-<div class="wpmozo_panel_field">
-    <div class="wpmozo_panel_label_control">
-        <label for="wpmozo_team_member_email">
-            <?php esc_html_e( 'Email Address', 'divi-plus' ); ?>
-        </label>
+    <div class="wpmozo_panel_field">
+        <div class="wpmozo_panel_label_control">
+            <label for="wpmozo_team_member_website">
+                <?php esc_html_e( 'Website Url', 'divi-plus' ); ?>
+            </label>
+        </div>
+        <div class="wpmozo_panel_field_control">
+            <input class="wpmozo_panel_textfield" type="url" name="wpmozo_team_member_website" id="wpmozo_team_member_website" value="<?php echo esc_attr( $website_url ); ?>" />
+        </div>
     </div>
-    <div class="wpmozo_panel_field_control">
-        <input type="email" name="wpmozo_team_member_email" id="wpmozo_team_member_email" value="<?php echo esc_attr( $email ); ?>" />
+    <div class="wpmozo_panel_field">
+        <div class="wpmozo_panel_label_control">
+            <label for="wpmozo_team_member_facebook">
+                <?php esc_html_e( 'Facebook Url', 'divi-plus' ); ?>
+            </label>
+        </div>
+        <div class="wpmozo_panel_field_control">
+            <input class="wpmozo_panel_textfield" type="url" name="wpmozo_team_member_facebook" id="wpmozo_team_member_facebook" value="<?php echo esc_attr( $facebook ); ?>" />
+        </div>
     </div>
-</div>
-<div class="wpmozo_panel_field">
-    <div class="wpmozo_panel_label_control">
-        <label for="wpmozo_team_member_phone">
-            <?php esc_html_e( 'Phone Number', 'divi-plus' ); ?>
-        </label>
+    <div class="wpmozo_panel_field">
+        <div class="wpmozo_panel_label_control">
+            <label for="wpmozo_team_member_twitter">
+                <?php esc_html_e( 'Twitter Url', 'divi-plus' ); ?>
+            </label>
+        </div>
+        <div class="wpmozo_panel_field_control">
+            <input class="wpmozo_panel_textfield" type="url" name="wpmozo_team_member_twitter" id="wpmozo_team_member_twitter" value="<?php echo esc_attr( $twitter ); ?>" />
+        </div>
     </div>
-    <div class="wpmozo_panel_field_control">
-        <input type="tel" name="wpmozo_team_member_phone" id="wpmozo_team_member_phone" value="<?php echo esc_attr( $phone ); ?>" />
+    <div class="wpmozo_panel_field">
+        <div class="wpmozo_panel_label_control">
+            <label for="wpmozo_team_member_linkedin">
+                <?php esc_html_e( 'Linkedin Url', 'divi-plus' ); ?>
+            </label>
+        </div>
+        <div class="wpmozo_panel_field_control">
+            <input class="wpmozo_panel_textfield" type="url" name="wpmozo_team_member_linkedin" id="wpmozo_team_member_linkedin" value="<?php echo esc_attr( $linkedin ); ?>" />
+        </div>
     </div>
-</div>
-<div class="wpmozo_panel_field">
-    <div class="wpmozo_panel_label_control">
-        <label for="wpmozo_team_member_website">
-            <?php esc_html_e( 'Website Url', 'divi-plus' ); ?>
-        </label>
+    <div class="wpmozo_panel_field">
+        <div class="wpmozo_panel_label_control">
+            <label for="wpmozo_team_member_instagram">
+                <?php esc_html_e( 'Instagram Url', 'divi-plus' ); ?>
+            </label>
+        </div>
+        <div class="wpmozo_panel_field_control">
+            <input class="wpmozo_panel_textfield" type="url" name="wpmozo_team_member_instagram" id="wpmozo_team_member_instagram" value="<?php echo esc_attr( $instagram ); ?>" />
+        </div>
     </div>
-    <div class="wpmozo_panel_field_control">
-        <input type="url" name="wpmozo_team_member_website" id="wpmozo_team_member_website" value="<?php echo esc_attr( $website_url ); ?>" />
+    <div class="wpmozo_panel_field">
+        <div class="wpmozo_panel_label_control">
+            <label for="wpmozo_team_member_youtube">
+                <?php esc_html_e( 'Youtube Url', 'divi-plus' ); ?>
+            </label>
+        </div>
+        <div class="wpmozo_panel_field_control">
+            <input class="wpmozo_panel_textfield" type="url" name="wpmozo_team_member_youtube" id="wpmozo_team_member_youtube" value="<?php echo esc_attr( $youtube ); ?>" />
+        </div>
     </div>
-</div>
-<div class="wpmozo_panel_field">
-    <div class="wpmozo_panel_label_control">
-        <label for="wpmozo_team_member_facebook">
-            <?php esc_html_e( 'Facebook Url', 'divi-plus' ); ?>
-        </label>
-    </div>
-    <div class="wpmozo_panel_field_control">
-        <input type="url" name="wpmozo_team_member_facebook" id="wpmozo_team_member_facebook" value="<?php echo esc_attr( $facebook ); ?>" />
-    </div>
-</div>
-<div class="wpmozo_panel_field">
-    <div class="wpmozo_panel_label_control">
-        <label for="wpmozo_team_member_twitter">
-            <?php esc_html_e( 'Twitter Url', 'divi-plus' ); ?>
-        </label>
-    </div>
-    <div class="wpmozo_panel_field_control">
-        <input type="url" name="wpmozo_team_member_twitter" id="wpmozo_team_member_twitter" value="<?php echo esc_attr( $twitter ); ?>" />
-    </div>
-</div>
-<div class="wpmozo_panel_field">
-    <div class="wpmozo_panel_label_control">
-        <label for="wpmozo_team_member_linkedin">
-            <?php esc_html_e( 'Linkedin Url', 'divi-plus' ); ?>
-        </label>
-    </div>
-    <div class="wpmozo_panel_field_control">
-        <input type="url" name="wpmozo_team_member_linkedin" id="wpmozo_team_member_linkedin" value="<?php echo esc_attr( $linkedin ); ?>" />
-    </div>
-</div>
-<div class="wpmozo_panel_field">
-    <div class="wpmozo_panel_label_control">
-        <label for="wpmozo_team_member_instagram">
-            <?php esc_html_e( 'Instagram Url', 'divi-plus' ); ?>
-        </label>
-    </div>
-    <div class="wpmozo_panel_field_control">
-        <input type="url" name="wpmozo_team_member_instagram" id="wpmozo_team_member_instagram" value="<?php echo esc_attr( $instagram ); ?>" />
-    </div>
-</div>
-<div class="wpmozo_panel_field">
-    <div class="wpmozo_panel_label_control">
-        <label for="wpmozo_team_member_youtube">
-            <?php esc_html_e( 'Youtube Url', 'divi-plus' ); ?>
-        </label>
-    </div>
-    <div class="wpmozo_panel_field_control">
-        <input type="url" name="wpmozo_team_member_youtube" id="wpmozo_team_member_youtube" value="<?php echo esc_attr( $youtube ); ?>" />
-    </div>
-</div>
-<div class="wpmozo_panel_field">
-    <div class="wpmozo_panel_label_control">
-        <label for="wpmozo_team_member_youtube">
-            <?php esc_html_e( 'Skills', 'divi-plus' ); ?>
-        </label>
-    </div>
-    <div class="wpmozo_panel_field_control">
-        <div class="wpmozo_repeator_meta_fields">
-            <input type="hidden" id="wpmozo_team_member_skills" name="wpmozo_team_member_skills" value="<?php echo esc_attr( $skills ); ?>" />
-            <input type="hidden" id="wpmozo_team_member_skills_value" name="wpmozo_team_member_skills_value" value="<?php echo esc_attr( $skills_value ); ?>" />
-            <?php
-                $skills         = explode( ',', $skills );
-                $skills_value   = explode( ',', $skills_value );
-            if ( is_array( $skills ) && ! empty( array_filter( $skills ) ) ) {
-                if ( count($skills) > 1 ) {
-                    $row_control = '<span class="wpmozo_repeator_meta_field_add_row_control wpmozo_repeator_meta_field_remove_row">-</span>';
+    <div class="wpmozo_panel_field">
+        <div class="wpmozo_panel_label_control">
+            <label for="wpmozo_team_member_youtube">
+                <?php esc_html_e( 'Skills', 'divi-plus' ); ?>
+            </label>
+        </div>
+        <div class="wpmozo_panel_field_control">
+            <div class="wpmozo_repeator_meta_fields">
+                <input type="hidden" id="wpmozo_team_member_skills" name="wpmozo_team_member_skills" value="<?php echo esc_attr( $skills ); ?>" />
+                <input type="hidden" id="wpmozo_team_member_skills_value" name="wpmozo_team_member_skills_value" value="<?php echo esc_attr( $skills_value ); ?>" />
+                <?php
+                    $skills         = explode( ',', $skills );
+                    $skills_value   = explode( ',', $skills_value );
+                if ( is_array( $skills ) && ! empty( array_filter( $skills ) ) ) {
+                    if ( count($skills) > 1 ) {
+                        $row_control = '<button class="button action-btn wpmozo_panel_button wpmozo-remove-row" title='.esc_html__( 'Remove Row', 'wpmozo-addons-lite-for-gutenberg' ).'"><span class="wpmozo_repeator_meta_field_add_row_control dashicons dashicons-minus
+ wpmozo_repeator_meta_field_remove_row"></span></button>';
+                    } else {
+                        $row_control = '';
+                    }
+                    for ( $i=0; $i < count($skills); $i++ ) {
+                        $skill_value = array_key_exists( $i, $skills_value ) ? absint( $skills_value[$i] ) : 100;
+                        ?>
+                        <div class="wpmozo_repeator_meta_field_row">
+                            <div class="wpmozo_repeator_meta_field">
+                                <input type="text" class="wpmozo_team_member_skills wpmozo_panel_textfield" value="<?php echo esc_attr( $skills[$i] ); ?>" placeholder="Skill" />
+                                <input type="number" class="wpmozo_team_member_skills_value wpmozo_panel_textfield" value="<?php echo esc_attr( $skill_value ); ?>" placeholder="Skill Value Between 0 to 100" step="1" min="0" max="100"/>
+                            </div>
+                            <p class="wpmozo_repeator_meta_field_row_controls wpmozo-repeater-fields-actions">
+                                <?php echo wp_kses_post( $row_control ); ?>
+                                <?php  
+                                if ( $i === ( count($skills) - 1 ) ) {
+                                    ?><button class="button action-btn wpmozo_panel_button wpmozo-add-row" title="<?php esc_html_e( 'Add Row', 'wpmozo-addons-lite-for-gutenberg' ) ?>"><span class="wpmozo_repeator_meta_field_add_row_control dashicons dashicons-plus-alt2 wpmozo_repeator_meta_field_add_row"></span></button><?php
+                                }
+                                ?>
+                            </p>
+                        </div>
+                        <?php
+                    }
                 } else {
-                    $row_control = '';
-                }
-                for ( $i=0; $i < count($skills); $i++ ) {
-                    $skill_value = array_key_exists( $i, $skills_value ) ? absint( $skills_value[$i] ) : 100;
-                    ?>
+                 ?>
                     <div class="wpmozo_repeator_meta_field_row">
                         <div class="wpmozo_repeator_meta_field">
-                            <input type="text" class="wpmozo_team_member_skills" value="<?php echo esc_attr( $skills[$i] ); ?>" placeholder="Skill" />
-                            <input type="number" class="wpmozo_team_member_skills_value" value="<?php echo esc_attr( $skill_value ); ?>" placeholder="Skill Value Between 0 to 100" step="1" min="0" max="100"/>
+                            <input type="text" class="wpmozo_team_member_skills wpmozo_panel_textfield" placeholder="Skill" />
+                            <input type="number" class="wpmozo_team_member_skills_value wpmozo_panel_textfield" placeholder="Skill Value Between 0 to 100" step="1" min="0" max="100" />
                         </div>
-                        <p class="wpmozo_repeator_meta_field_row_controls">
-                            <?php echo wp_kses_post( $row_control ); ?>
-                            <?php  
-                            if ( $i === ( count($skills) - 1 ) ) {
-                                ?><span class="wpmozo_repeator_meta_field_add_row_control wpmozo_repeator_meta_field_add_row">+</span><?php
-                            }
-                            ?>
+                        <p class="wpmozo_repeator_meta_field_row_controls wpmozo-repeater-fields-actions">
+                            <button class="button action-btn wpmozo_panel_button wpmozo-add-row" title="<?php esc_html_e( 'Add Row', 'wpmozo-addons-lite-for-gutenberg' ) ?>">
+                                <span class="wpmozo_repeator_meta_field_add_row_control dashicons dashicons-plus-alt2 wpmozo_repeator_meta_field_add_row"></span>
+                            </button>
                         </p>
                     </div>
-                    <?php
+                <?php
                 }
-            } else {
-             ?>
-                <div class="wpmozo_repeator_meta_field_row">
-                    <div class="wpmozo_repeator_meta_field">
-                        <input type="text" class="wpmozo_team_member_skills" placeholder="Skill" />
-                        <input type="number" class="wpmozo_team_member_skills_value" placeholder="Skill Value Between 0 to 100" step="1" min="0" max="100" />
-                    </div>
-                    <p class="wpmozo_repeator_meta_field_row_controls">
-                        <span class="wpmozo_repeator_meta_field_add_row_control wpmozo_repeator_meta_field_add_row">+</span>
-                    </p>
-                </div>
-            <?php
-            }
-            ?>
+                ?>
+            </div>
         </div>
     </div>
 </div>

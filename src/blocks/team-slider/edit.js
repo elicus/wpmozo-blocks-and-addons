@@ -69,13 +69,13 @@ const Edit = (props) => {
 
     const initSwiper = ( attributes, props ) => {
 
-        let productsPerSlide = parseInt( attributes.logoPerSlide ),
+        let productsPerSlide = parseInt( attributes.memberPerSlide ),
         spaceBetweenSlides = parseInt( attributes.spaceBetweenSlides ),
         slidesPerGroup = parseInt( attributes.slidesPerGroup ),
-        tabletLogoPerSlide = parseInt( attributes.tabletLogoPerSlide ),
+        tabletMemberPerSlide = parseInt( attributes.tabletMemberPerSlide ),
         tabletSlidesPerGroup = parseInt( attributes.tabletSlidesPerGroup ),
         tabletSpaceBetweenSlides = parseInt( attributes.tabletSpaceBetweenSlides ),
-        mobileLogoPerSlide = parseInt( attributes.mobileLogoPerSlide ),
+        mobileMemberPerSlide = parseInt( attributes.mobileMemberPerSlide ),
         mobileSpaceBetweenSlides = parseInt( attributes.mobileSpaceBetweenSlides ),
         mobileSlidesPerGroup = parseInt( attributes.mobileSlidesPerGroup ),
         buttonNextClass = ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.nextSlideArrow ) ) 
@@ -149,12 +149,12 @@ const Edit = (props) => {
                     slidesPerGroup: slidesPerGroup,
                 },
                 768: {
-                    slidesPerView: tabletLogoPerSlide,
+                    slidesPerView: tabletMemberPerSlide,
                     spaceBetween: tabletSpaceBetweenSlides,
                     slidesPerGroup: tabletSlidesPerGroup,
                 },
                 0: {
-                    slidesPerView: mobileLogoPerSlide,
+                    slidesPerView: mobileMemberPerSlide,
                     spaceBetween: mobileSpaceBetweenSlides,
                     slidesPerGroup: mobileSlidesPerGroup
                 }
@@ -186,13 +186,13 @@ const Edit = (props) => {
         }
 
     }, [
-        attributes.logoPerSlide,
+        attributes.memberPerSlide,
         attributes.spaceBetweenSlides,
         attributes.slidesPerGroup,
-        attributes.tabletLogoPerSlide,
+        attributes.tabletMemberPerSlide,
         attributes.tabletSlidesPerGroup,
         attributes.tabletSpaceBetweenSlides,
-        attributes.mobileLogoPerSlide,
+        attributes.mobileMemberPerSlide,
         attributes.mobileSpaceBetweenSlides,
         attributes.mobileSlidesPerGroup,
         attributes.nextSlideArrow,

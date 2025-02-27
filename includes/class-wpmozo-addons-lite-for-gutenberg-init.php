@@ -294,7 +294,7 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 	 */
 	public function register_custom_post_types() {
 
-		 $labels = array(
+		$labels = array(
             'name'                  => esc_html__( 'WPMozo Team Members', 'wpmozo-addons-lite-for-gutenberg' ),
             'singular_name'         => esc_html__( 'WPMozo Team Member', 'wpmozo-addons-lite-for-gutenberg' ),
             'menu_name'             => esc_html__( 'WPMozo Team Members', 'wpmozo-addons-lite-for-gutenberg' ),
@@ -337,6 +337,51 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 	}
 
 	/**
+	 * Register custom taxonomies.
+	 *
+	 * @since 1.0.0
+	 */
+	public function register_custom_taxonomies() {
+
+		$labels = array(
+            'name'                       => esc_html_x( 'WPMozo Team Member Categories', 'Taxonomy General Name', 'wpmozo-addons-lite-for-gutenberg' ),
+            'singular_name'              => esc_html_x( 'WPMozo Team Member Category', 'Taxonomy Singular Name', 'wpmozo-addons-lite-for-gutenberg' ),
+            'menu_name'                  => esc_html__( 'WPMozo Team Member Categories', 'wpmozo-addons-lite-for-gutenberg' ),
+            'all_items'                  => esc_html__( 'All Team Member Categories', 'wpmozo-addons-lite-for-gutenberg' ),
+            'parent_item'                => esc_html__( 'Parent Team Member Category', 'wpmozo-addons-lite-for-gutenberg' ),
+            'parent_item_colon'          => esc_html__( 'Parent Team Member Category:', 'wpmozo-addons-lite-for-gutenberg' ),
+            'new_item_name'              => esc_html__( 'New Team Member Category Name', 'wpmozo-addons-lite-for-gutenberg' ),
+            'add_new_item'               => esc_html__( 'Add New Team Member Category', 'wpmozo-addons-lite-for-gutenberg' ),
+            'edit_item'                  => esc_html__( 'Edit Team Member Category', 'wpmozo-addons-lite-for-gutenberg' ),
+            'update_item'                => esc_html__( 'Update Team Member Category', 'wpmozo-addons-lite-for-gutenberg' ),
+            'view_item'                  => esc_html__( 'View Team Member Category', 'wpmozo-addons-lite-for-gutenberg' ),
+            'separate_items_with_commas' => esc_html__( 'Separate categories with commas', 'wpmozo-addons-lite-for-gutenberg' ),
+            'add_or_remove_items'        => esc_html__( 'Add or remove categories', 'wpmozo-addons-lite-for-gutenberg' ),
+            'choose_from_most_used'      => esc_html__( 'Choose from the most used', 'wpmozo-addons-lite-for-gutenberg' ),
+            'popular_items'              => esc_html__( 'Popular Team Member Categories', 'wpmozo-addons-lite-for-gutenberg' ),
+            'search_items'               => esc_html__( 'Search Team Member Categories', 'wpmozo-addons-lite-for-gutenberg' ),
+            'not_found'                  => esc_html__( 'Not Found', 'wpmozo-addons-lite-for-gutenberg' ),
+            'no_terms'                   => esc_html__( 'No Team Member Categories', 'wpmozo-addons-lite-for-gutenberg' ),
+            'items_list'                 => esc_html__( 'Team Member Categories list', 'wpmozo-addons-lite-for-gutenberg' ),
+            'items_list_navigation'      => esc_html__( 'Team Member Categories list navigation', 'wpmozo-addons-lite-for-gutenberg' ),
+        );
+
+        $args = array(
+            'labels'                     => $labels,
+            'hierarchical'               => true,
+            'public'                     => true,
+            'show_in_rest'				 => true,
+            'show_ui'                    => true,
+            'show_admin_column'          => true,
+            'show_in_nav_menus'          => true,
+            'show_tagcloud'              => true,
+        );
+            
+        register_taxonomy( 'wpmozo-team-member-category', array( 'wpmozo-team-member' ), $args );
+
+	}
+
+	/**
 	 * Add all hooks.
 	 *
 	 * @since 1.0.0
@@ -352,6 +397,7 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 		$loader->add_action( 'wp_enqueue_scripts', $instance, 'enqueue_dynamic_assets' );
 		$loader->add_action( 'rest_api_init', $instance, 'register_rest_api_endpoints' );
 		$loader->add_action( 'init', $instance, 'register_custom_post_types' );
+		$loader->add_action( 'init', $instance, 'register_custom_taxonomies' );
 
 	}
 

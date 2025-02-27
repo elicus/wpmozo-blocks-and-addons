@@ -70,7 +70,7 @@ class WPMozo_Addons_Lite_Gutenberg_Admin {
 			$this->plugin_name . '-admin-style',
 			WPMOZO_ADDONS_LITE_GUTENBERG_ADMIN_DIR_URL . 'css/admin.css',
 			array(),
-			WPMOZO_ADDONS_LITE_GUTENBERG_VERSION
+			time()
 		);
 
 		if ( in_array( $post_type, $this->allowed_post_types, true ) ) {
@@ -95,7 +95,7 @@ class WPMozo_Addons_Lite_Gutenberg_Admin {
 			array(
 				'jquery',
 			),
-			WPMOZO_ADDONS_LITE_GUTENBERG_VERSION,
+			time(),
 			false
 		);
 

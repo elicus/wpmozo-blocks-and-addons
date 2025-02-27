@@ -1,7 +1,7 @@
 
 import { WpmozoDimensions, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker } from '../../components/index';
 import { __ } from "@wordpress/i18n";
-import { InspectorControls } from "@wordpress/block-editor";
+import { InspectorControls, HeightControl } from "@wordpress/block-editor";
 import { 
     PanelBody,
     ToggleControl,
@@ -10,7 +10,9 @@ import {
     RangeControl,
     BaseControl,
     ButtonGroup,
-    Button
+    Button,
+    FormTokenField,
+    Icon
 } from "@wordpress/components";
 import { useState } from "@wordpress/element";
 
@@ -20,9 +22,16 @@ const Inspector = (props) => {
     setAttributes = props.setAttributes,
     [ deviceType, setDeviceType ] = useState('tablet');
 
+    let teamMemberCats = wp.data.select('core').getEntityRecords( 'taxonomy', 'wpmozo-team-member-category' ),
+        teamMemberCatOptions = [];
+
+    if( teamMemberCats ) {
+        teamMemberCatOptions = teamMemberCats.map( value => value.name );
+    }
+
     props = Object.assign({}, props, {preAttributes: {}});
 
-    const oneToTwenty = [
+    const oneToTen = [
         {
             label: __( '1', 'wpmozo-addons-lite-for-gutenberg' ),
             value: '1'
@@ -62,46 +71,6 @@ const Inspector = (props) => {
         {
             label: __( '10', 'wpmozo-addons-lite-for-gutenberg' ),
             value: '10'
-        },
-        {
-            label: __( '11', 'wpmozo-addons-lite-for-gutenberg' ),
-            value: '11'
-        },
-        {
-            label: __( '12', 'wpmozo-addons-lite-for-gutenberg' ),
-            value: '12'
-        },
-        {
-            label: __( '13', 'wpmozo-addons-lite-for-gutenberg' ),
-            value: '13'
-        },
-        {
-            label: __( '14', 'wpmozo-addons-lite-for-gutenberg' ),
-            value: '14'
-        },
-        {
-            label: __( '15', 'wpmozo-addons-lite-for-gutenberg' ),
-            value: '15'
-        },
-        {
-            label: __( '16', 'wpmozo-addons-lite-for-gutenberg' ),
-            value: '16'
-        },
-        {
-            label: __( '17', 'wpmozo-addons-lite-for-gutenberg' ),
-            value: '17'
-        },
-        {
-            label: __( '18', 'wpmozo-addons-lite-for-gutenberg' ),
-            value: '18'
-        },
-        {
-            label: __( '19', 'wpmozo-addons-lite-for-gutenberg' ),
-            value: '19'
-        },
-        {
-            label: __( '20', 'wpmozo-addons-lite-for-gutenberg' ),
-            value: '20'
         }
     ];
     const arrowsPositions = [
@@ -164,30 +133,241 @@ const Inspector = (props) => {
             value: 'square_dot'
         },
     ];
+    const postOrderByOptions = [
+        {
+            label: __( 'Date', 'wpmozo-addons-lite-for-gutenberg' ),
+            value: 'date'
+        },
+        {
+            label: __( 'Modified', 'wpmozo-addons-lite-for-gutenberg' ),
+            value: 'modified'
+        },
+        {
+            label: __( 'Title', 'wpmozo-addons-lite-for-gutenberg' ),
+            value: 'title'
+        },
+        {
+            label: __( 'Slug', 'wpmozo-addons-lite-for-gutenberg' ),
+            value: 'name'
+        },
+        {
+            label: __( 'ID', 'wpmozo-addons-lite-for-gutenberg' ),
+            value: 'ID'
+        },
+        {
+            label: __( 'Random', 'wpmozo-addons-lite-for-gutenberg' ),
+            value: 'rand'
+        },
+        {
+            label: __( 'Relevance', 'wpmozo-addons-lite-for-gutenberg' ),
+            value: 'relevance'
+        },
+        {
+            label: __( 'None', 'wpmozo-addons-lite-for-gutenberg' ),
+            value: 'none'
+        },
+    ];
+    const slideEffects = [
+        {
+            label: __( 'Slide', 'wpmozo-addons-lite-for-gutenberg' ),
+            value: 'slide'
+        },
+        {
+            label: __( 'Coverflow', 'wpmozo-addons-lite-for-gutenberg' ),
+            value: 'coverflow'
+        },
+        {
+            label: __( 'Cube', 'wpmozo-addons-lite-for-gutenberg' ),
+            value: 'cube'
+        },
+        {
+            label: __( 'Flip', 'wpmozo-addons-lite-for-gutenberg' ),
+            value: 'flip'
+        },
+        {
+            label: __( 'Fade', 'wpmozo-addons-lite-for-gutenberg' ),
+            value: 'fade'
+        }
+    ];
+
 
 	return (
         <>
             <InspectorControls key="controls">
+                <PanelBody title={ __( 'Content', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
+                    <TextControl
+                        label={ __( 'Number of Members', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        value={ attributes.postsNumber }
+                        onChange={ ( newValue ) => setAttributes( { postsNumber: newValue } ) }
+                    />
+                    <SelectControl
+                        label={ __( 'Order', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        value={ attributes.postOrder }
+                        options={[
+                            {
+                                label: __( 'Ascending', 'wpmozo-addons-lite-for-gutenberg'),
+                                value: 'ASC'
+                            }, 
+                            {
+                                label: __( 'Descending', 'wpmozo-addons-lite-for-gutenberg'),
+                                value: 'DESC'
+                            }
+                        ]}
+                        onChange={ ( newValue ) => setAttributes( { postOrder: newValue } ) }
+                    />
+                    <SelectControl
+                        label={ __( 'Order by', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        value={ attributes.postOrderBy }
+                        options={ postOrderByOptions }
+                        onChange={ ( newValue ) => setAttributes( { postOrderBy: newValue } ) }
+                    />
+                    <FormTokenField
+                        label={ __( 'Select Categories', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        value={ attributes.includeCategories }
+                        suggestions={ teamMemberCatOptions }
+                        onChange={ ( newValue ) => setAttributes( { includeCategories: newValue } ) }
+                    />
+                    <TextControl
+                        label={ __( 'No Result Text', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        value={ attributes.noResultText }
+                        onChange={ ( newValue ) => setAttributes( { noResultText: newValue } ) }
+                    />
+                </PanelBody>
+                <PanelBody title={ __( 'Elements', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
+                    <ToggleControl
+                        label={ __( 'Show Short Description', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        checked={ attributes.showShortDesc }
+                        onChange={ ( newValue ) => setAttributes( { showShortDesc: newValue } ) }
+                    />
+                    <ToggleControl
+                        label={ __( 'Show Designation', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        checked={ attributes.showDesignation }
+                        onChange={ ( newValue ) => setAttributes( { showDesignation: newValue } ) }
+                    />
+                    <ToggleControl
+                        label={ __( 'Show Social Icon', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        checked={ attributes.showSocialIcon }
+                        onChange={ ( newValue ) => setAttributes( { showSocialIcon: newValue } ) }
+                    />
+                    { attributes.showSocialIcon &&
+                        <BaseControl
+                            label={ __( 'Social Icon Link Target', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            className="wpmozo-button-tabs-wrap"
+                        >    
+                            <ButtonGroup>
+                                <Button
+                                    className="wpmozo-button-tabs-btn"
+                                    isPressed={ ( 'same' === attributes.socialIconLinkTarget ) ? true : false }
+                                    onClick={ () => setAttributes( { socialIconLinkTarget: 'same' } ) }
+                                    icon={ <Icon icon="admin-links" /> }
+                                    label={ __( 'Same Window', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                /> 
+                                <Button 
+                                    className="wpmozo-button-tabs-btn"
+                                    isPressed={ ( 'external' === attributes.socialIconLinkTarget ) ? true : false }
+                                    onClick={ () => setAttributes( { socialIconLinkTarget: 'external' } ) }
+                                    icon={ <Icon icon="external" /> }
+                                    label={ __( 'External', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                />
+                            </ButtonGroup>
+                        </BaseControl>
+                    }
+                    <ToggleControl
+                        label={ __( 'Show Skills', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        checked={ attributes.showSkills }
+                        onChange={ ( newValue ) => setAttributes( { showSkills: newValue } ) }
+                    />
+                </PanelBody>
                 <PanelBody title={ __( 'Slider', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
                     <SelectControl
-                        label={ __( 'Number of Logo Per View', 'wpmozo-addons-lite-for-gutenberg' ) }
-                        value={ attributes.logoPerSlide }
-                        options={oneToTwenty}
-                        onChange={ ( newValue ) => setAttributes( { logoPerSlide: newValue } ) }
+                        label={ __( 'Layout', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        value={ attributes.sliderLayout }
+                        options={[
+                            {
+                                label: __( 'Layout 1', 'wpmozo-addons-lite-for-gutenberg'),
+                                value: 'layout1'
+                            }, 
+                            {
+                                label: __( 'Layout 2', 'wpmozo-addons-lite-for-gutenberg'),
+                                value: 'layout2'
+                            }
+                        ]}
+                        onChange={ ( newValue ) => setAttributes( { sliderLayout: newValue } ) }
                     />
                     <SelectControl
-                        label={ __( 'Number of Slides Per Group', 'wpmozo-addons-lite-for-gutenberg' ) }
-                        value={ attributes.slidesPerGroup }
-                        options={oneToTwenty}
-                        onChange={ ( newValue ) => setAttributes( { slidesPerGroup: newValue } ) }
+                        label={ __( 'Slide Effect', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        value={ attributes.slideEffect }
+                        options={ slideEffects }
+                        onChange={ ( newValue ) => setAttributes( { slideEffect: newValue } ) }
                     />
-                    <RangeControl
-                        label={ __( 'Space between Slides', 'wpmozo-addons-lite-for-gutenberg' ) }
-                        value={ attributes.spaceBetweenSlides }
-                        onChange={ ( newValue ) => setAttributes( { spaceBetweenSlides: newValue } ) }
-                        min={ 0 }
-                        step={ 1 }
-                        max={ 100 }
+                    { ( 'coverflow' === attributes.slideEffect || 'slide' === attributes.slideEffect ) &&
+                        <>
+                            <SelectControl
+                                label={ __( 'Number of Members Per View', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                value={ attributes.memberPerSlide }
+                                options={oneToTen}
+                                onChange={ ( newValue ) => setAttributes( { memberPerSlide: newValue } ) }
+                            />
+                            <SelectControl
+                                label={ __( 'Number of Slides Per Group', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                value={ attributes.slidesPerGroup }
+                                options={oneToTen}
+                                onChange={ ( newValue ) => setAttributes( { slidesPerGroup: newValue } ) }
+                            />
+                            <RangeControl
+                                label={ __( 'Space between Slides', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                value={ attributes.spaceBetweenSlides }
+                                onChange={ ( newValue ) => setAttributes( { spaceBetweenSlides: newValue } ) }
+                                min={ 0 }
+                                step={ 1 }
+                                max={ 100 }
+                            />
+                        </>
+                    }
+                    { 'coverflow' === attributes.slideEffect &&
+                        <>
+                            <ToggleControl
+                                label={ __( 'Enable Slide Shadow', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                checked={ attributes.enableCoverflowShadow }
+                                onChange={ ( newValue ) => setAttributes( { enableCoverflowShadow: newValue } ) }
+                            />
+                            { 'coverflow' === attributes.slideEffect &&
+                                <WpmozoColorPicker  
+                                    ColorKey="coverflow"
+                                    props={props}
+                                    ColorTypes={[ 
+                                        {
+                                            key: 'ShadowColor',
+                                            label: __( 'Shadow Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                        }
+                                    ]}
+                                />
+                            }
+                            <RangeControl
+                                label={ __( 'Coverflow Rotate', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                value={ attributes.coverflowRotate }
+                                onChange={ ( newValue ) => setAttributes( { coverflowRotate: newValue } ) }
+                                min={ 1 }
+                                max={ 360 }
+                            />
+                            <RangeControl
+                                label={ __( 'Coverflow Depth', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                value={ attributes.coverflowDepth }
+                                onChange={ ( newValue ) => setAttributes( { coverflowDepth: newValue } ) }
+                                min={ 1 }
+                                max={ 1000 }
+                            />
+                        </>
+                    }
+                    <ToggleControl
+                        label={ __( 'Equalize Slide Height', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        checked={ attributes.equalizeHeight }
+                        onChange={ ( newValue ) => setAttributes( { equalizeHeight: newValue } ) }
+                    />
+                    <ToggleControl
+                        label={ __( 'Auto Height Slider', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        checked={ attributes.autoHeightSlider }
+                        onChange={ ( newValue ) => setAttributes( { autoHeightSlider: newValue } ) }
                     />
                     <ToggleControl
                         label={ __( 'Enable Loop', 'wpmozo-addons-lite-for-gutenberg' ) }
@@ -227,7 +407,7 @@ const Inspector = (props) => {
                         onChange={ ( newValue ) => setAttributes( { showArrow: newValue } ) }
                     />
                     { attributes.showArrow && 
-                        <>
+                        <>  
                             <WpmozoIconpicker
                                 label={ __( 'Previous Arrow', 'wpmozo-addons-lite-for-gutenberg' ) }
                                 iconPickerKey='previousSlideArrow'
@@ -281,78 +461,94 @@ const Inspector = (props) => {
                         </>
                     }
                 </PanelBody>
-                <PanelBody title={ __( 'Slider Responsive', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
-                    <BaseControl
-                        className='wpmozo-color-combo-wrap'
-                    >    
-                        <ButtonGroup>
-                            <Button
-                                className='wpmozo-color-combo-type'
-                                isPressed={ ( 'tablet' === deviceType ) ? true : false }
-                                onClick={ () => setDeviceType( 'tablet' ) }
-                            >
-                                { __( 'Tablet', 'wpmozo-addons-lite-for-gutenberg' ) }
-                            </Button>
-                            <Button 
-                                className='wpmozo-color-combo-type'
-                                isPressed={ ( 'mobile' === deviceType ) ? true : false }
-                                onClick={ () => setDeviceType( 'mobile' ) }
-                            >
-                                { __( 'Mobile', 'wpmozo-addons-lite-for-gutenberg' ) }
-                            </Button>
-                        </ButtonGroup>
-                        { 'tablet' === deviceType &&
-                            <>
-                                <SelectControl
-                                    label={ __( 'Number of Logo Per View', 'wpmozo-addons-lite-for-gutenberg' ) }
-                                    value={ attributes.tabletLogoPerSlide }
-                                    options={oneToTwenty}
-                                    onChange={ ( newValue ) => setAttributes( { tabletLogoPerSlide: newValue } ) }
-                                />
-                                <SelectControl
-                                    label={ __( 'Number of Slides Per Group', 'wpmozo-addons-lite-for-gutenberg' ) }
-                                    value={ attributes.tabletSlidesPerGroup }
-                                    options={oneToTwenty}
-                                    onChange={ ( newValue ) => setAttributes( { tabletSlidesPerGroup: newValue } ) }
-                                />
-                                <RangeControl
-                                    label={ __( 'Space between Slides', 'wpmozo-addons-lite-for-gutenberg' ) }
-                                    value={ attributes.tabletSpaceBetweenSlides }
-                                    onChange={ ( newValue ) => setAttributes( { tabletSpaceBetweenSlides: newValue } ) }
-                                    min={ 0 }
-                                    step={ 1 }
-                                    max={ 100 }
-                                />
-                            </>
-                        }
-                        { 'mobile' === deviceType &&
-                            <>
-                                <SelectControl
-                                    label={ __( 'Number of Logo Per View', 'wpmozo-addons-lite-for-gutenberg' ) }
-                                    value={ attributes.mobileLogoPerSlide }
-                                    options={oneToTwenty}
-                                    onChange={ ( newValue ) => setAttributes( { mobileLogoPerSlide: newValue } ) }
-                                />
-                                <SelectControl
-                                    label={ __( 'Number of Slides Per Group', 'wpmozo-addons-lite-for-gutenberg' ) }
-                                    value={ attributes.mobileSlidesPerGroup }
-                                    options={oneToTwenty}
-                                    onChange={ ( newValue ) => setAttributes( { mobileSlidesPerGroup: newValue } ) }
-                                />
-                                <RangeControl
-                                    label={ __( 'Space between Slides', 'wpmozo-addons-lite-for-gutenberg' ) }
-                                    value={ attributes.mobileSpaceBetweenSlides }
-                                    onChange={ ( newValue ) => setAttributes( { mobileSpaceBetweenSlides: newValue } ) }
-                                    min={ 0 }
-                                    step={ 1 }
-                                    max={ 100 }
-                                />
-                            </>
-                        }
-                    </BaseControl>
-                </PanelBody>
+                { ( 'coverflow' === attributes.slideEffect || 'slide' === attributes.slideEffect ) &&
+                    <PanelBody title={ __( 'Slider Responsive', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
+                        <BaseControl
+                            className='wpmozo-color-combo-wrap'
+                        >    
+                            <ButtonGroup>
+                                <Button
+                                    className='wpmozo-color-combo-type'
+                                    isPressed={ ( 'tablet' === deviceType ) ? true : false }
+                                    onClick={ () => setDeviceType( 'tablet' ) }
+                                >
+                                    { __( 'Tablet', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                </Button>
+                                <Button 
+                                    className='wpmozo-color-combo-type'
+                                    isPressed={ ( 'mobile' === deviceType ) ? true : false }
+                                    onClick={ () => setDeviceType( 'mobile' ) }
+                                >
+                                    { __( 'Mobile', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                </Button>
+                            </ButtonGroup>
+                            { 'tablet' === deviceType &&
+                                <>
+                                    <SelectControl
+                                        label={ __( 'Number of Members Per View', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                        value={ attributes.tabletMemberPerSlide }
+                                        options={oneToTen}
+                                        onChange={ ( newValue ) => setAttributes( { tabletMemberPerSlide: newValue } ) }
+                                    />
+                                    <SelectControl
+                                        label={ __( 'Number of Slides Per Group', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                        value={ attributes.tabletSlidesPerGroup }
+                                        options={oneToTen}
+                                        onChange={ ( newValue ) => setAttributes( { tabletSlidesPerGroup: newValue } ) }
+                                    />
+                                    <RangeControl
+                                        label={ __( 'Space between Slides', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                        value={ attributes.tabletSpaceBetweenSlides }
+                                        onChange={ ( newValue ) => setAttributes( { tabletSpaceBetweenSlides: newValue } ) }
+                                        min={ 0 }
+                                        step={ 1 }
+                                        max={ 100 }
+                                    />
+                                </>
+                            }
+                            { 'mobile' === deviceType &&
+                                <>
+                                    <SelectControl
+                                        label={ __( 'Number of Members Per View', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                        value={ attributes.mobileMemberPerSlide }
+                                        options={oneToTen}
+                                        onChange={ ( newValue ) => setAttributes( { mobileMemberPerSlide: newValue } ) }
+                                    />
+                                    <SelectControl
+                                        label={ __( 'Number of Slides Per Group', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                        value={ attributes.mobileSlidesPerGroup }
+                                        options={oneToTen}
+                                        onChange={ ( newValue ) => setAttributes( { mobileSlidesPerGroup: newValue } ) }
+                                    />
+                                    <RangeControl
+                                        label={ __( 'Space between Slides', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                        value={ attributes.mobileSpaceBetweenSlides }
+                                        onChange={ ( newValue ) => setAttributes( { mobileSpaceBetweenSlides: newValue } ) }
+                                        min={ 0 }
+                                        step={ 1 }
+                                        max={ 100 }
+                                    />
+                                </>
+                            }
+                        </BaseControl>
+                    </PanelBody>
+                }
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
+                <PanelBody title={ __( 'Text Alignment', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <WpmozoAlignment
+                        label={ __( 'Alignment', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        onChange={ ( newValue ) => setAttributes( { textAlignment: newValue } ) }
+                        value={ attributes.textAlignment }
+                    />
+                </PanelBody>
+                <PanelBody title={ __( 'Image', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <HeightControl
+                        label={ __( 'Image Height', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        onChange={ ( newValue ) => setAttributes( { imageHeight: newValue } ) }
+                        value={ attributes.imageHeight }
+                    />
+                </PanelBody>
                 <PanelBody title={ __( 'Container', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoColorPicker  
                         ColorKey="container"
@@ -410,24 +606,6 @@ const Inspector = (props) => {
                             padding: true
                         }}
                         props={props}
-                    />
-                </PanelBody>
-                <PanelBody title={ __( 'Logo', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
-                    <RangeControl
-                        label={ __( 'Logo Width', 'wpmozo-addons-lite-for-gutenberg' ) }
-                        value={ attributes.logoWidth }
-                        onChange={ ( newValue ) => setAttributes( { logoWidth: newValue } ) }
-                        min={ 100 }
-                        step={ 1 }
-                        max={ 500 }
-                    />
-                    <RangeControl
-                        label={ __( 'Logo Height', 'wpmozo-addons-lite-for-gutenberg' ) }
-                        value={ attributes.logoHeight }
-                        onChange={ ( newValue ) => setAttributes( { logoHeight: newValue } ) }
-                        min={ 100 }
-                        step={ 1 }
-                        max={ 500 }
                     />
                 </PanelBody>
             </InspectorControls>

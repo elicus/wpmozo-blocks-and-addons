@@ -5,10 +5,53 @@ const attributes = {
     ID: {
         type: "string",
     },
-	images: {
-		type: "array",
+    postsNumber: {
+		type: "string",
+		default: "10"
 	},
-	logoPerSlide: {
+	postOrder: {
+		type: "string",
+		default: "DESC"
+	},
+	postOrderBy: {
+		type: "string",
+		default: "date"
+	},
+	includeCategories: {
+		type: "array"
+	},
+	noResultText: {
+		type: "string",
+		default: __('The team member you requested could not be found. Try changing your module settings or create some new team members.', 'wpmozo-addons-lite-for-gutenberg')
+	},
+	showShortDesc: {
+		type: "boolean",
+		default: true
+	},
+	showDesignation: {
+		type: "boolean",
+		default: true
+	},
+	showSocialIcon: {
+		type: "boolean",
+		default: true
+	},
+	socialIconLinkTarget: {
+		type: "string"
+	},
+	showSkills: {
+		type: "boolean",
+		default: true
+	},
+	sliderLayout: {
+		type: "string",
+		default: "layout1"
+	},
+	slideEffect: {
+		type: "string",
+		default: "slide"
+	},
+	memberPerSlide: {
 		type: "string",
 		default: "4"
 	},
@@ -16,9 +59,33 @@ const attributes = {
 		type: "string",
 		default: "1"
 	},
+	enableCoverflowShadow: {
+		type: "boolean",
+		default: false
+	},
+	coverflowShadowColor: {
+		type: "string",
+		default: "#ccc"
+	},
+	coverflowRotate: {
+		type: "number",
+		default: 40
+	},
+	coverflowDepth: {
+		type: "number",
+		default: 100
+	},
 	spaceBetweenSlides: {
 		type: "number",
 		default: 20
+	},
+	equalizeHeight: {
+		type: "boolean",
+		default: true
+	},
+	autoHeightSlider: {
+		type: "boolean",
+		default: false
 	},
 	sliderLoop: {
 		type: "boolean",
@@ -96,15 +163,7 @@ const attributes = {
 	arrowpadding: {
 		type: "object"
 	},
-	logoWidth: {
-		type: "number",
-		default: 150
-	},
-	logoHeight: {
-		type: "number",
-		default: 150
-	},
-	tabletLogoPerSlide: {
+	tabletMemberPerSlide: {
 		type: "string",
 		default: "3"
 	},
@@ -116,7 +175,7 @@ const attributes = {
 		type: "number",
 		default: 20
 	},
-	mobileLogoPerSlide: {
+	mobileMemberPerSlide: {
 		type: "string",
 		default: "1"
 	},
@@ -127,6 +186,13 @@ const attributes = {
 	mobileSpaceBetweenSlides: {
 		type: "number",
 		default: 20
+	},
+	textAlignment: {
+		type: "string",
+		default: "left"
+	},
+	imageHeight: {
+		type: "string"
 	}
 };
 
