@@ -59,6 +59,16 @@ define( 'WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_PATH', WPMOZO_ADDONS_LITE_GUTEN
 // Assets dir url.
 define( 'WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL', WPMOZO_ADDONS_LITE_GUTENBERG_PLUGIN_DIR_URL . 'assets/' );
 
+// Includes dir path.
+define( 'WPMOZO_ADDONS_LITE_GUTENBERG_ADMIN_DIR_PATH', WPMOZO_ADDONS_LITE_GUTENBERG_PLUGIN_DIR_PATH . 'admin/' );
+
+// Includes dir url.
+define( 'WPMOZO_ADDONS_LITE_GUTENBERG_ADMIN_DIR_URL', WPMOZO_ADDONS_LITE_GUTENBERG_PLUGIN_DIR_URL . 'admin/' );
+
+// Admin partials dir path.
+define( 'WPMOZO_ADDONS_LITE_GUTENBERG_ADMIN_PARTIALS_DIR_PATH', WPMOZO_ADDONS_LITE_GUTENBERG_ADMIN_DIR_PATH . 'partials/' );
+
+
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.

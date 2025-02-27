@@ -288,6 +288,55 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 	}
 
 	/**
+	 * Register custom post types.
+	 *
+	 * @since 1.0.0
+	 */
+	public function register_custom_post_types() {
+
+		 $labels = array(
+            'name'                  => esc_html__( 'WPMozo Team Members', 'wpmozo-addons-lite-for-gutenberg' ),
+            'singular_name'         => esc_html__( 'WPMozo Team Member', 'wpmozo-addons-lite-for-gutenberg' ),
+            'menu_name'             => esc_html__( 'WPMozo Team Members', 'wpmozo-addons-lite-for-gutenberg' ),
+            'add_new'               => esc_html__( 'Add New', 'wpmozo-addons-lite-for-gutenberg' ),
+            'add_new_item'          => esc_html__( 'Add New Member', 'wpmozo-addons-lite-for-gutenberg' ),
+            'edit_item'             => esc_html__( 'Edit Member', 'wpmozo-addons-lite-for-gutenberg' ),
+            'new_item'              => esc_html__( 'New Member', 'wpmozo-addons-lite-for-gutenberg' ),
+            'view_item'             => esc_html__( 'View Member', 'wpmozo-addons-lite-for-gutenberg' ),
+            'all_items'             => esc_html__( 'All Members', 'wpmozo-addons-lite-for-gutenberg' ),
+            'search_items'          => esc_html__( 'Search Members', 'wpmozo-addons-lite-for-gutenberg' ),
+            'not_found'             => esc_html__( 'No member found', 'wpmozo-addons-lite-for-gutenberg' ),
+            'not_found_in_trash'    => esc_html__( 'No members found in Trash', 'wpmozo-addons-lite-for-gutenberg' ),
+            'featured_image'        => esc_html__( 'Team Member Image', 'wpmozo-addons-lite-for-gutenberg' ),
+            'set_featured_image'    => esc_html__( 'Set team member image', 'wpmozo-addons-lite-for-gutenberg' ),
+            'remove_featured_image' => esc_html__( 'Remove team member image', 'wpmozo-addons-lite-for-gutenberg' ),
+            'use_featured_image'    => esc_html__( 'Use as team member image', 'wpmozo-addons-lite-for-gutenberg' ),
+            'parent_item_colon'     => esc_html__( 'Parent Member:', 'wpmozo-addons-lite-for-gutenberg' ),
+        );
+
+        $args = array(
+            'labels'            => $labels,
+            'description'       => esc_html__( 'WPMozo Team Members Custom Post', 'wpmozo-addons-lite-for-gutenberg' ),
+            'public'            => true,
+            'supports'          => array( 'title', 'editor', 'author', 'thumbnail', 'revisions' ),
+            'taxonomies'        => array( 'wpmozo-team-member-category' ),
+            'hierarchical'      => false,
+            'menu_position'     => 20,
+            'menu_icon'         => 'dashicons-admin-users',
+            'show_ui'           => true,
+            'show_in_menu'      => true,
+            'show_in_nav_menus' => true,
+            'show_in_rest'      => true,
+            'has_archive'       => true,
+            'query_var'         => true,
+            'capability_type'   => 'post',
+        );
+
+        register_post_type( 'wpmozo-team-member', $args );
+
+	}
+
+	/**
 	 * Add all hooks.
 	 *
 	 * @since 1.0.0
@@ -302,6 +351,7 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 		$loader->add_action( 'wp_enqueue_scripts', $instance, 'enqueue_block_assets' );
 		$loader->add_action( 'wp_enqueue_scripts', $instance, 'enqueue_dynamic_assets' );
 		$loader->add_action( 'rest_api_init', $instance, 'register_rest_api_endpoints' );
+		$loader->add_action( 'init', $instance, 'register_custom_post_types' );
 
 	}
 

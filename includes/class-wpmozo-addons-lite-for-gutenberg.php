@@ -145,15 +145,22 @@ class WPMozo_Addons_Lite_For_Gutenberg {
 		require_once WPMOZO_ADDONS_LITE_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-lite-for-gutenberg-i18n.php';
 
 		/**
+		 * The class responsible for defining all actions that occur in the admin area.
+		 */
+		require_once WPMOZO_ADDONS_LITE_GUTENBERG_ADMIN_DIR_PATH . 'class-wpmozo-addons-lite-for-gutenberg-admin.php';
+
+		/**
 		 * The class responsible for defining all actions for WP initialization of the plugin.
 		 */
 		include_once WPMOZO_ADDONS_LITE_GUTENBERG_INC_DIR_PATH . 'class-wpmozo-addons-lite-for-gutenberg-init.php';
 
-		$wpmozo_i18n = new WPMozo_Addons_Lite_Gutenberg_I18n();
-		$wpmozo_init = new WPMozo_Addons_Lite_Gutenberg_Init();
+		$wpmozo_i18n  = new WPMozo_Addons_Lite_Gutenberg_I18n();
+		$wpmozo_init  = new WPMozo_Addons_Lite_Gutenberg_Init();
+		$wpmozo_admin = new WPMozo_Addons_Lite_Gutenberg_Admin();
 
 		$this->classes['i18n'] = $wpmozo_i18n;
 		$this->classes['init'] = $wpmozo_init;
+		$this->classes['admin'] = $wpmozo_admin;
 
 	}
 
