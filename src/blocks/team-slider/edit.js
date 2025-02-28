@@ -209,27 +209,10 @@ const Edit = (props) => {
 	return (
         <Fragment>
             { wpmozoCoreFun.wpmozo_is_empty( attributes.images ) &&
-               <MediaPlaceholder
-                    multiple={true}
-                    onSelect={(media) =>
-                        setAttributes({
-                            images: media,
-                        })
-                    }
-                    onFilesPreUpload={(media) =>
-                        setAttributes({
-                            images: media,
-                        })
-                    }
-                    onSelectURL={false}
-                    allowedTypes={['-','image']}
-                    labels={{
-                        title: __(
-                            'Add Logos',
-                            'wpmozo-addons-lite-for-gutenberg'
-                        ),
-                    }}
-                />
+                <>
+                   <h1>weiojfwekl jwkle fj</h1>
+                   <Inspector {...props} />
+                </>
             }
             { ! wpmozoCoreFun.wpmozo_is_empty( innerBlocks ) &&
                 <>

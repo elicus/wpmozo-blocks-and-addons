@@ -193,6 +193,215 @@ const attributes = {
 	},
 	imageHeight: {
 		type: "string"
+	},
+	imageborderRadius: {
+        type: "string",
+    },
+    imageborder: {
+        type: "object",
+    },
+	nametext: {
+        type: "string",
+    },
+    nameFontSize: {
+        type: "string",
+    },
+    nameFontAppearance: {
+        type: "object",
+        fontStyle: {
+            type: "string",
+        },
+        fontWeight: {
+            type: "string",
+        },
+        default: {
+            fontStyle: "",
+            fontWeight: "",
+        }
+    },
+    nameLetterSpacing: {
+        type: "string",
+    },
+    nameDecoration: {
+        type: "string",
+    },
+    nameLetterCase: {
+        type: "string",
+    },
+    nameLineHeight: {
+        type: "string",
+    },
+    nameTextAlignment: {
+        type: "string",
+        default: "left"
+    },
+    nameHeadingLavel: {
+        type: "string",
+        default: "h2"
+    },
+    designationtext: {
+        type: "string",
+    },
+    designationFontSize: {
+        type: "string",
+    },
+    designationFontAppearance: {
+        type: "object",
+        fontStyle: {
+            type: "string",
+        },
+        fontWeight: {
+            type: "string",
+        },
+        default: {
+            fontStyle: "",
+            fontWeight: "",
+        }
+    },
+    designationLetterSpacing: {
+        type: "string",
+    },
+    designationDecoration: {
+        type: "string",
+    },
+    designationLetterCase: {
+        type: "string",
+    },
+    designationLineHeight: {
+        type: "string",
+    },
+    designationTextAlignment: {
+        type: "string",
+        default: "left"
+    },
+    designationHeadingLavel: {
+        type: "string",
+        default: "h4"
+    },
+    skilltext: {
+        type: "string",
+    },
+    skillFontSize: {
+        type: "string",
+    },
+    skillFontAppearance: {
+        type: "object",
+        fontStyle: {
+            type: "string",
+        },
+        fontWeight: {
+            type: "string",
+        },
+        default: {
+            fontStyle: "",
+            fontWeight: "",
+        }
+    },
+    skillLetterSpacing: {
+        type: "string",
+    },
+    skillDecoration: {
+        type: "string",
+    },
+    skillLetterCase: {
+        type: "string",
+    },
+    skillLineHeight: {
+        type: "string",
+    },
+    skillTextAlignment: {
+        type: "string",
+        default: "left"
+    },
+    descriptiontext: {
+        type: "string",
+    },
+    descriptionFontSize: {
+        type: "string",
+    },
+    descriptionFontAppearance: {
+        type: "object",
+        fontStyle: {
+            type: "string",
+        },
+        fontWeight: {
+            type: "string",
+        },
+        default: {
+            fontStyle: "",
+            fontWeight: "",
+        }
+    },
+    descriptionLetterSpacing: {
+        type: "string",
+    },
+    descriptionDecoration: {
+        type: "string",
+    },
+    descriptionLetterCase: {
+        type: "string",
+    },
+    descriptionLineHeight: {
+        type: "string",
+    },
+    descriptionTextAlignment: {
+        type: "string",
+        default: "left"
+    },
+    barHeight: {
+        type: "string",
+        default: "12px"
+    },
+    barEmptyColor: {
+        type: "string",
+        default: "#ccc"
+    },
+    barFilledColor: {
+        type: "string",
+        default: "#0c71c3"
+    },
+    iconSeparatorColor: {
+        type: "string",
+        default: "#cccccc"
+    },
+    iconColor: {
+        type: "string"
+    },
+    iconBackgroundColor: {
+        type: "string"
+    },
+    separatorSize: {
+        type: "string",
+        default: "10px"
+    },
+    iconSize: {
+        type: "string",
+        default: "16px"
+    },
+    socialIconsAlignment: {
+        type: "string",
+        default: "center"
+    },
+    iconborderRadius: {
+        type: "string"
+    },
+    iconborder: {
+        type: "object"
+    },
+    arrowborderRadius: {
+        type: "string"
+    },
+    arrowborder: {
+        type: "object"
+    },
+    slideborderRadius: {
+        type: "string"
+    },
+    slideborder: {
+        type: "object"
+    },
+    slidepadding: {
+		type: "object"
 	}
 };
 
