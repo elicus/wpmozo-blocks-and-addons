@@ -37,3 +37,9 @@ function wpmozo_adfgu_sanitize_text_field( $value ) {
 
 	return $value;
 }
+
+function team_slider_render_callback( $attributes ) {
+
+		return "<h1>Hello World</h1>";
+
+	}

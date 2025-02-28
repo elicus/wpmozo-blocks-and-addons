@@ -3,7 +3,7 @@ import { __ } from "@wordpress/i18n";
 
 const attributes = {
     ID: {
-        type: "string",
+        type: "string"
     },
     postsNumber: {
 		type: "string",
@@ -96,7 +96,8 @@ const attributes = {
 		default: true
 	},
 	enableLinearTransition: {
-		type: "boolean"
+		type: "boolean",
+        default: false
 	},
 	autoplaySpeed: {
 		type: "string",
@@ -121,7 +122,8 @@ const attributes = {
 		type: "string"
 	},
 	showArrowOnHover: {
-		type: "boolean"
+		type: "boolean",
+        default: false
 	},
 	arrowsPosition: {
 		type: "string",
