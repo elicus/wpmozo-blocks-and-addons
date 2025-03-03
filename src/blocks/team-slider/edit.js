@@ -14,13 +14,14 @@ import { useEffect } from 'react';
 import { dispatch } from "@wordpress/data";
 import ServerSideRender from '@wordpress/server-side-render';
 
-const Edit = (props) => {
+const Edit = ({ attributes }) => {
 	const blockProps = useBlockProps();
     return (
         <div { ...blockProps }>
             <ServerSideRender
                 block="wpmozo/team-slider"
-                attributes={ props.attributes }
+                attributes={ attributes }
+                httpMethod="POST"
             />
         </div>
     );

@@ -9663,13 +9663,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const Edit = props => {
+const Edit = ({
+  attributes
+}) => {
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)();
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_7___default()), {
     block: "wpmozo/team-slider",
-    attributes: props.attributes
+    attributes: attributes,
+    httpMethod: "POST"
   }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
