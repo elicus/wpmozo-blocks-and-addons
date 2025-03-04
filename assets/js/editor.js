@@ -8,6 +8,10 @@ jQuery(document).ready(function(){
 
 		let target = jQuery( e.target );
 
+		if ( target.closest('.wpmozo-adfgu-logo-slider-wrap').length < 1 ) {
+			return;
+		}
+
 		if ( target.closest('.swiper-slide').length > 0 ) {
 
 			jQuery(".swiper-slide.block-editor-block-list__block").removeClass(selectedClass);
