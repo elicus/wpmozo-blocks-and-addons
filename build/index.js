@@ -913,7 +913,13 @@ const attributes = {
     type: "string"
   },
   contentOneDimensionspadding: {
-    type: "object"
+    type: "object",
+    default: {
+      bottom: '20px',
+      left: '20px',
+      right: '20px',
+      top: '20px'
+    }
   },
   contentOneDimensionsmargin: {
     type: "object"
@@ -956,7 +962,13 @@ const attributes = {
     type: "string"
   },
   contentTwoDimensionspadding: {
-    type: "object"
+    type: "object",
+    default: {
+      bottom: '20px',
+      left: '20px',
+      right: '20px',
+      top: '20px'
+    }
   },
   contentTwoDimensionsmargin: {
     type: "object"
@@ -12466,17 +12478,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "react":
-/*!************************!*\
-  !*** external "React" ***!
-  \************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = window["React"];
-
-/***/ }),
-
 /***/ "@wordpress/block-editor":
 /*!*************************************!*\
   !*** external ["wp","blockEditor"] ***!
@@ -12552,6 +12553,17 @@ module.exports = window["wp"]["i18n"];
 "use strict";
 module.exports = window["wp"]["url"];
 
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["React"];
+
 /***/ })
 
 /******/ 	});
@@ -12623,7 +12635,7 @@ module.exports = window["wp"]["url"];
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
 /*!**********************!*\
