@@ -36,10 +36,12 @@ const Style = ({attributes, ID, clientId}) => {
 
     }else{
 
+    	let escURL = encodeURI( attributes.fancyTextBackgroundImg );
+
     	allInline.push({
     		selector: '.wpmozo-adfgu-fancy-text-inner',
     		style: {
-			    'background-image': 'url('+attributes.fancyTextBackgroundImg+')',
+			    'background-image': 'url("'+escURL+'")',
 			    'background-size': attributes.textBgSize,
 			    'background-position': attributes.textBgPosition,
 			    'background-repeat': attributes.textBgRepeat,

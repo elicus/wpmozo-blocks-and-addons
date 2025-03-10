@@ -187,6 +187,52 @@ const attributes = {
     },
     contentpadding: {
         type: "object"
+    },
+    buttonTextColor: {
+        type: "string"
+    },
+    buttonBackgroundColor: {
+        type: "string"
+    },
+    buttonFontSize: {
+        type: "string"
+    },
+    buttonFontAppearance: {
+        type: "object",
+        fontStyle: {
+            type: "string"
+        },
+        fontWeight: {
+            type: "string"
+        },
+        default: {
+            fontStyle: "",
+            fontWeight: ""
+        }
+    },
+    buttonLetterSpacing: {
+        type: "string"
+    },
+    buttonDecoration: {
+        type: "string"
+    },
+    buttonLetterCase: {
+        type: "string"
+    },
+    buttonLineHeight: {
+        type: "string"
+    },
+    buttonborder: {
+        type: "object"
+    },
+    buttonborderRadius: {
+        type: "string"
+    },
+    buttonpadding: {
+        type: "object"
+    },
+    buttonmargin: {
+        type: "object"
     }
 };
 

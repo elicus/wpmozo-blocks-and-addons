@@ -187,6 +187,12 @@ const attributes = {
     },
     contentOneDimensionspadding: {
         type: "object",
+        default: {
+            bottom : '20px',
+            left   : '20px',
+            right  : '20px',
+            top    : '20px'
+        }
     },
     contentOneDimensionsmargin: {
         type: "object",
@@ -230,6 +236,12 @@ const attributes = {
     },
     contentTwoDimensionspadding: {
         type: "object",
+        default: {
+            bottom : '20px',
+            left   : '20px',
+            right  : '20px',
+            top    : '20px'
+        }
     },
     contentTwoDimensionsmargin: {
         type: "object",

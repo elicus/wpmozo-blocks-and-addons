@@ -16,6 +16,8 @@ const Style = ({attributes, ID, clientId}) => {
     	'backFlipbox',
     	'backBtn',
     	'backBtnDimensions',
+    	'frontDimensions',
+    	'backDimensions',
     ];
 
     let css = '',
@@ -126,6 +128,14 @@ const Style = ({attributes, ID, clientId}) => {
     		},
     		additional: convertedStyle.backContent
     	},
+    	{
+    		selector: '.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-inner',
+    		additional: convertedStyle.frontDimensions
+    	},
+    	{
+    		selector: '.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-inner',
+    		additional: convertedStyle.backDimensions
+    	}
     ];
 
 	if ( attributes.depth3dEffect ) {

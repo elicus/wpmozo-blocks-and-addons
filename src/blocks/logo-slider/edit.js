@@ -116,11 +116,13 @@ const Edit = (props) => {
                 autoplaySlides = {
                     delay: attributes.autoplaySpeed,
                     disableOnInteraction: true,
+                    pauseOnMouseEnter: true,
                 }
             }else{
                 autoplaySlides = {
                     delay: attributes.autoplaySpeed,
                     disableOnInteraction: false,
+                    pauseOnMouseEnter: false
                 }
             }
         }
@@ -163,6 +165,28 @@ const Edit = (props) => {
 
         const swiper = new Swiper('.swiper[data-client-id="'+props.clientId+'"]', options );
 
+        jQuery(document).on("mouseenter", '.swiper[data-client-id="'+clientId+'"]', function(e) {
+
+            let swiperContainer = jQuery(this)[0],
+            swiper = ( swiperContainer.hasOwnProperty( 'swiper' ) ) ? swiperContainer.swiper : null;
+
+            if ( swiper.params.autoplay.disableOnInteraction && typeof swiper.autoplay.stop === "function" ) {
+                swiper.autoplay.stop();
+            }
+
+        });
+
+        jQuery(document).on("mouseleave", '.swiper[data-client-id="'+clientId+'"]', function(e) {
+
+            let swiperContainer = jQuery(this)[0],
+            swiper = ( swiperContainer.hasOwnProperty( 'swiper' ) ) ? swiperContainer.swiper : null;
+
+            if ( swiper.params.autoplay.disableOnInteraction && typeof swiper.autoplay.start === "function" ) {
+                swiper.autoplay.start();
+            }
+          
+        });
+
         return swiper;
     }
 
@@ -178,9 +202,12 @@ const Edit = (props) => {
 
             let el = jQuery( '.swiper[data-client-id="'+clientId+'"]' )[0],
                 swiperInstance = ( el.hasOwnProperty( 'swiper' ) ) ? el.swiper : null;
+
             if ( ! wpmozoCoreFun.wpmozo_is_empty( swiperInstance ) ) {
+
                 swiperInstance.destroy(true, true);
-                initSwiper( attributes, props );
+                swiperInstance = initSwiper( attributes, props );
+
             }
 
         }
@@ -203,7 +230,8 @@ const Edit = (props) => {
         attributes.enableDynamicDots,
         attributes.autoplay,
         attributes.autoplaySpeed,
-        attributes.transitionDuration
+        attributes.transitionDuration,
+        attributes.pauseOnHover
     ]);
 
 	return (

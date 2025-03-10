@@ -510,6 +510,24 @@ const attributes = {
     backIconShapeBorderColor: {
         type: "string"
     },
+    frontDimensionspadding: {
+        type: "object",
+        default: {
+            "top": '10px',
+            "right": '10px',
+            "bottom": '10px',
+            "left": '10px',
+        }
+    },
+    backDimensionspadding: {
+        type: "object",
+        default: {
+            "top": '10px',
+            "right": '10px',
+            "bottom": '10px',
+            "left": '10px',
+        }
+    }
 };
 
 export default attributes;

@@ -25,6 +25,7 @@
     border-width: 0;
     padding: 0;
     margin: 0;
+    z-index: 1;
 }
 .wpmozo-adfgu-interactive-image-card-wrap figure img {
     position: relative;
