@@ -14,9 +14,6 @@ const attributes = {
 	imageheight: {
 		type: "string",
 	},
-	imageBackground: {
-		type: "string",
-	},
 	altText: {
 		type: "string",
 	},

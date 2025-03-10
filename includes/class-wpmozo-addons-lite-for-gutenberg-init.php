@@ -219,7 +219,7 @@ class WPMozo_Addons_Lite_Gutenberg_Init {
 	    $post_id_param = $request->get_param('post_id');
 	    $style_param = $request->get_param('style');
 	    $post_id = wpmozo_adfgu_sanitize_text_field( $post_id_param );
-	    $style = wpmozo_adfgu_sanitize_text_field( $style_param );
+	    $style = wp_kses_post( $style_param );
 
 	    update_post_meta( $post_id, 'wpmozo_dynamic_style', $style );
 

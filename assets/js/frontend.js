@@ -250,6 +250,28 @@ jQuery(document).ready(function($){
 
         initSwiper( swiperEl, attributes );
 
+        jQuery(swiperEl).on("mouseenter", function(e) {
+
+            let swiperContainer = jQuery(this)[0],
+            swiperInstance = ( swiperContainer.hasOwnProperty( 'swiper' ) ) ? swiperContainer.swiper : null;
+
+            if ( swiperInstance.params.autoplay.disableOnInteraction && typeof swiperInstance.autoplay.stop === "function" ) {
+                swiperInstance.autoplay.stop();
+            }
+
+        });
+
+        jQuery(swiperEl).on("mouseleave", jQuery(swiperEl), function(e) {
+
+            let swiperContainer = jQuery(this)[0],
+            swiperInstance = ( swiperContainer.hasOwnProperty( 'swiper' ) ) ? swiperContainer.swiper : null;
+
+            if ( swiperInstance.params.autoplay.disableOnInteraction && typeof swiperInstance.autoplay.start === "function" ) {
+                swiperInstance.autoplay.start();
+            }
+          
+        });
+
     });
 
 })

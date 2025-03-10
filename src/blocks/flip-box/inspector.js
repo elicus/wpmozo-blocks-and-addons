@@ -72,7 +72,8 @@ const Inspector = (props) => {
     [ contentAlignType, setContentAlignType ] = useState('front'),
     [ flipboxBorderType, setFlipboxBorderType ] = useState('front'),
     [ flipboxBackgroundType, setFlipboxBackgroundType ] = useState('front'),
-    [ flipboxWidthType, setFlipboxWidthType ] = useState('front');
+    [ flipboxWidthType, setFlipboxWidthType ] = useState('front'),
+    [ flipboxDimensionsType, setFlipboxDimensionsType ] = useState('front');
 
     const headingLavels = [
         {
@@ -924,48 +925,186 @@ const Inspector = (props) => {
                         }
                     </BaseControl>
                 </PanelBody>
-                <PanelBody title={ __( 'FlipBox Background', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                <PanelBody title={ __( 'Flip Box Elements', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
                     <BaseControl
                         className="wpmozo-button-tabs-wrap"
                     >    
                         <ButtonGroup>
                             <Button
                                 className="wpmozo-button-tabs-btn"
-                                isPressed={ ( 'front' === flipboxBackgroundType ) ? true : false }
-                                onClick={ () => setFlipboxBackgroundType( 'front' ) }
+                                isPressed={ ( 'front' === elementType ) ? true : false }
+                                onClick={ () => setElementType( 'front' ) }
                             >
                                 { __( 'Front', 'wpmozo-addons-lite-for-gutenberg' ) }
                             </Button>
                             <Button 
                                 className="wpmozo-button-tabs-btn"
-                                isPressed={ ( 'back' === flipboxBackgroundType ) ? true : false }
-                                onClick={ () => setFlipboxBackgroundType( 'back' ) }
+                                isPressed={ ( 'back' === elementType ) ? true : false }
+                                onClick={ () => setElementType( 'back' ) }
                             >
                                 { __( 'Back', 'wpmozo-addons-lite-for-gutenberg' ) }
                             </Button>
                         </ButtonGroup>
-                        { 'front' === flipboxBackgroundType &&
-                            <WpmozoColorPicker  
-                                ColorKey="front"
+                        { 'front' === elementType &&
+                            <>
+                                <SelectControl
+                                    label={ __( 'Element Type', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                    value={ attributes.frontElType }
+                                    options={[
+                                        {
+                                            label: __( 'None', 'wpmozo-addons-lite-for-gutenberg' ),
+                                            value: 'none',
+                                        },
+                                        {
+                                            label: __( 'Icon', 'wpmozo-addons-lite-for-gutenberg' ),
+                                            value: 'icon',
+                                        },
+                                        {
+                                            label: __( 'Image', 'wpmozo-addons-lite-for-gutenberg' ),
+                                            value: 'image',
+                                        }
+                                    ]}
+                                    onChange={ ( newValue ) => setAttributes( { frontElType: newValue } ) }
+                                />
+                                { 'icon' === attributes.frontElType &&
+                                    <WpmozoIconpicker
+                                        label={ __( 'Icon', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                        iconPickerKey='frontElIcon'
+                                        props={ props }
+                                        value={ attributes.frontElIcon }
+                                        onChange={ ( newValue ) => setAttributes( { frontElIcon: newValue } ) }
+                                    />
+                                }
+                                { 'image' === attributes.frontElType &&
+                                    <WpmozoMediaUploader 
+                                        attrKye="frontElImage" 
+                                        props={props} 
+                                    />
+                                }
+                            </>
+                        }
+                        { 'back' === elementType &&
+                            <>
+                                <SelectControl
+                                    label={ __( 'Element Type', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                    value={ attributes.backElType }
+                                    options={[
+                                        {
+                                            label: __( 'None', 'wpmozo-addons-lite-for-gutenberg' ),
+                                            value: 'none',
+                                        },
+                                        {
+                                            label: __( 'Icon', 'wpmozo-addons-lite-for-gutenberg' ),
+                                            value: 'icon',
+                                        },
+                                        {
+                                            label: __( 'Image', 'wpmozo-addons-lite-for-gutenberg' ),
+                                            value: 'image',
+                                        }
+                                    ]}
+                                    onChange={ ( newValue ) => setAttributes( { backElType: newValue } ) }
+                                />
+                                { 'icon' === attributes.backElType &&
+                                    <WpmozoIconpicker
+                                        label={ __( 'Icon', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                        iconPickerKey='backElIcon'
+                                        props={ props }
+                                        value={ attributes.backElIcon }
+                                        onChange={ ( newValue ) => setAttributes( { backElIcon: newValue } ) }
+                                    />
+                                }
+                                { 'image' === attributes.backElType &&
+                                    <WpmozoMediaUploader 
+                                        attrKye="backElImage" 
+                                        props={props} 
+                                    />
+                                }
+                                <ToggleControl
+                                    label={ __( 'Show Button', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                    checked={ attributes.backHasButton }
+                                    onChange={ ( newValue ) => setAttributes( { backHasButton: newValue } ) }
+                                />
+                                { attributes.backHasButton &&
+                                    <>
+                                        <TextControl
+                                            label={ __( 'Button Text', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                            value={ attributes.backBtnText }
+                                            onChange={ ( newValue ) => setAttributes( { backBtnText: newValue } ) }
+                                        />
+                                        <TextControl
+                                            label={ __( 'Button Url', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                            value={ attributes.backBtnUrl }
+                                            onChange={ ( newValue ) => setAttributes( { backBtnUrl: newValue } ) }
+                                        />
+                                        <WpmozoIconpicker
+                                            label={ __( 'Button Icon', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                            iconPickerKey='backBtnIcon'
+                                            props={ props }
+                                            value={ attributes.backBtnIcon }
+                                            onChange={ ( newValue ) => setAttributes( { backBtnIcon: newValue } ) }
+                                        />
+                                        <SelectControl
+                                            label={ __( 'Element Type', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                            value={ attributes.backBtnIconPosition }
+                                            options={[
+                                                {
+                                                    label: __( 'Before', 'wpmozo-addons-lite-for-gutenberg' ),
+                                                    value: 'before',
+                                                },
+                                                {
+                                                    label: __( 'After', 'wpmozo-addons-lite-for-gutenberg' ),
+                                                    value: 'after',
+                                                },
+                                            ]}
+                                            onChange={ ( newValue ) => setAttributes( { backBtnIconPosition: newValue } ) }
+                                        />
+                                        <ToggleControl
+                                            label={ __( 'Show Icon On Hover', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                            checked={ attributes.backBtnIconOnHover }
+                                            onChange={ ( newValue ) => setAttributes( { backBtnIconOnHover: newValue } ) }
+                                        />
+                                    </>
+                                }
+                            </>
+                        }
+                    </BaseControl>
+                </PanelBody>
+                <PanelBody title={ __( 'FlipBox Padding', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <BaseControl
+                        className="wpmozo-button-tabs-wrap"
+                    >    
+                        <ButtonGroup>
+                            <Button
+                                className="wpmozo-button-tabs-btn"
+                                isPressed={ ( 'front' === flipboxDimensionsType ) ? true : false }
+                                onClick={ () => setFlipboxDimensionsType( 'front' ) }
+                            >
+                                { __( 'Front', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            </Button>
+                            <Button 
+                                className="wpmozo-button-tabs-btn"
+                                isPressed={ ( 'back' === flipboxDimensionsType ) ? true : false }
+                                onClick={ () => setFlipboxDimensionsType( 'back' ) }
+                            >
+                                { __( 'Back', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            </Button>
+                        </ButtonGroup>
+                        { 'front' === flipboxDimensionsType &&
+                            <WpmozoDimensions
+                                DimensionKey='frontDimensions'
+                                DimensionsTypes={{
+                                    padding: true,
+                                }}
                                 props={props}
-                                ColorTypes={[ 
-                                    {
-                                        key: 'FlipboxBackground',
-                                        label: __( 'Front Background', 'wpmozo-addons-lite-for-gutenberg' ),
-                                    },
-                                ]}
                             />
                         }
-                        { 'back' === flipboxBackgroundType &&
-                            <WpmozoColorPicker  
-                                ColorKey="back"
+                        { 'back' === flipboxDimensionsType &&
+                            <WpmozoDimensions
+                                DimensionKey='backDimensions'
+                                DimensionsTypes={{
+                                    padding: true,
+                                }}
                                 props={props}
-                                ColorTypes={[ 
-                                    {
-                                        key: 'FlipboxBackground',
-                                        label: __( 'Back Background', 'wpmozo-addons-lite-for-gutenberg' ),
-                                    },
-                                ]}
                             />
                         }
                     </BaseControl>

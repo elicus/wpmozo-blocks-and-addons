@@ -6,7 +6,8 @@ const Style = ({attributes, ID, clientId}) => {
     toConvertStyles = [
     	'title',
     	'description',
-    	'content'
+    	'content',
+        'button'
     ];
 
     let css = '', 
@@ -45,7 +46,15 @@ const Style = ({attributes, ID, clientId}) => {
                 'text-align': attributes.descriptionAlign
             },
             additional: convertedStyle.description
-        }
+        },
+        {
+            selector: '.wpmozo-adfgu-tilt-image-button',
+            style: {
+                'color': attributes.buttonTextColor,
+                'background': attributes.buttonBackgroundColor
+            },
+            additional: convertedStyle.button
+        },
     ];
 
     if ( attributes.use3dEffect ) {

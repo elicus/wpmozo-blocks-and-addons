@@ -5,16 +5,22 @@ const Style = ({attributes, ID, clientId}) => {
     wpmozoCoreFun = window.wpmozo,
     wpmozo_is_empty = wpmozoCoreFun.wpmozo_is_empty;
     
-    let allInline = [],
+    let allInline = [
+        { 
+            selector: '.floating-image',
+            style: {
+                'width': attributes.imagewidth,
+                'height': attributes.imageheight
+            }
+        }
+    ],
     css           = '';
 
     let generateStyle = wpmozoCoreFun.wpmozo_generate_style([{
         selector: parent,
         style: {
-            'top': attributes.horizontalAlign,
-            'left': attributes.verticalAlign,
-            'width': attributes.imagewidth,
-            'background': attributes.imageBackground,
+            'top': attributes.verticalAlign,
+            'left': attributes.horizontalAlign,
             'animation-name': `wpmozo_float_${attributes.animationEffect}`,
             'animation-duration': attributes.animationDuration+'ms',
             'animation-direction': 'alternate',

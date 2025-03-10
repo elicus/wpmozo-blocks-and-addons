@@ -18,6 +18,8 @@ import {
 
 const Inspector = (props) => {
 
+    props = Object.assign({}, props, {preAttributes: {}});
+
     const attributes = props.attributes,
     setAttributes = props.setAttributes,
     headingLavels = [
@@ -406,6 +408,36 @@ const Inspector = (props) => {
                         value={ attributes.descriptionAlign }
                     />
                 </PanelBody>
+                { attributes.showButton && 
+                    <PanelBody title={ __( 'Button Style', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                        <WpmozoColorPicker  
+                            ColorKey="button"
+                            props={props}
+                            ColorTypes={[ 
+                                {
+                                    key: 'TextColor',
+                                    label: __( 'Text Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                },
+                                {
+                                    key: 'BackgroundColor',
+                                    label: __( 'Background Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                }
+                            ]}
+                        />
+                        <WpmozoTypography
+                            TypographyKey="button"
+                            props={props}
+                        />
+                        <WpmozoBorder
+                            BorderKey="button"
+                            props={props}
+                        />
+                        <WpmozoDimensions
+                            DimensionKey='button'
+                            props={props}
+                        />
+                    </PanelBody>
+                }
             </InspectorControls>
         </>
     );

@@ -88,18 +88,6 @@ const Inspector = (props) => {
                 </PanelBody>
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
-                <PanelBody title={ __( 'Background', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
-                    <WpmozoColorPicker  
-                        ColorKey="image"
-                        props={props}
-                        ColorTypes={[ 
-                            {
-                                key: 'Background',
-                                label: __( 'Background Color', 'wpmozo-addons-lite-for-gutenberg' ),
-                            }
-                        ]}
-                    />
-                </PanelBody>
                 <PanelBody title={ __( 'Image Position', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
                     <__experimentalUnitControl
                         label={ __( 'Horizontal Align', 'wpmozo-addons-lite-for-gutenberg' ) }
@@ -152,9 +140,6 @@ const Inspector = (props) => {
                     <WpmozoSize
                         SizeKey="image"
                         props={props}
-                        SizeTypes={{
-                            width: true
-                        }}
                     />
                 </PanelBody>
             </InspectorControls>

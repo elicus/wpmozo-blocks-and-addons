@@ -1,4 +1,3 @@
-const { dispatch, select } = wp.data;
 
 window.wpmozo = {};
 
@@ -306,6 +305,7 @@ window.wpmozo.extractCssByClass = function() {
 window.wpmozo.minifyCSS = function(css) {
     return css
         .replace(/\/\*[\s\S]*?\*\//g, '')
+        .replace(/url\(\s*(['"]?)(.*?)\1\s*\)/g, 'url($1$2$1)')
         .replace(/\s+/g, ' ')
         .replace(/\s*({|}|;|:|,)\s*/g, '$1')
         .replace(/;}/g, '}')

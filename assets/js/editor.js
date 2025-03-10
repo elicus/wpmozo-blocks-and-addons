@@ -1,3 +1,5 @@
+const { dispatch, select } = window.wp.data;
+
 jQuery(document).ready(function(){
 
 	let selectedClass = 'block-editor-block-list__block wp-block is-selected';
@@ -11,8 +13,8 @@ jQuery(document).ready(function(){
 			jQuery(".swiper-slide.block-editor-block-list__block").removeClass(selectedClass);
 
 			const slide = target.closest('.swiper-slide'),
-			selectedBlock = select('core/block-editor').getSelectedBlock(),
-			clientId = jQuery(slide).data('client-id');
+			swiperContainer = jQuery(slide).closest('.swiper-container'),
+			clientId = jQuery(swiperContainer).data('client-id');
 	        jQuery(slide).addClass(selectedClass);
         	dispatch( 'core/block-editor' ).selectBlock( clientId );
 
