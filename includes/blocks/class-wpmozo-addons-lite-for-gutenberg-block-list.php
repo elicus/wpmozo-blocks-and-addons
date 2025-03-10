@@ -70,8 +70,8 @@ class WPMozo_Addons_Lite_Gutenberg_Block_List extends WPMozo_Addons_Lite_Gutenbe
 		);
 
 		$this->styles[] = array(
-			'handle' => $this->plugin_name . '-flip-box-style',
-			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'css/blocks/flip-box.css',
+			'handle' => $this->plugin_name . '-list-style',
+			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'css/blocks/list.css',
 			'deps'   => array(),
 			'ver'    => time(),
 		);
@@ -79,7 +79,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_List extends WPMozo_Addons_Lite_Gutenbe
 		$this->args = array(
 			'style_handles' => array(
 				$this->plugin_name . '-fontawesome-style',
-				$this->plugin_name . '-flip-box-style',
+				$this->plugin_name . '-list-style',
 			),
 		);
 

@@ -9,9 +9,9 @@ const Save = ({ attributes }) => {
 
     if( 'line' === attributes.separatorType ){
         if( 'onlySeparator' === attributes.lineUseWith ){
-            position = '';
+            position = 'align-none';
         } else if( 'textSeparator' === attributes.lineUseWith ){
-            position = `align-${attributes.textAlign}`;
+            position = `align-${undefined !== attributes.textAlign ? attributes.textAlign : 'none'}`;
         } else if( 'iconSeparator' === attributes.lineUseWith ){
             position = `align-${attributes.iconPosition}`;
         } else {

@@ -54,6 +54,16 @@ const Style = ({attributes, ID, clientId}) => {
 		    	},
 	    	);
 	    }
+    	if ( 'solid' !== attributes.lineStyle ) {
+	    	allInline.push(
+		    	{
+		    		selector: '.wpmozo-adfgu-line',
+		    		style: {
+		    			'border-top-color': attributes.shadowColor,
+		    		}
+		    	},
+	    	);
+	    }
     	if ( 'iconSeparator' === attributes.lineUseWith ) {
     		allInline.push(
 		    	{

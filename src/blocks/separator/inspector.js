@@ -87,7 +87,6 @@ const Inspector = (props) => {
     
     props = Object.assign({}, props, {preAttributes: {}});
 
-    const [ titleStyleType, setTitleStyleType ] = useState('normal');
     const [ textStyleType, setTextStyleType ] = useState('normal');
 
 	return (
@@ -178,7 +177,7 @@ const Inspector = (props) => {
                         step={ 1 }
                         max={ 100 }
                     />
-                    {'line' === attributes.separatorType &&
+                    {'line' === attributes.separatorType && 'solid' === attributes.lineStyle &&
                         <ColorGradientControl
                             colorValue={ attributes.separatorColor }
                             gradientValue={ attributes.separatorGradient }
@@ -212,7 +211,7 @@ const Inspector = (props) => {
                             onGradientChange={ (newValue) => setAttributes({ separatorGradient: newValue }) }
                         /> 
                     }
-                    {'shadow' === attributes.separatorType &&
+                    {('shadow' === attributes.separatorType || ( 'line' === attributes.separatorType && 'solid' !== attributes.lineStyle )) &&
                         <WpmozoColorPicker  
                             ColorKey="shadow"
                             props={props}
