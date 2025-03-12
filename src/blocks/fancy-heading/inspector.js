@@ -1,5 +1,11 @@
 
-import { WpmozoColorCombo, WpmozoAlignment, WpmozoDimensions, WpmozoColorPicker, WpmozoTypography } from '../../components/index';
+import { 
+    WpmozoColorCombo, 
+    WpmozoAlignment, 
+    WpmozoDimensions, 
+    WpmozoColorPicker, 
+    WpmozoTypography 
+} from '../../components/index';
 import { __ } from "@wordpress/i18n";
 import { InspectorControls } from "@wordpress/block-editor";
 import { 
@@ -87,6 +93,11 @@ const Inspector = (props) => {
                             },
                         ]}
                     />
+                    <WpmozoAlignment
+                        label={__( 'Heading Alignment', 'wpmozo-addons-lite-for-gutenberg')}
+                        onChange={ ( newValue ) => setAttributes( { headingAlignment: newValue } ) }
+                        value={ attributes.headingAlignment }
+                    />
                     <BaseControl
                         label={ __( 'Heading Lavel', 'wpmozo-addons-lite-for-gutenberg' ) }
                     >    
@@ -101,11 +112,6 @@ const Inspector = (props) => {
                             ))}
                         </ButtonGroup>
                     </BaseControl>
-                    <WpmozoAlignment
-                        label={__( 'Heading Alignment', 'wpmozo-addons-lite-for-gutenberg')}
-                        onChange={ ( newValue ) => setAttributes( { headingAlignment: newValue } ) }
-                        value={ attributes.headingAlignment }
-                    />
                 </PanelBody>
                 <PanelBody title={ __( 'Pre Text Settings', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoColorCombo

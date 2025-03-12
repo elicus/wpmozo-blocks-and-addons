@@ -41,6 +41,7 @@
 .wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-icon {
     padding-bottom: 10px;
     font-size: 32px;
+    width: 100%;
 }
 .wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-image-button-wrapper {
     display: inherit;

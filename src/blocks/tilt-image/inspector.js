@@ -1,5 +1,13 @@
 
-import { WpmozoDimensions, WpmozoIconpicker, WpmozoBorder, WpmozoAlignment, WpmozoColorPicker, WpmozoTypography, WpmozoMediaUploader } from '../../components/index';
+import { 
+    WpmozoDimensions, 
+    WpmozoIconpicker, 
+    WpmozoBorder, 
+    WpmozoAlignment, 
+    WpmozoColorPicker, 
+    WpmozoTypography, 
+    WpmozoMediaUploader 
+} from '../../components/index';
 import { __ } from "@wordpress/i18n";
 import { InspectorControls, HeightControl } from "@wordpress/block-editor";
 import { useState } from "@wordpress/element";
@@ -311,6 +319,11 @@ const Inspector = (props) => {
                             }
                         ]}
                     />
+                    <WpmozoAlignment
+                        label={ __( 'Icon Alignment', 'wpmozo-addons-lite-for-gutenberg') }
+                        onChange={ ( newValue ) => setAttributes( { iconAlign: newValue } ) }
+                        value={ attributes.iconAlign }
+                    />
                     <ToggleControl
                         label={ __( 'Use Icon Font Size', 'wpmozo-addons-lite-for-gutenberg' ) }
                         checked={ attributes.useIconFontSize }
@@ -377,14 +390,14 @@ const Inspector = (props) => {
                             ))}
                         </ButtonGroup>
                     </BaseControl>
-                    <WpmozoTypography
-                        TypographyKey="title"
-                        props={props}
-                    />
                     <WpmozoAlignment
                         label={ __( 'Title Alignment', 'wpmozo-addons-lite-for-gutenberg') }
                         onChange={ ( newValue ) => setAttributes( { titleAlign: newValue } ) }
                         value={ attributes.titleAlign }
+                    />
+                    <WpmozoTypography
+                        TypographyKey="title"
+                        props={props}
                     />
                 </PanelBody>
                 <PanelBody title={ __( 'Description', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
@@ -398,14 +411,14 @@ const Inspector = (props) => {
                             }
                         ]}
                     />
-                    <WpmozoTypography
-                        TypographyKey="description"
-                        props={props}
-                    />
                     <WpmozoAlignment
                         label={ __( 'Description Alignment', 'wpmozo-addons-lite-for-gutenberg') }
                         onChange={ ( newValue ) => setAttributes( { descriptionAlign: newValue } ) }
                         value={ attributes.descriptionAlign }
+                    />
+                    <WpmozoTypography
+                        TypographyKey="description"
+                        props={props}
                     />
                 </PanelBody>
                 { attributes.showButton && 

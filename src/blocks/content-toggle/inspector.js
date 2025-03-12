@@ -1,10 +1,16 @@
 
-import { WpmozoColorCombo, WpmozoAlignment, WpmozoDimensions, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker } from '../../components/index';
+import { 
+    WpmozoColorCombo,
+    WpmozoAlignment,
+    WpmozoDimensions,
+    WpmozoColorPicker,
+    WpmozoTypography,
+    WpmozoIconpicker 
+} from '../../components/index';
 import { __ } from "@wordpress/i18n";
 import { InspectorControls } from "@wordpress/block-editor";
 import { 
     PanelBody,
-    ToggleControl,
     TextControl,
     SelectControl,
     RangeControl
@@ -145,6 +151,11 @@ const Inspector = (props) => {
                             ]
                         }}
                     />
+                    <WpmozoAlignment
+                        label={__( 'Switch Alignment', 'wpmozo-addons-lite-for-gutenberg')}
+                        onChange={ ( newValue ) => setAttributes( { toggleSwitchAlignment: newValue } ) }
+                        value={ attributes.toggleSwitchAlignment }
+                    />
                     <WpmozoDimensions
                         DimensionKey='toggleSwitchDimensions'
                         DimensionsTypes={{
@@ -152,11 +163,6 @@ const Inspector = (props) => {
                             margin: true,
                         }}
                         props={props}
-                    />
-                    <WpmozoAlignment
-                        label={__( 'Switch Alignment', 'wpmozo-addons-lite-for-gutenberg')}
-                        onChange={ ( newValue ) => setAttributes( { toggleSwitchAlignment: newValue } ) }
-                        value={ attributes.toggleSwitchAlignment }
                     />
                 </PanelBody>
                 <PanelBody title={ __( 'Title One' ) } className="wpmozo-typography-panel" initialOpen={false}>

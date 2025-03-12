@@ -21,6 +21,12 @@ const Style = ({attributes, ID, clientId}) => {
     		}
     	},
         {
+            selector: '.wpmozo-adfgu-tilt-icon',
+            style: {
+                'text-align': attributes.iconAlign
+            }
+        },
+        {
             selector: '.wpmozo-adfgu-tilt-icon i',
             style: {
                 'color': attributes.iconColor,

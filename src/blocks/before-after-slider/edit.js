@@ -4,7 +4,7 @@ import Style from "./style";
 
 import { __ } from "@wordpress/i18n";
 import { useEffect, Fragment } from "@wordpress/element";
-import { useBlockProps, InnerBlocks } from "@wordpress/block-editor";
+import { useBlockProps } from "@wordpress/block-editor";
 const WPMozoEditorObj = wpmozo_adfgu_editor_object; 
 
 const Edit = (props) => {
@@ -50,7 +50,6 @@ const Edit = (props) => {
     }
 
     useEffect(() => {
-        setTimeout(function() {
            
             let editorIfram = jQuery('body').find('[name="editor-canvas"]').contents(),
             mainFromIfram = editorIfram.find('body').find('#block-'+clientId),
@@ -63,48 +62,52 @@ const Edit = (props) => {
                 if( main.find('.twentytwenty-wrapper').length > 0 ){
                     wpmozo_before_init( main );
                 }
-                main.find('.wpmozo-adfgu-before-after-image-wrapper').twentytwenty({
-                    default_offset_pct: attributes.handleOffset,
-                    orientation: attributes.sliderOrientation,
-                    before_label: beforeLabel,
-                    after_label: afterLabel,
-                    move_slider_on_hover: attributes.moveHandleOnHover,
-                    move_with_handle_only: true,
-                    click_to_move: attributes.moveHandleOnClick,
-                });
-            }
 
-        }, 10);
+                if( main.find('.wpmozo-adfgu-before-after-image-wrapper').length > 0 ){
+                    jQuery('.wpmozo-adfgu-before-after-image-wrapper').imagesLoaded( function() {
+                        main.find('.wpmozo-adfgu-before-after-image-wrapper').twentytwenty({
+                            default_offset_pct: attributes.handleOffset,
+                            orientation: attributes.sliderOrientation,
+                            before_label: beforeLabel,
+                            after_label: afterLabel,
+                            move_slider_on_hover: attributes.moveHandleOnHover,
+                            move_with_handle_only: true,
+                            click_to_move: attributes.moveHandleOnClick,
+                        });
+                    });
+                }
+            }
     });
 
     useEffect(() => {
-        setTimeout(function() {
            
-            let editorIfram = jQuery('body').find('[name="editor-canvas"]').contents(),
-            mainFromIfram = editorIfram.find('body').find('#block-'+clientId),
-            mainFromBody = jQuery('body').find('#block-'+clientId),
-            main = ( mainFromIfram.length > 0 ) ? mainFromIfram : mainFromBody,
-            imgWrap = main.find('.wpmozo-adfgu-before-after-image-wrapper');
+        let editorIfram = jQuery('body').find('[name="editor-canvas"]').contents(),
+        mainFromIfram = editorIfram.find('body').find('#block-'+clientId),
+        mainFromBody = jQuery('body').find('#block-'+clientId),
+        main = ( mainFromIfram.length > 0 ) ? mainFromIfram : mainFromBody,
+        imgWrap = main.find('.wpmozo-adfgu-before-after-image-wrapper');
 
-            if ( ! init ) {
-                
-                if( main.find('.twentytwenty-wrapper').length > 0 ){
-                    wpmozo_before_init( main );
-                }
-
-                main.find('.wpmozo-adfgu-before-after-image-wrapper').twentytwenty({
-                    default_offset_pct: attributes.handleOffset,
-                    orientation: attributes.sliderOrientation,
-                    before_label: beforeLabel,
-                    after_label: afterLabel,
-                    move_slider_on_hover: attributes.moveHandleOnHover,
-                    move_with_handle_only: true,
-                    click_to_move: attributes.moveHandleOnClick,
-                });
-
+        if ( ! init ) {
+            
+            if( main.find('.twentytwenty-wrapper').length > 0 ){
+                wpmozo_before_init( main );
             }
 
-        }, 10);
+            if( main.find('.wpmozo-adfgu-before-after-image-wrapper').length > 0 ){
+                jQuery('.wpmozo-adfgu-before-after-image-wrapper').imagesLoaded( function() {
+                    main.find('.wpmozo-adfgu-before-after-image-wrapper').twentytwenty({
+                        default_offset_pct: attributes.handleOffset,
+                        orientation: attributes.sliderOrientation,
+                        before_label: beforeLabel,
+                        after_label: afterLabel,
+                        move_slider_on_hover: attributes.moveHandleOnHover,
+                        move_with_handle_only: true,
+                        click_to_move: attributes.moveHandleOnClick,
+                    });
+                });
+            }
+        }
+        
     },[ 
         attributes.handleOffset, 
         attributes.sliderOrientation,

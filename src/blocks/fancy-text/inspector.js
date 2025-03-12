@@ -1,5 +1,10 @@
 
-import { WpmozoDimensions, WpmozoAlignment, WpmozoColorPicker, WpmozoTypography } from '../../components/index';
+import { 
+    WpmozoDimensions,
+    WpmozoAlignment,
+    WpmozoColorPicker,
+    WpmozoTypography 
+} from '../../components/index';
 import { __ } from "@wordpress/i18n";
 import { InspectorControls, MediaUpload, MediaUploadCheck } from "@wordpress/block-editor";
 import { 

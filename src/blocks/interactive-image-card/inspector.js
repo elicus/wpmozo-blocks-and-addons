@@ -1,5 +1,11 @@
 
-import { WpmozoBorder, WpmozoAlignment, WpmozoColorPicker, WpmozoTypography, WpmozoMediaUploader } from '../../components/index';
+import { 
+    WpmozoBorder, 
+    WpmozoAlignment, 
+    WpmozoColorPicker, 
+    WpmozoTypography, 
+    WpmozoMediaUploader 
+} from '../../components/index';
 import { __ } from "@wordpress/i18n";
 import { InspectorControls } from "@wordpress/block-editor";
 import { useState } from "@wordpress/element";
@@ -242,10 +248,6 @@ const Inspector = (props) => {
                             },
                         ]}
                     />
-                    <WpmozoTypography
-                        TypographyKey="content"
-                        props={props}
-                    />
                     { 'milo' !== attributes.layout &&
                         <WpmozoAlignment
                             label={ __( 'Content Alignment', 'wpmozo-addons-lite-for-gutenberg') }
@@ -253,6 +255,10 @@ const Inspector = (props) => {
                             value={ attributes.contentAlign }
                         />
                     }
+                    <WpmozoTypography
+                        TypographyKey="content"
+                        props={props}
+                    />
                 </PanelBody>
             </InspectorControls>
         </>

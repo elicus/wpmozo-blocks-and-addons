@@ -4,8 +4,6 @@ const el                  = wp.element.createElement;
 
 const options = wpmozo_adfgu_editor_object.icons;
 
-const { Component } = wp.element;
-
 const WpmozoIconpicker = function(args){
 
 	const iconSetValue = function( value = null ) {

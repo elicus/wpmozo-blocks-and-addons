@@ -166,6 +166,10 @@ const attributes = {
     iconColor: {
         type: "string"
     },
+    iconAlign: {
+        type: "string",
+        default: "center"
+    },
     useIconFontSize: {
         type: "boolean",
         default: false,

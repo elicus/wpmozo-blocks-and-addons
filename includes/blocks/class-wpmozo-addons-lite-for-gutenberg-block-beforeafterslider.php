@@ -69,6 +69,13 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Beforeafterslider extends WPMozo_Addons
 		);
 
 		$this->scripts[] = array(
+			'handle' => $this->plugin_name . '-imagesloaded',
+			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'js/imagesloaded.pkgd.min.js',
+			'deps'   => array( 'jquery' ),
+			'ver'    => time(),
+		);
+
+		$this->scripts[] = array(
 			'handle' => $this->plugin_name . '-twentytwenty-script',
 			'src'    => WPMOZO_ADDONS_LITE_GUTENBERG_ASSETS_DIR_URL . 'js/jquery_twentytwenty.min.js',
 			'deps'   => array( 'jquery', $this->plugin_name . '-event-move' ),
@@ -84,12 +91,14 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Beforeafterslider extends WPMozo_Addons
 
 		$this->args = array(
 			'script_handles' => array(
-				$this->plugin_name . '-twentytwenty-script',
+				$this->plugin_name . '-event-move',
+				$this->plugin_name . '-imagesloaded',
+				$this->plugin_name . '-twentytwenty-script'
 			),
 			'style_handles'  => array(
 				$this->plugin_name . '-twentytwenty-style',
-				$this->plugin_name . '-before-after-slider-style',
-			),
+				$this->plugin_name . '-before-after-slider-style'
+			)
 		);
 
 	}

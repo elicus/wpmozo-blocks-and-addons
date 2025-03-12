@@ -80,6 +80,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Tiltimage extends WPMozo_Addons_Lite_Gu
 				$this->plugin_name . '-tilt-image-script'
 			),
 			'style_handles' => array(
+				$this->plugin_name . '-fontawesome-style',
 				$this->plugin_name . '-tilt-image-style',
 			),
 		);

@@ -1,7 +1,16 @@
 
-import { WpmozoRangeSize, WpmozoBorder, WpmozoAlignment, WpmozoDimensions, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker, WpmozoMediaUploader } from '../../components/index';
+import { 
+    WpmozoRangeSize, 
+    WpmozoBorder, 
+    WpmozoAlignment, 
+    WpmozoDimensions, 
+    WpmozoColorPicker, 
+    WpmozoTypography, 
+    WpmozoIconpicker, 
+    WpmozoMediaUploader 
+} from '../../components/index';
 import { __ } from "@wordpress/i18n";
-import { InspectorControls, BlockVerticalAlignmentControl, BlockIcon } from "@wordpress/block-editor";
+import { InspectorControls } from "@wordpress/block-editor";
 import { useState } from "@wordpress/element";
 import { 
     PanelBody,

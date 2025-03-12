@@ -205,51 +205,55 @@ const Edit = props => {
     main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-handle').remove();
   }
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
-    setTimeout(function () {
-      let editorIfram = jQuery('body').find('[name="editor-canvas"]').contents(),
-        mainFromIfram = editorIfram.find('body').find('#block-' + clientId),
-        mainFromBody = jQuery('body').find('#block-' + clientId),
-        main = mainFromIfram.length > 0 ? mainFromIfram : mainFromBody,
-        imgWrap = main.find('.wpmozo-adfgu-before-after-image-wrapper');
-      if (main.find('.twentytwenty-wrapper').length < 1) {
-        init = true;
-        if (main.find('.twentytwenty-wrapper').length > 0) {
-          wpmozo_before_init(main);
-        }
-        main.find('.wpmozo-adfgu-before-after-image-wrapper').twentytwenty({
-          default_offset_pct: attributes.handleOffset,
-          orientation: attributes.sliderOrientation,
-          before_label: beforeLabel,
-          after_label: afterLabel,
-          move_slider_on_hover: attributes.moveHandleOnHover,
-          move_with_handle_only: true,
-          click_to_move: attributes.moveHandleOnClick
+    let editorIfram = jQuery('body').find('[name="editor-canvas"]').contents(),
+      mainFromIfram = editorIfram.find('body').find('#block-' + clientId),
+      mainFromBody = jQuery('body').find('#block-' + clientId),
+      main = mainFromIfram.length > 0 ? mainFromIfram : mainFromBody,
+      imgWrap = main.find('.wpmozo-adfgu-before-after-image-wrapper');
+    if (main.find('.twentytwenty-wrapper').length < 1) {
+      init = true;
+      if (main.find('.twentytwenty-wrapper').length > 0) {
+        wpmozo_before_init(main);
+      }
+      if (main.find('.wpmozo-adfgu-before-after-image-wrapper').length > 0) {
+        jQuery('.wpmozo-adfgu-before-after-image-wrapper').imagesLoaded(function () {
+          main.find('.wpmozo-adfgu-before-after-image-wrapper').twentytwenty({
+            default_offset_pct: attributes.handleOffset,
+            orientation: attributes.sliderOrientation,
+            before_label: beforeLabel,
+            after_label: afterLabel,
+            move_slider_on_hover: attributes.moveHandleOnHover,
+            move_with_handle_only: true,
+            click_to_move: attributes.moveHandleOnClick
+          });
         });
       }
-    }, 10);
+    }
   });
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
-    setTimeout(function () {
-      let editorIfram = jQuery('body').find('[name="editor-canvas"]').contents(),
-        mainFromIfram = editorIfram.find('body').find('#block-' + clientId),
-        mainFromBody = jQuery('body').find('#block-' + clientId),
-        main = mainFromIfram.length > 0 ? mainFromIfram : mainFromBody,
-        imgWrap = main.find('.wpmozo-adfgu-before-after-image-wrapper');
-      if (!init) {
-        if (main.find('.twentytwenty-wrapper').length > 0) {
-          wpmozo_before_init(main);
-        }
-        main.find('.wpmozo-adfgu-before-after-image-wrapper').twentytwenty({
-          default_offset_pct: attributes.handleOffset,
-          orientation: attributes.sliderOrientation,
-          before_label: beforeLabel,
-          after_label: afterLabel,
-          move_slider_on_hover: attributes.moveHandleOnHover,
-          move_with_handle_only: true,
-          click_to_move: attributes.moveHandleOnClick
+    let editorIfram = jQuery('body').find('[name="editor-canvas"]').contents(),
+      mainFromIfram = editorIfram.find('body').find('#block-' + clientId),
+      mainFromBody = jQuery('body').find('#block-' + clientId),
+      main = mainFromIfram.length > 0 ? mainFromIfram : mainFromBody,
+      imgWrap = main.find('.wpmozo-adfgu-before-after-image-wrapper');
+    if (!init) {
+      if (main.find('.twentytwenty-wrapper').length > 0) {
+        wpmozo_before_init(main);
+      }
+      if (main.find('.wpmozo-adfgu-before-after-image-wrapper').length > 0) {
+        jQuery('.wpmozo-adfgu-before-after-image-wrapper').imagesLoaded(function () {
+          main.find('.wpmozo-adfgu-before-after-image-wrapper').twentytwenty({
+            default_offset_pct: attributes.handleOffset,
+            orientation: attributes.sliderOrientation,
+            before_label: beforeLabel,
+            after_label: afterLabel,
+            move_slider_on_hover: attributes.moveHandleOnHover,
+            move_with_handle_only: true,
+            click_to_move: attributes.moveHandleOnClick
+          });
         });
       }
-    }, 10);
+    }
   }, [attributes.handleOffset, attributes.sliderOrientation, attributes.beforeHasLabel, attributes.beforeLabel, attributes.afterHasLabel, attributes.afterLabel, attributes.moveHandleOnHover, attributes.moveHandleOnClick, attributes.overlayOnHover, attributes.beforeImage, attributes.afterImage]);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_1__["default"], {
     ...props
@@ -1350,6 +1354,12 @@ const Inspector = props => {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Switch Background (on state)', 'wpmozo-addons-lite-for-gutenberg')
       }]
     }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoAlignment, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Switch Alignment', 'wpmozo-addons-lite-for-gutenberg'),
+    onChange: newValue => setAttributes({
+      toggleSwitchAlignment: newValue
+    }),
+    value: attributes.toggleSwitchAlignment
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoDimensions, {
     DimensionKey: "toggleSwitchDimensions",
     DimensionsTypes: {
@@ -1357,12 +1367,6 @@ const Inspector = props => {
       margin: true
     },
     props: props
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoAlignment, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Switch Alignment', 'wpmozo-addons-lite-for-gutenberg'),
-    onChange: newValue => setAttributes({
-      toggleSwitchAlignment: newValue
-    }),
-    value: attributes.toggleSwitchAlignment
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Title One'),
     className: "wpmozo-typography-panel",
@@ -2306,6 +2310,12 @@ const Inspector = props => {
       key: 'Background',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Background', 'wpmozo-addons-lite-for-gutenberg')
     }]
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoAlignment, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Heading Alignment', 'wpmozo-addons-lite-for-gutenberg'),
+    onChange: newValue => setAttributes({
+      headingAlignment: newValue
+    }),
+    value: attributes.headingAlignment
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.BaseControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Heading Lavel', 'wpmozo-addons-lite-for-gutenberg')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ButtonGroup, null, headingLavels.map((item, key) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
@@ -2313,13 +2323,7 @@ const Inspector = props => {
     onClick: newValue => setAttributes({
       headingLavel: item.value
     })
-  }, item.label)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoAlignment, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Heading Alignment', 'wpmozo-addons-lite-for-gutenberg'),
-    onChange: newValue => setAttributes({
-      headingAlignment: newValue
-    }),
-    value: attributes.headingAlignment
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+  }, item.label))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Pre Text Settings', 'wpmozo-addons-lite-for-gutenberg'),
     className: "wpmozo-typography-panel",
     initialOpen: false
@@ -6558,15 +6562,15 @@ const Inspector = props => {
       key: 'Color',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Text Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoTypography, {
-    TypographyKey: "content",
-    props: props
   }), 'milo' !== attributes.layout && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoAlignment, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Content Alignment', 'wpmozo-addons-lite-for-gutenberg'),
     onChange: newValue => setAttributes({
       contentAlign: newValue
     }),
     value: attributes.contentAlign
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoTypography, {
+    TypographyKey: "content",
+    props: props
   }))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Inspector);
@@ -11999,6 +12003,10 @@ const attributes = {
   iconColor: {
     type: "string"
   },
+  iconAlign: {
+    type: "string",
+    default: "center"
+  },
   useIconFontSize: {
     type: "boolean",
     default: false
@@ -12568,6 +12576,12 @@ const Inspector = props => {
       key: 'Color',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoAlignment, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon Alignment', 'wpmozo-addons-lite-for-gutenberg'),
+    onChange: newValue => setAttributes({
+      iconAlign: newValue
+    }),
+    value: attributes.iconAlign
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Use Icon Font Size', 'wpmozo-addons-lite-for-gutenberg'),
     checked: attributes.useIconFontSize,
@@ -12628,15 +12642,15 @@ const Inspector = props => {
     onClick: newValue => setAttributes({
       titleLavel: item.value
     })
-  }, item.label)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoTypography, {
-    TypographyKey: "title",
-    props: props
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoAlignment, {
+  }, item.label)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoAlignment, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Title Alignment', 'wpmozo-addons-lite-for-gutenberg'),
     onChange: newValue => setAttributes({
       titleAlign: newValue
     }),
     value: attributes.titleAlign
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoTypography, {
+    TypographyKey: "title",
+    props: props
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Description', 'wpmozo-addons-lite-for-gutenberg'),
     className: "wpmozo-typography-panel",
@@ -12648,15 +12662,15 @@ const Inspector = props => {
       key: 'Color',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Text Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoTypography, {
-    TypographyKey: "description",
-    props: props
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoAlignment, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Description Alignment', 'wpmozo-addons-lite-for-gutenberg'),
     onChange: newValue => setAttributes({
       descriptionAlign: newValue
     }),
     value: attributes.descriptionAlign
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoTypography, {
+    TypographyKey: "description",
+    props: props
   })), attributes.showButton && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Button Style', 'wpmozo-addons-lite-for-gutenberg'),
     className: "wpmozo-typography-panel",
@@ -12794,6 +12808,11 @@ const Style = ({
     selector: '.wpmozo-adfgu-tilt-image-inner-wrapper:before',
     style: {
       'background-color': attributes.overlayColor
+    }
+  }, {
+    selector: '.wpmozo-adfgu-tilt-icon',
+    style: {
+      'text-align': attributes.iconAlign
     }
   }, {
     selector: '.wpmozo-adfgu-tilt-icon i',
@@ -13525,9 +13544,6 @@ const {
 } = wp.components;
 const el = wp.element.createElement;
 const options = wpmozo_adfgu_editor_object.icons;
-const {
-  Component
-} = wp.element;
 const WpmozoIconpicker = function (args) {
   const iconSetValue = function (value = null) {
     props.setAttributes({
@@ -14070,34 +14086,37 @@ const WpmozoTypography = function (args) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/url */ "@wordpress/url");
-/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_url__WEBPACK_IMPORTED_MODULE_1__);
-
 
 (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.subscribe)(() => {
-  const isSavingPost = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.select)('core/editor').isSavingPost(),
-    isAutosavingPost = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.select)('core/editor').isAutosavingPost(),
+  const isSaving = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.select)('core/editor').isSavingPost(),
+    isAutosaving = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.select)('core/editor').isAutosavingPost(),
     postId = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.select)('core/editor').getCurrentPostId(),
     postType = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.select)('core/editor').getCurrentPostType(),
     currentPost = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.select)('core/editor').getCurrentPost(),
-    siteUrl = wpmozo_adfgu_editor_object.url;
-  if (isSavingPost && !isAutosavingPost) {
+    siteUrl = wpmozo_adfgu_editor_object.restUrl;
+  if (!isSaving && !isAutosaving) {
+    jQuery('body').removeClass('wpmozo-saving-dynamic-style');
+  }
+  if (isSaving && !isAutosaving) {
     if (window.wpmozo.wpmozo_is_empty(siteUrl)) {
       return;
     }
-    const apiUrl = siteUrl + '/wp-json/wpmozo/v1/save-dynamic-style';
+    const apiUrl = siteUrl + 'wpmozo/v1/save-dynamic-style';
     let style = window.wpmozo.extractCssByClass(),
       ID = currentPost.hasOwnProperty('wp_id') ? currentPost.wp_id : postId;
-    fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        post_id: ID,
-        style: style
-      })
-    });
+    if (!jQuery('body').hasClass('wpmozo-saving-dynamic-style')) {
+      jQuery('body').addClass('wpmozo-saving-dynamic-style');
+      fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          post_id: ID,
+          style: style
+        })
+      });
+    }
   }
 });
 
@@ -14190,16 +14209,6 @@ module.exports = window["wp"]["i18n"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["keycodes"];
-
-/***/ }),
-
-/***/ "@wordpress/url":
-/*!*****************************!*\
-  !*** external ["wp","url"] ***!
-  \*****************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["url"];
 
 /***/ })
 

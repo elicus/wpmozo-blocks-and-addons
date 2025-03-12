@@ -1,5 +1,9 @@
 
-import { WpmozoMediaUploader, WpmozoColorPicker, WpmozoTypography } from '../../components/index';
+import { 
+    WpmozoMediaUploader,
+    WpmozoColorPicker,
+    WpmozoTypography 
+} from '../../components/index';
 import { __ } from "@wordpress/i18n";
 import { InspectorControls } from "@wordpress/block-editor";
 import { 
@@ -7,8 +11,7 @@ import {
     ToggleControl,
     TextControl,
     SelectControl,
-    RangeControl,
-    ColorPicker
+    RangeControl
 } from "@wordpress/components";
 
 const Inspector = (props) => {
