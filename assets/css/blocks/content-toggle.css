@@ -131,6 +131,7 @@
     align-items: center;
     gap: 3px;
     width: 50%;
+    word-break: break-word;
 }
 .wpmozo-adfgu-toggle-button-wrap.wpmozo_toggle .wpmozo-adfgu-toggle-title-wrap h5 {
     margin: 6px;

@@ -15,12 +15,24 @@ const Style = ({attributes, ID, clientId}) => {
     convertedStyle = window.wpmozo.convetInlineStyleStr( toConvertStyles, attributes ),
     flexDirection = attributes.displayInStack ? 'column' : 'initial',
     headingAlignment = ( 'left' === attributes.headingAlignment ) ? 'flex-start' : 'flex-end',
+    preTextAlignment = ( 'left' === attributes.preTextAlignment ) ? 'flex-start' : 'flex-end',
+    mainTextAlignment = ( 'left' === attributes.mainTextAlignment ) ? 'flex-start' : 'flex-end',
+    postTextAlignment = ( 'left' === attributes.postTextAlignment ) ? 'flex-start' : 'flex-end',
     preTextAddi = convertedStyle.preText + convertedStyle.preTextDimensions,
     mainTextAddi = convertedStyle.mainText + convertedStyle.mainTextDimensions,
     postTextAddi = convertedStyle.postText + convertedStyle.postTextDimensions;
 
     if ( 'center' === attributes.headingAlignment ) {
     	headingAlignment = 'center';
+    }
+    if ( 'center' === attributes.preTextAlignment ) {
+        preTextAlignment = 'center';
+    }
+    if ( 'center' === attributes.mainTextAlignment ) {
+        mainTextAlignment = 'center';
+    }
+    if ( 'center' === attributes.postTextAlignment ) {
+        postTextAlignment = 'center';
     }
 
     let allInline = [
@@ -51,6 +63,7 @@ const Style = ({attributes, ID, clientId}) => {
     		style: {
     			'color': attributes.preTextColor,
     			'background': attributes.preTextBackground,
+                'align-self': preTextAlignment
     		},
     		additional: preTextAddi,
     	},
@@ -66,6 +79,7 @@ const Style = ({attributes, ID, clientId}) => {
     		style: {
     			'color': attributes.mainTextColor,
     			'background': attributes.mainTextBackground,
+                'align-self': mainTextAlignment
     		},
     		additional: mainTextAddi,
     	},
@@ -81,6 +95,7 @@ const Style = ({attributes, ID, clientId}) => {
     		style: {
     			'color': attributes.postTextColor,
     			'background': attributes.postTextBackground,
+                'align-self': postTextAlignment
     		},
     		additional: postTextAddi,
     	},

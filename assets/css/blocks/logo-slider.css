@@ -168,3 +168,6 @@
     height: auto;
     object-fit: contain;
 }
+.wpmozo-adfgu-logo-slider-pagination .swiper-pagination {
+    width: auto !important;
+}

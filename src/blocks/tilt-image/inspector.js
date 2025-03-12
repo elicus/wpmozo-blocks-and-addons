@@ -435,6 +435,10 @@ const Inspector = (props) => {
                         <WpmozoDimensions
                             DimensionKey='button'
                             props={props}
+                            DimensionsTypes={{
+                                padding: true,
+                                margin: true
+                            }}
                         />
                     </PanelBody>
                 }

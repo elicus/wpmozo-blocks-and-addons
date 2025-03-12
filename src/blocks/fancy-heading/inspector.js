@@ -139,6 +139,11 @@ const Inspector = (props) => {
                             ]
                         }}
                     />
+                    <WpmozoAlignment
+                        label={__( 'Pre Text Alignment', 'wpmozo-addons-lite-for-gutenberg')}
+                        onChange={ ( newValue ) => setAttributes( { preTextAlignment: newValue } ) }
+                        value={ attributes.preTextAlignment }
+                    />
                     <WpmozoTypography
                         TypographyKey="preText"
                         props={props}
@@ -184,6 +189,11 @@ const Inspector = (props) => {
                             ]
                         }}
                     />
+                    <WpmozoAlignment
+                        label={__( 'Main Text Alignment', 'wpmozo-addons-lite-for-gutenberg')}
+                        onChange={ ( newValue ) => setAttributes( { mainTextAlignment: newValue } ) }
+                        value={ attributes.mainTextAlignment }
+                    />
                     <WpmozoTypography
                         TypographyKey="mainText"
                         props={props}
@@ -228,6 +238,11 @@ const Inspector = (props) => {
                                 },
                             ]
                         }}
+                    />
+                    <WpmozoAlignment
+                        label={__( 'Post Text Alignment', 'wpmozo-addons-lite-for-gutenberg')}
+                        onChange={ ( newValue ) => setAttributes( { postTextAlignment: newValue } ) }
+                        value={ attributes.postTextAlignment }
                     />
                     <WpmozoTypography
                         TypographyKey="postText"

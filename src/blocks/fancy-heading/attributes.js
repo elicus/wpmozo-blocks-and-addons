@@ -34,6 +34,10 @@ const attributes = {
     headingBackground: {
         type: "string",
     },
+    preTextAlignment: {
+        type: "string",
+        default: "center"
+    },
     preTextColor: {
         type: "string",
     },
@@ -83,6 +87,10 @@ const attributes = {
     mainTextColor: {
         type: "string",
     },
+    mainTextAlignment: {
+        type: "string",
+        default: "center"
+    },
     mainTextBackground: {
         type: "string",
     },
@@ -128,6 +136,10 @@ const attributes = {
     },
     postTextColor: {
         type: "string",
+    },
+    postTextAlignment: {
+        type: "string",
+        default: "center"
     },
     postTextBackground: {
         type: "string",

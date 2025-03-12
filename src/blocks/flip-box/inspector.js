@@ -135,7 +135,7 @@ const Inspector = (props) => {
                                 onChange={ ( newValue ) => setAttributes( { depth3dEffect: newValue } ) }
                             />
                             <ToggleControl
-                                label={ __( 'Shacke On Flip', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                label={ __( 'Shake On Flip', 'wpmozo-addons-lite-for-gutenberg' ) }
                                 checked={ attributes.shakeOnFlip }
                                 onChange={ ( newValue ) => setAttributes( { shakeOnFlip: newValue } ) }
                             />

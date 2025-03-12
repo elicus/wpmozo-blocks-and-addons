@@ -7,8 +7,8 @@ import Icon from "./icon.js";
 import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
-registerBlockType( 'wpmozo/fancy-test', {
-	title: __( 'Fancy Test', 'wpmozo-addons-lite-for-gutenberg' ),
+registerBlockType( 'wpmozo/fancy-text', {
+	title: __( 'Fancy Text', 'wpmozo-addons-lite-for-gutenberg' ),
     icon: Icon,
     apiVersion: 3,
     category: 'wpmozo',
