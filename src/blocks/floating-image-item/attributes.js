@@ -41,7 +41,13 @@ const attributes = {
 	},
 	speedCurve: {
 		type: "string",
-	}
+	},
+	imageborderRadius: {
+      	type: "string",
+  	},
+    imageborder: {
+      	type: "object",
+  	}
 };
 
 export default attributes;

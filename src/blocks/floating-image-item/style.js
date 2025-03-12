@@ -3,18 +3,24 @@ const Style = ({attributes, ID, clientId}) => {
 
     const parent = '#block-'+clientId,
     wpmozoCoreFun = window.wpmozo,
-    wpmozo_is_empty = wpmozoCoreFun.wpmozo_is_empty;
+    wpmozo_is_empty = wpmozoCoreFun.wpmozo_is_empty,
+    toConvertStyles = [
+        'image'
+    ];
     
+    let css           = '',
+        convertedStyle = wpmozoCoreFun.convetInlineStyleStr( toConvertStyles, attributes );
+
     let allInline = [
         { 
             selector: '.floating-image',
             style: {
                 'width': attributes.imagewidth,
                 'height': attributes.imageheight
-            }
+            },
+            additional: convertedStyle.image,
         }
-    ],
-    css           = '';
+    ];
 
     let generateStyle = wpmozoCoreFun.wpmozo_generate_style([{
         selector: parent,

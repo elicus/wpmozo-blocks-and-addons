@@ -1,6 +1,7 @@
 import { 
     WpmozoMediaUploader, 
-    WpmozoSize 
+    WpmozoSize,
+    WpmozoBorder
 } from '../../components/index';
 import { __ } from "@wordpress/i18n";
 import { InspectorControls } from "@wordpress/block-editor";
@@ -138,6 +139,12 @@ const Inspector = (props) => {
                 <PanelBody title={ __( 'Image Sizing', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoSize
                         SizeKey="image"
+                        props={props}
+                    />
+                </PanelBody>
+                 <PanelBody title={ __( 'Image Border', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <WpmozoBorder
+                        BorderKey="image"
                         props={props}
                     />
                 </PanelBody>

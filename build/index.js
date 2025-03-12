@@ -5384,6 +5384,12 @@ const attributes = {
   },
   speedCurve: {
     type: "string"
+  },
+  imageborderRadius: {
+    type: "string"
+  },
+  imageborder: {
+    type: "object"
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (attributes);
@@ -5628,6 +5634,13 @@ const Inspector = props => {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoSize, {
     SizeKey: "image",
     props: props
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Image Border', 'wpmozo-addons-lite-for-gutenberg'),
+    className: "wpmozo-typography-panel",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoBorder, {
+    BorderKey: "image",
+    props: props
   }))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Inspector);
@@ -5688,15 +5701,18 @@ const Style = ({
 }) => {
   const parent = '#block-' + clientId,
     wpmozoCoreFun = window.wpmozo,
-    wpmozo_is_empty = wpmozoCoreFun.wpmozo_is_empty;
+    wpmozo_is_empty = wpmozoCoreFun.wpmozo_is_empty,
+    toConvertStyles = ['image'];
+  let css = '',
+    convertedStyle = wpmozoCoreFun.convetInlineStyleStr(toConvertStyles, attributes);
   let allInline = [{
-      selector: '.floating-image',
-      style: {
-        'width': attributes.imagewidth,
-        'height': attributes.imageheight
-      }
-    }],
-    css = '';
+    selector: '.floating-image',
+    style: {
+      'width': attributes.imagewidth,
+      'height': attributes.imageheight
+    },
+    additional: convertedStyle.image
+  }];
   let generateStyle = wpmozoCoreFun.wpmozo_generate_style([{
     selector: parent,
     style: {
