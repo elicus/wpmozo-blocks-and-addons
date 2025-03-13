@@ -17,7 +17,7 @@
  */
 
 $social_icons = '';
-if ( 'on' === $show_social_icon ) {
+if ( $show_social_icon ) {
 	if (
 		'' !== $website_url ||
 		'' !== $facebook_url ||
@@ -50,7 +50,7 @@ if ( '' !== $skill_bar ) {
 }
 
 $output .= sprintf(
-	'<div id="wpmozo_team_member_%7$s" class="wpmozo_team_member_card%8$s" data-link="%9$s" data-link_target="%10$s">
+	'<div id="wpmozo_team_member_%7$s" class="wpmozo_adfgu_team_member_card%8$s" data-link="%9$s" data-link_target="%10$s">
 		<div class="wpmozo_team_image_wrapper">%1$s</div>
 		<div class="wpmozo_team_content_wrapper">%2$s%3$s%4$s%5$s%6$s</div>
 	</div>',

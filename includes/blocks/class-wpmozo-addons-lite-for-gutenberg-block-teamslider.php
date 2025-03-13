@@ -143,6 +143,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 		$control_dot_style = $attributes['controlDotStyle'];
 		$arrows_position = $attributes['arrowsPosition'];
 		$slider_layout = $attributes['sliderLayout'];
+		$show_skills = $attributes['showSkills'];
 
 		$args = array(
 			'post_type'      => 'wpmozo-team-member',
@@ -156,16 +157,16 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 			$args['post_status'] = array( 'publish', 'private' );
 		}
 
-		// if ( '' !== $include_categories ) {
-		// 	$args['tax_query'] = array(
-		// 		array(
-		// 			'taxonomy' => 'wpmozo-team-member-category',
-		// 			'field'    => 'term_id',
-		// 			'terms'    => array_map( 'intval', explode( ',', $include_categories ) ),
-		// 			'operator' => 'IN',
-		// 		),
-		// 	);
-		// }
+		if ( ! empty( $include_categories ) ) {
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'wpmozo-team-member-category',
+					'field'    => 'term_id',
+					'terms'    => $include_categories,
+					'operator' => 'IN',
+				),
+			);
+		}
 
 		if ( isset( $post_order_by ) && '' !== $post_order_by ) {
 			$args['orderby'] = sanitize_text_field( $post_order_by );
@@ -199,7 +200,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 				$meta_fields       = get_post_meta( $post_id );
 				$skill_bar         = '';
 
-				if ( 'on' === $show_skills && '' !== $meta_fields['wpmozo_team_member_skills'][0] && '' !== $meta_fields['wpmozo_team_member_skills_value'][0] ) {
+				if ( $show_skills && '' !== $meta_fields['wpmozo_team_member_skills'][0] && '' !== $meta_fields['wpmozo_team_member_skills_value'][0] ) {
 					$team_skills       = explode( ',', $meta_fields['wpmozo_team_member_skills'][0] );
 					$team_skills_value = explode( ',', $meta_fields['wpmozo_team_member_skills_value'][0] );
 
@@ -294,8 +295,8 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 					if ( isset( $meta_fields['wpmozo_team_member_twitter'] ) && '' !== $meta_fields['wpmozo_team_member_twitter'][0] ) {
 						$twitter_url = sprintf(
 							'<a href="%1$s" target="%2$s">
-								<span class="wpmozo_adfgu_team_member_social_icon wpmozo_adfgu_team_twitter et-pb-icon">&#xe094;</span>
-							</a>',
+								<span class="wpmozo_adfgu_team_member_social_icon wpmozo_adfgu_team_twitter fa-brands fa-x-twitter"></span>
+							</a>',   
 							$meta_fields['wpmozo_team_member_twitter'][0],
 							'external' === $social_icon_link_target ? '_blank' : '_self'
 						);

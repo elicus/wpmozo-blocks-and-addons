@@ -17,7 +17,7 @@
  */
 
 $social_icons = '';
-if ( 'on' === $show_social_icon ) {
+if ( $show_social_icon ) {
 	if (
 		'' !== $website_url ||
 		'' !== $facebook_url ||
