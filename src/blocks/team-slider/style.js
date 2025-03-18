@@ -13,10 +13,10 @@ const Style = ({attributes, ID, clientId}) => {
     
     let allInline = [
         {
-            selector: '.logo-img',
+            selector: '.team-img',
             style: {
-                'width': attributes.logoWidth+'px',
-                'height': attributes.logoHeight+'px',
+                'width': attributes.teamWidth+'px',
+                'height': attributes.teamHeight+'px',
             }
         },
         {

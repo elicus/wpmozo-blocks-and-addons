@@ -129,6 +129,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 	 */
 	public function team_slider_render_callback( $attributes, $content ) {
 
+		$client_id = $attributes['clientId'];
 		$posts_number = $attributes['postsNumber'];
 		$include_categories = $attributes['includeCategories'];
 		$post_order_by = $attributes['postOrderBy'];
@@ -179,7 +180,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 		global $wp_the_query;
 		$query_backup = $wp_the_query;
 
-		$args = apply_filters( 'wpmozo_team_slider_args', $args, $this );
+		$args = apply_filters( 'wpmozo_adfgu_team_slider_args', $args, $this );
 
 		$query = new WP_Query( $args );
 
@@ -188,7 +189,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 				'<div class="wpmozo_adfgu_team_slider_container wpmozo_adfgu_swiper_inner_wrap %1$s">',
 				esc_attr( $slider_layout )
 			);
-			$output .= '<div class="swiper-container">';
+			$output .= sprintf( '<div class="swiper swiper-container" data-client-id="%1$s">', esc_attr( $client_id ) );
 			$output .= '<div class="swiper-wrapper">';
 
 			while ( $query->have_posts() ) {
@@ -385,7 +386,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 				);
 
 				$output .= sprintf(
-					'<div class="wpmozo_adfgu_swiper_navigation"%3$s>%1$s %2$s</div>',
+					'<div class="wpmozo_adfgu_swiper_navigation %3$s">%1$s %2$s</div>',
 					$next,
 					$prev,
 					$arrows_position

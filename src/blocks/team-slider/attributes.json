@@ -2,6 +2,9 @@
     "ID": {
         "type": "string"
     },
+    "clientId": {
+        "type": "string"
+    },
     "postsNumber": {
         "type": "string",
         "default": "10"
@@ -50,7 +53,7 @@
     },
     "memberPerSlide": {
         "type": "string",
-        "default": "4"
+        "default": "3"
     },
     "slidesPerGroup": {
         "type": "string",

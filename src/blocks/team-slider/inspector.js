@@ -304,7 +304,7 @@ const Inspector = (props) => {
                         onChange={ ( newValue ) => setAttributes( { showSkills: newValue } ) }
                     />
                 </PanelBody>
-                <PanelBody title={ __( 'Slider', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
+                <PanelBody title={ __( 'Slider', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <SelectControl
                         label={ __( 'Layout', 'wpmozo-addons-lite-for-gutenberg' ) }
                         value={ attributes.sliderLayout }
