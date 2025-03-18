@@ -3391,6 +3391,10 @@ const attributes = {
   frontContentColor: {
     type: "string"
   },
+  frontBackgroundColor: {
+    type: "string",
+    default: "#543EC4"
+  },
   frontTitletext: {
     type: "string"
   },
@@ -3462,6 +3466,10 @@ const attributes = {
   },
   backContentColor: {
     type: "string"
+  },
+  backBackgroundColor: {
+    type: "string",
+    default: "#863AD0"
   },
   backTitletext: {
     type: "string"
@@ -4084,7 +4092,6 @@ const Inspector = props => {
     [elementStyleType, setelEmentStyleType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('front'),
     [contentAlignType, setContentAlignType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('front'),
     [flipboxBorderType, setFlipboxBorderType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('front'),
-    [flipboxBackgroundType, setFlipboxBackgroundType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('front'),
     [flipboxWidthType, setFlipboxWidthType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('front'),
     [flipboxDimensionsType, setFlipboxDimensionsType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('front');
   const headingLavels = [{
@@ -4369,6 +4376,9 @@ const Inspector = props => {
     }, {
       key: 'ContentColor',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Content Color', 'wpmozo-addons-lite-for-gutenberg')
+    }, {
+      key: 'BackgroundColor',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Background Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.BaseControl, {
     className: "wpmozo-button-tabs-wrap"
@@ -4403,6 +4413,9 @@ const Inspector = props => {
     }, {
       key: 'ContentColor',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Content Color', 'wpmozo-addons-lite-for-gutenberg')
+    }, {
+      key: 'BackgroundColor',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Background Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.BaseControl, {
     className: "wpmozo-button-tabs-wrap"
@@ -5011,14 +5024,14 @@ const Style = ({
   }, {
     selector: '.wpmozo-adfgu-flip-box-front',
     style: {
-      'background-color': attributes.frontFlipboxBackground,
+      'background-color': attributes.frontBackgroundColor,
       'align-items': frontVerticalAlign
     },
     additional: convertedStyle.frontFlipbox
   }, {
     selector: '.wpmozo-adfgu-flip-box-back',
     style: {
-      'background-color': attributes.backFlipboxBackground,
+      'background-color': attributes.backBackgroundColor,
       'align-items': backVerticalAlign
     },
     additional: convertedStyle.backFlipbox
@@ -10855,6 +10868,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/server-side-render */ "@wordpress/server-side-render");
 /* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_9__);
 
 
 
@@ -10864,6 +10881,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+window.wpmozo.isSwiperInitialized = false;
 const Edit = props => {
   let wpmozoCoreFun = window.wpmozo,
     attributes = props.attributes,
@@ -10882,7 +10902,7 @@ const Edit = props => {
   if (attributes.enableDynamicDots && ('stretched_dot' === attributes.controlDotStyle || 'line' === attributes.controlDotStyle || 'rounded_line' === attributes.controlDotStyle)) {
     paginationClass = '';
   }
-  const initSwiper = (attributes, props) => {
+  const initSwiper = (attributes, props = {}) => {
     let teamPerSlide = parseInt(attributes.memberPerSlide),
       spaceBetweenSlides = parseInt(attributes.spaceBetweenSlides),
       slidesPerGroup = parseInt(attributes.slidesPerGroup),
@@ -10995,15 +11015,9 @@ const Edit = props => {
   const parentRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useRef)(null);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
     const afterRender = new MutationObserver(() => {
-      if (jQuery('.swiper[data-client-id="' + clientId + '"]').length > 0 && !jQuery('.swiper[data-client-id="' + clientId + '"]').hasClass('swiper-initialized')) {
-        let el = jQuery('.swiper[data-client-id="' + clientId + '"]')[0],
-          swiperInstance = el.hasOwnProperty('swiper') ? el.swiper : null;
-        if (!wpmozoCoreFun.wpmozo_is_empty(swiperInstance)) {
-          swiperInstance.destroy(true, true);
-        }
-        console.log('hhrthtr');
-        console.log(attributes);
+      if (jQuery('.swiper[data-client-id="' + clientId + '"]').length > 0 && !window.wpmozo.isSwiperInitialized) {
         swiperInstance = initSwiper(attributes, props);
+        window.wpmozo.isSwiperInitialized = true;
       }
     });
     if (parentRef.current) {
@@ -11014,9 +11028,35 @@ const Edit = props => {
     }
     return () => afterRender.disconnect();
   }, []);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
-    console.log(attributes);
-  }, [attributes.memberPerSlide]);
+  const SwiperLoader = args => {
+    let attributes = args.attributes;
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
+      return () => {
+        (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_9__.doAction)('server-side-loading-finished', attributes, props);
+      };
+    });
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      style: {
+        position: 'relative'
+      }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      style: {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        marginTop: '-9px',
+        marginLeft: '-9px'
+      }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Spinner, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      style: {
+        opacity: 0.3
+      }
+    }));
+  };
+  (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_9__.addAction)('server-side-loading-finished', 'function_name', afterLoading);
+  function afterLoading(attributes, props) {
+    swiperInstance = initSwiper(attributes, props);
+  }
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_1__["default"], {
     ...props
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -11025,7 +11065,8 @@ const Edit = props => {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_7___default()), {
     block: "wpmozo/team-slider",
     attributes: attributes,
-    httpMethod: "POST"
+    httpMethod: "POST",
+    LoadingResponsePlaceholder: SwiperLoader
   })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
@@ -14362,6 +14403,16 @@ module.exports = window["wp"]["data"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "@wordpress/hooks":
+/*!*******************************!*\
+  !*** external ["wp","hooks"] ***!
+  \*******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["hooks"];
 
 /***/ }),
 

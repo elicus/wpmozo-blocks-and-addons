@@ -13,6 +13,9 @@ import {
 import { useEffect, useRef } from '@wordpress/element';
 import { dispatch } from "@wordpress/data";
 import ServerSideRender from '@wordpress/server-side-render';
+import { Spinner } from '@wordpress/components';
+import { doAction, addAction } from '@wordpress/hooks';
+window.wpmozo.isSwiperInitialized = false;
 
 const Edit = ( props ) => {
 
@@ -46,7 +49,7 @@ const Edit = ( props ) => {
         paginationClass = '';
     }
 
-    const initSwiper = ( attributes, props ) => {
+    const initSwiper = ( attributes, props = {} ) => {
 
         let teamPerSlide = parseInt( attributes.memberPerSlide ),
         spaceBetweenSlides = parseInt( attributes.spaceBetweenSlides ),
@@ -176,19 +179,10 @@ const Edit = ( props ) => {
         const afterRender = new MutationObserver(() => {
             if ( 
                 jQuery('.swiper[data-client-id="'+clientId+'"]').length > 0 &&
-                ! jQuery('.swiper[data-client-id="'+clientId+'"]').hasClass('swiper-initialized') 
+                ! window.wpmozo.isSwiperInitialized
             ) {
-
-                let el = jQuery( '.swiper[data-client-id="'+clientId+'"]' )[0],
-                swiperInstance = ( el.hasOwnProperty( 'swiper' ) ) ? el.swiper : null;
-
-                if ( ! wpmozoCoreFun.wpmozo_is_empty( swiperInstance ) ) {
-                    swiperInstance.destroy(true, true);
-                }
-
-                console.log('hhrthtr');
-                console.log( attributes );
                 swiperInstance = initSwiper( attributes, props );
+                window.wpmozo.isSwiperInitialized = true;
             }
         });
 
@@ -200,13 +194,33 @@ const Edit = ( props ) => {
 
     }, []);
 
-    useEffect(() => {
+    const SwiperLoader = (args) => {
 
-        console.log( attributes );
+        let attributes = args.attributes;
 
-    }, [
-        attributes.memberPerSlide
-    ]);
+        useEffect(() => {
+            return () => {
+                doAction('server-side-loading-finished', attributes, props);
+            };
+        });
+
+        return (
+            <div style={{ position: 'relative' }}>
+                <div style={{ position: 'absolute', top: '50%', left: '50%', marginTop: '-9px', marginLeft: '-9px' }}>
+                    <Spinner />
+                </div>
+                <div style={{ opacity: 0.3 }}></div>
+            </div>
+        );
+        
+
+    }
+
+    addAction( 'server-side-loading-finished', 'function_name', afterLoading );
+
+    function afterLoading( attributes, props ){
+        swiperInstance = initSwiper( attributes, props );
+    }
     
     return (
         <Fragment>
@@ -216,6 +230,7 @@ const Edit = ( props ) => {
                     block="wpmozo/team-slider"
                     attributes={ attributes }
                     httpMethod="POST"
+                    LoadingResponsePlaceholder={SwiperLoader}
                 />
             </div>
         </Fragment>
