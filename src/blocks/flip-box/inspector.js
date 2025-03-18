@@ -80,7 +80,6 @@ const Inspector = (props) => {
     [ elementStyleType, setelEmentStyleType ] = useState('front'),
     [ contentAlignType, setContentAlignType ] = useState('front'),
     [ flipboxBorderType, setFlipboxBorderType ] = useState('front'),
-    [ flipboxBackgroundType, setFlipboxBackgroundType ] = useState('front'),
     [ flipboxWidthType, setFlipboxWidthType ] = useState('front'),
     [ flipboxDimensionsType, setFlipboxDimensionsType ] = useState('front');
 
@@ -456,6 +455,10 @@ const Inspector = (props) => {
                                         {
                                             key: 'ContentColor',
                                             label: __( 'Content Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                        },
+                                        {
+                                            key: 'BackgroundColor',
+                                            label: __( 'Background Color', 'wpmozo-addons-lite-for-gutenberg' ),
                                         } 
                                     ]}
                                 />
@@ -521,7 +524,11 @@ const Inspector = (props) => {
                                         {
                                             key: 'ContentColor',
                                             label: __( 'Content Color', 'wpmozo-addons-lite-for-gutenberg' ),
-                                        } 
+                                        },
+                                        {
+                                            key: 'BackgroundColor',
+                                            label: __( 'Background Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                        }
                                     ]}
                                 />
                                 <BaseControl

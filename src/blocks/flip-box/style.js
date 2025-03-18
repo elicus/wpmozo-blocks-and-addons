@@ -60,7 +60,7 @@ const Style = ({attributes, ID, clientId}) => {
     	{
     		selector: '.wpmozo-adfgu-flip-box-front',
     		style: {
-    			'background-color': attributes.frontFlipboxBackground,
+    			'background-color': attributes.frontBackgroundColor,
     			'align-items': frontVerticalAlign
     		},
     		additional: convertedStyle.frontFlipbox,
@@ -68,7 +68,7 @@ const Style = ({attributes, ID, clientId}) => {
     	{
     		selector: '.wpmozo-adfgu-flip-box-back',
     		style: {
-    			'background-color': attributes.backFlipboxBackground,
+    			'background-color': attributes.backBackgroundColor,
     			'align-items': backVerticalAlign
     		},
     		additional: convertedStyle.backFlipbox,

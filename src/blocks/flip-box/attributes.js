@@ -143,6 +143,10 @@ const attributes = {
     frontContentColor: {
     	type: "string",
     },
+    frontBackgroundColor: {
+        type: "string",
+        default: "#543EC4"
+    },
     frontTitletext: {
         type: "string",
     },
@@ -214,6 +218,10 @@ const attributes = {
     },
     backContentColor: {
     	type: "string",
+    },
+    backBackgroundColor: {
+        type: "string",
+        default: "#863AD0"
     },
     backTitletext: {
         type: "string",

@@ -3391,6 +3391,10 @@ const attributes = {
   frontContentColor: {
     type: "string"
   },
+  frontBackgroundColor: {
+    type: "string",
+    default: "#543EC4"
+  },
   frontTitletext: {
     type: "string"
   },
@@ -3462,6 +3466,10 @@ const attributes = {
   },
   backContentColor: {
     type: "string"
+  },
+  backBackgroundColor: {
+    type: "string",
+    default: "#863AD0"
   },
   backTitletext: {
     type: "string"
@@ -4084,7 +4092,6 @@ const Inspector = props => {
     [elementStyleType, setelEmentStyleType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('front'),
     [contentAlignType, setContentAlignType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('front'),
     [flipboxBorderType, setFlipboxBorderType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('front'),
-    [flipboxBackgroundType, setFlipboxBackgroundType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('front'),
     [flipboxWidthType, setFlipboxWidthType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('front'),
     [flipboxDimensionsType, setFlipboxDimensionsType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('front');
   const headingLavels = [{
@@ -4369,6 +4376,9 @@ const Inspector = props => {
     }, {
       key: 'ContentColor',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Content Color', 'wpmozo-addons-lite-for-gutenberg')
+    }, {
+      key: 'BackgroundColor',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Background Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.BaseControl, {
     className: "wpmozo-button-tabs-wrap"
@@ -4403,6 +4413,9 @@ const Inspector = props => {
     }, {
       key: 'ContentColor',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Content Color', 'wpmozo-addons-lite-for-gutenberg')
+    }, {
+      key: 'BackgroundColor',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Background Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.BaseControl, {
     className: "wpmozo-button-tabs-wrap"
@@ -5011,14 +5024,14 @@ const Style = ({
   }, {
     selector: '.wpmozo-adfgu-flip-box-front',
     style: {
-      'background-color': attributes.frontFlipboxBackground,
+      'background-color': attributes.frontBackgroundColor,
       'align-items': frontVerticalAlign
     },
     additional: convertedStyle.frontFlipbox
   }, {
     selector: '.wpmozo-adfgu-flip-box-back',
     style: {
-      'background-color': attributes.backFlipboxBackground,
+      'background-color': attributes.backBackgroundColor,
       'align-items': backVerticalAlign
     },
     additional: convertedStyle.backFlipbox
