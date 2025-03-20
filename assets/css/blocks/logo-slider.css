@@ -31,67 +31,6 @@
     font-size: 18px;
     color: inherit;
 }
-.wpmozo-adfgu-arrows-outside .swiper-button-next {
-    -webkit-transform: translateX(calc(100% + 10px)) translateY(-50%);
-    -moz-transform: translateX(calc(100% + 10px)) translateY(-50%);
-    transform: translateX(calc(100% + 10px)) translateY(-50%);
-}
-.wpmozo-adfgu-arrows-outside .swiper-button-prev {
-    -webkit-transform: translateX(calc(-100% - 10px)) translateY(-50%);
-    -moz-transform: translateX(calc(-100% - 10px)) translateY(-50%);
-    transform: translateX(calc(-100% - 10px)) translateY(-50%);
-}
-.wpmozo-adfgu-arrows-bottom_center,
-.wpmozo-adfgu-arrows-bottom_left,
-.wpmozo-adfgu-arrows-bottom_right,
-.wpmozo-adfgu-arrows-top_center,
-.wpmozo-adfgu-arrows-top_left,
-.wpmozo-adfgu-arrows-top_right {
-    flex-direction: row-reverse;
-}
-.wpmozo-adfgu-arrows-bottom_center .swiper-button-next,
-.wpmozo-adfgu-arrows-bottom_center .swiper-button-prev,
-.wpmozo-adfgu-arrows-bottom_left .swiper-button-next,
-.wpmozo-adfgu-arrows-bottom_left .swiper-button-prev,
-.wpmozo-adfgu-arrows-bottom_right .swiper-button-next,
-.wpmozo-adfgu-arrows-bottom_right .swiper-button-prev,
-.wpmozo-adfgu-arrows-top_center .swiper-button-next,
-.wpmozo-adfgu-arrows-top_center .swiper-button-prev,
-.wpmozo-adfgu-arrows-top_left .swiper-button-next,
-.wpmozo-adfgu-arrows-top_left .swiper-button-prev,
-.wpmozo-adfgu-arrows-top_right .swiper-button-next,
-.wpmozo-adfgu-arrows-top_right .swiper-button-prev {
-    position: relative;
-    top: auto;
-    transform: none;
-}
-.wpmozo-adfgu-arrows-bottom_center .swiper-button-next,
-.wpmozo-adfgu-arrows-bottom_left .swiper-button-next,
-.wpmozo-adfgu-arrows-bottom_right .swiper-button-next,
-.wpmozo-adfgu-arrows-top_center .swiper-button-next,
-.wpmozo-adfgu-arrows-top_left .swiper-button-next,
-.wpmozo-adfgu-arrows-top_right .swiper-button-next {
-    margin-left: 15px;
-}
-.wpmozo-adfgu-arrows-top_center,
-.wpmozo-adfgu-arrows-top_left,
-.wpmozo-adfgu-arrows-top_right {
-    order: -1;
-    margin-bottom: 15px;
-}
-.wpmozo-adfgu-arrows-bottom_center,
-.wpmozo-adfgu-arrows-bottom_left,
-.wpmozo-adfgu-arrows-bottom_right {
-    margin-top: 15px;
-}
-.wpmozo-adfgu-arrows-bottom_left,
-.wpmozo-adfgu-arrows-top_left {
-    justify-content: flex-end;
-}
-.wpmozo-adfgu-arrows-bottom_center,
-.wpmozo-adfgu-arrows-top_center {
-    justify-content: center;
-}
 .wpmozo-adfgu-logo-slider-main .swiper-pagination {
     position: relative;
     margin-top: 15px;

@@ -35,14 +35,43 @@ const initSwiper = ( attributes ) => {
 
     let loop =  attributes.sliderLoop,
         speed = attributes.transitionDuration,
+        slideEffect = attributes.slideEffect,
         arrows = false,
         dots = false,
         autoplaySlides = false,
-        slidesPerGroupSkip = 0;
+        slidesPerGroupSkip = 0,
+        $cubeEffect = false,
+        $coverflowEffect = false,
+        $fadeEffect = false, 
+        autoHeight = attributes.autoHeightSlider;
+
+    teamPerSlide = ( 'slide' === slideEffect || 'coverflow' === slideEffect ) ? teamPerSlide : 1;
 
     if ( teamPerSlide > slidesPerGroup && 1 !== slidesPerGroup ) {
         slidesPerGroupSkip = teamPerSlide - slidesPerGroup;
+    } 
+
+    if ( 'cube' === slideEffect ) {
+        $cubeEffect = {
+            shadow: false,
+            slideShadows: false,
+        };
     }
+
+    if ( 'coverflow' === slideEffect ) {
+        $coverflowEffect = {
+            rotate: attributes.coverflowRotate,
+            stretch: 0,
+            depth: attributes.coverflowDepth,
+            modifier: 1,
+            slideShadows : attributes.enableCoverflowShadow,
+        };
+    }
+
+    if ( 'fade' === slideEffect ) {
+        $fadeEffect = { crossFade: true };
+    }
+
 
     if ( attributes.showArrow ) {
         arrows = {
@@ -87,11 +116,16 @@ const initSwiper = ( attributes ) => {
         autoplay: autoplaySlides,
         loop: loop,
         speed: speed,
+        effect: slideEffect,
+        cubeEffect: $cubeEffect,
+        coverflowEffect: $coverflowEffect,
+        fadeEffect: $fadeEffect,
         pagination: dots,
         navigation: arrows,
         grabCursor: true,
         observer: true,
         observeParents: true,
+        autoHeight: autoHeight,
         breakpoints: {
             981: {
                 slidesPerView: teamPerSlide,
@@ -113,27 +147,27 @@ const initSwiper = ( attributes ) => {
 
     const swiper = new Swiper('.swiper[data-client-id="'+clientId+'"]', options );
 
-    // jQuery(document).on("mouseenter", '.swiper[data-client-id="'+clientId+'"]', function(e) {
+    jQuery(document).on("mouseenter", '.swiper[data-client-id="'+clientId+'"]', function(e) {
 
-    //     let swiperContainer = jQuery(this)[0],
-    //     swiper = ( swiperContainer.hasOwnProperty( 'swiper' ) ) ? swiperContainer.swiper : null;
+        let swiperContainer = jQuery(this)[0],
+        swiper = ( swiperContainer.hasOwnProperty( 'swiper' ) ) ? swiperContainer.swiper : null;
 
-    //     if ( swiper.params.autoplay.disableOnInteraction && typeof swiper.autoplay.stop === "function" ) {
-    //         swiper.autoplay.stop();
-    //     }
+        if ( swiper.params.autoplay.disableOnInteraction && typeof swiper.autoplay.stop === "function" ) {
+            swiper.autoplay.stop();
+        }
 
-    // });
+    });
 
-    // jQuery(document).on("mouseleave", '.swiper[data-client-id="'+clientId+'"]', function(e) {
+    jQuery(document).on("mouseleave", '.swiper[data-client-id="'+clientId+'"]', function(e) {
 
-    //     let swiperContainer = jQuery(this)[0],
-    //     swiper = ( swiperContainer.hasOwnProperty( 'swiper' ) ) ? swiperContainer.swiper : null;
+        let swiperContainer = jQuery(this)[0],
+        swiper = ( swiperContainer.hasOwnProperty( 'swiper' ) ) ? swiperContainer.swiper : null;
 
-    //     if ( swiper.params.autoplay.disableOnInteraction && typeof swiper.autoplay.start === "function" ) {
-    //         swiper.autoplay.start();
-    //     }
+        if ( swiper.params.autoplay.disableOnInteraction && typeof swiper.autoplay.start === "function" ) {
+            swiper.autoplay.start();
+        }
       
-    // });
+    });
 
     return swiper;
 }
@@ -181,6 +215,11 @@ const Edit = ( props ) => {
         <Fragment>
             <Inspector {...props} />
             <div { ...blockProps }>
+                <Style 
+                    attributes={attributes} 
+                    ID={ID}
+                    clientId={clientId}  
+                />
                 <ServerSideRender
                     block="wpmozo/team-slider"
                     attributes={ attributes }

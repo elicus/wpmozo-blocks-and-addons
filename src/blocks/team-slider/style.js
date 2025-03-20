@@ -132,6 +132,36 @@ const Style = ({attributes, ID, clientId}) => {
         });
     }
 
+    if ( 'on' === attributes.equalizeHeight ) {
+        allInline.push({
+            selector: '.swiper-wrapper',
+            style: { 
+                'align-items': 'stretch'
+            }
+        });
+        allInline.push({
+            selector: '.swiper-slide',
+            style: { 
+                'height': 'auto'
+            }
+        });
+        allInline.push({
+            selector: '.wpmozo-adfgu-team-member-card',
+            style: { 
+                'height': '100%'
+            }
+        });
+    }else{
+        if ( 1 === attributes.memberPerSlide ) {
+            allInline.push({
+                selector: '.swiper-wrapper',
+                style: { 
+                    'align-items': 'center'
+                }
+            });
+        }
+    }
+
     let generateStyle = wpmozoCoreFun.wpmozo_generate_style(allInline);
     
     if ( ! wpmozoCoreFun.wpmozo_is_empty( generateStyle ) ) {

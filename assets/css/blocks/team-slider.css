@@ -1,103 +1,103 @@
-.wpmozo_adfgu_swiper_wrapper {
+.wpmozo-adfgu-team-slider-wrap {
     position: relative;
 }
-.wpmozo_adfgu_team_link {
+.wpmozo-adfgu-team-link {
     cursor: pointer;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_member_card {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-member-card {
     overflow: hidden;
     background: #fff;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_member_image {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-member-image {
     line-height: 0;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_member_image img {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-member-image img {
     width: 100%;
     border: 0 solid #333;
     object-fit: cover;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_member_social_icon {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-member-social-icon {
     border-style: solid;
     margin-right: 5px;
     margin-bottom: 5px;
     padding: 5px;
     font-size: 16px;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_social_wrapper a:last-child .wpmozo_adfgu_team_member_social_icon {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-social-wrapper a:last-child .wpmozo-adfgu-team-member-social-icon {
     margin-right: 0;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_content_wrapper {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-content-wrapper {
     width: 100%;
     padding: 20px;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_website {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-website {
     color: #0069ff;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_facebook {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-facebook {
     color: #1a4791;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_twitter {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-twitter {
     color: #00a6e9;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_linkedin {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-linkedin {
     color: #0270ad;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_instagram {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-instagram {
     background: radial-gradient(circle at 30% 107%, #fdf497 0, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: #d6249f;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_youtube {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-youtube {
     color: #f60000;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_member_contact {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-member-contact {
     display: block;
     width: 100%;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_member_contact a {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-member-contact a {
     display: flex;
     align-items: center;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_skill_bar_wrapper_inner {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-skill-bar-wrapper-inner {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin-bottom: 10px;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_skill_bar_wrapper_inner:last-child {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-skill-bar-wrapper-inner:last-child {
     margin-bottom: 0;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_empty_bar {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-empty-bar {
     position: relative;
     background: #ccc;
     height: 12px;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_filled_bar {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-filled-bar {
     position: absolute;
     left: 0;
     top: 0;
     background: #0c71c3;
     height: 100%;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_member_designation,
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_member_name,
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_member_short_desc {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-member-designation,
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-member-name,
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-member-short-desc {
     width: 100%;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_member_short_desc {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-member-short-desc {
     color: #666;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_member_designation,
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_member_short_desc {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-member-designation,
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-member-short-desc {
     margin-top: 5px;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_skill_bar_wrapper {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-skill-bar-wrapper {
     width: 100%;
     margin-top: 15px;
 }
-.wpmozo_adfgu_swiper_wrapper .wpmozo_adfgu_team_social_wrapper {
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-social-wrapper {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -105,7 +105,7 @@
     line-height: 1;
     margin-top: 20px;
 }
-.wpmozo_adfgu_abs_link {
+.wpmozo-adfgu-abs-link {
     position: absolute;
     top: 0;
     left: 0;
@@ -113,54 +113,54 @@
     height: 100%;
     text-indent: -99999px;
 }
-.wpmozo_adfgu_swiper_wrapper .layout1 .wpmozo_adfgu_team_member_card {
+.wpmozo-adfgu-team-slider-wrap .layout1 .wpmozo-adfgu-team-member-card {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.wpmozo_adfgu_swiper_wrapper .layout1 .wpmozo_adfgu_team_member_designation,
-.wpmozo_adfgu_swiper_wrapper .layout1 .wpmozo_adfgu_team_member_name,
-.wpmozo_adfgu_swiper_wrapper .layout1 .wpmozo_adfgu_team_member_short_desc {
+.wpmozo-adfgu-team-slider-wrap .layout1 .wpmozo-adfgu-team-member-designation,
+.wpmozo-adfgu-team-slider-wrap .layout1 .wpmozo-adfgu-team-member-name,
+.wpmozo-adfgu-team-slider-wrap .layout1 .wpmozo-adfgu-team-member-short-desc {
     line-height: 1.7;
 }
-.wpmozo_adfgu_swiper_wrapper .layout1 .wpmozo_adfgu_team_social_wrapper {
+.wpmozo-adfgu-team-slider-wrap .layout1 .wpmozo-adfgu-team-social-wrapper {
     border-top: 1px solid #ccc;
     padding-top: 20px;
 }
-.wpmozo_adfgu_swiper_wrapper .layout2 .wpmozo_adfgu_team_member_card {
+.wpmozo-adfgu-team-slider-wrap .layout2 .wpmozo-adfgu-team-member-card {
     display: flex;
     flex-wrap: wrap;
 }
-.wpmozo_adfgu_swiper_wrapper .layout2 .wpmozo_adfgu_team_image_wrapper {
+.wpmozo-adfgu-team-slider-wrap .layout2 .wpmozo-adfgu-team-image-wrapper {
     width: 50%;
     height: 100%;
     margin: 0;
 }
-.wpmozo_adfgu_swiper_wrapper .layout2 .wpmozo_adfgu_team_member_image {
+.wpmozo-adfgu-team-slider-wrap .layout2 .wpmozo-adfgu-team-member-image {
     height: 100%;
 }
-.wpmozo_adfgu_swiper_wrapper .layout2 .wpmozo_adfgu_team_member_image img {
+.wpmozo-adfgu-team-slider-wrap .layout2 .wpmozo-adfgu-team-member-image img {
     height: 100%;
     object-fit: cover;
     object-position: top;
 }  
-.wpmozo_adfgu_swiper_wrapper .layout2 .wpmozo_adfgu_team_content_wrapper {
+.wpmozo-adfgu-team-slider-wrap .layout2 .wpmozo-adfgu-team-content-wrapper {
     display: flex;
     flex-direction: column;
     width: 50%;
 }
 @media screen and (max-width: 767px) {
-    .wpmozo_adfgu_swiper_wrapper .layout2 .wpmozo_adfgu_team_image_wrapper {
+    .wpmozo-adfgu-team-slider-wrap .layout2 .wpmozo-adfgu-team-image-wrapper {
         width: 100%;
         height: auto;
     }
-    .wpmozo_adfgu_swiper_wrapper .layout2 .wpmozo_adfgu_team_content_wrapper {
+    .wpmozo-adfgu-team-slider-wrap .layout2 .wpmozo-adfgu-team-content-wrapper {
         width: 100%;
     }
 }
-.wpmozo_adfgu_team_slider_container .swiper-slide {
+.wpmozo-adfgu-team-slider-container .swiper-slide {
     border: 0 solid transparent;
 }
-.wpmozo_adfgu_swiper_wrapper .layout1 .wpmozo_adfgu_team_image_wrapper {
+.wpmozo-adfgu-team-slider-wrap .layout1 .wpmozo-adfgu-team-image-wrapper {
     width: 100%;
 }

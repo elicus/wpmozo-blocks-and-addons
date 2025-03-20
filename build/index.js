@@ -10896,12 +10896,38 @@ const initSwiper = attributes => {
     buttonPrevClass = !wpmozoCoreFun.wpmozo_is_empty(attributes.previousSlideArrow) ? '.custom-swiper-button-prev' : '.swiper-button-prev';
   let loop = attributes.sliderLoop,
     speed = attributes.transitionDuration,
+    slideEffect = attributes.slideEffect,
     arrows = false,
     dots = false,
     autoplaySlides = false,
-    slidesPerGroupSkip = 0;
+    slidesPerGroupSkip = 0,
+    $cubeEffect = false,
+    $coverflowEffect = false,
+    $fadeEffect = false,
+    autoHeight = attributes.autoHeightSlider;
+  teamPerSlide = 'slide' === slideEffect || 'coverflow' === slideEffect ? teamPerSlide : 1;
   if (teamPerSlide > slidesPerGroup && 1 !== slidesPerGroup) {
     slidesPerGroupSkip = teamPerSlide - slidesPerGroup;
+  }
+  if ('cube' === slideEffect) {
+    $cubeEffect = {
+      shadow: false,
+      slideShadows: false
+    };
+  }
+  if ('coverflow' === slideEffect) {
+    $coverflowEffect = {
+      rotate: attributes.coverflowRotate,
+      stretch: 0,
+      depth: attributes.coverflowDepth,
+      modifier: 1,
+      slideShadows: attributes.enableCoverflowShadow
+    };
+  }
+  if ('fade' === slideEffect) {
+    $fadeEffect = {
+      crossFade: true
+    };
   }
   if (attributes.showArrow) {
     arrows = {
@@ -10943,11 +10969,16 @@ const initSwiper = attributes => {
     autoplay: autoplaySlides,
     loop: loop,
     speed: speed,
+    effect: slideEffect,
+    cubeEffect: $cubeEffect,
+    coverflowEffect: $coverflowEffect,
+    fadeEffect: $fadeEffect,
     pagination: dots,
     navigation: arrows,
     grabCursor: true,
     observer: true,
     observeParents: true,
+    autoHeight: autoHeight,
     breakpoints: {
       981: {
         slidesPerView: teamPerSlide,
@@ -10967,29 +10998,20 @@ const initSwiper = attributes => {
     }
   };
   const swiper = new Swiper('.swiper[data-client-id="' + clientId + '"]', options);
-
-  // jQuery(document).on("mouseenter", '.swiper[data-client-id="'+clientId+'"]', function(e) {
-
-  //     let swiperContainer = jQuery(this)[0],
-  //     swiper = ( swiperContainer.hasOwnProperty( 'swiper' ) ) ? swiperContainer.swiper : null;
-
-  //     if ( swiper.params.autoplay.disableOnInteraction && typeof swiper.autoplay.stop === "function" ) {
-  //         swiper.autoplay.stop();
-  //     }
-
-  // });
-
-  // jQuery(document).on("mouseleave", '.swiper[data-client-id="'+clientId+'"]', function(e) {
-
-  //     let swiperContainer = jQuery(this)[0],
-  //     swiper = ( swiperContainer.hasOwnProperty( 'swiper' ) ) ? swiperContainer.swiper : null;
-
-  //     if ( swiper.params.autoplay.disableOnInteraction && typeof swiper.autoplay.start === "function" ) {
-  //         swiper.autoplay.start();
-  //     }
-
-  // });
-
+  jQuery(document).on("mouseenter", '.swiper[data-client-id="' + clientId + '"]', function (e) {
+    let swiperContainer = jQuery(this)[0],
+      swiper = swiperContainer.hasOwnProperty('swiper') ? swiperContainer.swiper : null;
+    if (swiper.params.autoplay.disableOnInteraction && typeof swiper.autoplay.stop === "function") {
+      swiper.autoplay.stop();
+    }
+  });
+  jQuery(document).on("mouseleave", '.swiper[data-client-id="' + clientId + '"]', function (e) {
+    let swiperContainer = jQuery(this)[0],
+      swiper = swiperContainer.hasOwnProperty('swiper') ? swiperContainer.swiper : null;
+    if (swiper.params.autoplay.disableOnInteraction && typeof swiper.autoplay.start === "function") {
+      swiper.autoplay.start();
+    }
+  });
   return swiper;
 };
 const SwiperLoader = args => {
@@ -11034,7 +11056,11 @@ const Edit = props => {
     ...props
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_7___default()), {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_style__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    attributes: attributes,
+    ID: ID,
+    clientId: clientId
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_7___default()), {
     block: "wpmozo/team-slider",
     attributes: attributes,
     httpMethod: "POST",
@@ -11986,6 +12012,35 @@ const Style = ({
       selector: '.wpmozo-adfgu-team-slider-wrap:hover .wpmozo-adfgu-arrows-inside .swiper-button-next',
       additional: `right: 0;`
     });
+  }
+  if ('on' === attributes.equalizeHeight) {
+    allInline.push({
+      selector: '.swiper-wrapper',
+      style: {
+        'align-items': 'stretch'
+      }
+    });
+    allInline.push({
+      selector: '.swiper-slide',
+      style: {
+        'height': 'auto'
+      }
+    });
+    allInline.push({
+      selector: '.wpmozo-adfgu-team-member-card',
+      style: {
+        'height': '100%'
+      }
+    });
+  } else {
+    if (1 === attributes.memberPerSlide) {
+      allInline.push({
+        selector: '.swiper-wrapper',
+        style: {
+          'align-items': 'center'
+        }
+      });
+    }
   }
   let generateStyle = wpmozoCoreFun.wpmozo_generate_style(allInline);
   if (!wpmozoCoreFun.wpmozo_is_empty(generateStyle)) {
