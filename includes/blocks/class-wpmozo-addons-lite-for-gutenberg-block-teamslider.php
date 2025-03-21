@@ -407,7 +407,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 
 			if ( $show_control_dot ) {
 				$output .= sprintf(
-					'<div class="wpmozo-adfgu-swiper-pagination"><div class="swiper-pagination %1$s"></div></div>',
+					'<div class="wpmozo-adfgu-swiper-pagination-wrap"><div class="swiper-pagination %1$s"></div></div>',
 					esc_attr( $control_dot_style )
 				);
 			}

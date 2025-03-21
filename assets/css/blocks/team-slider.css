@@ -149,6 +149,28 @@
     flex-direction: column;
     width: 50%;
 }
+.wpmozo-adfgu-team-slider-navigation {
+    display: flex;
+    flex-wrap: wrap;
+}
+.wpmozo-adfgu-team-slider-navigation .swiper-button-next {
+    right: 0px;
+}
+.wpmozo-adfgu-team-slider-navigation .swiper-button-prev {
+    left: 0px;
+}
+.wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-swiper-inner-wrap{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: relative;
+}
+.wpmozo-adfgu-team-slider-wrap .swiper-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+}
 @media screen and (max-width: 767px) {
     .wpmozo-adfgu-team-slider-wrap .layout2 .wpmozo-adfgu-team-image-wrapper {
         width: 100%;

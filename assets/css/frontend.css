@@ -171,3 +171,67 @@
 .wpmozo-adfgu-arrows-top_center {
     justify-content: center;
 }
+
+.swiper-pagination {
+    position: relative;
+    margin-top: 15px;
+    text-align: center;
+}
+.swiper-container-horizontal > .swiper-pagination {
+    bottom: 0;
+}
+.swiper-pagination-bullet,
+.swiper-pagination-bullet-active {
+    width: 10px;
+    height: 10px;
+    margin: 0 4px;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+.wpmozo-adfgu-swiper-pagination-wrap .transparent_dot .swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
+    border-width: 1px;
+    border-style: solid;
+    background: 0 0;
+}
+.wpmozo-adfgu-swiper-pagination-wrap .transparent_dot .swiper-pagination-bullet-active {
+    border: none;
+}
+.wpmozo-adfgu-swiper-pagination-wrap .stretched_dot .swiper-pagination-bullet {
+    border-radius: 6px;
+}
+.wpmozo-adfgu-swiper-pagination-wrap .stretched_dot .swiper-pagination-bullet-active {
+    width: 30px;
+}
+.wpmozo-adfgu-swiper-pagination-wrap .line .swiper-pagination-bullet,
+.wpmozo-adfgu-swiper-pagination-wrap .line .swiper-pagination-bullet-active {
+    border-radius: 0;
+    width: 30px;
+    height: 3px;
+    vertical-align: middle;
+}
+.wpmozo-adfgu-swiper-pagination-wrap .rounded_line .swiper-pagination-bullet,
+.wpmozo-adfgu-swiper-pagination-wrap .rounded_line .swiper-pagination-bullet-active {
+    border-radius: 30px;
+    width: 30px;
+    height: 6px;
+    vertical-align: middle;
+}
+.wpmozo-adfgu-swiper-pagination-wrap .square_dot .swiper-pagination-bullet,
+.wpmozo-adfgu-swiper-pagination-wrap .square_dot .swiper-pagination-bullet-active {
+    border-radius: 0;
+    vertical-align: middle;
+}
+.wpmozo-adfgu-swiper-pagination-wrap .swiper-pagination-bullets-dynamic {
+    margin-left: auto;
+    margin-right: auto;
+    white-space: nowrap;
+}
+.swiper-container-horizontal > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+    left: auto;
+    -webkit-transform: none;
+    -moz-transform: none;
+    transform: none;
+}
+.wpmozo-adfgu-swiper-pagination-wrap .swiper-pagination {
+    width: auto !important;
+}

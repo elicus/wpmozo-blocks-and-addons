@@ -43,7 +43,8 @@ const initSwiper = ( attributes ) => {
         $cubeEffect = false,
         $coverflowEffect = false,
         $fadeEffect = false, 
-        autoHeight = attributes.autoHeightSlider;
+        autoHeight = attributes.autoHeightSlider,
+        enableDynamicDots = attributes.enableDynamicDots;
 
     teamPerSlide = ( 'slide' === slideEffect || 'coverflow' === slideEffect ) ? teamPerSlide : 1;
 
@@ -81,9 +82,17 @@ const initSwiper = ( attributes ) => {
     }
 
     if ( attributes.showControlDot ) {
+        let controlDotStyle = attributes.controlDotStyle;
+        enableDynamicDots = ( 
+            'solid_dot' === controlDotStyle ||
+            'transparent_dot' === controlDotStyle ||
+            'square_dot' === controlDotStyle
+        ) 
+            ? enableDynamicDots 
+            : false;
         dots = {
             el: '#block-'+clientId+' .swiper-pagination',
-            dynamicBullets: attributes.enableDynamicDots,
+            dynamicBullets: enableDynamicDots,
             clickable: true,
         };
     }
