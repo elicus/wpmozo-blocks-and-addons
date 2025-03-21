@@ -153,6 +153,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
     	$button_prev_class = ! empty( $attributes['previousSlideArrow'] ) 
 	        ? 'custom-swiper-button-prev swiper-button-prev'
 	        : 'swiper-button-prev';
+	    $processed_designation_level = $attributes['designationHeadingLavel'];
 
 		$args = array(
 			'post_type'      => 'wpmozo-team-member',
@@ -284,7 +285,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 					if ( isset( $meta_fields['wpmozo_team_member_website'] ) && '' !== $meta_fields['wpmozo_team_member_website'][0] ) {
 						$website_url = sprintf(
 							'<a href="%1$s" target="%2$s">
-								<span class="wpmozo-adfgu-team-member-social-icon wpmozo-adfgu-team-website et-pb-icon">&#xe0e3;</span>
+								<span class="wpmozo-adfgu-team-member-social-icon wpmozo-adfgu-team-website fas fa-globe"></span>
 							</a>',
 							$meta_fields['wpmozo_team_member_website'][0],
 							'external' === $social_icon_link_target ? '_blank' : '_self'
@@ -294,7 +295,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 					if ( isset( $meta_fields['wpmozo_team_member_facebook'] ) && '' !== $meta_fields['wpmozo_team_member_facebook'][0] ) {
 						$facebook_url = sprintf(
 							'<a href="%1$s" target="%2$s">
-								<span class="wpmozo-adfgu-team-member-social-icon wpmozo-adfgu-team-facebook et-pb-icon">&#xe093;</span>
+								<span class="wpmozo-adfgu-team-member-social-icon wpmozo-adfgu-team-facebook fab fa-facebook-f"></span>
 							</a>',
 							$meta_fields['wpmozo_team_member_facebook'][0],
 							'external' === $social_icon_link_target ? '_blank' : '_self'
@@ -314,7 +315,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 					if ( isset( $meta_fields['wpmozo_team_member_linkedin'] ) && '' !== $meta_fields['wpmozo_team_member_linkedin'][0] ) {
 						$linkedin_url = sprintf(
 							'<a href="%1$s" target="%2$s">
-								<span class="wpmozo-adfgu-team-member-social-icon wpmozo-adfgu-team-linkedin et-pb-icon">&#xe09d;</span>
+								<span class="wpmozo-adfgu-team-member-social-icon wpmozo-adfgu-team-linkedin fab fa-linkedin-in"></span>
 							</a>',
 							$meta_fields['wpmozo_team_member_linkedin'][0],
 							'external' === $social_icon_link_target ? '_blank' : '_self'
@@ -324,7 +325,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 					if ( isset( $meta_fields['wpmozo_team_member_instagram'] ) && '' !== $meta_fields['wpmozo_team_member_instagram'][0] ) {
 						$instagram_url = sprintf(
 							'<a href="%1$s" target="%2$s">
-								<span class="wpmozo-adfgu-team-member-social-icon wpmozo-adfgu-team-instagram et-pb-icon">&#xe09a;</span>
+								<span class="wpmozo-adfgu-team-member-social-icon wpmozo-adfgu-team-instagram fab fa-instagram"></span>
 							</a>',
 							$meta_fields['wpmozo_team_member_instagram'][0],
 							'external' === $social_icon_link_target ? '_blank' : '_self'
@@ -334,7 +335,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 					if ( isset( $meta_fields['wpmozo_team_member_youtube'] ) && '' !== $meta_fields['wpmozo_team_member_youtube'][0] ) {
 						$youtube_url = sprintf(
 							'<a href="%1$s" target="%2$s">
-								<span class="wpmozo-adfgu-team-member-social-icon wpmozo-adfgu-team-youtube et-pb-icon">&#xe0a3;</span>
+								<span class="wpmozo-adfgu-team-member-social-icon wpmozo-adfgu-team-youtube fab fa-youtube"></span>
 							</a>',
 							$meta_fields['wpmozo_team_member_youtube'][0],
 							'external' === $social_icon_link_target ? '_blank' : '_self'
@@ -344,7 +345,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 					if ( isset( $meta_fields['wpmozo_team_member_email'] ) && '' !== $meta_fields['wpmozo_team_member_email'][0] ) {
 						$email = sprintf(
 							'<a href="mailto:%1$s" target="%2$s">
-								<span class="wpmozo-adfgu-team-member-social-icon wpmozo-adfgu-team-email et-pb-icon">&#xe076;</span>
+								<span class="wpmozo-adfgu-team-member-social-icon wpmozo-adfgu-team-email fas fa-envelope"></span>
 							</a>',
 							$meta_fields['wpmozo_team_member_email'][0],
 							'external' === $social_icon_link_target ? '_blank' : '_self'
@@ -354,7 +355,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 					if ( isset( $meta_fields['wpmozo_team_member_phone'] ) && '' !== $meta_fields['wpmozo_team_member_phone'][0] ) {
 						$phone_number = sprintf(
 							'<a href="tel:%1$s" target="%2$s">
-								<span class="wpmozo-adfgu-team-member-social-icon wpmozo-adfgu-team-phone et-pb-icon">&#xe090;</span>
+								<span class="wpmozo-adfgu-team-member-social-icon wpmozo-adfgu-team-phone fas fa-phone"></span>
 							</a>',
 							$meta_fields['wpmozo_team_member_phone'][0],
 							'external' === $social_icon_link_target ? '_blank' : '_self'

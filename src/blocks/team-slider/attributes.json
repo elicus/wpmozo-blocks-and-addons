@@ -141,7 +141,7 @@
         "type": "boolean",
         "default": false
     },
-    "containerbackground": {
+    "containerBackground": {
         "type": "string"
     },
     "containerpadding": {
@@ -369,7 +369,7 @@
     "iconColor": {
         "type": "string"
     },
-    "iconBackgroundColor": {
+    "iconBackground": {
         "type": "string"
     },
     "separatorSize": {
@@ -395,6 +395,9 @@
     },
     "arrowborder": {
         "type": "object"
+    },
+    "slideBackground": {
+        "type": "string"
     },
     "slideborderRadius": {
         "type": "string"

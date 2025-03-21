@@ -5,7 +5,7 @@ const Style = ({attributes, ID, clientId}) => {
         parent = '#block-'+clientId,
         toConvertStyles = [
         'container',
-        'arrow'
+        'slide'
         ],
         convertedStyle = wpmozoCoreFun.convetInlineStyleStr( toConvertStyles, attributes );
 
@@ -13,41 +13,22 @@ const Style = ({attributes, ID, clientId}) => {
     
     let allInline = [
         {
-            selector: '.team-img',
+            selector: '.wpmozo-adfgu-team-slider-wrap',
             style: {
-                'width': attributes.teamWidth+'px',
-                'height': attributes.teamHeight+'px',
+                'background': attributes.containerBackground,
+                'text-align': attributes.textAlignment
             }
         },
         {
-            selector: '.wpmozo-adfgu-team-slider-inner-wrap',
+            selector: '.wpmozo-adfgu-team-slider-wrap .swiper-container',
             additional: convertedStyle['container']
         },
         {
-            selector: '.swiper-button-next:after, .swiper-button-next:before, .swiper-button-prev:after, .swiper-button-prev:before',
+            selector: '.wpmozo-adfgu-team-member-card',
             style: {
-                'color': attributes.sliderArrowColor,
-                'font-size': attributes.arrowFontSize
-            }
-        },
-        {
-            selector: '.swiper-button-next, .swiper-button-prev',
-            style: {
-                'background': attributes.sliderArrowBackground
+                'background': attributes.slideBackground,
             },
-            additional: convertedStyle['arrow']
-        },
-        {
-            selector: '.swiper-pagination-bullet.swiper-pagination-bullet-active',
-            style: {
-                'background': attributes.sliderActiveDoteColor
-            }
-        },
-        {
-            selector: '.swiper-pagination-bullet',
-            style: {
-                'background': attributes.sliderInactiveDoteColor
-            }
+            additional: convertedStyle['slide']
         }
     ];
 

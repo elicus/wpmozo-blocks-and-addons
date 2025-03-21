@@ -567,7 +567,7 @@ const Inspector = (props) => {
                         props={props}
                         ColorTypes={[ 
                             {
-                                key: 'background',
+                                key: 'Background',
                                 label: __( 'Background Color', 'wpmozo-addons-lite-for-gutenberg' ),
                             }
                         ]}
@@ -581,6 +581,16 @@ const Inspector = (props) => {
                     />
                 </PanelBody>
                 <PanelBody title={ __( 'Slide', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <WpmozoColorPicker  
+                        ColorKey="slide"
+                        props={props}
+                        ColorTypes={[ 
+                            {
+                                key: 'Background',
+                                label: __( 'Background Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                            }
+                        ]}
+                    />
                     <WpmozoDimensions
                         DimensionKey='slide'
                         DimensionsTypes={{
@@ -750,7 +760,7 @@ const Inspector = (props) => {
                                 label: __( 'Icon Color', 'wpmozo-addons-lite-for-gutenberg' ),
                             },
                             {
-                                key: 'BackgroundColor',
+                                key: 'Background',
                                 label: __( 'Icon Background Color', 'wpmozo-addons-lite-for-gutenberg' ),
                             } 
                         ]}
