@@ -2,7 +2,7 @@
 import attributes from "./attributes";
 import Edit from "./edit";
 import Save from "./save";
-import Icon from "./icon.js";
+import Icon from "../logo-slider/icon.js";
 
 import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
