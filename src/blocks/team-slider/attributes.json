@@ -241,7 +241,7 @@
         "type": "string",
         "default": "h2"
     },
-    "designationtext": {
+    "designationText": {
         "type": "string"
     },
     "designationFontSize": {
@@ -280,7 +280,7 @@
         "type": "string",
         "default": "h4"
     },
-    "skilltext": {
+    "skillText": {
         "type": "string"
     },
     "skillFontSize": {
@@ -315,7 +315,7 @@
         "type": "string",
         "default": "left"
     },
-    "descriptiontext": {
+    "descriptionText": {
         "type": "string"
     },
     "descriptionFontSize": {
@@ -354,11 +354,11 @@
         "type": "string",
         "default": "12px"
     },
-    "barEmptyColor": {
+    "skillEmptyColor": {
         "type": "string",
         "default": "#ccc"
     },
-    "barFilledColor": {
+    "skillFilledColor": {
         "type": "string",
         "default": "#0c71c3"
     },
@@ -374,7 +374,7 @@
     },
     "separatorSize": {
         "type": "string",
-        "default": "10px"
+        "default": "1px"
     },
     "iconSize": {
         "type": "string",

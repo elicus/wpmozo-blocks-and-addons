@@ -5,11 +5,23 @@ const Style = ({attributes, ID, clientId}) => {
         parent = '#block-'+clientId,
         toConvertStyles = [
         'container',
-        'slide'
+        'slide',
+        'image',
+        'name',
+        'designation',
+        'description',
+        'skill',
+        'icon',
+        'arrow'
         ],
         convertedStyle = wpmozoCoreFun.convetInlineStyleStr( toConvertStyles, attributes );
 
-    let css = '';
+    let css = '',
+    socialIconsAlignment = ( 'left' === attributes.socialIconsAlignment ) ? 'flex-start' : 'flex-end';
+
+    if ( 'center' === attributes.socialIconsAlignment ) {
+        socialIconsAlignment = 'center';
+    }
     
     let allInline = [
         {
@@ -29,8 +41,125 @@ const Style = ({attributes, ID, clientId}) => {
                 'background': attributes.slideBackground,
             },
             additional: convertedStyle['slide']
+        },
+        {
+            selector: '.wpmozo-adfgu-team-member-image img',
+            style: {
+                'height': attributes.imageHeight,
+            },
+            additional: convertedStyle['image']
+        },
+        {
+            selector: '.wpmozo-adfgu-team-member-name-text',
+            style: {
+                'color': attributes.nameText,
+                'text-align': attributes.nameTextAlignment
+            },
+            additional: convertedStyle['name']
+        },
+        {
+            selector: '.wpmozo-adfgu-team-member-designation-text',
+            style: {
+                'color': attributes.designationText,
+                'text-align': attributes.designationTextAlignment
+            },
+            additional: convertedStyle['designation']
+        },
+        {
+            selector: '.wpmozo-adfgu-team-member-short-desc',
+            style: {
+                'color': attributes.descriptionText,
+                'text-align': attributes.descriptionTextAlignment
+            },
+            additional: convertedStyle['description']
+        },
+        {
+            selector: '.wpmozo-adfgu-skill-name',
+            style: {
+                'color': attributes.skillText,
+                'text-align': attributes.skillTextAlignment
+            },
+            additional: convertedStyle['skill']
+        },
+        {
+            selector: '.wpmozo-adfgu-empty-bar',
+            style: {
+                'background-color': attributes.skillEmptyColor,
+                'height': attributes.barHeight
+            }
+        },
+        {
+            selector: '.wpmozo-adfgu-filled-bar',
+            style: {
+                'background-color': attributes.skillFilledColor
+            }
+        },
+        {
+            selector: '.wpmozo-adfgu-team-social-wrapper',
+            style: {
+                'border-color': attributes.iconSeparatorColor,
+                'border-width': attributes.separatorSize,
+                'justify-content': socialIconsAlignment
+            }
+        },
+        {
+            selector: '.wpmozo-adfgu-team-member-social-icon',
+            style: {
+                'color': attributes.iconColor,
+                'font-size': attributes.iconSize,
+                'background-color': attributes.iconBackground
+            },
+            additional: convertedStyle['icon']
+        },
+        {
+            selector: '.swiper-button-next:after, .swiper-button-next:before, .swiper-button-prev:after, .swiper-button-prev:before',
+            style: {
+                'color': attributes.sliderArrowColor,
+                'font-size': attributes.arrowFontSize
+            }
+        },
+        {
+            selector: '.swiper-button-next, .swiper-button-prev',
+            style: {
+                'background': attributes.sliderArrowBackground
+            },
+            additional: convertedStyle['arrow']
+        },
+        {
+            selector: '.swiper-pagination-bullet.swiper-pagination-bullet-active',
+            style: {
+                'background': attributes.sliderActiveDoteColor
+            }
+        },
+        {
+            selector: '.swiper-pagination-bullet',
+            style: {
+                'background': attributes.sliderInactiveDoteColor
+            }
         }
     ];
+
+    if ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.iconColor ) ) {
+        allInline.push({
+            selector: '.wpmozo-adfgu-team-instagram',
+            style: {
+                '-webkit-text-fill-color': 'unset !important;',
+            },
+        });
+    }
+
+    if ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.iconBackground ) ) {
+        allInline.push({
+            selector: '.wpmozo-adfgu-team-instagram',
+            style: {
+                'background': 'unset',
+                '-webkit-background-clip': 'unset',
+                'background-clip': 'unset',
+                '-webkit-text-fill-color': 'unset',
+                'background-color': attributes.iconBackground+' !important'
+            },
+        });
+    }
 
     if ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.nextSlideArrow ) ) {
         allInline.push({

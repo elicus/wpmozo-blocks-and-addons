@@ -10866,10 +10866,10 @@ const initSwiper = attributes => {
     teamPerSlide = parseInt(attributes.memberPerSlide),
     spaceBetweenSlides = parseInt(attributes.spaceBetweenSlides),
     slidesPerGroup = parseInt(attributes.slidesPerGroup),
-    tabletTeamPerSlide = parseInt(attributes.tabletTeamPerSlide),
+    tabletMemberPerSlide = parseInt(attributes.tabletMemberPerSlide),
     tabletSlidesPerGroup = parseInt(attributes.tabletSlidesPerGroup),
     tabletSpaceBetweenSlides = parseInt(attributes.tabletSpaceBetweenSlides),
-    mobileTeamPerSlide = parseInt(attributes.mobileTeamPerSlide),
+    mobileMemberPerSlide = parseInt(attributes.mobileMemberPerSlide),
     mobileSpaceBetweenSlides = parseInt(attributes.mobileSpaceBetweenSlides),
     mobileSlidesPerGroup = parseInt(attributes.mobileSlidesPerGroup),
     buttonNextClass = !wpmozoCoreFun.wpmozo_is_empty(attributes.nextSlideArrow) ? '.custom-swiper-button-next' : '.swiper-button-next',
@@ -10969,12 +10969,12 @@ const initSwiper = attributes => {
         slidesPerGroup: slidesPerGroup
       },
       768: {
-        slidesPerView: tabletTeamPerSlide,
+        slidesPerView: tabletMemberPerSlide,
         spaceBetween: tabletSpaceBetweenSlides,
         slidesPerGroup: tabletSlidesPerGroup
       },
       0: {
-        slidesPerView: mobileTeamPerSlide,
+        slidesPerView: mobileMemberPerSlide,
         spaceBetween: mobileSpaceBetweenSlides,
         slidesPerGroup: mobileSlidesPerGroup
       }
@@ -11698,7 +11698,7 @@ const Inspector = props => {
     ColorKey: "designation",
     props: props,
     ColorTypes: [{
-      key: 'text',
+      key: 'Text',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Designation Text Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.BaseControl, {
@@ -11725,7 +11725,7 @@ const Inspector = props => {
     ColorKey: "description",
     props: props,
     ColorTypes: [{
-      key: 'text',
+      key: 'Text',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Description Text Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoAlignment, {
@@ -11745,7 +11745,7 @@ const Inspector = props => {
     ColorKey: "skill",
     props: props,
     ColorTypes: [{
-      key: 'text',
+      key: 'Text',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Skill Text Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoAlignment, {
@@ -11753,15 +11753,23 @@ const Inspector = props => {
     onChange: newValue => setAttributes({
       skillTextAlignment: newValue
     }),
-    value: attributes.skillTextAlignment,
-    ColorKey: "bar",
+    value: attributes.skillTextAlignment
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoTypography, {
+    TypographyKey: "skill",
+    props: props
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Skills', 'wpmozo-addons-lite-for-gutenberg'),
+    className: "wpmozo-typography-panel",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoColorPicker, {
+    ColorKey: "skill",
     props: props,
     ColorTypes: [{
       key: 'EmptyColor',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Empty Bar Color', 'wpmozo-addons-lite-for-gutenberg')
     }, {
       key: 'FilledColor',
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Empty Bar Color', 'wpmozo-addons-lite-for-gutenberg')
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Fill Bar Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.HeightControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Bar Height', 'wpmozo-addons-lite-for-gutenberg'),
@@ -11787,7 +11795,7 @@ const Inspector = props => {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon Background Color', 'wpmozo-addons-lite-for-gutenberg')
     }]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoAlignment, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Skill Text Alignment', 'wpmozo-addons-lite-for-gutenberg'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Social Icon Alignment', 'wpmozo-addons-lite-for-gutenberg'),
     onChange: newValue => setAttributes({
       socialIconsAlignment: newValue
     }),
@@ -11822,9 +11830,6 @@ const Inspector = props => {
       key: 'ArrowBackground',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Arrow Background', 'wpmozo-addons-lite-for-gutenberg')
     }, {
-      key: 'ArrowBackgroundBorderColor',
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Arrow Background Border Color', 'wpmozo-addons-lite-for-gutenberg')
-    }, {
       key: 'ActiveDoteColor',
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Active Dot Pagination Color', 'wpmozo-addons-lite-for-gutenberg')
     }, {
@@ -11845,12 +11850,6 @@ const Inspector = props => {
       padding: true
     },
     props: props
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.HeightControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Arrow Size', 'wpmozo-addons-lite-for-gutenberg'),
-    onChange: newValue => setAttributes({
-      iconSize: newValue
-    }),
-    value: attributes.iconSize
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_index__WEBPACK_IMPORTED_MODULE_1__.WpmozoBorder, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Arrow Background Border', 'wpmozo-addons-lite-for-gutenberg'),
     BorderKey: "arrow",
@@ -11900,9 +11899,13 @@ const Style = ({
 }) => {
   const wpmozoCoreFun = window.wpmozo,
     parent = '#block-' + clientId,
-    toConvertStyles = ['container', 'slide'],
+    toConvertStyles = ['container', 'slide', 'image', 'name', 'designation', 'description', 'skill', 'icon', 'arrow'],
     convertedStyle = wpmozoCoreFun.convetInlineStyleStr(toConvertStyles, attributes);
-  let css = '';
+  let css = '',
+    socialIconsAlignment = 'left' === attributes.socialIconsAlignment ? 'flex-start' : 'flex-end';
+  if ('center' === attributes.socialIconsAlignment) {
+    socialIconsAlignment = 'center';
+  }
   let allInline = [{
     selector: '.wpmozo-adfgu-team-slider-wrap',
     style: {
@@ -11918,7 +11921,109 @@ const Style = ({
       'background': attributes.slideBackground
     },
     additional: convertedStyle['slide']
+  }, {
+    selector: '.wpmozo-adfgu-team-member-image img',
+    style: {
+      'height': attributes.imageHeight
+    },
+    additional: convertedStyle['image']
+  }, {
+    selector: '.wpmozo-adfgu-team-member-name-text',
+    style: {
+      'color': attributes.nameText,
+      'text-align': attributes.nameTextAlignment
+    },
+    additional: convertedStyle['name']
+  }, {
+    selector: '.wpmozo-adfgu-team-member-designation-text',
+    style: {
+      'color': attributes.designationText,
+      'text-align': attributes.designationTextAlignment
+    },
+    additional: convertedStyle['designation']
+  }, {
+    selector: '.wpmozo-adfgu-team-member-short-desc',
+    style: {
+      'color': attributes.descriptionText,
+      'text-align': attributes.descriptionTextAlignment
+    },
+    additional: convertedStyle['description']
+  }, {
+    selector: '.wpmozo-adfgu-skill-name',
+    style: {
+      'color': attributes.skillText,
+      'text-align': attributes.skillTextAlignment
+    },
+    additional: convertedStyle['skill']
+  }, {
+    selector: '.wpmozo-adfgu-empty-bar',
+    style: {
+      'background-color': attributes.skillEmptyColor,
+      'height': attributes.barHeight
+    }
+  }, {
+    selector: '.wpmozo-adfgu-filled-bar',
+    style: {
+      'background-color': attributes.skillFilledColor
+    }
+  }, {
+    selector: '.wpmozo-adfgu-team-social-wrapper',
+    style: {
+      'border-color': attributes.iconSeparatorColor,
+      'border-width': attributes.separatorSize,
+      'justify-content': socialIconsAlignment
+    }
+  }, {
+    selector: '.wpmozo-adfgu-team-member-social-icon',
+    style: {
+      'color': attributes.iconColor,
+      'font-size': attributes.iconSize,
+      'background-color': attributes.iconBackground
+    },
+    additional: convertedStyle['icon']
+  }, {
+    selector: '.swiper-button-next:after, .swiper-button-next:before, .swiper-button-prev:after, .swiper-button-prev:before',
+    style: {
+      'color': attributes.sliderArrowColor,
+      'font-size': attributes.arrowFontSize
+    }
+  }, {
+    selector: '.swiper-button-next, .swiper-button-prev',
+    style: {
+      'background': attributes.sliderArrowBackground
+    },
+    additional: convertedStyle['arrow']
+  }, {
+    selector: '.swiper-pagination-bullet.swiper-pagination-bullet-active',
+    style: {
+      'background': attributes.sliderActiveDoteColor
+    }
+  }, {
+    selector: '.swiper-pagination-bullet',
+    style: {
+      'background': attributes.sliderInactiveDoteColor
+    }
   }];
+  if (!wpmozoCoreFun.wpmozo_is_empty(attributes.iconColor)) {
+    allInline.push({
+      selector: '.wpmozo-adfgu-team-instagram',
+      style: {
+        '-webkit-text-fill-color': 'unset !important;'
+      }
+    });
+  }
+  if (!wpmozoCoreFun.wpmozo_is_empty(attributes.iconBackground)) {
+    allInline.push({
+      selector: '.wpmozo-adfgu-team-instagram',
+      style: {
+        'background': 'unset',
+        '-webkit-background-clip': 'unset',
+        'background-clip': 'unset',
+        '-webkit-text-fill-color': 'unset',
+        'background-color': attributes.iconBackground + ' !important'
+      }
+    });
+  }
   if (!wpmozoCoreFun.wpmozo_is_empty(attributes.nextSlideArrow)) {
     allInline.push({
       selector: '.custom-swiper-button-next:after',
@@ -14443,7 +14548,7 @@ module.exports = window["wp"]["serverSideRender"];
   \************************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"ID":{"type":"string"},"clientId":{"type":"string"},"postsNumber":{"type":"string","default":"10"},"postOrder":{"type":"string","default":"DESC"},"postOrderBy":{"type":"string","default":"date"},"includeCategories":{"type":"array"},"noResultText":{"type":"string","default":"The team member you requested could not be found. Try changing your module settings or create some new team members."},"showShortDesc":{"type":"boolean","default":true},"showDesignation":{"type":"boolean","default":true},"showSocialIcon":{"type":"boolean","default":true},"socialIconLinkTarget":{"type":"string"},"showSkills":{"type":"boolean","default":true},"sliderLayout":{"type":"string","default":"layout1"},"slideEffect":{"type":"string","default":"slide"},"memberPerSlide":{"type":"string","default":"3"},"slidesPerGroup":{"type":"string","default":"1"},"enableCoverflowShadow":{"type":"boolean","default":false},"coverflowShadowColor":{"type":"string","default":"#ccc"},"coverflowRotate":{"type":"number","default":40},"coverflowDepth":{"type":"number","default":100},"spaceBetweenSlides":{"type":"number","default":20},"equalizeHeight":{"type":"boolean","default":true},"autoHeightSlider":{"type":"boolean","default":false},"sliderLoop":{"type":"boolean","default":false},"autoplay":{"type":"boolean","default":true},"enableLinearTransition":{"type":"boolean","default":false},"autoplaySpeed":{"type":"string","default":"3000"},"pauseOnHover":{"type":"boolean","default":true},"transitionDuration":{"type":"string","default":"1000"},"showArrow":{"type":"boolean","default":true},"previousSlideArrow":{"type":"string"},"nextSlideArrow":{"type":"string"},"showArrowOnHover":{"type":"boolean","default":false},"arrowsPosition":{"type":"string","default":"inside"},"showControlDot":{"type":"boolean","default":true},"controlDotStyle":{"type":"string","default":"solid_dot"},"enableDynamicDots":{"type":"boolean","default":false},"containerBackground":{"type":"string"},"containerpadding":{"type":"object"},"sliderArrowColor":{"type":"string"},"sliderArrowBackground":{"type":"string"},"sliderActiveDoteColor":{"type":"string"},"sliderInactiveDoteColor":{"type":"string"},"arrowFontSize":{"type":"string"},"arrowpadding":{"type":"object"},"tabletMemberPerSlide":{"type":"string","default":"3"},"tabletSlidesPerGroup":{"type":"string","default":"1"},"tabletSpaceBetweenSlides":{"type":"number","default":20},"mobileMemberPerSlide":{"type":"string","default":"1"},"mobileSlidesPerGroup":{"type":"string","default":"1"},"mobileSpaceBetweenSlides":{"type":"number","default":20},"textAlignment":{"type":"string","default":"left"},"imageHeight":{"type":"string"},"imageborderRadius":{"type":"string"},"imageborder":{"type":"object"},"nametext":{"type":"string"},"nameFontSize":{"type":"string"},"nameFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"nameLetterSpacing":{"type":"string"},"nameDecoration":{"type":"string"},"nameLetterCase":{"type":"string"},"nameLineHeight":{"type":"string"},"nameTextAlignment":{"type":"string","default":"left"},"nameHeadingLavel":{"type":"string","default":"h2"},"designationtext":{"type":"string"},"designationFontSize":{"type":"string"},"designationFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"designationLetterSpacing":{"type":"string"},"designationDecoration":{"type":"string"},"designationLetterCase":{"type":"string"},"designationLineHeight":{"type":"string"},"designationTextAlignment":{"type":"string","default":"left"},"designationHeadingLavel":{"type":"string","default":"h4"},"skilltext":{"type":"string"},"skillFontSize":{"type":"string"},"skillFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"skillLetterSpacing":{"type":"string"},"skillDecoration":{"type":"string"},"skillLetterCase":{"type":"string"},"skillLineHeight":{"type":"string"},"skillTextAlignment":{"type":"string","default":"left"},"descriptiontext":{"type":"string"},"descriptionFontSize":{"type":"string"},"descriptionFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"descriptionLetterSpacing":{"type":"string"},"descriptionDecoration":{"type":"string"},"descriptionLetterCase":{"type":"string"},"descriptionLineHeight":{"type":"string"},"descriptionTextAlignment":{"type":"string","default":"left"},"barHeight":{"type":"string","default":"12px"},"barEmptyColor":{"type":"string","default":"#ccc"},"barFilledColor":{"type":"string","default":"#0c71c3"},"iconSeparatorColor":{"type":"string","default":"#cccccc"},"iconColor":{"type":"string"},"iconBackground":{"type":"string"},"separatorSize":{"type":"string","default":"10px"},"iconSize":{"type":"string","default":"16px"},"socialIconsAlignment":{"type":"string","default":"center"},"iconborderRadius":{"type":"string"},"iconborder":{"type":"object"},"arrowborderRadius":{"type":"string"},"arrowborder":{"type":"object"},"slideBackground":{"type":"string"},"slideborderRadius":{"type":"string"},"slideborder":{"type":"object"},"slidepadding":{"type":"object"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"ID":{"type":"string"},"clientId":{"type":"string"},"postsNumber":{"type":"string","default":"10"},"postOrder":{"type":"string","default":"DESC"},"postOrderBy":{"type":"string","default":"date"},"includeCategories":{"type":"array"},"noResultText":{"type":"string","default":"The team member you requested could not be found. Try changing your module settings or create some new team members."},"showShortDesc":{"type":"boolean","default":true},"showDesignation":{"type":"boolean","default":true},"showSocialIcon":{"type":"boolean","default":true},"socialIconLinkTarget":{"type":"string"},"showSkills":{"type":"boolean","default":true},"sliderLayout":{"type":"string","default":"layout1"},"slideEffect":{"type":"string","default":"slide"},"memberPerSlide":{"type":"string","default":"3"},"slidesPerGroup":{"type":"string","default":"1"},"enableCoverflowShadow":{"type":"boolean","default":false},"coverflowShadowColor":{"type":"string","default":"#ccc"},"coverflowRotate":{"type":"number","default":40},"coverflowDepth":{"type":"number","default":100},"spaceBetweenSlides":{"type":"number","default":20},"equalizeHeight":{"type":"boolean","default":true},"autoHeightSlider":{"type":"boolean","default":false},"sliderLoop":{"type":"boolean","default":false},"autoplay":{"type":"boolean","default":true},"enableLinearTransition":{"type":"boolean","default":false},"autoplaySpeed":{"type":"string","default":"3000"},"pauseOnHover":{"type":"boolean","default":true},"transitionDuration":{"type":"string","default":"1000"},"showArrow":{"type":"boolean","default":true},"previousSlideArrow":{"type":"string"},"nextSlideArrow":{"type":"string"},"showArrowOnHover":{"type":"boolean","default":false},"arrowsPosition":{"type":"string","default":"inside"},"showControlDot":{"type":"boolean","default":true},"controlDotStyle":{"type":"string","default":"solid_dot"},"enableDynamicDots":{"type":"boolean","default":false},"containerBackground":{"type":"string"},"containerpadding":{"type":"object"},"sliderArrowColor":{"type":"string"},"sliderArrowBackground":{"type":"string"},"sliderActiveDoteColor":{"type":"string"},"sliderInactiveDoteColor":{"type":"string"},"arrowFontSize":{"type":"string"},"arrowpadding":{"type":"object"},"tabletMemberPerSlide":{"type":"string","default":"3"},"tabletSlidesPerGroup":{"type":"string","default":"1"},"tabletSpaceBetweenSlides":{"type":"number","default":20},"mobileMemberPerSlide":{"type":"string","default":"1"},"mobileSlidesPerGroup":{"type":"string","default":"1"},"mobileSpaceBetweenSlides":{"type":"number","default":20},"textAlignment":{"type":"string","default":"left"},"imageHeight":{"type":"string"},"imageborderRadius":{"type":"string"},"imageborder":{"type":"object"},"nametext":{"type":"string"},"nameFontSize":{"type":"string"},"nameFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"nameLetterSpacing":{"type":"string"},"nameDecoration":{"type":"string"},"nameLetterCase":{"type":"string"},"nameLineHeight":{"type":"string"},"nameTextAlignment":{"type":"string","default":"left"},"nameHeadingLavel":{"type":"string","default":"h2"},"designationText":{"type":"string"},"designationFontSize":{"type":"string"},"designationFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"designationLetterSpacing":{"type":"string"},"designationDecoration":{"type":"string"},"designationLetterCase":{"type":"string"},"designationLineHeight":{"type":"string"},"designationTextAlignment":{"type":"string","default":"left"},"designationHeadingLavel":{"type":"string","default":"h4"},"skillText":{"type":"string"},"skillFontSize":{"type":"string"},"skillFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"skillLetterSpacing":{"type":"string"},"skillDecoration":{"type":"string"},"skillLetterCase":{"type":"string"},"skillLineHeight":{"type":"string"},"skillTextAlignment":{"type":"string","default":"left"},"descriptionText":{"type":"string"},"descriptionFontSize":{"type":"string"},"descriptionFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"descriptionLetterSpacing":{"type":"string"},"descriptionDecoration":{"type":"string"},"descriptionLetterCase":{"type":"string"},"descriptionLineHeight":{"type":"string"},"descriptionTextAlignment":{"type":"string","default":"left"},"barHeight":{"type":"string","default":"12px"},"skillEmptyColor":{"type":"string","default":"#ccc"},"skillFilledColor":{"type":"string","default":"#0c71c3"},"iconSeparatorColor":{"type":"string","default":"#cccccc"},"iconColor":{"type":"string"},"iconBackground":{"type":"string"},"separatorSize":{"type":"string","default":"1px"},"iconSize":{"type":"string","default":"16px"},"socialIconsAlignment":{"type":"string","default":"center"},"iconborderRadius":{"type":"string"},"iconborder":{"type":"object"},"arrowborderRadius":{"type":"string"},"arrowborder":{"type":"object"},"slideBackground":{"type":"string"},"slideborderRadius":{"type":"string"},"slideborder":{"type":"object"},"slidepadding":{"type":"object"}}');
 
 /***/ })
 

@@ -155,6 +155,31 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 	        : 'swiper-button-prev';
 	    $processed_designation_level = $attributes['designationHeadingLavel'];
 
+	    $data_attr = array(
+			'data-slide_effect'                => $attributes['slideEffect'],
+			'data-show_arrow'                  => $attributes['showArrow'],
+			'data-show_control'                => $attributes['showControlDot'],
+			'data-loop'                        => $attributes['sliderLoop'],
+			'data-autoplay'                    => $attributes['autoplay'],
+			'data-autoplay_speed'              => $attributes['autoplaySpeed'],
+			'data-transition_duration'         => $attributes['transitionDuration'],
+			'data-pause_on_hover'              => $attributes['pauseOnHover'],
+			'data-auto_height_slider'          => $attributes['autoHeightSlider'],
+			'data-enable_coverflow_shadow'     => $attributes['enableCoverflowShadow'],
+			'data-coverflow_rotate'            => $attributes['coverflowRotate'],
+			'data-coverflow_depth'             => $attributes['coverflowDepth'],
+			'data-dynamic_bullets'             => $attributes['enableDynamicDots'],
+			'data-per_view'                    => $attributes['memberPerSlide'],
+			'data-per_view_tablet'             => $attributes['tabletMemberPerSlide'],
+			'data-per_view_phone'              => $attributes['mobileMemberPerSlide'],
+			'data-per_group'                   => $attributes['slidesPerGroup'],
+			'data-per_group_tablet'            => $attributes['tabletSlidesPerGroup'],
+			'data-per_group_phone'             => $attributes['mobileSlidesPerGroup'],
+			'data-space_between_slides'        => $attributes['spaceBetweenSlides'],
+			'data-space_between_slides_tablet' => $attributes['tabletSpaceBetweenSlides'],
+			'data-space_between_slides_phone'  => $attributes['mobileSpaceBetweenSlides']
+		);
+
 		$args = array(
 			'post_type'      => 'wpmozo-team-member',
 			'posts_per_page' => intval( $posts_number ),
@@ -195,8 +220,9 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 
 		$output  = '<div class="wpmozo-adfgu-team-slider-wrap">';
 			$output .= sprintf(
-				'<div class="wpmozo-adfgu-team-slider-container wpmozo-adfgu-swiper-inner-wrap %1$s">',
-				esc_attr( $slider_layout )
+				'<div class="wpmozo-adfgu-team-slider-container wpmozo-adfgu-swiper-inner-wrap %1$s" data-attr="%2$s">',
+				esc_attr( $slider_layout ),
+				esc_attr( wp_json_encode( $data_attr ) )
 			);
 			$output .= sprintf( '<div class="swiper swiper-container" data-client-id="%1$s">', esc_attr( $client_id ) );
 			$output .= '<div class="swiper-wrapper">';
@@ -235,7 +261,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 				if ( '' !== $member_name ) {
 					$member_name = sprintf(
 						'<div class="wpmozo-adfgu-team-member-name">
-							<%2$s>%1$s</%2$s>
+							<%2$s class="wpmozo-adfgu-team-member-name-text">%1$s</%2$s>
 						</div>',
 						esc_html( $member_name ),
 						esc_html( $processed_name_level )
@@ -265,7 +291,7 @@ class WPMozo_Addons_Lite_Gutenberg_Block_Teamslider extends WPMozo_Addons_Lite_G
 				if ( $show_designation && '' !== $meta_fields['wpmozo_team_member_designation'][0] ) {
 					$designation = sprintf(
 						'<div class="wpmozo-adfgu-team-member-designation">
-							<%2$s>%1$s</%2$s>
+							<%2$s class="wpmozo-adfgu-team-member-designation-text">%1$s</%2$s>
 						</div>',
 						$meta_fields['wpmozo_team_member_designation'][0], $processed_designation_level );
 				} else {

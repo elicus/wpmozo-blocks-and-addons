@@ -20,10 +20,10 @@ const initSwiper = ( attributes ) => {
     teamPerSlide = parseInt( attributes.memberPerSlide ),
     spaceBetweenSlides = parseInt( attributes.spaceBetweenSlides ),
     slidesPerGroup = parseInt( attributes.slidesPerGroup ),
-    tabletTeamPerSlide = parseInt( attributes.tabletTeamPerSlide ),
+    tabletMemberPerSlide = parseInt( attributes.tabletMemberPerSlide ),
     tabletSlidesPerGroup = parseInt( attributes.tabletSlidesPerGroup ),
     tabletSpaceBetweenSlides = parseInt( attributes.tabletSpaceBetweenSlides ),
-    mobileTeamPerSlide = parseInt( attributes.mobileTeamPerSlide ),
+    mobileMemberPerSlide = parseInt( attributes.mobileMemberPerSlide ),
     mobileSpaceBetweenSlides = parseInt( attributes.mobileSpaceBetweenSlides ),
     mobileSlidesPerGroup = parseInt( attributes.mobileSlidesPerGroup ),
     buttonNextClass = ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.nextSlideArrow ) ) 
@@ -142,12 +142,12 @@ const initSwiper = ( attributes ) => {
                 slidesPerGroup: slidesPerGroup,
             },
             768: {
-                slidesPerView: tabletTeamPerSlide,
+                slidesPerView: tabletMemberPerSlide,
                 spaceBetween: tabletSpaceBetweenSlides,
                 slidesPerGroup: tabletSlidesPerGroup,
             },
             0: {
-                slidesPerView: mobileTeamPerSlide,
+                slidesPerView: mobileMemberPerSlide,
                 spaceBetween: mobileSpaceBetweenSlides,
                 slidesPerGroup: mobileSlidesPerGroup
             }

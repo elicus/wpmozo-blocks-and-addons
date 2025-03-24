@@ -662,7 +662,7 @@ const Inspector = (props) => {
                         props={props}
                         ColorTypes={[ 
                             {
-                                key: 'text',
+                                key: 'Text',
                                 label: __( 'Designation Text Color', 'wpmozo-addons-lite-for-gutenberg' ),
                             } 
                         ]}
@@ -697,7 +697,7 @@ const Inspector = (props) => {
                         props={props}
                         ColorTypes={[ 
                             {
-                                key: 'text',
+                                key: 'Text',
                                 label: __( 'Description Text Color', 'wpmozo-addons-lite-for-gutenberg' ),
                             } 
                         ]}
@@ -718,7 +718,7 @@ const Inspector = (props) => {
                         props={props}
                         ColorTypes={[ 
                             {
-                                key: 'text',
+                                key: 'Text',
                                 label: __( 'Skill Text Color', 'wpmozo-addons-lite-for-gutenberg' ),
                             } 
                         ]}
@@ -726,8 +726,16 @@ const Inspector = (props) => {
                     <WpmozoAlignment
                         label={ __( 'Skill Text Alignment', 'wpmozo-addons-lite-for-gutenberg' ) }
                         onChange={ ( newValue ) => setAttributes( { skillTextAlignment: newValue } ) }
-                        value={ attributes.skillTextAlignment }  
-                        ColorKey="bar"
+                        value={ attributes.skillTextAlignment }
+                    />
+                    <WpmozoTypography
+                       TypographyKey="skill"
+                       props={props}
+                    />
+                </PanelBody>
+                <PanelBody title={ __( 'Skills', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                     <WpmozoColorPicker
+                        ColorKey="skill"
                         props={props}
                         ColorTypes={[ 
                             {
@@ -736,7 +744,7 @@ const Inspector = (props) => {
                             },
                             {
                                 key: 'FilledColor',
-                                label: __( 'Empty Bar Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                label: __( 'Fill Bar Color', 'wpmozo-addons-lite-for-gutenberg' ),
                             } 
                         ]}
                     />
@@ -766,7 +774,7 @@ const Inspector = (props) => {
                         ]}
                     />
                     <WpmozoAlignment
-                        label={ __( 'Skill Text Alignment', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Social Icon Alignment', 'wpmozo-addons-lite-for-gutenberg' ) }
                         onChange={ ( newValue ) => setAttributes( { socialIconsAlignment: newValue } ) }
                         value={ attributes.socialIconsAlignment }
                     />
@@ -800,10 +808,6 @@ const Inspector = (props) => {
                                 label: __( 'Arrow Background', 'wpmozo-addons-lite-for-gutenberg' ),
                             },
                             {
-                                key: 'ArrowBackgroundBorderColor',
-                                label: __( 'Arrow Background Border Color', 'wpmozo-addons-lite-for-gutenberg' ),
-                            },
-                            {
                                 key: 'ActiveDoteColor',
                                 label: __( 'Active Dot Pagination Color', 'wpmozo-addons-lite-for-gutenberg' ),
                             },
@@ -828,11 +832,6 @@ const Inspector = (props) => {
                             padding: true
                         }}
                         props={props}
-                    />
-                    <HeightControl
-                        label={ __( 'Arrow Size', 'wpmozo-addons-lite-for-gutenberg' ) }
-                        onChange={ ( newValue ) => setAttributes( { iconSize: newValue } ) }
-                        value={ attributes.iconSize }
                     />
                     <WpmozoBorder
                         label={ __( 'Arrow Background Border', 'wpmozo-addons-lite-for-gutenberg' ) }
