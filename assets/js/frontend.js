@@ -36,37 +36,63 @@ jQuery(document).ready(function($){
 
     };
 
-    let initSwiper = ( swiperEl, attributes ) => {
+    let initSwiper = ( swiperEl, innerWrap, attributes ) => {
 
-        let innerWrap = jQuery(swiperEl).closest('.wpmozo-adfgu-logo-slider-inner-wrap'),
-        productsPerSlide = parseInt( attributes.logoPerSlide ),
-        spaceBetweenSlides = parseInt( attributes.spaceBetweenSlides ),
-        slidesPerGroup = parseInt( attributes.slidesPerGroup ),
-        tabletLogoPerSlide = parseInt( attributes.tabletLogoPerSlide ),
-        tabletSlidesPerGroup = parseInt( attributes.tabletSlidesPerGroup ),
-        tabletSpaceBetweenSlides = parseInt( attributes.tabletSpaceBetweenSlides ),
-        mobileLogoPerSlide = parseInt( attributes.mobileLogoPerSlide ),
-        mobileSpaceBetweenSlides = parseInt( attributes.mobileSpaceBetweenSlides ),
-        mobileSlidesPerGroup = parseInt( attributes.mobileSlidesPerGroup ),
-        buttonNextClass = ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.nextSlideArrow ) ) 
-            ? '.custom-swiper-button-next'
-            : '.swiper-button-next',
-        buttonPrevClass = ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.previousSlideArrow ) ) 
-            ? '.custom-swiper-button-prev'
-            : '.swiper-button-prev',
-        paginationEl = '',
-        buttonNext = '',
-        buttonPrev = '';
+        let productsPerSlide = parseInt( attributes.perSlide ),
+            spaceBetweenSlides = parseInt( attributes.spaceBetweenSlides ),
+            slidesPerGroup = parseInt( attributes.slidesPerGroup ),
+            tabletPerSlide = parseInt( attributes.tabletPerSlide ),
+            tabletSlidesPerGroup = parseInt( attributes.tabletSlidesPerGroup ),
+            tabletSpaceBetweenSlides = parseInt( attributes.tabletSpaceBetweenSlides ),
+            mobilePerSlide = parseInt( attributes.mobilePerSlide ),
+            mobileSpaceBetweenSlides = parseInt( attributes.mobileSpaceBetweenSlides ),
+            mobileSlidesPerGroup = parseInt( attributes.mobileSlidesPerGroup ),
+            buttonNextClass = ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.nextSlideArrow ) ) 
+                ? '.custom-swiper-button-next'
+                : '.swiper-button-next',
+            buttonPrevClass = ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.previousSlideArrow ) ) 
+                ? '.custom-swiper-button-prev'
+                : '.swiper-button-prev',
+            paginationEl = '',
+            buttonNext = '',
+            buttonPrev = '';
 
         let loop =  attributes.sliderLoop,
             speed = attributes.transitionDuration,
+            slideEffect = attributes.slideEffect,
             arrows = false,
             dots = false,
             autoplaySlides = false,
-            slidesPerGroupSkip = 0;
+            slidesPerGroupSkip = 0,
+            $cubeEffect = false,
+            $coverflowEffect = false,
+            $fadeEffect = false, 
+            autoHeight = attributes.autoHeightSlider,
+            enableDynamicDots = attributes.enableDynamicDots;
 
         if ( productsPerSlide > slidesPerGroup && 1 !== slidesPerGroup ) {
             slidesPerGroupSkip = productsPerSlide - slidesPerGroup;
+        }
+
+        if ( 'cube' === slideEffect ) {
+            $cubeEffect = {
+                shadow: false,
+                slideShadows: false,
+            };
+        }
+
+        if ( 'coverflow' === slideEffect ) {
+            $coverflowEffect = {
+                rotate: attributes.coverflowRotate,
+                stretch: 0,
+                depth: attributes.coverflowDepth,
+                modifier: 1,
+                slideShadows : attributes.enableCoverflowShadow,
+            };
+        }
+
+        if ( 'fade' === slideEffect ) {
+            $fadeEffect = { crossFade: true };
         }
 
         if ( attributes.showArrow ) {
@@ -82,7 +108,7 @@ jQuery(document).ready(function($){
             paginationEl = innerWrap.find('.swiper-pagination')[0];
             dots = {
                 el: paginationEl,
-                dynamicBullets: attributes.dynamicBullets,
+                dynamicBullets: enableDynamicDots,
                 clickable: true
             };
         }
@@ -108,11 +134,16 @@ jQuery(document).ready(function($){
             autoplay: autoplaySlides,
             loop: loop,
             speed: speed,
+            effect: slideEffect,
+            cubeEffect: $cubeEffect,
+            coverflowEffect: $coverflowEffect,
+            fadeEffect: $fadeEffect,
             pagination: dots,
             navigation: arrows,
             grabCursor: true,
             observer: true,
             observeParents: true,
+            autoHeight: autoHeight,
             breakpoints: {
                 981: {
                     slidesPerView: productsPerSlide,
@@ -120,12 +151,12 @@ jQuery(document).ready(function($){
                     slidesPerGroup: slidesPerGroup,
                 },
                 768: {
-                    slidesPerView: tabletLogoPerSlide,
+                    slidesPerView: tabletPerSlide,
                     spaceBetween: tabletSpaceBetweenSlides,
                     slidesPerGroup: tabletSlidesPerGroup,
                 },
                 0: {
-                    slidesPerView: mobileLogoPerSlide,
+                    slidesPerView: mobilePerSlide,
                     spaceBetween: mobileSpaceBetweenSlides,
                     slidesPerGroup: mobileSlidesPerGroup
                 }
@@ -246,9 +277,10 @@ jQuery(document).ready(function($){
     jQuery("body").find(".wpmozo-adfgu-logo-slider-wrap").each(function() {
 
         let swiperEl = jQuery(this).find('.swiper-container')[0],
-        attributes = jQuery(this).data('attr');
+        attributes = jQuery(this).data('attr'),
+        innerWrap = jQuery(swiperEl).closest('.wpmozo-adfgu-logo-slider-inner-wrap');
 
-        initSwiper( swiperEl, attributes );
+        initSwiper( swiperEl, innerWrap, attributes );
 
         jQuery(swiperEl).on("mouseenter", function(e) {
 
@@ -273,5 +305,16 @@ jQuery(document).ready(function($){
         });
 
     });
+
+    jQuery(document).find(".wpmozo-adfgu-team-slider-wrap").each(function( key, el ) {
+
+        let $this = jQuery(this),
+            attributes = $this.data('attr'),
+            swiperEl = $this.find('.swiper-container')[0],
+            innerWrap = jQuery(swiperEl).closest('.wpmozo-adfgu-swiper-inner-wrap');
+
+        initSwiper( swiperEl, innerWrap, attributes );
+
+    });  
 
 })

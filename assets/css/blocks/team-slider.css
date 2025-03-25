@@ -15,6 +15,7 @@
     width: 100%;
     border: 0 solid #333;
     object-fit: cover;
+    height: auto;
 }
 .wpmozo-adfgu-team-slider-wrap .wpmozo-adfgu-team-member-social-icon {
     border-style: solid;

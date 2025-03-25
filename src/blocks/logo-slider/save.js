@@ -45,13 +45,13 @@ import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
         }
 
         let dataAttr = {
-            logoPerSlide: attributes.logoPerSlide,
+            perSlide: attributes.logoPerSlide,
             spaceBetweenSlides: attributes.spaceBetweenSlides,
             slidesPerGroup: attributes.slidesPerGroup,
-            tabletLogoPerSlide: attributes.tabletLogoPerSlide,
+            tabletPerSlide: attributes.tabletLogoPerSlide,
             tabletSlidesPerGroup: attributes.tabletSlidesPerGroup,
             tabletSpaceBetweenSlides: attributes.tabletSpaceBetweenSlides,
-            mobileLogoPerSlide: attributes.mobileLogoPerSlide,
+            mobilePerSlide: attributes.mobileLogoPerSlide,
             mobileSpaceBetweenSlides: attributes.mobileSpaceBetweenSlides,
             mobileSlidesPerGroup: attributes.mobileSlidesPerGroup,
             nextSlideArrow: attributes.nextSlideArrow,
