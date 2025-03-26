@@ -94,7 +94,7 @@ const Inspector = (props) => {
                         ]}
                     />
                     <WpmozoAlignment
-                        label={__( 'Heading Alignment', 'wpmozo-addons-lite-for-gutenberg')}
+                        label={__( 'Heading Alignment', 'wpmozo-blocks-and-addons')}
                         onChange={ ( newValue ) => setAttributes( { headingAlignment: newValue } ) }
                         value={ attributes.headingAlignment }
                     />

@@ -25,7 +25,7 @@ const Style = ({attributes, ID, clientId}) => {
     
     let allInline = [
         {
-            selector: '.wpmozo-adfgu-team-slider-wrap',
+            selector: '.wpmozo-bna-team-slider-wrap',
             style: {
                 'background': attributes.containerBackground,
                 'text-align': attributes.textAlignment
@@ -36,21 +36,21 @@ const Style = ({attributes, ID, clientId}) => {
             additional: convertedStyle['container']
         },
         {
-            selector: '.wpmozo-adfgu-team-member-card',
+            selector: '.wpmozo-bna-team-member-card',
             style: {
                 'background': attributes.slideBackground,
             },
             additional: convertedStyle['slide']
         },
         {
-            selector: '.wpmozo-adfgu-team-member-image img',
+            selector: '.wpmozo-bna-team-member-image img',
             style: {
                 'height': attributes.imageHeight,
             },
             additional: convertedStyle['image']
         },
         {
-            selector: '.wpmozo-adfgu-team-member-name-text',
+            selector: '.wpmozo-bna-team-member-name-text',
             style: {
                 'color': attributes.nameText,
                 'text-align': attributes.nameTextAlignment
@@ -58,7 +58,7 @@ const Style = ({attributes, ID, clientId}) => {
             additional: convertedStyle['name']
         },
         {
-            selector: '.wpmozo-adfgu-team-member-designation-text',
+            selector: '.wpmozo-bna-team-member-designation-text',
             style: {
                 'color': attributes.designationText,
                 'text-align': attributes.designationTextAlignment
@@ -66,7 +66,7 @@ const Style = ({attributes, ID, clientId}) => {
             additional: convertedStyle['designation']
         },
         {
-            selector: '.wpmozo-adfgu-team-member-short-desc',
+            selector: '.wpmozo-bna-team-member-short-desc',
             style: {
                 'color': attributes.descriptionText,
                 'text-align': attributes.descriptionTextAlignment
@@ -74,7 +74,7 @@ const Style = ({attributes, ID, clientId}) => {
             additional: convertedStyle['description']
         },
         {
-            selector: '.wpmozo-adfgu-skill-name',
+            selector: '.wpmozo-bna-skill-name',
             style: {
                 'color': attributes.skillText,
                 'text-align': attributes.skillTextAlignment
@@ -82,20 +82,20 @@ const Style = ({attributes, ID, clientId}) => {
             additional: convertedStyle['skill']
         },
         {
-            selector: '.wpmozo-adfgu-empty-bar',
+            selector: '.wpmozo-bna-empty-bar',
             style: {
                 'background-color': attributes.skillEmptyColor,
                 'height': attributes.barHeight
             }
         },
         {
-            selector: '.wpmozo-adfgu-filled-bar',
+            selector: '.wpmozo-bna-filled-bar',
             style: {
                 'background-color': attributes.skillFilledColor
             }
         },
         {
-            selector: '.wpmozo-adfgu-team-social-wrapper',
+            selector: '.wpmozo-bna-team-social-wrapper',
             style: {
                 'border-color': attributes.iconSeparatorColor,
                 'border-width': attributes.separatorSize,
@@ -103,7 +103,7 @@ const Style = ({attributes, ID, clientId}) => {
             }
         },
         {
-            selector: '.wpmozo-adfgu-team-member-social-icon',
+            selector: '.wpmozo-bna-team-member-social-icon',
             style: {
                 'color': attributes.iconColor,
                 'font-size': attributes.iconSize,
@@ -141,7 +141,7 @@ const Style = ({attributes, ID, clientId}) => {
 
     if ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.iconColor ) ) {
         allInline.push({
-            selector: '.wpmozo-adfgu-team-instagram',
+            selector: '.wpmozo-bna-team-instagram',
             style: {
                 '-webkit-text-fill-color': 'unset !important;',
             },
@@ -150,7 +150,7 @@ const Style = ({attributes, ID, clientId}) => {
 
     if ( ! wpmozoCoreFun.wpmozo_is_empty( attributes.iconBackground ) ) {
         allInline.push({
-            selector: '.wpmozo-adfgu-team-instagram',
+            selector: '.wpmozo-bna-team-instagram',
             style: {
                 'background': 'unset',
                 '-webkit-background-clip': 'unset',
@@ -256,7 +256,7 @@ const Style = ({attributes, ID, clientId}) => {
             }
         });
         allInline.push({
-            selector: '.wpmozo-adfgu-team-member-card',
+            selector: '.wpmozo-bna-team-member-card',
             style: { 
                 'height': '100%'
             }

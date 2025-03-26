@@ -142,7 +142,7 @@ const Inspector = (props) => {
                         props={props}
                     />
                 </PanelBody>
-                 <PanelBody title={ __( 'Image Border', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                 <PanelBody title={ __( 'Image Border', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoBorder
                         BorderKey="image"
                         props={props}

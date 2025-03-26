@@ -152,7 +152,7 @@ const Inspector = (props) => {
                         }}
                     />
                     <WpmozoAlignment
-                        label={__( 'Switch Alignment', 'wpmozo-addons-lite-for-gutenberg')}
+                        label={__( 'Switch Alignment', 'wpmozo-blocks-and-addons')}
                         onChange={ ( newValue ) => setAttributes( { toggleSwitchAlignment: newValue } ) }
                         value={ attributes.toggleSwitchAlignment }
                     />

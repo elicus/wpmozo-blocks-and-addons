@@ -320,7 +320,7 @@ const Inspector = (props) => {
                         ]}
                     />
                     <WpmozoAlignment
-                        label={ __( 'Icon Alignment', 'wpmozo-addons-lite-for-gutenberg') }
+                        label={ __( 'Icon Alignment', 'wpmozo-blocks-and-addons') }
                         onChange={ ( newValue ) => setAttributes( { iconAlign: newValue } ) }
                         value={ attributes.iconAlign }
                     />
