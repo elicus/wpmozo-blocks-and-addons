@@ -11,7 +11,7 @@ const WpmozoColorPicker = function(args){
         withToolPanel                     = ( args.hasOwnProperty('withToolPanel') ) ? args.withToolPanel : true,
         AllColors                         = __experimentalUseMultipleOriginColorsAndGradients(),
         defaultGradientColor              = 'linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)',
-        label                             = args.hasOwnProperty('label') ? args.label : __( 'Color', 'wpmozo-addons-lite-for-gutenberg' ); 
+        label                             = args.hasOwnProperty('label') ? args.label : __( 'Color', 'wpmozo-blocks-and-addons' ); 
 
     const colorSetValue = function( styleType, value = null ) {
 
@@ -101,12 +101,12 @@ const WpmozoColorPicker = function(args){
                                 tabs: [
                                     {
                                         name: "solid",
-                                        title: __( 'Solid', 'wpmozo-addons-lite-for-gutenberg' ),
+                                        title: __( 'Solid', 'wpmozo-blocks-and-addons' ),
                                         className: "wpmozo-color-tab-solid"
                                     },
                                     {
                                         name: "gradient",
-                                        title: __( 'Gradient', 'wpmozo-addons-lite-for-gutenberg' ),
+                                        title: __( 'Gradient', 'wpmozo-blocks-and-addons' ),
                                         className: "wpmozo-color-tab-gradient"
                                     }
                                 ],

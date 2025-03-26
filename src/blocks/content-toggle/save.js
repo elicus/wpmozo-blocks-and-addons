@@ -20,7 +20,7 @@ const Save = ({ attributes }) => {
     );
 
     const titleOne = (
-       <div className={`wpmozo-adfgu-toggle-title-wrap wpmozo-adfgu-toggle-title-one${titleWrapClass}`}>
+       <div className={`wpmozo-bna-toggle-title-wrap wpmozo-bna-toggle-title-one${titleWrapClass}`}>
             { 'before' === attributes.toggleOneIconPostion &&
                 iconOne
             }
@@ -34,7 +34,7 @@ const Save = ({ attributes }) => {
     );
 
     const titleTwo = (
-        <div className={`wpmozo-adfgu-toggle-title-wrap wpmozo-adfgu-toggle-title-two${titleWrapClass}`}>
+        <div className={`wpmozo-bna-toggle-title-wrap wpmozo-bna-toggle-title-two${titleWrapClass}`}>
             { 'before' === attributes.toggleTwoIconPostion &&
                 iconTwo
             }
@@ -48,16 +48,16 @@ const Save = ({ attributes }) => {
     );
 
     return (
-        <div {...useBlockProps.save({ className: 'wpmozo-adfgu-content-toggle-main' })} id={`block-${ID}`}>
-            <div className={`wpmozo-adfgu-toggle-button-wrap${toggleSwitchTypeClass}`}>
+        <div {...useBlockProps.save({ className: 'wpmozo-bna-content-toggle-main' })} id={`block-${ID}`}>
+            <div className={`wpmozo-bna-toggle-button-wrap${toggleSwitchTypeClass}`}>
                 { 'toggle' === attributes.toggleSwitchType && (
                     <>
                         <input 
-                            className="wpmozo-adfgu-toggle-field" 
+                            className="wpmozo-bna-toggle-field" 
                             type="checkbox" 
                             value=""
                         />
-                        <label className={`wpmozo-adfgu-toggle-switch`}>
+                        <label className={`wpmozo-bna-toggle-switch`}>
                             { titleOne }
                             { titleTwo }
                         </label>
@@ -66,21 +66,21 @@ const Save = ({ attributes }) => {
                 { 'toggle' !== attributes.toggleSwitchType && (
                     <>
                         { titleOne }
-                        <div className={`wpmozo-adfgu-toggle-button${toggleSwitchTypeClass}`}>
-                            <label className="wpmozo-adfgu-toggle-button-inner">
+                        <div className={`wpmozo-bna-toggle-button${toggleSwitchTypeClass}`}>
+                            <label className="wpmozo-bna-toggle-button-inner">
                                 <input 
-                                    className="wpmozo-adfgu-toggle-field" 
+                                    className="wpmozo-bna-toggle-field" 
                                     type="checkbox" 
                                     value=""
                                 />
-                                <div className={`wpmozo-adfgu-toggle-switch${toggleSwitchTypeClass}`}></div>
+                                <div className={`wpmozo-bna-toggle-switch${toggleSwitchTypeClass}`}></div>
                             </label>
                         </div>
                         { titleTwo }
                     </>
                 )}
             </div>
-            <div className="wpmozo-adfgu-content-toggle-content-wrap">
+            <div className="wpmozo-bna-content-toggle-content-wrap">
                 <InnerBlocks.Content />
             </div>    
         </div>

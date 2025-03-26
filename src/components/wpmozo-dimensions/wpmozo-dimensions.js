@@ -7,7 +7,7 @@ const WpmozoDimensions = function(args){
 
 	const { DimensionKey, props } = args, 
 		preAttributes             = props.preAttributes,
-		label                     = args.hasOwnProperty( 'label' ) ? args.label : __( 'Dimensions', 'wpmozo-addons-lite-for-gutenberg' );
+		label                     = args.hasOwnProperty( 'label' ) ? args.label : __( 'Dimensions', 'wpmozo-blocks-and-addons' );
 	let DimensionsTypes           = args.hasOwnProperty( 'DimensionsTypes' ) ? args.DimensionsTypes : null;
 
 	const dimensionsSetValue = function( styleType, value = null ) {
@@ -62,7 +62,7 @@ const WpmozoDimensions = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Padding', 'wpmozo-addons-lite-for-gutenberg' ),
+						label: __( 'Padding', 'wpmozo-blocks-and-addons' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						className: 'tools-panel-item-spacing',
@@ -81,7 +81,7 @@ const WpmozoDimensions = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Margin', 'wpmozo-addons-lite-for-gutenberg' ),
+						label: __( 'Margin', 'wpmozo-blocks-and-addons' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						className: 'tools-panel-item-spacing',
@@ -100,7 +100,7 @@ const WpmozoDimensions = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Position', 'wpmozo-addons-lite-for-gutenberg' ),
+						label: __( 'Position', 'wpmozo-blocks-and-addons' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						className: 'tools-panel-item-spacing',

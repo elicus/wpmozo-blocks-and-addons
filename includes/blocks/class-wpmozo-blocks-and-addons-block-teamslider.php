@@ -1,0 +1,452 @@
+<?php
+/**
+ * Define methods for team slider block.
+ *
+ * @link       https://elicus.com
+ * @since      1.0.0
+ *
+ * @package    WPMozo_Blocks_And_Addons
+ * @subpackage WPMozo_Blocks_And_Addons/includes
+ */
+
+/**
+ * This class responsible for defining all methods for before after slider block.
+ *
+ * @since      1.0.0
+ * @package    WPMozo_Blocks_And_Addons
+ * @subpackage WPMozo_Blocks_And_Addons/includes
+ * @author     Elicus <hello@elicus.com>
+ */
+class WPMozo_Blocks_And_Addons_Block_Teamslider extends WPMozo_Blocks_And_Addons_Block {
+
+	/**
+	 * The name of block.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 * @var string $block_name The name of block.
+	 */
+	protected $block_name = 'team-slider';
+
+	/**
+	 * The single instance of the class.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 * @var WPMozo_Blocks_And_Addons_Block $_instance The instances of this class.
+	 */
+	protected static $_instance = null;
+
+	/**
+	 * The instance of this class.
+	 *
+	 * Ensures only one instance of WPMozo_Blocks_And_Addons_Block is loaded or can be loaded.
+	 *
+	 * @since 1.0.0
+	 * @return WPMozo_Blocks_And_Addons_Block - Main instance.
+	 */
+	public static function instance() {
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self();
+		}
+		return self::$_instance;
+	}
+
+	/**
+	 * Initialize the class and set its properties.
+	 *
+	 * @since 1.0.0
+	 */
+	public function __construct() {
+
+		parent::__construct();
+
+		$this->scripts[] = array(
+			'handle' => $this->plugin_name . '-swiper-script',
+			'src'    => WPMOZO_BLOCKS_AND_ADDONS_ASSETS_DIR_URL . 'js/swiper/swiper-bundle.min.js',
+			'deps'   => array( 'jquery' ),
+			'ver'    => time(),
+		);
+
+		$this->styles[] = array(
+			'handle' => $this->plugin_name . '-swiper-style',
+			'src'    => WPMOZO_BLOCKS_AND_ADDONS_ASSETS_DIR_URL . 'css/swiper/swiper-bundle.min.css',
+			'deps'   => array(),
+			'ver'    => time(),
+		);
+
+		$this->styles[] = array(
+			'handle' => $this->plugin_name . '-team-slider-style',
+			'src'    => WPMOZO_BLOCKS_AND_ADDONS_ASSETS_DIR_URL . 'css/blocks/team-slider/team-slider.css',
+			'deps'   => array(),
+			'ver'    => time(),
+		);
+
+		$attributes = $this->get_attributes();
+
+		$this->args = array(
+			'script_handles' => array(
+				$this->plugin_name . '-swiper-script',
+			),
+			'style_handles'  => array(
+				$this->plugin_name . '-fontawesome-style',
+				$this->plugin_name . '-swiper-style',
+				$this->plugin_name . '-team-slider-style',
+			),
+			'attributes' => $attributes,
+			'render_callback' => array( $this, 'team_slider_render_callback' )
+		);
+
+	}
+
+	/**
+	 * Get attributes.
+	 *
+	 * @since 1.0.0
+	 */
+	public function get_attributes() {
+
+		global $wp_filesystem;
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		WP_Filesystem();
+
+		$attributes = array();
+		$file_path  = WPMOZO_BLOCKS_AND_ADDONS_PLUGIN_DIR_PATH . 'src/blocks/team-slider/attributes.json';
+
+		if ( $wp_filesystem->exists( $file_path ) ) {
+			$json = $wp_filesystem->get_contents( $file_path );
+			$attributes = json_decode( $json, true );
+		}
+
+		return $attributes;
+
+	}
+
+	/**
+	 * Render team slider markup.
+	 *
+	 * @since 1.0.0
+	 * @param array $attributes The arguments of block.
+	 */
+	public function team_slider_render_callback( $attributes, $content ) {
+
+		$client_id = $attributes['clientId'];
+		$posts_number = $attributes['postsNumber'];
+		$include_categories = $attributes['includeCategories'];
+		$post_order_by = $attributes['postOrderBy'];
+		$post_order = $attributes['postOrder'];
+		$processed_name_level = $attributes['nameHeadingLavel'];
+		$show_short_desc = $attributes['showShortDesc'];
+		$show_designation = $attributes['showDesignation'];
+		$show_social_icon = $attributes['showSocialIcon'];
+		$social_icon_link_target = $attributes['socialIconLinkTarget'];
+		$show_arrow = $attributes['showArrow'];
+		$show_control_dot = $attributes['showControlDot'];
+		$control_dot_style = $attributes['controlDotStyle'];
+		$arrows_position = $attributes['arrowsPosition'];
+		$slider_layout = $attributes['sliderLayout'];
+		$show_skills = $attributes['showSkills'];
+		$previous_slide_arrow = ! empty( $attributes['previousSlideArrow'] ) ? $attributes['previousSlideArrow'] : '';
+		$next_slide_arrow = ! empty( $attributes['nextSlideArrow'] ) ? $attributes['nextSlideArrow'] : '';
+		$button_next_class = ! empty( $attributes['nextSlideArrow'] ) 
+	        ? 'custom-swiper-button-next swiper-button-next'
+	        : 'swiper-button-next';
+    	$button_prev_class = ! empty( $attributes['previousSlideArrow'] ) 
+	        ? 'custom-swiper-button-prev swiper-button-prev'
+	        : 'swiper-button-prev';
+	    $processed_designation_level = $attributes['designationHeadingLavel'];
+
+	    $data_attr = array(
+			'slideEffect'              => $attributes['slideEffect'],
+			'showArrow'                => $attributes['showArrow'],
+			'showControlDot'           => $attributes['showControlDot'],
+			'sliderLoop'               => $attributes['sliderLoop'],
+			'autoplay'                 => $attributes['autoplay'],
+			'autoplaySpeed'            => $attributes['autoplaySpeed'],
+			'transitionDuration'       => $attributes['transitionDuration'],
+			'pauseOnHover'             => $attributes['pauseOnHover'],
+			'autoHeightSlider'         => $attributes['autoHeightSlider'],
+			'enableCoverflowShadow'    => $attributes['enableCoverflowShadow'],
+			'coverflowRotate'          => $attributes['coverflowRotate'],
+			'coverflowDepth'           => $attributes['coverflowDepth'],
+			'enableDynamicDots'        => $attributes['enableDynamicDots'],
+			'perSlide'                 => $attributes['memberPerSlide'],
+			'tabletPerSlide'           => $attributes['tabletMemberPerSlide'],
+			'mobilePerSlide'           => $attributes['mobileMemberPerSlide'],
+			'slidesPerGroup'           => $attributes['slidesPerGroup'],
+			'tabletSlidesPerGroup'     => $attributes['tabletSlidesPerGroup'],
+			'mobileSlidesPerGroup'     => $attributes['mobileSlidesPerGroup'],
+			'spaceBetweenSlides'       => $attributes['spaceBetweenSlides'],
+			'tabletSpaceBetweenSlides' => $attributes['tabletSpaceBetweenSlides'],
+			'mobileSpaceBetweenSlides' => $attributes['mobileSpaceBetweenSlides']
+		);
+
+		$args = array(
+			'post_type'      => 'wpmozo-team-member',
+			'posts_per_page' => intval( $posts_number ),
+			'post_status'    => 'publish',
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+		);
+
+		if ( is_user_logged_in() ) {
+			$args['post_status'] = array( 'publish', 'private' );
+		}
+
+		if ( ! empty( $include_categories ) ) {
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'wpmozo-team-member-category',
+					'field'    => 'term_id',
+					'terms'    => $include_categories,
+					'operator' => 'IN',
+				),
+			);
+		}
+
+		if ( isset( $post_order_by ) && '' !== $post_order_by ) {
+			$args['orderby'] = sanitize_text_field( $post_order_by );
+		}
+
+		if ( isset( $post_order ) && '' !== $post_order ) {
+			$args['order'] = sanitize_text_field( $post_order );
+		}
+
+		global $wp_the_query;
+		$query_backup = $wp_the_query;
+
+		$args = apply_filters( 'wpmozo_bna_team_slider_args', $args, $this );
+
+		$query = new WP_Query( $args );
+
+		$output  = sprintf( 
+			'<div class="wpmozo-bna-team-slider-wrap" data-attr="%1$s" id="block-%2$s">', 
+				esc_attr( wp_json_encode( $data_attr ) ),
+				$attributes['ID']
+			);
+			$output .= sprintf(
+				'<div class="wpmozo-bna-team-slider-container wpmozo-bna-swiper-inner-wrap %1$s">',
+				esc_attr( $slider_layout )
+			);
+			$output .= sprintf( '<div class="swiper swiper-container" data-client-id="%1$s">', esc_attr( $client_id ) );
+			$output .= '<div class="swiper-wrapper">';
+
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$post_id           = intval( get_the_ID() );
+				$member_name       = esc_html( get_the_title( $post_id ) );
+				$has_member_image  = has_post_thumbnail( $post_id );
+				$meta_fields       = get_post_meta( $post_id );
+				$skill_bar         = '';
+
+				if ( $show_skills && '' !== $meta_fields['wpmozo_team_member_skills'][0] && '' !== $meta_fields['wpmozo_team_member_skills_value'][0] ) {
+					$team_skills       = explode( ',', $meta_fields['wpmozo_team_member_skills'][0] );
+					$team_skills_value = explode( ',', $meta_fields['wpmozo_team_member_skills_value'][0] );
+
+					for ( $i = 0; $i < count( $team_skills ); $i++ ) {
+						$filled_bar_size = $team_skills_value[ $i ] . '%';
+
+						$skill_bar .= sprintf(
+							'<div class="wpmozo-bna-skill-bar-wrapper-inner">
+												<div class="wpmozo-bna-skill-name">
+													%1$s
+												</div>
+												<div class="wpmozo-bna-empty-bar">
+													<div class="wpmozo-bna-filled-bar" data-skill="%2$s"></div>
+												</div>
+											</div>',
+							$team_skills[ $i ],
+							$filled_bar_size
+						);
+					}
+				}
+
+				if ( '' !== $member_name ) {
+					$member_name = sprintf(
+						'<div class="wpmozo-bna-team-member-name">
+							<%2$s class="wpmozo-bna-team-member-name-text">%1$s</%2$s>
+						</div>',
+						esc_html( $member_name ),
+						esc_html( $processed_name_level )
+					);
+				} else {
+					$member_name = '';
+				}
+
+				if ( $has_member_image ) {
+					$member_image = sprintf(
+						'<div class="wpmozo-bna-team-member-image">%1$s</div>',
+						get_the_post_thumbnail( $post_id, 'large' )
+					);
+				} else {
+					$member_image = '';
+				}
+
+				if ( $show_short_desc && '' !== $meta_fields['wpmozo_team_member_short_desc'][0] ) {
+					$short_description = sprintf(
+						'<div class="wpmozo-bna-team-member-short-desc">%1$s</div>',
+						$meta_fields['wpmozo_team_member_short_desc'][0]
+					);
+				} else {
+					$short_description = '';
+				}
+
+				if ( $show_designation && '' !== $meta_fields['wpmozo_team_member_designation'][0] ) {
+					$designation = sprintf(
+						'<div class="wpmozo-bna-team-member-designation">
+							<%2$s class="wpmozo-bna-team-member-designation-text">%1$s</%2$s>
+						</div>',
+						$meta_fields['wpmozo_team_member_designation'][0], $processed_designation_level );
+				} else {
+					$designation = '';
+				}
+
+				if ( $show_social_icon ) {
+					$website_url	= '';
+					$facebook_url   = '';
+					$twitter_url    = '';
+					$linkedin_url   = '';
+					$instagram_url  = '';
+					$youtube_url    = '';
+					$email          = '';
+					$phone_number   = '';
+
+					if ( isset( $meta_fields['wpmozo_team_member_website'] ) && '' !== $meta_fields['wpmozo_team_member_website'][0] ) {
+						$website_url = sprintf(
+							'<a href="%1$s" target="%2$s">
+								<span class="wpmozo-bna-team-member-social-icon wpmozo-bna-team-website fas fa-globe"></span>
+							</a>',
+							$meta_fields['wpmozo_team_member_website'][0],
+							'external' === $social_icon_link_target ? '_blank' : '_self'
+						);
+					}
+
+					if ( isset( $meta_fields['wpmozo_team_member_facebook'] ) && '' !== $meta_fields['wpmozo_team_member_facebook'][0] ) {
+						$facebook_url = sprintf(
+							'<a href="%1$s" target="%2$s">
+								<span class="wpmozo-bna-team-member-social-icon wpmozo-bna-team-facebook fab fa-facebook-f"></span>
+							</a>',
+							$meta_fields['wpmozo_team_member_facebook'][0],
+							'external' === $social_icon_link_target ? '_blank' : '_self'
+						);
+					}
+
+					if ( isset( $meta_fields['wpmozo_team_member_twitter'] ) && '' !== $meta_fields['wpmozo_team_member_twitter'][0] ) {
+						$twitter_url = sprintf(
+							'<a href="%1$s" target="%2$s">
+								<span class="wpmozo-bna-team-member-social-icon wpmozo-bna-team-twitter fa-brands fa-x-twitter"></span>
+							</a>',   
+							$meta_fields['wpmozo_team_member_twitter'][0],
+							'external' === $social_icon_link_target ? '_blank' : '_self'
+						);
+					}
+
+					if ( isset( $meta_fields['wpmozo_team_member_linkedin'] ) && '' !== $meta_fields['wpmozo_team_member_linkedin'][0] ) {
+						$linkedin_url = sprintf(
+							'<a href="%1$s" target="%2$s">
+								<span class="wpmozo-bna-team-member-social-icon wpmozo-bna-team-linkedin fab fa-linkedin-in"></span>
+							</a>',
+							$meta_fields['wpmozo_team_member_linkedin'][0],
+							'external' === $social_icon_link_target ? '_blank' : '_self'
+						);
+					}
+
+					if ( isset( $meta_fields['wpmozo_team_member_instagram'] ) && '' !== $meta_fields['wpmozo_team_member_instagram'][0] ) {
+						$instagram_url = sprintf(
+							'<a href="%1$s" target="%2$s">
+								<span class="wpmozo-bna-team-member-social-icon wpmozo-bna-team-instagram fab fa-instagram"></span>
+							</a>',
+							$meta_fields['wpmozo_team_member_instagram'][0],
+							'external' === $social_icon_link_target ? '_blank' : '_self'
+						);
+					}
+
+					if ( isset( $meta_fields['wpmozo_team_member_youtube'] ) && '' !== $meta_fields['wpmozo_team_member_youtube'][0] ) {
+						$youtube_url = sprintf(
+							'<a href="%1$s" target="%2$s">
+								<span class="wpmozo-bna-team-member-social-icon wpmozo-bna-team-youtube fab fa-youtube"></span>
+							</a>',
+							$meta_fields['wpmozo_team_member_youtube'][0],
+							'external' === $social_icon_link_target ? '_blank' : '_self'
+						);
+					}
+
+					if ( isset( $meta_fields['wpmozo_team_member_email'] ) && '' !== $meta_fields['wpmozo_team_member_email'][0] ) {
+						$email = sprintf(
+							'<a href="mailto:%1$s" target="%2$s">
+								<span class="wpmozo-bna-team-member-social-icon wpmozo-bna-team-email fas fa-envelope"></span>
+							</a>',
+							$meta_fields['wpmozo_team_member_email'][0],
+							'external' === $social_icon_link_target ? '_blank' : '_self'
+						);
+					}
+
+					if ( isset( $meta_fields['wpmozo_team_member_phone'] ) && '' !== $meta_fields['wpmozo_team_member_phone'][0] ) {
+						$phone_number = sprintf(
+							'<a href="tel:%1$s" target="%2$s">
+								<span class="wpmozo-bna-team-member-social-icon wpmozo-bna-team-phone fas fa-phone"></span>
+							</a>',
+							$meta_fields['wpmozo_team_member_phone'][0],
+							'external' === $social_icon_link_target ? '_blank' : '_self'
+						);
+					}
+				}
+
+				$output .= '<div class="wpmozo-bna-team-member-slide swiper-slide">';
+				
+				if ( file_exists( get_stylesheet_directory() . '/wpmozo/layouts/team-slider/' . sanitize_file_name( $slider_layout ) . '.php' ) ) {
+					include get_stylesheet_directory() . '/wpmozo/layouts/team-slider/' . sanitize_file_name( $slider_layout ) . '.php';
+				} elseif ( file_exists( WPMOZO_BLOCKS_AND_ADDONS_BLOCKS_DIR_PATH . 'layouts/team-slider/' . sanitize_file_name( $slider_layout ) . '.php' ) ) {
+					include WPMOZO_BLOCKS_AND_ADDONS_BLOCKS_DIR_PATH . 'layouts/team-slider/' . sanitize_file_name( $slider_layout ) . '.php';
+				}
+
+				$output .= '</div>';
+			}
+
+			wp_reset_postdata();
+
+			//phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+			$wp_the_query = $query_backup;
+
+			$output .= '</div> <!-- swiper-wrapper -->';
+
+			$output .= '</div> <!-- swiper-container -->';
+
+			if ( $show_arrow ) {
+				$next = sprintf(
+					'<div class="%1$s %2$s"></div>',
+					$button_next_class,
+					$next_slide_arrow
+				);
+
+				$prev = sprintf(
+					'<div class="%1$s %2$s"></div>',
+					$button_prev_class,
+					$previous_slide_arrow
+				);
+
+				$output .= sprintf(
+					'<div class="wpmozo-bna-team-slider-navigation wpmozo-bna-arrows-%3$s">%1$s %2$s</div>',
+					$next,
+					$prev,
+					$arrows_position
+				);
+			}
+
+			if ( $show_control_dot ) {
+				$output .= sprintf(
+					'<div class="wpmozo-bna-swiper-pagination-wrap"><div class="swiper-pagination %1$s"></div></div>',
+					esc_attr( $control_dot_style )
+				);
+			}
+
+			$output .= '</div> <!-- wpmozo-bna-team-slider-container -->';
+
+			$output .= '</div> <!--- wpmozo-bna-swiper-wrapper -->';
+
+		return $output;
+
+	}
+
+}

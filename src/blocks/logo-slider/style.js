@@ -20,7 +20,7 @@ const Style = ({attributes, ID, clientId}) => {
             }
         },
         {
-            selector: '.wpmozo-adfgu-logo-slider-inner-wrap',
+            selector: '.wpmozo-bna-logo-slider-inner-wrap',
             additional: convertedStyle['container']
         },
         {
@@ -81,53 +81,53 @@ const Style = ({attributes, ID, clientId}) => {
 
     if ( attributes.showArrowOnHover ) {
         allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-navigation .swiper-button-prev',
+            selector:     '.wpmozo-bna-logo-slider-navigation .swiper-button-prev',
             additional:  `visibility: hidden; opacity: 0; transition: all 300ms ease;`,
         });
         allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-navigation .swiper-button-next',
+            selector:     '.wpmozo-bna-logo-slider-navigation .swiper-button-next',
             additional:  `visibility: hidden; opacity: 0; transition: all 300ms ease;`,
         });
          allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-logo-slider-navigation .swiper-button-prev, .wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-logo-slider-navigation .swiper-button-next',
+            selector:     '.wpmozo-bna-logo-slider-wrap:hover .wpmozo-bna-logo-slider-navigation .swiper-button-prev, .wpmozo-bna-logo-slider-wrap:hover .wpmozo-bna-logo-slider-navigation .swiper-button-next',
             additional:  `visibility: visible; opacity: 1;`,
         });
         allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-logo-slider-navigation .swiper-button-prev.swiper-button-disabled, .wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-logo-slider-navigation .swiper-button-next.swiper-button-disabled',
+            selector:     '.wpmozo-bna-logo-slider-wrap:hover .wpmozo-bna-logo-slider-navigation .swiper-button-prev.swiper-button-disabled, .wpmozo-bna-logo-slider-wrap:hover .wpmozo-bna-logo-slider-navigation .swiper-button-next.swiper-button-disabled',
             additional:  `opacity: 0.35;`,
         });
         /* Outside Slider */
         allInline.push({
-            selector:     '.wpmozo-adfgu-arrows-outside .swiper-button-prev',
+            selector:     '.wpmozo-bna-arrows-outside .swiper-button-prev',
             additional:  `left: 50px;`,
         });
         allInline.push({
-            selector:     '.wpmozo-adfgu-arrows-outside .swiper-button-next',
+            selector:     '.wpmozo-bna-arrows-outside .swiper-button-next',
             additional:  `right: 50px;`,
         });
         allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-arrows-outside .swiper-button-prev',
+            selector:     '.wpmozo-bna-logo-slider-wrap:hover .wpmozo-bna-arrows-outside .swiper-button-prev',
             additional:  `left: 0;`,
         });
         allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-arrows-outside .swiper-button-next',
+            selector:     '.wpmozo-bna-logo-slider-wrap:hover .wpmozo-bna-arrows-outside .swiper-button-next',
             additional:  `right: 0;`,
         });
         /* Inside Slider */
         allInline.push({
-            selector:     '.wpmozo-adfgu-arrows-inside .swiper-button-prev',
+            selector:     '.wpmozo-bna-arrows-inside .swiper-button-prev',
             additional:  `left: -50px;`,
         });
         allInline.push({
-            selector:     '.wpmozo-adfgu-arrows-inside .swiper-button-next',
+            selector:     '.wpmozo-bna-arrows-inside .swiper-button-next',
             additional:  `right: -50px;`,
         });
         allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-arrows-inside .swiper-button-prev',
+            selector:     '.wpmozo-bna-logo-slider-wrap:hover .wpmozo-bna-arrows-inside .swiper-button-prev',
             additional:  `left: 0;`,
         });
         allInline.push({
-            selector:     '.wpmozo-adfgu-logo-slider-wrap:hover .wpmozo-adfgu-arrows-inside .swiper-button-next',
+            selector:     '.wpmozo-bna-logo-slider-wrap:hover .wpmozo-bna-arrows-inside .swiper-button-next',
             additional:  `right: 0;`,
         });
     }

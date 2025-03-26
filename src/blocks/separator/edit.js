@@ -5,7 +5,7 @@ import Style from "./style";
 import { __ } from "@wordpress/i18n";
 import { Fragment, useState, useEffect } from "@wordpress/element";
 import { useBlockProps, RichText } from "@wordpress/block-editor";
-const WPMozoEditorObj = wpmozo_adfgu_editor_object;
+const WPMozoEditorObj = wpmozo_bna_editor_object;
 
 const Edit = (props) => {
 
@@ -13,7 +13,7 @@ const Edit = (props) => {
     clientId = props.clientId,
     ID = window.wpmozo.getIdByClientid( clientId ),
     setAttributes = props.setAttributes,
-    blockProps = useBlockProps({ className: 'wpmozo-adfgu-separator' });
+    blockProps = useBlockProps({ className: 'wpmozo-bna-separator' });
 
     attributes.ID = ID;
     let position = '';
@@ -34,9 +34,9 @@ const Edit = (props) => {
     }
     useEffect(() => {
         jQuery(document).ready(function($){
-            if ( jQuery('body').find('.wpmozo-adfgu-separator').length > 0 ) {
-                $('body').find('.wpmozo-adfgu-separator').each(function() {
-                    let height = $(this).find('.wpmozo-adfgu-icon-wrapper').outerHeight(true);
+            if ( jQuery('body').find('.wpmozo-bna-separator').length > 0 ) {
+                $('body').find('.wpmozo-bna-separator').each(function() {
+                    let height = $(this).find('.wpmozo-bna-icon-wrapper').outerHeight(true);
                     let padding = height/2;
                     $(this).css('padding-top', padding+'px');
                     $(this).css('padding-bottom', padding+'px');
@@ -55,40 +55,40 @@ const Edit = (props) => {
             />
             <div {...blockProps}>
             {"line" === attributes.separatorType && (
-                <div className={`wpmozo-adfgu-separator-container ${position}`}>
-                    <div className="wpmozo-adfgu-line wpmozo-adfgu-line-before"></div>
+                <div className={`wpmozo-bna-separator-container ${position}`}>
+                    <div className="wpmozo-bna-line wpmozo-bna-line-before"></div>
                         {"textSeparator" === attributes.lineUseWith && (
-                            <div className="wpmozo-adfgu-text-wrapper">
+                            <div className="wpmozo-bna-text-wrapper">
                                 <p>{`${attributes.separatorText}`}</p>
                             </div>
                         )}
                         {"iconSeparator" === attributes.lineUseWith && true !== attributes.styleIcon && (
-                            <div className="wpmozo-adfgu-icon-wrapper">
+                            <div className="wpmozo-bna-icon-wrapper">
                                 <i className={ attributes.separatorIcon }></i>
                             </div>
 
                         )}
                         {"iconSeparator" === attributes.lineUseWith && true === attributes.styleIcon && ('square' === attributes.iconShape || 'circle' === attributes.iconShape) && (
-                            <div className="wpmozo-adfgu-icon-wrapper">
-                                <i className={ attributes.separatorIcon +' wpmozo-adfgu-icon-' + attributes.iconShape  + ( true === attributes.enableShapeBorder ? (' wpmozo-adfgu-icon-shape-border') : '' ) }></i>
+                            <div className="wpmozo-bna-icon-wrapper">
+                                <i className={ attributes.separatorIcon +' wpmozo-bna-icon-' + attributes.iconShape  + ( true === attributes.enableShapeBorder ? (' wpmozo-bna-icon-shape-border') : '' ) }></i>
                             </div>
 
                         )}
                         {"iconSeparator" === attributes.lineUseWith && true === attributes.styleIcon && 'hexagon' === attributes.iconShape && (
-                            <div className="wpmozo-adfgu-icon-wrapper shape-hexagon">
-                                <div className={"hexagon" + ( true === attributes.enableShapeBorder ? (' wpmozo-adfgu-border-hex') : '' )}>
+                            <div className="wpmozo-bna-icon-wrapper shape-hexagon">
+                                <div className={"hexagon" + ( true === attributes.enableShapeBorder ? (' wpmozo-bna-border-hex') : '' )}>
                                     <i className={ attributes.separatorIcon }></i>
                                 </div>
                             </div>
                         )}
                         {"imageSeparator" === attributes.lineUseWith && (
-                            <img className="wpmozo-adfgu-separator-image" src={( attributes.separatorImage ) ? attributes.separatorImage : WPMozoEditorObj.placeholderImg }/>
+                            <img className="wpmozo-bna-separator-image" src={( attributes.separatorImage ) ? attributes.separatorImage : WPMozoEditorObj.placeholderImg }/>
                         )}
-                    <div className="wpmozo-adfgu-line wpmozo-adfgu-line-after"></div>
+                    <div className="wpmozo-bna-line wpmozo-bna-line-after"></div>
                 </div>
             )}
             {"shadow" === attributes.separatorType && (
-                <div className="wpmozo-adfgu-shadow">
+                <div className="wpmozo-bna-shadow">
                 </div>
             )}
             </div>

@@ -18,38 +18,38 @@ const Edit = (props) => {
     attributes.ID = ID;
 
 	const blockProps = useBlockProps({
-        className: 'wpmozo-adfgu-content-toggle-main',
+        className: 'wpmozo-bna-content-toggle-main',
     });
 
     const wraperTemplate = [
         [ 'wpmozo/content-wraper', {
-            className: 'wpmozo-adfgu-content-toggle-one wpmozo-adfgu-content-toggle-active',
+            className: 'wpmozo-bna-content-toggle-one wpmozo-bna-content-toggle-active',
             lock: { 
                 remove: true 
             }
         } ],
         [ 'wpmozo/content-wraper', {
-            className: 'wpmozo-adfgu-content-toggle-two',
+            className: 'wpmozo-bna-content-toggle-two',
             lock: { 
                 remove: true 
             }
         } ],
     ];
 
-    jQuery('.wpmozo-adfgu-toggle-field').change(function(e){
+    jQuery('.wpmozo-bna-toggle-field').change(function(e){
 
-        let selector = jQuery(this).closest('.wpmozo-adfgu-content-toggle-main');
+        let selector = jQuery(this).closest('.wpmozo-bna-content-toggle-main');
         wpmozo_toggle_switch( jQuery(this), selector );
 
     });
 
-    jQuery('.wpmozo-adfgu-toggle-title-wrap > :header').click(function(e){
+    jQuery('.wpmozo-bna-toggle-title-wrap > :header').click(function(e){
 
-        let wrap = jQuery(this).closest('.wpmozo-adfgu-toggle-title-wrap'),
-        selector = jQuery(this).closest('.wpmozo-adfgu-content-toggle-main'),
-        input = selector.find('.wpmozo-adfgu-toggle-field');
+        let wrap = jQuery(this).closest('.wpmozo-bna-toggle-title-wrap'),
+        selector = jQuery(this).closest('.wpmozo-bna-content-toggle-main'),
+        input = selector.find('.wpmozo-bna-toggle-field');
 
-        if ( wrap.hasClass('wpmozo-adfgu-toggle-title-one') ) {
+        if ( wrap.hasClass('wpmozo-bna-toggle-title-one') ) {
             input.prop('checked', false);
         }else{
             input.prop('checked', true);
@@ -61,10 +61,10 @@ const Edit = (props) => {
 
     jQuery('.wpmozo_switch_trigger').click(function(e){
 
-        let selector = jQuery(this).closest('.wpmozo-adfgu-content-toggle-main'),
-        input = selector.find('.wpmozo-adfgu-toggle-field');
+        let selector = jQuery(this).closest('.wpmozo-bna-content-toggle-main'),
+        input = selector.find('.wpmozo-bna-toggle-field');
 
-        if ( jQuery(this).hasClass('wpmozo-adfgu-toggle-title-one') ) {
+        if ( jQuery(this).hasClass('wpmozo-bna-toggle-title-one') ) {
             input.prop('checked', false);
         }else{
             input.prop('checked', true);
@@ -75,9 +75,9 @@ const Edit = (props) => {
     });
 
     jQuery(document).ready(function ($) {
-        jQuery('.wpmozo-adfgu-toggle-field').each(function( keym, el ){
+        jQuery('.wpmozo-bna-toggle-field').each(function( keym, el ){
 
-            let selector = jQuery(this).closest('.wpmozo-adfgu-content-toggle-main');
+            let selector = jQuery(this).closest('.wpmozo-bna-content-toggle-main');
             wpmozo_toggle_switch( jQuery(this), selector );
 
         });
@@ -86,11 +86,11 @@ const Edit = (props) => {
     function wpmozo_toggle_switch( input, main ){
 
         if( input.is(':checked') ){
-            main.find('.wpmozo-adfgu-content-toggle-one').removeClass('wpmozo-adfgu-content-toggle-active');
-            main.find('.wpmozo-adfgu-content-toggle-two').addClass('wpmozo-adfgu-content-toggle-active');
+            main.find('.wpmozo-bna-content-toggle-one').removeClass('wpmozo-bna-content-toggle-active');
+            main.find('.wpmozo-bna-content-toggle-two').addClass('wpmozo-bna-content-toggle-active');
         }else{
-            main.find('.wpmozo-adfgu-content-toggle-one').addClass('wpmozo-adfgu-content-toggle-active');
-            main.find('.wpmozo-adfgu-content-toggle-two').removeClass('wpmozo-adfgu-content-toggle-active');
+            main.find('.wpmozo-bna-content-toggle-one').addClass('wpmozo-bna-content-toggle-active');
+            main.find('.wpmozo-bna-content-toggle-two').removeClass('wpmozo-bna-content-toggle-active');
         }
 
     }
@@ -108,7 +108,7 @@ const Edit = (props) => {
     );
 
     const titleOne = (
-       <div className={`wpmozo-adfgu-toggle-title-wrap wpmozo-adfgu-toggle-title-one${titleWrapClass}`}>
+       <div className={`wpmozo-bna-toggle-title-wrap wpmozo-bna-toggle-title-one${titleWrapClass}`}>
             { 'before' === attributes.toggleOneIconPostion &&
                 iconOne
             }
@@ -122,7 +122,7 @@ const Edit = (props) => {
     );
 
     const titleTwo = (
-        <div className={`wpmozo-adfgu-toggle-title-wrap wpmozo-adfgu-toggle-title-two${titleWrapClass}`}>
+        <div className={`wpmozo-bna-toggle-title-wrap wpmozo-bna-toggle-title-two${titleWrapClass}`}>
             { 'before' === attributes.toggleTwoIconPostion &&
                 iconTwo
             }
@@ -144,15 +144,15 @@ const Edit = (props) => {
                 clientId={clientId}  
             />
             <div {...blockProps}>
-                <div className={`wpmozo-adfgu-toggle-button-wrap${toggleSwitchTypeClass}`}>
+                <div className={`wpmozo-bna-toggle-button-wrap${toggleSwitchTypeClass}`}>
                     { 'toggle' === attributes.toggleSwitchType && (
                         <>
                             <input 
-                                className="wpmozo-adfgu-toggle-field" 
+                                className="wpmozo-bna-toggle-field" 
                                 type="checkbox" 
                                 value=""
                             />
-                            <label className={`wpmozo-adfgu-toggle-switch`}>
+                            <label className={`wpmozo-bna-toggle-switch`}>
                                 { titleOne }
                                 { titleTwo }
                             </label>
@@ -161,21 +161,21 @@ const Edit = (props) => {
                     { 'toggle' !== attributes.toggleSwitchType && (
                         <>
                             { titleOne }
-                            <div className={`wpmozo-adfgu-toggle-button${toggleSwitchTypeClass}`}>
-                                <label className="wpmozo-adfgu-toggle-button-inner">
+                            <div className={`wpmozo-bna-toggle-button${toggleSwitchTypeClass}`}>
+                                <label className="wpmozo-bna-toggle-button-inner">
                                     <input 
-                                        className="wpmozo-adfgu-toggle-field" 
+                                        className="wpmozo-bna-toggle-field" 
                                         type="checkbox" 
                                         value=""
                                     />
-                                    <div className={`wpmozo-adfgu-toggle-switch${toggleSwitchTypeClass}`}></div>
+                                    <div className={`wpmozo-bna-toggle-switch${toggleSwitchTypeClass}`}></div>
                                 </label>
                             </div>
                             { titleTwo }
                         </>
                     )}
                 </div>
-                <div className="wpmozo-adfgu-content-toggle-content-wrap">
+                <div className="wpmozo-bna-content-toggle-content-wrap">
                     <InnerBlocks 
                         template={ wraperTemplate }
                         allowedBlocks={false}

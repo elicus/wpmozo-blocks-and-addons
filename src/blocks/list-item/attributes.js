@@ -11,6 +11,12 @@ const attributes = {
     itempadding: {
         type: "object"
     },
+    itemBackgroundColor: {
+        type: "text"
+    },
+    itemBackgroundGradient: {
+        type: "text"
+    },
 	text: {
 		type: "rich-text",
 		source: "rich-text",

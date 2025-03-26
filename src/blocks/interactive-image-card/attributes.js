@@ -7,11 +7,11 @@ const attributes = {
     },
     title: {
         type: "string",
-    	default: __( 'Image Card Title', 'wpmozo-addons-lite-for-gutenberg' ), 
+    	default: __( 'Image Card Title', 'wpmozo-blocks-and-addons' ), 
     },
     content: {
         type: "string",
-    	default: __( 'Your content goes here. Edit this text inline or in the widget Content settings. You can also style every aspect of this content in the widget Design settings.', 'wpmozo-addons-lite-for-gutenberg' )
+    	default: __( 'Your content goes here. Edit this text inline or in the widget Content settings. You can also style every aspect of this content in the widget Design settings.', 'wpmozo-blocks-and-addons' )
     },
     backImage: {
         type: "string",

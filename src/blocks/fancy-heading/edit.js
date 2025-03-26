@@ -27,13 +27,13 @@ const Edit = (props) => {
         return ( isSelected && type === currentHeadingType ) ? 'wpmozo-active-sub-block' : '';
     }
     const activeTypeText = () => {
-        let type = __( 'Pre', 'wpmozo-addons-lite-for-gutenberg' );
+        let type = __( 'Pre', 'wpmozo-blocks-and-addons' );
         if ( 't1' === currentHeadingType ) {
-            type = __( 'Pre', 'wpmozo-addons-lite-for-gutenberg' );
+            type = __( 'Pre', 'wpmozo-blocks-and-addons' );
         }else if ( 't2' === currentHeadingType ){
-            type = __( 'Main', 'wpmozo-addons-lite-for-gutenberg' );
+            type = __( 'Main', 'wpmozo-blocks-and-addons' );
         }else if ( 't3' === currentHeadingType ){
-            type = __( 'Post', 'wpmozo-addons-lite-for-gutenberg' );
+            type = __( 'Post', 'wpmozo-blocks-and-addons' );
         }
         return type;
     }
@@ -41,37 +41,37 @@ const Edit = (props) => {
     const allText = (
         <>
             <RichText
-                className={`wpmozo-adfgu-pre-text ${isActiveType('t1')}`}
+                className={`wpmozo-bna-pre-text ${isActiveType('t1')}`}
                 allowedFormats={[]}
                 tagName='span'
                 value={ attributes.preHeading }
                 onChange={ ( newValue ) => setAttributes( { preHeading: newValue } ) } 
-                placeholder={ __( 'Pre', 'wpmozo-addons-lite-for-gutenberg' ) }
+                placeholder={ __( 'Pre', 'wpmozo-blocks-and-addons' ) }
                 onFocus={ () => setcurrentHeadingType( 't1' ) }
             />
             <RichText
-                className={`wpmozo-adfgu-main-text ${isActiveType('t2')}`}
+                className={`wpmozo-bna-main-text ${isActiveType('t2')}`}
                 allowedFormats={[]}
                 tagName='span'
                 value={ attributes.mainHeading }
                 onChange={ ( newValue ) => setAttributes( { mainHeading: newValue } ) } 
-                placeholder={ __( 'Main', 'wpmozo-addons-lite-for-gutenberg' ) }
+                placeholder={ __( 'Main', 'wpmozo-blocks-and-addons' ) }
                 onFocus={ () => setcurrentHeadingType( 't2' ) }
             />
             <RichText
-                className={`wpmozo-adfgu-post-text ${isActiveType('t3')}`}
+                className={`wpmozo-bna-post-text ${isActiveType('t3')}`}
                 allowedFormats={[]}
                 tagName='span'
                 value={ attributes.postHeading }
                 onChange={ ( newValue ) => setAttributes( { postHeading: newValue } ) } 
-                placeholder={ __( 'Post', 'wpmozo-addons-lite-for-gutenberg' ) }
+                placeholder={ __( 'Post', 'wpmozo-blocks-and-addons' ) }
                 onFocus={ () => setcurrentHeadingType( 't3' ) }
             />
         </>
     );
 
     const heading = createElement( attributes.headingLavel, {
-        className: 'wpmozo-adfgu-fancy-heading-inner'
+        className: 'wpmozo-bna-fancy-heading-inner'
     }, allText );
 
 
@@ -89,7 +89,7 @@ const Edit = (props) => {
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
-                <div className="wpmozo-adfgu-fancy-heading-wrap">
+                <div className="wpmozo-bna-fancy-heading-wrap">
                     {heading}
                 </div>
             </div>

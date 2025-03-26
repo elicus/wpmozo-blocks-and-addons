@@ -19,62 +19,62 @@ const Style = ({attributes, ID, clientId}) => {
 
     let allInline = [
         {
-            selector: '.wpmozo-adfgu-toggle-button-wrap .wpmozo-adfgu-toggle-switch:before',
+            selector: '.wpmozo-bna-toggle-button-wrap .wpmozo-bna-toggle-switch:before',
             style: {
                 'background-color': attributes.toggleSwitchColor,
             }
         },
         {
-            selector: '.wpmozo-adfgu-toggle-button-wrap input:checked + .wpmozo-adfgu-toggle-switch:before',
+            selector: '.wpmozo-bna-toggle-button-wrap input:checked + .wpmozo-bna-toggle-switch:before',
             style: {
                 'background-color': attributes.toggleSwitchOnState,
             }
         },
         {
-            selector: '.wpmozo-adfgu-toggle-button-wrap .wpmozo-adfgu-toggle-switch',
+            selector: '.wpmozo-bna-toggle-button-wrap .wpmozo-bna-toggle-switch',
             style: {
                 'background-color': attributes.toggleSwitchBackground,
             }
         },
         {
-            selector: '.wpmozo-adfgu-toggle-button-wrap input:checked + .wpmozo-adfgu-toggle-switch',
+            selector: '.wpmozo-bna-toggle-button-wrap input:checked + .wpmozo-bna-toggle-switch',
             style: {
                 'background-color': attributes.toggleSwitchOnStateBackground,
             }
         },
         {
-            selector: '.wpmozo-adfgu-toggle-button-wrap .wpmozo-adfgu-toggle-switch:hover::before',
+            selector: '.wpmozo-bna-toggle-button-wrap .wpmozo-bna-toggle-switch:hover::before',
             style: {
                 'background-color': attributes.toggleSwitchHoverColor,
             }
         },
         {
-            selector: '.wpmozo-adfgu-toggle-button-wrap input:checked + .wpmozo-adfgu-toggle-switch:hover::before',
+            selector: '.wpmozo-bna-toggle-button-wrap input:checked + .wpmozo-bna-toggle-switch:hover::before',
             style: {
                 'background-color': attributes.toggleSwitchHoverOnState,
             }
         },
         {
-            selector: '.wpmozo-adfgu-toggle-button-wrap .wpmozo-adfgu-toggle-switch:hover',
+            selector: '.wpmozo-bna-toggle-button-wrap .wpmozo-bna-toggle-switch:hover',
             style: {
                 'background-color': attributes.toggleSwitchHoverBackground,
             }
         },
         {
-            selector: '.wpmozo-adfgu-toggle-button-wrap input:checked + .wpmozo-adfgu-toggle-switch:hover',
+            selector: '.wpmozo-bna-toggle-button-wrap input:checked + .wpmozo-bna-toggle-switch:hover',
             style: {
                 'background-color': attributes.toggleSwitchHoverOnStateBackground,
             }
         },
         {
-            selector: '.wpmozo-adfgu-toggle-button-wrap',
+            selector: '.wpmozo-bna-toggle-button-wrap',
             style: {
                 'justify-content': attributes.toggleSwitchAlignment,
             },
             additional: convertedStyle.toggleSwitchDimensions
         },
         {
-            selector: '.wpmozo-adfgu-toggle-title-one, .wpmozo-adfgu-toggle-title-one > h5',
+            selector: '.wpmozo-bna-toggle-title-one, .wpmozo-bna-toggle-title-one > h5',
             style: {
                 'color': attributes.titleOneColor,
                 'gap': {
@@ -85,7 +85,7 @@ const Style = ({attributes, ID, clientId}) => {
             additional: convertedStyle.titleOne
         },
         {
-            selector: '.wpmozo-adfgu-toggle-title-two, .wpmozo-adfgu-toggle-title-two > h5',
+            selector: '.wpmozo-bna-toggle-title-two, .wpmozo-bna-toggle-title-two > h5',
             style: {
                 'color': attributes.titleTwoColor,
                 'gap': {
@@ -96,7 +96,7 @@ const Style = ({attributes, ID, clientId}) => {
             additional: convertedStyle.titleTwo
         },
         {
-            selector: '.wpmozo-adfgu-toggle-title-one .icon-wrapper i',
+            selector: '.wpmozo-bna-toggle-title-one .icon-wrapper i',
             style: {
                 'font-size': {
                     value: attributes.titleOneIconSize,
@@ -106,7 +106,7 @@ const Style = ({attributes, ID, clientId}) => {
             },
         },
         {
-            selector: '.wpmozo-adfgu-toggle-title-two .icon-wrapper i',
+            selector: '.wpmozo-bna-toggle-title-two .icon-wrapper i',
             style: {
                 'font-size': {
                     value: attributes.titleTwoIconSize,
@@ -116,7 +116,7 @@ const Style = ({attributes, ID, clientId}) => {
             },
         },
         {
-            selector: '.wpmozo-adfgu-content-toggle-one',
+            selector: '.wpmozo-bna-content-toggle-one',
             style: {
                 'background-color': attributes.contentOneBackground,
                 'text-align': attributes.contentOneAlignment,
@@ -125,7 +125,7 @@ const Style = ({attributes, ID, clientId}) => {
             additional: contentOneAddi,
         },
         {
-            selector: '.wpmozo-adfgu-content-toggle-two',
+            selector: '.wpmozo-bna-content-toggle-two',
             style: {
                 'background-color': attributes.contentTwoBackground,
                 'text-align': attributes.contentTwoAlignment,

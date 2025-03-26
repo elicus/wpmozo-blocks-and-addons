@@ -7,7 +7,7 @@ import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
 registerBlockType( 'wpmozo/before-after-slider', {
-	title: __( 'Before After Slider', 'wpmozo-addons-lite-for-gutenberg' ),
+	title: __( 'Before After Slider', 'wpmozo-blocks-and-addons' ),
     icon: Icon,
     apiVersion: 3,
     category: 'wpmozo',

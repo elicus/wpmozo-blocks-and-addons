@@ -13,9 +13,9 @@ const Inspector = (props) => {
 	return (
         <>
             <InspectorControls key="controls">
-                <PanelBody title={ __( 'Container', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
+                <PanelBody title={ __( 'Container', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
                     <HeightControl
-                        label={ __( 'Container Height', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Container Height', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.containerHeight }
                         onChange={ ( newValue ) => setAttributes( { containerHeight: newValue } ) }
                     />

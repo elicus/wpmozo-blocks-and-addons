@@ -15,30 +15,30 @@ const Style = ({attributes, ID, clientId}) => {
 
     let allInline = [
     	{
-    		selector: '.wpmozo-adfgu-tilt-image-inner-wrapper:before',
+    		selector: '.wpmozo-bna-tilt-image-inner-wrapper:before',
     		style: {
     			'background-color': attributes.overlayColor,
     		}
     	},
         {
-            selector: '.wpmozo-adfgu-tilt-icon',
+            selector: '.wpmozo-bna-tilt-icon',
             style: {
                 'text-align': attributes.iconAlign
             }
         },
         {
-            selector: '.wpmozo-adfgu-tilt-icon i',
+            selector: '.wpmozo-bna-tilt-icon i',
             style: {
                 'color': attributes.iconColor,
                 'font-size': attributes.iconFontSize
             }
         },
         {
-            selector: '.wpmozo-adfgu-tilt-content-wrapper',
+            selector: '.wpmozo-bna-tilt-content-wrapper',
             additional: convertedStyle.content
         },
         {
-            selector: '.wpmozo-adfgu-tilt-title',
+            selector: '.wpmozo-bna-tilt-title',
             style: {
                 'color': attributes.titleColor,
                 'text-align': attributes.titleAlign
@@ -46,7 +46,7 @@ const Style = ({attributes, ID, clientId}) => {
             additional: convertedStyle.title
         },
         {
-            selector: '.wpmozo-adfgu-tilt-desc',
+            selector: '.wpmozo-bna-tilt-desc',
             style: {
                 'color': attributes.descriptionColor,
                 'text-align': attributes.descriptionAlign
@@ -54,7 +54,7 @@ const Style = ({attributes, ID, clientId}) => {
             additional: convertedStyle.description
         },
         {
-            selector: '.wpmozo-adfgu-tilt-image-button',
+            selector: '.wpmozo-bna-tilt-image-button',
             style: {
                 'color': attributes.buttonTextColor,
                 'background': attributes.buttonBackgroundColor
@@ -65,19 +65,19 @@ const Style = ({attributes, ID, clientId}) => {
 
     if ( attributes.use3dEffect ) {
         allInline.push({
-            selector: '.wpmozo-adfgu-tilt-image-wrapper',
+            selector: '.wpmozo-bna-tilt-image-wrapper',
             style: {
                 'transform-style': 'preserve-3d'
             }
         });
         allInline.push({
-            selector: '.wpmozo-adfgu-tilt-image-inner-wrapper',
+            selector: '.wpmozo-bna-tilt-image-inner-wrapper',
             style: {
                 'transform-style': 'preserve-3d'
             }
         })
         allInline.push({
-            selector: '.wpmozo-adfgu-tilt-content-wrapper',
+            selector: '.wpmozo-bna-tilt-content-wrapper',
             style: {
                 'transform': `translateZ(${attributes.tilt3dValue}px)`
             }
@@ -86,7 +86,7 @@ const Style = ({attributes, ID, clientId}) => {
 
     if ( ! attributes.tiltMobile ) {
         allInline.push({
-            selector: '.wpmozo-adfgu-tilt-image .wpmozo-adfgu-tilt-image-inner-wrapper',
+            selector: '.wpmozo-bna-tilt-image .wpmozo-bna-tilt-image-inner-wrapper',
             style: {
                 'transform': 'unset !important'
             }

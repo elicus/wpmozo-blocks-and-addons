@@ -8,7 +8,7 @@ const WpmozoTypography = function(args){
 
 	const { TypographyKey, props } = args,
 		preAttributes              = props.preAttributes,
-		label                      = args.hasOwnProperty('label') ? args.label : __( 'Typography', 'wpmozo-addons-lite-for-gutenberg' );
+		label                      = args.hasOwnProperty('label') ? args.label : __( 'Typography', 'wpmozo-blocks-and-addons' );
 	let TypoTypes                  = args.hasOwnProperty( 'TypoTypes' ) ? args.TypoTypes : null;
 
 	const typoSetValue = function( styleType, value = null ) {
@@ -88,7 +88,7 @@ const WpmozoTypography = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Font Size', 'wpmozo-addons-lite-for-gutenberg' ),
+						label: __( 'Font Size', 'wpmozo-blocks-and-addons' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => typoSetValue( 'FontSize' ),
@@ -107,7 +107,7 @@ const WpmozoTypography = function(args){
 					__experimentalToolsPanelItem,
 					{
 						className: "single-column",
-						label: __( 'Appearance', 'wpmozo-addons-lite-for-gutenberg' ),
+						label: __( 'Appearance', 'wpmozo-blocks-and-addons' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => typoSetValue( 'FontAppearance' ),
@@ -128,7 +128,7 @@ const WpmozoTypography = function(args){
 					__experimentalToolsPanelItem,
 					{
 						className: "single-column",
-						label: __( 'Letter spacing', 'wpmozo-addons-lite-for-gutenberg' ),
+						label: __( 'Letter spacing', 'wpmozo-blocks-and-addons' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => typoSetValue( 'LetterSpacing' ),
@@ -145,7 +145,7 @@ const WpmozoTypography = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Decoration', 'wpmozo-addons-lite-for-gutenberg' ),
+						label: __( 'Decoration', 'wpmozo-blocks-and-addons' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => typoSetValue( 'Decoration' ),
@@ -162,7 +162,7 @@ const WpmozoTypography = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Letter case', 'wpmozo-addons-lite-for-gutenberg' ),
+						label: __( 'Letter case', 'wpmozo-blocks-and-addons' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => typoSetValue( 'LetterCase' ),
@@ -180,7 +180,7 @@ const WpmozoTypography = function(args){
 					__experimentalToolsPanelItem,
 					{
 						className: "single-column",
-						label: __( 'Line Height', 'wpmozo-addons-lite-for-gutenberg' ),
+						label: __( 'Line Height', 'wpmozo-blocks-and-addons' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => typoSetValue( 'LineHeight' ),

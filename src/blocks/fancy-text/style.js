@@ -13,7 +13,7 @@ const Style = ({attributes, ID, clientId}) => {
 
     let allInline = [
 		{
-    		selector: '.wpmozo-adfgu-fancy-text-inner',
+    		selector: '.wpmozo-bna-fancy-text-inner',
     		style: {
     			'background-clip': 'border-box',
     			'-webkit-background-clip': 'text',
@@ -27,7 +27,7 @@ const Style = ({attributes, ID, clientId}) => {
     if ( 'gradient' === attributes.textStyle ) {
 
     	allInline.push({
-    		selector: '.wpmozo-adfgu-fancy-text-inner',
+    		selector: '.wpmozo-bna-fancy-text-inner',
     		style: {
     			'background-color': 'transparent',
 			    'background-image': attributes.fancyTextBackground,
@@ -39,7 +39,7 @@ const Style = ({attributes, ID, clientId}) => {
     	let escURL = encodeURI( attributes.fancyTextBackgroundImg );
 
     	allInline.push({
-    		selector: '.wpmozo-adfgu-fancy-text-inner',
+    		selector: '.wpmozo-bna-fancy-text-inner',
     		style: {
 			    'background-image': 'url("'+escURL+'")',
 			    'background-size': attributes.textBgSize,
@@ -50,7 +50,7 @@ const Style = ({attributes, ID, clientId}) => {
 
     	if ( 'none' !== attributes.textBgOverlay ) {
 			allInline.push({
-	    		selector: '.wpmozo-adfgu-fancy-text-inner:before',
+	    		selector: '.wpmozo-bna-fancy-text-inner:before',
 	    		style: {
 	    			'content': '""',
 	    			'position': 'absolute',
@@ -66,7 +66,7 @@ const Style = ({attributes, ID, clientId}) => {
 	    		},
 	    	})
 	    	allInline.push({
-	    		selector: '.wpmozo-adfgu-fancy-text-inner:after',
+	    		selector: '.wpmozo-bna-fancy-text-inner:after',
 	    		style: {
 	    			'content': '""',
 	    			'position': 'absolute',

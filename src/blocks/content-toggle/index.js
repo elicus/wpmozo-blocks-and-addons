@@ -8,7 +8,7 @@ import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
 registerBlockType( 'wpmozo/content-toggle', {
-	title: __( 'Content Toggle', 'wpmozo-addons-lite-for-gutenberg' ),
+	title: __( 'Content Toggle', 'wpmozo-blocks-and-addons' ),
     apiVersion: 2,
     icon: Icon,
     category: 'wpmozo',

@@ -104,7 +104,7 @@ const attributes = {
     },
     buttonText: {
         type: "string",
-        default: __( 'Read More', 'wpmozo-addons-lite-for-gutenberg' )
+        default: __( 'Read More', 'wpmozo-blocks-and-addons' )
     },
     buttonUrl: {
         type: "string",

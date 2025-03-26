@@ -6,9 +6,9 @@ const Save = ({ attributes }) => {
     const ID = attributes.ID;
 
     return (
-        <div {...useBlockProps.save({className: 'wpmozo-adfgu-fancy-text-wrap'})} id={`block-${ID}`}>
+        <div {...useBlockProps.save({className: 'wpmozo-bna-fancy-text-wrap'})} id={`block-${ID}`}>
             <div
-                className={`wpmozo-adfgu-fancy-text-inner ${attributes.textStyle}`}
+                className={`wpmozo-bna-fancy-text-inner ${attributes.textStyle}`}
             >
             <RichText.Content
                 tagName=''

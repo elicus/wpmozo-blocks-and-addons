@@ -8,7 +8,7 @@ import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
 registerBlockType( 'wpmozo/floating-image-item', {
-	title: __( 'Floating Image Item', 'wpmozo-addons-lite-for-gutenberg' ),
+	title: __( 'Floating Image Item', 'wpmozo-blocks-and-addons' ),
     icon: Icon,
     apiVersion: 2,
     category: 'wpmozo',

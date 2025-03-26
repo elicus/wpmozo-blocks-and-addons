@@ -7,7 +7,7 @@ import { __ } from "@wordpress/i18n";
 
 
 registerBlockType( 'wpmozo/content-wraper', {
-	title: __( 'Content Wraper', 'wpmozo-addons-lite-for-gutenberg' ),
+	title: __( 'Content Wraper', 'wpmozo-blocks-and-addons' ),
     icon: '',
     apiVersion: 3,
     attributes: attributes,

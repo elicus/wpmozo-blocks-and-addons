@@ -23,64 +23,64 @@ const Inspector = (props) => {
     allLineStyles = [
         {
             value: 'solid',
-            label: __( 'Solid', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'Solid', 'wpmozo-blocks-and-addons' ),
         },
         {
             value: 'dashed',
-            label: __( 'Dashed', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'Dashed', 'wpmozo-blocks-and-addons' ),
         },
         {
             value: 'double',
-            label: __( 'Double', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'Double', 'wpmozo-blocks-and-addons' ),
         },
         {
             value: 'dotted',
-            label: __( 'Dotted', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'Dotted', 'wpmozo-blocks-and-addons' ),
         },
         {
             value: 'ridge',
-            label: __( 'Ridge', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'Ridge', 'wpmozo-blocks-and-addons' ),
         },
         {
             value: 'groove',
-            label: __( 'Groove', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'Groove', 'wpmozo-blocks-and-addons' ),
         },
         {
             value: 'inset',
-            label: __( 'Inset', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'Inset', 'wpmozo-blocks-and-addons' ),
         },
         {
             value: 'outset',
-            label: __( 'Outset', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'Outset', 'wpmozo-blocks-and-addons' ),
         },
         {
             value: 'none',
-            label: __( 'None', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'None', 'wpmozo-blocks-and-addons' ),
         },
     ],
     headingLavels = [
         {
-            label: __( 'H1', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H1', 'wpmozo-blocks-and-addons' ),
             value: 'h1'
         },
         {
-            label: __( 'H2', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H2', 'wpmozo-blocks-and-addons' ),
             value: 'h2'
         },
         {
-            label: __( 'H3', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H3', 'wpmozo-blocks-and-addons' ),
             value: 'h3'
         },
         {
-            label: __( 'H4', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H4', 'wpmozo-blocks-and-addons' ),
             value: 'h4'
         },
         {
-            label: __( 'H5', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H5', 'wpmozo-blocks-and-addons' ),
             value: 'h5'
         },
         {
-            label: __( 'H6', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H6', 'wpmozo-blocks-and-addons' ),
             value: 'h6'
         }
     ];
@@ -93,24 +93,24 @@ const Inspector = (props) => {
         <>
             <InspectorControls key="controls">
 {/*Separator Content*/}
-                <PanelBody title={ __( 'Separator Content', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={true}>
+                <PanelBody title={ __( 'Separator Content', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
                     <SelectControl
-                        label={ __( 'Separator Type', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Separator Type', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.separatorType }
                         options={ [{
                                 value: 'line',
-                                label: __( 'Line', 'wpmozo-addons-lite-for-gutenberg' ),
+                                label: __( 'Line', 'wpmozo-blocks-and-addons' ),
                             },
                             {
                                 value: 'shadow',
-                                label: __( 'Shadow', 'wpmozo-addons-lite-for-gutenberg' ),
+                                label: __( 'Shadow', 'wpmozo-blocks-and-addons' ),
                             },] 
                         }
                         onChange={ ( newValue ) => setAttributes( { separatorType: newValue } ) }
                     />
                     { 'line' === attributes.separatorType &&
                         <SelectControl
-                            label={ __( 'Select Line Style', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            label={ __( 'Select Line Style', 'wpmozo-blocks-and-addons' ) }
                             value={ attributes.lineStyle }
                             options={ allLineStyles }
                             onChange={ ( newValue ) => setAttributes( { lineStyle: newValue } ) }
@@ -118,24 +118,24 @@ const Inspector = (props) => {
                     }
                     { 'line' === attributes.separatorType &&
                         <SelectControl
-                            label={ __( 'Use With', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            label={ __( 'Use With', 'wpmozo-blocks-and-addons' ) }
                             value={ attributes.lineUseWith }
                             options={[
                                 {
                                     value: 'onlySeparator',
-                                    label: __( 'Only Separator', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Only Separator', 'wpmozo-blocks-and-addons' ),
                                 },
                                 {
                                     value: 'textSeparator',
-                                    label: __( 'Separator With Text', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Separator With Text', 'wpmozo-blocks-and-addons' ),
                                 },
                                 {
                                     value: 'iconSeparator',
-                                    label: __( 'Separator With Icon', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Separator With Icon', 'wpmozo-blocks-and-addons' ),
                                 },
                                 {
                                     value: 'imageSeparator',
-                                    label: __( 'Separator With Image', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Separator With Image', 'wpmozo-blocks-and-addons' ),
                                 },
                             ]}
                             onChange={ ( newValue ) => setAttributes( { lineUseWith: newValue } ) }
@@ -143,14 +143,14 @@ const Inspector = (props) => {
                     }
                     { 'line' === attributes.separatorType && 'textSeparator' === attributes.lineUseWith &&
                         <TextareaControl
-                            label={ __( 'Separator Text', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            label={ __( 'Separator Text', 'wpmozo-blocks-and-addons' ) }
                             onChange={ ( newValue ) => setAttributes( { separatorText: newValue } ) }
                             value={ attributes.separatorText }
                         />
                     }
                     { 'line' === attributes.separatorType && 'iconSeparator' === attributes.lineUseWith &&
                         <WpmozoIconpicker
-                            label={ __( 'Icon', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            label={ __( 'Icon', 'wpmozo-blocks-and-addons' ) }
                             iconPickerKey='separatorIcon'
                             props={ props }
                             value={ attributes.separatorIcon }
@@ -168,9 +168,9 @@ const Inspector = (props) => {
 {/*Styling*/}
             <InspectorControls key="styles" group="styles">
 {/*Separator Styling*/}
-                <PanelBody title={ __( 'Separator Styling', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={true}>
+                <PanelBody title={ __( 'Separator Styling', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
                     <RangeControl
-                        label={ __( 'Separator Thickness', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Separator Thickness', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.separatorThickness }
                         onChange={ ( newValue ) => setAttributes( { separatorThickness: newValue } ) }
                         min={ 0 }
@@ -218,7 +218,7 @@ const Inspector = (props) => {
                             ColorTypes={[ 
                                 {
                                     key: 'Color',
-                                    label: __( 'Separator Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Separator Color', 'wpmozo-blocks-and-addons' ),
                                 },
                             ]}
                         /> 
@@ -226,28 +226,28 @@ const Inspector = (props) => {
                 </PanelBody>
 {/*Image Styling*/}
                 { 'line' === attributes.separatorType && 'imageSeparator' === attributes.lineUseWith &&
-                    <PanelBody title={ __( 'Image Styling', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
+                    <PanelBody title={ __( 'Image Styling', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
                         <SelectControl
-                            label={ __( 'Image Position', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            label={ __( 'Image Position', 'wpmozo-blocks-and-addons' ) }
                             value={ attributes.imagePosition }
                             options={[
                                 {
                                     value: 'center',
-                                    label: __( 'Center', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Center', 'wpmozo-blocks-and-addons' ),
                                 },
                                 {
                                     value: 'left',
-                                    label: __( 'Left', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Left', 'wpmozo-blocks-and-addons' ),
                                 },
                                 {
                                     value: 'right',
-                                    label: __( 'Right', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Right', 'wpmozo-blocks-and-addons' ),
                                 },
                             ]}
                             onChange={ ( newValue ) => setAttributes( { imagePosition: newValue } ) }
                         />
                         <RangeControl
-                            label={ __( 'Image Width', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            label={ __( 'Image Width', 'wpmozo-blocks-and-addons' ) }
                             value={ attributes.imageWidth }
                             onChange={ ( newValue ) => setAttributes( { imageWidth: newValue } ) }
                             min={ 0 }
@@ -258,22 +258,22 @@ const Inspector = (props) => {
                 }
 {/*Icon Styling*/}
                 { 'line' === attributes.separatorType && 'iconSeparator' === attributes.lineUseWith &&
-                    <PanelBody title={ __( 'Icon Styling', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
+                    <PanelBody title={ __( 'Icon Styling', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
                         <SelectControl
-                            label={ __( 'Icon Position', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            label={ __( 'Icon Position', 'wpmozo-blocks-and-addons' ) }
                             value={ attributes.iconPosition }
                             options={[
                                 {
                                     value: 'center',
-                                    label: __( 'Center', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Center', 'wpmozo-blocks-and-addons' ),
                                 },
                                 {
                                     value: 'left',
-                                    label: __( 'Left', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Left', 'wpmozo-blocks-and-addons' ),
                                 },
                                 {
                                     value: 'right',
-                                    label: __( 'Right', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Right', 'wpmozo-blocks-and-addons' ),
                                 },
                             ]}
                             onChange={ ( newValue ) => setAttributes( { iconPosition: newValue } ) }
@@ -284,18 +284,18 @@ const Inspector = (props) => {
                             ColorTypes={[ 
                                 {
                                     key: 'Color',
-                                    label: __( 'Icon Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ),
                                 },
                             ]}
                         />
                         <ToggleControl
-                            label={ __( 'Use Icon Font Size', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            label={ __( 'Use Icon Font Size', 'wpmozo-blocks-and-addons' ) }
                             checked={ attributes.enableIconFontSize }
                             onChange={ ( newValue ) => setAttributes( { enableIconFontSize: newValue } ) }
                         />
                         { true === attributes.enableIconFontSize && 
                             <RangeControl
-                                label={ __( 'Icon Font Size', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                label={ __( 'Icon Font Size', 'wpmozo-blocks-and-addons' ) }
                                 value={ attributes.iconFontSize }
                                 onChange={ ( newValue ) => setAttributes( { iconFontSize: newValue } ) }
                                 min={ 0 }
@@ -304,26 +304,26 @@ const Inspector = (props) => {
                             />
                         }
                         <ToggleControl
-                            label={ __( 'Style Icon', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            label={ __( 'Style Icon', 'wpmozo-blocks-and-addons' ) }
                             checked={ attributes.styleIcon }
                             onChange={ ( newValue ) => setAttributes( { styleIcon: newValue } ) }
                         />
                         { true === attributes.styleIcon && 
                             <SelectControl
-                                label={ __( 'Shape', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                label={ __( 'Shape', 'wpmozo-blocks-and-addons' ) }
                                 value={ attributes.iconShape }
                                 options={[
                                     {
                                         value: 'square',
-                                        label: __( 'Square', 'wpmozo-addons-lite-for-gutenberg' ),
+                                        label: __( 'Square', 'wpmozo-blocks-and-addons' ),
                                     },
                                     {
                                         value: 'circle',
-                                        label: __( 'Circle', 'wpmozo-addons-lite-for-gutenberg' ),
+                                        label: __( 'Circle', 'wpmozo-blocks-and-addons' ),
                                     },
                                     {
                                         value: 'hexagon',
-                                        label: __( 'Hexagon', 'wpmozo-addons-lite-for-gutenberg' ),
+                                        label: __( 'Hexagon', 'wpmozo-blocks-and-addons' ),
                                     },
                                 ]}
                                 onChange={ ( newValue ) => setAttributes( { iconShape: newValue } ) }
@@ -336,14 +336,14 @@ const Inspector = (props) => {
                                 ColorTypes={[ 
                                     {
                                         key: 'Background',
-                                        label: __( 'Shape Background', 'wpmozo-addons-lite-for-gutenberg' ),
+                                        label: __( 'Shape Background', 'wpmozo-blocks-and-addons' ),
                                     },
                                 ]}
                             />
                         }
                         { true === attributes.styleIcon && 
                             <ToggleControl
-                                label={ __( 'Display Shape Border', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                label={ __( 'Display Shape Border', 'wpmozo-blocks-and-addons' ) }
                                 checked={ attributes.enableShapeBorder }
                                 onChange={ ( newValue ) => setAttributes( { enableShapeBorder: newValue } ) }
                             />
@@ -355,7 +355,7 @@ const Inspector = (props) => {
                                 ColorTypes={[ 
                                     {
                                         key: 'Color',
-                                        label: __( 'Shape Border Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                        label: __( 'Shape Border Color', 'wpmozo-blocks-and-addons' ),
                                     },
                                 ]}
                             />
@@ -364,7 +364,7 @@ const Inspector = (props) => {
                 }
 {/*Text Styling*/}
                 { 'line' === attributes.separatorType && 'textSeparator' === attributes.lineUseWith &&
-                    <PanelBody title={ __( 'Text Styling', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-text-styling-panel wpmozo-typography-panel" initialOpen={false}>
+                    <PanelBody title={ __( 'Text Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-text-styling-panel wpmozo-typography-panel" initialOpen={false}>
                         <BaseControl
                             className="wpmozo-button-tabs-wrap"
                         >    
@@ -374,14 +374,14 @@ const Inspector = (props) => {
                                     isPressed={ ( 'normal' === textStyleType ) ? true : false }
                                     onClick={ () => setTextStyleType( 'normal' ) }
                                 >
-                                    { __( 'Normal', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                    { __( 'Normal', 'wpmozo-blocks-and-addons' ) }
                                 </Button>
                                 <Button 
                                     className="wpmozo-button-tabs-btn"
                                     isPressed={ ( 'hover' === textStyleType ) ? true : false }
                                     onClick={ () => setTextStyleType( 'hover' ) }
                                 >
-                                    { __( 'Hover', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                    { __( 'Hover', 'wpmozo-blocks-and-addons' ) }
                                 </Button>
                             </ButtonGroup>
                             { 'normal' === textStyleType &&
@@ -392,7 +392,7 @@ const Inspector = (props) => {
                                         ColorTypes={[ 
                                             {
                                                 key: 'Color',
-                                                label: __( 'Text Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                                label: __( 'Text Color', 'wpmozo-blocks-and-addons' ),
                                             },
                                         ]}
                                     />
@@ -410,7 +410,7 @@ const Inspector = (props) => {
                                         ColorTypes={[ 
                                             {
                                                 key: 'Color',
-                                                label: __( 'Text Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                                label: __( 'Text Color', 'wpmozo-blocks-and-addons' ),
                                             },
                                         ]}
                                     />
@@ -422,7 +422,7 @@ const Inspector = (props) => {
                             }
                         </BaseControl>
                         <WpmozoAlignment
-                            label={ __( 'Text Alignment', 'wpmozo-addons-lite-for-gutenberg') }
+                            label={ __( 'Text Alignment', 'wpmozo-blocks-and-addons') }
                             onChange={ ( newValue ) => setAttributes( { textAlign: newValue } ) }
                             value={ attributes.textAlign }
                         />

@@ -8,7 +8,7 @@ subscribe(() => {
         postId = select('core/editor').getCurrentPostId(),
         postType = select('core/editor').getCurrentPostType(),
         currentPost = select('core/editor').getCurrentPost(),
-        siteUrl = wpmozo_adfgu_editor_object.restUrl;
+        siteUrl = wpmozo_bna_editor_object.url;
 
     if (!isSaving && !isAutosaving) {
         jQuery('body').removeClass('wpmozo-saving-dynamic-style');

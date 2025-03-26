@@ -5,8 +5,8 @@
  * @link https://elicus.com
  * @since 1.0.0
  *
- * @package WPMozo_Addons_Lite_For_Gutenberg
- * @subpackage WPMozo_Addons_Lite_For_Gutenberg/admin/partials/metaboxes
+ * @package WPMozo_Blocks_And_Addons
+ * @subpackage WPMozo_Blocks_And_Addons/admin/partials/metaboxes
  */
 
 // If this file is called directly, abort.
@@ -216,7 +216,7 @@ $allowed_html = array(
                     $skills_value   = explode( ',', $skills_value );
                 if ( is_array( $skills ) && ! empty( array_filter( $skills ) ) ) {
                     if ( count($skills) > 1 ) {
-                        $row_control = '<button class="button action-btn wpmozo_panel_button wpmozo-remove-row" title='.esc_html__( 'Remove Row', 'wpmozo-addons-lite-for-gutenberg' ).'"><span class="wpmozo_repeator_meta_field_add_row_control dashicons dashicons-minus
+                        $row_control = '<button class="button action-btn wpmozo_panel_button wpmozo-remove-row" title='.esc_html__( 'Remove Row', 'wpmozo-blocks-and-addons' ).'"><span class="wpmozo_repeator_meta_field_add_row_control dashicons dashicons-minus
  wpmozo_repeator_meta_field_remove_row"></span></button>';
                     } else {
                         $row_control = '';
@@ -233,7 +233,7 @@ $allowed_html = array(
                                 <?php echo wp_kses_post( $row_control ); ?>
                                 <?php  
                                 if ( $i === ( count($skills) - 1 ) ) {
-                                    ?><button class="button action-btn wpmozo_panel_button wpmozo-add-row" title="<?php esc_html_e( 'Add Row', 'wpmozo-addons-lite-for-gutenberg' ) ?>"><span class="wpmozo_repeator_meta_field_add_row_control dashicons dashicons-plus-alt2 wpmozo_repeator_meta_field_add_row"></span></button><?php
+                                    ?><button class="button action-btn wpmozo_panel_button wpmozo-add-row" title="<?php esc_html_e( 'Add Row', 'wpmozo-blocks-and-addons' ) ?>"><span class="wpmozo_repeator_meta_field_add_row_control dashicons dashicons-plus-alt2 wpmozo_repeator_meta_field_add_row"></span></button><?php
                                 }
                                 ?>
                             </p>
@@ -248,7 +248,7 @@ $allowed_html = array(
                             <input type="number" class="wpmozo_team_member_skills_value wpmozo_panel_textfield" placeholder="Skill Value Between 0 to 100" step="1" min="0" max="100" />
                         </div>
                         <p class="wpmozo_repeator_meta_field_row_controls wpmozo-repeater-fields-actions">
-                            <button class="button action-btn wpmozo_panel_button wpmozo-add-row" title="<?php esc_html_e( 'Add Row', 'wpmozo-addons-lite-for-gutenberg' ) ?>">
+                            <button class="button action-btn wpmozo_panel_button wpmozo-add-row" title="<?php esc_html_e( 'Add Row', 'wpmozo-blocks-and-addons' ) ?>">
                                 <span class="wpmozo_repeator_meta_field_add_row_control dashicons dashicons-plus-alt2 wpmozo_repeator_meta_field_add_row"></span>
                             </button>
                         </p>

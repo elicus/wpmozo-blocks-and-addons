@@ -13,6 +13,12 @@ const attributes = {
         type: "string",
         default: "center",
     },
+    globalItemBackgroundGradient: {
+        type: "string",
+    },
+    globalItemBackgroundColor: {
+        type: "string",
+    },
 	iconFontSize: {
 		type: "number",
         default: 22,

@@ -36,7 +36,7 @@ import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
 
         return (
             <div {...innerBlocksProps} id={`block-${ID}`}>
-                <div className="wpmozo-adfgu-floating-image-wrapper">
+                <div className="wpmozo-bna-floating-image-wrapper">
                     { innerBlocksProps.children }
                 </div>
             </div>

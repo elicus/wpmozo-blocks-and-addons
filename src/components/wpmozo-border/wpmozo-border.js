@@ -7,7 +7,7 @@ const WpmozoBorder = function(args){
 
 	const { BorderKey, props } = args,
 		preAttributes          = props.preAttributes,
-		label 			   	   = args.hasOwnProperty('label') ? args.label : __( 'Border', 'wpmozo-addons-lite-for-gutenberg' );
+		label 			   	   = args.hasOwnProperty('label') ? args.label : __( 'Border', 'wpmozo-blocks-and-addons' );
 		
 	let BorderTypes            = args.hasOwnProperty( 'BorderTypes' ) ? args.BorderTypes : null;
 
@@ -64,7 +64,7 @@ const WpmozoBorder = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Border', 'wpmozo-addons-lite-for-gutenberg' ),
+						label: __( 'Border', 'wpmozo-blocks-and-addons' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => borderSetValue( 'border' ),
@@ -82,7 +82,7 @@ const WpmozoBorder = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Radius', 'wpmozo-addons-lite-for-gutenberg' ),
+						label: __( 'Radius', 'wpmozo-blocks-and-addons' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => borderSetValue( 'borderRadius' ),

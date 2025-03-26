@@ -26,27 +26,27 @@ const Inspector = (props) => {
 
     const headingLavels = [
         {
-            label: __( 'H1', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H1', 'wpmozo-blocks-and-addons' ),
             value: 'h1'
         },
         {
-            label: __( 'H2', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H2', 'wpmozo-blocks-and-addons' ),
             value: 'h2'
         },
         {
-            label: __( 'H3', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H3', 'wpmozo-blocks-and-addons' ),
             value: 'h3'
         },
         {
-            label: __( 'H4', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H4', 'wpmozo-blocks-and-addons' ),
             value: 'h4'
         },
         {
-            label: __( 'H5', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H5', 'wpmozo-blocks-and-addons' ),
             value: 'h5'
         },
         {
-            label: __( 'H6', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H6', 'wpmozo-blocks-and-addons' ),
             value: 'h6'
         }
     ];
@@ -54,42 +54,42 @@ const Inspector = (props) => {
 	return (
         <>
             <InspectorControls key="controls">
-                <PanelBody title={ __( 'Heading Content', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
+                <PanelBody title={ __( 'Heading Content', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
                     <TextControl
-                        label={ __( 'Pre Heading', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Pre Heading', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.preHeading }
                         onChange={ ( newValue ) => setAttributes( { preHeading: newValue } ) }
                     />
                     <TextControl
-                        label={ __( 'Main Heading', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Main Heading', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.mainHeading }
                         onChange={ ( newValue ) => setAttributes( { mainHeading: newValue } ) }
                     />
                     <TextControl
-                        label={ __( 'Post Heading', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Post Heading', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.postHeading }
                         onChange={ ( newValue ) => setAttributes( { postHeading: newValue } ) }
                     />
                     <ToggleControl
-                        label={ __( 'Display In Stack', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Display In Stack', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.displayInStack }
                         onChange={ ( newValue ) => setAttributes( { displayInStack: newValue } ) }
                     />
                 </PanelBody>
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
-                <PanelBody title={ __( 'Global Text Settings', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                <PanelBody title={ __( 'Global Text Settings', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoColorPicker
                         ColorKey="heading"
                         props={props}
                         ColorTypes={[ 
                             {
                                 key: 'Color',
-                                label: __( 'Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                label: __( 'Color', 'wpmozo-blocks-and-addons' ),
                             },
                             {
                                 key: 'Background',
-                                label: __( 'Background', 'wpmozo-addons-lite-for-gutenberg' ),
+                                label: __( 'Background', 'wpmozo-blocks-and-addons' ),
                             },
                         ]}
                     />
@@ -99,7 +99,7 @@ const Inspector = (props) => {
                         value={ attributes.headingAlignment }
                     />
                     <BaseControl
-                        label={ __( 'Heading Lavel', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Heading Lavel', 'wpmozo-blocks-and-addons' ) }
                     >    
                         <ButtonGroup>
                             {headingLavels.map((item, key) => (
@@ -113,20 +113,20 @@ const Inspector = (props) => {
                         </ButtonGroup>
                     </BaseControl>
                 </PanelBody>
-                <PanelBody title={ __( 'Pre Text Settings', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                <PanelBody title={ __( 'Pre Text Settings', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoColorCombo
-                        label={ __( 'Pre Text Color', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Pre Text Color', 'wpmozo-blocks-and-addons' ) }
                         normal={{
                             ColorKey: "preText",
                             props: props,
                             ColorTypes: [ 
                                 {
                                     key: 'Color',
-                                    label: __( 'Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Color', 'wpmozo-blocks-and-addons' ),
                                 },
                                 {
                                     key: 'Background',
-                                    label: __( 'Background', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Background', 'wpmozo-blocks-and-addons' ),
                                 },
                             ]
                         }}
@@ -136,17 +136,17 @@ const Inspector = (props) => {
                             ColorTypes: [ 
                                 {
                                     key: 'Color',
-                                    label: __( 'Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Color', 'wpmozo-blocks-and-addons' ),
                                 },
                                 {
                                     key: 'Background',
-                                    label: __( 'Background', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Background', 'wpmozo-blocks-and-addons' ),
                                 },
                             ]
                         }}
                     />
                     <WpmozoAlignment
-                        label={__( 'Pre Text Alignment', 'wpmozo-addons-lite-for-gutenberg')}
+                        label={__( 'Pre Text Alignment', 'wpmozo-blocks-and-addons')}
                         onChange={ ( newValue ) => setAttributes( { preTextAlignment: newValue } ) }
                         value={ attributes.preTextAlignment }
                     />
@@ -163,20 +163,20 @@ const Inspector = (props) => {
                         props={props}
                     />
                 </PanelBody>
-                <PanelBody title={ __( 'Main Text Settings', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                <PanelBody title={ __( 'Main Text Settings', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoColorCombo
-                        label={ __( 'Main Text Color', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Main Text Color', 'wpmozo-blocks-and-addons' ) }
                         normal={{
                             ColorKey: "mainText",
                             props: props,
                             ColorTypes: [ 
                                 {
                                     key: 'Color',
-                                    label: __( 'Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Color', 'wpmozo-blocks-and-addons' ),
                                 },
                                 {
                                     key: 'Background',
-                                    label: __( 'Background', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Background', 'wpmozo-blocks-and-addons' ),
                                 },
                             ]
                         }}
@@ -186,17 +186,17 @@ const Inspector = (props) => {
                             ColorTypes: [ 
                                 {
                                     key: 'Color',
-                                    label: __( 'Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Color', 'wpmozo-blocks-and-addons' ),
                                 },
                                 {
                                     key: 'Background',
-                                    label: __( 'Background', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Background', 'wpmozo-blocks-and-addons' ),
                                 },
                             ]
                         }}
                     />
                     <WpmozoAlignment
-                        label={__( 'Main Text Alignment', 'wpmozo-addons-lite-for-gutenberg')}
+                        label={__( 'Main Text Alignment', 'wpmozo-blocks-and-addons')}
                         onChange={ ( newValue ) => setAttributes( { mainTextAlignment: newValue } ) }
                         value={ attributes.mainTextAlignment }
                     />
@@ -213,20 +213,20 @@ const Inspector = (props) => {
                         props={props}
                     />
                 </PanelBody>
-                <PanelBody title={ __( 'Post Text Settings', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                <PanelBody title={ __( 'Post Text Settings', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoColorCombo
-                        label={ __( 'Post Text Color', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Post Text Color', 'wpmozo-blocks-and-addons' ) }
                         normal={{
                             ColorKey: "postText",
                             props: props,
                             ColorTypes: [ 
                                 {
                                     key: 'Color',
-                                    label: __( 'Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Color', 'wpmozo-blocks-and-addons' ),
                                 },
                                 {
                                     key: 'Background',
-                                    label: __( 'Background', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Background', 'wpmozo-blocks-and-addons' ),
                                 },
                             ]
                         }}
@@ -236,17 +236,17 @@ const Inspector = (props) => {
                             ColorTypes: [ 
                                 {
                                     key: 'Color',
-                                    label: __( 'Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Color', 'wpmozo-blocks-and-addons' ),
                                 },
                                 {
                                     key: 'Background',
-                                    label: __( 'Background', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Background', 'wpmozo-blocks-and-addons' ),
                                 },
                             ]
                         }}
                     />
                     <WpmozoAlignment
-                        label={__( 'Post Text Alignment', 'wpmozo-addons-lite-for-gutenberg')}
+                        label={__( 'Post Text Alignment', 'wpmozo-blocks-and-addons')}
                         onChange={ ( newValue ) => setAttributes( { postTextAlignment: newValue } ) }
                         value={ attributes.postTextAlignment }
                     />

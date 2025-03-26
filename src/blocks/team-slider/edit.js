@@ -178,8 +178,8 @@ const initSwiper = ( attributes ) => {
       
     });
 
-    jQuery(document).find('.swiper[data-client-id="'+clientId+'"] .wpmozo-adfgu-team-member-card').each(function(){
-        jQuery(this).find('.wpmozo-adfgu-filled-bar').each(function(){
+    jQuery(document).find('.swiper[data-client-id="'+clientId+'"] .wpmozo-bna-team-member-card').each(function(){
+        jQuery(this).find('.wpmozo-bna-filled-bar').each(function(){
             let $this = jQuery(this);
             $this.animate({width: $this.data('skill')},1000,'linear');
         });
@@ -222,7 +222,7 @@ const Edit = ( props ) => {
         attributes = props.attributes,
         clientId = props.clientId,
         ID = wpmozoCoreFun.getIdByClientid( clientId ),
-        blockProps = useBlockProps({ className: 'wpmozo-adfgu-team-slider-main' });
+        blockProps = useBlockProps({ className: 'wpmozo-bna-team-slider-main' });
 
     attributes.ID       = ID;
     attributes.clientId = clientId;

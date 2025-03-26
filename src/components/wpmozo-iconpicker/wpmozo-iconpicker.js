@@ -2,7 +2,7 @@ const { compose }         = wp.compose;
 const { ComboboxControl } = wp.components;
 const el                  = wp.element.createElement;
 
-const options = wpmozo_adfgu_editor_object.icons;
+const options = wpmozo_bna_editor_object.icons;
 
 const WpmozoIconpicker = function(args){
 

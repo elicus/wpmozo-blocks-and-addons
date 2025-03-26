@@ -5,7 +5,7 @@ import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
 
         const wpmozoCoreFun = window.wpmozo,
             ID = attributes.ID,
-            blockProps = useBlockProps.save({ className: 'wpmozo-adfgu-logo-slider-main' });
+            blockProps = useBlockProps.save({ className: 'wpmozo-bna-logo-slider-main' });
 
         let innerBlocks = [],
             innerBlocksProps = null,
@@ -68,21 +68,21 @@ import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
 
         return (
             <div { ...innerBlocksProps } id={`block-${ID}`}>
-                <div className="wpmozo-adfgu-logo-slider-wrap" data-attr={JSON.stringify(dataAttr)}>
-                    <div className="wpmozo-adfgu-logo-slider-inner-wrap">
+                <div className="wpmozo-bna-logo-slider-wrap" data-attr={JSON.stringify(dataAttr)}>
+                    <div className="wpmozo-bna-logo-slider-inner-wrap">
                         <div className="swiper swiper-container">
                             <div className="swiper-wrapper">
                                 { innerBlocksProps.children }
                             </div>
                         </div>
                         { attributes.showControlDot &&
-                            <div className="wpmozo-adfgu-logo-slider-pagination">
+                            <div className="wpmozo-bna-logo-slider-pagination">
                                 <div className={`swiper-pagination ${attributes.controlDotStyle}${paginationClass}`}></div>
                             </div>
                         }
                         { attributes.showArrow && 
                             <>
-                                <div className={`wpmozo-adfgu-logo-slider-navigation wpmozo-adfgu-arrows-${attributes.arrowsPosition}`}>
+                                <div className={`wpmozo-bna-logo-slider-navigation wpmozo-bna-arrows-${attributes.arrowsPosition}`}>
                                     <div className={buttonNextClass}></div>
                                     <div className={buttonPrevClass}></div>
                                 </div>

@@ -8,7 +8,7 @@ import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
 registerBlockType( 'wpmozo/separator', {
-	title: __( 'Separator', 'wpmozo-addons-lite-for-gutenberg' ),
+	title: __( 'Separator', 'wpmozo-blocks-and-addons' ),
     icon: Icon,
     apiVersion: 3,
     category: 'wpmozo',

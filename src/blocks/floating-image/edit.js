@@ -64,7 +64,7 @@ const Edit = (props) => {
                 labels={{
                     title: __(
                         'Add Images',
-                        'wpmozo-addons-lite-for-gutenberg'
+                        'wpmozo-blocks-and-addons'
                     ),
                 }}
                 accept="image/*"
@@ -79,7 +79,7 @@ const Edit = (props) => {
                 ID={ID}
                 clientId={clientId}  
             />
-                    <div className="wpmozo-adfgu-floating-image-wrapper">
+                    <div className="wpmozo-bna-floating-image-wrapper">
                         { innerBlocksProps.children }
                     </div>
                 </div>

@@ -16,7 +16,7 @@ const Edit = (props) => {
     attributes.ID = ID;
 
     const blockProps = useBlockProps({
-        className: 'wpmozo-adfgu-fancy-text-wrap',
+        className: 'wpmozo-bna-fancy-text-wrap',
     });
 
 	return (
@@ -29,7 +29,7 @@ const Edit = (props) => {
             />
             <div {...blockProps}>
                 <RichText
-                    className={`wpmozo-adfgu-fancy-text-inner ${attributes.textStyle}`}
+                    className={`wpmozo-bna-fancy-text-inner ${attributes.textStyle}`}
                     tagName='div'
                     value={ attributes.fancyText }
                     onChange={ ( newValue ) => setAttributes( { fancyText: newValue } ) } 

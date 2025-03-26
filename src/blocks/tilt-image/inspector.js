@@ -32,87 +32,87 @@ const Inspector = (props) => {
     setAttributes = props.setAttributes,
     headingLavels = [
         {
-            label: __( 'H1', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H1', 'wpmozo-blocks-and-addons' ),
             value: 'h1'
         },
         {
-            label: __( 'H2', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H2', 'wpmozo-blocks-and-addons' ),
             value: 'h2'
         },
         {
-            label: __( 'H3', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H3', 'wpmozo-blocks-and-addons' ),
             value: 'h3'
         },
         {
-            label: __( 'H4', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H4', 'wpmozo-blocks-and-addons' ),
             value: 'h4'
         },
         {
-            label: __( 'H5', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H5', 'wpmozo-blocks-and-addons' ),
             value: 'h5'
         },
         {
-            label: __( 'H6', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'H6', 'wpmozo-blocks-and-addons' ),
             value: 'h6'
         }
     ],
     contentAlignment = [
         {
-            label: __('Top Left', 'wpmozo-addons-lite-for-gutenberg'),
+            label: __('Top Left', 'wpmozo-blocks-and-addons'),
             value: 'top-left'
         },
         {
-            label: __('Top Center', 'wpmozo-addons-lite-for-gutenberg'),
+            label: __('Top Center', 'wpmozo-blocks-and-addons'),
             value: 'top-center'
         },
         {
-            label: __('Top Right', 'wpmozo-addons-lite-for-gutenberg'),
+            label: __('Top Right', 'wpmozo-blocks-and-addons'),
             value: 'top-right'
         },
         {
-            label: __('Center Left', 'wpmozo-addons-lite-for-gutenberg'),
+            label: __('Center Left', 'wpmozo-blocks-and-addons'),
             value: 'center-left'
         },
         {
-            label: __('Center', 'wpmozo-addons-lite-for-gutenberg'),
+            label: __('Center', 'wpmozo-blocks-and-addons'),
             value: 'center'
         },
         {
-            label: __('Center Right', 'wpmozo-addons-lite-for-gutenberg'),
+            label: __('Center Right', 'wpmozo-blocks-and-addons'),
             value: 'center-right'
         },
         {
-            label: __('Bottom Left', 'wpmozo-addons-lite-for-gutenberg'),
+            label: __('Bottom Left', 'wpmozo-blocks-and-addons'),
             value: 'bottom-left'
         },
         {
-            label: __('Bottom Center', 'wpmozo-addons-lite-for-gutenberg'),
+            label: __('Bottom Center', 'wpmozo-blocks-and-addons'),
             value: 'bottom-center'
         },
         {
-            label: __('Bottom Right', 'wpmozo-addons-lite-for-gutenberg'),
+            label: __('Bottom Right', 'wpmozo-blocks-and-addons'),
             value: 'bottom-right'
         },
     ],
     contentAnimationDirection = [
         {
-            label: __('Top To Bottom', 'wpmozo-addons-lite-for-gutenberg'),
+            label: __('Top To Bottom', 'wpmozo-blocks-and-addons'),
             value: 'top'
         },
         {
-            label: __('Left To Right', 'wpmozo-addons-lite-for-gutenberg'),
+            label: __('Left To Right', 'wpmozo-blocks-and-addons'),
             value: 'left'
         },
         {
-            label: __('Right To Left', 'wpmozo-addons-lite-for-gutenberg'),
+            label: __('Right To Left', 'wpmozo-blocks-and-addons'),
             value: 'right'
         },
         {
-            label: __('Bottom To Top', 'wpmozo-addons-lite-for-gutenberg'),
+            label: __('Bottom To Top', 'wpmozo-blocks-and-addons'),
             value: 'bottom'
         },
         {
-            label: __('No Animation', 'wpmozo-addons-lite-for-gutenberg'),
+            label: __('No Animation', 'wpmozo-blocks-and-addons'),
             value: 'off'
         }
     ];
@@ -122,31 +122,31 @@ const Inspector = (props) => {
 	return (
         <>
             <InspectorControls key="controls">
-                <PanelBody title={ __( 'Tilt Image', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
+                <PanelBody title={ __( 'Tilt Image', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
                     <WpmozoMediaUploader 
                         attrKye="image" 
                         props={props} 
                     />
                 </PanelBody>
-                <PanelBody title={ __( 'Content', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
+                <PanelBody title={ __( 'Content', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
                     <TextControl
-                        label={ __( 'Title', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Title', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.title }
                         onChange={ ( newValue ) => setAttributes( { title: newValue } ) }
                     />
                     <TextareaControl
-                        label={ __( 'Content', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Content', 'wpmozo-blocks-and-addons' ) }
                         onChange={ ( newValue ) => setAttributes( { content: newValue } ) }
                         value={ attributes.content }
                     />
                     <ToggleControl
-                        label={ __( 'Use Icon', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Use Icon', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.useIcon }
                         onChange={ ( newValue ) => setAttributes( { useIcon: newValue } ) }
                     />
                     { attributes.useIcon &&
                         <WpmozoIconpicker
-                            label={ __( 'Icon', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            label={ __( 'Icon', 'wpmozo-blocks-and-addons' ) }
                             iconPickerKey='icon'
                             props={ props }
                             value={ attributes.icon }
@@ -154,24 +154,24 @@ const Inspector = (props) => {
                         />
                     }
                     <ToggleControl
-                        label={ __( 'Show Button', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Show Button', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.showButton }
                         onChange={ ( newValue ) => setAttributes( { showButton: newValue } ) }
                     />
                     { attributes.showButton &&
                         <>
                             <TextControl
-                                label={ __( 'Button Text', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                label={ __( 'Button Text', 'wpmozo-blocks-and-addons' ) }
                                 value={ attributes.buttonText }
                                 onChange={ ( newValue ) => setAttributes( { buttonText: newValue } ) }
                             />
                             <TextControl
-                                label={ __( 'Button Url', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                label={ __( 'Button Url', 'wpmozo-blocks-and-addons' ) }
                                 onChange={ ( newValue ) => setAttributes( { buttonUrl: newValue } ) }
                                 value={ attributes.buttonUrl }
                             />
                             <BaseControl
-                                label={ __( 'Link Target', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                label={ __( 'Link Target', 'wpmozo-blocks-and-addons' ) }
                                 className="wpmozo-button-tabs-wrap"
                             >    
                                 <ButtonGroup>
@@ -180,14 +180,14 @@ const Inspector = (props) => {
                                         isPressed={ ( 'same' === attributes.buttonLinkTarget ) ? true : false }
                                         onClick={ () => setAttributes( { buttonLinkTarget: 'same' } ) }
                                         icon={ <Icon icon="admin-links" /> }
-                                        label={ __( 'Same Window', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                        label={ __( 'Same Window', 'wpmozo-blocks-and-addons' ) }
                                     /> 
                                     <Button 
                                         className="wpmozo-button-tabs-btn"
                                         isPressed={ ( 'external' === attributes.buttonLinkTarget ) ? true : false }
                                         onClick={ () => setAttributes( { buttonLinkTarget: 'external' } ) }
                                         icon={ <Icon icon="external" /> }
-                                        label={ __( 'External', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                        label={ __( 'External', 'wpmozo-blocks-and-addons' ) }
                                     />
                                 </ButtonGroup>
                             </BaseControl>
@@ -196,23 +196,23 @@ const Inspector = (props) => {
                 </PanelBody>
            	</InspectorControls>
             <InspectorControls key="styles" group="styles">
-                <PanelBody title={ __( 'Tilt Setting', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                <PanelBody title={ __( 'Tilt Setting', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <RangeControl
-                        label={ __( 'Max Rotation', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Max Rotation', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.tiltMax }
                         onChange={ ( newValue ) => setAttributes( { tiltMax: newValue } ) }
                         min={ 1 }
                         max={ 100 }
                     />
                     <RangeControl
-                        label={ __( 'Perspective', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Perspective', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.tiltPerspective }
                         onChange={ ( newValue ) => setAttributes( { tiltPerspective: newValue } ) }
                         min={ 100 }
                         max={ 2000 }
                     />
                     <RangeControl
-                        label={ __( 'Scale on Hover', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Scale on Hover', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.tiltScale }
                         onChange={ ( newValue ) => setAttributes( { tiltScale: newValue } ) }
                         min={ 1 }
@@ -220,25 +220,25 @@ const Inspector = (props) => {
                         max={ 3 }
                     />
                     <RangeControl
-                        label={ __( 'Speed', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Speed', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.tiltSpeed }
                         onChange={ ( newValue ) => setAttributes( { tiltSpeed: newValue } ) }
                         min={ 10 }
                         max={ 1000 }
                     />
                     <ToggleControl
-                        label={ __( 'Disable on Mobile', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Disable on Mobile', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.tiltMobile }
                         onChange={ ( newValue ) => setAttributes( { tiltMobile: newValue } ) }
                     />
                     <ToggleControl
-                        label={ __( 'Use Glare', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Use Glare', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.useGlare }
                         onChange={ ( newValue ) => setAttributes( { useGlare: newValue } ) }
                     />
                     { attributes.useGlare &&
                         <RangeControl
-                            label={ __( 'Max Glare', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            label={ __( 'Max Glare', 'wpmozo-blocks-and-addons' ) }
                             value={ attributes.tiltMaxGlare }
                             onChange={ ( newValue ) => setAttributes( { tiltMaxGlare: newValue } ) }
                             min={ 0.1 }
@@ -247,13 +247,13 @@ const Inspector = (props) => {
                         />
                     }
                     <ToggleControl
-                        label={ __( 'Use 3D Effect', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Use 3D Effect', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.use3dEffect }
                         onChange={ ( newValue ) => setAttributes( { use3dEffect: newValue } ) }
                     />
                     { attributes.use3dEffect &&
                         <RangeControl
-                            label={ __( '3D Effect', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            label={ __( '3D Effect', 'wpmozo-blocks-and-addons' ) }
                             value={ attributes.tilt3dValue }
                             onChange={ ( newValue ) => setAttributes( { tilt3dValue: newValue } ) }
                             min={ 10 }
@@ -261,13 +261,13 @@ const Inspector = (props) => {
                         />
                     }
                     <ToggleControl
-                        label={ __( 'Use Disable X/Y axis', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Use Disable X/Y axis', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.useDisableAxis }
                         onChange={ ( newValue ) => setAttributes( { useDisableAxis: newValue } ) }
                     />
                     { attributes.useDisableAxis &&
                         <BaseControl
-                            label={ __( 'Disable X/Y axis', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            label={ __( 'Disable X/Y axis', 'wpmozo-blocks-and-addons' ) }
                             className="wpmozo-button-tabs-wrap"
                         >    
                             <ButtonGroup>
@@ -275,23 +275,23 @@ const Inspector = (props) => {
                                     className="wpmozo-button-tabs-btn"
                                     isPressed={ ( 'x' === attributes.tiltDisableAxis ) ? true : false }
                                     onClick={ () => setAttributes( { tiltDisableAxis: 'x' } ) }
-                                    label={ __( 'X axis', 'wpmozo-addons-lite-for-gutenberg' ) }
-                                    text={ __( 'X axis', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                    label={ __( 'X axis', 'wpmozo-blocks-and-addons' ) }
+                                    text={ __( 'X axis', 'wpmozo-blocks-and-addons' ) }
                                 /> 
                                 <Button 
                                     className="wpmozo-button-tabs-btn"
                                     isPressed={ ( 'y' === attributes.tiltDisableAxis ) ? true : false }
                                     onClick={ () => setAttributes( { tiltDisableAxis: 'y' } ) }
-                                    label={ __( 'Y axis', 'wpmozo-addons-lite-for-gutenberg' ) }
-                                    text={ __( 'Y axis', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                    label={ __( 'Y axis', 'wpmozo-blocks-and-addons' ) }
+                                    text={ __( 'Y axis', 'wpmozo-blocks-and-addons' ) }
                                 />
                             </ButtonGroup>
                         </BaseControl>
                     }
                 </PanelBody>
-                <PanelBody title={ __( 'Overlay', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                <PanelBody title={ __( 'Overlay', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <ToggleControl
-                        label={ __( 'Image Overlay', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Image Overlay', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.useOverlay }
                         onChange={ ( newValue ) => setAttributes( { useOverlay: newValue } ) }
                     />
@@ -302,20 +302,20 @@ const Inspector = (props) => {
                             ColorTypes={[ 
                                 {
                                     key: 'Color',
-                                    label: __( 'Overlay Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Overlay Color', 'wpmozo-blocks-and-addons' ),
                                 }
                             ]}
                         />
                     }
                 </PanelBody>
-                <PanelBody title={ __( 'Icon', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                <PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoColorPicker  
                         ColorKey="icon"
                         props={props}
                         ColorTypes={[ 
                             {
                                 key: 'Color',
-                                label: __( 'Icon Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ),
                             }
                         ]}
                     />
@@ -325,19 +325,19 @@ const Inspector = (props) => {
                         value={ attributes.iconAlign }
                     />
                     <ToggleControl
-                        label={ __( 'Use Icon Font Size', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Use Icon Font Size', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.useIconFontSize }
                         onChange={ ( newValue ) => setAttributes( { useIconFontSize: newValue } ) }
                     />
                     { attributes.useIconFontSize &&
                         <HeightControl
-                            label={ __( 'Icon Font Size', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            label={ __( 'Icon Font Size', 'wpmozo-blocks-and-addons' ) }
                             value={ attributes.iconFontSize }
                             onChange={ ( newValue ) => setAttributes( { iconFontSize: newValue } ) }
                         />
                     }
                 </PanelBody>
-                <PanelBody title={ __( 'Content Styling', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                <PanelBody title={ __( 'Content Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoDimensions
                         DimensionKey='content'
                         DimensionsTypes={{
@@ -346,38 +346,38 @@ const Inspector = (props) => {
                         props={props}
                     />
                     <SelectControl
-                        label={ __( 'Content Alignment', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Content Alignment', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.contentAlignment }
                         options={ contentAlignment }
                         onChange={ ( newValue ) => setAttributes( { contentAlignment: newValue } ) }
                     />
                     <ToggleControl
-                        label={ __( 'Content on Hover', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Content on Hover', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.contentOnHover }
                         onChange={ ( newValue ) => setAttributes( { contentOnHover: newValue } ) }
                     />
                     { attributes.contentOnHover &&
                         <SelectControl
-                            label={ __( 'Content Alignment', 'wpmozo-addons-lite-for-gutenberg' ) }
+                            label={ __( 'Content Alignment', 'wpmozo-blocks-and-addons' ) }
                             value={ attributes.contentAnimationDirection }
                             options={ contentAnimationDirection }
                             onChange={ ( newValue ) => setAttributes( { contentAnimationDirection: newValue } ) }
                         />
                     }
                 </PanelBody>
-                <PanelBody title={ __( 'Title', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                <PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoColorPicker  
                         ColorKey="title"
                         props={props}
                         ColorTypes={[ 
                             {
                                 key: 'Color',
-                                label: __( 'Title Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                label: __( 'Title Color', 'wpmozo-blocks-and-addons' ),
                             }
                         ]}
                     />
                     <BaseControl
-                        label={ __( 'Heading Lavel', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Heading Lavel', 'wpmozo-blocks-and-addons' ) }
                     >    
                         <ButtonGroup>
                             {headingLavels.map((item, key) => (
@@ -391,7 +391,7 @@ const Inspector = (props) => {
                         </ButtonGroup>
                     </BaseControl>
                     <WpmozoAlignment
-                        label={ __( 'Title Alignment', 'wpmozo-addons-lite-for-gutenberg') }
+                        label={ __( 'Title Alignment', 'wpmozo-blocks-and-addons') }
                         onChange={ ( newValue ) => setAttributes( { titleAlign: newValue } ) }
                         value={ attributes.titleAlign }
                     />
@@ -400,19 +400,19 @@ const Inspector = (props) => {
                         props={props}
                     />
                 </PanelBody>
-                <PanelBody title={ __( 'Description', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                <PanelBody title={ __( 'Description', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <WpmozoColorPicker  
                         ColorKey="description"
                         props={props}
                         ColorTypes={[ 
                             {
                                 key: 'Color',
-                                label: __( 'Text Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                label: __( 'Text Color', 'wpmozo-blocks-and-addons' ),
                             }
                         ]}
                     />
                     <WpmozoAlignment
-                        label={ __( 'Description Alignment', 'wpmozo-addons-lite-for-gutenberg') }
+                        label={ __( 'Description Alignment', 'wpmozo-blocks-and-addons') }
                         onChange={ ( newValue ) => setAttributes( { descriptionAlign: newValue } ) }
                         value={ attributes.descriptionAlign }
                     />
@@ -422,18 +422,18 @@ const Inspector = (props) => {
                     />
                 </PanelBody>
                 { attributes.showButton && 
-                    <PanelBody title={ __( 'Button Style', 'wpmozo-addons-lite-for-gutenberg' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <PanelBody title={ __( 'Button Style', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
                         <WpmozoColorPicker  
                             ColorKey="button"
                             props={props}
                             ColorTypes={[ 
                                 {
                                     key: 'TextColor',
-                                    label: __( 'Text Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Text Color', 'wpmozo-blocks-and-addons' ),
                                 },
                                 {
                                     key: 'BackgroundColor',
-                                    label: __( 'Background Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                    label: __( 'Background Color', 'wpmozo-blocks-and-addons' ),
                                 }
                             ]}
                         />

@@ -8,7 +8,7 @@ import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
 registerBlockType( 'wpmozo/tilt-image', {
-	title: __( 'Tilt Image', 'wpmozo-addons-lite-for-gutenberg' ),
+	title: __( 'Tilt Image', 'wpmozo-blocks-and-addons' ),
     icon: Icon,
     apiVersion: 3,
     category: 'wpmozo',

@@ -16,16 +16,16 @@ import {
 
 const Inspector = (props) => {
 
-    const beforeTitle = __( 'Before', 'wpmozo-addons-lite-for-gutenberg' ),
-    afterTitle = __( 'After', 'wpmozo-addons-lite-for-gutenberg' ),
+    const beforeTitle = __( 'Before', 'wpmozo-blocks-and-addons' ),
+    afterTitle = __( 'After', 'wpmozo-blocks-and-addons' ),
     attributes = props.attributes,
     setAttributes = props.setAttributes,
     globalColorTypes = [ 
         {
             key: 'Handle',
-            label: __( 'Handle Color', 'wpmozo-addons-lite-for-gutenberg' ),
+            label: __( 'Handle Color', 'wpmozo-blocks-and-addons' ),
         },
-        ... attributes.overlayOnHover ? [{key: 'Overlay',label: __( 'Overlay Color', 'wpmozo-addons-lite-for-gutenberg' )}] : [],
+        ... attributes.overlayOnHover ? [{key: 'Overlay',label: __( 'Overlay Color', 'wpmozo-blocks-and-addons' )}] : [],
     ];
     
     props = Object.assign({}, props, {preAttributes: {}});
@@ -33,24 +33,24 @@ const Inspector = (props) => {
 	return (
         <>
             <InspectorControls key="controls">
-                <PanelBody title={ __( 'General', 'wpmozo-addons-lite-for-gutenberg' ) } initialOpen={false}>
+                <PanelBody title={ __( 'General', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
                     <SelectControl
-                        label={ __( 'Slider Orientation', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Slider Orientation', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.sliderOrientation }
                         options={[
                             {
-                                label: __( 'Horizontal', 'wpmozo-addons-lite-for-gutenberg' ),
+                                label: __( 'Horizontal', 'wpmozo-blocks-and-addons' ),
                                 value: 'horizontal',
                             },
                             {
-                                label: __( 'Vertical', 'wpmozo-addons-lite-for-gutenberg' ),
+                                label: __( 'Vertical', 'wpmozo-blocks-and-addons' ),
                                 value: 'vertical',
                             }
                         ]}
                         onChange={ ( newValue ) => setAttributes( { sliderOrientation: newValue } ) }
                     />
                     <RangeControl
-                        label={ __( 'Handle Offset', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Handle Offset', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.handleOffset }
                         onChange={ ( newValue ) => setAttributes( { handleOffset: newValue } ) }
                         min={ 0 }
@@ -63,7 +63,7 @@ const Inspector = (props) => {
                     { ! attributes.moveHandleOnClick && (
                         <>
                             <ToggleControl
-                                label={ __( 'Move Handle on Hover', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                label={ __( 'Move Handle on Hover', 'wpmozo-blocks-and-addons' ) }
                                 checked={ attributes.moveHandleOnHover }
                                 onChange={ ( newValue ) => setAttributes( { moveHandleOnHover: newValue } ) }
                             />
@@ -72,7 +72,7 @@ const Inspector = (props) => {
                     { ! attributes.moveHandleOnHover && (
                         <>
                             <ToggleControl
-                                label={ __( 'Move Handle on Click', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                label={ __( 'Move Handle on Click', 'wpmozo-blocks-and-addons' ) }
                                 checked={ attributes.moveHandleOnClick }
                                 onChange={ ( newValue ) => setAttributes( { moveHandleOnClick: newValue } ) }
                             />
@@ -85,19 +85,19 @@ const Inspector = (props) => {
                         props={props} 
                     />
                     <ToggleControl
-                        label={ __( 'Show Label', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Show Label', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.beforeHasLabel }
                         onChange={ ( newValue ) => setAttributes( { beforeHasLabel: newValue } ) }
                     />
                     {attributes.beforeHasLabel && (
                         <>
                             <ToggleControl
-                                label={ __( 'Show Label Only on Hover', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                label={ __( 'Show Label Only on Hover', 'wpmozo-blocks-and-addons' ) }
                                 checked={ attributes.beforeLabelOnHover }
                                 onChange={ ( newValue ) => setAttributes( { beforeLabelOnHover: newValue } ) }
                             />
                             <TextControl
-                                label={ __( 'Enter Label', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                label={ __( 'Enter Label', 'wpmozo-blocks-and-addons' ) }
                                 value={ attributes.beforeLabel }
                                 onChange={ ( newValue ) => setAttributes( { beforeLabel: newValue } ) }
                             />
@@ -110,19 +110,19 @@ const Inspector = (props) => {
                         props={props} 
                     />
                     <ToggleControl
-                        label={ __( 'Show Label', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Show Label', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.afterHasLabel }
                         onChange={ ( newValue ) => setAttributes( { afterHasLabel: newValue } ) }
                     />
                     {attributes.afterHasLabel && (
                         <>
                             <ToggleControl
-                                label={ __( 'Show Label Only on Hover', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                label={ __( 'Show Label Only on Hover', 'wpmozo-blocks-and-addons' ) }
                                 checked={ attributes.afterLabelOnHover }
                                 onChange={ ( newValue ) => setAttributes( { afterLabelOnHover: newValue } ) }
                             />
                             <TextControl
-                                label={ __( 'Enter Label', 'wpmozo-addons-lite-for-gutenberg' ) }
+                                label={ __( 'Enter Label', 'wpmozo-blocks-and-addons' ) }
                                 value={ attributes.afterLabel }
                                 onChange={ ( newValue ) => setAttributes( { afterLabel: newValue } ) }
                             />
@@ -133,7 +133,7 @@ const Inspector = (props) => {
             <InspectorControls key="styles" group="styles">
                 <PanelBody title={ __( 'General Style' ) } className="wpmozo-typography-panel" initialOpen={false}>
                     <ToggleControl
-                        label={ __( 'Overlay on Hover', 'wpmozo-addons-lite-for-gutenberg' ) }
+                        label={ __( 'Overlay on Hover', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.overlayOnHover }
                         onChange={ ( newValue ) => setAttributes( { overlayOnHover: newValue } ) }
                     />
@@ -152,11 +152,11 @@ const Inspector = (props) => {
                                 ColorTypes={[ 
                                     {
                                         key: 'text',
-                                        label: __( 'Label Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                        label: __( 'Label Color', 'wpmozo-blocks-and-addons' ),
                                     },
                                     {
                                         key: 'background',
-                                        label: __( 'Label Background', 'wpmozo-addons-lite-for-gutenberg' ),
+                                        label: __( 'Label Background', 'wpmozo-blocks-and-addons' ),
                                     } 
                                 ]}
                             />
@@ -176,11 +176,11 @@ const Inspector = (props) => {
                                 ColorTypes={[ 
                                     {
                                         key: 'text',
-                                        label: __( 'Label Color', 'wpmozo-addons-lite-for-gutenberg' ),
+                                        label: __( 'Label Color', 'wpmozo-blocks-and-addons' ),
                                     },
                                     {
                                         key: 'background',
-                                        label: __( 'Label Background', 'wpmozo-addons-lite-for-gutenberg' ),
+                                        label: __( 'Label Background', 'wpmozo-blocks-and-addons' ),
                                     } 
                                 ]}
                             />

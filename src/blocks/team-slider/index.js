@@ -7,7 +7,7 @@ import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
 registerBlockType( 'wpmozo/team-slider', {
-	title: __( 'Team Slider', 'wpmozo-addons-lite-for-gutenberg' ),
+	title: __( 'Team Slider', 'wpmozo-blocks-and-addons' ),
     icon: '',
     apiVersion: 2,
     category: 'wpmozo',

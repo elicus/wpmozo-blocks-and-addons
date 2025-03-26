@@ -8,7 +8,7 @@ import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
 registerBlockType( 'wpmozo/fancy-text', {
-	title: __( 'Fancy Text', 'wpmozo-addons-lite-for-gutenberg' ),
+	title: __( 'Fancy Text', 'wpmozo-blocks-and-addons' ),
     icon: Icon,
     apiVersion: 3,
     category: 'wpmozo',

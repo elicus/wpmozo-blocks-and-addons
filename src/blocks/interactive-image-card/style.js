@@ -15,27 +15,27 @@ const Style = ({attributes, ID, clientId}) => {
 
     let allInline = [
     	{
-    		selector: '.wpmozo-adfgu-interactive-image-card-image',
+    		selector: '.wpmozo-bna-interactive-image-card-image',
     		style: {
     			'opacity': attributes.imageOpacity,
     		}
     	},
     	{
-    		selector: '.wpmozo-adfgu-interactive-image-card-title',
+    		selector: '.wpmozo-bna-interactive-image-card-title',
     		style: {
     			'color': attributes.titleNormalColor,
     		},
     		additional: convertedStyle.titleNormal,
     	},
     	{
-    		selector: '.wpmozo-adfgu-interactive-image-card-wrap figure:hover .wpmozo-adfgu-interactive-image-card-title',
+    		selector: '.wpmozo-bna-interactive-image-card-wrap figure:hover .wpmozo-bna-interactive-image-card-title',
     		style: {
     			'color': attributes.titleHoverColor,
     		},
     		additional: convertedStyle.titleHover,
     	},
 		{
-    		selector: '.wpmozo-adfgu-interactive-image-card-content',
+    		selector: '.wpmozo-bna-interactive-image-card-content',
     		style: {
     			'color': attributes.contentColor,
     		},
@@ -46,13 +46,13 @@ const Style = ({attributes, ID, clientId}) => {
     if ( 'milo' !== attributes.layout ) {
     	allInline.push(
 	    	{
-	    		selector: '.wpmozo-adfgu-interactive-image-card-title',
+	    		selector: '.wpmozo-bna-interactive-image-card-title',
 	    		style: {
 	    			'text-align': attributes.titleAlign,
 	    		}
 	    	},
 	    	{
-	    		selector: '.wpmozo-adfgu-interactive-image-card-content',
+	    		selector: '.wpmozo-bna-interactive-image-card-content',
 	    		style: {
 	    			'text-align': attributes.contentAlign,
 	    		}
@@ -62,7 +62,7 @@ const Style = ({attributes, ID, clientId}) => {
 
     if ('romeo' !== attributes.layout && 'marley' !== attributes.layout ) {
     	allInline.push({
-    		selector: '.wpmozo-adfgu-interactive-image-card-wrap figure',
+    		selector: '.wpmozo-bna-interactive-image-card-wrap figure',
     		style: {
     			'background': attributes.overlayColor,
     		}
@@ -71,21 +71,21 @@ const Style = ({attributes, ID, clientId}) => {
 
     if ( 'roxy' === attributes.layout ) {
     	allInline.push({
-    		selector: '.wpmozo-adfgu-interactive-image-card-wrap figure.effect-roxy figcaption::before',
+    		selector: '.wpmozo-bna-interactive-image-card-wrap figure.effect-roxy figcaption::before',
     		additional: convertedStyle.layout
     	});
     }
     if ( 'bubba' === attributes.layout ) {
     	allInline.push(
 	    	{
-	    		selector: '.wpmozo-adfgu-interactive-image-card-wrap figure.effect-bubba figcaption::before',
+	    		selector: '.wpmozo-bna-interactive-image-card-wrap figure.effect-bubba figcaption::before',
 	    		style: {
 	    			'border-top': attributes.layoutborder.width+' '+attributes.layoutborder.style+' '+attributes.layoutborder.color,
 	    			'border-bottom': attributes.layoutborder.width+' '+attributes.layoutborder.style+' '+attributes.layoutborder.color,
 	    		}
 	    	},
 	    	{
-	    		selector: '.wpmozo-adfgu-interactive-image-card-wrap figure.effect-bubba figcaption::after',
+	    		selector: '.wpmozo-bna-interactive-image-card-wrap figure.effect-bubba figcaption::after',
 	    		style: {
 	    			'border-right': attributes.layoutborder.width+' '+attributes.layoutborder.style+' '+attributes.layoutborder.color,
 	    			'border-left': attributes.layoutborder.width+' '+attributes.layoutborder.style+' '+attributes.layoutborder.color,
@@ -97,8 +97,8 @@ const Style = ({attributes, ID, clientId}) => {
     	allInline.push(
 	    	{
 	    		selector: `
-	    		.wpmozo-adfgu-interactive-image-card-wrap figure.effect-romeo figcaption::after, 
-	    		.wpmozo-adfgu-interactive-image-card-wrap figure.effect-romeo figcaption::before
+	    		.wpmozo-bna-interactive-image-card-wrap figure.effect-romeo figcaption::after, 
+	    		.wpmozo-bna-interactive-image-card-wrap figure.effect-romeo figcaption::before
 	    		`,
 	    		style: {
 	    			'height': attributes.layoutborder.width,
@@ -110,14 +110,14 @@ const Style = ({attributes, ID, clientId}) => {
     if ( 'layla' === attributes.layout ) {
     	allInline.push(
 	    	{
-	    		selector: '.wpmozo-adfgu-interactive-image-card-wrap figure.effect-layla figcaption::before',
+	    		selector: '.wpmozo-bna-interactive-image-card-wrap figure.effect-layla figcaption::before',
 	    		style: {
 	    			'border-top': attributes.layoutborder.width+' '+attributes.layoutborder.style+' '+attributes.layoutborder.color,
 	    			'border-bottom': attributes.layoutborder.width+' '+attributes.layoutborder.style+' '+attributes.layoutborder.color,
 	    		}
 	    	},
 	    	{
-	    		selector: '.wpmozo-adfgu-interactive-image-card-wrap figure.effect-layla figcaption::after',
+	    		selector: '.wpmozo-bna-interactive-image-card-wrap figure.effect-layla figcaption::after',
 	    		style: {
 	    			'border-right': attributes.layoutborder.width+' '+attributes.layoutborder.style+' '+attributes.layoutborder.color,
 	    			'border-left': attributes.layoutborder.width+' '+attributes.layoutborder.style+' '+attributes.layoutborder.color,
@@ -127,7 +127,7 @@ const Style = ({attributes, ID, clientId}) => {
     }
     if ( 'oscar' === attributes.layout ) {
     	allInline.push({
-    		selector: '.wpmozo-adfgu-interactive-image-card-wrap figure.effect-oscar figcaption::before',
+    		selector: '.wpmozo-bna-interactive-image-card-wrap figure.effect-oscar figcaption::before',
     		additional: convertedStyle.layout
     	});
     }
@@ -135,7 +135,7 @@ const Style = ({attributes, ID, clientId}) => {
     	allInline.push(
 	    	{
 	    		selector: `
-	    		.wpmozo-adfgu-interactive-image-card-wrap figure.effect-marley .wpmozo-adfgu-interactive-image-card-title::after
+	    		.wpmozo-bna-interactive-image-card-wrap figure.effect-marley .wpmozo-bna-interactive-image-card-title::after
 	    		`,
 	    		style: {
 	    			'height': attributes.layoutborder.width,
@@ -146,13 +146,13 @@ const Style = ({attributes, ID, clientId}) => {
     }
     if ( 'ruby' === attributes.layout ) {
     	allInline.push({
-    		selector: '.wpmozo-adfgu-interactive-image-card-wrap figure.effect-ruby .wpmozo-adfgu-interactive-image-card-content',
+    		selector: '.wpmozo-bna-interactive-image-card-wrap figure.effect-ruby .wpmozo-bna-interactive-image-card-content',
     		additional: convertedStyle.layout
     	});
     }
     if ( 'milo' === attributes.layout ) {
     	allInline.push({
-    		selector: '.wpmozo-adfgu-interactive-image-card-wrap figure.effect-milo .wpmozo-adfgu-interactive-image-card-content',
+    		selector: '.wpmozo-bna-interactive-image-card-wrap figure.effect-milo .wpmozo-bna-interactive-image-card-content',
     		style: {
     			'border-right': attributes.layoutborder.width+' '+attributes.layoutborder.style+' '+attributes.layoutborder.color,
     		}

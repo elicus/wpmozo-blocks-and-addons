@@ -40,25 +40,25 @@ const Style = ({attributes, ID, clientId}) => {
     
     let allInline = [
     	{
-    		selector: '.wpmozo-adfgu-flip-box-wrap',
+    		selector: '.wpmozo-bna-flip-box-wrap',
     		style: {
 			    'width': attributes.flipboxWidth,
     		},
     	},
     	{
-    		selector: '.wpmozo-adfgu-flip-box-side .wpmozo-adfgu-flip-box-title',
+    		selector: '.wpmozo-bna-flip-box-side .wpmozo-bna-flip-box-title',
     		style: {
     			'color': attributes.globalTitleColor,
     		},
     	},
     	{
-    		selector: '.wpmozo-adfgu-flip-box-side .wpmozo-adfgu-flip-box-description',
+    		selector: '.wpmozo-bna-flip-box-side .wpmozo-bna-flip-box-description',
     		style: {
     			'color': attributes.globalContentColor,
     		},
     	},
     	{
-    		selector: '.wpmozo-adfgu-flip-box-front',
+    		selector: '.wpmozo-bna-flip-box-front',
     		style: {
     			'background-color': attributes.frontBackgroundColor,
     			'align-items': frontVerticalAlign
@@ -66,7 +66,7 @@ const Style = ({attributes, ID, clientId}) => {
     		additional: convertedStyle.frontFlipbox,
     	},
     	{
-    		selector: '.wpmozo-adfgu-flip-box-back',
+    		selector: '.wpmozo-bna-flip-box-back',
     		style: {
     			'background-color': attributes.backBackgroundColor,
     			'align-items': backVerticalAlign
@@ -75,72 +75,72 @@ const Style = ({attributes, ID, clientId}) => {
     	},
     	{
     		selector: `
-    		.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-icon-wrap, 
-    		.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-title,
-    		.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-description`,
+    		.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-icon-wrap, 
+    		.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-title,
+    		.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-description`,
     		style: {
     			'text-align': attributes.frontContentHorAlignment,
     		},
     	},
     	{
     		selector: `
-    		.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-icon-wrap, 
-    		.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-title,
-    		.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-description, 
-    		.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-button-wrap`,
+    		.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-icon-wrap, 
+    		.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-title,
+    		.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-description, 
+    		.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-button-wrap`,
     		style: {
     			'text-align': attributes.backContentHorAlignment,
     		},
     	},
     	{
-    		selector: '.wpmozo-adfgu-flip-box-side .wpmozo-adfgu-flip-box-title',
+    		selector: '.wpmozo-bna-flip-box-side .wpmozo-bna-flip-box-title',
     		additional: convertedStyle.globalTitle
     	},
     	{
-    		selector: '.wpmozo-adfgu-flip-box-side .wpmozo-adfgu-flip-box-description',
+    		selector: '.wpmozo-bna-flip-box-side .wpmozo-bna-flip-box-description',
     		additional: convertedStyle.globalContent
     	},
     	{
-    		selector: '.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-title',
+    		selector: '.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-title',
     		style: {
     			'color': attributes.frontTitleColor,
     		},
     		additional: convertedStyle.frontTitle
     	},
     	{
-    		selector: '.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-description',
+    		selector: '.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-description',
     		style: {
     			'color': attributes.frontContentColor,
     		},
     		additional: convertedStyle.frontContent
     	},
     	{
-    		selector: '.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-title',
+    		selector: '.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-title',
     		style: {
     			'color': attributes.backTitleColor,
     		},
     		additional: convertedStyle.backTitle
     	},
     	{
-    		selector: '.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-description',
+    		selector: '.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-description',
     		style: {
     			'color': attributes.backContentColor,
     		},
     		additional: convertedStyle.backContent
     	},
     	{
-    		selector: '.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-inner',
+    		selector: '.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-inner',
     		additional: convertedStyle.frontDimensions
     	},
     	{
-    		selector: '.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-inner',
+    		selector: '.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-inner',
     		additional: convertedStyle.backDimensions
     	}
     ];
 
 	if ( attributes.depth3dEffect ) {
 		allInline.push({
-    		selector: '.wpmozo-adfgu-flip-box-side .wpmozo-adfgu-flip-box-inner',
+    		selector: '.wpmozo-bna-flip-box-side .wpmozo-bna-flip-box-inner',
     		style: {
 			    'transform': 'translateZ(50px) scale(0.95)'
     		}
@@ -150,7 +150,7 @@ const Style = ({attributes, ID, clientId}) => {
 	if ( 'flip' === attributes.animationType ) {
 		if ( attributes.shakeOnFlip ) {
 			allInline.push({
-	    		selector: '.wpmozo-adfgu-flip-box-wrap.layout1 .wpmozo-adfgu-flip-box-side',
+	    		selector: '.wpmozo-bna-flip-box-wrap.layout1 .wpmozo-bna-flip-box-side',
 	    		style: {
 	    			'transition': `transform ${attributes.flipSpeed}ms cubic-bezier(0.3, 0.9, 0.40, 1.3)`,
 				    '-moz-transition': `transform ${attributes.flipSpeed}ms cubic-bezier(0.3, 0.9, 0.40, 1.3)`,
@@ -159,7 +159,7 @@ const Style = ({attributes, ID, clientId}) => {
 	    	})
 		}else{
 			allInline.push({
-	    		selector: '.wpmozo-adfgu-flip-box-wrap.layout1 .wpmozo-adfgu-flip-box-side',
+	    		selector: '.wpmozo-bna-flip-box-wrap.layout1 .wpmozo-bna-flip-box-side',
 	    		style: {
 	    			'transition': `transform ${attributes.flipSpeed}ms cubic-bezier(.5, .3, .3, 1)`,
 				    '-moz-transition': `transform ${attributes.flipSpeed}ms cubic-bezier(.5, .3, .3, 1)`,
@@ -169,7 +169,7 @@ const Style = ({attributes, ID, clientId}) => {
 		}
 	}else {
 		allInline.push({
-    		selector: '.wpmozo-adfgu-flip-box-wrap.layout2',
+    		selector: '.wpmozo-bna-flip-box-wrap.layout2',
     		style: {
     			'transition': `transform ${attributes.flipSpeed}ms ease`,
 			    '-moz-transition': `transform ${attributes.flipSpeed}ms ease`,
@@ -180,7 +180,7 @@ const Style = ({attributes, ID, clientId}) => {
     
     if ( 'top' === attributes.frontElementAlign ) {
     	allInline.push({
-    		selector: '.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-inner',
+    		selector: '.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-inner',
     		style: {
 			    'flex-direction': 'column'
     		}
@@ -190,14 +190,14 @@ const Style = ({attributes, ID, clientId}) => {
     	allInline.push(
 	    	{
 	    		selector: `
-	    		.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-icon-wrap,
-	    		.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-image-wrap`,
+	    		.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-icon-wrap,
+	    		.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-image-wrap`,
 	    		style: {
 				    'margin-right': '20px'
 	    		}
 	    	},
 	    	{
-	    		selector: '.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-content-wrap',
+	    		selector: '.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-content-wrap',
 	    		style: {
 				    'width': 'calc( 100% - 20px )'
 	    		}
@@ -207,21 +207,21 @@ const Style = ({attributes, ID, clientId}) => {
     if ( 'right' === attributes.frontElementAlign ) {
     	allInline.push(
     		{
-	    		selector: '.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-inner',
+	    		selector: '.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-inner',
 	    		style: {
 				    'flex-direction': 'row-reverse'
 	    		}
 	    	},
 	    	{
 	    		selector: `
-	    		.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-icon-wrap,
-	    		.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-image-wrap`,
+	    		.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-icon-wrap,
+	    		.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-image-wrap`,
 	    		style: {
 				    'margin-left': '20px'
 	    		}
 	    	},
 	    	{
-	    		selector: '.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-content-wrap',
+	    		selector: '.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-content-wrap',
 	    		style: {
 				    'width': 'calc( 100% - 20px )'
 	    		}
@@ -230,7 +230,7 @@ const Style = ({attributes, ID, clientId}) => {
     }
     if ( 'top' === attributes.backElementAlign ) {
     	allInline.push({
-    		selector: '.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-inner',
+    		selector: '.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-inner',
     		style: {
 			    'flex-direction': 'column'
     		}
@@ -240,14 +240,14 @@ const Style = ({attributes, ID, clientId}) => {
     	allInline.push(
 	    	{
 	    		selector: `
-	    		.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-icon-wrap,
-	    		.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-image-wrap`,
+	    		.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-icon-wrap,
+	    		.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-image-wrap`,
 	    		style: {
 				    'margin-right': '20px'
 	    		}
 	    	},
 	    	{
-	    		selector: '.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-content-wrap',
+	    		selector: '.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-content-wrap',
 	    		style: {
 				    'width': 'calc( 100% - 20px )'
 	    		}
@@ -257,21 +257,21 @@ const Style = ({attributes, ID, clientId}) => {
     if ( 'right' === attributes.backElementAlign ) {
     	allInline.push(
     		{
-	    		selector: '.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-inner',
+	    		selector: '.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-inner',
 	    		style: {
 				    'flex-direction': 'row-reverse'
 	    		}
 	    	},
 	    	{
 	    		selector: `
-	    		.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-icon-wrap,
-	    		.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-image-wrap`,
+	    		.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-icon-wrap,
+	    		.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-image-wrap`,
 	    		style: {
 				    'margin-left': '20px'
 	    		}
 	    	},
 	    	{
-	    		selector: '.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-content-wrap',
+	    		selector: '.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-content-wrap',
 	    		style: {
 				    'width': 'calc( 100% - 20px )'
 	    		}
@@ -282,14 +282,14 @@ const Style = ({attributes, ID, clientId}) => {
     if ( 'icon' === attributes.frontElType ) {
     	allInline.push(
 	    	{
-	    		selector: '.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-icon-wrap i',
+	    		selector: '.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-icon-wrap i',
 	    		style: {
 	    			'color': attributes.frontIconColor,
 	    			'font-size': attributes.frontIconSize,
 	    		}
 	    	},
 	    	(attributes.frontIconStyle && 'hexagon' !== attributes.frontIconShape ) ? {
-	    		selector: '.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-icon-wrap i',
+	    		selector: '.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-icon-wrap i',
 	    		style: {
 	    			'padding': '16px',
 	    			'background-color': attributes.frontIconShapeBackground,
@@ -299,13 +299,13 @@ const Style = ({attributes, ID, clientId}) => {
 	    		additional: convertedStyle.frontIconShape,
 	    	} : {},
 	    	(attributes.frontIconStyle && 'hexagon' === attributes.frontIconShape ) ? {
-	    		selector: '.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-hexagon-wrap:before',
+	    		selector: '.wpmozo-bna-flip-box-front .wpmozo-bna-hexagon-wrap:before',
 	    		style: {
 	    			'background-color': attributes.frontIconShapeBackground,
 	    		},
 	    	} : {},
 	    	(attributes.frontIconStyle && attributes.frontIconHasShapeBorder && 'hexagon' === attributes.frontIconShape ) ? {
-	    		selector: '.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-hexagon-wrap',
+	    		selector: '.wpmozo-bna-flip-box-front .wpmozo-bna-hexagon-wrap',
 	    		style: {
 	    			'background-color': attributes.frontIconShapeBorderColor,
 	    		},
@@ -315,14 +315,14 @@ const Style = ({attributes, ID, clientId}) => {
     if ( 'icon' === attributes.backElType ) {
     	allInline.push(
 	    	{
-	    		selector: '.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-icon-wrap i',
+	    		selector: '.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-icon-wrap i',
 	    		style: {
 	    			'color': attributes.backIconColor,
 	    			'font-size': attributes.backIconSize,
 	    		}
 	    	},
 	    	(attributes.backIconStyle && 'hexagon' !== attributes.backIconShape ) ? {
-	    		selector: '.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-icon-wrap i',
+	    		selector: '.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-icon-wrap i',
 	    		style: {
 	    			'padding': '16px',
 	    			'background-color': attributes.backIconShapeBackground,
@@ -331,13 +331,13 @@ const Style = ({attributes, ID, clientId}) => {
 	    		additional: convertedStyle.backIconShape,
 	    	} : {},
 	    	(attributes.backIconStyle && 'hexagon' === attributes.backIconShape ) ? {
-	    		selector: '.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-hexagon-wrap:before',
+	    		selector: '.wpmozo-bna-flip-box-back .wpmozo-bna-hexagon-wrap:before',
 	    		style: {
 	    			'background-color': attributes.backIconShapeBackground,
 	    		},
 	    	} : {},
 	    	(attributes.backIconStyle && attributes.backIconHasShapeBorder && 'hexagon' === attributes.backIconShape ) ? {
-	    		selector: '.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-hexagon-wrap',
+	    		selector: '.wpmozo-bna-flip-box-back .wpmozo-bna-hexagon-wrap',
 	    		style: {
 	    			'background-color': attributes.backIconShapeBorderColor,
 	    		},
@@ -348,7 +348,7 @@ const Style = ({attributes, ID, clientId}) => {
     if ( 'image' === attributes.frontElType ) {
     	allInline.push(
 	    	{
-	    		selector: '.wpmozo-adfgu-flip-box-front .wpmozo-adfgu-flip-box-image-wrap img',
+	    		selector: '.wpmozo-bna-flip-box-front .wpmozo-bna-flip-box-image-wrap img',
 	    		style: {
 				    'width': attributes.frontImageWidth,
 				    'height': attributes.frontImageWidth,
@@ -363,7 +363,7 @@ const Style = ({attributes, ID, clientId}) => {
     }
     if ( 'image' === attributes.backElType ) {
     	allInline.push({
-    		selector: '.wpmozo-adfgu-flip-box-back .wpmozo-adfgu-flip-box-image-wrap img',
+    		selector: '.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-image-wrap img',
     		style: {
 			    'width': attributes.backImageWidth,
 			    'height': attributes.backImageWidth,
@@ -379,7 +379,7 @@ const Style = ({attributes, ID, clientId}) => {
     if ( attributes.backHasButton ) {
     	allInline.push(
     		{
-	    		selector: '.wpmozo-adfgu-flip-box-button',
+	    		selector: '.wpmozo-bna-flip-box-button',
 	    		style: {
 	    			'color': attributes.backBtnColor,
 	    			'background-color': attributes.backBtnBackground,

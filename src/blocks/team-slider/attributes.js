@@ -8,7 +8,7 @@ for (var i = 0; i < translatKeys.length; i++) {
     let attr = translatKeys[i],
     defaultValue = attributes[attr]['default'];
 
-    let translated = __( defaultValue, 'wpmozo-addons-lite-for-gutenberg' );
+    let translated = __( defaultValue, 'wpmozo-blocks-and-addons' );
 
     attributes[attr]['default'] = translated;
 }

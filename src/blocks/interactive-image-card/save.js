@@ -1,6 +1,6 @@
 
 import { useBlockProps, RichText } from "@wordpress/block-editor";
-const WPMozoEditorObj = wpmozo_adfgu_editor_object;
+const WPMozoEditorObj = wpmozo_bna_editor_object;
 
 const Save = ({ attributes }) => {
 
@@ -9,19 +9,19 @@ const Save = ({ attributes }) => {
     let backImage = ( attributes.backImage ) ? attributes.backImage : WPMozoEditorObj.placeholderImg;
 
     return (
-        <div {...useBlockProps.save({ className: 'wpmozo-adfgu-interactive-image-card-main' })} id={`block-${ID}`}>
-            <div className="wpmozo-adfgu-interactive-image-card-wrap">
+        <div {...useBlockProps.save({ className: 'wpmozo-bna-interactive-image-card-main' })} id={`block-${ID}`}>
+            <div className="wpmozo-bna-interactive-image-card-wrap">
                 <figure className={`effect-${ attributes.layout }`}>
-                    <img className="wpmozo-adfgu-interactive-image-card-image" src={ backImage } />
+                    <img className="wpmozo-bna-interactive-image-card-image" src={ backImage } />
                     <figcaption>
-                        <div className="wpmozo-adfgu-interactive-image-card-inner">
+                        <div className="wpmozo-bna-interactive-image-card-inner">
                             <RichText.Content
-                                className="wpmozo-adfgu-interactive-image-card-title"
+                                className="wpmozo-bna-interactive-image-card-title"
                                 tagName={ attributes.titleLavel }
                                 value={ attributes.title }
                             />
                             <RichText.Content
-                                className="wpmozo-adfgu-interactive-image-card-content"
+                                className="wpmozo-bna-interactive-image-card-content"
                                 tagName="div"
                                 value={ attributes.content }
                             />

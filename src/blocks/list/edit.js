@@ -21,7 +21,7 @@ const Edit = (props) => {
     setAttributes = props.setAttributes,
     clientId = props.clientId,
     ID = window.wpmozo.getIdByClientid( clientId ),
-    blockProps = useBlockProps({ className: 'wpmozo-adfgu-list' });
+    blockProps = useBlockProps({ className: 'wpmozo-bna-list' });
 
     const childBlocks = useSelect((select) => {
         return select('core/block-editor').getBlocks(clientId);
@@ -34,7 +34,7 @@ const Edit = (props) => {
     ];
 
     attributes.ID = ID;
-    const hideDivider = true === attributes.lastDivider ? "wpmozo-adfgu-hide-last-divider" : "";
+    const hideDivider = true === attributes.lastDivider ? "wpmozo-bna-hide-last-divider" : "";
 
     return (
         <Fragment>
@@ -46,8 +46,8 @@ const Edit = (props) => {
                     clientId={clientId}  
                 />  
                 <div>
-                    <div className="wpmozo-adfgu-list-wrapper">
-                        <div className={"wpmozo-adfgu-list-layout wpmozo-adfgu-list-" + attributes.layout + " " + hideDivider}>
+                    <div className="wpmozo-bna-list-wrapper">
+                        <div className={"wpmozo-bna-list-layout wpmozo-bna-list-" + attributes.layout + " " + hideDivider}>
                             <InnerBlocks allowedBlocks={[ 'wpmozo/list-item' ]} templateLock={false}/>
                         </div>
                     </div>

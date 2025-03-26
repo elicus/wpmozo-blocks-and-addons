@@ -7,7 +7,7 @@ const attributes = {
     },
     title: {
         type: "string",
-    	default: __( 'Separator Title', 'wpmozo-addons-lite-for-gutenberg' ), 
+    	default: __( 'Separator Title', 'wpmozo-blocks-and-addons' ), 
     },
     separatorType: {
         type: "string",

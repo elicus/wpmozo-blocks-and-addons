@@ -5,7 +5,7 @@ import Style from "./style";
 import { __ } from "@wordpress/i18n";
 import { useEffect, Fragment } from "@wordpress/element";
 import { useBlockProps, RichText } from "@wordpress/block-editor";
-const WPMozoEditorObj = wpmozo_adfgu_editor_object;
+const WPMozoEditorObj = wpmozo_bna_editor_object;
 
 const Edit = (props) => {
 
@@ -14,7 +14,7 @@ const Edit = (props) => {
     clientId = props.clientId,
     ID = window.wpmozo.getIdByClientid( clientId ),
     setAttributes = props.setAttributes,
-    blockProps = useBlockProps({ className: 'wpmozo-adfgu-tilt-image' });
+    blockProps = useBlockProps({ className: 'wpmozo-bna-tilt-image' });
 
     let image = ( attributes.image ) ? attributes.image : WPMozoEditorObj.placeholderImg,
         contentAlignment = attributes.contentAlignment,
@@ -29,7 +29,7 @@ const Edit = (props) => {
         let axis = ( attributes.useDisableAxis ) ? attributes.tiltDisableAxis : null,
             glare = ( attributes.useGlare ) ? attributes.tiltMaxGlare : false;
 
-        element.find('.wpmozo-adfgu-tilt-image-wrapper').tilt({
+        element.find('.wpmozo-bna-tilt-image-wrapper').tilt({
             maxTilt:        attributes.tiltMax,
             perspective:    attributes.tiltPerspective,
             scale:          attributes.tiltScale,
@@ -61,14 +61,14 @@ const Edit = (props) => {
     ]);
 
     const icon = (
-        <span className="wpmozo-adfgu-tilt-icon">
+        <span className="wpmozo-bna-tilt-icon">
             <i className={`${ attributes.icon }`}></i>
         </span>
     );
 
     const button = (
-        <div className="wpmozo-adfgu-tilt-image-button-wrapper">
-            <a href={ attributes.buttonUrl } className="wpmozo-adfgu-tilt-image-button wp-block-button__link wp-element-button" target={ linkTarget }>
+        <div className="wpmozo-bna-tilt-image-button-wrapper">
+            <a href={ attributes.buttonUrl } className="wpmozo-bna-tilt-image-button wp-block-button__link wp-element-button" target={ linkTarget }>
                 <RichText
                     value={ attributes.buttonText }
                     onChange={ ( newValue ) => setAttributes( { buttonText: newValue } ) } 
@@ -86,16 +86,16 @@ const Edit = (props) => {
                 clientId={clientId}  
             />
             <div {...blockProps}>
-                <div className={ `wpmozo-adfgu-tilt-image-wrapper wpmozo-editor wpmozo-adfgu-tilt-align-${contentAlignment}` }>
-                    <div className="wpmozo-adfgu-tilt-image-inner-wrapper">
-                        <img className="wpmozo-adfgu-tilt-image-image" src={ image } />
-                        <div className={ `wpmozo-adfgu-tilt-content-wrapper${animationClass}`}>
+                <div className={ `wpmozo-bna-tilt-image-wrapper wpmozo-editor wpmozo-bna-tilt-align-${contentAlignment}` }>
+                    <div className="wpmozo-bna-tilt-image-inner-wrapper">
+                        <img className="wpmozo-bna-tilt-image-image" src={ image } />
+                        <div className={ `wpmozo-bna-tilt-content-wrapper${animationClass}`}>
                             { attributes.useIcon &&
                                 icon
                             }
                             { ! coreFunc.wpmozo_is_empty( attributes.title ) &&
                                 <RichText
-                                    className="wpmozo-adfgu-tilt-title"
+                                    className="wpmozo-bna-tilt-title"
                                     tagName={ attributes.titleLavel }
                                     value={ attributes.title }
                                     onChange={ ( newValue ) => setAttributes( { title: newValue } ) } 
@@ -103,7 +103,7 @@ const Edit = (props) => {
                             }
                             { ! coreFunc.wpmozo_is_empty( attributes.content ) &&
                                <RichText
-                                    className="wpmozo-adfgu-tilt-desc"
+                                    className="wpmozo-bna-tilt-desc"
                                     tagName="div"
                                     value={ attributes.content }
                                     onChange={ ( newValue ) => setAttributes( { content: newValue } ) }

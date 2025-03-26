@@ -12,27 +12,27 @@ const Save = ({ attributes }) => {
     ),
     backBtnOnHover = ( attributes.backBtnIconOnHover ) ? ' show-on-hover' : '',
     frontHexagonIcon = (
-        <div className="wpmozo-adfgu-hexagon-wrap">
-            <div className="wpmozo-adfgu-hexagon-shape">
+        <div className="wpmozo-bna-hexagon-wrap">
+            <div className="wpmozo-bna-hexagon-shape">
                 <i className={ attributes.frontElIcon }></i>
             </div>
         </div>
     ),
     backHexagonIcon = (
-        <div className="wpmozo-adfgu-hexagon-wrap">
-            <div className="wpmozo-adfgu-hexagon-shape">
+        <div className="wpmozo-bna-hexagon-wrap">
+            <div className="wpmozo-bna-hexagon-shape">
                 <i className={ attributes.backElIcon }></i>
             </div>
         </div>
     );
 
     return (
-        <div {...useBlockProps.save({ className: 'wpmozo-adfgu-flip-box-main' })} id={`block-${ID}`}>
-            <div className={`wpmozo-adfgu-flip-box-wrap${layoutType}`} flip-direction={ attributes.flipDirection }>
-                <div className="wpmozo-adfgu-flip-box-side wpmozo-adfgu-flip-box-front">
-                    <div className="wpmozo-adfgu-flip-box-inner">
+        <div {...useBlockProps.save({ className: 'wpmozo-bna-flip-box-main' })} id={`block-${ID}`}>
+            <div className={`wpmozo-bna-flip-box-wrap${layoutType}`} flip-direction={ attributes.flipDirection }>
+                <div className="wpmozo-bna-flip-box-side wpmozo-bna-flip-box-front">
+                    <div className="wpmozo-bna-flip-box-inner">
                         { 'none' !== attributes.frontElType && (
-                            <div className={ 'icon' === attributes.frontElType ? "wpmozo-adfgu-flip-box-icon-wrap" : "wpmozo-adfgu-flip-box-image-wrap"}>
+                            <div className={ 'icon' === attributes.frontElType ? "wpmozo-bna-flip-box-icon-wrap" : "wpmozo-bna-flip-box-image-wrap"}>
                                 { 'icon' === attributes.frontElType && ( 
                                     <>
                                         { "hexagon" !== attributes.frontIconShape && (
@@ -48,18 +48,18 @@ const Save = ({ attributes }) => {
                                 )}
                             </div>
                         )}
-                        <div className="wpmozo-adfgu-flip-box-content-wrap">
+                        <div className="wpmozo-bna-flip-box-content-wrap">
                             { ! wpmozoCoreFun.wpmozo_is_empty( attributes.frontTitle ) && 
-                                <div className="wpmozo-adfgu-flip-box-heading-wrap">
+                                <div className="wpmozo-bna-flip-box-heading-wrap">
                                     <RichText.Content
-                                        className="wpmozo-adfgu-flip-box-title"
+                                        className="wpmozo-bna-flip-box-title"
                                         tagName={ attributes.frontHeadingLavel }
                                         value={ attributes.frontTitle }
                                     />
                                 </div>
                             }
                             { ! wpmozoCoreFun.wpmozo_is_empty( attributes.frontContnet ) && 
-                                <div className="wpmozo-adfgu-flip-box-description">
+                                <div className="wpmozo-bna-flip-box-description">
                                     <RichText.Content
                                         value={ attributes.frontContnet }
                                     />
@@ -68,10 +68,10 @@ const Save = ({ attributes }) => {
                         </div>
                     </div>
                 </div>
-                <div className="wpmozo-adfgu-flip-box-side wpmozo-adfgu-flip-box-back">
-                    <div className="wpmozo-adfgu-flip-box-inner">
+                <div className="wpmozo-bna-flip-box-side wpmozo-bna-flip-box-back">
+                    <div className="wpmozo-bna-flip-box-inner">
                         { 'none' !== attributes.backElType && (
-                            <div className={ 'icon' === attributes.backElType ? "wpmozo-adfgu-flip-box-icon-wrap" : "wpmozo-adfgu-flip-box-image-wrap"}>
+                            <div className={ 'icon' === attributes.backElType ? "wpmozo-bna-flip-box-icon-wrap" : "wpmozo-bna-flip-box-image-wrap"}>
                                 { 'icon' === attributes.backElType && ( 
                                     <>
                                         { "hexagon" !== attributes.backIconShape && (
@@ -87,18 +87,18 @@ const Save = ({ attributes }) => {
                                 )}
                             </div>
                         )}
-                        <div className="wpmozo-adfgu-flip-box-content-wrap">
+                        <div className="wpmozo-bna-flip-box-content-wrap">
                             { ! wpmozoCoreFun.wpmozo_is_empty( attributes.backTitle ) && 
-                                <div className="wpmozo-adfgu-flip-box-heading-wrap">
+                                <div className="wpmozo-bna-flip-box-heading-wrap">
                                     <RichText.Content
-                                        className="wpmozo-adfgu-flip-box-title"
+                                        className="wpmozo-bna-flip-box-title"
                                         tagName={ attributes.backHeadingLavel }
                                         value={ attributes.backTitle }
                                     />
                                 </div>
                             }
                             { ! wpmozoCoreFun.wpmozo_is_empty( attributes.backContnet ) && 
-                                <div className="wpmozo-adfgu-flip-box-description">
+                                <div className="wpmozo-bna-flip-box-description">
                                     <RichText.Content
                                         value={ attributes.backContnet }
                                     />
@@ -109,10 +109,10 @@ const Save = ({ attributes }) => {
                             attributes.backHasButton &&
                             ! wpmozoCoreFun.wpmozo_is_empty( attributes.backBtnText ) && 
                             ! wpmozoCoreFun.wpmozo_is_empty( attributes.backBtnUrl ) &&
-                            <div className="wpmozo-adfgu-flip-box-button-wrap">
-                                <div className="wpmozo-adfgu-flip-box-button-wrap-inner">
+                            <div className="wpmozo-bna-flip-box-button-wrap">
+                                <div className="wpmozo-bna-flip-box-button-wrap-inner">
                                     <a 
-                                        className={`wpmozo-adfgu-flip-box-button${backBtnOnHover}`}
+                                        className={`wpmozo-bna-flip-box-button${backBtnOnHover}`}
                                         target="_blank"
                                         href={ attributes.backBtnUrl }
                                     >

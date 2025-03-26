@@ -20,9 +20,9 @@ const Edit = (props) => {
     isSelected = props.isSelected,
     setAttributes = props.setAttributes,
     layoutType = ( 'flip' === attributes.animationType ) ? ' layout1' : ' layout2',
-    blockProps = useBlockProps({ className: 'wpmozo-adfgu-flip-box-main' }),
+    blockProps = useBlockProps({ className: 'wpmozo-bna-flip-box-main' }),
     [ editMode, setEditMode ] = useState(false),
-    editModeLabel = ( ! editMode ) ? __( 'Front', 'wpmozo-addons-lite-for-gutenberg' ) : __( 'Back', 'wpmozo-addons-lite-for-gutenberg' );
+    editModeLabel = ( ! editMode ) ? __( 'Front', 'wpmozo-blocks-and-addons' ) : __( 'Back', 'wpmozo-blocks-and-addons' );
 
     attributes.ID = ID;
 
@@ -33,19 +33,19 @@ const Edit = (props) => {
 
     
     useEffect(() => {
-        jQuery('body').find('.wpmozo-adfgu-flip-box-wrap').each(function(){
+        jQuery('body').find('.wpmozo-bna-flip-box-wrap').each(function(){
 
-            jQuery(this).find('.wpmozo-adfgu-flip-box-side').each(function(){
+            jQuery(this).find('.wpmozo-bna-flip-box-side').each(function(){
                 jQuery(this).removeAttr('style');
             });
 
             let $this = jQuery(this);
-            var maxHeight = Math.max.apply( null, $this.find('.wpmozo-adfgu-flip-box-side').map( function(){
+            var maxHeight = Math.max.apply( null, $this.find('.wpmozo-bna-flip-box-side').map( function(){
                 return jQuery(this).outerHeight();
             }).get());
             
 
-            jQuery(this).find('.wpmozo-adfgu-flip-box-side').each(function(){
+            jQuery(this).find('.wpmozo-bna-flip-box-side').each(function(){
                 jQuery(this).css('height', maxHeight+'px');
             });
 
@@ -58,15 +58,15 @@ const Edit = (props) => {
     ),
     backBtnOnHover = ( attributes.backBtnIconOnHover ) ? ' show-on-hover' : '',
     frontHexagonIcon = (
-        <div className="wpmozo-adfgu-hexagon-wrap">
-            <div className="wpmozo-adfgu-hexagon-shape">
+        <div className="wpmozo-bna-hexagon-wrap">
+            <div className="wpmozo-bna-hexagon-shape">
                 <i className={ attributes.frontElIcon }></i>
             </div>
         </div>
     ),
     backHexagonIcon = (
-        <div className="wpmozo-adfgu-hexagon-wrap">
-            <div className="wpmozo-adfgu-hexagon-shape">
+        <div className="wpmozo-bna-hexagon-wrap">
+            <div className="wpmozo-bna-hexagon-shape">
                 <i className={ attributes.backElIcon }></i>
             </div>
         </div>
@@ -84,7 +84,7 @@ const Edit = (props) => {
                 <ToolbarGroup>
                     <ToolbarButton>
                         <ToggleControl
-                            className="wpmozo-adfgu-flip-box-edit-control"
+                            className="wpmozo-bna-flip-box-edit-control"
                             label={ editModeLabel }
                             checked={ editMode }
                             onChange={ ( newValue ) => setEditMode( newValue ) }
@@ -93,11 +93,11 @@ const Edit = (props) => {
                 </ToolbarGroup>
             </BlockControls>
             <div {...blockProps}>
-                <div className={`wpmozo-adfgu-flip-box-wrap${layoutType}${editModeSide}`} flip-direction={ attributes.flipDirection }>
-                    <div className="wpmozo-adfgu-flip-box-side wpmozo-adfgu-flip-box-front">
-                        <div className="wpmozo-adfgu-flip-box-inner">
+                <div className={`wpmozo-bna-flip-box-wrap${layoutType}${editModeSide}`} flip-direction={ attributes.flipDirection }>
+                    <div className="wpmozo-bna-flip-box-side wpmozo-bna-flip-box-front">
+                        <div className="wpmozo-bna-flip-box-inner">
                             { 'none' !== attributes.frontElType && (
-                                <div className={ 'icon' === attributes.frontElType ? "wpmozo-adfgu-flip-box-icon-wrap" : "wpmozo-adfgu-flip-box-image-wrap"}>
+                                <div className={ 'icon' === attributes.frontElType ? "wpmozo-bna-flip-box-icon-wrap" : "wpmozo-bna-flip-box-image-wrap"}>
                                     { 'icon' === attributes.frontElType && ( 
                                         <>
                                             { "hexagon" !== attributes.frontIconShape && (
@@ -113,30 +113,30 @@ const Edit = (props) => {
                                     )}
                                 </div>
                             )}
-                            <div className="wpmozo-adfgu-flip-box-content-wrap">
-                                <div className="wpmozo-adfgu-flip-box-heading-wrap">
+                            <div className="wpmozo-bna-flip-box-content-wrap">
+                                <div className="wpmozo-bna-flip-box-heading-wrap">
                                     <RichText
-                                        className="wpmozo-adfgu-flip-box-title"
+                                        className="wpmozo-bna-flip-box-title"
                                         tagName={ attributes.frontHeadingLavel }
                                         value={ attributes.frontTitle }
                                         onChange={ ( newValue ) => setAttributes( { frontTitle: newValue } ) } 
-                                        placeholder={ __('Front Title', 'wpmozo-addons-lite-for-gutenberg') }
+                                        placeholder={ __('Front Title', 'wpmozo-blocks-and-addons') }
                                     />
                                 </div>
-                                <div className="wpmozo-adfgu-flip-box-description">
+                                <div className="wpmozo-bna-flip-box-description">
                                     <RichText
                                         value={ attributes.frontContnet }
                                         onChange={ ( newValue ) => setAttributes( { frontContnet: newValue } ) } 
-                                        placeholder={ __('Here you can set front text.', 'wpmozo-addons-lite-for-gutenberg') }
+                                        placeholder={ __('Here you can set front text.', 'wpmozo-blocks-and-addons') }
                                     />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="wpmozo-adfgu-flip-box-side wpmozo-adfgu-flip-box-back">
-                        <div className="wpmozo-adfgu-flip-box-inner">
+                    <div className="wpmozo-bna-flip-box-side wpmozo-bna-flip-box-back">
+                        <div className="wpmozo-bna-flip-box-inner">
                             { 'none' !== attributes.backElType && (
-                                <div className={ 'icon' === attributes.backElType ? "wpmozo-adfgu-flip-box-icon-wrap" : "wpmozo-adfgu-flip-box-image-wrap"}>
+                                <div className={ 'icon' === attributes.backElType ? "wpmozo-bna-flip-box-icon-wrap" : "wpmozo-bna-flip-box-image-wrap"}>
                                     { 'icon' === attributes.backElType && ( 
                                         <>
                                             { "hexagon" !== attributes.backIconShape && (
@@ -152,31 +152,31 @@ const Edit = (props) => {
                                     )}
                                 </div>
                             )}
-                            <div className="wpmozo-adfgu-flip-box-content-wrap">
-                                <div className="wpmozo-adfgu-flip-box-heading-wrap">
+                            <div className="wpmozo-bna-flip-box-content-wrap">
+                                <div className="wpmozo-bna-flip-box-heading-wrap">
                                     <RichText
-                                        className="wpmozo-adfgu-flip-box-title"
+                                        className="wpmozo-bna-flip-box-title"
                                         tagName={ attributes.backHeadingLavel }
                                         value={ attributes.backTitle }
                                         onChange={ ( newValue ) => setAttributes( { backTitle: newValue } ) } 
-                                        placeholder={ __('Back Title', 'wpmozo-addons-lite-for-gutenberg') }
+                                        placeholder={ __('Back Title', 'wpmozo-blocks-and-addons') }
                                     />
                                 </div>
-                                <div className="wpmozo-adfgu-flip-box-description">
+                                <div className="wpmozo-bna-flip-box-description">
                                     <RichText
                                         value={ attributes.backContnet }
                                         onChange={ ( newValue ) => setAttributes( { backContnet: newValue } ) } 
-                                        placeholder={ __('Here you can set back text.', 'wpmozo-addons-lite-for-gutenberg') }
+                                        placeholder={ __('Here you can set back text.', 'wpmozo-blocks-and-addons') }
                                     />
                                 </div>
                                 { 
                                     attributes.backHasButton &&
                                     ! wpmozoCoreFun.wpmozo_is_empty( attributes.backBtnText ) && 
                                     ! wpmozoCoreFun.wpmozo_is_empty( attributes.backBtnUrl ) &&
-                                    <div className="wpmozo-adfgu-flip-box-button-wrap">
-                                        <div className="wpmozo-adfgu-flip-box-button-wrap-inner">
+                                    <div className="wpmozo-bna-flip-box-button-wrap">
+                                        <div className="wpmozo-bna-flip-box-button-wrap-inner">
                                             <a 
-                                                className={`wpmozo-adfgu-flip-box-button${backBtnOnHover}`}
+                                                className={`wpmozo-bna-flip-box-button${backBtnOnHover}`}
                                                 target="_blank"
                                                 href={ attributes.backBtnUrl }
                                             >

@@ -1,8 +1,8 @@
 jQuery(document).ready(function($){
 
     const __ = window.wp.i18n.__,
-    addRowText = __( 'Add Row', 'wpmozo-addons-lite-for-gutenberg' ),
-    removeRowText = __( 'Remove Row', 'wpmozo-addons-lite-for-gutenberg' );
+    addRowText = __( 'Add Row', 'wpmozo-blocks-and-addons' ),
+    removeRowText = __( 'Remove Row', 'wpmozo-blocks-and-addons' );
 
     /* Fill metafields value in hidden field on blur */
     if ( $('body').find('.wpmozo_team_member_skills').length > 0 ) {

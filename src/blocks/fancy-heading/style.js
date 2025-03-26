@@ -37,7 +37,7 @@ const Style = ({attributes, ID, clientId}) => {
 
     let allInline = [
     	{
-    		selector: '.wpmozo-adfgu-fancy-heading-inner',
+    		selector: '.wpmozo-bna-fancy-heading-inner',
     		style: {
     			'display': 'flex',
 			    'line-height': 1,
@@ -51,7 +51,7 @@ const Style = ({attributes, ID, clientId}) => {
     		}
     	},
     	{
-    		selector: '.wpmozo-adfgu-fancy-heading-inner span',
+    		selector: '.wpmozo-bna-fancy-heading-inner span',
     		style: {
     			'display': 'inline-block',
     			'color': attributes.headingColor,
@@ -59,7 +59,7 @@ const Style = ({attributes, ID, clientId}) => {
     		}
     	},
     	{
-    		selector: 'span.wpmozo-adfgu-pre-text',
+    		selector: 'span.wpmozo-bna-pre-text',
     		style: {
     			'color': attributes.preTextColor,
     			'background': attributes.preTextBackground,
@@ -68,14 +68,14 @@ const Style = ({attributes, ID, clientId}) => {
     		additional: preTextAddi,
     	},
     	{
-    		selector: 'span.wpmozo-adfgu-pre-text:hover',
+    		selector: 'span.wpmozo-bna-pre-text:hover',
     		style: {
     			'color': attributes.preTextHoverColor,
     			'background': attributes.preTextHoverBackground,
     		}
     	},
     	{
-    		selector: 'span.wpmozo-adfgu-main-text',
+    		selector: 'span.wpmozo-bna-main-text',
     		style: {
     			'color': attributes.mainTextColor,
     			'background': attributes.mainTextBackground,
@@ -84,14 +84,14 @@ const Style = ({attributes, ID, clientId}) => {
     		additional: mainTextAddi,
     	},
     	{
-    		selector: 'span.wpmozo-adfgu-main-text:hover',
+    		selector: 'span.wpmozo-bna-main-text:hover',
     		style: {
     			'color': attributes.mainTextHoverColor,
     			'background': attributes.mainTextHoverBackground,
     		}
     	},
     	{
-    		selector: 'span.wpmozo-adfgu-post-text',
+    		selector: 'span.wpmozo-bna-post-text',
     		style: {
     			'color': attributes.postTextColor,
     			'background': attributes.postTextBackground,
@@ -100,7 +100,7 @@ const Style = ({attributes, ID, clientId}) => {
     		additional: postTextAddi,
     	},
     	{
-    		selector: 'span.wpmozo-adfgu-post-text:hover',
+    		selector: 'span.wpmozo-bna-post-text:hover',
     		style: {
     			'color': attributes.postTextHoverColor,
     			'background': attributes.postTextHoverBackground,

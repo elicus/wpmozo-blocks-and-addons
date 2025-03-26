@@ -15,14 +15,14 @@ const Style = ({attributes, ID, clientId}) => {
 
     let allInline = [
     	{
-    		selector: '.wpmozo-adfgu-text-wrapper',
+    		selector: '.wpmozo-bna-text-wrapper',
     		style: {
     			'color': attributes.textNormalColor,
     		},
     		additional: convertedStyle.textNormal,
     	},
     	{
-    		selector: '.wpmozo-adfgu-text-wrapper:hover',
+    		selector: '.wpmozo-bna-text-wrapper:hover',
     		style: {
     			'color': attributes.textHoverColor,
     		},
@@ -33,7 +33,7 @@ const Style = ({attributes, ID, clientId}) => {
     if ( 'line' === attributes.separatorType ) {
     	allInline.push(
 	    	{
-	    		selector: '.wpmozo-adfgu-line',
+	    		selector: '.wpmozo-bna-line',
 	    		style: {
 	    			'border-top-width': `${attributes.separatorThickness}px`,
 	    			'border-top-color': attributes.separatorColor,
@@ -44,7 +44,7 @@ const Style = ({attributes, ID, clientId}) => {
     	if ( 'solid' === attributes.lineStyle && undefined === attributes.separatorColor ) {
 	    	allInline.push(
 		    	{
-		    		selector: '.wpmozo-adfgu-line',
+		    		selector: '.wpmozo-bna-line',
 		    		style: {
 		    			'border-top-width': `${attributes.separatorThickness}px`,
 		    			'border-image-slice' : 1,
@@ -57,7 +57,7 @@ const Style = ({attributes, ID, clientId}) => {
     	if ( 'solid' !== attributes.lineStyle ) {
 	    	allInline.push(
 		    	{
-		    		selector: '.wpmozo-adfgu-line',
+		    		selector: '.wpmozo-bna-line',
 		    		style: {
 		    			'border-top-color': attributes.shadowColor,
 		    		}
@@ -67,7 +67,7 @@ const Style = ({attributes, ID, clientId}) => {
     	if ( 'iconSeparator' === attributes.lineUseWith ) {
     		allInline.push(
 		    	{
-		    		selector: '.wpmozo-adfgu-icon-wrapper i',
+		    		selector: '.wpmozo-bna-icon-wrapper i',
 		    		style: {
 		    			'color': attributes.iconColor,
 		    		}
@@ -78,13 +78,13 @@ const Style = ({attributes, ID, clientId}) => {
     				if( true === attributes.enableShapeBorder ){ 
 		    	    	allInline.push(
 		    		    	{
-		    		    		selector: '.wpmozo-adfgu-icon-wrapper .hexagon.wpmozo-adfgu-border-hex',
+		    		    		selector: '.wpmozo-bna-icon-wrapper .hexagon.wpmozo-bna-border-hex',
 		    		    		style: {
 		    		    			'box-shadow': `2px 0px 0px 0px inset ${attributes.shapeBorderColor}, -2px 0px 0px 0px inset ${attributes.shapeBorderColor}`,
 		    		    		}
 		    		    	},
 		    		    	{
-		    		    		selector: '.wpmozo-adfgu-icon-wrapper .hexagon.wpmozo-adfgu-border-hex:after',
+		    		    		selector: '.wpmozo-bna-icon-wrapper .hexagon.wpmozo-bna-border-hex:after',
 		    		    		style: {
 		    		    			'border-right': `2px solid ${attributes.shapeBorderColor}`,
 		    		    			'border-bottom': `2px solid ${attributes.shapeBorderColor}`,
@@ -94,7 +94,7 @@ const Style = ({attributes, ID, clientId}) => {
 		    		    		}
 		    		    	},
 		    		    	{
-		    		    		selector: '.wpmozo-adfgu-icon-wrapper .hexagon.wpmozo-adfgu-border-hex:before',
+		    		    		selector: '.wpmozo-bna-icon-wrapper .hexagon.wpmozo-bna-border-hex:before',
 		    		    		style: {
 		    		    			'border-top': `2px solid ${attributes.shapeBorderColor}`,
 		    		    			'border-left': `2px solid ${attributes.shapeBorderColor}`,
@@ -108,19 +108,19 @@ const Style = ({attributes, ID, clientId}) => {
     				} else {
 		    	    	allInline.push(
 		    		    	{
-		    		    		selector: '.wpmozo-adfgu-icon-wrapper .hexagon',
+		    		    		selector: '.wpmozo-bna-icon-wrapper .hexagon',
 		    		    		style: {
 		    		    		}
 		    		    	},
 		    		    	{
-		    		    		selector: '.wpmozo-adfgu-icon-wrapper .hexagon:after',
+		    		    		selector: '.wpmozo-bna-icon-wrapper .hexagon:after',
 		    		    		style: {
 		    		    			'transform': 'rotate(45deg) skew(-16deg, -16deg) translate( 72%, 27%)',
 					    			'width': 55+"%"
 		    		    		}
 		    		    	},
 		    		    	{
-		    		    		selector: '.wpmozo-adfgu-icon-wrapper .hexagon:before',
+		    		    		selector: '.wpmozo-bna-icon-wrapper .hexagon:before',
 		    		    		style: {
 		    		    			'transform': 'rotate(45deg) skew(-16deg, -16deg) translate(-27%, -72%)',
 					    			'width': 55+"%"
@@ -130,19 +130,19 @@ const Style = ({attributes, ID, clientId}) => {
     				}
 			    	allInline.push(
 				    	{
-				    		selector: '.wpmozo-adfgu-icon-wrapper',
+				    		selector: '.wpmozo-bna-icon-wrapper',
 				    		style: {
 				    			'width': `calc( ${attributes.iconFontSize}px + ${(attributes.iconFontSize/1.15)}px )`,
 				    		}
 				    	},
 				    	{
-				    		selector: '.wpmozo-adfgu-icon-wrapper i',
+				    		selector: '.wpmozo-bna-icon-wrapper i',
 				    		style: {
 				    			'font-size': `${attributes.iconFontSize}px`,
 				    		}
 				    	},
 				    	{
-				    		selector: '.wpmozo-adfgu-icon-wrapper .hexagon:before, .wpmozo-adfgu-icon-wrapper .hexagon:after, .wpmozo-adfgu-icon-wrapper .hexagon',
+				    		selector: '.wpmozo-bna-icon-wrapper .hexagon:before, .wpmozo-bna-icon-wrapper .hexagon:after, .wpmozo-bna-icon-wrapper .hexagon',
 				    		style: {
 				    			'background-color': attributes.shapeBackground,
 				    		}
@@ -152,13 +152,13 @@ const Style = ({attributes, ID, clientId}) => {
     				if( true === attributes.enableShapeBorder ){ 
 				    	allInline.push(
 					    	{
-					    		selector: '.wpmozo-adfgu-icon-wrapper i',
+					    		selector: '.wpmozo-bna-icon-wrapper i',
 					    		style: {
 					    			'border': `2px solid ${attributes.shapeBorderColor}`,
 					    		}
 					    	},
 					    	{
-					    		selector: '.wpmozo-adfgu-icon-wrapper i',
+					    		selector: '.wpmozo-bna-icon-wrapper i',
 					    		style: {
 					    			'font-size': `${attributes.iconFontSize}px`,
 					    		}
@@ -169,7 +169,7 @@ const Style = ({attributes, ID, clientId}) => {
     				}
 			    	allInline.push(
 				    	{
-				    		selector: '.wpmozo-adfgu-icon-wrapper i',
+				    		selector: '.wpmozo-bna-icon-wrapper i',
 				    		style: {
 				    			'font-size': `${attributes.iconFontSize}px`,
 				    		}
@@ -178,7 +178,7 @@ const Style = ({attributes, ID, clientId}) => {
     			}
 		    	allInline.push(
 			    	{
-			    		selector: '.wpmozo-adfgu-icon-wrapper i',
+			    		selector: '.wpmozo-bna-icon-wrapper i',
 			    		style: {
 			    			'background-color': attributes.shapeBackground,
 			    		}
@@ -187,7 +187,7 @@ const Style = ({attributes, ID, clientId}) => {
     		} else if ( true === attributes.enableIconFontSize && true !== attributes.styleIcon ) {
 		    	allInline.push(
 			    	{
-			    		selector: '.wpmozo-adfgu-icon-wrapper i',
+			    		selector: '.wpmozo-bna-icon-wrapper i',
 			    		style: {
 			    			'font-size': `${attributes.iconFontSize}px`,
 			    		}
@@ -198,14 +198,14 @@ const Style = ({attributes, ID, clientId}) => {
     				if( true === attributes.enableShapeBorder ){ 
 				    	allInline.push(
 					    	{
-					    		selector: '.wpmozo-adfgu-icon-wrapper .hexagon.wpmozo-adfgu-border-hex',
+					    		selector: '.wpmozo-bna-icon-wrapper .hexagon.wpmozo-bna-border-hex',
 					    		style: {
 					    			'border-left': `2px solid ${attributes.shapeBorderColor}`,
 					    			'border-right': `2px solid ${attributes.shapeBorderColor}`,
 					    		}
 					    	},
 					    	{
-					    		selector: '.wpmozo-adfgu-icon-wrapper .hexagon.wpmozo-adfgu-border-hex:after',
+					    		selector: '.wpmozo-bna-icon-wrapper .hexagon.wpmozo-bna-border-hex:after',
 					    		style: {
 					    			'border-right': `2px solid ${attributes.shapeBorderColor}`,
 					    			'border-bottom': `2px solid ${attributes.shapeBorderColor}`,
@@ -215,7 +215,7 @@ const Style = ({attributes, ID, clientId}) => {
 					    		}
 					    	},
 					    	{
-					    		selector: '.wpmozo-adfgu-icon-wrapper .hexagon.wpmozo-adfgu-border-hex:before',
+					    		selector: '.wpmozo-bna-icon-wrapper .hexagon.wpmozo-bna-border-hex:before',
 					    		style: {
 					    			'border-top': `2px solid ${attributes.shapeBorderColor}`,
 					    			'border-left': `2px solid ${attributes.shapeBorderColor}`,
@@ -228,19 +228,19 @@ const Style = ({attributes, ID, clientId}) => {
     				} else { 
 				    	allInline.push(
 					    	{
-					    		selector: '.wpmozo-adfgu-icon-wrapper .hexagon.wpmozo-adfgu-icon-border-hex',
+					    		selector: '.wpmozo-bna-icon-wrapper .hexagon.wpmozo-bna-icon-border-hex',
 					    		style: {
 					    		}
 					    	},
 					    	{
-					    		selector: '.wpmozo-adfgu-icon-wrapper .hexagon:before',
+					    		selector: '.wpmozo-bna-icon-wrapper .hexagon:before',
 					    		style: {
 					    			'transform': 'rotate(45deg) skew(-16deg, -16deg) translate(-27%, -72%)',
 					    			'width': 55+"%"
 					    		}
 					    	},
 					    	{
-					    		selector: '.wpmozo-adfgu-icon-wrapper .hexagon:after',
+					    		selector: '.wpmozo-bna-icon-wrapper .hexagon:after',
 					    		style: {
 					    			'transform': 'rotate(45deg) skew(-16deg, -16deg) translate( 72%, 27%)',
 					    			'width': 55+"%"
@@ -251,13 +251,13 @@ const Style = ({attributes, ID, clientId}) => {
     				}
 			    	allInline.push(
 				    	{
-				    		selector: '.wpmozo-adfgu-icon-wrapper',
+				    		selector: '.wpmozo-bna-icon-wrapper',
 				    		style: {
 				    			'width': 72+'px',
 				    		}
 				    	},
 				    	{
-				    		selector: '.wpmozo-adfgu-icon-wrapper .hexagon, .wpmozo-adfgu-icon-wrapper .hexagon:before, .wpmozo-adfgu-icon-wrapper .hexagon:after ',
+				    		selector: '.wpmozo-bna-icon-wrapper .hexagon, .wpmozo-bna-icon-wrapper .hexagon:before, .wpmozo-bna-icon-wrapper .hexagon:after ',
 				    		style: {
 				    			'background-color': attributes.shapeBackground,
 				    		}
@@ -267,7 +267,7 @@ const Style = ({attributes, ID, clientId}) => {
     				if( true === attributes.enableShapeBorder ){ 
 	    				allInline.push(
 					    	{
-					    		selector: '.wpmozo-adfgu-icon-wrapper .wpmozo-adfgu-icon-square.wpmozo-adfgu-icon-shape-border, .wpmozo-adfgu-icon-wrapper .wpmozo-adfgu-icon-circle.wpmozo-adfgu-icon-shape-border',
+					    		selector: '.wpmozo-bna-icon-wrapper .wpmozo-bna-icon-square.wpmozo-bna-icon-shape-border, .wpmozo-bna-icon-wrapper .wpmozo-bna-icon-circle.wpmozo-bna-icon-shape-border',
 					    		style: {
 					    			'border': `2px solid ${attributes.shapeBorderColor}`,
 					    		}
@@ -278,7 +278,7 @@ const Style = ({attributes, ID, clientId}) => {
     				}
     				allInline.push(
 				    	{
-				    		selector: '.wpmozo-adfgu-icon-wrapper .wpmozo-adfgu-icon-square, .wpmozo-adfgu-icon-wrapper .wpmozo-adfgu-icon-circle',
+				    		selector: '.wpmozo-bna-icon-wrapper .wpmozo-bna-icon-square, .wpmozo-bna-icon-wrapper .wpmozo-bna-icon-circle',
 				    		style: {
 				    			'background-color': attributes.shapeBackground,
 				    		}
@@ -293,7 +293,7 @@ const Style = ({attributes, ID, clientId}) => {
     	if ( 'imageSeparator' === attributes.lineUseWith ) {
     		allInline.push(
 		    	{
-		    		selector: '.wpmozo-adfgu-separator-image',
+		    		selector: '.wpmozo-bna-separator-image',
 		    		style: {
 		    			'width': `${attributes.imageWidth}px`,
 		    		}
@@ -304,14 +304,14 @@ const Style = ({attributes, ID, clientId}) => {
     if ( 'shadow' === attributes.separatorType ) {
     	allInline.push(
 	    	{
-	    		selector: '.wpmozo-adfgu-shadow',
+	    		selector: '.wpmozo-bna-shadow',
 	    		style: {
 	    			'height': `${attributes.separatorThickness}px`,
 	    			'background':`radial-gradient(ellipse at 50% -50% ,${attributes.shadowColor} 0%, rgba(0, 0, 0, 0) 75%), repeat scroll`,
 	    		}
 	    	},
 	    	{
-	    		selector: '.wpmozo-adfgu-interactive-image-card-content',
+	    		selector: '.wpmozo-bna-interactive-image-card-content',
 	    		style: {
 	    			'text-align': attributes.contentAlign,
 	    		}

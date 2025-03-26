@@ -1,6 +1,6 @@
 
 const { useBlockProps } = window.wp.blockEditor;
-const WPMozoEditorObj = wpmozo_adfgu_editor_object; 
+const WPMozoEditorObj = wpmozo_bna_editor_object; 
 
 const Save = ({ attributes }) => {
     
@@ -19,7 +19,7 @@ const Save = ({ attributes }) => {
     return (
         <div {...useBlockProps.save()}>
             <div 
-                className="wpmozo-adfgu-before-after-image-wrapper"
+                className="wpmozo-bna-before-after-image-wrapper"
                 id={elId}
                 data-before-label={beforeLabel} 
                 data-after-label={afterLabel} 

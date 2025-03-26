@@ -6,7 +6,7 @@ const WpmozoSize = function(args){
 
 	const { SizeKey, props } = args,
 		preAttributes        = props.preAttributes,
-		label                = args.hasOwnProperty('label') ? args.label : __( 'Size', 'wpmozo-addons-lite-for-gutenberg' );
+		label                = args.hasOwnProperty('label') ? args.label : __( 'Size', 'wpmozo-blocks-and-addons' );
 
 	let SizeTypes            = args.hasOwnProperty( 'SizeTypes' ) ? args.SizeTypes : null;
 
@@ -62,7 +62,7 @@ const WpmozoSize = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Width', 'wpmozo-addons-lite-for-gutenberg' ),
+						label: __( 'Width', 'wpmozo-blocks-and-addons' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => sizeSetValue( 'width' ),
@@ -81,7 +81,7 @@ const WpmozoSize = function(args){
 				el(
 					__experimentalToolsPanelItem,
 					{
-						label: __( 'Height', 'wpmozo-addons-lite-for-gutenberg' ),
+						label: __( 'Height', 'wpmozo-blocks-and-addons' ),
 						hasValue: () => true,
 						isShownByDefault: true,
 						onDeselect: () => sizeSetValue( 'height' ),

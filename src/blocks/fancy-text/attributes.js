@@ -1,6 +1,6 @@
 
 import { __ } from "@wordpress/i18n";
-const WPMozoEditorObj = wpmozo_adfgu_editor_object; 
+const WPMozoEditorObj = wpmozo_bna_editor_object; 
 
 const attributes = {
     ID: {
@@ -8,7 +8,7 @@ const attributes = {
     },
     fancyText: {
         type: "string",
-        default: __('Here you can set text.', 'wpmozo-addons-lite-for-gutenberg'),
+        default: __('Here you can set text.', 'wpmozo-blocks-and-addons'),
     },
     textStyle: {
         type: "string",

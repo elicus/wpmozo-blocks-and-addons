@@ -11,7 +11,7 @@ import { Fragment } from "@wordpress/element";
 import { useOnEnter } from './use-enter';
 import { useEffect, useRef } from "react";
 import { dispatch } from "@wordpress/data";
-const WPMozoEditorObj = wpmozo_adfgu_editor_object;
+const WPMozoEditorObj = wpmozo_bna_editor_object;
 
 
 const Edit = (props) => {
@@ -37,35 +37,35 @@ const Edit = (props) => {
     return (
         <Fragment>
             <Inspector {...props} />
-            <div className="wpmozo-adfgu-list-item">
-                <div className="list-item-wrap" id={`block-${clientId}`}>
+            <div className="wpmozo-bna-list-item" id={`block-${clientId}`}>
+                <div className="list-item-wrap" >
                     <Style 
                         attributes={attributes} 
                         ID={ID}
                         clientId={clientId}  
                     />
                     {"icon" === attributes.markerType && true !== attributes.styleIcon && (
-                        <div className="wpmozo-adfgu-list-icon use-icon">
+                        <div className="wpmozo-bna-list-icon use-icon">
                             <i className={ attributes.markerIcon }></i>
                         </div>
 
                     )}
                     {"icon" === attributes.markerType && true === attributes.styleIcon && ('square' === attributes.iconShape || 'circle' === attributes.iconShape) && (
-                        <div className={"wpmozo-adfgu-list-icon use-icon use-"+attributes.iconShape}>
-                            <i className={ attributes.markerIcon +' wpmozo-adfgu-icon-' + attributes.iconShape  + ( true === attributes.enableShapeBorder ? (' wpmozo-adfgu-icon-shape-border') : '' ) }></i>
+                        <div className={"wpmozo-bna-list-icon use-icon use-"+attributes.iconShape}>
+                            <i className={ attributes.markerIcon +' wpmozo-bna-icon-' + attributes.iconShape  + ( true === attributes.enableShapeBorder ? (' wpmozo-bna-icon-shape-border') : '' ) }></i>
                         </div>
                     )}
                     {"icon" === attributes.markerType && true === attributes.styleIcon && 'hexagon' === attributes.iconShape && (
-                        <div className={"wpmozo-adfgu-list-icon use-icon shape-hexagon use-"+attributes.iconShape}>
-                            <div className={"hexagon" + ( true === attributes.enableShapeBorder ? (' wpmozo-adfgu-border-hex') : '' )}>
+                        <div className={"wpmozo-bna-list-icon use-icon shape-hexagon use-"+attributes.iconShape}>
+                            <div className={"hexagon" + ( true === attributes.enableShapeBorder ? (' wpmozo-bna-border-hex') : '' )}>
                                 <i className={ attributes.markerIcon }></i>
                             </div>
                         </div>
                     )}
                     {"image" === attributes.markerType && (
-                        <img className="wpmozo-adfgu-marker-image" src={( attributes.markerImage ) ? attributes.markerImage : WPMozoEditorObj.placeholderImg }/>
+                        <img className="wpmozo-bna-marker-image" src={( attributes.markerImage ) ? attributes.markerImage : WPMozoEditorObj.placeholderImg }/>
                     )}
-                    <div className="wpmozo-adfgu-list-item-text">
+                    <div className="wpmozo-bna-list-item-text">
                         <RichText
                             { ...blockProps }
                             identifier="text"
@@ -75,13 +75,13 @@ const Edit = (props) => {
                                 setAttributes( { text: newContent } )
                             }
                             key="editable"
-                            placeholder={__("Enter list item…", "wpmozo-addons-lite-for-gutenberg")}
+                            placeholder={__("Enter list item…", "wpmozo-blocks-and-addons")}
                             onKeyDown={ handleKeyDown }
                             ref={textRef}
                             inlineToolbar
                         />
                     </div>
-                    <div className="wpmozo-adfgu-list-divider">
+                    <div className="wpmozo-bna-list-divider">
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ import Style from "./style";
 import { __ } from "@wordpress/i18n";
 import { useEffect, Fragment } from "@wordpress/element";
 import { useBlockProps } from "@wordpress/block-editor";
-const WPMozoEditorObj = wpmozo_adfgu_editor_object; 
+const WPMozoEditorObj = wpmozo_bna_editor_object; 
 
 const Edit = (props) => {
 
@@ -14,8 +14,8 @@ const Edit = (props) => {
     ID = window.wpmozo.getIdByClientid( clientId );
     attributes.ID = ID;
 
-	const blockProps = useBlockProps({
-        className: 'wpmozo-adfgu-before-after-main'
+    const blockProps = useBlockProps({
+        className: 'wpmozo-bna-before-after-main'
     });
     let init = false;
 
@@ -27,26 +27,26 @@ const Edit = (props) => {
     function wpmozo_before_init( main ){
         main.find('.twentytwenty-wrapper').removeClass('twentytwenty-wrapper');
         main.find('.twentytwenty-horizontal').removeClass('twentytwenty-horizontal');
-        main.find('.wpmozo-adfgu-before-after-image-wrapper').unwrap();
-        main.find('.wpmozo-adfgu-before-after-image-wrapper').unbind();
-        main.find('.wpmozo-adfgu-before-after-image-wrapper').removeClass('twentytwenty-container');
+        main.find('.wpmozo-bna-before-after-image-wrapper').unwrap();
+        main.find('.wpmozo-bna-before-after-image-wrapper').unbind();
+        main.find('.wpmozo-bna-before-after-image-wrapper').removeClass('twentytwenty-container');
         
         let beforeSrc = ( ! window.wpmozo.wpmozo_is_empty( beforeImage ) ) 
             ? beforeImage 
-            : main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-before').attr('src');
-        main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-before').remove();
+            : main.find('.wpmozo-bna-before-after-image-wrapper .twentytwenty-before').attr('src');
+        main.find('.wpmozo-bna-before-after-image-wrapper .twentytwenty-before').remove();
         let afterSrc = ( ! window.wpmozo.wpmozo_is_empty( afterImage ) )
             ? afterImage
-            : main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-after').attr('src');
-        main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-after').remove();
+            : main.find('.wpmozo-bna-before-after-image-wrapper .twentytwenty-after').attr('src');
+        main.find('.wpmozo-bna-before-after-image-wrapper .twentytwenty-after').remove();
 
-        main.find('.wpmozo-adfgu-before-after-image-wrapper').append( '<img src="'+beforeSrc+'">' );
-        main.find('.wpmozo-adfgu-before-after-image-wrapper').append( '<img src="'+afterSrc+'">' );
+        main.find('.wpmozo-bna-before-after-image-wrapper').append( '<img src="'+beforeSrc+'">' );
+        main.find('.wpmozo-bna-before-after-image-wrapper').append( '<img src="'+afterSrc+'">' );
 
-        main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-before').removeClass('twentytwenty-before');
-        main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-after').removeClass('twentytwenty-after');
-        main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-overlay').remove();
-        main.find('.wpmozo-adfgu-before-after-image-wrapper .twentytwenty-handle').remove();
+        main.find('.wpmozo-bna-before-after-image-wrapper .twentytwenty-before').removeClass('twentytwenty-before');
+        main.find('.wpmozo-bna-before-after-image-wrapper .twentytwenty-after').removeClass('twentytwenty-after');
+        main.find('.wpmozo-bna-before-after-image-wrapper .twentytwenty-overlay').remove();
+        main.find('.wpmozo-bna-before-after-image-wrapper .twentytwenty-handle').remove();
     }
 
     useEffect(() => {
@@ -55,7 +55,7 @@ const Edit = (props) => {
             mainFromIfram = editorIfram.find('body').find('#block-'+clientId),
             mainFromBody = jQuery('body').find('#block-'+clientId),
             main = ( mainFromIfram.length > 0 ) ? mainFromIfram : mainFromBody,
-            imgWrap = main.find('.wpmozo-adfgu-before-after-image-wrapper');
+            imgWrap = main.find('.wpmozo-bna-before-after-image-wrapper');
 
             if( main.find('.twentytwenty-wrapper').length < 1 ){
                 init = true;
@@ -63,9 +63,9 @@ const Edit = (props) => {
                     wpmozo_before_init( main );
                 }
 
-                if( main.find('.wpmozo-adfgu-before-after-image-wrapper').length > 0 ){
-                    jQuery('.wpmozo-adfgu-before-after-image-wrapper').imagesLoaded( function() {
-                        main.find('.wpmozo-adfgu-before-after-image-wrapper').twentytwenty({
+                if( main.find('.wpmozo-bna-before-after-image-wrapper').length > 0 ){
+                    jQuery('.wpmozo-bna-before-after-image-wrapper').imagesLoaded( function() {
+                        main.find('.wpmozo-bna-before-after-image-wrapper').twentytwenty({
                             default_offset_pct: attributes.handleOffset,
                             orientation: attributes.sliderOrientation,
                             before_label: beforeLabel,
@@ -85,7 +85,7 @@ const Edit = (props) => {
         mainFromIfram = editorIfram.find('body').find('#block-'+clientId),
         mainFromBody = jQuery('body').find('#block-'+clientId),
         main = ( mainFromIfram.length > 0 ) ? mainFromIfram : mainFromBody,
-        imgWrap = main.find('.wpmozo-adfgu-before-after-image-wrapper');
+        imgWrap = main.find('.wpmozo-bna-before-after-image-wrapper');
 
         if ( ! init ) {
             
@@ -93,9 +93,9 @@ const Edit = (props) => {
                 wpmozo_before_init( main );
             }
 
-            if( main.find('.wpmozo-adfgu-before-after-image-wrapper').length > 0 ){
-                jQuery('.wpmozo-adfgu-before-after-image-wrapper').imagesLoaded( function() {
-                    main.find('.wpmozo-adfgu-before-after-image-wrapper').twentytwenty({
+            if( main.find('.wpmozo-bna-before-after-image-wrapper').length > 0 ){
+                jQuery('.wpmozo-bna-before-after-image-wrapper').imagesLoaded( function() {
+                    main.find('.wpmozo-bna-before-after-image-wrapper').twentytwenty({
                         default_offset_pct: attributes.handleOffset,
                         orientation: attributes.sliderOrientation,
                         before_label: beforeLabel,
@@ -122,7 +122,7 @@ const Edit = (props) => {
         attributes.afterImage,
     ]);
 
-	return (
+    return (
         <Fragment>
             <Inspector {...props} />
             <div {...blockProps}>
@@ -131,7 +131,7 @@ const Edit = (props) => {
                     ID={ID}
                     clientId={clientId}  
                 />
-                <div className="wpmozo-adfgu-before-after-image-wrapper">
+                <div className="wpmozo-bna-before-after-image-wrapper">
                     <img src={beforeImage} />
                     <img src={afterImage} />
                 </div>
