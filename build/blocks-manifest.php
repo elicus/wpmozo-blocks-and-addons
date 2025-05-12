@@ -1,6 +1,146 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
+	'list' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/list',
+		'version' => '1.0.0',
+		'title' => 'List',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'allowedBlocks' => array(
+			'wpmozo/list-item'
+		),
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'layout' => array(
+				'type' => 'string',
+				'default' => 'default'
+			),
+			'listAlignment' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'globalItemBackgroundGradient' => array(
+				'type' => 'string'
+			),
+			'globalItemBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'iconFontSize' => array(
+				'type' => 'number',
+				'default' => 22
+			),
+			'iconColor' => array(
+				'type' => 'string'
+			),
+			'imageWidth' => array(
+				'type' => 'number',
+				'default' => 40
+			),
+			'dividerSize' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'dividerStyle' => array(
+				'type' => 'string',
+				'default' => 'solid'
+			),
+			'dividerColor' => array(
+				'type' => 'string',
+				'default' => '#d3d3d3'
+			),
+			'dividermargin' => array(
+				'type' => 'object'
+			),
+			'lastDivider' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'indentation' => array(
+				'type' => 'number'
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => '#222222'
+			),
+			'linkColor' => array(
+				'type' => 'string',
+				'default' => '#000000'
+			),
+			'textFontSize' => array(
+				'type' => 'string'
+			),
+			'textFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'textLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'textDecoration' => array(
+				'type' => 'string'
+			),
+			'textLetterCase' => array(
+				'type' => 'string'
+			),
+			'textLineHeight' => array(
+				'type' => 'string'
+			),
+			'linkFontSize' => array(
+				'type' => 'string'
+			),
+			'linkFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'linkLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'linkDecoration' => array(
+				'type' => 'string'
+			),
+			'linkLetterCase' => array(
+				'type' => 'string'
+			),
+			'linkLineHeight' => array(
+				'type' => 'string'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js'
+	),
 	'separator' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
