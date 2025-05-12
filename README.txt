@@ -1,112 +1,131 @@
-=== WPMozo Addons For Gutenberg ===
-Contributors: (this should be a list of wordpress.org userid's)
-Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 4.3
-License: GPLv3
-License URI: https://www.gnu.org/licenses/gpl-3.0.html
+=== WPMozo Blocks and Addons ===
+Contributors: elicus
+Tags: gutenberg, blocks, gutenberg blocks, gutenberg editor, wordpress blocks
+Tested up to: 6.8
+Stable tag: 1.1.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+WPMozo Blocks and Addons is a plugin that enhances the Gutenberg editor with a collection of powerful and customizable blocks.
 
 == Description ==
+WPMozo Blocks and Addons is a plugin designed to extend the functionality of the Gutenberg editor. It provides a variety of blocks to help you create stunning and interactive content in WordPress effortlessly.
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+### Key Features:
+- **Before After Slider** – Create stunning before-and-after comparisons with a sleek, responsive slider. Perfect for showcasing transformations, this WordPress before-and-after slider is ideal for websites using Gutenberg. Easily compare images side by side with smooth transitions, making it a must-have for portfolios, product showcases, and more. Fully customizable for any theme.
+- **Content Toggle** – Organize content with collapsible sections using the Content Toggle block. Ideal for FAQs, product details, or lengthy content, this feature enhances readability and user experience. 
+- **Fancy Heading** – Design eye-catching headings with advanced styling options. Create pre-headings, main headings, and post-headings with unique fonts, colors, and effects. Ideal for creating visually appealing titles that stand out.
+- **Fancy Text** – Add creative text effects with animations, gradients, and custom styles. Highlight important text or create engaging call-to-action elements to make your content more dynamic.
+- **Flip Box** – Create interactive flip boxes with front and back content. Showcase information, images, or calls-to-action in a visually engaging way—perfect for portfolios, team profiles, or product highlights.
+- **Floating Image** – Add floating effects to images for a dynamic, modern look. Create parallax-like effects to make your images stand out.
+- **Interactive Image Card** – Showcase images with interactive overlays and animations. Add hover effects, captions, and links—perfect for portfolios, product galleries, or team profiles.
+- **List** – Create stylish and customizable lists with bullet points, numbers, or custom icons. Offers multiple styling options to match your theme.
+- **Logo Slider** – Display client logos or brand partners in a responsive slider. Perfect for showcasing affiliations, partnerships, or sponsorships with smooth transitions and customizable controls.
+- **Separator** – Add stylish separators between sections. Choose from various designs, including lines, icons, or custom graphics, to visually divide content.
+- **Tilt Image** – Apply tilt effects to images for a 3D interactive experience. Adds a modern and engaging touch to your images.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+This plugin is fully compatible with Gutenberg and WordPress block editor, ensuring seamless integration with your website.
 
-A few notes about the sections above:
+== Related Plugins ==  
+- [WPMozo Product Grid for WooCommerce](https://wordpress.org/plugins/wpmozo-product-grid-for-woocommerce/) – Gutenberg block plugin to display WooCommerce products grid.  
+- [WPMozo Product Carousel for WooCommerce](https://wordpress.org/plugins/wpmozo-product-carousel-for-woocommerce/) – Gutenberg block plugin to display WooCommerce products carousel.  
+- [WPMozo Addons Lite for Elementor](https://wordpress.org/plugins/wpmozo-addons-lite-for-elementor/) – 30+ widgets for Elementor page builder.  
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
-
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
-
-== Installation ==
-
-This section describes how to install the plugin and get it working.
-
-e.g.
-
-1. Upload `wpmozo-addons-for-gutenberg.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
-
-== Frequently Asked Questions ==
-
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
 
 == Screenshots ==
+1. The WPMozo Blocks and Addons plugin in action.
+2. Before After Slider block in action.
+3. Content Toggle block with collapsible sections.
+4. Fancy Heading block with advanced styling.
+5. Fancy Text block with creative effects.
+6. Flip Box block with interactive front and back content.
+7. Floating Image block with dynamic floating effects.
+8. Interactive Image Card block with hover animations.
+9. List block with customizable styles.
+10. Logo Slider block showcasing client logos.
+11. Separator block with various design options.
+12. Tilt Image block with 3D tilt effects.
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+== Frequently Asked Questions ==
+= How do I install WPMozo Blocks and Addons? =
+1. Log in to your WordPress Dashboard.
+2. Go to Plugins > Add New.
+3. Search for "WPMozo Blocks and Addons."
+4. Click "Install Now" and then activate the plugin.
 
-== Changelog ==
+= Can I customize the blocks? =
+Yes, each block comes with a wide range of customization options to match your design needs.
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
+= Where can I get support? =
+For support, visit the [plugin support forum](https://wordpress.org/support/plugin/wpmozo-blocks-and-addons/).
 
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
+== Installation ==
+### Minimum Requirements
+- PHP 7.0 or higher (PHP 7.3+ recommended).
+- MySQL 5.6 or higher, or MariaDB 10.1 or higher.
+- WordPress 6.4 or higher.
+
+### Automatic Installation
+1. Log in to your WordPress Dashboard.
+2. Go to Plugins > Add New.
+3. Search for "WPMozo Blocks and Addons."
+4. Click "Install Now" and then activate the plugin.
+
+### Manual Installation
+1. Download the plugin zip file.
+2. Upload the extracted folder to the `/wp-content/plugins/` directory.
+3. Activate the plugin through the Plugins menu in WordPress.
 
 == Upgrade Notice ==
+* Initial release of the plugin.
 
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
+== Changelog ==
+2025-04-02 - version 1.0.0
+* New - Initial release with 11 blocks
+* New - Before After Slider block
+* New - Content Toggle block
+* New - Fancy Heading block
+* New - Fancy Text block
+* New - Flip Box block
+* New - Floating Image block
+* New - Interactive Image Card block
+* New - List block
+* New - Logo Slider block
+* New - Separator block
+* New - Tilt Image block
 
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
+== Third Party Code Credits ==
+#### Images Loaded
+- File Location: assets/js/imagesLoaded/imagesloaded.pkgd.js
+- License: MIT
+- License URI: https://desandro.mit-license.org/
+### Event Move
+- File Location: assets/js/jqueryEventMove/jquery_event_move.js
+- License: WTFPL
+- License URI: https://plugins.jquery.com/event.move/  http://www.wtfpl.net/txt/copying/
+### Twenty Twenty
+- File Location: assets/js/jqueryTwentyTwenty/jquery_twentytwenty.js
+- File Location: assets/css/twentytwenty/twentytwenty.css
+- License: ISC License
+- License URI: https://www.isc.org/licenses/
+### Swiper
+- File Location: assets/js/swiper/swiper-bundle.js
+- File Location: assets/css/swiper/swiper-bundle.css
+- License: MIT
+- License URI: https://opensource.org/licenses/MIT
+### Tilt js
+- File Location: assets/js/tilt/tilt-jquery.js
+- License: MIT
+- License URI: https://opensource.org/licenses/MIT
 
-== Arbitrary section ==
 
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
+== Documentation and Support ==
+- For detailed usage instructions, check out the [plugin documentation](https://wpmozo.com/documentation/wpmozo-blocks-and-addons/).
+- Need help or have questions? Visit the [plugin support forum](https://wordpress.org/support/plugin/wpmozo-blocks-and-addons/).
 
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`
+### Like our Plugin?
+Do you like our plugin?
+- Connect with us on [Facebook](https://www.facebook.com/helloelicus "Facebook")!
+- Follow us on [Twitter](https://twitter.com/helloelicus "Twitter")!
+- Join our [YouTube](https://www.youtube.com/channel/UCOVS7z4-XeyiUcVDhYkIMNw "YouTube") channel.
+- Rate us on [WordPress](https://wordpress.org/support/plugin/wpmozo-blocks-and-addons/reviews/?rate=5#new-post "Rate our plugin").

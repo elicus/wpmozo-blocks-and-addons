@@ -1,0 +1,209 @@
+<?php
+/**
+ * The file that defines the core plugin class
+ *
+ * A class definition that includes attributes and functions used across both the
+ * public-facing side of the site and the admin area.
+ *
+ * @link       https://elicus.com
+ * @since      1.1.0
+ *
+ * @package    WPMozo_Blocks_And_Addons
+ * @subpackage WPMozo_Blocks_And_Addons/includes
+ */
+
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
+ * The plugin assets registration class.
+ *
+ * This is used to register and enqueue styles and scripts for the plugin.
+ *
+ * @since      1.0.0
+ * @package    WPMozo_Blocks_And_Addons
+ * @subpackage WPMozo_Blocks_And_Addons/includes
+ * @author     Elicus <hello@elicus.com>
+ */
+class Mozo_Bna_Blocks_And_Addons_Assets {
+	/**
+	 * The unique identifier of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
+	 */
+	protected $plugin_name;
+
+	/**
+	 * Set the plugin name and the plugin version that can be used throughout the class.
+	 *
+	 * @since    1.0.0
+	 */
+	public function __construct() {
+		$this->plugin_name = 'wpmozo-blocks-and-addons';
+	}
+	/**
+	 * Get font awesome icons array.
+	 *
+	 * @since 1.0.0
+	 * @return array $icons All icons.
+	 */
+	public function wpmozo_get_icons() {
+
+		global $wp_filesystem;
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		WP_Filesystem();
+
+		$json      = array();
+		$file_path = WPMOZO_BNA_ASSETS_DIR_PATH . 'fonts/fontawesome/fonts.json';
+
+		if ( $wp_filesystem->exists( $file_path ) ) {
+			$json = $wp_filesystem->get_contents( $file_path );
+		}
+
+		$default_icons   = json_decode( $json );
+		$icons           = array();
+		$none_obj        = new stdClass();
+		$none_obj->label = 'None';
+		$none_obj->value = '';
+		$icons[]         = $none_obj;
+		$default_icons   = array_merge( $icons, $default_icons );
+		$icons           = apply_filters( 'wpmozo_blocks_and_addons_block_icons', $default_icons );
+		return $icons;
+	}
+
+	/**
+	 * Register the scripts and stylesheets required on the editor and frontend.
+	 *
+	 * @since 1.0.0
+	 */
+	public function wpmozo_register_scripts_and_styles() {
+
+		wp_register_style(
+			$this->plugin_name . '-editor-style',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'css/editor/wpmozo-blocks-and-addons-editor.css',
+			array( 'wp-edit-blocks' ),
+			WPMOZO_BNA_VERSION
+		);
+
+		wp_register_script(
+			$this->plugin_name . '-editor-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/editor/editor.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
+		wp_register_style(
+			$this->plugin_name . '-swiper-style',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/swiper-bundle.css',
+			array( 'wp-edit-blocks' ),
+			WPMOZO_BNA_VERSION
+		);
+		
+		wp_register_script(
+			$this->plugin_name . '-swiper-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/swiper-bundle.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
+		wp_register_style(
+			$this->plugin_name . '-twentytwenty-style',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/twentytwenty.css',
+			array( 'wp-edit-blocks' ),
+			WPMOZO_BNA_VERSION
+		);
+
+		wp_register_script(
+			$this->plugin_name . '-imagesloaded-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/imagesloaded.pkgd.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
+		wp_register_script(
+			$this->plugin_name . '-eventmove-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/jquery_event_move.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
+		wp_register_script(
+			$this->plugin_name . '-twentytwenty-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/jquery_twentytwenty.js',
+			array( 'jquery', $this->plugin_name . '-eventmove-script' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
+		wp_register_script(
+			$this->plugin_name . '-tilt-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/tilt-jquery.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
+		/*wp_register_script(
+			$this->plugin_name . '-blocks-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/frontend/frontend.js',
+			array( 'wp-i18n', 'jquery' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);*/
+
+		wp_register_style(
+			$this->plugin_name . '-blocks-style',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'css/blocks/block-style.css',
+			array(),
+			WPMOZO_BNA_VERSION
+		);
+
+		wp_register_style(
+			$this->plugin_name . '-fontawesome-style',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'fonts/fontawesome/all.min.css',
+			array(),
+			WPMOZO_BNA_VERSION
+		);
+
+	}
+
+	/**
+	 * Enqueue block editor assets.
+	 *
+	 * @since 1.0.0
+	 */
+	public function enqueue_block_editor_assets() {
+		$icons      = $this->wpmozo_get_icons();
+
+		$all_options = array(
+			'placeholderImg' => WPMOZO_BNA_ASSETS_DIR_URL . 'images/placeholder.webp',
+			'icons'          => $icons,
+			'url'            => rest_url( 'wpmozo/v1/save-dynamic-style' ),
+		);
+
+		wp_localize_script( $this->plugin_name . '-editor-script', 'wpmozo_bna_editor_object', $all_options );
+
+		wp_enqueue_style( $this->plugin_name . '-editor-style' );
+		wp_enqueue_script( $this->plugin_name . '-editor-script' );
+		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
+	}
+
+	/**
+	 * Enqueue block frontend assets.
+	 *
+	 * @since 1.0.0
+	 */
+	public function enqueue_block_assets() {
+		wp_enqueue_style( $this->plugin_name . '-fontawesome-style' );
+		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
+	}
+
+}
