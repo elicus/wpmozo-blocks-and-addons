@@ -13,7 +13,7 @@ import generateDynamicStyle from "./style";
 
 const Edit = (props) => {
 
-    const attributes = props.attributes,
+    let attributes = props.attributes,
         clientId = props.clientId,
         setAttributes = props.setAttributes,
         blockProps = useBlockProps({className: 'wpmozo-bna-bar-counter-main'});

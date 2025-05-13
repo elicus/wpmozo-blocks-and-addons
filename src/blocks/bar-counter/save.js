@@ -3,8 +3,8 @@ import generateDynamicStyle from "./style";
 
 const Save = ({ attributes }) => {
 
-    const ID = attributes.ID;
-    let emptyBarEnabled = '';
+    let ID = attributes.ID,
+    	emptyBarEnabled = '';
 
     if (attributes.displayEmptyBar) {
         emptyBarEnabled = 'empty-bar-enabled';
