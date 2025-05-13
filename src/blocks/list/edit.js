@@ -4,6 +4,8 @@ import Inspector from './inspector';
 import { useSelect } from '@wordpress/data';
 import { Fragment } from "@wordpress/element";
 import generateDynamicStyle from './style';
+import {getIdByClientid} from '../../common/utils.js';
+
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -16,7 +18,6 @@ export default function Edit(props) {
     const attributes = props.attributes,
     setAttributes = props.setAttributes,
     clientId = props.clientId,
-    ID = window.wpmozo.getIdByClientid( clientId ),
     blockProps = useBlockProps({ className: 'wpmozo-bna-list' });
 
     const childBlocks = useSelect((select) => {
@@ -29,7 +30,7 @@ export default function Edit(props) {
         [ 'wpmozo/list-item', { text: childAttributes.text} ] // Prefills a child block when parent is inserted
     ];
 
-    attributes.ID = ID;
+    attributes.ID = clientId;
     const hideDivider = true === attributes.lastDivider ? "wpmozo-bna-hide-last-divider" : "";
 
     return (

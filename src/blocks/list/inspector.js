@@ -15,8 +15,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 
     const [ deviceType, setDeviceType ] = useState('tablet'),
         [ textType, setTextType ] = useState('text');
-
-    props = Object.assign({}, props, {preAttributes: {}});
     const dividerStyle = [
         {
             label: __( 'Solid', 'wpmozo-blocks-and-addons' ),
