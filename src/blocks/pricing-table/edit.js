@@ -13,12 +13,11 @@ import generateDynamicStyle from "./style";
 
 const Edit = (props) => {
 
-    const attributes = props.attributes,
+    let attributes = props.attributes,
         clientId = props.clientId,
         setAttributes = props.setAttributes,
-        blockProps = useBlockProps({className: 'wpmozo-bna-pricing-table-main'});
-
-    let linkTarget = ( 'external' === attributes.buttonLinkTarget ) ? '_blank' : '_self',
+        blockProps = useBlockProps({className: 'wpmozo-bna-pricing-table-main'}),
+		linkTarget = ( 'external' === attributes.buttonLinkTarget ) ? '_blank' : '_self',
         showIconOnHover = ( attributes.showIconOnHover ) ? ' show-on-hover' : '',
         buttonIconPosition = ( attributes.buttonIconPosition ) ? attributes.buttonIconPosition : ' icon-after';
 
@@ -133,5 +132,4 @@ const Edit = (props) => {
     );
 
 };
-
 export default Edit;
