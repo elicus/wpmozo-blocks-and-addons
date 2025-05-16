@@ -7,7 +7,8 @@ import { useState } from "@wordpress/element";
 
 const Inspector = ({ attributes, setAttributes }) => {
 
-    const props = { attributes, setAttributes };
+    let props = { attributes, setAttributes };
+    props = Object.assign({}, props, {preAttributes: {}});
 
     const [ contentType, setContentType ] = useState('front');
     const [ textType, setTextType ] = useState('normal');

@@ -39,11 +39,11 @@ export default function Edit(props) {
             <style>
                 { generateDynamicStyle({ attributes, clientId }) }
             </style>  
-            <div {...useBlockProps()}>
+            <div {...useBlockProps({ className: 'wpmozo-bna-list' })}>
                 <div>
                     <div className="wpmozo-bna-list-wrapper">
                         <div className={"wpmozo-bna-list-layout wpmozo-bna-list-" + attributes.layout + " " + hideDivider}>
-                            <InnerBlocks templateLock={false}/>
+                            <InnerBlocks templateLock={false} template={ TEMPLATE }/>
                         </div>
                     </div>
                 </div>

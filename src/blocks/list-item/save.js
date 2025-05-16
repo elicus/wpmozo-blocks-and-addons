@@ -1,6 +1,5 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import generateDynamicStyle from './style';
-import { Fragment } from "@wordpress/element";
 
 
 export default function save({ attributes }) {
@@ -8,7 +7,10 @@ export default function save({ attributes }) {
     const clientId   = attributes.ID;
 
     return (
-        <Fragment>
+        <>
+            <style>
+                { generateDynamicStyle({ attributes, clientId }) }
+            </style>
             <div {...useBlockProps.save({ className: "wpmozo-bna-list-item", ID:`block-${clientId}` })}>
                 <div className="list-item-wrap">
                     {attributes.markerType === "icon" && !attributes.styleIcon && (
@@ -39,6 +41,6 @@ export default function save({ attributes }) {
                     <div className="wpmozo-bna-list-divider"></div>
                 </div>
             </div>
-        </Fragment>
+        </>
     );
 }

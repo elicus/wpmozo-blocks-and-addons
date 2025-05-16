@@ -157,9 +157,13 @@ return array(
 			'wpmozo/list'
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'splitting' => true
 		),
 		'attributes' => array(
+			'parentAtts' => array(
+				'type' => 'object'
+			),
 			'ID' => array(
 				'type' => 'string'
 			),
@@ -179,8 +183,7 @@ return array(
 				'type' => 'rich-text',
 				'source' => 'rich-text',
 				'selector' => 'p',
-				'role' => 'text',
-				'default' => 'enter your text'
+				'role' => 'text'
 			),
 			'markerType' => array(
 				'type' => 'string',

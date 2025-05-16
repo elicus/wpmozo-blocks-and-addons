@@ -28,7 +28,6 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 		styles += `
 			.wpmozo-bna-line {
 				border-top-width: ${attributes.separatorThickness}px;
-				border-top-color: ${attributes.separatorColor};
 				border-top-style: ${attributes.lineStyle};
 			}
 		`;
@@ -46,36 +45,44 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 
 		if ('solid' !== attributes.lineStyle) {
 			styles += `
-				.wpmozo-bna-line {
-					border-top-color: ${attributes.shadowColor};
-				}
+				${(attributes.shadowColor) ? `.wpmozo-bna-line {
+					border-top-color: ` + attributes.shadowColor + `;
+				}` : '' }
+			`;
+		}else{
+			styles += `
+				${(attributes.separatorColor) ? `.wpmozo-bna-line {
+					border-top-color: ` + attributes.separatorColor + `;
+				}` : '' }
 			`;
 		}
 
 		if ('iconSeparator' === attributes.lineUseWith) {
 			styles += `
-				.wpmozo-bna-icon-wrapper i {
-					color: ${attributes.iconColor};
-				}
+				${(attributes.iconColor) ? `.wpmozo-bna-icon-wrapper i {
+					color: ` + attributes.iconColor + `;
+				}` : '' }
 			`;
 
 			if (true === attributes.enableIconFontSize && true === attributes.styleIcon) {
 				if ('hexagon' === attributes.iconShape) {
 					if (true === attributes.enableShapeBorder) {
 						styles += `
-							.wpmozo-bna-icon-wrapper .hexagon.wpmozo-bna-border-hex {
-								box-shadow: inset 2px 0px 0px 0px ${attributes.shapeBorderColor}, inset -2px 0px 0px 0px ${attributes.shapeBorderColor};
-							}
+							${(attributes.shapeBorderColor) ? `.wpmozo-bna-icon-wrapper .hexagon.wpmozo-bna-border-hex {
+								box-shadow: inset 2px 0px 0px 0px ` + attributes.shapeBorderColor + `, inset -2px 0px 0px 0px ` + attributes.shapeBorderColor + `;
+							}` : '' }
 							.wpmozo-bna-icon-wrapper .hexagon.wpmozo-bna-border-hex:after {
-								border-right: 2px solid ${attributes.shapeBorderColor};
-								border-bottom: 2px solid ${attributes.shapeBorderColor};
+								${(attributes.shapeBorderColor) ? `
+									border-right: 2px solid ` + attributes.shapeBorderColor + `;
+									border-bottom: 2px solid ` + attributes.shapeBorderColor + `;` : '' }
 								transform: rotate(45deg) skew(-15.8deg, -15.8deg) translate(72%, 27%);
 								width: 55%;
 								height: 100%;
 							}
 							.wpmozo-bna-icon-wrapper .hexagon.wpmozo-bna-border-hex:before {
-								border-top: 2px solid ${attributes.shapeBorderColor};
-								border-left: 2px solid ${attributes.shapeBorderColor};
+								${(attributes.shapeBorderColor) ? `
+									border-top: 2px solid ` + attributes.shapeBorderColor + `;
+									border-left: 2px solid ` + attributes.shapeBorderColor + `;` : '' }
 								transform: rotate(45deg) skew(-15.8deg, -15.8deg) translate(-27%, -72%);
 								width: 55%;
 								height: 100%;
@@ -95,59 +102,60 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 					}
 
 					styles += `
-						.wpmozo-bna-icon-wrapper {
+						${(attributes.iconFontSize) ? `.wpmozo-bna-icon-wrapper {
 							width: calc(${attributes.iconFontSize}px + ${attributes.iconFontSize / 1.15}px);
 						}
 						.wpmozo-bna-icon-wrapper i {
-							font-size: ${attributes.iconFontSize}px;
-						}
-						.wpmozo-bna-icon-wrapper .hexagon,
+							font-size: ` + attributes.iconFontSize + `px;
+						}` : '' }
+						${(attributes.shapeBackground) ? `.wpmozo-bna-icon-wrapper .hexagon,
 						.wpmozo-bna-icon-wrapper .hexagon:before,
 						.wpmozo-bna-icon-wrapper .hexagon:after {
-							background-color: ${attributes.shapeBackground};
-						}
+							background-color: ` + attributes.shapeBackground + `;
+						}` : '' }
 					`;
 				} else {
 					if (true === attributes.enableShapeBorder) {
 						styles += `
 							.wpmozo-bna-icon-wrapper i {
-								border: 2px solid ${attributes.shapeBorderColor};
-								font-size: ${attributes.iconFontSize}px;
+								${(attributes.shapeBorderColor) ? `border: 2px solid ` + attributes.shapeBorderColor + `;` : '' }
+								${(attributes.iconFontSize) ? `font-size: ` + attributes.iconFontSize + `px;` : '' }
 							}
 						`;
 					}
 
 					styles += `
 						.wpmozo-bna-icon-wrapper i {
-							font-size: ${attributes.iconFontSize}px;
-							background-color: ${attributes.shapeBackground};
+							${(attributes.iconFontSize) ? `font-size: ` + attributes.iconFontSize + `px;` : '' }
+							${(attributes.shapeBackground) ? `background-color: ` + attributes.shapeBackground + `;` : '' }
 						}
 					`;
 				}
 			} else if (true === attributes.enableIconFontSize && true !== attributes.styleIcon) {
 				styles += `
-					.wpmozo-bna-icon-wrapper i {
-						font-size: ${attributes.iconFontSize}px;
-					}
+					${(attributes.iconFontSize) ? `.wpmozo-bna-icon-wrapper i { font-size: ` + attributes.iconFontSize + `px; }` : '' }
 				`;
 			} else if (true !== attributes.enableIconFontSize && true === attributes.styleIcon) {
 				if ('hexagon' === attributes.iconShape) {
 					if (true === attributes.enableShapeBorder) {
 						styles += `
 							.wpmozo-bna-icon-wrapper .hexagon.wpmozo-bna-border-hex {
-								border-left: 2px solid ${attributes.shapeBorderColor};
-								border-right: 2px solid ${attributes.shapeBorderColor};
+								${(attributes.shapeBorderColor) ? `
+									border-left: 2px solid ` + attributes.shapeBorderColor + `;
+									border-right: 2px solid ` + attributes.shapeBorderColor + `;` : '' }
 							}
 							.wpmozo-bna-icon-wrapper .hexagon.wpmozo-bna-border-hex:after {
-								border-right: 2px solid ${attributes.shapeBorderColor};
-								border-bottom: 2px solid ${attributes.shapeBorderColor};
+								${(attributes.shapeBorderColor) ? `
+									border-right: 2px solid ` + attributes.shapeBorderColor + `;
+									border-bottom: 2px solid ` + attributes.shapeBorderColor + `;` : '' }
 								transform: rotate(45deg) skew(-13deg, -13deg) translate(57%, 19%);
 								width: calc(55% + 4px);
 								height: calc(100% + 4px);
 							}
 							.wpmozo-bna-icon-wrapper .hexagon.wpmozo-bna-border-hex:before {
-								border-top: 2px solid ${attributes.shapeBorderColor};
-								border-left: 2px solid ${attributes.shapeBorderColor};
+								${(attributes.shapeBorderColor) ? `
+									border-top: 2px solid ` + attributes.shapeBorderColor + `;
+								border-left: 2px solid ` + attributes.shapeBorderColor + `;` : '' }
 								transform: rotate(45deg) skew(-13deg, -13deg) translate(-28%, -65%);
 								width: calc(55% + 4px);
 								height: calc(100% + 4px);
@@ -170,27 +178,27 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 						.wpmozo-bna-icon-wrapper {
 							width: 72px;
 						}
-						.wpmozo-bna-icon-wrapper .hexagon,
+						${(attributes.shapeBackground) ? `.wpmozo-bna-icon-wrapper .hexagon,
 						.wpmozo-bna-icon-wrapper .hexagon:before,
 						.wpmozo-bna-icon-wrapper .hexagon:after {
-							background-color: ${attributes.shapeBackground};
-						}
+							background-color: ` + attributes.shapeBackground + `;
+						}` : '' }
 					`;
 				} else {
 					if (true === attributes.enableShapeBorder) {
 						styles += `
-							.wpmozo-bna-icon-wrapper .wpmozo-bna-icon-square.wpmozo-bna-icon-shape-border,
+							${(attributes.shapeBorderColor) ? `.wpmozo-bna-icon-wrapper .wpmozo-bna-icon-square.wpmozo-bna-icon-shape-border,
 							.wpmozo-bna-icon-wrapper .wpmozo-bna-icon-circle.wpmozo-bna-icon-shape-border {
-								border: 2px solid ${attributes.shapeBorderColor};
-							}
+								border: 2px solid ` + attributes.shapeBorderColor + `;
+							}` : '' }
 						`;
 					}
 
 					styles += `
-						.wpmozo-bna-icon-wrapper .wpmozo-bna-icon-square,
+						${(attributes.shapeBackground) ? `.wpmozo-bna-icon-wrapper .wpmozo-bna-icon-square,
 						.wpmozo-bna-icon-wrapper .wpmozo-bna-icon-circle {
-							background-color: ${attributes.shapeBackground};
-						}
+							background-color: ` + attributes.shapeBackground + `;
+						}` : '' }
 					`;
 				}
 			}
@@ -198,24 +206,17 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 
 		if ('imageSeparator' === attributes.lineUseWith) {
 			styles += `
-				.wpmozo-bna-separator-image {
-					width: ${attributes.imageWidth}px;
-				}
+				${(attributes.imageWidth) ? `.wpmozo-bna-separator-image {
+					width: ` + attributes.imageWidth + `px;
+				}` : '' }
 			`;
 		}
 	}
 
 	if ('shadow' === attributes.separatorType) {
-		styles += `
-			.wpmozo-bna-shadow {
-				height: ${attributes.separatorThickness}px;
-				background: radial-gradient(ellipse at 50% -50%, ${attributes.shadowColor} 0%, rgba(0, 0, 0, 0) 75%), repeat scroll;
-			}
-			.wpmozo-bna-interactive-image-card-content {
-				text-align: ${attributes.contentAlign};
-			}
-		`;
-	}
+		styles += ` .wpmozo-bna-shadow { ${(attributes.separatorThickness) ? `height: ` + attributes.separatorThickness + `px;`: '' } ${(attributes.shadowColor) ? `background: radial-gradient(ellipse at 50% -50%, ` + attributes.shadowColor + ` 0%, rgba(0, 0, 0, 0) 75%), repeat scroll;` : '' } }
+			${(attributes.contentAlign) ? `.wpmozo-bna-interactive-image-card-content {
+				text-align: ` + attributes.contentAlign + `;}`: '' } `; }
 	
 	styles += `}`;
 

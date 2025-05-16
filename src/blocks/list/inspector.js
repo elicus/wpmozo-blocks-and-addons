@@ -11,7 +11,8 @@ import { WpmozoDimensions, WpmozoColorPicker, WpmozoTypography, WpmozoIconpicker
 
 const Inspector = ({ attributes, setAttributes }) => {
 
-    const props = { attributes, setAttributes };
+    let props = { attributes, setAttributes };
+    props = Object.assign({}, props, {preAttributes: {}});
 
     const [ deviceType, setDeviceType ] = useState('tablet'),
         [ textType, setTextType ] = useState('text');

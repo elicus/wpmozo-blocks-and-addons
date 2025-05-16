@@ -24,6 +24,10 @@
      z-index: 0;
      box-sizing: border-box;
  }
+ wpmozo-bna-list-icon{
+ outline:6px solid red;
+ }
+ .thisisayush{padding:200px;}
  .wpmozo-bna-list .wpmozo-bna-icon-circle {
      padding: 16px;
      border-radius: 50%;
@@ -92,6 +96,7 @@
     border-color: #d3d3d3;
     border-style: solid;
     border:0px none;
+    grid-column:1/-1;
  }
  .wpmozo-bna-list-layout.wpmozo-bna-hide-last-divider .wpmozo-bna-list-item:last-child .wpmozo-bna-list-divider{
     display: none;

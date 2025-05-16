@@ -10,9 +10,13 @@
     "example": {},
     "parent": [ "wpmozo/list" ],
     "supports": {
-        "html": false
+        "html": false,
+        "splitting": true
     },
     "attributes": {
+        "parentAtts": {
+            "type": "object"
+        },
         "ID": {
             "type": "string"
         },
@@ -32,8 +36,7 @@
             "type": "rich-text",
             "source": "rich-text",
             "selector": "p",
-            "role": "text",
-            "default":"enter your text"
+            "role": "text"
         },
         "markerType": {
             "type": "string",

@@ -2,7 +2,7 @@ import { InnerBlocks, useBlockProps, useInnerBlocksProps } from '@wordpress/bloc
 import generateDynamicStyle from './style';
 
 export default function save({ attributes }) {
-    const ID = attributes.ID,
+    const clientId = attributes.ID,
         TEMPLATE = [
             [ 'wpmozo/list-item', {} ] // Prefills a child block when parent is inserted
         ],
@@ -11,9 +11,9 @@ export default function save({ attributes }) {
     return (
         <>
             <style>
-                { generateDynamicStyle({ attributes }) }
+                { generateDynamicStyle({ attributes, clientId }) }
             </style> 
-            <div {...useBlockProps.save({ className: 'wpmozo-bna-list' })} id={`block-${ID}`}>
+            <div {...useBlockProps.save({ className: 'wpmozo-bna-list' })} id={`block-${clientId}`}>
                 <div>
                     <div className="wpmozo-bna-list-wrapper">
                         <div className={"wpmozo-bna-list-layout wpmozo-bna-list-"+attributes.layout+ " " + hideDivider}>

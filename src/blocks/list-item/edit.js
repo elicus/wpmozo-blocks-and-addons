@@ -3,9 +3,8 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import Inspector from './inspector';
 import { Fragment } from "@wordpress/element";
 import generateDynamicStyle from './style';
+import { useSelect } from '@wordpress/data';
 
-import { useDispatch } from '@wordpress/data';
-import { createBlock } from '@wordpress/blocks';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -15,25 +14,32 @@ import { createBlock } from '@wordpress/blocks';
 import './editor.scss';
 
 export default function Edit(props) {
+
+
     const WPMozoEditorObj = wpmozo_bna_editor_object;
 
     const attributes = props.attributes,
 
     setAttributes = props.setAttributes,
-    
+
     clientId = props.clientId,
-    
+
     content = attributes.text;
+
+    const parentAttributes = useSelect((select) => {
+        const { getBlockRootClientId, getBlock } = select('core/block-editor');
+        const parentId = getBlockRootClientId(clientId);
+        return parentId ? getBlock(parentId)?.attributes : null;
+    }, [clientId]);
+    attributes.parentAtts = parentAttributes;
     
     attributes.ID = clientId;
-
-    const { insertBlocksAfter, removeBlock } = useDispatch('core/block-editor');
 
     return (
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
-                { generateDynamicStyle({ attributes, clientId }) }
+                { generateDynamicStyle({ attributes, clientId, parentAttributes }) }
             </style>
             <div { ...useBlockProps({ className: 'wpmozo-bna-list-item' }) }>
                 <div className="list-item-wrap" >
@@ -66,20 +72,8 @@ export default function Edit(props) {
                             onChange={ ( newContent ) =>
                                 setAttributes( { text: newContent } )
                             }
-                            onSplit={(before, after) => {
-                                const newBlock = createBlock('wpmozo/list-item', {
-                                    content: after,
-                                });
-                                insertBlocksAfter(newBlock);
-                                return createBlock('wpmozo/list-item', {
-                                    content: before,
-                                });
-                            }}
-                            onRemove={() => removeBlock(clientId)}
                             key="editable"
                             placeholder={__("Enter list item…", "wpmozo-blocks-and-addons")}
-                            __unstableAllowLineBreaks={false}
-                            inlineToolbar
                         />
                     </div>
                     <div className="wpmozo-bna-list-divider">
