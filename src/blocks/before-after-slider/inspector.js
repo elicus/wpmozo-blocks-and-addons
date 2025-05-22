@@ -1,0 +1,196 @@
+// inspector.js
+import { __ } from '@wordpress/i18n';
+import {
+    InspectorControls
+} from '@wordpress/block-editor';
+import {
+    PanelBody,
+    ToggleControl,
+    TextControl,
+    SelectControl,
+    RangeControl
+} from '@wordpress/components';
+import { WpmozoMediaUploader, WpmozoColorPicker, WpmozoTypography  } from '../../common/components/index';
+
+const Inspector = ({ attributes, setAttributes }) => {
+
+    let props = { attributes, setAttributes };
+    props = Object.assign({}, props, {preAttributes: {}});
+
+    const beforeTitle = __( 'Before', 'wpmozo-blocks-and-addons' ),
+        afterTitle = __( 'After', 'wpmozo-blocks-and-addons' ),
+        globalColorTypes = [ 
+            {
+                key: 'Handle',
+                label: __( 'Handle Color', 'wpmozo-blocks-and-addons' ),
+            },
+            ... attributes.overlayOnHover ? [{key: 'Overlay',label: __( 'Overlay Color', 'wpmozo-blocks-and-addons' )}] : [],
+        ];
+
+    return (
+        <>
+            <InspectorControls key="controls">
+                <PanelBody title={ __( 'General', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+                    <SelectControl
+                        label={ __( 'Slider Orientation', 'wpmozo-blocks-and-addons' ) }
+                        value={ attributes.sliderOrientation }
+                        options={[
+                            {
+                                label: __( 'Horizontal', 'wpmozo-blocks-and-addons' ),
+                                value: 'horizontal',
+                            },
+                            {
+                                label: __( 'Vertical', 'wpmozo-blocks-and-addons' ),
+                                value: 'vertical',
+                            }
+                        ]}
+                        onChange={ ( newValue ) => setAttributes( { sliderOrientation: newValue } ) }
+                    />
+                    <RangeControl
+                        label={ __( 'Handle Offset', 'wpmozo-blocks-and-addons' ) }
+                        value={ attributes.handleOffset }
+                        onChange={ ( newValue ) => setAttributes( { handleOffset: newValue } ) }
+                        min={ 0 }
+                        step={ 0.1 }
+                        max={ 1 }
+                        allowReset={true}
+                        initialPosition={ 0.5 }
+                        resetFallbackValue={ 0.5 }
+                    />
+                    { ! attributes.moveHandleOnClick && (
+                        <>
+                            <ToggleControl
+                                label={ __( 'Move Handle on Hover', 'wpmozo-blocks-and-addons' ) }
+                                checked={ attributes.moveHandleOnHover }
+                                onChange={ ( newValue ) => setAttributes( { moveHandleOnHover: newValue } ) }
+                            />
+                        </>
+                    )}
+                    { ! attributes.moveHandleOnHover && (
+                        <>
+                            <ToggleControl
+                                label={ __( 'Move Handle on Click', 'wpmozo-blocks-and-addons' ) }
+                                checked={ attributes.moveHandleOnClick }
+                                onChange={ ( newValue ) => setAttributes( { moveHandleOnClick: newValue } ) }
+                            />
+                        </>
+                    )}
+                </PanelBody>
+                <PanelBody title={beforeTitle} initialOpen={false}>
+                    <WpmozoMediaUploader 
+                        attrKye="beforeImage" 
+                        props={props} 
+                    />
+                    <ToggleControl
+                        label={ __( 'Show Label', 'wpmozo-blocks-and-addons' ) }
+                        checked={ attributes.beforeHasLabel }
+                        onChange={ ( newValue ) => setAttributes( { beforeHasLabel: newValue } ) }
+                    />
+                    {attributes.beforeHasLabel && (
+                        <>
+                            <ToggleControl
+                                label={ __( 'Show Label Only on Hover', 'wpmozo-blocks-and-addons' ) }
+                                checked={ attributes.beforeLabelOnHover }
+                                onChange={ ( newValue ) => setAttributes( { beforeLabelOnHover: newValue } ) }
+                            />
+                            <TextControl
+                                label={ __( 'Enter Label', 'wpmozo-blocks-and-addons' ) }
+                                value={ attributes.beforeLabel }
+                                onChange={ ( newValue ) => setAttributes( { beforeLabel: newValue } ) }
+                            />
+                        </>
+                    )}
+                </PanelBody>
+                <PanelBody title={afterTitle} initialOpen={false}>
+                    <WpmozoMediaUploader 
+                        attrKye="afterImage" 
+                        props={props} 
+                    />
+                    <ToggleControl
+                        label={ __( 'Show Label', 'wpmozo-blocks-and-addons' ) }
+                        checked={ attributes.afterHasLabel }
+                        onChange={ ( newValue ) => setAttributes( { afterHasLabel: newValue } ) }
+                    />
+                    {attributes.afterHasLabel && (
+                        <>
+                            <ToggleControl
+                                label={ __( 'Show Label Only on Hover', 'wpmozo-blocks-and-addons' ) }
+                                checked={ attributes.afterLabelOnHover }
+                                onChange={ ( newValue ) => setAttributes( { afterLabelOnHover: newValue } ) }
+                            />
+                            <TextControl
+                                label={ __( 'Enter Label', 'wpmozo-blocks-and-addons' ) }
+                                value={ attributes.afterLabel }
+                                onChange={ ( newValue ) => setAttributes( { afterLabel: newValue } ) }
+                            />
+                        </>
+                    )}
+                </PanelBody>
+            </InspectorControls>
+            <InspectorControls key="styles" group="styles">
+                <PanelBody title={ __( 'General Style' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                    <ToggleControl
+                        label={ __( 'Overlay on Hover', 'wpmozo-blocks-and-addons' ) }
+                        checked={ attributes.overlayOnHover }
+                        onChange={ ( newValue ) => setAttributes( { overlayOnHover: newValue } ) }
+                    />
+                    <WpmozoColorPicker
+                        ColorKey="globalcolor"
+                        props={props}
+                        ColorTypes={globalColorTypes}
+                    />
+                </PanelBody>
+                {attributes.beforeHasLabel && (
+                    <>
+                        <PanelBody title={ __( 'Before Label Style' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                            <WpmozoColorPicker
+                                ColorKey="beforeLabel"
+                                props={props}
+                                ColorTypes={[ 
+                                    {
+                                        key: 'text',
+                                        label: __( 'Label Color', 'wpmozo-blocks-and-addons' ),
+                                    },
+                                    {
+                                        key: 'background',
+                                        label: __( 'Label Background', 'wpmozo-blocks-and-addons' ),
+                                    } 
+                                ]}
+                            />
+                            <WpmozoTypography
+                                TypographyKey="beforeLabel"
+                                props={props}
+                            />
+                        </PanelBody>
+                    </>
+                )}
+                {attributes.afterHasLabel && (
+                    <>
+                        <PanelBody title={ __( 'After Label Style' ) } className="wpmozo-typography-panel" initialOpen={false}>
+                            <WpmozoColorPicker
+                                ColorKey="afterLabel"
+                                props={props}
+                                ColorTypes={[ 
+                                    {
+                                        key: 'text',
+                                        label: __( 'Label Color', 'wpmozo-blocks-and-addons' ),
+                                    },
+                                    {
+                                        key: 'background',
+                                        label: __( 'Label Background', 'wpmozo-blocks-and-addons' ),
+                                    } 
+                                ]}
+                            />
+                            <WpmozoTypography
+                                TypographyKey="afterLabel"
+                                props={props}
+                            />
+                        </PanelBody>
+                    </>
+                )}
+            </InspectorControls>
+        </>
+    );
+};
+
+export default Inspector;

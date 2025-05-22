@@ -1,6 +1,163 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
+	'before-after-slider' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/before-after-slider',
+		'version' => '1.1.0',
+		'title' => 'Before After Slider',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'globalcolorHandle' => array(
+				'type' => 'string'
+			),
+			'globalcolorOverlay' => array(
+				'type' => 'string'
+			),
+			'sliderOrientation' => array(
+				'type' => 'string',
+				'default' => 'horizontal'
+			),
+			'handleOffset' => array(
+				'type' => 'number'
+			),
+			'moveHandleOnHover' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'moveHandleOnClick' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'overlayOnHover' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'beforeImage' => array(
+				'type' => 'string'
+			),
+			'beforeHasLabel' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'beforeLabelOnHover' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'beforeLabel' => array(
+				'type' => 'string',
+				'default' => 'Before'
+			),
+			'beforeLabelbackground' => array(
+				'type' => 'string'
+			),
+			'beforeLabeltext' => array(
+				'type' => 'string'
+			),
+			'beforeLabelFontSize' => array(
+				'type' => 'string'
+			),
+			'beforeLabelFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'beforeLabelLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'beforeLabelDecoration' => array(
+				'type' => 'string'
+			),
+			'beforeLabelLetterCase' => array(
+				'type' => 'string'
+			),
+			'beforeLabelLineHeight' => array(
+				'type' => 'string'
+			),
+			'afterImage' => array(
+				'type' => 'string'
+			),
+			'afterHasLabel' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'afterLabelOnHover' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'afterLabel' => array(
+				'type' => 'string',
+				'default' => 'After'
+			),
+			'afterLabelbackground' => array(
+				'type' => 'string'
+			),
+			'afterLabeltext' => array(
+				'type' => 'string'
+			),
+			'afterLabelFontSize' => array(
+				'type' => 'string'
+			),
+			'afterLabelFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'afterLabelLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'afterLabelDecoration' => array(
+				'type' => 'string'
+			),
+			'afterLabelLetterCase' => array(
+				'type' => 'string'
+			),
+			'afterLabelLineHeight' => array(
+				'type' => 'string'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'wpmozo-blocks-and-addons-imagesloaded-style',
+			'wpmozo-blocks-and-addons-twentytwenty-style'
+		),
+		'script' => array(
+			'wpmozo-blocks-and-addons-imagesloaded-script',
+			'wpmozo-blocks-and-addons-twentytwenty-script'
+		),
+		'viewScript' => 'file:./view.js'
+	),
 	'separator' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
