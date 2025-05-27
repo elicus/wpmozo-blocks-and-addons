@@ -9,6 +9,7 @@ import {
 	Button,
 } from '@wordpress/components';
 import  './style.scss';
+import {wpmozo_is_empty} from '../../utils.js';
 
 const WpmozoRangeSize = (args) => {
 	const { rangeSizeKey, props } = args;
@@ -53,7 +54,7 @@ const WpmozoRangeSize = (args) => {
 	let getRange = setValue('value', props.attributes[rangeSizeKey]);
 
 	const defaultRange =
-		!wpmozo.wpmozo_is_empty(unit) && !wpmozo.wpmozo_is_empty(getRange)
+		! wpmozo_is_empty(unit) && ! wpmozo_is_empty(getRange)
 			? parseFloat(getRange.replace(unit, ''))
 			: 0;
 
