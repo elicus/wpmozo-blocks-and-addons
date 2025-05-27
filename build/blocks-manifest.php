@@ -1003,6 +1003,135 @@ return array(
 		'script' => 'file:./script.js',
 		'viewScript' => 'file:./view.js'
 	),
+	'floating-image' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/floating-image',
+		'version' => '1.1.0',
+		'title' => 'Floating Image',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'allowedBlocks' => array(
+			'wpmozo/floating-image-item'
+		),
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'shadow' => true,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			),
+			'color' => array(
+				'gradients' => true,
+				'background' => true,
+				'text' => false
+			),
+			'background' => array(
+				'backgroundImage' => true,
+				'backgroundSize' => true
+			)
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'images' => array(
+				'type' => 'array'
+			),
+			'containerHeight' => array(
+				'type' => 'string',
+				'default' => '450px'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js'
+	),
+	'floating-image-item' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/floating-image-item',
+		'version' => '1.1.0',
+		'title' => 'Floating Image Item',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'parent' => array(
+			'wpmozo/floating-image'
+		),
+		'supports' => array(
+			'html' => false,
+			'shadow' => true,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'image' => array(
+				'type' => 'object'
+			),
+			'imagewidth' => array(
+				'type' => 'string',
+				'default' => '200px'
+			),
+			'imageheight' => array(
+				'type' => 'string'
+			),
+			'altText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'horizontalAlign' => array(
+				'type' => 'string'
+			),
+			'verticalAlign' => array(
+				'type' => 'string'
+			),
+			'animationEffect' => array(
+				'type' => 'string',
+				'default' => 'up_down'
+			),
+			'animationDelay' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'animationDuration' => array(
+				'type' => 'number',
+				'default' => 4000
+			),
+			'animationRepeat' => array(
+				'type' => 'string',
+				'default' => 'infinite'
+			),
+			'speedCurve' => array(
+				'type' => 'string'
+			),
+			'imageborderRadius' => array(
+				'type' => 'string'
+			),
+			'imageborder' => array(
+				'type' => 'object'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js'
+	),
 	'separator' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
