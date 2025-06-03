@@ -1,1 +1,177 @@
-.wp-block-create-block-content-toggle{border:1px dotted red}.wp-block-wpmozo-content-wrapper.wpmozo-bna-content-toggle-active{height:auto;opacity:1;overflow:initial;position:static!important;visibility:visible}.wpmozo-bna-content-toggle-content-wrap{position:relative}.wp-block-wpmozo-content-wrapper{height:0;opacity:0;overflow:hidden;position:absolute!important;visibility:hidden;width:100%}.wpmozo-bna-toggle-button{height:30px;margin:0 12px}.wpmozo-bna-toggle-button-wrap{align-items:center;display:flex;justify-content:center;margin-bottom:2%}.wpmozo-bna-toggle-button-inner{display:inline-block;height:30px;position:relative;width:70px}.wpmozo-bna-toggle-button-inner input{height:0;opacity:0;width:0}.wpmozo-bna-toggle-button .wpmozo-bna-toggle-switch{background-color:#ccc;bottom:0;cursor:pointer;right:0;position:absolute;left:0;top:0;transition:.4s}.wpmozo-bna-content-toggle-main .wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo-bna-toggle-switch:before,.wpmozo-bna-toggle-button .wpmozo-bna-toggle-switch,.wpmozo-bna-toggle-button-wrap .wpmozo-bna-toggle-switch,.wpmozo-bna-toggle-button-wrap .wpmozo-bna-toggle-switch .wpmozo_switch_trigger{transition:all .4s}.wpmozo-bna-toggle-button .wpmozo-bna-toggle-switch:before{background-color:#fff;bottom:4px;content:"";height:22px;right:4px;position:absolute;transition:.4s;width:22px}.wpmozo-bna-toggle-button input:checked+.wpmozo-bna-toggle-switch{background-color:#2196f3}.wpmozo-bna-toggle-button input:checked+.wpmozo-bna-toggle-switch:before{transform:translateX(-40px)}.wpmozo-bna-toggle-button .wpmozo-bna-toggle-switch.wpmozo_rounded{border-radius:34px}.wpmozo-bna-toggle-button .wpmozo-bna-toggle-switch.wpmozo_rounded:before{border-radius:50%}.wpmozo-bna-toggle-title-wrap{align-items:center;cursor:pointer;display:flex}.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo-bna-toggle-switch{background-color:#eee;border-radius:34px;cursor:pointer;display:flex;overflow:hidden;position:relative}.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo-bna-toggle-switch:before{background-color:#fff;border-radius:inherit;bottom:0;content:"";height:100%;right:0;position:absolute;top:0;transform:translateX(75%);transition:transform .5s ease-in-out;width:200%}.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo-bna-toggle-field:checked+.wpmozo-bna-toggle-switch:before{transform:translateX(-25%)}.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo_switch_trigger{padding:10px 20px;position:relative;z-index:1}.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo_switch_trigger:before{position:absolute;transition:opacity .3s}.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo-bna-toggle-field{height:0;position:absolute;width:0}.wpmozo-bna-toggle-button-wrap.wpmozo_toggle{align-items:center;flex:1;flex-wrap:wrap;overflow:hidden}.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo_switch_trigger{align-items:center;display:flex;gap:3px;justify-content:center;width:50%;word-break:break-word}.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo-bna-toggle-title-wrap h5{margin:6px;min-width:50%}
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/content-toggle/style.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-create-block-content-toggle {
+  border: 1px dotted #f00;
+}
+
+/* Editor Style Over */
+.wp-block-wpmozo-content-wrapper.wpmozo-bna-content-toggle-active {
+  visibility: visible;
+  position: initial !important;
+  height: auto;
+  opacity: 1;
+  overflow: initial;
+}
+
+.wpmozo-bna-content-toggle-content-wrap {
+  position: relative;
+}
+
+.wp-block-wpmozo-content-wrapper {
+  visibility: hidden;
+  position: absolute !important;
+  width: 100%;
+  height: 0px;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.wpmozo-bna-toggle-button {
+  margin: 0 12px;
+  height: 30px;
+}
+
+.wpmozo-bna-toggle-button-wrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2%;
+  justify-content: center;
+}
+
+.wpmozo-bna-toggle-button-inner {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 30px;
+}
+
+.wpmozo-bna-toggle-button-inner input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.wpmozo-bna-toggle-button .wpmozo-bna-toggle-switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.wpmozo-bna-toggle-button .wpmozo-bna-toggle-switch,
+.wpmozo-bna-toggle-button-wrap .wpmozo-bna-toggle-switch,
+.wpmozo-bna-content-toggle-main .wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo-bna-toggle-switch:before,
+.wpmozo-bna-toggle-button-wrap .wpmozo-bna-toggle-switch .wpmozo_switch_trigger {
+  transition: all 0.4s;
+}
+
+.wpmozo-bna-toggle-button .wpmozo-bna-toggle-switch:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  right: 4px;
+  bottom: 4px;
+  background-color: #fff;
+  transition: 0.4s;
+}
+
+.wpmozo-bna-toggle-button input:checked + .wpmozo-bna-toggle-switch {
+  background-color: #2196f3;
+}
+
+.wpmozo-bna-toggle-button input:checked + .wpmozo-bna-toggle-switch:before {
+  transform: translateX(-40px);
+}
+
+.wpmozo-bna-toggle-button .wpmozo-bna-toggle-switch.wpmozo_rounded {
+  border-radius: 34px;
+}
+
+.wpmozo-bna-toggle-button .wpmozo-bna-toggle-switch.wpmozo_rounded:before {
+  border-radius: 50%;
+}
+
+.wpmozo-bna-toggle-title-wrap {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* switch type toggle css start */
+.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo-bna-toggle-switch {
+  position: relative;
+  display: flex;
+  border-radius: 34px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #eee;
+}
+
+.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo-bna-toggle-switch::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 200%;
+  border-radius: inherit;
+  background-color: #fff;
+  transform: translateX(75%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo-bna-toggle-field:checked + .wpmozo-bna-toggle-switch::before {
+  transform: translateX(-25%);
+}
+
+.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo_switch_trigger {
+  position: relative;
+  z-index: 1;
+  padding: 10px 20px;
+}
+
+.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo_switch_trigger::before {
+  position: absolute;
+  transition: opacity 0.3s;
+}
+
+.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo-bna-toggle-field {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.wpmozo-bna-toggle-button-wrap.wpmozo_toggle {
+  flex: 1;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo_switch_trigger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  width: 50%;
+  word-break: break-word;
+}
+
+.wpmozo-bna-toggle-button-wrap.wpmozo_toggle .wpmozo-bna-toggle-title-wrap h5 {
+  margin: 6px;
+  min-width: 50%;
+}
+
+/* switch type toggle css over */

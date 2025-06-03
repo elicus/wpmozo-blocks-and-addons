@@ -1,1 +1,50 @@
-.wp-block-create-block-floating-image-item{background-color:#21759b;color:#fff;padding:2px}.floating-image-item{position:absolute!important}.wpmozo-bna-floating-image-wrapper{position:relative}.floating-image-item{display:inline-block;left:0;line-height:0;margin:0;top:0;transition:.3s;will-change:transform}@keyframes wpmozo_float_up_down{0%{transform:translateY(10px)}to{transform:translateY(-10px)}}@keyframes wpmozo_float_left_right{0%{transform:translateX(10px)}to{transform:translateX(-10px)}}
+/*!******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/floating-image-item/style.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-create-block-floating-image-item {
+  background-color: #21759b;
+  color: #fff;
+  padding: 2px;
+}
+
+.floating-image-item {
+  position: absolute !important;
+}
+
+.wpmozo-bna-floating-image-wrapper {
+  position: relative;
+}
+
+.floating-image-item {
+  display: inline-block;
+  line-height: 0;
+  top: 0;
+  left: 0;
+  margin: 0;
+  will-change: transform;
+  transition: 0.3s;
+}
+@keyframes wpmozo_float_up_down {
+  from {
+    transform: translateY(10px);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+@keyframes wpmozo_float_left_right {
+  from {
+    transform: translateX(10px);
+  }
+  to {
+    transform: translateX(-10px);
+  }
+}
+
+/*# sourceMappingURL=style-index.css.map*/

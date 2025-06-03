@@ -1132,6 +1132,367 @@ return array(
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./view.js'
 	),
+	'image-card' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/image-card',
+		'version' => '0.1.0',
+		'title' => 'Image Card',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'shadow' => true
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'image' => array(
+				'type' => 'string'
+			),
+			'imageBorder' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageBorderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageBorderRadius' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageDimensionspadding' => array(
+				'type' => 'object',
+				'default' => ''
+			),
+			'icon' => array(
+				'type' => 'string',
+				'default' => 'far fa-star'
+			),
+			'iconColor' => array(
+				'type' => 'string'
+			),
+			'iconFontSize' => array(
+				'type' => 'number',
+				'default' => ''
+			),
+			'iconAlign' => array(
+				'type' => 'string',
+				'default' => 'left'
+			),
+			'styleIcon' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showShapeBorder' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'iconShape' => array(
+				'type' => 'string',
+				'default' => 'square'
+			),
+			'iconBackground' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'shapeBorderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageHeight' => array(
+				'type' => 'number',
+				'default' => 200
+			),
+			'imageWidth' => array(
+				'type' => 'number',
+				'default' => 200
+			),
+			'title' => array(
+				'type' => 'string',
+				'default' => 'Image Card Title'
+			),
+			'titleAlign' => array(
+				'type' => 'string',
+				'default' => 'left'
+			),
+			'titleColor' => array(
+				'type' => 'string'
+			),
+			'titleFontSize' => array(
+				'type' => 'string'
+			),
+			'titleLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'titleDecoration' => array(
+				'type' => 'string'
+			),
+			'titleLetterCase' => array(
+				'type' => 'string'
+			),
+			'titleLineHeight' => array(
+				'type' => 'string'
+			),
+			'titleLevel' => array(
+				'type' => 'string',
+				'default' => 'h2'
+			),
+			'titleFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'titleFontStyle' => array(
+				'type' => 'string'
+			),
+			'titleFontWeight' => array(
+				'type' => 'string'
+			),
+			'titleHoverColor' => array(
+				'type' => 'string'
+			),
+			'titleHoverFontSize' => array(
+				'type' => 'string'
+			),
+			'titleHoverLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'titleHoverDecoration' => array(
+				'type' => 'string'
+			),
+			'titleHoverLetterCase' => array(
+				'type' => 'string'
+			),
+			'titleHoverLineHeight' => array(
+				'type' => 'string'
+			),
+			'titleHoverFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'titleHoverFontStyle' => array(
+				'type' => 'string'
+			),
+			'titleHoverFontWeight' => array(
+				'type' => 'string'
+			),
+			'description' => array(
+				'type' => 'string',
+				'default' => 'Your content goes here. Edit this text inline or in the block Content settings. You can also style every aspect of this content in the block Design settings.'
+			),
+			'descriptionTextAlign' => array(
+				'type' => 'string',
+				'default' => 'left'
+			),
+			'descriptionTextColor' => array(
+				'type' => 'string'
+			),
+			'descriptionTextFontSize' => array(
+				'type' => 'string'
+			),
+			'descriptionTextLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'descriptionTextDecoration' => array(
+				'type' => 'string'
+			),
+			'descriptionTextLetterCase' => array(
+				'type' => 'string'
+			),
+			'descriptionTextLineHeight' => array(
+				'type' => 'string'
+			),
+			'descriptionHoverTextColor' => array(
+				'type' => 'string'
+			),
+			'descriptionHoverTextFontSize' => array(
+				'type' => 'string'
+			),
+			'descriptionHoverTextLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'descriptionHoverTextDecoration' => array(
+				'type' => 'string'
+			),
+			'descriptionHoverTextLetterCase' => array(
+				'type' => 'string'
+			),
+			'descriptionHoverTextLineHeight' => array(
+				'type' => 'string'
+			),
+			'contentAlign' => array(
+				'type' => 'string',
+				'default' => 'left'
+			),
+			'contentColor' => array(
+				'type' => 'string'
+			),
+			'contentHoverColor' => array(
+				'type' => 'string'
+			),
+			'contentFontSize' => array(
+				'type' => 'string'
+			),
+			'contentLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'contentDecoration' => array(
+				'type' => 'string'
+			),
+			'contentLetterCase' => array(
+				'type' => 'string'
+			),
+			'contentLineHeight' => array(
+				'type' => 'string'
+			),
+			'contentFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'contentBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'contentpadding' => array(
+				'type' => 'object',
+				'default' => array(
+					'top' => '',
+					'right' => '15px',
+					'bottom' => '',
+					'left' => '15px'
+				)
+			),
+			'contentHoverBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'contentHoverpadding' => array(
+				'type' => 'object',
+				'default' => array(
+					'top' => '',
+					'right' => '15px',
+					'bottom' => '',
+					'left' => '15px'
+				)
+			),
+			'showButton' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'buttonText' => array(
+				'type' => 'string',
+				'default' => 'Read More'
+			),
+			'buttonUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'buttonLinkTarget' => array(
+				'type' => 'string',
+				'default' => 'same'
+			),
+			'buttonTextColor' => array(
+				'type' => 'string'
+			),
+			'buttonTextBackground' => array(
+				'type' => 'string'
+			),
+			'buttonTextAlign' => array(
+				'type' => 'string',
+				'default' => 'left'
+			),
+			'buttonTextFontSize' => array(
+				'type' => 'string'
+			),
+			'buttonTextLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'buttonTextDecoration' => array(
+				'type' => 'string',
+				'default' => 'none'
+			),
+			'buttonTextLetterCase' => array(
+				'type' => 'string'
+			),
+			'buttonTextLineHeight' => array(
+				'type' => 'string'
+			),
+			'buttonTextFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'buttonIcon' => array(
+				'type' => 'string',
+				'default' => 'fas fa-arrow-right'
+			),
+			'buttonImage' => array(
+				'type' => 'string'
+			),
+			'buttonMediaPosition' => array(
+				'type' => 'string',
+				'default' => 'after'
+			),
+			'buttonMediaType' => array(
+				'type' => 'string',
+				'default' => 'icon'
+			),
+			'buttonTextFontStyle' => array(
+				'type' => 'string'
+			),
+			'buttonTextFontWeight' => array(
+				'type' => 'string'
+			),
+			'buttonTextborder' => array(
+				'type' => 'object',
+				'default' => array(
+					'width' => '1px',
+					'style' => 'solid',
+					'color' => '#fff'
+				)
+			),
+			'buttonTextborderRadius' => array(
+				'type' => 'string',
+				'default' => '3px'
+			),
+			'buttonDimensionspadding' => array(
+				'type' => 'object',
+				'default' => array(
+					'top' => '5px',
+					'right' => '8px',
+					'bottom' => '5px',
+					'left' => '8px'
+				)
+			),
+			'buttonDimensionsmargin' => array(
+				'type' => 'object'
+			),
+			'showMediaOnHover' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js'
+	),
 	'list' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
