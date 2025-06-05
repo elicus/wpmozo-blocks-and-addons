@@ -445,6 +445,107 @@ return array(
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js'
 	),
+	'fancy-text' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/fancy-text',
+		'version' => '0.1.0',
+		'title' => 'Fancy Text',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'fancyText' => array(
+				'type' => 'string',
+				'default' => 'Here you can set text.'
+			),
+			'textStyle' => array(
+				'type' => 'string',
+				'default' => 'gradient'
+			),
+			'fancyTextBackground' => array(
+				'type' => 'string',
+				'default' => 'linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)'
+			),
+			'fancyTextBackgroundImg' => array(
+				'type' => 'string',
+				'default' => '/wp-content/plugins/wpmozo-blocks-and-addons/includes/assets/images/placeholder.webp'
+			),
+			'textBgSize' => array(
+				'type' => 'string',
+				'default' => 'cover'
+			),
+			'textBgPosition' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'textBgRepeat' => array(
+				'type' => 'string',
+				'default' => 'initial'
+			),
+			'textBgOverlay' => array(
+				'type' => 'string',
+				'default' => 'none'
+			),
+			'textBgOverlayColor' => array(
+				'type' => 'string'
+			),
+			'textBgOverlayColorSolid' => array(
+				'type' => 'string'
+			),
+			'textBgOverlayColorGradient' => array(
+				'type' => 'string'
+			),
+			'textBgDimensionspadding' => array(
+				'type' => 'object'
+			),
+			'textAlignment' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'textFontSize' => array(
+				'type' => 'string'
+			),
+			'textFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'textLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'textDecoration' => array(
+				'type' => 'string'
+			),
+			'textLetterCase' => array(
+				'type' => 'string'
+			),
+			'textLineHeight' => array(
+				'type' => 'string'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css'
+	),
 	'flip-box' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -1492,6 +1593,151 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./view.js'
+	),
+	'interactive-image-card' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/interactive-image-card',
+		'version' => '0.1.0',
+		'title' => 'Interactive Image Card',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'title' => array(
+				'type' => 'string',
+				'default' => 'Image Card Title'
+			),
+			'content' => array(
+				'type' => 'string',
+				'default' => 'Your content goes here. Edit this text inline or in the widget Content settings. You can also style every aspect of this content in the widget Design settings.'
+			),
+			'backImage' => array(
+				'type' => 'string'
+			),
+			'layout' => array(
+				'type' => 'string',
+				'default' => 'lily'
+			),
+			'imageOpacity' => array(
+				'type' => 'number',
+				'default' => 0.7
+			),
+			'layoutborder' => array(
+				'type' => 'object',
+				'default' => array(
+					'color' => '#000000',
+					'width' => '1px',
+					'style' => 'solid'
+				)
+			),
+			'overlayColor' => array(
+				'type' => 'string'
+			),
+			'titleLavel' => array(
+				'type' => 'string',
+				'default' => 'h2'
+			),
+			'titleNormalColor' => array(
+				'type' => 'string',
+				'default' => '#222222'
+			),
+			'titleHoverColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'titleNormalFontSize' => array(
+				'type' => 'string'
+			),
+			'titleNormalFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'titleNormalLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'titleNormalDecoration' => array(
+				'type' => 'string'
+			),
+			'titleNormalLetterCase' => array(
+				'type' => 'string'
+			),
+			'titleNormalLineHeight' => array(
+				'type' => 'string'
+			),
+			'titleHoverFontSize' => array(
+				'type' => 'string'
+			),
+			'titleHoverFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'titleHoverLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'titleHoverDecoration' => array(
+				'type' => 'string'
+			),
+			'titleHoverLetterCase' => array(
+				'type' => 'string'
+			),
+			'titleHoverLineHeight' => array(
+				'type' => 'string'
+			),
+			'titleAlign' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'contentColor' => array(
+				'type' => 'string',
+				'default' => '#222222'
+			),
+			'contentFontSize' => array(
+				'type' => 'string'
+			),
+			'contentFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'contentLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'contentDecoration' => array(
+				'type' => 'string'
+			),
+			'contentLetterCase' => array(
+				'type' => 'string'
+			),
+			'contentLineHeight' => array(
+				'type' => 'string'
+			),
+			'contentAlign' => array(
+				'type' => 'string',
+				'default' => 'center'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css'
 	),
 	'list' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
