@@ -2037,6 +2037,223 @@ return array(
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./view.js'
 	),
+	'logo-slider' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/logo-slider',
+		'version' => '0.1.0',
+		'title' => 'Logo Slider',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'allowedBlocks' => array(
+			'wpmozo/logo-slider-item'
+		),
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'images' => array(
+				'type' => 'array'
+			),
+			'logoPerSlide' => array(
+				'type' => 'string',
+				'default' => '4'
+			),
+			'slidesPerGroup' => array(
+				'type' => 'string',
+				'default' => '1'
+			),
+			'spaceBetweenSlides' => array(
+				'type' => 'number',
+				'default' => 20
+			),
+			'sliderLoop' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'autoplay' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'enableLinearTransition' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'autoplaySpeed' => array(
+				'type' => 'string',
+				'default' => 3000
+			),
+			'pauseOnHover' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'transitionDuration' => array(
+				'type' => 'string',
+				'default' => 1000
+			),
+			'showArrow' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'previousSlideArrow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'nextSlideArrow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'showArrowOnHover' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'arrowsPosition' => array(
+				'type' => 'string',
+				'default' => 'inside'
+			),
+			'showControlDot' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'controlDotStyle' => array(
+				'type' => 'string',
+				'default' => 'solid_dot'
+			),
+			'enableDynamicDots' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'containerbackground' => array(
+				'type' => 'string'
+			),
+			'containerpadding' => array(
+				'type' => 'object'
+			),
+			'sliderArrowColor' => array(
+				'type' => 'string'
+			),
+			'sliderArrowBackground' => array(
+				'type' => 'string'
+			),
+			'sliderActiveDoteColor' => array(
+				'type' => 'string'
+			),
+			'sliderInactiveDoteColor' => array(
+				'type' => 'string'
+			),
+			'arrowFontSize' => array(
+				'type' => 'string'
+			),
+			'arrowpadding' => array(
+				'type' => 'object'
+			),
+			'logoWidth' => array(
+				'type' => 'number',
+				'default' => 150
+			),
+			'logoHeight' => array(
+				'type' => 'number',
+				'default' => 150
+			),
+			'tabletLogoPerSlide' => array(
+				'type' => 'string',
+				'default' => '3'
+			),
+			'tabletSlidesPerGroup' => array(
+				'type' => 'string',
+				'default' => '1'
+			),
+			'tabletSpaceBetweenSlides' => array(
+				'type' => 'number',
+				'default' => 20
+			),
+			'mobileLogoPerSlide' => array(
+				'type' => 'string',
+				'default' => '1'
+			),
+			'mobileSlidesPerGroup' => array(
+				'type' => 'string',
+				'default' => '1'
+			),
+			'mobileSpaceBetweenSlides' => array(
+				'type' => 'number',
+				'default' => 20
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'wpmozo-blocks-and-addons-swiper-style'
+		),
+		'script' => array(
+			'wpmozo-blocks-and-addons-swiper-script',
+			'file:./script.js'
+		),
+		'viewScript' => 'file:./view.js'
+	),
+	'logo-slider-item' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/logo-slider-item',
+		'version' => '0.1.0',
+		'title' => 'Logo Slider Item',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'parent' => array(
+			'wpmozo/logo-slider'
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'logo' => array(
+				'type' => 'object'
+			),
+			'altText' => array(
+				'type' => 'string'
+			),
+			'link' => array(
+				'type' => 'string'
+			),
+			'linkTarget' => array(
+				'type' => 'string',
+				'default' => 'same'
+			),
+			'logoBackground' => array(
+				'type' => 'string'
+			),
+			'logopadding' => array(
+				'type' => 'object'
+			),
+			'logoborderRadius' => array(
+				'type' => 'string'
+			),
+			'logoborder' => array(
+				'type' => 'object'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js'
+	),
 	'separator' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
