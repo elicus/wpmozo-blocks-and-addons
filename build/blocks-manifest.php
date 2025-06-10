@@ -2429,5 +2429,243 @@ return array(
 		),
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./view.js'
+	),
+	'tilt-image' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/tilt-image',
+		'version' => '0.1.0',
+		'title' => 'Tilt Image',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'image' => array(
+				'type' => 'string'
+			),
+			'title' => array(
+				'type' => 'string'
+			),
+			'content' => array(
+				'type' => 'string'
+			),
+			'overlayColor' => array(
+				'type' => 'string'
+			),
+			'titleLavel' => array(
+				'type' => 'string',
+				'default' => 'h2'
+			),
+			'titleColor' => array(
+				'type' => 'string'
+			),
+			'titleFontSize' => array(
+				'type' => 'string'
+			),
+			'titleFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'titleLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'titleDecoration' => array(
+				'type' => 'string'
+			),
+			'titleLetterCase' => array(
+				'type' => 'string'
+			),
+			'titleLineHeight' => array(
+				'type' => 'string'
+			),
+			'titleAlign' => array(
+				'type' => 'string',
+				'default' => 'left'
+			),
+			'descriptionColor' => array(
+				'type' => 'string'
+			),
+			'descriptionFontSize' => array(
+				'type' => 'string'
+			),
+			'descriptionFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'descriptionLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'descriptionDecoration' => array(
+				'type' => 'string'
+			),
+			'descriptionLetterCase' => array(
+				'type' => 'string'
+			),
+			'descriptionLineHeight' => array(
+				'type' => 'string'
+			),
+			'descriptionAlign' => array(
+				'type' => 'string',
+				'default' => 'left'
+			),
+			'useIcon' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'icon' => array(
+				'type' => 'string'
+			),
+			'showButton' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'buttonText' => array(
+				'type' => 'string',
+				'default' => 'Read More'
+			),
+			'buttonUrl' => array(
+				'type' => 'string'
+			),
+			'buttonLinkTarget' => array(
+				'type' => 'string',
+				'default' => 'same'
+			),
+			'tiltMax' => array(
+				'type' => 'number',
+				'default' => 20
+			),
+			'tiltPerspective' => array(
+				'type' => 'number',
+				'default' => 1000
+			),
+			'tiltScale' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'tiltSpeed' => array(
+				'type' => 'number',
+				'default' => 300
+			),
+			'tiltMobile' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'useGlare' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'tiltMaxGlare' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'use3dEffect' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'tilt3dValue' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'useDisableAxis' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'tiltDisableAxis' => array(
+				'type' => 'string'
+			),
+			'useOverlay' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'iconColor' => array(
+				'type' => 'string'
+			),
+			'iconAlign' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'useIconFontSize' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'iconFontSize' => array(
+				'type' => 'string'
+			),
+			'contentOnHover' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'contentAlignment' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'contentAnimationDirection' => array(
+				'type' => 'string',
+				'default' => 'off'
+			),
+			'contentpadding' => array(
+				'type' => 'object'
+			),
+			'buttonTextColor' => array(
+				'type' => 'string'
+			),
+			'buttonBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'buttonFontSize' => array(
+				'type' => 'string'
+			),
+			'buttonFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'buttonLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'buttonDecoration' => array(
+				'type' => 'string'
+			),
+			'buttonLetterCase' => array(
+				'type' => 'string'
+			),
+			'buttonLineHeight' => array(
+				'type' => 'string'
+			),
+			'buttonborder' => array(
+				'type' => 'object'
+			),
+			'buttonborderRadius' => array(
+				'type' => 'string'
+			),
+			'buttonpadding' => array(
+				'type' => 'object'
+			),
+			'buttonwrapmargin' => array(
+				'type' => 'object'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'script' => 'file:./script.js'
 	)
 );
