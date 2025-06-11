@@ -14,11 +14,6 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
     ];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
-    let css = '', 
-        contentOneAddi = convertedStyle.contentOne + convertedStyle.contentOneDimensions,
-        contentTwoAddi = convertedStyle.contentTwo + convertedStyle.contentTwoDimensions;
-
-
 	let styles = `#block-${clientId}{`;
 
 	styles += `${attributes.toggleSwitchColor ? `.wpmozo-bna-toggle-button-wrap .wpmozo-bna-toggle-switch:before { background-color: ${attributes.toggleSwitchColor}; }` : ''}`;
@@ -70,7 +65,6 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
         ${convertedStyle.contentOneDimensions  || ''}
 
     }`;
-    /*styles += contentOneAddi || '';*/
 
     styles += `.wpmozo-bna-content-toggle-two { 
         ${attributes.contentTwoBackground ? `background-color: ${attributes.contentTwoBackground};` : ''} 
@@ -80,7 +74,6 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
         ${convertedStyle.contentTwoDimensions  || ''}
 
     }`;
-    /*styles += contentTwoAddi || '';*/
 
 
 	styles += `}`;

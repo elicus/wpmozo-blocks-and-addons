@@ -5,8 +5,6 @@ import {__} from "@wordpress/i18n";
 import {useEffect, Fragment} from "@wordpress/element";
 import {useBlockProps, RichText} from "@wordpress/block-editor";
 
-import './editor.scss';
-
 export default function Edit(props) {
 
 	let attributes = props.attributes,

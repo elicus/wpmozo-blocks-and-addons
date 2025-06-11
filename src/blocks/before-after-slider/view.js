@@ -21,7 +21,6 @@
  */
 
 /* eslint-disable no-console */
-console.log( 'Hello World! (from create-block-before-after-slider block)' );
 jQuery('.wpmozo-bna-before-after-image-wrapper').each(function( key, el ){
 
         let $this = jQuery(this),

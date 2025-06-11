@@ -23,76 +23,13 @@
       "type": "string",
       "default": "onlySeparator"
     },
-    "separatorText": {
-      "type": "string",
-      "default": "Add text here"
-    },
-    "separatorIcon": {
-      "type": "string",
-      "default": ""
-    },
-    "iconPosition": {
-      "type": "string",
-      "default": "center"
-    },
-    "enableIconFontSize": {
-      "type": "boolean",
-      "default": false
-    },
-    "iconFontSize": {
-      "type": "number",
-      "default": 32
-    },
-    "iconColor": {
-      "type": "string"
-    },
-    "styleIcon": {
-      "type": "boolean",
-      "default": false
-    },
-    "iconShape": {
-      "type": "string",
-      "default": "square"
-    },
-    "shapeBackground": {
-      "type": "string"
-    },
-    "enableShapeBorder": {
-      "type": "boolean",
-      "default": false
-    },
-    "shapeBorderColor": {
-      "type": "string"
-    },
-    "separatorImage": {
-      "type": "string",
-      "default": ""
-    },
-    "imageWidth": {
-      "type": "number"
-    },
-    "imagePosition": {
-      "type": "string",
-      "default": "center"
-    },
     "lineStyle": {
       "type": "string",
       "default": "solid"
     },
-    "separatorThickness": {
-      "type": "number",
-      "default": 3
-    },
-    "separatorGradient": {
-      "type": "string"
-    },
-    "separatorColor": {
+    "separatorText": {
       "type": "string",
-      "default": "#2b87da"
-    },
-    "shadowColor": {
-      "type": "string",
-      "default": "#2b87da"
+      "default": "Add text here"
     },
     "textNormalColor": {
       "type": "string",
@@ -161,14 +98,73 @@
     "textAlign": {
       "type": "string",
       "default": "center"
+    },
+    "separatorImage": {
+      "type": "string",
+      "default": ""
+    },
+    "imageWidth": {
+      "type": "number"
+    },
+    "imagePosition": {
+      "type": "string",
+      "default": "center"
+    },
+    "separatorIcon": {
+      "type": "string",
+      "default": ""
+    },
+    "iconPosition": {
+      "type": "string",
+      "default": "center"
+    },
+    "enableIconFontSize": {
+      "type": "boolean",
+      "default": false
+    },
+    "iconFontSize": {
+      "type": "number",
+      "default": 32
+    },
+    "iconColor": {
+      "type": "string"
+    },
+    "styleIcon": {
+      "type": "boolean",
+      "default": false
+    },
+    "iconShape": {
+      "type": "string",
+      "default": "square"
+    },
+    "shapeBackground": {
+      "type": "string"
+    },
+    "enableShapeBorder": {
+      "type": "boolean",
+      "default": false
+    },
+    "shapeBorderColor": {
+      "type": "string"
+    },
+    "separatorThickness": {
+      "type": "number",
+      "default": 3
+    },
+    "separatorGradient": {
+      "type": "string"
+    },
+    "separatorColor": {
+      "type": "string",
+      "default": "#2b87da"
+    },
+    "shadowColor": {
+      "type": "string",
+      "default": "#2b87da"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",
   "editorScript": "file:./index.js",
-  "editorStyle": [
-    "file:./index.css",
-    "wpmozo-blocks-and-addons-fontawesome-style"
-  ],
-  "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "editorStyle": "wpmozo-blocks-and-addons-fontawesome-style",
+  "style": "file:./style-index.css"
 }

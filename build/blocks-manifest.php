@@ -23,27 +23,27 @@ return array(
 			'globalcolorHandle' => array(
 				'type' => 'string'
 			),
-			'globalcolorOverlay' => array(
-				'type' => 'string'
-			),
-			'sliderOrientation' => array(
-				'type' => 'string',
-				'default' => 'horizontal'
-			),
 			'handleOffset' => array(
 				'type' => 'number'
-			),
-			'moveHandleOnHover' => array(
-				'type' => 'boolean',
-				'default' => false
 			),
 			'moveHandleOnClick' => array(
 				'type' => 'boolean',
 				'default' => false
 			),
+			'moveHandleOnHover' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'sliderOrientation' => array(
+				'type' => 'string',
+				'default' => 'horizontal'
+			),
 			'overlayOnHover' => array(
 				'type' => 'boolean',
 				'default' => false
+			),
+			'globalcolorOverlay' => array(
+				'type' => 'string'
 			),
 			'beforeImage' => array(
 				'type' => 'string'
@@ -146,7 +146,6 @@ return array(
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
 			'wpmozo-blocks-and-addons-imagesloaded-style',
@@ -270,13 +269,6 @@ return array(
 				'type' => 'string',
 				'default' => 'Title Two'
 			),
-			'toggleTwoIcon' => array(
-				'type' => 'string'
-			),
-			'toggleTwoIconPostion' => array(
-				'type' => 'string',
-				'default' => 'before'
-			),
 			'titleTwoColor' => array(
 				'type' => 'string'
 			),
@@ -317,6 +309,13 @@ return array(
 			),
 			'titleTwoLineHeight' => array(
 				'type' => 'string'
+			),
+			'toggleTwoIcon' => array(
+				'type' => 'string'
+			),
+			'toggleTwoIconPostion' => array(
+				'type' => 'string',
+				'default' => 'before'
 			),
 			'contentOneColor' => array(
 				'type' => 'string'
@@ -419,10 +418,8 @@ return array(
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'script' => 'file:./script.js',
-		'viewScript' => 'file:./view.js'
+		'script' => 'file:./script.js'
 	),
 	'content-wrapper' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -441,6 +438,209 @@ return array(
 		),
 		'attributes' => array(
 			
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js'
+	),
+	'fancy-heading' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/fancy-heading',
+		'version' => '0.1.0',
+		'title' => 'Fancy Heading',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'displayInStack' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'headingLevel' => array(
+				'type' => 'string',
+				'default' => 'h2'
+			),
+			'headingAlignment' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'headingColor' => array(
+				'type' => 'string'
+			),
+			'headingBackground' => array(
+				'type' => 'string'
+			),
+			'preHeading' => array(
+				'type' => 'string',
+				'default' => 'Pre'
+			),
+			'preTextAlignment' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'preTextColor' => array(
+				'type' => 'string'
+			),
+			'preTextBackground' => array(
+				'type' => 'string'
+			),
+			'preTextHoverColor' => array(
+				'type' => 'string'
+			),
+			'preTextHoverBackground' => array(
+				'type' => 'string'
+			),
+			'preTextDimensionspadding' => array(
+				'type' => 'object'
+			),
+			'preTextDimensionsmargin' => array(
+				'type' => 'object'
+			),
+			'preTextFontSize' => array(
+				'type' => 'string'
+			),
+			'preTextFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'preTextLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'preTextDecoration' => array(
+				'type' => 'string'
+			),
+			'preTextLetterCase' => array(
+				'type' => 'string'
+			),
+			'preTextLineHeight' => array(
+				'type' => 'string'
+			),
+			'mainHeading' => array(
+				'type' => 'string',
+				'default' => 'Main'
+			),
+			'mainTextColor' => array(
+				'type' => 'string'
+			),
+			'mainTextAlignment' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'mainTextBackground' => array(
+				'type' => 'string'
+			),
+			'mainTextHoverColor' => array(
+				'type' => 'string'
+			),
+			'mainTextHoverBackground' => array(
+				'type' => 'string'
+			),
+			'mainTextDimensionspadding' => array(
+				'type' => 'object'
+			),
+			'mainTextDimensionsmargin' => array(
+				'type' => 'object'
+			),
+			'mainTextFontSize' => array(
+				'type' => 'string'
+			),
+			'mainTextFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'mainTextLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'mainTextDecoration' => array(
+				'type' => 'string'
+			),
+			'mainTextLetterCase' => array(
+				'type' => 'string'
+			),
+			'mainTextLineHeight' => array(
+				'type' => 'string'
+			),
+			'postHeading' => array(
+				'type' => 'string',
+				'default' => 'Post'
+			),
+			'postTextColor' => array(
+				'type' => 'string'
+			),
+			'postTextAlignment' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'postTextBackground' => array(
+				'type' => 'string'
+			),
+			'postTextHoverColor' => array(
+				'type' => 'string'
+			),
+			'postTextHoverBackground' => array(
+				'type' => 'string'
+			),
+			'postTextDimensionspadding' => array(
+				'type' => 'object'
+			),
+			'postTextDimensionsmargin' => array(
+				'type' => 'object'
+			),
+			'postTextFontSize' => array(
+				'type' => 'string'
+			),
+			'postTextFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'postTextLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'postTextDecoration' => array(
+				'type' => 'string'
+			),
+			'postTextLetterCase' => array(
+				'type' => 'string'
+			),
+			'postTextLineHeight' => array(
+				'type' => 'string'
+			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js'
@@ -543,7 +743,6 @@ return array(
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css'
 	),
 	'flip-box' => array(
@@ -584,44 +783,6 @@ return array(
 			'flipSpeed' => array(
 				'type' => 'number',
 				'default' => 700
-			),
-			'frontTitle' => array(
-				'type' => 'string',
-				'default' => 'Front Title'
-			),
-			'frontContnet' => array(
-				'type' => 'string',
-				'default' => 'Here you can set front text.'
-			),
-			'backTitle' => array(
-				'type' => 'string',
-				'default' => 'Back Title'
-			),
-			'backContnet' => array(
-				'type' => 'string',
-				'default' => 'Here you can set back text.'
-			),
-			'frontElType' => array(
-				'type' => 'string',
-				'default' => 'icon'
-			),
-			'frontElIcon' => array(
-				'type' => 'string',
-				'default' => 'fas fa-star'
-			),
-			'frontElImage' => array(
-				'type' => 'string'
-			),
-			'backElType' => array(
-				'type' => 'string',
-				'default' => 'icon'
-			),
-			'backElIcon' => array(
-				'type' => 'string',
-				'default' => 'fas fa-star'
-			),
-			'backElImage' => array(
-				'type' => 'string'
 			),
 			'globalTitleColor' => array(
 				'type' => 'string',
@@ -693,19 +854,16 @@ return array(
 			'globalContentLineHeight' => array(
 				'type' => 'string'
 			),
+			'frontTitle' => array(
+				'type' => 'string',
+				'default' => 'Front Title'
+			),
 			'frontHeadingLavel' => array(
 				'type' => 'string',
 				'default' => 'h2'
 			),
 			'frontTitleColor' => array(
 				'type' => 'string'
-			),
-			'frontContentColor' => array(
-				'type' => 'string'
-			),
-			'frontBackgroundColor' => array(
-				'type' => 'string',
-				'default' => '#543EC4'
 			),
 			'frontTitletext' => array(
 				'type' => 'string'
@@ -736,6 +894,13 @@ return array(
 				'type' => 'string'
 			),
 			'frontTitleLineHeight' => array(
+				'type' => 'string'
+			),
+			'frontContnet' => array(
+				'type' => 'string',
+				'default' => 'Here you can set front text.'
+			),
+			'frontContentColor' => array(
 				'type' => 'string'
 			),
 			'frontContenttext' => array(
@@ -769,19 +934,117 @@ return array(
 			'frontContentLineHeight' => array(
 				'type' => 'string'
 			),
+			'frontContentHorAlignment' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'frontContentVerAlignment' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'frontElType' => array(
+				'type' => 'string',
+				'default' => 'icon'
+			),
+			'frontBackgroundColor' => array(
+				'type' => 'string',
+				'default' => '#543EC4'
+			),
+			'frontElementAlign' => array(
+				'type' => 'string',
+				'default' => 'top'
+			),
+			'frontElIcon' => array(
+				'type' => 'string',
+				'default' => 'fas fa-star'
+			),
+			'frontIconColor' => array(
+				'type' => 'string',
+				'default' => '#fff'
+			),
+			'frontIconSize' => array(
+				'type' => 'string'
+			),
+			'frontIconSizeUnit' => array(
+				'type' => 'string'
+			),
+			'frontIconStyle' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'frontIconShape' => array(
+				'type' => 'string',
+				'default' => 'square'
+			),
+			'frontIconShapeBackground' => array(
+				'type' => 'string',
+				'default' => '#000000'
+			),
+			'frontIconHasShapeBorder' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'frontIconShapeborderRadius' => array(
+				'type' => 'string'
+			),
+			'frontIconShapeborder' => array(
+				'type' => 'object'
+			),
+			'frontIconShapeBorderColor' => array(
+				'type' => 'string'
+			),
+			'frontElImage' => array(
+				'type' => 'string'
+			),
+			'frontImageAlignment' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'frontImageWidth' => array(
+				'type' => 'string',
+				'default' => '100px'
+			),
+			'frontImageWidthUnit' => array(
+				'type' => 'string',
+				'default' => 'px'
+			),
+			'frontFlipboxborder' => array(
+				'type' => 'object'
+			),
+			'frontFlipboxborderRadius' => array(
+				'type' => 'string'
+			),
+			'frontFlipboxBackground' => array(
+				'type' => 'string',
+				'default' => '#543EC4'
+			),
+			'frontDimensionspadding' => array(
+				'type' => 'object',
+				'default' => array(
+					'top' => '10px',
+					'right' => '10px',
+					'bottom' => '10px',
+					'left' => '10px'
+				)
+			),
+			'flipboxWidth' => array(
+				'type' => 'string',
+				'default' => '100%'
+			),
+			'flipboxWidthUnit' => array(
+				'type' => 'string',
+				'default' => '%'
+			),
+			'backTitle' => array(
+				'type' => 'string',
+				'default' => 'Back Title'
+			),
 			'backHeadingLavel' => array(
 				'type' => 'string',
 				'default' => 'h2'
 			),
 			'backTitleColor' => array(
 				'type' => 'string'
-			),
-			'backContentColor' => array(
-				'type' => 'string'
-			),
-			'backBackgroundColor' => array(
-				'type' => 'string',
-				'default' => '#863AD0'
 			),
 			'backTitletext' => array(
 				'type' => 'string'
@@ -812,6 +1075,13 @@ return array(
 				'type' => 'string'
 			),
 			'backTitleLineHeight' => array(
+				'type' => 'string'
+			),
+			'backContnet' => array(
+				'type' => 'string',
+				'default' => 'Here you can set back text.'
+			),
+			'backContentColor' => array(
 				'type' => 'string'
 			),
 			'backContenttext' => array(
@@ -845,57 +1115,29 @@ return array(
 			'backContentLineHeight' => array(
 				'type' => 'string'
 			),
-			'frontElementAlign' => array(
-				'type' => 'string',
-				'default' => 'top'
-			),
-			'frontIconColor' => array(
-				'type' => 'string',
-				'default' => '#fff'
-			),
-			'frontIconSize' => array(
-				'type' => 'string'
-			),
-			'frontIconSizeUnit' => array(
-				'type' => 'string'
-			),
-			'frontImageAlignment' => array(
+			'backContentHorAlignment' => array(
 				'type' => 'string',
 				'default' => 'center'
 			),
-			'frontImageWidth' => array(
+			'backContentVerAlignment' => array(
 				'type' => 'string',
-				'default' => '100px'
+				'default' => 'center'
 			),
-			'frontImageWidthUnit' => array(
+			'backElType' => array(
 				'type' => 'string',
-				'default' => 'px'
+				'default' => 'icon'
 			),
-			'frontIconStyle' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'frontIconShape' => array(
+			'backBackgroundColor' => array(
 				'type' => 'string',
-				'default' => 'square'
-			),
-			'frontIconShapeBackground' => array(
-				'type' => 'string',
-				'default' => '#000000'
-			),
-			'frontIconHasShapeBorder' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'frontIconShapeborderRadius' => array(
-				'type' => 'string'
-			),
-			'frontIconShapeborder' => array(
-				'type' => 'object'
+				'default' => '#863AD0'
 			),
 			'backElementAlign' => array(
 				'type' => 'string',
 				'default' => 'top'
+			),
+			'backElIcon' => array(
+				'type' => 'string',
+				'default' => 'fas fa-star'
 			),
 			'backIconColor' => array(
 				'type' => 'string',
@@ -906,18 +1148,6 @@ return array(
 			),
 			'backIconSizeUnit' => array(
 				'type' => 'string'
-			),
-			'backImageAlignment' => array(
-				'type' => 'string',
-				'default' => 'center'
-			),
-			'backImageWidth' => array(
-				'type' => 'string',
-				'default' => '100px'
-			),
-			'backImageWidthUnit' => array(
-				'type' => 'string',
-				'default' => 'px'
 			),
 			'backIconStyle' => array(
 				'type' => 'boolean',
@@ -941,27 +1171,20 @@ return array(
 			'backIconShapeborder' => array(
 				'type' => 'object'
 			),
-			'frontContentHorAlignment' => array(
-				'type' => 'string',
-				'default' => 'center'
-			),
-			'frontContentVerAlignment' => array(
-				'type' => 'string',
-				'default' => 'center'
-			),
-			'backContentHorAlignment' => array(
-				'type' => 'string',
-				'default' => 'center'
-			),
-			'backContentVerAlignment' => array(
-				'type' => 'string',
-				'default' => 'center'
-			),
-			'frontFlipboxborder' => array(
-				'type' => 'object'
-			),
-			'frontFlipboxborderRadius' => array(
+			'backElImage' => array(
 				'type' => 'string'
+			),
+			'backImageAlignment' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'backImageWidth' => array(
+				'type' => 'string',
+				'default' => '100px'
+			),
+			'backImageWidthUnit' => array(
+				'type' => 'string',
+				'default' => 'px'
 			),
 			'backFlipboxborder' => array(
 				'type' => 'object'
@@ -969,21 +1192,21 @@ return array(
 			'backFlipboxborderRadius' => array(
 				'type' => 'string'
 			),
-			'frontFlipboxBackground' => array(
-				'type' => 'string',
-				'default' => '#543EC4'
-			),
 			'backFlipboxBackground' => array(
 				'type' => 'string',
 				'default' => '#863AD0'
 			),
-			'flipboxWidth' => array(
-				'type' => 'string',
-				'default' => '100%'
+			'backDimensionspadding' => array(
+				'type' => 'object',
+				'default' => array(
+					'top' => '10px',
+					'right' => '10px',
+					'bottom' => '10px',
+					'left' => '10px'
+				)
 			),
-			'flipboxWidthUnit' => array(
-				'type' => 'string',
-				'default' => '%'
+			'backIconShapeBorderColor' => array(
+				'type' => 'string'
 			),
 			'backHasButton' => array(
 				'type' => 'boolean',
@@ -1071,38 +1294,13 @@ return array(
 			),
 			'backBtnDimensionsmargin' => array(
 				'type' => 'object'
-			),
-			'frontIconShapeBorderColor' => array(
-				'type' => 'string'
-			),
-			'backIconShapeBorderColor' => array(
-				'type' => 'string'
-			),
-			'frontDimensionspadding' => array(
-				'type' => 'object',
-				'default' => array(
-					'top' => '10px',
-					'right' => '10px',
-					'bottom' => '10px',
-					'left' => '10px'
-				)
-			),
-			'backDimensionspadding' => array(
-				'type' => 'object',
-				'default' => array(
-					'top' => '10px',
-					'right' => '10px',
-					'bottom' => '10px',
-					'left' => '10px'
-				)
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'script' => 'file:./script.js',
-		'viewScript' => 'file:./view.js'
+		'script' => 'file:./script.js'
 	),
 	'floating-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -1149,10 +1347,7 @@ return array(
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
-		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./view.js'
+		'editorScript' => 'file:./index.js'
 	),
 	'floating-image-item' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -1229,9 +1424,7 @@ return array(
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./view.js'
+		'style' => 'file:./style-index.css'
 	),
 	'image-card' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -1590,9 +1783,7 @@ return array(
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./view.js'
+		'style' => 'file:./style-index.css'
 	),
 	'interactive-image-card' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -1616,32 +1807,6 @@ return array(
 			'title' => array(
 				'type' => 'string',
 				'default' => 'Image Card Title'
-			),
-			'content' => array(
-				'type' => 'string',
-				'default' => 'Your content goes here. Edit this text inline or in the widget Content settings. You can also style every aspect of this content in the widget Design settings.'
-			),
-			'backImage' => array(
-				'type' => 'string'
-			),
-			'layout' => array(
-				'type' => 'string',
-				'default' => 'lily'
-			),
-			'imageOpacity' => array(
-				'type' => 'number',
-				'default' => 0.7
-			),
-			'layoutborder' => array(
-				'type' => 'object',
-				'default' => array(
-					'color' => '#000000',
-					'width' => '1px',
-					'style' => 'solid'
-				)
-			),
-			'overlayColor' => array(
-				'type' => 'string'
 			),
 			'titleLavel' => array(
 				'type' => 'string',
@@ -1703,6 +1868,10 @@ return array(
 				'type' => 'string',
 				'default' => 'center'
 			),
+			'content' => array(
+				'type' => 'string',
+				'default' => 'Your content goes here. Edit this text inline or in the widget Content settings. You can also style every aspect of this content in the widget Design settings.'
+			),
 			'contentColor' => array(
 				'type' => 'string',
 				'default' => '#222222'
@@ -1732,11 +1901,32 @@ return array(
 			'contentAlign' => array(
 				'type' => 'string',
 				'default' => 'center'
+			),
+			'backImage' => array(
+				'type' => 'string'
+			),
+			'imageOpacity' => array(
+				'type' => 'number',
+				'default' => 0.7
+			),
+			'layout' => array(
+				'type' => 'string',
+				'default' => 'lily'
+			),
+			'layoutborder' => array(
+				'type' => 'object',
+				'default' => array(
+					'color' => '#000000',
+					'width' => '1px',
+					'style' => 'solid'
+				)
+			),
+			'overlayColor' => array(
+				'type' => 'string'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css'
 	),
 	'list' => array(
@@ -1808,41 +1998,9 @@ return array(
 			'indentation' => array(
 				'type' => 'number'
 			),
-			'textColor' => array(
-				'type' => 'string',
-				'default' => '#222222'
-			),
 			'linkColor' => array(
 				'type' => 'string',
 				'default' => '#000000'
-			),
-			'textFontSize' => array(
-				'type' => 'string'
-			),
-			'textFontAppearance' => array(
-				'type' => 'object',
-				'fontStyle' => array(
-					'type' => 'string'
-				),
-				'fontWeight' => array(
-					'type' => 'string'
-				),
-				'default' => array(
-					'fontStyle' => '',
-					'fontWeight' => ''
-				)
-			),
-			'textLetterSpacing' => array(
-				'type' => 'string'
-			),
-			'textDecoration' => array(
-				'type' => 'string'
-			),
-			'textLetterCase' => array(
-				'type' => 'string'
-			),
-			'textLineHeight' => array(
-				'type' => 'string'
 			),
 			'linkFontSize' => array(
 				'type' => 'string'
@@ -1871,13 +2029,43 @@ return array(
 			),
 			'linkLineHeight' => array(
 				'type' => 'string'
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => '#222222'
+			),
+			'textFontSize' => array(
+				'type' => 'string'
+			),
+			'textFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'textLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'textDecoration' => array(
+				'type' => 'string'
+			),
+			'textLetterCase' => array(
+				'type' => 'string'
+			),
+			'textLineHeight' => array(
+				'type' => 'string'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./view.js'
+		'style' => 'file:./style-index.css'
 	),
 	'list-item' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -1922,39 +2110,6 @@ return array(
 				'source' => 'rich-text',
 				'selector' => 'p',
 				'role' => 'text'
-			),
-			'markerType' => array(
-				'type' => 'string',
-				'default' => 'icon'
-			),
-			'markerIcon' => array(
-				'type' => 'string',
-				'default' => 'fas fa-check'
-			),
-			'styleIcon' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'iconShape' => array(
-				'type' => 'string',
-				'default' => 'square'
-			),
-			'iconColor' => array(
-				'type' => 'string'
-			),
-			'shapeBackground' => array(
-				'type' => 'string'
-			),
-			'enableShapeBorder' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'shapeBorderColor' => array(
-				'type' => 'string'
-			),
-			'markerImage' => array(
-				'type' => 'string',
-				'default' => ''
 			),
 			'textNormalColor' => array(
 				'type' => 'string',
@@ -2029,13 +2184,43 @@ return array(
 			'textHoverLineHeight' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'markerType' => array(
+				'type' => 'string',
+				'default' => 'icon'
+			),
+			'markerIcon' => array(
+				'type' => 'string',
+				'default' => 'fas fa-check'
+			),
+			'markerImage' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'styleIcon' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'iconShape' => array(
+				'type' => 'string',
+				'default' => 'square'
+			),
+			'iconColor' => array(
+				'type' => 'string'
+			),
+			'shapeBackground' => array(
+				'type' => 'string'
+			),
+			'enableShapeBorder' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'shapeBorderColor' => array(
+				'type' => 'string'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
-		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./view.js'
+		'editorScript' => 'file:./index.js'
 	),
 	'logo-slider' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -2189,7 +2374,6 @@ return array(
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
 			'wpmozo-blocks-and-addons-swiper-style'
@@ -2197,8 +2381,7 @@ return array(
 		'script' => array(
 			'wpmozo-blocks-and-addons-swiper-script',
 			'file:./script.js'
-		),
-		'viewScript' => 'file:./view.js'
+		)
 	),
 	'logo-slider-item' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -2225,6 +2408,12 @@ return array(
 			'logo' => array(
 				'type' => 'object'
 			),
+			'logoborderRadius' => array(
+				'type' => 'string'
+			),
+			'logoborder' => array(
+				'type' => 'object'
+			),
 			'altText' => array(
 				'type' => 'string'
 			),
@@ -2240,19 +2429,10 @@ return array(
 			),
 			'logopadding' => array(
 				'type' => 'object'
-			),
-			'logoborderRadius' => array(
-				'type' => 'string'
-			),
-			'logoborder' => array(
-				'type' => 'object'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
-		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./view.js'
+		'editorScript' => 'file:./index.js'
 	),
 	'separator' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -2281,76 +2461,13 @@ return array(
 				'type' => 'string',
 				'default' => 'onlySeparator'
 			),
-			'separatorText' => array(
-				'type' => 'string',
-				'default' => 'Add text here'
-			),
-			'separatorIcon' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'iconPosition' => array(
-				'type' => 'string',
-				'default' => 'center'
-			),
-			'enableIconFontSize' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'iconFontSize' => array(
-				'type' => 'number',
-				'default' => 32
-			),
-			'iconColor' => array(
-				'type' => 'string'
-			),
-			'styleIcon' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'iconShape' => array(
-				'type' => 'string',
-				'default' => 'square'
-			),
-			'shapeBackground' => array(
-				'type' => 'string'
-			),
-			'enableShapeBorder' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'shapeBorderColor' => array(
-				'type' => 'string'
-			),
-			'separatorImage' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'imageWidth' => array(
-				'type' => 'number'
-			),
-			'imagePosition' => array(
-				'type' => 'string',
-				'default' => 'center'
-			),
 			'lineStyle' => array(
 				'type' => 'string',
 				'default' => 'solid'
 			),
-			'separatorThickness' => array(
-				'type' => 'number',
-				'default' => 3
-			),
-			'separatorGradient' => array(
-				'type' => 'string'
-			),
-			'separatorColor' => array(
+			'separatorText' => array(
 				'type' => 'string',
-				'default' => '#2b87da'
-			),
-			'shadowColor' => array(
-				'type' => 'string',
-				'default' => '#2b87da'
+				'default' => 'Add text here'
 			),
 			'textNormalColor' => array(
 				'type' => 'string',
@@ -2419,16 +2536,75 @@ return array(
 			'textAlign' => array(
 				'type' => 'string',
 				'default' => 'center'
+			),
+			'separatorImage' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageWidth' => array(
+				'type' => 'number'
+			),
+			'imagePosition' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'separatorIcon' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'iconPosition' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'enableIconFontSize' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'iconFontSize' => array(
+				'type' => 'number',
+				'default' => 32
+			),
+			'iconColor' => array(
+				'type' => 'string'
+			),
+			'styleIcon' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'iconShape' => array(
+				'type' => 'string',
+				'default' => 'square'
+			),
+			'shapeBackground' => array(
+				'type' => 'string'
+			),
+			'enableShapeBorder' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'shapeBorderColor' => array(
+				'type' => 'string'
+			),
+			'separatorThickness' => array(
+				'type' => 'number',
+				'default' => 3
+			),
+			'separatorGradient' => array(
+				'type' => 'string'
+			),
+			'separatorColor' => array(
+				'type' => 'string',
+				'default' => '#2b87da'
+			),
+			'shadowColor' => array(
+				'type' => 'string',
+				'default' => '#2b87da'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => array(
-			'file:./index.css',
-			'wpmozo-blocks-and-addons-fontawesome-style'
-		),
-		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./view.js'
+		'editorStyle' => 'wpmozo-blocks-and-addons-fontawesome-style',
+		'style' => 'file:./style-index.css'
 	),
 	'tilt-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -2453,12 +2629,6 @@ return array(
 				'type' => 'string'
 			),
 			'title' => array(
-				'type' => 'string'
-			),
-			'content' => array(
-				'type' => 'string'
-			),
-			'overlayColor' => array(
 				'type' => 'string'
 			),
 			'titleLavel' => array(
@@ -2494,6 +2664,9 @@ return array(
 				'type' => 'string',
 				'default' => 'left'
 			),
+			'content' => array(
+				'type' => 'string'
+			),
 			'descriptionColor' => array(
 				'type' => 'string'
 			),
@@ -2523,11 +2696,28 @@ return array(
 				'type' => 'string',
 				'default' => 'left'
 			),
+			'overlayColor' => array(
+				'type' => 'string'
+			),
 			'useIcon' => array(
 				'type' => 'boolean',
 				'default' => false
 			),
 			'icon' => array(
+				'type' => 'string'
+			),
+			'iconColor' => array(
+				'type' => 'string'
+			),
+			'iconAlign' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'useIconFontSize' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'iconFontSize' => array(
 				'type' => 'string'
 			),
 			'showButton' => array(
@@ -2544,6 +2734,46 @@ return array(
 			'buttonLinkTarget' => array(
 				'type' => 'string',
 				'default' => 'same'
+			),
+			'buttonTextColor' => array(
+				'type' => 'string'
+			),
+			'buttonBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'buttonFontSize' => array(
+				'type' => 'string'
+			),
+			'buttonFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'buttonLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'buttonDecoration' => array(
+				'type' => 'string'
+			),
+			'buttonLetterCase' => array(
+				'type' => 'string'
+			),
+			'buttonLineHeight' => array(
+				'type' => 'string'
+			),
+			'buttonborder' => array(
+				'type' => 'object'
+			),
+			'buttonborderRadius' => array(
+				'type' => 'string'
+			),
+			'buttonpadding' => array(
+				'type' => 'object'
+			),
+			'buttonwrapmargin' => array(
+				'type' => 'object'
 			),
 			'tiltMax' => array(
 				'type' => 'number',
@@ -2592,20 +2822,6 @@ return array(
 				'type' => 'boolean',
 				'default' => false
 			),
-			'iconColor' => array(
-				'type' => 'string'
-			),
-			'iconAlign' => array(
-				'type' => 'string',
-				'default' => 'center'
-			),
-			'useIconFontSize' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'iconFontSize' => array(
-				'type' => 'string'
-			),
 			'contentOnHover' => array(
 				'type' => 'boolean',
 				'default' => false
@@ -2620,51 +2836,10 @@ return array(
 			),
 			'contentpadding' => array(
 				'type' => 'object'
-			),
-			'buttonTextColor' => array(
-				'type' => 'string'
-			),
-			'buttonBackgroundColor' => array(
-				'type' => 'string'
-			),
-			'buttonFontSize' => array(
-				'type' => 'string'
-			),
-			'buttonFontAppearance' => array(
-				'type' => 'object',
-				'default' => array(
-					'fontStyle' => '',
-					'fontWeight' => ''
-				)
-			),
-			'buttonLetterSpacing' => array(
-				'type' => 'string'
-			),
-			'buttonDecoration' => array(
-				'type' => 'string'
-			),
-			'buttonLetterCase' => array(
-				'type' => 'string'
-			),
-			'buttonLineHeight' => array(
-				'type' => 'string'
-			),
-			'buttonborder' => array(
-				'type' => 'object'
-			),
-			'buttonborderRadius' => array(
-				'type' => 'string'
-			),
-			'buttonpadding' => array(
-				'type' => 'object'
-			),
-			'buttonwrapmargin' => array(
-				'type' => 'object'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
 		'script' => 'file:./script.js'
 	)

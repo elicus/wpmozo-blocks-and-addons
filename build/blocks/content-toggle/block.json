@@ -108,13 +108,6 @@
       "type": "string",
       "default": "Title Two"
     },
-    "toggleTwoIcon": {
-      "type": "string"
-    },
-    "toggleTwoIconPostion": {
-      "type": "string",
-      "default": "before"
-    },
     "titleTwoColor": {
       "type": "string"
     },
@@ -155,6 +148,13 @@
     },
     "titleTwoLineHeight": {
       "type": "string"
+    },
+    "toggleTwoIcon": {
+      "type": "string"
+    },
+    "toggleTwoIconPostion": {
+      "type": "string",
+      "default": "before"
     },
     "contentOneColor": {
       "type": "string"
@@ -257,8 +257,6 @@
   },
   "textdomain": "wpmozo-blocks-and-addons",
   "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "script": "file:./script.js",
-  "viewScript": "file:./view.js"
+  "script": "file:./script.js"
 }

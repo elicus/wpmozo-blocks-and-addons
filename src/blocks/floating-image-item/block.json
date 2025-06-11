@@ -18,58 +18,27 @@
         }
     },
     "attributes": {
-        "ID": {
-            "type": "string"
-        },
-        "image": {
-            "type": "object"
-        },
-        "imagewidth": {
-            "type": "string",
-            "default": "200px"
-        },
-        "imageheight": {
-            "type": "string"
-        },
-        "altText": {
-            "type": "string",
-            "default": ""
-        },
-        "horizontalAlign": {
-            "type": "string"
-        },
-        "verticalAlign": {
-            "type": "string"
-        },
-        "animationEffect": {
-            "type": "string",
-            "default": "up_down"
-        },
-        "animationDelay": {
-            "type": "number",
-            "default": 0
-        },
-        "animationDuration": {
-            "type": "number",
-            "default": 4000
-        },
-        "animationRepeat": {
-            "type": "string",
-            "default": "infinite"
-        },
-        "speedCurve": {
-            "type": "string"
-        },
-        "imageborderRadius": {
-            "type": "string"
-        },
-        "imageborder": {
-            "type": "object"
-        }
+        "ID": { "type": "string" },
+        
+        "image": { "type": "object" },
+        "imagewidth": { "type": "string", "default": "200px" },
+        "imageheight": { "type": "string" },
+        "altText": { "type": "string", "default": "" },
+        
+        "horizontalAlign": { "type": "string" },
+        "verticalAlign": { "type": "string" },
+        
+        "animationEffect": { "type": "string", "default": "up_down" },
+        "animationDelay": { "type": "number", "default": 0 },
+        "animationDuration": { "type": "number", "default": 4000 },
+        "animationRepeat": { "type": "string", "default": "infinite" },
+        
+        "speedCurve": { "type": "string" },
+        
+        "imageborderRadius": { "type": "string" },
+        "imageborder": { "type": "object" }
     },
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",
-    "editorStyle": "file:./index.css",
-    "style": "file:./style-index.css",
-    "viewScript": "file:./view.js"
+    "style": "file:./style-index.css"
 }

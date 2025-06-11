@@ -10,7 +10,7 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
         'item'
     ];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
-    let parentAttributes = attributes.parentAtts;
+    let iconFontSize = attributes.parentAtts ? attributes.parentAtts.iconFontSize : '';
 
 
 	let styles = `#block-${clientId}.wpmozo-bna-list-item{`;
@@ -22,7 +22,7 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
     styles += `${(convertedStyle.item) ? convertedStyle.item : ''}`;
 
 	styles += ` .wpmozo-bna-list-item-text p { ${(attributes.textNormalColor) ? `color:` +attributes.textNormalColor+`;` : ''} ${ (convertedStyle.textNormal) ? convertedStyle.textNormal : ''} } .wpmozo-bna-list-item-text p:hover { ${ (attributes.textHoverColor)?`color:`+ attributes.textHoverColor+`;` : '' } ${ (convertedStyle.textHover) ? convertedStyle.textHover : '' }
-		} ${ (parentAttributes.iconFontSize)?`.wpmozo-bna-list-icon i { font-size: `+ parentAttributes.iconFontSize+`px;}` : '' } `;
+		} ${ (iconFontSize)?`.wpmozo-bna-list-icon i { font-size: `+ iconFontSize+`px;}` : '' } `;
 
 	if ( 'icon' === attributes.markerType ) {
 		styles += `${ (attributes.iconColor) ? `.wpmozo-bna-list-icon i { color:`+ attributes.iconColor+`;}` : '' }`;

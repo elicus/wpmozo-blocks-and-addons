@@ -40,39 +40,6 @@
       "selector": "p",
       "role": "text"
     },
-    "markerType": {
-      "type": "string",
-      "default": "icon"
-    },
-    "markerIcon": {
-      "type": "string",
-      "default": "fas fa-check"
-    },
-    "styleIcon": {
-      "type": "boolean",
-      "default": false
-    },
-    "iconShape": {
-      "type": "string",
-      "default": "square"
-    },
-    "iconColor": {
-      "type": "string"
-    },
-    "shapeBackground": {
-      "type": "string"
-    },
-    "enableShapeBorder": {
-      "type": "boolean",
-      "default": false
-    },
-    "shapeBorderColor": {
-      "type": "string"
-    },
-    "markerImage": {
-      "type": "string",
-      "default": ""
-    },
     "textNormalColor": {
       "type": "string",
       "default": ""
@@ -146,11 +113,41 @@
     "textHoverLineHeight": {
       "type": "string",
       "default": ""
+    },
+    "markerType": {
+      "type": "string",
+      "default": "icon"
+    },
+    "markerIcon": {
+      "type": "string",
+      "default": "fas fa-check"
+    },
+    "markerImage": {
+      "type": "string",
+      "default": ""
+    },
+    "styleIcon": {
+      "type": "boolean",
+      "default": false
+    },
+    "iconShape": {
+      "type": "string",
+      "default": "square"
+    },
+    "iconColor": {
+      "type": "string"
+    },
+    "shapeBackground": {
+      "type": "string"
+    },
+    "enableShapeBorder": {
+      "type": "boolean",
+      "default": false
+    },
+    "shapeBorderColor": {
+      "type": "string"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",
-  "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "editorScript": "file:./index.js"
 }

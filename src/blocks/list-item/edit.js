@@ -11,7 +11,6 @@ import { useSelect } from '@wordpress/data';
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import './editor.scss';
 
 export default function Edit(props) {
 

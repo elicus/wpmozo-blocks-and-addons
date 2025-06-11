@@ -21,6 +21,12 @@
     "logo": {
       "type": "object"
     },
+    "logoborderRadius": {
+      "type": "string"
+    },
+    "logoborder": {
+      "type": "object"
+    },
     "altText": {
       "type": "string"
     },
@@ -36,17 +42,8 @@
     },
     "logopadding": {
       "type": "object"
-    },
-    "logoborderRadius": {
-      "type": "string"
-    },
-    "logoborder": {
-      "type": "object"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",
-  "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "editorScript": "file:./index.js"
 }

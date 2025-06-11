@@ -10,7 +10,6 @@ import { wpmozo_is_empty } from '../../common/utils.js';
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import './editor.scss';
 
 export default function Edit(props) {
     const WPMozoEditorObj = wpmozo_bna_editor_object,

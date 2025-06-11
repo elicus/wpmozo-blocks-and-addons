@@ -386,6 +386,7 @@ const Inspector = ({attributes, setAttributes}) => {
 						<ButtonGroup>
 							{headingLavels.map((item, key) => (
 								<Button
+									key={item.value}
 									isPressed={(item.value === attributes.titleLavel) ? true : false}
 									onClick={(newValue) => setAttributes({titleLavel: item.value})}
 								>

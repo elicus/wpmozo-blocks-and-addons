@@ -65,41 +65,9 @@
     "indentation": {
       "type": "number"
     },
-    "textColor": {
-      "type": "string",
-      "default": "#222222"
-    },
     "linkColor": {
       "type": "string",
       "default": "#000000"
-    },
-    "textFontSize": {
-      "type": "string"
-    },
-    "textFontAppearance": {
-      "type": "object",
-      "fontStyle": {
-        "type": "string"
-      },
-      "fontWeight": {
-        "type": "string"
-      },
-      "default": {
-        "fontStyle": "",
-        "fontWeight": ""
-      }
-    },
-    "textLetterSpacing": {
-      "type": "string"
-    },
-    "textDecoration": {
-      "type": "string"
-    },
-    "textLetterCase": {
-      "type": "string"
-    },
-    "textLineHeight": {
-      "type": "string"
     },
     "linkFontSize": {
       "type": "string"
@@ -128,11 +96,41 @@
     },
     "linkLineHeight": {
       "type": "string"
+    },
+    "textColor": {
+      "type": "string",
+      "default": "#222222"
+    },
+    "textFontSize": {
+      "type": "string"
+    },
+    "textFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "textLetterSpacing": {
+      "type": "string"
+    },
+    "textDecoration": {
+      "type": "string"
+    },
+    "textLetterCase": {
+      "type": "string"
+    },
+    "textLineHeight": {
+      "type": "string"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",
   "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "style": "file:./style-index.css"
 }

@@ -18,27 +18,27 @@
     "globalcolorHandle": {
       "type": "string"
     },
-    "globalcolorOverlay": {
-      "type": "string"
-    },
-    "sliderOrientation": {
-      "type": "string",
-      "default": "horizontal"
-    },
     "handleOffset": {
       "type": "number"
-    },
-    "moveHandleOnHover": {
-      "type": "boolean",
-      "default": false
     },
     "moveHandleOnClick": {
       "type": "boolean",
       "default": false
     },
+    "moveHandleOnHover": {
+      "type": "boolean",
+      "default": false
+    },
+    "sliderOrientation": {
+      "type": "string",
+      "default": "horizontal"
+    },
     "overlayOnHover": {
       "type": "boolean",
       "default": false
+    },
+    "globalcolorOverlay": {
+      "type": "string"
     },
     "beforeImage": {
       "type": "string"
@@ -141,7 +141,6 @@
   },
   "textdomain": "wpmozo-blocks-and-addons",
   "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
   "style": [
     "file:./style-index.css",
     "wpmozo-blocks-and-addons-imagesloaded-style",

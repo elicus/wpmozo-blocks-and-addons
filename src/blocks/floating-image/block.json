@@ -27,20 +27,12 @@
         }
     },
     "attributes": {
-        "ID": {
-        "type": "string"
-        },
-        "images": {
-            "type": "array"
-        },
-        "containerHeight": {
-            "type": "string",
-            "default": "450px"
-        }
+        "ID": { "type": "string" },
+        
+        "images": { "type": "array" },
+        
+        "containerHeight": { "type": "string", "default": "450px" }
     },
     "textdomain": "wpmozo-blocks-and-addons",
-    "editorScript": "file:./index.js",
-    "editorStyle": "file:./index.css",
-    "style": "file:./style-index.css",
-    "viewScript": "file:./view.js"
+    "editorScript": "file:./index.js"
 }

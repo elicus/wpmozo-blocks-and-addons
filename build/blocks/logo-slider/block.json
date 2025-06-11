@@ -148,7 +148,6 @@
   },
   "textdomain": "wpmozo-blocks-and-addons",
   "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
   "style": [
     "file:./style-index.css",
     "wpmozo-blocks-and-addons-swiper-style"
@@ -156,6 +155,5 @@
   "script": [
     "wpmozo-blocks-and-addons-swiper-script",
     "file:./script.js"
-  ],
-  "viewScript": "file:./view.js"
+  ]
 }

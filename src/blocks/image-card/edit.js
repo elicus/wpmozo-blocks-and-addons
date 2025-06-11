@@ -8,7 +8,6 @@ import Inspector from './inspector';
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import './editor.scss';
 import generateDynamicStyle from "./style";
 import {wpmozo_is_empty} from '../../common/utils.js';
 

@@ -9,8 +9,6 @@ import generateDynamicStyle from './style';
 import { Fragment, useMemo } from "@wordpress/element";
 import { wpmozo_is_empty } from '../../common/utils.js';
 
-import './editor.scss';
-
 export default function Edit(props) {
     const { attributes, setAttributes, clientId } = props;
     attributes.ID = clientId;
