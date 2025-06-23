@@ -16,7 +16,7 @@ export default function save({ attributes }) {
         <style>
             { generateDynamicStyle({ attributes, clientId }) }
         </style>
-        <div { ...useBlockProps.save({ className: 'floating-image-item' })} id={`block-${ID}`}>
+        <div className="floating-image-item" id={`block-${ID}`}>
             { attributes.image &&
             <img className="floating-image" src={( attributes.image.url ) ? attributes.image.url : "" } alt={altText} />
             }

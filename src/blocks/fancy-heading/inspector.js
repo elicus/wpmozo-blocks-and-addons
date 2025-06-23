@@ -98,7 +98,7 @@ const Inspector = ({attributes, setAttributes}) => {
 						value={attributes.headingAlignment}
 					/>
 					<BaseControl
-						label={__('Heading Lavel', 'wpmozo-blocks-and-addons')}
+						label={__('Heading Level', 'wpmozo-blocks-and-addons')}
 					>
 						<ButtonGroup>
 							{headingLevels.map((item, key) => (

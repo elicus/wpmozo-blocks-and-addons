@@ -19,7 +19,7 @@
       "type": "string",
       "default": "Image Card Title"
     },
-    "titleLavel": {
+    "titleLevel": {
       "type": "string",
       "default": "h2"
     },

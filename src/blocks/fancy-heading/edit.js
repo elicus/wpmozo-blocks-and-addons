@@ -2,7 +2,6 @@ import {__} from "@wordpress/i18n";
 import {Fragment, createElement} from "@wordpress/element";
 import {useBlockProps, RichText, BlockControls} from "@wordpress/block-editor";
 import {useState} from "@wordpress/element";
-import {getIdByClientid} from '../../common/utils';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -16,7 +15,7 @@ export default function Edit(props) {
 
 	let attributes = props.attributes,
 		clientId = props.clientId,
-		ID = getIdByClientid(clientId),
+		ID = clientId,
 		blockProps = useBlockProps(),
 		isSelected = props.isSelected,
 		setAttributes = props.setAttributes;

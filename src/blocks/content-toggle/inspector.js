@@ -53,6 +53,8 @@ const Inspector = ({ attributes, setAttributes }) => {
                         label={ __( 'Toggle Title', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.toggleOneTitle }
                         onChange={ ( newValue ) => setAttributes( { toggleOneTitle: newValue } ) }
+                        __next40pxDefaultSize
+                        __nextHasNoMarginBottom
                     />
                     <WpmozoIconpicker
                         label={ __( 'Icon', 'wpmozo-blocks-and-addons' ) }
@@ -67,6 +69,8 @@ const Inspector = ({ attributes, setAttributes }) => {
                             value={ attributes.toggleOneIconPostion }
                             options={ positionValues }
                             onChange={ ( newValue ) => setAttributes( { toggleOneIconPostion: newValue } ) }
+                            __next40pxDefaultSize
+                            __nextHasNoMarginBottom
                         />
                     }
                 </PanelBody>
@@ -75,6 +79,8 @@ const Inspector = ({ attributes, setAttributes }) => {
                         label={ __( 'Toggle Title', 'wpmozo-blocks-and-addons' ) }
                         value={ attributes.toggleTwoTitle }
                         onChange={ ( newValue ) => setAttributes( { toggleTwoTitle: newValue } ) }
+                        __next40pxDefaultSize
+                        __nextHasNoMarginBottom
                     />
                     <WpmozoIconpicker
                         label={ __( 'Icon', 'wpmozo-blocks-and-addons' ) }
@@ -89,6 +95,8 @@ const Inspector = ({ attributes, setAttributes }) => {
                             value={ attributes.toggleTwoIconPostion }
                             options={ positionValues }
                             onChange={ ( newValue ) => setAttributes( { toggleTwoIconPostion: newValue } ) }
+                            __next40pxDefaultSize
+                            __nextHasNoMarginBottom
                         />
                     }
                 </PanelBody>
@@ -100,6 +108,8 @@ const Inspector = ({ attributes, setAttributes }) => {
                         value={ attributes.toggleSwitchType }
                         options={ switchTypeValues }
                         onChange={ ( newValue ) => setAttributes( { toggleSwitchType: newValue } ) }
+                        __next40pxDefaultSize
+                        __nextHasNoMarginBottom
                     />
                     <WpmozoColorCombo
                         label={ __( 'Switch Color', 'wpmozo-blocks-and-addons' ) }

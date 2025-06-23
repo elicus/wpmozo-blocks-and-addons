@@ -29,7 +29,7 @@ const WPMozoEditorObj = wpmozo_bna_editor_object;
             <style>
                 { generateDynamicStyle({ attributes, clientId }) }
             </style>
-            <div { ...useBlockProps({ className: 'floating-image-item' }) }>
+            <div className= "floating-image-item">
                 { attributes.image &&
                 <img className="floating-image" src={( attributes.image.url ) ? attributes.image.url : "" } alt={altText} />
                 }

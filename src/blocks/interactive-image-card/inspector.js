@@ -66,7 +66,7 @@ const Inspector = ({attributes, setAttributes}) => {
 				label: __('Milo', 'wpmozo-blocks-and-addons'),
 			},
 		],
-		headingLavels = [
+		headingLevels = [
 			{
 				label: __('H1', 'wpmozo-blocks-and-addons'),
 				value: 'h1'
@@ -159,14 +159,14 @@ const Inspector = ({attributes, setAttributes}) => {
 				<PanelBody title={__('Title', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel"
 						   initialOpen={false}>
 					<BaseControl
-						label={__('Title Heading Lavel', 'wpmozo-blocks-and-addons')}
+						label={__('Title Heading Level', 'wpmozo-blocks-and-addons')}
 					>
 						<ButtonGroup>
-							{headingLavels.map((item, key) => (
+							{headingLevels.map((item, key) => (
 								<Button
-									key={'title-lavel-' + item.value}
-									isPressed={(item.value === attributes.titleLavel) ? true : false}
-									onClick={(newValue) => setAttributes({titleLavel: item.value})}
+									key={'title-level-' + item.value}
+									isPressed={(item.value === attributes.titleLevel) ? true : false}
+									onClick={(newValue) => setAttributes({titleLevel: item.value})}
 								>
 									{item.label}
 								</Button>

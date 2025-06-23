@@ -58,7 +58,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                 value: 'hexagon'
             }
         ],
-        headingLavels = [
+        headingLevels = [
             {
                 label: __( 'H1', 'wpmozo-blocks-and-addons' ),
                 value: 'h1'
@@ -231,7 +231,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                         label={ __( 'Heading Level', 'wpmozo-blocks-and-addons' ) }
                     >
                         <ButtonGroup>
-                            {headingLavels.map((item, index) => (
+                            {headingLevels.map((item, index) => (
                                 <Button
                                     key={item.value}
                                     isPressed={item.value === attributes.titleLevel}

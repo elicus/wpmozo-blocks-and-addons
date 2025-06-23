@@ -18,11 +18,14 @@ export default function Edit(props) {
         clientId = props.clientId;
         attributes.ID = clientId;
 
-    let init = false;
+    let init = false,
+    beforeImage,afterImage;
+    (attributes.beforeImage) ? attributes.beforeImage = attributes.beforeImage : attributes.beforeImage = WPMozoEditorObj.placeholderImg;
+    (attributes.afterImage) ? attributes.afterImage = attributes.afterImage : attributes.afterImage = WPMozoEditorObj.placeholderImg;
+    beforeImage = attributes.beforeImage;
+    afterImage = attributes.afterImage;
 
-    let beforeImage = ( attributes.beforeImage ) ? attributes.beforeImage : WPMozoEditorObj.placeholderImg,
-        afterImage = ( attributes.afterImage ) ? attributes.afterImage : WPMozoEditorObj.placeholderImg,
-        beforeLabel = ( attributes.beforeHasLabel ) ? attributes.beforeLabel : '',
+    let beforeLabel = ( attributes.beforeHasLabel ) ? attributes.beforeLabel : '',
         afterLabel = ( attributes.afterHasLabel ) ? attributes.afterLabel : '';
 
     function wpmozo_before_init( main ){

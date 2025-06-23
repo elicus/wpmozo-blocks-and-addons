@@ -17,7 +17,7 @@ export default function save({attributes}) {
 							<div className="wpmozo-bna-interactive-image-card-inner">
 								<RichText.Content
 									className="wpmozo-bna-interactive-image-card-title"
-									tagName={attributes.titleLavel}
+									tagName={attributes.titleLevel}
 									value={attributes.title}
 								/>
 								<RichText.Content

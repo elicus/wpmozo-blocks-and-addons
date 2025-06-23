@@ -29,7 +29,7 @@ const Inspector = ({attributes, setAttributes}) => {
 
 	let props = {attributes, setAttributes};
 	props = Object.assign({}, props, {preAttributes: {}});
-	const headingLavels = [
+	const headingLevels = [
 			{
 				label: __('H1', 'wpmozo-blocks-and-addons'),
 				value: 'h1'
@@ -381,14 +381,14 @@ const Inspector = ({attributes, setAttributes}) => {
 						]}
 					/>
 					<BaseControl
-						label={__('Heading Lavel', 'wpmozo-blocks-and-addons')}
+						label={__('Heading Level', 'wpmozo-blocks-and-addons')}
 					>
 						<ButtonGroup>
-							{headingLavels.map((item, key) => (
+							{headingLevels.map((item, key) => (
 								<Button
 									key={item.value}
-									isPressed={(item.value === attributes.titleLavel) ? true : false}
-									onClick={(newValue) => setAttributes({titleLavel: item.value})}
+									isPressed={(item.value === attributes.titleLevel) ? true : false}
+									onClick={(newValue) => setAttributes({titleLevel: item.value})}
 								>
 									{item.label}
 								</Button>

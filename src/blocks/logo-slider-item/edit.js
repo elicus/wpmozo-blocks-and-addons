@@ -33,7 +33,7 @@ export default function Edit(props) {
 			<style>
 				{generateDynamicStyle({attributes, clientId})}
 			</style>
-			<div { ...useBlockProps({ className: 'swiper-slide', id:`block-${clientId}` }) } data-client-id={clientId} onClick={selectBlock}>
+			<div className="swiper-slide" id={`block-${clientId}`}  data-client-id={clientId} onClick={selectBlock}>
 				<div className="logo-wrap">
 					<img className="logo-img" src={attributes.logo.url} alt={altText}/>
 				</div>

@@ -34,7 +34,7 @@ export default function Edit(props) {
 							<div className="wpmozo-bna-interactive-image-card-inner">
 								<RichText
 									className="wpmozo-bna-interactive-image-card-title"
-									tagName={attributes.titleLavel}
+									tagName={attributes.titleLevel}
 									value={attributes.title}
 									onChange={(newValue) => setAttributes({title: newValue})}
 									placeholder={__('Image Card Title', 'wpmozo-blocks-and-addons')}

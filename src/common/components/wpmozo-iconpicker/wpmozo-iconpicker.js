@@ -43,6 +43,8 @@ const WpmozoIconpicker = (args) => {
 				onChange={onChange}
 				options={options}
 				__experimentalRenderItem={renderItem}
+				__next40pxDefaultSize
+				__nextHasNoMarginBottom
 			/>
 			<div key={`wpmozo-icon-wrap-${iconPickerKey}`} className="wpmozo-icon-wraper">
 				<i className={icon} />

@@ -37,7 +37,7 @@ export default function Edit(props) {
 		if (iframe?.contentWindow) {
 			iframe.contentWindow.dispatchEvent(event);
 		}
-	}, [attributes]);
+	}, [props]);
 
 	let paginationClass = ( attributes.enableDynamicDots ) ? ' swiper-pagination-bullets-dynamic' : '';
 

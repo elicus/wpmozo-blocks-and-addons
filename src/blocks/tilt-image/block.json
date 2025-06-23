@@ -17,7 +17,7 @@
 		"image": { "type": "string" },
 		
 		"title": { "type": "string" },
-		"titleLavel": { "type": "string", "default": "h2" },
+		"titleLevel": { "type": "string", "default": "h2" },
 		"titleColor": { "type": "string" },
 		"titleFontSize": { "type": "string" },
 		"titleFontAppearance": { "type": "object", "default": { "fontStyle": "", "fontWeight": "" } },

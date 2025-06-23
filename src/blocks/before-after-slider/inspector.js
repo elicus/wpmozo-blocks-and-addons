@@ -45,6 +45,8 @@ const Inspector = ({ attributes, setAttributes }) => {
                             }
                         ]}
                         onChange={ ( newValue ) => setAttributes( { sliderOrientation: newValue } ) }
+                        __next40pxDefaultSize
+                        __nextHasNoMarginBottom
                     />
                     <RangeControl
                         label={ __( 'Handle Offset', 'wpmozo-blocks-and-addons' ) }
@@ -56,6 +58,8 @@ const Inspector = ({ attributes, setAttributes }) => {
                         allowReset={true}
                         initialPosition={ 0.5 }
                         resetFallbackValue={ 0.5 }
+                        __next40pxDefaultSize
+                        __nextHasNoMarginBottom
                     />
                     { ! attributes.moveHandleOnClick && (
                         <>
@@ -63,6 +67,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 label={ __( 'Move Handle on Hover', 'wpmozo-blocks-and-addons' ) }
                                 checked={ attributes.moveHandleOnHover }
                                 onChange={ ( newValue ) => setAttributes( { moveHandleOnHover: newValue } ) }
+                                __nextHasNoMarginBottom
                             />
                         </>
                     )}
@@ -72,6 +77,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 label={ __( 'Move Handle on Click', 'wpmozo-blocks-and-addons' ) }
                                 checked={ attributes.moveHandleOnClick }
                                 onChange={ ( newValue ) => setAttributes( { moveHandleOnClick: newValue } ) }
+                                __nextHasNoMarginBottom
                             />
                         </>
                     )}
@@ -85,6 +91,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                         label={ __( 'Show Label', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.beforeHasLabel }
                         onChange={ ( newValue ) => setAttributes( { beforeHasLabel: newValue } ) }
+                        __nextHasNoMarginBottom
                     />
                     {attributes.beforeHasLabel && (
                         <>
@@ -92,11 +99,15 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 label={ __( 'Show Label Only on Hover', 'wpmozo-blocks-and-addons' ) }
                                 checked={ attributes.beforeLabelOnHover }
                                 onChange={ ( newValue ) => setAttributes( { beforeLabelOnHover: newValue } ) }
+                                __nextHasNoMarginBottom
                             />
                             <TextControl
                                 label={ __( 'Enter Label', 'wpmozo-blocks-and-addons' ) }
                                 value={ attributes.beforeLabel }
                                 onChange={ ( newValue ) => setAttributes( { beforeLabel: newValue } ) }
+                                __next40pxDefaultSize
+                                __nextHasNoMarginBottom
+
                             />
                         </>
                     )}
@@ -110,6 +121,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                         label={ __( 'Show Label', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.afterHasLabel }
                         onChange={ ( newValue ) => setAttributes( { afterHasLabel: newValue } ) }
+                        __nextHasNoMarginBottom
                     />
                     {attributes.afterHasLabel && (
                         <>
@@ -117,11 +129,15 @@ const Inspector = ({ attributes, setAttributes }) => {
                                 label={ __( 'Show Label Only on Hover', 'wpmozo-blocks-and-addons' ) }
                                 checked={ attributes.afterLabelOnHover }
                                 onChange={ ( newValue ) => setAttributes( { afterLabelOnHover: newValue } ) }
+                                __nextHasNoMarginBottom
                             />
                             <TextControl
                                 label={ __( 'Enter Label', 'wpmozo-blocks-and-addons' ) }
                                 value={ attributes.afterLabel }
                                 onChange={ ( newValue ) => setAttributes( { afterLabel: newValue } ) }
+                                __next40pxDefaultSize
+                                __nextHasNoMarginBottom
+
                             />
                         </>
                     )}
@@ -133,6 +149,7 @@ const Inspector = ({ attributes, setAttributes }) => {
                         label={ __( 'Overlay on Hover', 'wpmozo-blocks-and-addons' ) }
                         checked={ attributes.overlayOnHover }
                         onChange={ ( newValue ) => setAttributes( { overlayOnHover: newValue } ) }
+                        __nextHasNoMarginBottom
                     />
                     <WpmozoColorPicker
                         ColorKey="globalcolor"

@@ -84,7 +84,7 @@ const Inspector = ({ attributes, setAttributes }) => {
     [ flipboxWidthType, setFlipboxWidthType ] = useState('front'),
     [ flipboxDimensionsType, setFlipboxDimensionsType ] = useState('front');
 
-    const headingLavels = [
+    const headingLevels = [
         {
             label: __( 'H1', 'wpmozo-blocks-and-addons' ),
             value: 'h1'
@@ -424,14 +424,14 @@ const Inspector = ({ attributes, setAttributes }) => {
                         { 'front' === flipBoxType &&
                             <>
                                 <BaseControl
-                                    label={ __( 'Heading Lavel', 'wpmozo-blocks-and-addons' ) }
+                                    label={ __( 'Heading Level', 'wpmozo-blocks-and-addons' ) }
                                 >    
                                     <ButtonGroup>
-                                        {headingLavels.map((item, key) => (
+                                        {headingLevels.map((item, key) => (
                                             <Button
                                                 key={ 'front-label-'+item.value }
-                                                isPressed={ ( item.value === attributes.frontHeadingLavel ) ? true : false }
-                                                onClick={ ( newValue ) => setAttributes( { frontHeadingLavel: item.value } ) }
+                                                isPressed={ ( item.value === attributes.frontHeadingLevel ) ? true : false }
+                                                onClick={ ( newValue ) => setAttributes( { frontHeadingLevel: item.value } ) }
                                             >
                                                 { item.label }
                                             </Button>
@@ -493,14 +493,14 @@ const Inspector = ({ attributes, setAttributes }) => {
                         { 'back' === flipBoxType &&
                             <>
                                 <BaseControl
-                                    label={ __( 'Heading Lavel', 'wpmozo-blocks-and-addons' ) }
+                                    label={ __( 'Heading Level', 'wpmozo-blocks-and-addons' ) }
                                 >    
                                     <ButtonGroup>
-                                        {headingLavels.map((item, key) => (
+                                        {headingLevels.map((item, key) => (
                                             <Button
                                                 key={ 'back-label-'+item.value }
-                                                isPressed={ ( item.value === attributes.backHeadingLavel ) ? true : false }
-                                                onClick={ ( newValue ) => setAttributes( { backHeadingLavel: item.value } ) }
+                                                isPressed={ ( item.value === attributes.backHeadingLevel ) ? true : false }
+                                                onClick={ ( newValue ) => setAttributes( { backHeadingLevel: item.value } ) }
                                             >
                                                 { item.label }
                                             </Button>

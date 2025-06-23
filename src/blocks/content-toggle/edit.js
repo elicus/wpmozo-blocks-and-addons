@@ -32,13 +32,13 @@ export default function Edit(props) {
     }, [props]);
 
     const wrapperTemplate = [
-        [ 'wpmozo/content-wrapper', {
+        [ 'wpmozo/content-wraper', {
             className: 'wpmozo-bna-content-toggle-one wpmozo-bna-content-toggle-active',
             lock: { 
                 remove: true 
             }
         } ],
-        [ 'wpmozo/content-wrapper', {
+        [ 'wpmozo/content-wraper', {
             className: 'wpmozo-bna-content-toggle-two',
             lock: { 
                 remove: true 

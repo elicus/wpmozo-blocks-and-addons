@@ -104,6 +104,7 @@ const WpmozoTypography = (args) => {
 						value={props.attributes[TypographyKey + 'FontSize']}
 						onChange={(val) => onChange('FontSize', val)}
 						__nextHasNoMarginBottom
+						__next40pxDefaultSize
 					/>
 				</__experimentalToolsPanelItem>
 			)}
@@ -122,6 +123,7 @@ const WpmozoTypography = (args) => {
 						hasFontWeights={hasFontWeights}
 						value={_FontAppearanceValues}
 						onChange={(val) => onChange('FontAppearance', val)}
+						__next40pxDefaultSize
 					/>
 				</__experimentalToolsPanelItem>
 			)}
@@ -137,6 +139,7 @@ const WpmozoTypography = (args) => {
 					<__experimentalLetterSpacingControl
 						value={props.attributes[TypographyKey + 'LetterSpacing']}
 						onChange={(val) => onChange('LetterSpacing', val)}
+						__next40pxDefaultSize
 					/>
 				</__experimentalToolsPanelItem>
 			)}
@@ -181,6 +184,7 @@ const WpmozoTypography = (args) => {
 						value={props.attributes[TypographyKey + 'LineHeight']}
 						onChange={(val) => onChange('LineHeight', val)}
 						__nextHasNoMarginBottom
+						__next40pxDefaultSize
 					/>
 				</__experimentalToolsPanelItem>
 			)}

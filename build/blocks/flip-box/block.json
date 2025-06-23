@@ -109,7 +109,7 @@
       "type": "string",
       "default": "Front Title"
     },
-    "frontHeadingLavel": {
+    "frontHeadingLevel": {
       "type": "string",
       "default": "h2"
     },
@@ -290,7 +290,7 @@
       "type": "string",
       "default": "Back Title"
     },
-    "backHeadingLavel": {
+    "backHeadingLevel": {
       "type": "string",
       "default": "h2"
     },

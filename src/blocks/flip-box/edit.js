@@ -108,7 +108,7 @@ export default function Edit(props) {
                                 <div className="wpmozo-bna-flip-box-heading-wrap">
                                     <RichText
                                         className="wpmozo-bna-flip-box-title"
-                                        tagName={ attributes.frontHeadingLavel }
+                                        tagName={ attributes.frontHeadingLevel }
                                         value={ attributes.frontTitle }
                                         onChange={ ( newValue ) => setAttributes( { frontTitle: newValue } ) } 
                                         placeholder={ __('Front Title', 'wpmozo-blocks-and-addons') }
@@ -147,7 +147,7 @@ export default function Edit(props) {
                                 <div className="wpmozo-bna-flip-box-heading-wrap">
                                     <RichText
                                         className="wpmozo-bna-flip-box-title"
-                                        tagName={ attributes.backHeadingLavel }
+                                        tagName={ attributes.backHeadingLevel }
                                         value={ attributes.backTitle }
                                         onChange={ ( newValue ) => setAttributes( { backTitle: newValue } ) } 
                                         placeholder={ __('Back Title', 'wpmozo-blocks-and-addons') }

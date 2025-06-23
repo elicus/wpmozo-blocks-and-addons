@@ -27,7 +27,7 @@ export default function save({ attributes }) {
                     )}
                     {attributes.markerType === "icon" && attributes.styleIcon && attributes.iconShape === "hexagon" && (
                         <div className="wpmozo-bna-list-icon use-icon shape-hexagon">
-                            <div className={`hexagon ${attributes.enableShapeBorder ? "wpmozo-bna-border-hex" : ""}`}>
+                            <div className={`hexagon yoyo ${attributes.enableShapeBorder ? "wpmozo-bna-border-hex" : ""}`}>
                                 <i className={attributes.markerIcon}></i>
                             </div>
                         </div>

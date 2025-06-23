@@ -54,7 +54,7 @@ export default function save({attributes}) {
 							}
 							<RichText.Content
 								className="wpmozo-bna-tilt-title"
-								tagName={attributes.titleLavel}
+								tagName={attributes.titleLevel}
 								value={attributes.title}
 							/>
 							<RichText.Content

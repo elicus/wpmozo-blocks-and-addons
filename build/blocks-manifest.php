@@ -424,7 +424,7 @@ return array(
 	'content-wrapper' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'wpmozo/content-wrapper',
+		'name' => 'wpmozo/content-wraper',
 		'version' => '1.1.0',
 		'title' => 'Content Wrapper',
 		'category' => 'wpmozo',
@@ -858,7 +858,7 @@ return array(
 				'type' => 'string',
 				'default' => 'Front Title'
 			),
-			'frontHeadingLavel' => array(
+			'frontHeadingLevel' => array(
 				'type' => 'string',
 				'default' => 'h2'
 			),
@@ -1039,7 +1039,7 @@ return array(
 				'type' => 'string',
 				'default' => 'Back Title'
 			),
-			'backHeadingLavel' => array(
+			'backHeadingLevel' => array(
 				'type' => 'string',
 				'default' => 'h2'
 			),
@@ -1808,7 +1808,7 @@ return array(
 				'type' => 'string',
 				'default' => 'Image Card Title'
 			),
-			'titleLavel' => array(
+			'titleLevel' => array(
 				'type' => 'string',
 				'default' => 'h2'
 			),
@@ -2631,7 +2631,7 @@ return array(
 			'title' => array(
 				'type' => 'string'
 			),
-			'titleLavel' => array(
+			'titleLevel' => array(
 				'type' => 'string',
 				'default' => 'h2'
 			),

@@ -34,7 +34,7 @@ export default function save({ attributes }) {
 			<style>
 					{generateDynamicStyle({attributes, clientId})}
 				</style>
-			<div {...useBlockProps.save({ className: "swiper-slide", id:`block-${clientId}` })}>
+			<div className="swiper-slide" id={`block-${clientId}`}>
 				{ logo }
 			</div>
 		</>

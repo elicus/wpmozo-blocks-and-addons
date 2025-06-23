@@ -40,7 +40,7 @@
         "globalContentLineHeight": { "type": "string" },
 
         "frontTitle": { "type": "string", "default": "Front Title" },
-        "frontHeadingLavel": { "type": "string", "default": "h2" },
+        "frontHeadingLevel": { "type": "string", "default": "h2" },
         "frontTitleColor": { "type": "string" },
         "frontTitletext": { "type": "string" },
         "frontTitleFontSize": { "type": "string" },
@@ -91,7 +91,7 @@
         "flipboxWidthUnit": { "type": "string", "default": "%" },
         
         "backTitle": { "type": "string", "default": "Back Title" },
-        "backHeadingLavel": { "type": "string", "default": "h2" },
+        "backHeadingLevel": { "type": "string", "default": "h2" },
         "backTitleColor": { "type": "string" },
         "backTitletext": { "type": "string" },
         "backTitleFontSize": { "type": "string" },

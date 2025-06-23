@@ -57,7 +57,7 @@ export default function save({ attributes }) {
                                     <div className="wpmozo-bna-flip-box-heading-wrap">
                                         <RichText.Content
                                             className="wpmozo-bna-flip-box-title"
-                                            tagName={ attributes.frontHeadingLavel }
+                                            tagName={ attributes.frontHeadingLevel }
                                             value={ attributes.frontTitle }
                                         />
                                     </div>
@@ -96,7 +96,7 @@ export default function save({ attributes }) {
                                     <div className="wpmozo-bna-flip-box-heading-wrap">
                                         <RichText.Content
                                             className="wpmozo-bna-flip-box-title"
-                                            tagName={ attributes.backHeadingLavel }
+                                            tagName={ attributes.backHeadingLevel }
                                             value={ attributes.backTitle }
                                         />
                                     </div>

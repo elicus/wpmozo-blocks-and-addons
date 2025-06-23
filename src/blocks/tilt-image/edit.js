@@ -93,7 +93,7 @@ export default function Edit(props) {
 							{!wpmozo_is_empty(attributes.title) &&
 								<RichText
 									className="wpmozo-bna-tilt-title"
-									tagName={attributes.titleLavel}
+									tagName={attributes.titleLevel}
 									value={attributes.title}
 									onChange={(newValue) => setAttributes({title: newValue})}
 								/>

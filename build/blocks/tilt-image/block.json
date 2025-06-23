@@ -21,7 +21,7 @@
     "title": {
       "type": "string"
     },
-    "titleLavel": {
+    "titleLevel": {
       "type": "string",
       "default": "h2"
     },

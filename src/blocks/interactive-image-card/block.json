@@ -15,7 +15,7 @@
 		"ID": { "type": "string" },
 		
 		"title": { "type": "string", "default": "Image Card Title" },
-		"titleLavel": { "type": "string", "default": "h2" },
+		"titleLevel": { "type": "string", "default": "h2" },
 		"titleNormalColor": { "type": "string", "default": "#222222" },
 		"titleHoverColor": { "type": "string", "default": "" },
 		"titleNormalFontSize": { "type": "string" },
