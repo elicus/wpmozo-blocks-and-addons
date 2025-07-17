@@ -206,3 +206,13 @@ export function getMainEl(clientId) {
     const mainFromBody = jQuery('body').find(`#block-${clientId}`);
     return mainFromIfram.length > 0 ? mainFromIfram : mainFromBody;
 }
+
+export function WpmozoGetImageSizeAttributes( image, size ) {
+	const url = get( image, [ 'media_details', 'sizes', size, 'source_url' ] );
+
+	if ( url ) {
+		return { height: undefined, sizeSlug: size, url, width: undefined };
+	}
+
+	return {};
+}
