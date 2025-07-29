@@ -1,0 +1,87 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpmozo/star-rating",
+  "version": "0.1.0",
+  "title": "Star Rating",
+  "category": "wpmozo",
+  "icon": "smiley",
+  "description": "Example block scaffolded with Create Block tool.",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "ID": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "default": "Review Title"
+    },
+    "rating": {
+      "type": "string",
+      "default": "5"
+    },
+    "ratingOutOf": {
+      "type": "number",
+      "default": 5
+    },
+    "image": {
+      "type": "string",
+      "default": ""
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "hideTitle": {
+      "type": "boolean",
+      "default": false
+    },
+    "rateIcon": {
+      "type": "string",
+      "default": "default"
+    },
+    "rateIconFilledColor": {
+      "type": "string",
+      "default": "#fac917"
+    },
+    "rateIconEmptyColor": {
+      "type": "string",
+      "default": "#fac917"
+    },
+    "ratePosition": {
+      "type": "string",
+      "default": "below_title"
+    },
+    "showRateNum": {
+      "type": "boolean",
+      "default": true
+    },
+    "globalTextAlign": {
+      "type": "string"
+    },
+    "titleLevel": {
+      "type": "string",
+      "default": "h4"
+    },
+    "starFontSize": {
+      "type": "number",
+      "default": 24
+    },
+    "starSpacing": {
+      "type": "number",
+      "default": 2
+    }
+  },
+  "textdomain": "wpmozo-blocks-and-addons",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

@@ -2606,6 +2606,95 @@ return array(
 		'editorStyle' => 'wpmozo-blocks-and-addons-fontawesome-style',
 		'style' => 'file:./style-index.css'
 	),
+	'star-rating' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/star-rating',
+		'version' => '0.1.0',
+		'title' => 'Star Rating',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'title' => array(
+				'type' => 'string',
+				'default' => 'Review Title'
+			),
+			'rating' => array(
+				'type' => 'string',
+				'default' => '5'
+			),
+			'ratingOutOf' => array(
+				'type' => 'number',
+				'default' => 5
+			),
+			'image' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'description' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'hideTitle' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'rateIcon' => array(
+				'type' => 'string',
+				'default' => 'default'
+			),
+			'rateIconFilledColor' => array(
+				'type' => 'string',
+				'default' => '#fac917'
+			),
+			'rateIconEmptyColor' => array(
+				'type' => 'string',
+				'default' => '#fac917'
+			),
+			'ratePosition' => array(
+				'type' => 'string',
+				'default' => 'below_title'
+			),
+			'showRateNum' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'globalTextAlign' => array(
+				'type' => 'string'
+			),
+			'titleLevel' => array(
+				'type' => 'string',
+				'default' => 'h4'
+			),
+			'starFontSize' => array(
+				'type' => 'number',
+				'default' => 24
+			),
+			'starSpacing' => array(
+				'type' => 'number',
+				'default' => 2
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js'
+	),
 	'tilt-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
