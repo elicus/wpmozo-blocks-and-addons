@@ -1,10 +1,20 @@
-import { Button } from "@wordpress/components";
+import { Button, BaseControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { MediaUpload, MediaUploadCheck } from "@wordpress/block-editor";
 import { Fragment } from "@wordpress/element";
 import './style.scss';
 
-const WpmozoMediaUploader = ({ props, attrKye, edit, select, allowedTypes, accept, imageSrc: customImageSrc, onSelect: customOnSelect }) => {
+const WpmozoMediaUploader = ( {
+    props,
+    attrKye,
+    edit,
+    select,
+    allowedTypes,
+    accept,
+    imageSrc: customImageSrc,
+    onSelect: customOnSelect,
+    label = '', // ← Default label
+} ) => {
     const editImage = edit || __("Edit Image", "wpmozo-blocks-and-addons");
     const selectImage = select || __("Select Image", "wpmozo-blocks-and-addons");
     const allowed = allowedTypes || ["image"];
@@ -12,15 +22,19 @@ const WpmozoMediaUploader = ({ props, attrKye, edit, select, allowedTypes, accep
     const imageSrc = customImageSrc || props.attributes[attrKye];
 
     const defaultOnSelect = (media) => {
-        props.setAttributes({ [attrKye]: media.url });
+        props.setAttributes( { [attrKye]: media.url } );
     };
 
-    const handleSelect = (media) => {
+    const handleSelect = ( media ) => {
         if (customOnSelect) {
-            customOnSelect(media);
+            customOnSelect( media );
         } else {
-            defaultOnSelect(media);
+            defaultOnSelect( media );
         }
+    };
+
+    const handleRemove = () => {
+        props.setAttributes( { [attrKye]: '' } );
     };
 
     return (
@@ -32,6 +46,7 @@ const WpmozoMediaUploader = ({ props, attrKye, edit, select, allowedTypes, accep
                 value={imageSrc}
                 render={({ open }) => (
                     <Fragment>
+                        <BaseControl label={ label }>
                         <div className="components-base-control wpmozo-media-uploader-wrap">
                             {imageSrc && (
                                 <img
@@ -49,7 +64,18 @@ const WpmozoMediaUploader = ({ props, attrKye, edit, select, allowedTypes, accep
                             >
                                 {imageSrc ? editImage : selectImage}
                             </Button>
+                            { imageSrc && (
+                                <Button
+                                    isLink
+                                    isDestructive
+                                    onClick={handleRemove}
+                                    style={ { marginLeft: '10px', verticalAlign: 'super' } }
+                                >
+                                    { __( "Remove Image", "wpmozo-blocks-and-addons" ) }
+                                </Button>
+                            ) }
                         </div>
+                        </BaseControl>
                     </Fragment>
                 )}
             />

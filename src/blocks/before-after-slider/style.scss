@@ -1,0 +1,35 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-create-block-before-after-slider {
+    background-color: #21759b;
+    color: #fff;
+    padding: 2px;
+}
+
+.twentytwenty-vertical .wpmozo-bna-before-after-image-wrapper .twentytwenty-before-label:before, 
+.twentytwenty-vertical .wpmozo-bna-before-after-image-wrapper .twentytwenty-after-label:before{
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0px;
+}
+.wpmozo-bna-before-after-image-wrapper img{
+    width: 100%;
+    object-fit: cover;
+}
+.twentytwenty-vertical .wpmozo-bna-before-after-image-wrapper .twentytwenty-before-label:before, 
+.twentytwenty-vertical .wpmozo-bna-before-after-image-wrapper .twentytwenty-after-label:before{
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0px;
+}
+.wpmozo-bna-before-after-image-wrapper img{
+    width: 100%;
+    object-fit: cover;
+}

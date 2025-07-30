@@ -1,0 +1,90 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/tilt-image",
+	"version": "0.1.0",
+	"title": "Tilt Image",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "Example block scaffolded with Create Block tool.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"ID": { "type": "string" },
+		
+		"image": { "type": "string" },
+		
+		"title": { "type": "string" },
+		"titleLevel": { "type": "string", "default": "h2" },
+		"titleColor": { "type": "string" },
+		"titleFontSize": { "type": "string" },
+		"titleFontAppearance": { "type": "object", "default": { "fontStyle": "", "fontWeight": "" } },
+		"titleLetterSpacing": { "type": "string" },
+		"titleDecoration": { "type": "string" },
+		"titleLetterCase": { "type": "string" },
+		"titleLineHeight": { "type": "string" },
+		"titleAlign": { "type": "string", "default": "left" },
+		
+		"content": { "type": "string" },
+		"descriptionColor": { "type": "string" },
+		"descriptionFontSize": { "type": "string" },
+		"descriptionFontAppearance": { "type": "object", "default": { "fontStyle": "", "fontWeight": "" } },
+		"descriptionLetterSpacing": { "type": "string" },
+		"descriptionDecoration": { "type": "string" },
+		"descriptionLetterCase": { "type": "string" },
+		"descriptionLineHeight": { "type": "string" },
+		"descriptionAlign": { "type": "string", "default": "left" },
+		
+		"overlayColor": { "type": "string" },
+		
+		"useIcon": { "type": "boolean", "default": false },
+		"icon": { "type": "string" },
+		"iconColor": { "type": "string" },
+		"iconAlign": { "type": "string", "default": "center" },
+		"useIconFontSize": { "type": "boolean", "default": false },
+		"iconFontSize": { "type": "string" },
+		
+		"showButton": { "type": "boolean", "default": false },
+		"buttonText": { "type": "string", "default": "Read More" },
+		"buttonUrl": { "type": "string" },
+		"buttonLinkTarget": { "type": "string", "default": "same" },
+		"buttonTextColor": { "type": "string" },
+		"buttonBackgroundColor": { "type": "string" },
+		"buttonFontSize": { "type": "string" },
+		"buttonFontAppearance": { "type": "object", "default": { "fontStyle": "", "fontWeight": "" } },
+		"buttonLetterSpacing": { "type": "string" },
+		"buttonDecoration": { "type": "string" },
+		"buttonLetterCase": { "type": "string" },
+		"buttonLineHeight": { "type": "string" },
+		"buttonborder": { "type": "object" },
+		"buttonborderRadius": { "type": "string" },
+		"buttonpadding": { "type": "object" },
+		"buttonwrapmargin": { "type": "object" },
+		
+		"tiltMax": { "type": "number", "default": 20 },
+		"tiltPerspective": { "type": "number", "default": 1000 },
+		"tiltScale": { "type": "number", "default": 1 },
+		"tiltSpeed": { "type": "number", "default": 300 },
+		"tiltMobile": { "type": "boolean", "default": false },
+		"useGlare": { "type": "boolean", "default": false },
+		"tiltMaxGlare": { "type": "number", "default": 1 },
+		"use3dEffect": { "type": "boolean", "default": false },
+		"tilt3dValue": { "type": "number", "default": 1 },
+		"useDisableAxis": { "type": "boolean", "default": false },
+		"tiltDisableAxis": { "type": "string" },
+		
+		"useOverlay": { "type": "boolean", "default": false },
+		
+		"contentOnHover": { "type": "boolean", "default": false },
+		"contentAlignment": { "type": "string", "default": "center" },
+		"contentAnimationDirection": { "type": "string", "default": "off" },
+		"contentpadding": { "type": "object" }
+		
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"script": "file:./script.js"
+}

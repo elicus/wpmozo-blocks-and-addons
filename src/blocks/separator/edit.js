@@ -12,7 +12,6 @@ import { useBlockProps, RichText } from "@wordpress/block-editor";
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import './editor.scss';
 
 const Edit = (props) => {
     const { iconFontSize } = props.attributes;

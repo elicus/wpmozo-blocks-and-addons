@@ -1,0 +1,201 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpmozo/fancy-heading",
+  "version": "0.1.0",
+  "title": "Fancy Heading",
+  "category": "wpmozo",
+  "icon": "smiley",
+  "description": "Example block scaffolded with Create Block tool.",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "ID": {
+      "type": "string"
+    },
+    "displayInStack": {
+      "type": "boolean",
+      "default": false
+    },
+    "headingLevel": {
+      "type": "string",
+      "default": "h2"
+    },
+    "headingAlignment": {
+      "type": "string",
+      "default": ""
+    },
+    "headingColor": {
+      "type": "string"
+    },
+    "headingBackground": {
+      "type": "string"
+    },
+    "preHeading": {
+      "type": "string",
+      "default": "Pre"
+    },
+    "preTextAlignment": {
+      "type": "string",
+      "default": ""
+    },
+    "preTextColor": {
+      "type": "string"
+    },
+    "preTextBackground": {
+      "type": "string"
+    },
+    "preTextHoverColor": {
+      "type": "string"
+    },
+    "preTextHoverBackground": {
+      "type": "string"
+    },
+    "preTextDimensionspadding": {
+      "type": "object"
+    },
+    "preTextDimensionsmargin": {
+      "type": "object"
+    },
+    "preTextFontSize": {
+      "type": "string"
+    },
+    "preTextFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "preTextLetterSpacing": {
+      "type": "string"
+    },
+    "preTextDecoration": {
+      "type": "string"
+    },
+    "preTextLetterCase": {
+      "type": "string"
+    },
+    "preTextLineHeight": {
+      "type": "string"
+    },
+    "mainHeading": {
+      "type": "string",
+      "default": "Main"
+    },
+    "mainTextColor": {
+      "type": "string"
+    },
+    "mainTextAlignment": {
+      "type": "string",
+      "default": ""
+    },
+    "mainTextBackground": {
+      "type": "string"
+    },
+    "mainTextHoverColor": {
+      "type": "string"
+    },
+    "mainTextHoverBackground": {
+      "type": "string"
+    },
+    "mainTextDimensionspadding": {
+      "type": "object"
+    },
+    "mainTextDimensionsmargin": {
+      "type": "object"
+    },
+    "mainTextFontSize": {
+      "type": "string"
+    },
+    "mainTextFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "mainTextLetterSpacing": {
+      "type": "string"
+    },
+    "mainTextDecoration": {
+      "type": "string"
+    },
+    "mainTextLetterCase": {
+      "type": "string"
+    },
+    "mainTextLineHeight": {
+      "type": "string"
+    },
+    "postHeading": {
+      "type": "string",
+      "default": "Post"
+    },
+    "postTextColor": {
+      "type": "string"
+    },
+    "postTextAlignment": {
+      "type": "string",
+      "default": ""
+    },
+    "postTextBackground": {
+      "type": "string"
+    },
+    "postTextHoverColor": {
+      "type": "string"
+    },
+    "postTextHoverBackground": {
+      "type": "string"
+    },
+    "postTextDimensionspadding": {
+      "type": "object"
+    },
+    "postTextDimensionsmargin": {
+      "type": "object"
+    },
+    "postTextFontSize": {
+      "type": "string"
+    },
+    "postTextFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "postTextLetterSpacing": {
+      "type": "string"
+    },
+    "postTextDecoration": {
+      "type": "string"
+    },
+    "postTextLetterCase": {
+      "type": "string"
+    },
+    "postTextLineHeight": {
+      "type": "string"
+    }
+  },
+  "textdomain": "wpmozo-blocks-and-addons",
+  "editorScript": "file:./index.js"
+}

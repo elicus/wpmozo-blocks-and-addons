@@ -50,7 +50,7 @@ const Inspector = ({ attributes, setAttributes }) => {
             label: __( 'None', 'wpmozo-blocks-and-addons' ),
         },
     ],
-    headingLavels = [
+    headingLevels = [
         {
             label: __( 'H1', 'wpmozo-blocks-and-addons' ),
             value: 'h1'
