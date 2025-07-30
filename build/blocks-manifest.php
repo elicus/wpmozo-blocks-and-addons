@@ -2606,6 +2606,190 @@ return array(
 		'editorStyle' => 'wpmozo-blocks-and-addons-fontawesome-style',
 		'style' => 'file:./style-index.css'
 	),
+	'star-rating' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/star-rating',
+		'version' => '0.1.0',
+		'title' => 'Star Rating',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'globalTextAlign' => array(
+				'type' => 'string'
+			),
+			'title' => array(
+				'type' => 'string',
+				'default' => 'Review Title'
+			),
+			'titleLevel' => array(
+				'type' => 'string',
+				'default' => 'h4'
+			),
+			'hideTitle' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'titleColor' => array(
+				'type' => 'string'
+			),
+			'titleFontSize' => array(
+				'type' => 'string'
+			),
+			'titleLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'titleDecoration' => array(
+				'type' => 'string'
+			),
+			'titleLetterCase' => array(
+				'type' => 'string'
+			),
+			'titleLineHeight' => array(
+				'type' => 'string'
+			),
+			'titleFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'titleFontStyle' => array(
+				'type' => 'string'
+			),
+			'titleFontWeight' => array(
+				'type' => 'string'
+			),
+			'rating' => array(
+				'type' => 'string',
+				'default' => '5'
+			),
+			'iconSVGs' => array(
+				'type' => 'object'
+			),
+			'ratingColor' => array(
+				'type' => 'string'
+			),
+			'ratingFontSize' => array(
+				'type' => 'string'
+			),
+			'ratingLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'ratingDecoration' => array(
+				'type' => 'string'
+			),
+			'ratingLetterCase' => array(
+				'type' => 'string'
+			),
+			'ratingLineHeight' => array(
+				'type' => 'string'
+			),
+			'ratingFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'ratingFontStyle' => array(
+				'type' => 'string'
+			),
+			'ratingFontWeight' => array(
+				'type' => 'string'
+			),
+			'ratingOutOf' => array(
+				'type' => 'number',
+				'default' => 5
+			),
+			'image' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'description' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'descriptionColor' => array(
+				'type' => 'string'
+			),
+			'descriptionFontSize' => array(
+				'type' => 'string'
+			),
+			'descriptionLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'descriptionDecoration' => array(
+				'type' => 'string'
+			),
+			'descriptionLetterCase' => array(
+				'type' => 'string'
+			),
+			'descriptionLineHeight' => array(
+				'type' => 'string'
+			),
+			'descriptionFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'descriptionFontStyle' => array(
+				'type' => 'string'
+			),
+			'descriptionFontWeight' => array(
+				'type' => 'string'
+			),
+			'rateIcon' => array(
+				'type' => 'string',
+				'default' => 'default'
+			),
+			'rateIconFilledColor' => array(
+				'type' => 'string',
+				'default' => '#fac917'
+			),
+			'rateIconEmptyColor' => array(
+				'type' => 'string',
+				'default' => '#fac917'
+			),
+			'ratePosition' => array(
+				'type' => 'string',
+				'default' => 'below_title'
+			),
+			'showRateNum' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'starFontSize' => array(
+				'type' => 'number',
+				'default' => 24
+			),
+			'starSpacing' => array(
+				'type' => 'number',
+				'default' => 2
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css'
+	),
 	'tilt-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
