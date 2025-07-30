@@ -1,7 +1,7 @@
 import { registerBlockType } from '@wordpress/blocks';
 import metadata from './block.json';
 import Edit from './edit';
-import Save from './save';
+import save from './save';
 import Icon from './icon';
 
 /**
@@ -16,5 +16,5 @@ import './style.scss';
 registerBlockType( metadata.name, {
     edit: Edit,
     icon: Icon,
-    Save,
+    save,
 } );

@@ -15,13 +15,89 @@
     "ID": {
       "type": "string"
     },
+    "globalTextAlign": {
+      "type": "string"
+    },
     "title": {
       "type": "string",
       "default": "Review Title"
     },
+    "titleLevel": {
+      "type": "string",
+      "default": "h4"
+    },
+    "hideTitle": {
+      "type": "boolean",
+      "default": false
+    },
+    "titleColor": {
+      "type": "string"
+    },
+    "titleFontSize": {
+      "type": "string"
+    },
+    "titleLetterSpacing": {
+      "type": "string"
+    },
+    "titleDecoration": {
+      "type": "string"
+    },
+    "titleLetterCase": {
+      "type": "string"
+    },
+    "titleLineHeight": {
+      "type": "string"
+    },
+    "titleFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "titleFontStyle": {
+      "type": "string"
+    },
+    "titleFontWeight": {
+      "type": "string"
+    },
     "rating": {
       "type": "string",
       "default": "5"
+    },
+    "iconSVGs": {
+      "type": "object"
+    },
+    "ratingColor": {
+      "type": "string"
+    },
+    "ratingFontSize": {
+      "type": "string"
+    },
+    "ratingLetterSpacing": {
+      "type": "string"
+    },
+    "ratingDecoration": {
+      "type": "string"
+    },
+    "ratingLetterCase": {
+      "type": "string"
+    },
+    "ratingLineHeight": {
+      "type": "string"
+    },
+    "ratingFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "ratingFontStyle": {
+      "type": "string"
+    },
+    "ratingFontWeight": {
+      "type": "string"
     },
     "ratingOutOf": {
       "type": "number",
@@ -39,9 +115,36 @@
       "type": "string",
       "default": ""
     },
-    "hideTitle": {
-      "type": "boolean",
-      "default": false
+    "descriptionColor": {
+      "type": "string"
+    },
+    "descriptionFontSize": {
+      "type": "string"
+    },
+    "descriptionLetterSpacing": {
+      "type": "string"
+    },
+    "descriptionDecoration": {
+      "type": "string"
+    },
+    "descriptionLetterCase": {
+      "type": "string"
+    },
+    "descriptionLineHeight": {
+      "type": "string"
+    },
+    "descriptionFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "descriptionFontStyle": {
+      "type": "string"
+    },
+    "descriptionFontWeight": {
+      "type": "string"
     },
     "rateIcon": {
       "type": "string",
@@ -63,13 +166,6 @@
       "type": "boolean",
       "default": true
     },
-    "globalTextAlign": {
-      "type": "string"
-    },
-    "titleLevel": {
-      "type": "string",
-      "default": "h4"
-    },
     "starFontSize": {
       "type": "number",
       "default": 24
@@ -82,6 +178,5 @@
   "textdomain": "wpmozo-blocks-and-addons",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "style": "file:./style-index.css"
 }

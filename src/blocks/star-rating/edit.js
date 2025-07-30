@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { Fragment } from "@wordpress/element";
+import { Fragment, useEffect, useRef } from "@wordpress/element";
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import Inspector from './inspector';
 
@@ -11,48 +11,61 @@ import Inspector from './inspector';
  */
 import generateDynamicStyle from "./style";
 
-// Global cache for loaded SVGs
-let svgIcons = Object.create(null);
-
-const loadSVGIcon = async ( icon, type, mood = '' ) => {
+const loadSVGIcon = async ( icon, type, mood = '', setAttributes = null, attributes = {} ) => {
 	let key = icon + '-' + type;
 	if ( [ 'smiley_scale' ].includes( icon ) && mood ) {
 		key = `${icon}/${mood}_${type}`;
 	}
 
-	if ( svgIcons[key] ) {
-		return;
-	}
+	// Check if already exists
+	if ( attributes.iconSVGs?.[key]?.[mood] ) return;
 
+	// Get icon file.
 	let file = wpmozo_bna_editor_object.assets_url + `rate-icons/${icon}-${type}.svg`;
 	if ( [ 'smiley_scale' ].includes( icon ) && mood ) {
 		file = wpmozo_bna_editor_object.assets_url + `rate-icons/${key}.svg`;
 	}
 
-	await fetch( file, { method: 'HEAD' } ).then( ( res ) => {
+	try {
+		// Fetch the icon file.
+		const res = await fetch( file );
+
+		// If error while fetching the file.
 		if ( ! res.ok ) {
-			throw new Error( `SVG not found ( ${res.status} )` );
+			throw new Error();
 		}
 
-		// File exists, now fetch the content.
-		return fetch(file);
-	} ).then( ( res ) => res.text() )
-	.then( ( svgContent ) => {
-		svgIcons[key] = svgContent;
-	} ).catch( ( err ) => console.error( 'SVG load failed (', key, '): ', err ) );
+		const svg = await res.text();
+
+		// Store mood-based icons in object attributes.
+		if ( setAttributes ) {
+			const updated = {
+				...attributes.iconSVGs,
+				[key]: {
+					...( attributes.iconSVGs?.[key] || {} ),
+					[mood]: svg
+				}
+			};
+			setAttributes ({ iconSVGs: updated } );
+		}
+	} catch (e) {
+		console.error('Error loading SVG:', e);
+	}
 }
 
-const renderSVGIcon = ( icon, type, mood = '' ) => {
+const renderSVGIcon = ( icon, type, mood = '', setAttributes = null, attributes = {} ) => {
 	let key = icon + '-' + type;
 	if ( [ 'smiley_scale' ].includes( icon ) && mood ) {
 		key = `${icon}/${mood}_${type}`;
 	}
 
-	const svg = svgIcons[key];
+	// Check in attributes (mood-specific object).
+	const svg = attributes.iconSVGs?.[key]?.[mood];
 
 	// If not then load svg.
 	if ( ! svg ) {
-		loadSVGIcon( icon, type, mood );
+		loadSVGIcon( icon, type, mood, setAttributes, attributes );
+		return null;
 	}
 
 	return svg ? (
@@ -66,11 +79,22 @@ const Edit = (props) => {
 
 	const attributes    = props.attributes;
 	const setAttributes = props.setAttributes;
-	const clientId      = attributes.ID;
+	const clientId      = props.clientId;
+	
+	attributes.ID = clientId;
 
 	const imageUrl    = ( attributes.image ) ? attributes.image : '';
 	const rateIcon    = ( attributes.rateIcon ) ?? 'default';
 	const showRateNum = ( attributes.showRateNum ) ?? true;
+
+	// Remove older svgs.
+	const prevRateIcon = useRef( rateIcon );
+	useEffect( () => {
+		if ( prevRateIcon.current !== rateIcon ) {
+			setAttributes( { iconSVGs: {} } );
+			prevRateIcon.current = rateIcon;
+		}
+	}, [ rateIcon ] );
 
 	let ratingOutOf = ( attributes.ratingOutOf ) ?? 5;
 
@@ -97,37 +121,37 @@ const Edit = (props) => {
 		let unfilled_stars  = '',
 			rating_number   = '',
 			stars           = [],
-			moods           = 1;
+			mood            = 1;
 		
 		for ( let $i = 1; $i <= Math.abs( parseInt( rating ) ); $i++ ) {
 			if ( 'default' !== rateIcon ) {
-				stars.push( renderSVGIcon( rateIcon, 'filled', moods ) );
+				stars.push( renderSVGIcon( rateIcon, 'filled', mood, setAttributes, attributes ) );
 			} else {
 				stars.push( <span className="dipl_star_rating_star dipl_star_rating_filled_star"></span> );
 			}
-			moods++;
+			mood++;
 		}
 		if ( rating !== Math.abs( parseInt( rating ) ) ) {
 			if ( 'default' !== rateIcon ) {
-				stars.push( renderSVGIcon( rateIcon, 'half_filled', moods ) );
+				stars.push( renderSVGIcon( rateIcon, 'half_filled', mood, setAttributes, attributes ) );
 			} else {
 				stars.push( <span className="dipl_star_rating_star dipl_star_rating_half_filled_star"></span> );
 			}
-			moods++;
+			mood++;
 			unfilled_stars  = ratingOutOf - Math.abs( parseInt( rating ) ) - 1;
 		} else {
 			unfilled_stars  = ratingOutOf - Math.abs( parseInt( rating ) );
 		}
 		for ( let $i = 1; $i <= unfilled_stars; $i++ ) {
 			if ( 'default' !== rateIcon ) {
-				stars.push( renderSVGIcon( rateIcon, 'empty', moods ) );
+				stars.push( renderSVGIcon( rateIcon, 'empty', mood, setAttributes, attributes ) );
 			} else {
 				stars.push( <span className="dipl_star_rating_star dipl_star_rating_empty_star"></span> );
 			}
-			moods++;
+			mood++;
 		}
 
-		if ( 'on' === showRateNum ) {
+		if ( true === showRateNum ) {
 			rating_number = <span className="dipl_star_rating_number">({rating}/{ratingOutOf})</span>;
 		}
 
@@ -149,7 +173,7 @@ const Edit = (props) => {
 				<div className="dipl_star_rating_wrapper">
 					{ ( imageUrl && '' !== imageUrl ) && (
 						<div className="dipl_star_rating_image_container">
-							<img src={ imageUrl } alt={ attributes?.imageAlt || '' } class="dipl_star_rating_image" />
+							<img src={ imageUrl } alt={ attributes?.imageAlt || '' } className="dipl_star_rating_image" />
 						</div>
 					) }
 					<div className="dipl_star_rating_title_container">

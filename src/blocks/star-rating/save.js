@@ -1,4 +1,5 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
+import generateDynamicStyle from "./style";
 
 const Save = ( { attributes } ) => {
 
@@ -33,37 +34,53 @@ const Save = ( { attributes } ) => {
 		let unfilled_stars  = '',
 			rating_number   = '',
 			stars           = [],
-			moods           = 1;
-		
+			mood            = 1;
+
+		const scalIcons = [ 'smiley_scale' ];
+
 		for ( let $i = 1; $i <= Math.abs( parseInt( rating ) ); $i++ ) {
 			if ( 'default' !== rateIcon ) {
-				stars.push( renderSVGIcon( rateIcon, 'filled', moods ) );
+				let key   = ( scalIcons.includes( rateIcon ) ) ? `${rateIcon}/${mood}_filled` : `${rateIcon}-filled`;
+				const svg = attributes.iconSVGs?.[key]?.[mood] || '';
+				stars.push( 
+					<span dangerouslySetInnerHTML={ { __html: svg } }
+						className={`dipl_star_rating_star dipl-rating-icon-custom dipl_star_rating_filled dipl-rating-icon-${rateIcon}`}
+					/>
+				 );
 			} else {
 				stars.push( <span className="dipl_star_rating_star dipl_star_rating_filled_star"></span> );
 			}
-			moods++;
+			mood++;
 		}
 		if ( rating !== Math.abs( parseInt( rating ) ) ) {
 			if ( 'default' !== rateIcon ) {
-				stars.push( renderSVGIcon( rateIcon, 'half_filled', moods ) );
+				let key   = ( scalIcons.includes( rateIcon ) ) ? `${rateIcon}/${mood}_half_filled` : `${rateIcon}-half_filled`;
+				const svg = attributes.iconSVGs?.[key]?.[mood] || '';
+				stars.push( <span dangerouslySetInnerHTML={ { __html: svg } }
+					className={`dipl_star_rating_star dipl-rating-icon-custom dipl_star_rating_half_filled dipl-rating-icon-${rateIcon}`}
+				/> );
 			} else {
 				stars.push( <span className="dipl_star_rating_star dipl_star_rating_half_filled_star"></span> );
 			}
-			moods++;
+			mood++;
 			unfilled_stars  = ratingOutOf - Math.abs( parseInt( rating ) ) - 1;
 		} else {
 			unfilled_stars  = ratingOutOf - Math.abs( parseInt( rating ) );
 		}
 		for ( let $i = 1; $i <= unfilled_stars; $i++ ) {
 			if ( 'default' !== rateIcon ) {
-				stars.push( renderSVGIcon( rateIcon, 'empty', moods ) );
+				let key   = ( scalIcons.includes( rateIcon ) ) ? `${rateIcon}/${mood}_empty` : `${rateIcon}-empty`;
+				const svg = attributes.iconSVGs?.[key]?.[mood] || '';
+				stars.push( <span dangerouslySetInnerHTML={ { __html: svg } }
+					className={`dipl_star_rating_star dipl-rating-icon-custom dipl_star_rating_empty dipl-rating-icon-${rateIcon}`}
+				/> );
 			} else {
 				stars.push( <span className="dipl_star_rating_star dipl_star_rating_empty_star"></span> );
 			}
-			moods++;
+			mood++;
 		}
 
-		if ( 'on' === showRateNum ) {
+		if ( true === showRateNum ) {
 			rating_number = <span className="dipl_star_rating_number">({rating}/{ratingOutOf})</span>;
 		}
 
@@ -78,6 +95,8 @@ const Save = ( { attributes } ) => {
    
 	return (
 		<>
+			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+
 			<div {...useBlockProps.save()} id={`block-${attributes.ID}`}>
 				<div className="dipl_star_rating_wrapper">
 					{ ( imageUrl && '' !== imageUrl ) && (

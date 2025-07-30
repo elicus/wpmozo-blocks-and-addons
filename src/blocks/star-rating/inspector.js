@@ -26,7 +26,8 @@ import { headingLevelsList } from '../../common/utils.js';
 
 const Inspector = ( { attributes, setAttributes } ) => {
 
-	const props = { attributes, setAttributes };
+	let props = { attributes, setAttributes };
+		props = Object.assign( {}, props, { preAttributes: {} } );
 
 	const [ titleType, setTitleType ]     = useState( 'normal' );
 	const [ descType, setDescType ]       = useState( 'normal' );
@@ -42,16 +43,19 @@ const Inspector = ( { attributes, setAttributes } ) => {
 						label={ __( 'Title', 'wpmozo-blocks-and-addons' ) }
 						value={ attributes.title }
 						onChange={ ( newValue ) => setAttributes( { title: newValue } ) }
+						__next40pxDefaultSize={ true } __nextHasNoMarginBottom={ true }
 					/>
 					<TextControl
 						label={ __( 'Rating', 'wpmozo-blocks-and-addons' ) }
 						value={ attributes.rating }
 						onChange={ ( newValue ) => setAttributes( { rating: newValue } ) }
+						__next40pxDefaultSize={ true }  __nextHasNoMarginBottom={ true }
 					/>
 					<TextControl
 						label={ __( 'Rating Out Of', 'wpmozo-blocks-and-addons' ) }
 						value={ attributes.ratingOutOf }
 						onChange={ ( newValue ) => setAttributes( { ratingOutOf: newValue } ) }
+						__next40pxDefaultSize={ true }  __nextHasNoMarginBottom={ true }
 					/>
 					<WpmozoMediaUploader attrKye="image" props={ props }
 						label={ __( 'Image', 'wpmozo-blocks-and-addons' ) }
@@ -60,6 +64,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 						label={ __( 'Image Alt Text', 'wpmozo-blocks-and-addons' ) }
 						value={ attributes.imageAlt }
 						onChange={ ( newValue ) => setAttributes( { imageAlt: newValue } ) }
+						__next40pxDefaultSize={ true }  __nextHasNoMarginBottom={ true }
 					/>
 					<TextareaControl
 						label={ __( 'Description', 'wpmozo-blocks-and-addons' ) }
@@ -119,7 +124,10 @@ const Inspector = ( { attributes, setAttributes } ) => {
 				</PanelBody>
 				{/* Title. */}
 				<PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-					<BaseControl label={ __( 'Heading Level', 'wpmozo-blocks-and-addons' ) } >
+					<BaseControl
+						label={ __( 'Heading Level', 'wpmozo-blocks-and-addons' ) }
+						__nextHasNoMarginBottom={ true }
+					>
 						<ButtonGroup>
 							{ headingLevelsList.map( ( item, index ) => (
 								<Button key={ item.value }
@@ -129,7 +137,10 @@ const Inspector = ( { attributes, setAttributes } ) => {
 							) ) }
 						</ButtonGroup>
 					</BaseControl>
-					<BaseControl className="wpmozo-button-tabs-wrap">    
+					<BaseControl
+						className="wpmozo-button-tabs-wrap"
+						__nextHasNoMarginBottom={ true }
+					>
 						<ButtonGroup>
 							<Button
 								className="wpmozo-button-tabs-btn"
@@ -172,7 +183,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 				</PanelBody>
 				{/* Description. */}
 				<PanelBody title={ __( 'Description', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-					<BaseControl className="wpmozo-button-tabs-wrap">    
+					<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>    
 						<ButtonGroup>
 							<Button
 								className="wpmozo-button-tabs-btn"
@@ -215,7 +226,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 				</PanelBody>
 				{/* Rating Number. */}
 				<PanelBody title={ __( 'Rating Number', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-					<BaseControl className="wpmozo-button-tabs-wrap">    
+					<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>    
 						<ButtonGroup>
 							<Button
 								className="wpmozo-button-tabs-btn"
@@ -243,7 +254,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 						</> }
 						{ 'hover' === rateNumType && <>
 							<WpmozoColorPicker
-								ColorKey="ratingnHover"
+								ColorKey="ratingHover"
 								props={ props }
 								ColorTypes={ [
 									{ key: 'Color', label: __( 'Number Color', 'wpmozo-blocks-and-addons' ) }

@@ -2625,13 +2625,89 @@ return array(
 			'ID' => array(
 				'type' => 'string'
 			),
+			'globalTextAlign' => array(
+				'type' => 'string'
+			),
 			'title' => array(
 				'type' => 'string',
 				'default' => 'Review Title'
 			),
+			'titleLevel' => array(
+				'type' => 'string',
+				'default' => 'h4'
+			),
+			'hideTitle' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'titleColor' => array(
+				'type' => 'string'
+			),
+			'titleFontSize' => array(
+				'type' => 'string'
+			),
+			'titleLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'titleDecoration' => array(
+				'type' => 'string'
+			),
+			'titleLetterCase' => array(
+				'type' => 'string'
+			),
+			'titleLineHeight' => array(
+				'type' => 'string'
+			),
+			'titleFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'titleFontStyle' => array(
+				'type' => 'string'
+			),
+			'titleFontWeight' => array(
+				'type' => 'string'
+			),
 			'rating' => array(
 				'type' => 'string',
 				'default' => '5'
+			),
+			'iconSVGs' => array(
+				'type' => 'object'
+			),
+			'ratingColor' => array(
+				'type' => 'string'
+			),
+			'ratingFontSize' => array(
+				'type' => 'string'
+			),
+			'ratingLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'ratingDecoration' => array(
+				'type' => 'string'
+			),
+			'ratingLetterCase' => array(
+				'type' => 'string'
+			),
+			'ratingLineHeight' => array(
+				'type' => 'string'
+			),
+			'ratingFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'ratingFontStyle' => array(
+				'type' => 'string'
+			),
+			'ratingFontWeight' => array(
+				'type' => 'string'
 			),
 			'ratingOutOf' => array(
 				'type' => 'number',
@@ -2649,9 +2725,36 @@ return array(
 				'type' => 'string',
 				'default' => ''
 			),
-			'hideTitle' => array(
-				'type' => 'boolean',
-				'default' => false
+			'descriptionColor' => array(
+				'type' => 'string'
+			),
+			'descriptionFontSize' => array(
+				'type' => 'string'
+			),
+			'descriptionLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'descriptionDecoration' => array(
+				'type' => 'string'
+			),
+			'descriptionLetterCase' => array(
+				'type' => 'string'
+			),
+			'descriptionLineHeight' => array(
+				'type' => 'string'
+			),
+			'descriptionFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'descriptionFontStyle' => array(
+				'type' => 'string'
+			),
+			'descriptionFontWeight' => array(
+				'type' => 'string'
 			),
 			'rateIcon' => array(
 				'type' => 'string',
@@ -2673,13 +2776,6 @@ return array(
 				'type' => 'boolean',
 				'default' => true
 			),
-			'globalTextAlign' => array(
-				'type' => 'string'
-			),
-			'titleLevel' => array(
-				'type' => 'string',
-				'default' => 'h4'
-			),
 			'starFontSize' => array(
 				'type' => 'number',
 				'default' => 24
@@ -2692,8 +2788,7 @@ return array(
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./view.js'
+		'style' => 'file:./style-index.css'
 	),
 	'tilt-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
