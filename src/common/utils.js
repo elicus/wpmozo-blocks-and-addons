@@ -208,6 +208,16 @@ export function getMainEl(clientId) {
 	return mainFromIfram.length > 0 ? mainFromIfram : mainFromBody;
 }
 
+export function WpmozoGetImageSizeAttributes( image, size ) {
+	const url = get( image, [ 'media_details', 'sizes', size, 'source_url' ] );
+
+	if ( url ) {
+		return { height: undefined, sizeSlug: size, url, width: undefined };
+	}
+
+	return {};
+}
+
 export const headingLevelsList = [
 	{
 		label: __( 'H1', 'wpmozo-blocks-and-addons' ),
