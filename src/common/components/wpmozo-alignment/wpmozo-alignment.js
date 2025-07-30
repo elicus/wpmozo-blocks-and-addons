@@ -9,7 +9,16 @@ import {
 import './style.scss';
 
 const WpmozoAlignment = (args) => {
-    const { alignmentKey, type = 'horizontal', value, onChange, label = __('Alignment', 'wpmozo-blocks-and-addons'), className = `wpmozo-alignment-compo ${type}`, alignments } = args;
+    const {
+        alignmentKey,
+        type = 'horizontal',
+        value,
+        onChange,
+        label = __( 'Alignment', 'wpmozo-blocks-and-addons' ),
+        className = `wpmozo-alignment-compo ${type}`,
+        alignments,
+        showJustify = false
+    } = args;
 
     const horizontalAlignments = {
         left: (
@@ -37,6 +46,18 @@ const WpmozoAlignment = (args) => {
             />
         ),
     };
+
+    // Add justify option only if showJustify is true
+    if ( showJustify ) {
+        horizontalAlignments.justify = (
+            <__experimentalToggleGroupControlOptionIcon
+                key={ `wpmozo-alignment-justify-${alignmentKey}` }
+                value="justify"
+                icon={ <Icon icon="editor-justify" /> }
+                label={ __( 'Justify', 'wpmozo-blocks-and-addons' ) }
+            />
+        );
+    }
 
     const verticalAlignments = {
         top: (
