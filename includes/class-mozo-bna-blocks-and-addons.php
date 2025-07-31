@@ -102,6 +102,27 @@ class Mozo_Bna_Blocks_And_Addons {
 	}
 
 	/**
+	 * The name of the plugin used to uniquely identify it within the context of
+	 * WordPress and to define internationalization functionality.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The name of the plugin.
+	 */
+	public function get_plugin_name() {
+		return $this->plugin_name;
+	}
+
+	/**
+	 * Retrieve the version number of the plugin.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The version number of the plugin.
+	 */
+	public function get_version() {
+		return $this->version;
+	}
+
+	/**
 	 * Load the required dependencies for this plugin.
 	 *
 	 * Include the following files that make up the plugin:
@@ -134,6 +155,12 @@ class Mozo_Bna_Blocks_And_Addons {
 		 */
 		require_once WPMOZO_BNA_INC_DIR_PATH . 'class-mozo-bna-blocks-and-addons-assets.php';
 
+		/**
+		 * The class that manages plugin post types and,
+		 * taxonomies of the plugin.
+		 */
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'class-mozo-bna-post-types.php';
+
 		$wpmozo_i18n   = new Mozo_Bna_Blocks_And_Addons_I18n();
 		$wpmozo_assets = new Mozo_Bna_Blocks_And_Addons_Assets();
 
@@ -141,50 +168,64 @@ class Mozo_Bna_Blocks_And_Addons {
 		$this->classes['astreg']  = $wpmozo_assets;
 	}
 
-
 	/**
-	 * The name of the plugin used to uniquely identify it within the context of
-	 * WordPress and to define internationalization functionality.
+	 * Load admin side dependencies.
+	 * like metaboxes.
 	 *
-	 * @since     1.0.0
-	 * @return    string    The name of the plugin.
+	 * @since    1.1.0
+	 * @access   private
 	 */
-	public function get_plugin_name() {
-		return $this->plugin_name;
-	}
+	private function load_admin_dependencies() {
 
-	/**
-	 * Retrieve the version number of the plugin.
-	 *
-	 * @since     1.0.0
-	 * @return    string    The version number of the plugin.
-	 */
-	public function get_version() {
-		return $this->version;
+		// Double check only if admin.
+		if ( ! is_admin() ) {
+			return;
+		}
+
+		/**
+		 * The class that manages admin side features.
+		 */
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'admin/class-mozo-bna-admin.php';
+
 	}
 
 	/**
 	 * Add all hooks.
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 */
 	public function add_hooks() {
-
 		add_action( 'plugins_loaded', array( $this->classes['i18n'], 'load_plugin_textdomain' ) );
 		add_action( 'init', array( $this->classes['astreg'], 'wpmozo_register_scripts_and_styles' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this->classes['astreg'], 'enqueue_block_editor_assets' ) );
 		add_action( 'wp_enqueue_scripts', array( $this->classes['astreg'], 'enqueue_block_assets' ) );
-		// add_action( 'rest_api_init', array( $this, 'register_rest_api_endpoints' ) );
+	}
+
+	/**
+	 * Add admin hooks.
+	 *
+	 * @since  1.1.0
+	 */
+	public function add_admin_hooks() {
+		add_action( 'admin_enqueue_scripts', array( $this->classes['astreg'], 'enqueue_admin_assets' ) );
 	}
 
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
-	 * @since    1.0.0
+	 * @since  1.0.0
 	 */
 	public function run() {
-
 		$this->load_dependencies();
 		$this->add_hooks();
+
+		/**
+		 * Admin dependencies those only works on admin side.
+		 * like: metaboxes, settings panel etc.
+		 */
+		if ( is_admin() ) {
+			$this->load_admin_dependencies();
+			$this->add_admin_hooks();
+		}
 	}
 }
