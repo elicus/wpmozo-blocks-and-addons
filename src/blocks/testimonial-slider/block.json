@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/testimonial-slider",
+	"version": "0.1.0",
+	"title": "Testimonial Slider",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "Testimonial slider to use to display testimonials.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"ID": { "type": "string" },
+
+		"layout": { "type": "string", "default": "layout1" },
+		"postsToShow": { "type": "number", "default": 5 },
+		"postOrder": { "type": "string", "default": "DESC" },
+		"postOrderBy": { "type": "string", "default": "date" },
+		"includesCategories": { "type": "array", "default": [] },
+		"noResultText": { "type": "string", "default": "The testimonials you requested could not be found. Try changing your module settings or create some new testimonials." },
+
+		"showRating": { "type": "boolean", "default": true },
+		"showAuthorImage": { "type": "boolean", "default": true },
+		"showDesignation": { "type": "boolean", "default": true },
+		"showCompany": { "type": "boolean", "default": true },
+
+		"slideEffect": { "type": "string", "default": "slide" },
+		"slidesPerView": { "type": "number", "default": 1 },
+		"slidesPerGroup": { "type": "number", "default": 1 },
+		"spaceBetweenSlides": { "type": "number", "default": 20 },
+		"equalHeigh": { "type": "boolean", "default": false },
+		"enableLoop": { "type": "boolean", "default": false },
+		"autoplay": { "type": "boolean", "default": true },
+		"enableLinearTrans": { "type": "boolean", "default": false },
+		"autoplayDelay": { "type": "number", "default": 3000 },
+		"pauseOnHover": { "type": "boolean", "default": true },
+		"transDuration": { "type": "number", "default": 1000 }
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpmozo/image-stack-child",
+  "version": "0.1.0",
+  "title": "Image Stack Child",
+  "category": "wpmozo",
+  "icon": "smiley",
+  "description": "Example block scaffolded with Create Block tool.",
+  "example": {},
+  "supports": {
+    "anchor": true,
+    "html": false
+  },
+  "parent": "wpmozo/image-stack",
+  "attributes": {
+    "ID": {
+      "type": "string"
+    },
+    "image": {
+      "type": "object"
+    },
+    "stackType": {
+      "type": "string"
+    },
+    "stackIcon": {
+      "type": "string",
+      "default": "fas fa-arrow-right"
+    },
+    "tooltipText": {
+      "type": "string"
+    },
+    "showTooltip": {
+      "type": "boolean",
+      "default": false
+    },
+    "imageBorderRadius": {
+      "type": "number",
+      "default": 1
+    },
+    "iconShape": {
+      "type": "string",
+      "default": "none"
+    }
+  },
+  "textdomain": "wpmozo-blocks-and-addons",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

@@ -1,15 +1,15 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
-	'pricing-table' => array(
+	'bar-counter' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'wpmozo/pricing-table',
+		'name' => 'wpmozo/bar-counter',
 		'version' => '0.1.0',
-		'title' => 'Pricing Table',
+		'title' => 'Bar Counter',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'A Pricing Table Block displays side-by-side plans to compare features and pricing at a glance.',
+		'description' => 'Example block scaffolded with Create Block tool.',
 		'example' => array(
 			
 		),
@@ -20,104 +20,44 @@ return array(
 			'ID' => array(
 				'type' => 'string'
 			),
+			'layoutType' => array(
+				'type' => 'string',
+				'default' => 'layout1'
+			),
 			'title' => array(
 				'type' => 'string',
-				'default' => 'WPMozo Pricing'
-			),
-			'titleLeval' => array(
-				'type' => 'string',
-				'default' => 'h2'
-			),
-			'subtitle' => array(
-				'type' => 'string',
-				'default' => 'Ultimate plan'
-			),
-			'headerGraphics' => array(
-				'type' => 'string',
-				'default' => 'icon'
-			),
-			'headerIcon' => array(
-				'type' => 'string',
-				'default' => 'fas fa-star'
-			),
-			'headerImage' => array(
-				'type' => 'string'
-			),
-			'currencySymbol' => array(
-				'type' => 'string',
-				'default' => '$'
-			),
-			'customSymbol' => array(
-				'type' => 'string'
-			),
-			'price' => array(
-				'type' => 'string',
-				'default' => 99
-			),
-			'period' => array(
-				'type' => 'string',
-				'default' => 'Year'
-			),
-			'features' => array(
-				'type' => 'array',
-				'default' => array(
-					array(
-						'list' => 'feature 1',
-						'icon' => 'fas fa-check'
-					),
-					array(
-						'list' => 'feature 2',
-						'icon' => 'fas fa-check'
-					),
-					array(
-						'list' => 'feature 3',
-						'icon' => 'fas fa-check'
-					)
-				)
-			),
-			'showButton' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'buttonText' => array(
-				'type' => 'string',
-				'default' => 'Read More'
-			),
-			'buttonUrl' => array(
-				'type' => 'string'
-			),
-			'buttonLinkTarget' => array(
-				'type' => 'string',
-				'default' => 'same'
-			),
-			'buttonIcontype' => array(
-				'type' => 'string',
-				'default' => 'icon'
-			),
-			'buttonIcon' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'buttonIconImage' => array(
-				'type' => 'string'
-			),
-			'buttonIconPosition' => array(
-				'type' => 'string',
-				'default' => 'icon-after'
-			),
-			'showIconOnHover' => array(
-				'type' => 'boolean',
-				'default' => false
+				'default' => 'WPMozo Title'
 			),
 			'titleLavel' => array(
 				'type' => 'string',
 				'default' => 'h2'
 			),
-			'titleAlign' => array(
-				'type' => 'string',
-				'default' => 'center'
+			'percentage' => array(
+				'type' => 'number',
+				'default' => 50
+			),
+			'displayEmptyBar' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'useStripes' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'stripeColor' => array(
+				'type' => 'string'
+			),
+			'stripeAnimation' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'stripeAnimationSpeed' => array(
+				'type' => 'number'
 			),
 			'titleColor' => array(
+				'type' => 'string'
+			),
+			'titleAlign' => array(
 				'type' => 'string'
 			),
 			'titleFontSize' => array(
@@ -148,17 +88,16 @@ return array(
 			'titleLineHeight' => array(
 				'type' => 'string'
 			),
-			'subTitleColor' => array(
+			'percentageColor' => array(
 				'type' => 'string'
 			),
-			'subTitleAlign' => array(
-				'type' => 'string',
-				'default' => 'center'
-			),
-			'subTitleFontSize' => array(
+			'percentageAlign' => array(
 				'type' => 'string'
 			),
-			'subTitleFontAppearance' => array(
+			'percentageFontSize' => array(
+				'type' => 'string'
+			),
+			'percentageFontAppearance' => array(
 				'type' => 'object',
 				'fontStyle' => array(
 					'type' => 'string'
@@ -171,274 +110,61 @@ return array(
 					'fontWeight' => ''
 				)
 			),
-			'subTitleLetterSpacing' => array(
+			'percentageLetterSpacing' => array(
 				'type' => 'string'
 			),
-			'subTitleDecoration' => array(
+			'percentageDecoration' => array(
 				'type' => 'string'
 			),
-			'subTitleLetterCase' => array(
+			'percentageLetterCase' => array(
 				'type' => 'string'
 			),
-			'subTitleLineHeight' => array(
+			'percentageLineHeight' => array(
 				'type' => 'string'
 			),
-			'useIconFontSize' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'iconFontSize' => array(
-				'type' => 'string'
-			),
-			'imageWidth' => array(
+			'filledBackgroundType' => array(
 				'type' => 'string',
-				'default' => '100px'
+				'default' => 'classic'
 			),
-			'imageHeight' => array(
-				'type' => 'string',
-				'default' => '100px'
-			),
-			'iconAlign' => array(
-				'type' => 'string',
-				'default' => 'center'
-			),
-			'iconColor' => array(
+			'filledBackgroundColor' => array(
 				'type' => 'string'
 			),
-			'headerGraphicsDimensionspadding' => array(
-				'type' => 'object'
+			'filledBackgroundGradient' => array(
+				'type' => 'string',
+				'default' => 'linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)'
 			),
-			'headerGraphicsDimensionsmargin' => array(
-				'type' => 'object'
+			'backgroundType' => array(
+				'type' => 'string',
+				'default' => 'classic'
 			),
 			'backgroundColor' => array(
 				'type' => 'string'
 			),
-			'align' => array(
-				'type' => 'string'
-			),
-			'mainDimensionspadding' => array(
-				'type' => 'object'
-			),
-			'mainDimensionsmargin' => array(
-				'type' => 'object'
-			),
-			'currencyColor' => array(
-				'type' => 'string'
-			),
-			'currencyFontAppearance' => array(
-				'type' => 'object',
-				'fontStyle' => array(
-					'type' => 'string'
-				),
-				'fontWeight' => array(
-					'type' => 'string'
-				),
-				'default' => array(
-					'fontStyle' => '',
-					'fontWeight' => ''
-				)
-			),
-			'currencyLetterSpacing' => array(
-				'type' => 'string'
-			),
-			'currencyDecoration' => array(
-				'type' => 'string'
-			),
-			'currencyLetterCase' => array(
-				'type' => 'string'
-			),
-			'currencyLineHeight' => array(
-				'type' => 'string'
-			),
-			'currencyFontSize' => array(
-				'type' => 'string'
-			),
-			'priceColor' => array(
-				'type' => 'string'
-			),
-			'priceFontAppearance' => array(
-				'type' => 'object',
-				'fontStyle' => array(
-					'type' => 'string'
-				),
-				'fontWeight' => array(
-					'type' => 'string'
-				),
-				'default' => array(
-					'fontStyle' => '',
-					'fontWeight' => ''
-				)
-			),
-			'priceLetterSpacing' => array(
-				'type' => 'string'
-			),
-			'priceDecoration' => array(
-				'type' => 'string'
-			),
-			'priceLetterCase' => array(
-				'type' => 'string'
-			),
-			'priceLineHeight' => array(
-				'type' => 'string'
-			),
-			'priceFontSize' => array(
-				'type' => 'string'
-			),
-			'periodColor' => array(
-				'type' => 'string'
-			),
-			'periodFontAppearance' => array(
-				'type' => 'object',
-				'fontStyle' => array(
-					'type' => 'string'
-				),
-				'fontWeight' => array(
-					'type' => 'string'
-				),
-				'default' => array(
-					'fontStyle' => '',
-					'fontWeight' => ''
-				)
-			),
-			'periodLetterSpacing' => array(
-				'type' => 'string'
-			),
-			'periodDecoration' => array(
-				'type' => 'string'
-			),
-			'periodLetterCase' => array(
-				'type' => 'string'
-			),
-			'periodLineHeight' => array(
-				'type' => 'string'
-			),
-			'periodFontSize' => array(
-				'type' => 'string'
-			),
-			'featuresAlign' => array(
-				'type' => 'string'
-			),
-			'featuresFontAppearance' => array(
-				'type' => 'object',
-				'fontStyle' => array(
-					'type' => 'string'
-				),
-				'fontWeight' => array(
-					'type' => 'string'
-				),
-				'default' => array(
-					'fontStyle' => '',
-					'fontWeight' => ''
-				)
-			),
-			'featuresLetterSpacing' => array(
-				'type' => 'string'
-			),
-			'featuresDecoration' => array(
-				'type' => 'string'
-			),
-			'featuresLetterCase' => array(
-				'type' => 'string'
-			),
-			'featuresLineHeight' => array(
-				'type' => 'string'
-			),
-			'featuresFontSize' => array(
-				'type' => 'string'
-			),
-			'featuresColor' => array(
-				'type' => 'string'
-			),
-			'featuresBackground' => array(
-				'type' => 'string'
-			),
-			'feturesAlign' => array(
+			'backgroundGradient' => array(
 				'type' => 'string',
-				'default' => 'center'
+				'default' => 'linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)'
 			),
-			'showFeaturesIcon' => array(
-				'type' => 'boolean',
+			'barborder' => array(
+				'type' => 'object'
+			),
+			'barborderRadius' => array(
+				'type' => 'string'
+			),
+			'useCustomChunksSize' => array(
+				'type' => 'bollean',
 				'default' => false
 			),
-			'featuresIcon' => array(
+			'useChunksWidth' => array(
 				'type' => 'string'
 			),
-			'featuresIconsColor' => array(
+			'useChunksWidthUnit' => array(
 				'type' => 'string'
 			),
-			'featuresIconsSpacing' => array(
-				'type' => 'string',
-				'default' => '5px'
-			),
-			'featuresDimensionspadding' => array(
-				'type' => 'object'
-			),
-			'featuresDimensionsmargin' => array(
-				'type' => 'object'
-			),
-			'buttonAlign' => array(
+			'useChunksHeight' => array(
 				'type' => 'string'
 			),
-			'buttonStyle' => array(
-				'type' => 'string',
-				'default' => 'normal'
-			),
-			'buttonTextColor' => array(
+			'useChunksHeightUnit' => array(
 				'type' => 'string'
-			),
-			'buttonTextBackground' => array(
-				'type' => 'string'
-			),
-			'iconTextColor' => array(
-				'type' => 'string'
-			),
-			'iconTextBackground' => array(
-				'type' => 'string'
-			),
-			'borderSelection' => array(
-				'type' => 'string',
-				'default' => 'solid'
-			),
-			'borderWidth' => array(
-				'type' => 'string'
-			),
-			'borderRadius' => array(
-				'type' => 'string'
-			),
-			'borderColor' => array(
-				'type' => 'string'
-			),
-			'buttonTextHoverColor' => array(
-				'type' => 'string'
-			),
-			'buttonTextHoverBackground' => array(
-				'type' => 'string'
-			),
-			'iconTextHoverColor' => array(
-				'type' => 'string'
-			),
-			'iconTextHoverBackground' => array(
-				'type' => 'string'
-			),
-			'borderSelectionHover' => array(
-				'type' => 'string',
-				'default' => 'solid'
-			),
-			'borderWidthHover' => array(
-				'type' => 'string'
-			),
-			'borderRadiusHover' => array(
-				'type' => 'string'
-			),
-			'borderHoverColor' => array(
-				'type' => 'string'
-			),
-			'borderDimensionspadding' => array(
-				'type' => 'object'
-			),
-			'borderDimensionsmargin' => array(
-				'type' => 'object'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
@@ -2230,6 +1956,96 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'style' => 'file:./style-index.css'
 	),
+	'image-stack' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/image-stack',
+		'version' => '0.1.0',
+		'title' => 'Image Stack',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'stackItemSize' => array(
+				'type' => 'number',
+				'default' => 100
+			),
+			'stackItemShrink' => array(
+				'type' => 'number',
+				'default' => 40
+			),
+			'stackItemSpacing' => array(
+				'type' => 'number',
+				'default' => 10
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css'
+	),
+	'image-stack-child' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/image-stack-child',
+		'version' => '0.1.0',
+		'title' => 'Image Stack Child',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'anchor' => true,
+			'html' => false
+		),
+		'parent' => 'wpmozo/image-stack',
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'image' => array(
+				'type' => 'object'
+			),
+			'stackType' => array(
+				'type' => 'string'
+			),
+			'stackIcon' => array(
+				'type' => 'string',
+				'default' => 'fas fa-arrow-right'
+			),
+			'tooltipText' => array(
+				'type' => 'string'
+			),
+			'showTooltip' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'imageBorderRadius' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'iconShape' => array(
+				'type' => 'string',
+				'default' => 'none'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js'
+	),
 	'interactive-image-card' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -2879,6 +2695,513 @@ return array(
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js'
 	),
+	'masonry-gallery' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/masonry-gallery',
+		'version' => '0.1.0',
+		'title' => 'Masonry Gallery',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Display multiple images in a masonry style gallery.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'anchor' => true,
+			'align' => array(
+				'wide',
+				'full'
+			),
+			'html' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'images' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				),
+				'source' => 'query',
+				'selector' => '.wpmozo-blocks-and-addons-gallery--item',
+				'query' => array(
+					'url' => array(
+						'source' => 'attribute',
+						'selector' => 'img',
+						'attribute' => 'src'
+					)
+				)
+			),
+			'gutterSize' => array(
+				'type' => 'string'
+			),
+			'customGutterSize' => array(
+				'type' => 'number'
+			),
+			'sizeSlug' => array(
+				'type' => 'string'
+			),
+			'numberOfColumns' => array(
+				'type' => 'number',
+				'default' => 3
+			),
+			'showCaption' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css'
+	),
+	'pricing-table' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/pricing-table',
+		'version' => '0.1.0',
+		'title' => 'Pricing Table',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'A Pricing Table Block displays side-by-side plans to compare features and pricing at a glance.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'title' => array(
+				'type' => 'string',
+				'default' => 'WPMozo Pricing'
+			),
+			'titleLeval' => array(
+				'type' => 'string',
+				'default' => 'h2'
+			),
+			'subtitle' => array(
+				'type' => 'string',
+				'default' => 'Ultimate plan'
+			),
+			'headerGraphics' => array(
+				'type' => 'string',
+				'default' => 'icon'
+			),
+			'headerIcon' => array(
+				'type' => 'string',
+				'default' => 'fas fa-star'
+			),
+			'headerImage' => array(
+				'type' => 'string'
+			),
+			'currencySymbol' => array(
+				'type' => 'string',
+				'default' => '$'
+			),
+			'customSymbol' => array(
+				'type' => 'string'
+			),
+			'price' => array(
+				'type' => 'string',
+				'default' => 99
+			),
+			'period' => array(
+				'type' => 'string',
+				'default' => 'Year'
+			),
+			'features' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'list' => 'feature 1',
+						'icon' => 'fas fa-check'
+					),
+					array(
+						'list' => 'feature 2',
+						'icon' => 'fas fa-check'
+					),
+					array(
+						'list' => 'feature 3',
+						'icon' => 'fas fa-check'
+					)
+				)
+			),
+			'showButton' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'buttonText' => array(
+				'type' => 'string',
+				'default' => 'Read More'
+			),
+			'buttonUrl' => array(
+				'type' => 'string'
+			),
+			'buttonLinkTarget' => array(
+				'type' => 'string',
+				'default' => 'same'
+			),
+			'buttonIcontype' => array(
+				'type' => 'string',
+				'default' => 'icon'
+			),
+			'buttonIcon' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'buttonIconImage' => array(
+				'type' => 'string'
+			),
+			'buttonIconPosition' => array(
+				'type' => 'string',
+				'default' => 'icon-after'
+			),
+			'showIconOnHover' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'titleLavel' => array(
+				'type' => 'string',
+				'default' => 'h2'
+			),
+			'titleAlign' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'titleColor' => array(
+				'type' => 'string'
+			),
+			'titleFontSize' => array(
+				'type' => 'string'
+			),
+			'titleFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'titleLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'titleDecoration' => array(
+				'type' => 'string'
+			),
+			'titleLetterCase' => array(
+				'type' => 'string'
+			),
+			'titleLineHeight' => array(
+				'type' => 'string'
+			),
+			'subTitleColor' => array(
+				'type' => 'string'
+			),
+			'subTitleAlign' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'subTitleFontSize' => array(
+				'type' => 'string'
+			),
+			'subTitleFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'subTitleLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'subTitleDecoration' => array(
+				'type' => 'string'
+			),
+			'subTitleLetterCase' => array(
+				'type' => 'string'
+			),
+			'subTitleLineHeight' => array(
+				'type' => 'string'
+			),
+			'useIconFontSize' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'iconFontSize' => array(
+				'type' => 'string'
+			),
+			'imageWidth' => array(
+				'type' => 'string',
+				'default' => '100px'
+			),
+			'imageHeight' => array(
+				'type' => 'string',
+				'default' => '100px'
+			),
+			'iconAlign' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'iconColor' => array(
+				'type' => 'string'
+			),
+			'headerGraphicsDimensionspadding' => array(
+				'type' => 'object'
+			),
+			'headerGraphicsDimensionsmargin' => array(
+				'type' => 'object'
+			),
+			'backgroundColor' => array(
+				'type' => 'string'
+			),
+			'align' => array(
+				'type' => 'string'
+			),
+			'mainDimensionspadding' => array(
+				'type' => 'object'
+			),
+			'mainDimensionsmargin' => array(
+				'type' => 'object'
+			),
+			'currencyColor' => array(
+				'type' => 'string'
+			),
+			'currencyFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'currencyLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'currencyDecoration' => array(
+				'type' => 'string'
+			),
+			'currencyLetterCase' => array(
+				'type' => 'string'
+			),
+			'currencyLineHeight' => array(
+				'type' => 'string'
+			),
+			'currencyFontSize' => array(
+				'type' => 'string'
+			),
+			'priceColor' => array(
+				'type' => 'string'
+			),
+			'priceFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'priceLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'priceDecoration' => array(
+				'type' => 'string'
+			),
+			'priceLetterCase' => array(
+				'type' => 'string'
+			),
+			'priceLineHeight' => array(
+				'type' => 'string'
+			),
+			'priceFontSize' => array(
+				'type' => 'string'
+			),
+			'periodColor' => array(
+				'type' => 'string'
+			),
+			'periodFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'periodLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'periodDecoration' => array(
+				'type' => 'string'
+			),
+			'periodLetterCase' => array(
+				'type' => 'string'
+			),
+			'periodLineHeight' => array(
+				'type' => 'string'
+			),
+			'periodFontSize' => array(
+				'type' => 'string'
+			),
+			'featuresAlign' => array(
+				'type' => 'string'
+			),
+			'featuresFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'featuresLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'featuresDecoration' => array(
+				'type' => 'string'
+			),
+			'featuresLetterCase' => array(
+				'type' => 'string'
+			),
+			'featuresLineHeight' => array(
+				'type' => 'string'
+			),
+			'featuresFontSize' => array(
+				'type' => 'string'
+			),
+			'featuresColor' => array(
+				'type' => 'string'
+			),
+			'featuresBackground' => array(
+				'type' => 'string'
+			),
+			'feturesAlign' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'showFeaturesIcon' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'featuresIcon' => array(
+				'type' => 'string'
+			),
+			'featuresIconsColor' => array(
+				'type' => 'string'
+			),
+			'featuresIconsSpacing' => array(
+				'type' => 'string',
+				'default' => '5px'
+			),
+			'featuresDimensionspadding' => array(
+				'type' => 'object'
+			),
+			'featuresDimensionsmargin' => array(
+				'type' => 'object'
+			),
+			'buttonAlign' => array(
+				'type' => 'string'
+			),
+			'buttonStyle' => array(
+				'type' => 'string',
+				'default' => 'normal'
+			),
+			'buttonTextColor' => array(
+				'type' => 'string'
+			),
+			'buttonTextBackground' => array(
+				'type' => 'string'
+			),
+			'iconTextColor' => array(
+				'type' => 'string'
+			),
+			'iconTextBackground' => array(
+				'type' => 'string'
+			),
+			'borderSelection' => array(
+				'type' => 'string',
+				'default' => 'solid'
+			),
+			'borderWidth' => array(
+				'type' => 'string'
+			),
+			'borderRadius' => array(
+				'type' => 'string'
+			),
+			'borderColor' => array(
+				'type' => 'string'
+			),
+			'buttonTextHoverColor' => array(
+				'type' => 'string'
+			),
+			'buttonTextHoverBackground' => array(
+				'type' => 'string'
+			),
+			'iconTextHoverColor' => array(
+				'type' => 'string'
+			),
+			'iconTextHoverBackground' => array(
+				'type' => 'string'
+			),
+			'borderSelectionHover' => array(
+				'type' => 'string',
+				'default' => 'solid'
+			),
+			'borderWidthHover' => array(
+				'type' => 'string'
+			),
+			'borderRadiusHover' => array(
+				'type' => 'string'
+			),
+			'borderHoverColor' => array(
+				'type' => 'string'
+			),
+			'borderDimensionspadding' => array(
+				'type' => 'object'
+			),
+			'borderDimensionsmargin' => array(
+				'type' => 'object'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css'
+	),
 	'separator' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -3234,6 +3557,119 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css'
+	),
+	'testimonial-slider' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/testimonial-slider',
+		'version' => '0.1.0',
+		'title' => 'Testimonial Slider',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Testimonial slider to use to display testimonials.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'layout' => array(
+				'type' => 'string',
+				'default' => 'layout1'
+			),
+			'postsToShow' => array(
+				'type' => 'number',
+				'default' => 5
+			),
+			'postOrder' => array(
+				'type' => 'string',
+				'default' => 'DESC'
+			),
+			'postOrderBy' => array(
+				'type' => 'string',
+				'default' => 'date'
+			),
+			'includesCategories' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'noResultText' => array(
+				'type' => 'string',
+				'default' => 'The testimonials you requested could not be found. Try changing your module settings or create some new testimonials.'
+			),
+			'showRating' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'showAuthorImage' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'showDesignation' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'showCompany' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'slideEffect' => array(
+				'type' => 'string',
+				'default' => 'slide'
+			),
+			'slidesPerView' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'slidesPerGroup' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'spaceBetweenSlides' => array(
+				'type' => 'number',
+				'default' => 20
+			),
+			'equalHeigh' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'enableLoop' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'autoplay' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'enableLinearTrans' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'autoplayDelay' => array(
+				'type' => 'number',
+				'default' => 3000
+			),
+			'pauseOnHover' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'transDuration' => array(
+				'type' => 'number',
+				'default' => 1000
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js',
+		'render' => 'file:./render.php'
 	),
 	'tilt-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',

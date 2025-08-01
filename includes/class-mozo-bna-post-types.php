@@ -21,6 +21,9 @@ class Mozo_Bna_Post_Types {
 		// Register post types.
 		add_action( 'init', array( __class__, 'register_testimonial_post_type' ) );
 		add_action( 'init', array( __class__, 'register_testimonial_taxonomies' ) );
+
+		// Disabled block editor for custom post types.
+		add_filter( 'use_block_editor_for_post_type', array( __class__, 'manage_block_editor_for_post_type' ), 10, 2 );
 	}
 
 	/**
@@ -75,6 +78,7 @@ class Mozo_Bna_Post_Types {
 			'has_archive'           => true,
 			'exclude_from_search'   => false,
 			'publicly_queryable'    => true,
+			'show_in_rest'          => true,
 			'capability_type'       => 'post',
 		);
 
@@ -109,16 +113,28 @@ class Mozo_Bna_Post_Types {
 			'items_list_navigation'      => esc_html__( 'Testimonial Categories list navigation', 'wpmozo-blocks-and-addons' ),
 		);
 		$args = array(
-			'labels'                     => $labels,
-			'hierarchical'               => true,
-			'public'                     => true,
-			'show_ui'                    => true,
-			'show_admin_column'          => true,
-			'show_in_nav_menus'          => true,
-			'show_tagcloud'              => true,
+			'labels'            => $labels,
+			'hierarchical'      => true,
+			'public'            => true,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'show_in_nav_menus' => true,
+			'show_in_rest'      => true,
+			'show_tagcloud'     => true,
 		);
 
 		register_taxonomy( 'mozo-testimonial-category', array( 'mozo-testimonial' ), $args );
+	}
+
+	/**
+	 * Enable/Disable block editor for custom post type.
+	 * @since 1.1.0
+	 */
+	public static function manage_block_editor_for_post_type( $use_block_editor, $post_type ) {
+		if ( $post_type === 'mozo-testimonial' ) {
+			return false; // disable block editor for this post type
+		}
+		return $use_block_editor;
 	}
 }
 

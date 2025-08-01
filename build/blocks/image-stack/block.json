@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpmozo/image-stack",
+  "version": "0.1.0",
+  "title": "Image Stack",
+  "category": "wpmozo",
+  "icon": "smiley",
+  "description": "Example block scaffolded with Create Block tool.",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "ID": {
+      "type": "string"
+    },
+    "stackItemSize": {
+      "type": "number",
+      "default": 100
+    },
+    "stackItemShrink": {
+      "type": "number",
+      "default": 40
+    },
+    "stackItemSpacing": {
+      "type": "number",
+      "default": 10
+    }
+  },
+  "textdomain": "wpmozo-blocks-and-addons",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

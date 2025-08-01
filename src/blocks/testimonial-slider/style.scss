@@ -1,0 +1,46 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-wpmozo-testimonial-slider{
+	text-align: center;
+}
+.wpmozo_single_testimonial_card{
+	background-color: #f4f4f4;
+    padding: 20px;
+}
+.wpmozo_testimonial_quote_icon{
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 0;
+}
+.wpmozo_testimonial_quote_icon svg{
+	width: 48px;
+	height: 48px;
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+	fill: #777;
+}
+.wpmozo_testimonial_author_image img{
+	max-width: 100%;
+	object-fit: cover;
+	height: auto;
+	width: 100px;
+	height: 100px;
+}
+.wpmozo_testimonial_desc p{
+	margin-top: 0;
+}
+
+// Layout 1.
+.wp-block-wpmozo-testimonial-slider .layout1 .wpmozo_testimonial_meta{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	border-top: 1px solid #ddd;
+	margin-top: 15px;
+	padding-top: 15px;
+}
