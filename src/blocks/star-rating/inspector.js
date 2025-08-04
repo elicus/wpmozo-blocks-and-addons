@@ -116,11 +116,11 @@ const Inspector = ( { attributes, setAttributes } ) => {
 				{/* Alignment. */}
 				<PanelBody title={ __( 'Alignment', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
 					<WpmozoAlignment
-                        label={ __( 'Text Alignment', 'wpmozo-blocks-and-addons' ) }
-                        value={ attributes.globalTextAlign }
+						label={ __( 'Text Alignment', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.globalTextAlign }
 						showJustify={ true }
-                        onChange={ ( newValue ) => setAttributes( { globalTextAlign: newValue } ) }
-                    />
+						onChange={ ( newValue ) => setAttributes( { globalTextAlign: newValue } ) }
+					/>
 				</PanelBody>
 				{/* Title. */}
 				<PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>

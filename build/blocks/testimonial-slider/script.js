@@ -1,0 +1,1 @@
+jQuery(document).ready((function(o){$(".wp-block-wpmozo-testimonial-slider").each((function(){}))}));

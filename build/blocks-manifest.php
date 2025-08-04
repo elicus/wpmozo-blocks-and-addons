@@ -3587,7 +3587,7 @@ return array(
 			),
 			'postOrder' => array(
 				'type' => 'string',
-				'default' => 'DESC'
+				'default' => 'desc'
 			),
 			'postOrderBy' => array(
 				'type' => 'string',
@@ -3606,6 +3606,18 @@ return array(
 			'showRating' => array(
 				'type' => 'boolean',
 				'default' => true
+			),
+			'starFontSize' => array(
+				'type' => 'number',
+				'default' => 28
+			),
+			'starFilledColor' => array(
+				'type' => 'string',
+				'default' => '#fac917'
+			),
+			'starEmptyColor' => array(
+				'type' => 'string',
+				'default' => '#fac917'
 			),
 			'showAuthorImage' => array(
 				'type' => 'boolean',
@@ -3627,11 +3639,35 @@ return array(
 				'type' => 'number',
 				'default' => 1
 			),
+			'slidesPerViewTablet' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'slidesPerViewMobile' => array(
+				'type' => 'number',
+				'default' => 1
+			),
 			'slidesPerGroup' => array(
 				'type' => 'number',
 				'default' => 1
 			),
+			'slidesPerGroupTablet' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'slidesPerGroupMobile' => array(
+				'type' => 'number',
+				'default' => 1
+			),
 			'spaceBetweenSlides' => array(
+				'type' => 'number',
+				'default' => 20
+			),
+			'spaceBetweenSlidesTablet' => array(
+				'type' => 'number',
+				'default' => 20
+			),
+			'spaceBetweenSlidesMobile' => array(
 				'type' => 'number',
 				'default' => 20
 			),
@@ -3662,13 +3698,249 @@ return array(
 			'transDuration' => array(
 				'type' => 'number',
 				'default' => 1000
+			),
+			'showArrows' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'prevArrowIcon' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'nextArrowIcon' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'showArrowOnHover' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'arrowsPosition' => array(
+				'type' => 'string',
+				'default' => 'inside'
+			),
+			'showControlDot' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'controlDotStyle' => array(
+				'type' => 'string',
+				'default' => 'solid_dot'
+			),
+			'enableDynamicDots' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'globalTextAlign' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'bodyColor' => array(
+				'type' => 'string'
+			),
+			'bodyFontSize' => array(
+				'type' => 'string'
+			),
+			'bodyLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'bodyDecoration' => array(
+				'type' => 'string'
+			),
+			'bodyLetterCase' => array(
+				'type' => 'string'
+			),
+			'bodyLineHeight' => array(
+				'type' => 'string'
+			),
+			'bodyFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'bodyFontStyle' => array(
+				'type' => 'string'
+			),
+			'bodyFontWeight' => array(
+				'type' => 'string'
+			),
+			'authorNameColor' => array(
+				'type' => 'string'
+			),
+			'authorNameFontSize' => array(
+				'type' => 'string'
+			),
+			'authorNameLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'authorNameDecoration' => array(
+				'type' => 'string'
+			),
+			'authorNameLetterCase' => array(
+				'type' => 'string'
+			),
+			'authorNameLineHeight' => array(
+				'type' => 'string'
+			),
+			'authorNameFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'authorNameFontStyle' => array(
+				'type' => 'string'
+			),
+			'authorNameFontWeight' => array(
+				'type' => 'string'
+			),
+			'designationColor' => array(
+				'type' => 'string'
+			),
+			'designationFontSize' => array(
+				'type' => 'string'
+			),
+			'designationLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'designationDecoration' => array(
+				'type' => 'string'
+			),
+			'designationLetterCase' => array(
+				'type' => 'string'
+			),
+			'designationLineHeight' => array(
+				'type' => 'string'
+			),
+			'designationFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'designationFontStyle' => array(
+				'type' => 'string'
+			),
+			'designationFontWeight' => array(
+				'type' => 'string'
+			),
+			'companyNameColor' => array(
+				'type' => 'string'
+			),
+			'companyNameFontSize' => array(
+				'type' => 'string'
+			),
+			'companyNameLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'companyNameDecoration' => array(
+				'type' => 'string'
+			),
+			'companyNameLetterCase' => array(
+				'type' => 'string'
+			),
+			'companyNameLineHeight' => array(
+				'type' => 'string'
+			),
+			'companyNameFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'companyNameFontStyle' => array(
+				'type' => 'string'
+			),
+			'companyNameFontWeight' => array(
+				'type' => 'string'
+			),
+			'showOpenQuoteIcon' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'openQuoteIconSize' => array(
+				'type' => 'number',
+				'default' => 42
+			),
+			'openQuoteIconColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'showCloseQuoteIcon' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'closeQuoteIconSize' => array(
+				'type' => 'number',
+				'default' => 42
+			),
+			'closeQuoteIconColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'sliderpadding' => array(
+				'type' => 'object'
+			),
+			'arrowFontSize' => array(
+				'type' => 'number',
+				'default' => '24'
+			),
+			'arrowColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'arrowBackground' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'arrowsborder' => array(
+				'type' => 'object'
+			),
+			'arrowsborderRadius' => array(
+				'type' => 'string'
+			),
+			'metaSeparatorColor' => array(
+				'type' => 'string',
+				'default' => '#dddddd'
+			),
+			'containerpadding' => array(
+				'type' => 'object'
+			),
+			'testimonialpadding' => array(
+				'type' => 'object'
+			),
+			'testimonialBackground' => array(
+				'type' => 'string'
+			),
+			'testimonialBGGradient' => array(
+				'type' => 'string'
+			),
+			'testimonialborder' => array(
+				'type' => 'object'
+			),
+			'testimonialborderRadius' => array(
+				'type' => 'string'
+			),
+			'authorImageborder' => array(
+				'type' => 'object'
+			),
+			'authorImageborderRadius' => array(
+				'type' => 'string'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./view.js',
+		'script' => array(
+			'wpmozo-blocks-and-addons-swiper-script',
+			'file:./script.js'
+		),
 		'render' => 'file:./render.php'
 	),
 	'tilt-image' => array(

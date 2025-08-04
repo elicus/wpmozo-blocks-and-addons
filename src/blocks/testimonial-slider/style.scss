@@ -17,11 +17,16 @@
 	line-height: 0;
 }
 .wpmozo_testimonial_quote_icon svg{
-	width: 48px;
-	height: 48px;
+	width: 42px;
+	height: 42px;
+	fill: #777;
+}
+.wpmozo_testimonial_opening_quote_icon svg{
 	-webkit-transform: rotate(180deg);
 	transform: rotate(180deg);
-	fill: #777;
+}
+.wpmozo_testimonial_author_image img{
+	padding-right: 15px;
 }
 .wpmozo_testimonial_author_image img{
 	max-width: 100%;
@@ -30,8 +35,67 @@
 	width: 100px;
 	height: 100px;
 }
+.wpmozo_testimonial_desc{
+	font-size: 16px;
+	line-height: 1.7;
+}
 .wpmozo_testimonial_desc p{
-	margin-top: 0;
+	margin: 0;
+}
+.wpmozo_testimonial_author_name{
+	font-size: 16px;
+	line-height: 1.5;
+}
+.wpmozo_testimonial_author_company,
+.wpmozo_testimonial_author_company a,
+.wpmozo_testimonial_author_designation{
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+// Stars.
+.wp-block-wpmozo-testimonial-slider .wpmozo_testimonial_rating_value{
+	display: inline-block;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	overflow: hidden;
+}
+.wp-block-wpmozo-testimonial-slider .wpmozo_testimonial_star{
+    display: inline-block;
+    position: relative;
+    font-size: 28px;
+    line-height: 0;
+    color: #fac917;
+}
+.wp-block-wpmozo-testimonial-slider .wpmozo_testimonial_star:after,
+.wp-block-wpmozo-testimonial-slider .wpmozo_testimonial_star:before{
+	display: inline-block;
+	font-family: initial;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 1;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	-webkit-font-smoothing: antialiased;
+	-webkit-font-feature-settings: normal;
+	font-feature-settings: normal;
+	speak-as: none;
+}
+.wp-block-wpmozo-testimonial-slider .wpmozo_testimonial_star:after{
+	content: '\2606';
+}
+.wp-block-wpmozo-testimonial-slider .wpmozo_testimonial_filled_star:after{
+    content: '\2605';
+}
+.wp-block-wpmozo-testimonial-slider .wpmozo_testimonial_half_filled_star:before{
+    content: '\2605';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
 }
 
 // Layout 1.
