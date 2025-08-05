@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { Fragment } from "@wordpress/element";
+import { Fragment, useEffect } from "@wordpress/element";
 import { useBlockProps } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import Inspector from './inspector';
@@ -11,11 +11,21 @@ import Inspector from './inspector';
  */
 import './editor.scss';
 
+import { wpmozo_is_empty } from "../../common/utils";
+
+import {
+	renderTestimonialLayoutOne,
+	renderTestimonialLayoutTwo
+} from './layouts';
+
 const Edit = (props) => {
 
 	const attributes    = props.attributes;
 	const setAttributes = props.setAttributes;
 	const clientId      = props.clientId;
+
+	attributes.ID = clientId;
+	setAttributes( { ID: clientId } );
 
 	const postsToShow        = parseInt( attributes.postsToShow ) ?? 5;
 	const postOrder          = attributes.postOrder ?? 'DESC';
@@ -32,13 +42,15 @@ const Edit = (props) => {
 			// author: 1,
 			_embed: true
 		} ),
-	[ postsToShow ] );
+	[ postsToShow, postOrder, postOrderBy, includesCategories.join(',') ] );
 
 	// Get props.
 	const layout = attributes.layout ?? 'layout1';
 
 	// Get slides.
-	let $slides = [];
+	let $slides         = [],
+		$sliderArrows   = '',
+		$paginationDots = '';
 	if ( posts && posts.length > 0 ) {
 
 		// Start quote.
@@ -55,34 +67,32 @@ const Edit = (props) => {
 
 		posts.map( ( post ) => {
 
-			const classLists = ( post.class_list ) ? ( post.class_list ).join( ' ' ) : '';
-
 			const rawContent      = post.content?.rendered || '';
 			const modifiedContent = openingQuote + rawContent + closingQuote;
 			const rateNumber      = parseFloat( post.author_rating ) ?? 5;
 			
-			let $postExcerpt = '';
+			let postExcerpt = '';
 			if ( post.content.rendered ) {
-				$postExcerpt = <div className="wpmozo_testimonial_desc"
+				postExcerpt = <div className="wpmozo_testimonial_desc"
 					dangerouslySetInnerHTML={ {__html: modifiedContent } }
 				/>;
 			}
 			
-			let $authorImage = '';
+			let authorImage = '';
 			const imageUrl = post._embedded['wp:featuredmedia'][0].source_url ?? '';
 			if ( attributes.showAuthorImage && imageUrl ) {
-				$authorImage = <div class="wpmozo_testimonial_author_image">
+				authorImage = <div class="wpmozo_testimonial_author_image">
 					<img src={ imageUrl } alt={ post._embedded['wp:featuredmedia'][0].alt_text || '' } />
 				</div>;
 			}
 
-			let $rating = '';
+			let rating = '';
 			if ( attributes.showRating && rateNumber > 0 ) {
 				const fullStars   = Math.floor( rateNumber );
 				const hasHalfStar = rateNumber % 1 !== 0;
 				const emptyStars  = 5 - fullStars - ( hasHalfStar ? 1 : 0 );
 
-				$rating = (
+				rating = (
 					<div className="wpmozo_testimonial_rating">
 						<span itemProp="reviewRating" itemScope itemType="http://schema.org/Rating">
 							<span className="wpmozo_testimonial_rating_value" itemProp="ratingValue">
@@ -118,40 +128,116 @@ const Edit = (props) => {
 				}
 				companyName = <div className="wpmozo_testimonial_author_company">{ companyName }</div>
 			}
-			
-			let $authorData = '';
-			if ( '' !== authorName || '' !== authorDesignation || '' !== companyName ) {
-				$authorData = <div className="wpmozo_testimonial_author_details">
-					{ authorName }{ authorDesignation }{ companyName }
-				</div>;
+
+			const layoutArgs = {
+				postExcerpt,
+				rating,
+				authorImage,
+				authorName,
+				authorDesignation,
+				companyName,
+				post
+			};
+
+			let $thisSlide = '';
+			if ( 'layout2' == layout ) {
+				$thisSlide = renderTestimonialLayoutTwo( layoutArgs );
+			} else {
+				$thisSlide = renderTestimonialLayoutOne( layoutArgs );
 			}
 
-			let $meta = '';
-			if ( '' !== $authorImage || '' !== $authorData ) {
-				$meta = <div className="wpmozo_testimonial_meta">{ $authorImage }{ $authorData }</div>;
-			}
-
-			$slides.push(
-				<div className="wpmozo_testimonial_slide">
-					<div id={ 'womozo_single_testimonial_' + post.id } className={"wpmozo_single_testimonial_card " + classLists}>
-						{ $postExcerpt }
-						{ $rating }
-						{ $meta }
-					</div>
-				</div>
-			);
+			// Add to the slides.
+			$slides.push( <div className="swiper-slide wpmozo_testimonial_slide">{ $thisSlide }</div> );
 		} );
+
+		// Slider arrows.
+		if ( attributes.showArrows ) {
+			let buttonNextClass = ( ! wpmozo_is_empty( attributes.nextArrowIcon ) )
+					? `custom-swiper-button-next swiper-button-next ${attributes.nextArrowIcon}`
+					: 'swiper-button-next',
+				buttonPrevClass = ( ! wpmozo_is_empty( attributes.prevArrowIcon ) )
+					? `custom-swiper-button-prev swiper-button-prev ${attributes.prevArrowIcon}`
+					: 'swiper-button-prev';
+				
+			$sliderArrows = <div
+				className={`wpmozo-bna-navigation-wrap wpmozo-bna-arrows-${attributes.arrowsPosition}`}
+			>
+				<div className={buttonNextClass}></div>
+				<div className={buttonPrevClass}></div>
+			</div>;
+		}
+
+		// Slider control dots.
+		if ( attributes.showControlDot ) {
+			let paginationClass = '';
+			if ( attributes.enableDynamicDots && (
+				'solid_dot' === attributes.controlDotStyle ||
+				'transparent_dot' === attributes.controlDotStyle ||
+				'square_dot' === attributes.controlDotStyle
+			) ) {
+				paginationClass = ( attributes.enableDynamicDots ) ? ' swiper-pagination-bullets-dynamic' : '';
+			}
+
+			$paginationDots = <div className="wpmozo-bna-testimonial-slider-pagination">
+				<div className={`swiper-pagination ${attributes.controlDotStyle}${paginationClass}`}></div>
+			</div>;
+		}
 	}
-	
+
+	// This need because of swiper init.
+	const selectBlock = () => {
+	    if ( wp && wp.data && wp.data.dispatch ) {
+			wp.data.dispatch( 'core/block-editor' ).selectBlock( clientId );
+		}
+	}
+
+	useEffect( () => {
+		const event = new CustomEvent( 'WPMozoTestimonialPropsChanged' );
+		window.dispatchEvent( event );
+
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
+		}
+	}, [props] );
 
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 
-			<div {...useBlockProps()}>
-				<div className="wpmozo_swiper_wrapper">
+			<div {...useBlockProps()} onClick={selectBlock}>
+				<div className="wpmozo_swiper_wrapper"
+					data-clientId={ clientId }
+					data-slide_effect={ attributes.slideEffect || 'slide' }
+					data-slides_per_view={ attributes.slidesPerView || '1' }
+					data-slides_per_view_tablet={ attributes.slidesPerViewTablet || '1' }
+					data-slides_per_view_mobile={ attributes.slidesPerViewMobile || '1' }
+					data-slides_per_group={ attributes.slidesPerGroup || '1' }
+					data-slides_per_group_tablet={ attributes.slidesPerGroupTablet || '1' }
+					data-slides_per_group_mobile={ attributes.slidesPerGroupMobile || '1' }
+					data-space_between_slides={ attributes.spaceBetweenSlides || '20' }
+					data-space_between_slides_tablet={ attributes.spaceBetweenSlidesTablet || '20' }
+					data-space_between_slides_mobile={ attributes.spaceBetweenSlidesMobile || '20' }
+
+					data-equal_heigh={ attributes.equalHeigh || 'false' }
+					data-enable_loop={ attributes.enableLoop || 'false' }
+					data-autoplay={ attributes.autoplay || 'true' }
+					data-autoplay_delay={ attributes.autoplayDelay || '3000' }
+					data-pause_on_hover={ attributes.pauseOnHover || 'true' }
+					data-enable_linear_trans={ attributes.enableLinearTrans || 'false' }
+					data-trans_duration={ attributes.transDuration || '1000' }
+
+					data-show_arrows={ attributes.showArrows || 'false' }
+					data-show_control_dot={ attributes.showControlDot || 'false' }
+					data-control_dot_style={ attributes.controlDotStyle || 'solid_dot' }
+					data-enable_dynamic_dots={ attributes.enableDynamicDots || 'false' }
+				>
 					<div className={"wpmozo_testimonial_layout wpmozo_swiper_inner_wrap " + layout}>
-						{ $slides }
+						<div className="swiper swiper-container">
+							<div className="swiper-wrapper">{ $slides }</div>
+						</div>
+						{ $sliderArrows }
+						{ $paginationDots }
 					</div>
 				</div>
 			</div>

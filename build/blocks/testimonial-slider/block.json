@@ -107,7 +107,7 @@
       "type": "number",
       "default": 20
     },
-    "equalHeigh": {
+    "equalHeight": {
       "type": "boolean",
       "default": false
     },
@@ -372,10 +372,14 @@
   "textdomain": "wpmozo-blocks-and-addons",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
+  "style": [
+    "file:./style-index.css",
+    "wpmozo-blocks-and-addons-swiper-style",
+    "wpmozo-blocks-and-addons-swiper-wpmozo-style"
+  ],
   "script": [
-    "wpmozo-blocks-and-addons-swiper-script",
-    "file:./script.js"
+    "file:./script.js",
+    "wpmozo-blocks-and-addons-swiper-script"
   ],
   "render": "file:./render.php"
 }

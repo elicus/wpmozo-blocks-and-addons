@@ -66,6 +66,12 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			array( 'wp-edit-blocks' ),
 			WPMOZO_BNA_VERSION
 		);
+		wp_register_style(
+			$this->plugin_name . '-swiper-wpmozo-style',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/wpmozo-swiper.css',
+			array( 'wp-edit-blocks' ),
+			WPMOZO_BNA_VERSION
+		);
 
 		wp_register_script(
 			$this->plugin_name . '-swiper-script',

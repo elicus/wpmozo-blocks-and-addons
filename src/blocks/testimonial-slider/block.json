@@ -39,7 +39,7 @@
 		"spaceBetweenSlides": { "type": "number", "default": 20 },
 		"spaceBetweenSlidesTablet": { "type": "number", "default": 20 },
 		"spaceBetweenSlidesMobile": { "type": "number", "default": 20 },
-		"equalHeigh": { "type": "boolean", "default": false },
+		"equalHeight": { "type": "boolean", "default": false },
 		"enableLoop": { "type": "boolean", "default": false },
 		"autoplay": { "type": "boolean", "default": true },
 		"enableLinearTrans": { "type": "boolean", "default": false },
@@ -137,7 +137,7 @@
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"script": [ "wpmozo-blocks-and-addons-swiper-script", "file:./script.js" ],
+	"style": [ "file:./style-index.css", "wpmozo-blocks-and-addons-swiper-style", "wpmozo-blocks-and-addons-swiper-wpmozo-style" ],
+	"script": [ "file:./script.js", "wpmozo-blocks-and-addons-swiper-script" ],
 	"render": "file:./render.php"
 }

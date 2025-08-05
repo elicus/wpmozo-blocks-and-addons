@@ -1,10 +1,212 @@
-jQuery(document).ready( function(e) {
-    $( '.wp-block-wpmozo-testimonial-slider' ).each( function() {
+import { wpmozo_is_empty } from "../../common/utils";
+import $ from 'jquery';
 
-    } );
+$( document ).ready( function(e) {
+
+	// On change on props, update the slider again.
+	window.addEventListener( 'WPMozoTestimonialPropsChanged', () => {
+		$( '.wp-block-wpmozo-testimonial-slider' ).each( function() {
+			initWPMozoTestimonialSlider( $( this ) );
+		} );
+	} );
+
+	// Init on load.
+	$( '.wp-block-wpmozo-testimonial-slider' ).each( function() {
+		initWPMozoTestimonialSlider( $( this ) );
+	} );
 } ); // Over document.ready.
 
-// init testimonial slider.
-function initWPMozoTestimonialSlider( sliderObj ) {
+let wpmozoTestimonialSwipers = {};
 
+// init testimonial slider.
+function initWPMozoTestimonialSlider( blockObj ) {
+
+	const wrapObj  = blockObj.find( '.wpmozo_swiper_wrapper' );
+	const clientId = wrapObj.attr( 'data-clientId' );
+
+	// Destroy if already exists.
+	if ( wpmozoTestimonialSwipers[clientId] && ! wpmozo_is_empty( wpmozoTestimonialSwipers[clientId] ) ) {
+		wpmozoTestimonialSwipers[clientId].destroy( true, true );
+	}
+
+	// Get the settings.
+	const settings  = {
+		'slide_effect'                : wrapObj.attr( 'data-slide_effect' ),
+		'show_arrow'                  : wrapObj.attr( 'data-show_arrows' ),
+		'show_control_dot'            : wrapObj.attr( 'data-show_control_dot' ),
+		'enable_loop'                 : wrapObj.attr( 'data-enable_loop' ),
+		'autoplay'                    : wrapObj.attr( 'data-autoplay' ),
+		'autoplay_delay'              : wrapObj.attr( 'data-autoplay_delay' ),
+		'trans_duration'              : wrapObj.attr( 'data-trans_duration' ),
+		'pause_on_hover'              : wrapObj.attr( 'data-pause_on_hover' ),
+		'enable_coverflow_shadow'     : wrapObj.attr( 'data-enable_coverflow_shadow' ),
+		'coverflow_rotate'            : wrapObj.attr( 'data-coverflow_rotate' ),
+		'coverflow_depth'             : wrapObj.attr( 'data-coverflow_depth' ),
+		'enable_dynamic_dots'         : wrapObj.attr( 'data-enable_dynamic_dots' ),
+		'per_view'                    : wrapObj.attr( 'data-slides_per_view' ),
+		'per_view_tablet'             : wrapObj.attr( 'data-slides_per_view_tablet' ),
+		'per_view_mobile'             : wrapObj.attr( 'data-slides_per_view_mobile' ),
+		'per_group'                   : wrapObj.attr( 'data-slides_per_group' ),
+		'per_group_tablet'            : wrapObj.attr( 'data-slides_per_group_tablet' ),
+		'per_group_mobile'            : wrapObj.attr( 'data-slides_per_group_mobile' ),
+		'space_between_slides'        : wrapObj.attr( 'data-space_between_slides' ),
+		'space_between_slides_tablet' : wrapObj.attr( 'data-space_between_slides_tablet' ),
+		'space_between_slides_mobile' : wrapObj.attr( 'data-space_between_slides_mobile' ),
+	};
+
+	let $orderId   = 'block-' + clientId,
+		
+		$slidesPerGroup              = 1,
+		$slidesPerGroupIpad          = 1,
+		$slidesPerGroupMobile	     = 1,
+		$slidesPerGroupSkip		     = 0,
+		$slidesPerGroupSkipIpad		 = 0,
+		$slidesPerGroupSkipMobile	 = 0,
+		$slides_per_view             = 1,
+		$slides_per_view_ipad        = 1,
+		$slides_per_view_mobile      = 1,
+		$space_between_slides        = 0,
+		$space_between_slides_ipad	 = 0,
+		$space_between_slides_mobile = 0;
+	
+	let slideEffect = ( settings.slide_effect ) ?? 'slide'; 
+	if ( 'slide' === slideEffect || 'coverflow' === slideEffect ) {
+		$slides_per_view             = ( settings?.per_view ) ? settings.per_view : '1';
+		$slides_per_view_ipad        = ( settings?.per_view_tablet ) ? settings.per_view_tablet : $slides_per_view;
+		$slides_per_view_mobile      = ( settings?.per_view_mobile ) ? settings.per_view_mobile : $slides_per_view_ipad;
+
+		$space_between_slides        = ( settings?.space_between_slides ) ? settings.space_between_slides : '20px';
+		$space_between_slides_ipad   = ( settings?.space_between_slides_tablet ) ? settings.space_between_slides_tablet : $space_between_slides;
+		$space_between_slides_mobile = ( settings?.space_between_slides_mobile ) ? settings.space_between_slides_mobile : $space_between_slides_ipad;
+
+		$slidesPerGroup 		      = ( settings?.per_group ) ? settings.per_group : '1';
+		$slidesPerGroupIpad			  = ( settings?.per_group_tablet ) ? settings.per_group_tablet : $slidesPerGroup;
+		$slidesPerGroupMobile		  = ( settings?.per_group_phone ) ? settings.per_group_phone : $slidesPerGroupIpad;
+
+		if ( $slides_per_view > $slidesPerGroup && 1 !== $slidesPerGroup ) {
+			$slidesPerGroupSkip = parseInt( $slides_per_view ) - parseInt( $slidesPerGroup );
+		}
+		if ( $slides_per_view_ipad > $slidesPerGroupIpad && 1 !== $slidesPerGroupIpad ) {
+			$slidesPerGroupSkipIpad = parseInt( $slides_per_view_ipad ) - parseInt( $slidesPerGroupIpad );
+		}
+		if ( $slides_per_view_mobile > $slidesPerGroupMobile && 1 !== $slidesPerGroupMobile ) {
+			$slidesPerGroupSkipMobile = parseInt( $slides_per_view_mobile ) - parseInt( $slidesPerGroupMobile );
+		}
+	}
+
+	let autoplay_speed      = ( settings?.autoplay_delay ) ?? 3000,
+		pause_on_hover      = ( settings?.pause_on_hover ) ?? 'true',
+		transition_duration = ( settings?.trans_duration ) ?? 1000,
+		loop_param          = ( 'true' === settings?.enable_loop ) ? true : false,
+		dynamic_bullets     = ( 'true' === settings?.enable_dynamic_dots ) ? true : false;
+
+	let $arrow_params = 'false';
+	if ( 'true' === settings?.show_arrow ) {
+		$arrow_params = {    
+			nextEl: '#' + $orderId + ' .swiper-button-next',
+			prevEl: '#' + $orderId + ' .swiper-button-prev',
+		};
+	}
+	let $control_dot_params = false;
+	if ( 'true' === settings?.show_control_dot ) {
+		$control_dot_params = {
+			el: '#' + $orderId + ' .swiper-pagination',
+			dynamicBullets: dynamic_bullets,
+			clickable: true,
+		}
+	}
+	
+	let $autoplay_param = 0;
+	if ( 'true' === settings?.autoplay ) {
+		$autoplay_param = {
+			delay: parseInt( autoplay_speed ),
+			disableOnInteraction: ( 'on' === pause_on_hover ) ? true : false,
+		};
+	}
+	let $slide_setting_cube = false;
+	if ( 'cube' === slideEffect ) {
+		$slide_setting_cube = {
+			shadow: false,
+			slideShadows: false,
+		};
+	}
+
+	let $slide_setting_coverflow = false;
+	if ( 'coverflow' === slideEffect ) {
+		$slide_setting_coverflow = {
+			rotate: ( settings?.coverflow_rotate ) ?? 40,
+			stretch: 0,
+			depth: ( settings?.coverflow_depth ) ?? 100,
+			modifier: 1,
+			slideShadows : ( settings?.enable_coverflow_shadow ) ?? false,
+		};
+		loop_param = true;
+	}
+
+	let $fade = false;
+	if ( 'fade' === slideEffect ) {
+		$fade = { crossFade: true };
+	}
+
+	var swipperSlider = new Swiper( '#' + $orderId + ' .swiper-container', {
+		slidesPerView: parseInt( $slides_per_view ),
+		autoplay: $autoplay_param,
+		spaceBetween: parseInt( $space_between_slides ),
+		slidesPerGroup: parseInt( $slidesPerGroup ),
+		slidesPerGroupSkip: parseInt( $slidesPerGroupSkip ),
+		effect: slideEffect,
+		cubeEffect: $slide_setting_cube,
+		coverflowEffect: $slide_setting_coverflow,
+		fadeEffect: $fade,
+		autoHeight: ( 'true' === settings?.auto_height_slider ) ? true : false,
+		speed: parseInt( transition_duration ),
+		loop: loop_param,
+		pagination: $control_dot_params,
+		navigation: $arrow_params,
+		grabCursor: true,
+		observer: true,
+		observeParents: true,
+		breakpoints: {
+			1080: {
+				slidesPerView: parseInt( $slides_per_view ),
+				spaceBetween: parseInt( $space_between_slides ),
+				slidesPerGroup: parseInt( $slidesPerGroup ),
+				slidesPerGroupSkip: parseInt( $slidesPerGroupSkip ),
+			},
+			767: {
+				slidesPerView: parseInt( $slides_per_view_ipad ),
+				spaceBetween: parseInt( $space_between_slides_ipad ),
+				slidesPerGroup: parseInt( $slidesPerGroupIpad ),
+				slidesPerGroupSkip: parseInt( $slidesPerGroupSkipIpad ),
+			},
+			0: {
+				slidesPerView: parseInt( $slides_per_view_mobile ),
+				spaceBetween: parseInt( $space_between_slides_mobile ),
+				slidesPerGroup: parseInt( $slidesPerGroupMobile ),
+				slidesPerGroupSkip: parseInt( $slidesPerGroupSkipMobile ),
+			}
+		}
+	} );
+
+	wrapObj.addClass( 'wpmozo-slider-initialized' );
+	if ( 'true' === pause_on_hover && 'true' === settings?.autoplay ) {
+		$( '#' + $orderId + ' .swiper-container' ).on( 'mouseleave', function(e) {
+			if ( typeof swipperSlider?.autoplay?.stop === "function" ) {
+				swipperSlider.autoplay.stop();
+			}
+		} );
+		$( '#' + $orderId + ' .swiper-container' ).on( 'mouseenter', function(e) {
+			if ( typeof swipperSlider?.autoplay?.start === "function" ) {
+				swipperSlider.autoplay.start();
+			}
+		} );
+	}
+	if ( 'true' !== settings?.enable_loop ) {
+		swipperSlider.on( 'reachEnd', function() {
+			swipperSlider.autoplay = false;
+		} );
+	}
+
+	// Add the swipers object to global vars.
+	wpmozoTestimonialSwipers[clientId] = swipperSlider;
 }

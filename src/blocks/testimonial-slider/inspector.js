@@ -160,7 +160,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 								{ value: 9, label: __( '9', 'wpmozo-blocks-and-addons' ) },
 								{ value: 10, label: __( '10', 'wpmozo-blocks-and-addons' ) },
 							] }
-							onChange={ ( newValue ) => setAttributes( { slidesPerView: newValue } ) }
+							onChange={ ( newValue ) => setAttributes( { slidesPerView: parseInt( newValue ) } ) }
 						/>
 						<SelectControl
 							label={ __( 'Number of Slides Per Group', 'wpmozo-blocks-and-addons' ) }
@@ -177,7 +177,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 								{ value: 9, label: __( '9', 'wpmozo-blocks-and-addons' ) },
 								{ value: 10, label: __( '10', 'wpmozo-blocks-and-addons' ) },
 							] }
-							onChange={ ( newValue ) => setAttributes( { slidesPerGroup: newValue } ) }
+							onChange={ ( newValue ) => setAttributes( { slidesPerGroup: parseInt( newValue ) } ) }
 						/>
 						<RangeControl
 							label={ __( 'Space Between Slides', 'wpmozo-blocks-and-addons' ) }
@@ -188,8 +188,8 @@ const Inspector = ( { attributes, setAttributes } ) => {
 					</> }
 					<ToggleControl
 						label={ __( 'Equalize Testimonials Height', 'wpmozo-blocks-and-addons' ) }
-						checked={ attributes.equalHeigh }
-						onChange={ ( newValue ) => setAttributes( { equalHeigh: newValue } ) }
+						checked={ attributes.equalHeight }
+						onChange={ ( newValue ) => setAttributes( { equalHeight: newValue } ) }
 					/>
 					<ToggleControl
 						label={ __( 'Enable Loop', 'wpmozo-blocks-and-addons' ) }
@@ -257,7 +257,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 										{ value: 9, label: __( '9', 'wpmozo-blocks-and-addons' ) },
 										{ value: 10, label: __( '10', 'wpmozo-blocks-and-addons' ) },
 									] }
-									onChange={ ( newValue ) => setAttributes( { slidesPerViewTablet: newValue } ) }
+									onChange={ ( newValue ) => setAttributes( { slidesPerViewTablet: parseInt( newValue ) } ) }
 								/>
 								<SelectControl
 									label={ __( 'Number of Slides Per Group', 'wpmozo-blocks-and-addons' ) }
@@ -274,7 +274,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 										{ value: 9, label: __( '9', 'wpmozo-blocks-and-addons' ) },
 										{ value: 10, label: __( '10', 'wpmozo-blocks-and-addons' ) },
 									] }
-									onChange={ ( newValue ) => setAttributes( { slidesPerGroupTablet: newValue } ) }
+									onChange={ ( newValue ) => setAttributes( { slidesPerGroupTablet: parseInt( newValue ) } ) }
 								/>
 								<RangeControl
 									label={ __( 'Space Between Slides', 'wpmozo-blocks-and-addons' ) }
@@ -299,7 +299,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 										{ value: 9, label: __( '9', 'wpmozo-blocks-and-addons' ) },
 										{ value: 10, label: __( '10', 'wpmozo-blocks-and-addons' ) },
 									] }
-									onChange={ ( newValue ) => setAttributes( { slidesPerViewMobile: newValue } ) }
+									onChange={ ( newValue ) => setAttributes( { slidesPerViewMobile: parseInt( newValue ) } ) }
 								/>
 								<SelectControl
 									label={ __( 'Number of Slides Per Group', 'wpmozo-blocks-and-addons' ) }
@@ -316,7 +316,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 										{ value: 9, label: __( '9', 'wpmozo-blocks-and-addons' ) },
 										{ value: 10, label: __( '10', 'wpmozo-blocks-and-addons' ) },
 									] }
-									onChange={ ( newValue ) => setAttributes( { slidesPerGroupMobile: newValue } ) }
+									onChange={ ( newValue ) => setAttributes( { slidesPerGroupMobile: parseInt( newValue ) } ) }
 								/>
 								<RangeControl
 									label={ __( 'Space Between Slides', 'wpmozo-blocks-and-addons' ) }

@@ -3671,7 +3671,7 @@ return array(
 				'type' => 'number',
 				'default' => 20
 			),
-			'equalHeigh' => array(
+			'equalHeight' => array(
 				'type' => 'boolean',
 				'default' => false
 			),
@@ -3936,10 +3936,14 @@ return array(
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'wpmozo-blocks-and-addons-swiper-style',
+			'wpmozo-blocks-and-addons-swiper-wpmozo-style'
+		),
 		'script' => array(
-			'wpmozo-blocks-and-addons-swiper-script',
-			'file:./script.js'
+			'file:./script.js',
+			'wpmozo-blocks-and-addons-swiper-script'
 		),
 		'render' => 'file:./render.php'
 	),

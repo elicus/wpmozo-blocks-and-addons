@@ -37,3 +37,17 @@ function mozo_bna_sanitize_text_field( $value ) {
 
 	return $value;
 }
+
+/**
+ * Pass thru semantical previously escaped acknowledgement.
+ *
+ * @since 1.1.0
+ *
+ * @param string value being passed through
+ * @return string
+ */
+if ( ! function_exists( 'wpmozo_esc_previously' ) ) :
+function wpmozo_esc_previously( $passthru ) {
+	return $passthru;
+}
+endif;
