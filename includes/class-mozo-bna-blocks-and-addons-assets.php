@@ -122,6 +122,14 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			true
 		);*/
 
+		wp_register_script(
+			$this->plugin_name . '-tippy-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/tippy-bundle.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
 		wp_register_style(
 			$this->plugin_name . '-blocks-style',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'css/blocks/block-style.css',
@@ -158,6 +166,8 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 		wp_enqueue_script( $this->plugin_name . '-editor-script' );
 		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
 		wp_enqueue_script( $this->plugin_name . '-tilt-script' );
+		wp_enqueue_script( $this->plugin_name . '-tippy-script' );
+
 	}
 
 	/**

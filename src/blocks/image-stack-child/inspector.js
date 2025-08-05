@@ -18,10 +18,6 @@ const Inspector = ({ attributes, setAttributes }) => {
     let props = { attributes, setAttributes },
 		stackTypeSelection = [
 			{
-				label: __('None', 'wpmozo-blocks-and-addons'),
-				value: 'none'
-			},
-			{
 				label: __('Image', 'wpmozo-blocks-and-addons'),
 				value: 'image'
 			},
@@ -71,12 +67,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 								value={attributes.stackIcon}
 								onChange={(newValue) => setAttributes({stackIcon: newValue})}
 							/>
-							<SelectControl
-								label={__('Icon Shape', 'wpmozo-blocks-and-addons')}
-								value={attributes.iconShape}
-								options={iconShape}
-								onChange={(newValue) => setAttributes({iconShape: newValue})}
-							/>
 						</>
 					)}
 					{'image' === attributes.stackType && (
@@ -87,33 +77,18 @@ const Inspector = ({ attributes, setAttributes }) => {
 								imageSrc={imageUrl}
 								onSelect={ ( media ) => setAttributes( { image: media } ) }
 							/>
-							<RangeControl
-								label={ __( 'Image Border Radius (px)', 'wpmozo-blocks-and-addons' ) }
-								value={ attributes.imageBorderRadius }
-								onChange={ ( newValue ) => setAttributes( { imageBorderRadius: newValue } ) }
-								min={ 1 }
-								step={ 1 }
-								max={ 100 }
-							/>
 						</>
 					)}
-					<ToggleControl
-						label={__('Enable Tooltip', 'wpmozo-blocks-and-addons')}
-						checked={attributes.showTooltip}
-						onChange={(newValue) => setAttributes({showTooltip: newValue})}
+					<TextControl
+						label={__('Tooltip Text', 'wpmozo-blocks-and-addons')}
+						value={attributes.tooltipText}
+						onChange={(newValue) => setAttributes({tooltipText: newValue})}
+						help={ __(
+							"Note: Above tooltip setting will only take effect once you are on the live page, and not while you're editing.",
+							'wpmozo-blocks-and-addons'
+						) }
 					/>
-					{attributes.showTooltip &&
-						<>
-							<TextControl
-								label={__('Tooltip Text', 'wpmozo-blocks-and-addons')}
-								value={attributes.tooltipText}
-								onChange={(newValue) => setAttributes({tooltipText: newValue})}
-							/>
-						</>
-					}
 				</PanelBody>
-			</InspectorControls>
-			<InspectorControls key="styles" group="styles">
 			</InspectorControls>
         </>
     );

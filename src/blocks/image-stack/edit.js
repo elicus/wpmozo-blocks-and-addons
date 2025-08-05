@@ -1,7 +1,8 @@
 import { useInnerBlocksProps } from '@wordpress/block-editor';
 import { useMemo } from '@wordpress/element';
-import {Fragment} from "@wordpress/element";
+import {Fragment,useEffect,useCallback} from "@wordpress/element";
 import {useBlockProps} from "@wordpress/block-editor";
+import { useDispatch, useSelect } from '@wordpress/data';
 import Inspector from './inspector';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -41,7 +42,7 @@ export default function Edit(props) {
 				{generateDynamicStyle({attributes, clientId})}
 			</style>
 			<div {...blockProps} >
-				<div className={`wpmozo-image-stack-wrap`}>
+				<div className={`wpmozo-image-stack-wrap`} id="wpmozo-baca216" data-speech-bubble="yes" data-animation-type="away" data-animation-duration="400" data-animation-name="shift-away" data-tooltip-id="elementor-baca216" data-trigger="hover">
 					<div {...innerBlockProps} />
 				</div>
 			</div>
