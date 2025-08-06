@@ -47,6 +47,11 @@
 		"pauseOnHover": { "type": "boolean", "default": true },
 		"transDuration": { "type": "number", "default": 1000 },
 
+		"enableCoverflowShadow": { "type": "boolean", "default": false },
+		"coverflowShadowColor": { "type": "string", "default": "#cccccc" },
+		"coverflowRotate": { "type": "number", "default": 40 },
+		"coverflowDepth": { "type": "number", "default": 100 },
+
 		"showArrows": { "type": "boolean", "default": false },
 		"prevArrowIcon": { "type": "string", "default": "" },
 		"nextArrowIcon": { "type": "string", "default": "" },
@@ -55,6 +60,8 @@
 		"showControlDot": { "type": "boolean", "default": false },
 		"controlDotStyle": { "type": "string", "default": "solid_dot" },
 		"enableDynamicDots": { "type": "boolean", "default": false },
+		"controlDotColorActive": { "type": "string", "default": "#000000" },
+		"controlDotColorInactive": { "type": "string", "default": "#cccccc" },
 
 		"globalTextAlign": { "type": "string", "default": "center" },
 		"bodyColor": { "type": "string" },
@@ -70,6 +77,19 @@
 		"bodyFontStyle": { "type": "string" },
 		"bodyFontWeight": { "type": "string" },
 
+		"bodyHoverColor": { "type": "string" },
+		"bodyHoverFontSize": { "type": "string" },
+		"bodyHoverLetterSpacing": { "type": "string" },
+		"bodyHoverDecoration": { "type": "string" },
+		"bodyHoverLetterCase": { "type": "string" },
+		"bodyHoverLineHeight": { "type": "string" },
+		"bodyHoverFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"bodyHoverFontStyle": { "type": "string" },
+		"bodyHoverFontWeight": { "type": "string" },
+
 		"authorNameColor": { "type": "string" },
 		"authorNameFontSize": { "type": "string" },
 		"authorNameLetterSpacing": { "type": "string" },
@@ -83,6 +103,19 @@
 		"authorNameFontStyle": { "type": "string" },
 		"authorNameFontWeight": { "type": "string" },
 
+		"authorNameHoverColor": { "type": "string" },
+		"authorNameHoverFontSize": { "type": "string" },
+		"authorNameHoverLetterSpacing": { "type": "string" },
+		"authorNameHoverDecoration": { "type": "string" },
+		"authorNameHoverLetterCase": { "type": "string" },
+		"authorNameHoverLineHeight": { "type": "string" },
+		"authorNameHoverFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"authorNameHoverFontStyle": { "type": "string" },
+		"authorNameHoverFontWeight": { "type": "string" },
+
 		"designationColor": { "type": "string" },
 		"designationFontSize": { "type": "string" },
 		"designationLetterSpacing": { "type": "string" },
@@ -95,6 +128,19 @@
 		},
 		"designationFontStyle": { "type": "string" },
 		"designationFontWeight": { "type": "string" },
+
+		"designationHoverColor": { "type": "string" },
+		"designationHoverFontSize": { "type": "string" },
+		"designationHoverLetterSpacing": { "type": "string" },
+		"designationHoverDecoration": { "type": "string" },
+		"designationHoverLetterCase": { "type": "string" },
+		"designationHoverLineHeight": { "type": "string" },
+		"designationHoverFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"designationHoverFontStyle": { "type": "string" },
+		"designationHoverFontWeight": { "type": "string" },
 		
 		"companyNameColor": { "type": "string" },
 		"companyNameFontSize": { "type": "string" },
@@ -109,6 +155,19 @@
 		"companyNameFontStyle": { "type": "string" },
 		"companyNameFontWeight": { "type": "string" },
 
+		"companyNameHoverColor": { "type": "string" },
+		"companyNameHoverFontSize": { "type": "string" },
+		"companyNameHoverLetterSpacing": { "type": "string" },
+		"companyNameHoverDecoration": { "type": "string" },
+		"companyNameHoverLetterCase": { "type": "string" },
+		"companyNameHoverLineHeight": { "type": "string" },
+		"companyNameHoverFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"companyNameHoverFontStyle": { "type": "string" },
+		"companyNameHoverFontWeight": { "type": "string" },
+
 		"showOpenQuoteIcon": { "type": "boolean", "default": true },
 		"openQuoteIconSize": { "type": "number", "default": 42 },
 		"openQuoteIconColor": { "type": "string", "default": "" },
@@ -116,12 +175,13 @@
 		"closeQuoteIconSize": { "type": "number", "default": 42 },
 		"closeQuoteIconColor": { "type": "string", "default": "" },
 
-		"sliderpadding": { "type": "object" },
-		"arrowFontSize": { "type": "number", "default": "24" },
+		"arrowpadding": { "type": "object" },
+		"arrowIconSize": { "type": "number", "default": 24 },
 		"arrowColor": { "type": "string", "default": "" },
 		"arrowBackground": { "type": "string", "default": "" },
-		"arrowsborder": { "type": "object" },
-        "arrowsborderRadius": { "type": "string" },
+		"arrowborder": { "type": "object" },
+        "arrowborderRadius": { "type": "string" },
+		"arrowborderColor": { "type": "string", "default": "" },
 
 		"metaSeparatorColor": { "type": "string", "default": "#dddddd" },
 		"containerpadding": { "type": "object" },
@@ -130,13 +190,14 @@
 		"testimonialBGGradient": { "type": "string" },
 		"testimonialborder": { "type": "object" },
         "testimonialborderRadius": { "type": "string" },
+		"testimonialborderColor": { "type": "string", "default": "" },
 
 		"authorImageborder": { "type": "object" },
-        "authorImageborderRadius": { "type": "string" }
+		"authorImageborderRadius": { "type": "string" },
+		"authorImageborderColor": { "type": "string" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
 	"style": [ "file:./style-index.css", "wpmozo-blocks-and-addons-swiper-style", "wpmozo-blocks-and-addons-swiper-wpmozo-style" ],
 	"script": [ "file:./script.js", "wpmozo-blocks-and-addons-swiper-script" ],
 	"render": "file:./render.php"

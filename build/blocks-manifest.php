@@ -151,7 +151,7 @@ return array(
 				'type' => 'string'
 			),
 			'useCustomChunksSize' => array(
-				'type' => 'bollean',
+				'type' => 'boolean',
 				'default' => false
 			),
 			'useChunksWidth' => array(
@@ -3699,6 +3699,22 @@ return array(
 				'type' => 'number',
 				'default' => 1000
 			),
+			'enableCoverflowShadow' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'coverflowShadowColor' => array(
+				'type' => 'string',
+				'default' => '#cccccc'
+			),
+			'coverflowRotate' => array(
+				'type' => 'number',
+				'default' => 40
+			),
+			'coverflowDepth' => array(
+				'type' => 'number',
+				'default' => 100
+			),
 			'showArrows' => array(
 				'type' => 'boolean',
 				'default' => false
@@ -3730,6 +3746,14 @@ return array(
 			'enableDynamicDots' => array(
 				'type' => 'boolean',
 				'default' => false
+			),
+			'controlDotColorActive' => array(
+				'type' => 'string',
+				'default' => '#000000'
+			),
+			'controlDotColorInactive' => array(
+				'type' => 'string',
+				'default' => '#cccccc'
 			),
 			'globalTextAlign' => array(
 				'type' => 'string',
@@ -3766,6 +3790,37 @@ return array(
 			'bodyFontWeight' => array(
 				'type' => 'string'
 			),
+			'bodyHoverColor' => array(
+				'type' => 'string'
+			),
+			'bodyHoverFontSize' => array(
+				'type' => 'string'
+			),
+			'bodyHoverLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'bodyHoverDecoration' => array(
+				'type' => 'string'
+			),
+			'bodyHoverLetterCase' => array(
+				'type' => 'string'
+			),
+			'bodyHoverLineHeight' => array(
+				'type' => 'string'
+			),
+			'bodyHoverFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'bodyHoverFontStyle' => array(
+				'type' => 'string'
+			),
+			'bodyHoverFontWeight' => array(
+				'type' => 'string'
+			),
 			'authorNameColor' => array(
 				'type' => 'string'
 			),
@@ -3795,6 +3850,37 @@ return array(
 				'type' => 'string'
 			),
 			'authorNameFontWeight' => array(
+				'type' => 'string'
+			),
+			'authorNameHoverColor' => array(
+				'type' => 'string'
+			),
+			'authorNameHoverFontSize' => array(
+				'type' => 'string'
+			),
+			'authorNameHoverLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'authorNameHoverDecoration' => array(
+				'type' => 'string'
+			),
+			'authorNameHoverLetterCase' => array(
+				'type' => 'string'
+			),
+			'authorNameHoverLineHeight' => array(
+				'type' => 'string'
+			),
+			'authorNameHoverFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'authorNameHoverFontStyle' => array(
+				'type' => 'string'
+			),
+			'authorNameHoverFontWeight' => array(
 				'type' => 'string'
 			),
 			'designationColor' => array(
@@ -3828,6 +3914,37 @@ return array(
 			'designationFontWeight' => array(
 				'type' => 'string'
 			),
+			'designationHoverColor' => array(
+				'type' => 'string'
+			),
+			'designationHoverFontSize' => array(
+				'type' => 'string'
+			),
+			'designationHoverLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'designationHoverDecoration' => array(
+				'type' => 'string'
+			),
+			'designationHoverLetterCase' => array(
+				'type' => 'string'
+			),
+			'designationHoverLineHeight' => array(
+				'type' => 'string'
+			),
+			'designationHoverFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'designationHoverFontStyle' => array(
+				'type' => 'string'
+			),
+			'designationHoverFontWeight' => array(
+				'type' => 'string'
+			),
 			'companyNameColor' => array(
 				'type' => 'string'
 			),
@@ -3859,6 +3976,37 @@ return array(
 			'companyNameFontWeight' => array(
 				'type' => 'string'
 			),
+			'companyNameHoverColor' => array(
+				'type' => 'string'
+			),
+			'companyNameHoverFontSize' => array(
+				'type' => 'string'
+			),
+			'companyNameHoverLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'companyNameHoverDecoration' => array(
+				'type' => 'string'
+			),
+			'companyNameHoverLetterCase' => array(
+				'type' => 'string'
+			),
+			'companyNameHoverLineHeight' => array(
+				'type' => 'string'
+			),
+			'companyNameHoverFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'companyNameHoverFontStyle' => array(
+				'type' => 'string'
+			),
+			'companyNameHoverFontWeight' => array(
+				'type' => 'string'
+			),
 			'showOpenQuoteIcon' => array(
 				'type' => 'boolean',
 				'default' => true
@@ -3883,12 +4031,12 @@ return array(
 				'type' => 'string',
 				'default' => ''
 			),
-			'sliderpadding' => array(
+			'arrowpadding' => array(
 				'type' => 'object'
 			),
-			'arrowFontSize' => array(
+			'arrowIconSize' => array(
 				'type' => 'number',
-				'default' => '24'
+				'default' => 24
 			),
 			'arrowColor' => array(
 				'type' => 'string',
@@ -3898,11 +4046,15 @@ return array(
 				'type' => 'string',
 				'default' => ''
 			),
-			'arrowsborder' => array(
+			'arrowborder' => array(
 				'type' => 'object'
 			),
-			'arrowsborderRadius' => array(
+			'arrowborderRadius' => array(
 				'type' => 'string'
+			),
+			'arrowborderColor' => array(
+				'type' => 'string',
+				'default' => ''
 			),
 			'metaSeparatorColor' => array(
 				'type' => 'string',
@@ -3926,16 +4078,22 @@ return array(
 			'testimonialborderRadius' => array(
 				'type' => 'string'
 			),
+			'testimonialborderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'authorImageborder' => array(
 				'type' => 'object'
 			),
 			'authorImageborderRadius' => array(
 				'type' => 'string'
+			),
+			'authorImageborderColor' => array(
+				'type' => 'string'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
 		'style' => array(
 			'file:./style-index.css',
 			'wpmozo-blocks-and-addons-swiper-style',

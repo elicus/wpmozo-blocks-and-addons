@@ -34,7 +34,7 @@ $testimonials .= sprintf(
 	wpmozo_esc_previously( $opening_quote ),
 	apply_filters( 'the_content', do_shortcode( get_the_content( null, false, $post_id ) ) ),
 	wpmozo_esc_previously( $closing_quote ),
-	isset( $testimonial_rating ) && '' !== $testimonial_rating ? wpmozo_esc_previously( $testimonial_rating ) : '',
+	! empty( $rating ) ? wpmozo_esc_previously( $rating ) : '',
 	isset( $testimonial_meta ) ? wpmozo_esc_previously( $testimonial_meta ) : '',
 	implode( ' ', get_post_class( 'wpmozo_single_testimonial_card', $post_id ) )
 );

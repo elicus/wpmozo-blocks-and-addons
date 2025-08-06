@@ -146,7 +146,7 @@
             "type": "string"
         },
         "useCustomChunksSize": {
-            "type": "bollean",
+            "type": "boolean",
             "default": false
         },
         "useChunksWidth": {

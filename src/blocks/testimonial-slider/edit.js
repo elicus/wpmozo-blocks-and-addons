@@ -3,15 +3,9 @@ import { Fragment, useEffect } from "@wordpress/element";
 import { useBlockProps } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import Inspector from './inspector';
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
-import './editor.scss';
 
 import { wpmozo_is_empty } from "../../common/utils";
+import generateDynamicStyle from "./style";
 
 import {
 	renderTestimonialLayoutOne,
@@ -160,7 +154,8 @@ const Edit = (props) => {
 					: 'swiper-button-prev';
 				
 			$sliderArrows = <div
-				className={`wpmozo-bna-navigation-wrap wpmozo-bna-arrows-${attributes.arrowsPosition}`}
+				className={`wpmozo_swiper_navigation wpmozo_arrows_${attributes.arrowsPosition}`}
+				data-arrows_desktop={ attributes.arrowsPosition }
 			>
 				<div className={buttonNextClass}></div>
 				<div className={buttonPrevClass}></div>
@@ -204,6 +199,7 @@ const Edit = (props) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
+			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
 			<div {...useBlockProps()} onClick={selectBlock}>
 				<div className="wpmozo_swiper_wrapper"
@@ -219,7 +215,7 @@ const Edit = (props) => {
 					data-space_between_slides_tablet={ attributes.spaceBetweenSlidesTablet || '20' }
 					data-space_between_slides_mobile={ attributes.spaceBetweenSlidesMobile || '20' }
 
-					data-equal_heigh={ attributes.equalHeigh || 'false' }
+					data-enable_coverflow_shadow={ attributes.enableCoverflowShadow ?? 'false' }
 					data-enable_loop={ attributes.enableLoop || 'false' }
 					data-autoplay={ attributes.autoplay || 'true' }
 					data-autoplay_delay={ attributes.autoplayDelay || '3000' }

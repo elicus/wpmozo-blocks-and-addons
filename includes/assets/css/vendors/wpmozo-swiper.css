@@ -18,11 +18,14 @@
 	border-color: #333;
 	border-style: solid;
 	border-width: 0;
+	height: auto;
+	padding: 5px 10px;
 }
 .wpmozo_swiper_wrapper .swiper-button-next:after,
 .wpmozo_swiper_wrapper .swiper-button-prev:after{
 	color: inherit;
 	font-size: 18px;
+	transform: translateY(-50%);
 }
 .wpmozo_swiper_wrapper .swiper-button-next{
 	right: 0;
@@ -31,10 +34,21 @@
 	left: 0;
 }
 
-.wpmozo-bna-navigation-wrap{
+.wpmozo_swiper_navigation{
 	display: flex;
 	flex-wrap: wrap;
 }
+.wpmozo_arrows_outside .swiper-button-next{
+    -webkit-transform: translateX(calc(100% + 10px)) translateY(-50%);
+    -moz-transform: translateX(calc(100% + 10px)) translateY(-50%);
+    transform: translateX(calc(100% + 10px)) translateY(-50%)
+}
+.wpmozo_arrows_outside .swiper-button-prev{
+    -webkit-transform: translateX(calc(-100% - 10px)) translateY(-50%);
+    -moz-transform: translateX(calc(-100% - 10px)) translateY(-50%);
+    transform: translateX(calc(-100% - 10px)) translateY(-50%)
+}
+
 .wpmozo_swiper_wrapper .wpmozo-bna-arrows-bottom_center,
 .wpmozo_swiper_wrapper .wpmozo-bna-arrows-bottom_left,
 .wpmozo_swiper_wrapper .wpmozo-bna-arrows-bottom_right,
@@ -105,4 +119,5 @@
 	opacity: 1;
 	transition: all 0.3s ease;
 	width: 10px;
+	outline: 0;
 }

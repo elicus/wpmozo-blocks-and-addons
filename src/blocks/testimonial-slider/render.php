@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 	function testimonial_slider_render_callback( $attributes ) {
 
@@ -187,6 +191,27 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 				);
 			}
 
+			// Control dots.
+			$pagination_dots = '';
+			if ( true === $attributes['showControlDot'] ) {
+				$pagination_class = '';
+				if ( true === $attributes['enableDynamicDots'] && (
+					'solid_dot' === $attributes['controlDotStyle'] ||
+					'transparent_dot' === $attributes['controlDotStyle'] ||
+					'square_dot' === $attributes['controlDotStyle']
+				) ) {
+					$pagination_class = 'swiper-pagination-bullets-dynamic';
+				}
+
+				$pagination_dots = sprintf(
+					'<div class="wpmozo-bna-testimonial-slider-pagination">
+						<div class="swiper-pagination %1$s %2$s"></div>
+					</div>',
+					esc_attr( $attributes['controlDotStyle'] ),
+					esc_attr( $pagination_class )
+				);
+			}
+
 			// Get wrapper attributes.
 			$wrapper_attributes = get_block_wrapper_attributes();
 
@@ -204,18 +229,17 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 				'space_between_slides_tablet' => $attributes['spaceBetweenSlidesTablet'] ?? '20',
 				'space_between_slides_mobile' => $attributes['spaceBetweenSlidesMobile'] ?? '20',
 
-				'data-equal_heigh'            => $attributes['equalHeigh'] ?? 'false',
-				'data-enable_loop'            => $attributes['enableLoop'] ?? 'false',
-				'data-autoplay'               => $attributes['autoplay'] ?? 'true',
-				'data-autoplay_delay'         => $attributes['autoplayDelay'] ?? '3000',
-				'data-pause_on_hover'         => $attributes['pauseOnHover'] ?? 'true',
-				'data-enable_linear_trans'    => $attributes['enableLinearTrans'] ?? 'false',
-				'data-trans_duration'         => $attributes['transDuration'] ?? '1000',
+				'enable_loop'                 => $attributes['enableLoop'] ? 'true' : 'false',
+				'autoplay'                    => $attributes['autoplay'] ? 'true' : 'false',
+				'autoplay_delay'              => $attributes['autoplayDelay'] ?? '3000',
+				'pause_on_hover'              => $attributes['pauseOnHover'] ? 'true' : 'false',
+				'enable_linear_trans'         => $attributes['enableLinearTrans'] ? 'true' : 'false',
+				'trans_duration'              => $attributes['transDuration'] ?? '1000',
 
-				'data-show_arrows'            => $attributes['showArrows'] ?? 'false',
-				'data-show_control_dot'       => $attributes['showControlDot'] ?? 'false',
-				'data-control_dot_style'      => $attributes['controlDotStyle'] ?? 'solid_dot',
-				'data-enable_dynamic_dots'    => $attributes['enableDynamicDots'] ?? 'false',
+				'show_arrows'                 => $attributes['showArrows'] ? 'true' : 'false',
+				'show_control_dot'            => $attributes['showControlDot'] ? 'true' : 'false',
+				'control_dot_style'           => $attributes['controlDotStyle'] ?? 'solid_dot',
+				'enable_dynamic_dots'         => $attributes['enableDynamicDots'] ? 'true' : 'false',
 			);
 			$data_attr_str = '';
 			foreach ( $data_attrs as $key => $val ) {
@@ -230,16 +254,18 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 							<div class="swiper swiper-container">
 								<div class="swiper-wrapper">%3$s</div>
 							</div>
-							%6$s
+							%6$s %7$s
 						</div>
 					</div>
-				</div>',
+				</div>%8$s',
 				wpmozo_esc_previously( $wrapper_attributes ),
 				esc_attr( $layout ),
 				wpmozo_esc_previously( $testimonials ),
 				wpmozo_esc_previously( $data_attr_str ),
 				esc_attr( $attributes['ID'] ),
-				wpmozo_esc_previously( $slider_arrows )
+				wpmozo_esc_previously( $slider_arrows ),
+				wpmozo_esc_previously( $pagination_dots ),
+				wpmozo_bna_get_module_dynamic_style( 'testimonial-slider', $attributes )
 			);
 		}
 

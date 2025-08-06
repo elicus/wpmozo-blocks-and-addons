@@ -131,7 +131,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 					/>
 				</PanelBody>
 				{/* Slider. */}
-				<PanelBody title={ __( 'Slider', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+				<PanelBody title={ __( 'Slider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 					<SelectControl
 						label={ __( 'Slide Effect', 'wpmozo-blocks-and-addons' ) }
 						value={ attributes.slideEffect }
@@ -184,6 +184,34 @@ const Inspector = ( { attributes, setAttributes } ) => {
 							value={ attributes.spaceBetweenSlides }
 							onChange={ ( newValue ) => setAttributes( { spaceBetweenSlides: newValue } ) }
 							min={1} max={100} step={1}
+						/>
+					</> }
+					{ ( 'coverflow' === attributes.slideEffect ) && <>
+						<ToggleControl
+							label={ __( 'Equalize Slide Shadow', 'wpmozo-blocks-and-addons' ) }
+							checked={ attributes.enableCoverflowShadow }
+							onChange={ ( newValue ) => setAttributes( { enableCoverflowShadow: newValue } ) }
+						/>
+						{ ( attributes.enableCoverflowShadow ) &&
+							<WpmozoColorPicker
+								ColorKey="coverflowShadow"
+								props={ props }
+								ColorTypes={ [
+									{ key: 'Color', label: __( 'Shadow Color', 'wpmozo-blocks-and-addons' ) }
+								] }
+							/>
+						}
+						<RangeControl
+							label={ __( 'Coverflow Rotate', 'wpmozo-blocks-and-addons' ) }
+							value={ attributes.coverflowRotate }
+							onChange={ ( newValue ) => setAttributes( { coverflowRotate: newValue } ) }
+							min={1} max={360} step={1}
+						/>
+						<RangeControl
+							label={ __( 'Coverflow Depth', 'wpmozo-blocks-and-addons' ) }
+							value={ attributes.coverflowDepth }
+							onChange={ ( newValue ) => setAttributes( { coverflowDepth: newValue } ) }
+							min={1} max={1000} step={1}
 						/>
 					</> }
 					<ToggleControl
@@ -462,6 +490,13 @@ const Inspector = ( { attributes, setAttributes } ) => {
 							BorderKey="authorImage"
 							BorderTypes={ { border: true, radius: true } }
 						/>
+						<WpmozoColorPicker
+							ColorKey="authorImageborder"
+							props={ props }
+							ColorTypes={ [
+								{ key: 'Color', label: __( 'Border Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
 					</PanelBody>
 				}
 				{/* Author Name. */}
@@ -525,7 +560,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 								>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
 								<Button 
 									className="wpmozo-button-tabs-btn"
-									isPressed={ ( 'hover' === authorNameTab ) ? true : false }
+									isPressed={ ( 'hover' === designationTab ) ? true : false }
 									onClick={ () => setDesignationTab( 'hover' ) }
 								>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
 							</ButtonGroup>
@@ -687,14 +722,14 @@ const Inspector = ( { attributes, setAttributes } ) => {
 				{/* Slider. */}
 				<PanelBody title={ __( 'Slider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 					<WpmozoDimensions props={ props }
-						label={ __( 'Arrow Font Size', 'wpmozo-blocks-and-addons' ) }
-						DimensionKey='slider'
+						label={ __( 'Arrows Dimensions', 'wpmozo-blocks-and-addons' ) }
+						DimensionKey='arrow'
 						DimensionsTypes={ { padding: true } }
 					/>
 					<RangeControl
 						label={ __( 'Arrow Font Size', 'wpmozo-blocks-and-addons' ) }
-						value={ attributes.arrowFontSize }
-						onChange={ ( newValue ) => setAttributes( { arrowFontSize: newValue } ) }
+						value={ attributes.arrowIconSize }
+						onChange={ ( newValue ) => setAttributes( { arrowIconSize: newValue } ) }
 						min={10} max={100} step={1}
 					/>
 					<WpmozoColorPicker props={props}
@@ -707,20 +742,40 @@ const Inspector = ( { attributes, setAttributes } ) => {
 					/>
 					<WpmozoBorder props={ props }
 						label={ __( 'Arrows Border', 'wpmozo-blocks-and-addons' ) }
-						BorderKey="arrows"
+						BorderKey="arrow"
 						BorderTypes={ { border: true, radius: true } }
 					/>
-				</PanelBody>
-				{/* Meta. */}
-				<PanelBody title={ __( 'Meta', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 					<WpmozoColorPicker props={props}
-						label={ __( 'Meta Separator', 'wpmozo-blocks-and-addons' ) }
-						ColorKey="metaSeparator"
+						label={ __( 'Arrows Border Color', 'wpmozo-blocks-and-addons' ) }
+						ColorKey="arrowborder"
 						ColorTypes={ [
-							{ key: 'Color', label: __( 'Select Color', 'wpmozo-blocks-and-addons' ) },
+							{ key: 'Color', label: __( 'Border Color', 'wpmozo-blocks-and-addons' ) },
 						] }
 					/>
+					{ attributes.showControlDot && <>
+						<WpmozoColorPicker
+							label={ __( 'Control Dot Color', 'wpmozo-blocks-and-addons' ) }
+							ColorKey="controlDot"
+							props={ props }
+							ColorTypes={ [
+								{ key: 'ColorActive', label: __( 'Active Dot Color', 'wpmozo-blocks-and-addons' ) },
+								{ key: 'ColorInactive', label: __( 'Inactive Dot Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+					</> }
 				</PanelBody>
+				{/* Meta. */}
+				{ 'layout1' === attributes.layout && 
+					<PanelBody title={ __( 'Meta', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+						<WpmozoColorPicker props={props}
+							label={ __( 'Meta Separator', 'wpmozo-blocks-and-addons' ) }
+							ColorKey="metaSeparator"
+							ColorTypes={ [
+								{ key: 'Color', label: __( 'Select Color', 'wpmozo-blocks-and-addons' ) },
+							] }
+						/>
+					</PanelBody>
+				}
 				{/* Testimonial. */}
 				<PanelBody title={ __( 'Testimonial', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 					<ColorGradientControl colors={[]} gradients={[]}
@@ -739,6 +794,13 @@ const Inspector = ( { attributes, setAttributes } ) => {
 						label={ __( 'Testimonial Border', 'wpmozo-blocks-and-addons' ) }
 						BorderKey="testimonial"
 						BorderTypes={ { border: true, radius: true } }
+					/>
+					<WpmozoColorPicker props={ props }
+						ColorKey="testimonialborder"
+						label={ __( 'Testimonial Border Color', 'wpmozo-blocks-and-addons' ) }
+						ColorTypes={ [
+							{ key: 'Color', label: __( 'Border Color', 'wpmozo-blocks-and-addons' ) }
+						] }
 					/>
 				</PanelBody>
 				{/* Slider Container. */}
