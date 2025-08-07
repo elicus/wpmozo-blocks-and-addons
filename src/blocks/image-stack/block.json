@@ -18,10 +18,22 @@
 		},
 		"stackItemSize": {"type": "number","default": 100},
 		"stackItemShrink": {"type": "number","default": 40},
-		"stackItemSpacing": {"type": "number","default": 10}
+		"stackItemSpacing": {"type": "number","default": 10},
+		"iconColor": { "type": "string" },
+		"iconShape": { "type": "string","default": "none" },
+		"iconDimensionspadding": { "type": "object"},
+		"imageSize": {"type": "number","default": 50},
+		"imageBorderType": {"type": "string","default": "none"},
+		"imageBorderWidth": {"type": "number"},
+		"borderColor": { "type": "string" },
+		"imageBorderRadius": {"type": "number"},
+		"tooltipColor": { "type": "string","default": ""},
+		"tooltipBackgroundColor": { "type": "string","default": "" },
+		"showTooltip": {"type": "boolean","default":false}
 	},
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",
     "editorStyle": "file:./index.css",
-    "style": "file:./style-index.css"
+    "style": "file:./style-index.css",
+	"script": ["wpmozo-blocks-and-addons-tippy-script", "file:./script.js"]
 }

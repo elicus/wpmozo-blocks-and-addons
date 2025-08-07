@@ -5,13 +5,11 @@ export default function save(props) {
 
 	const { attributes, setAttributes, clientId } = props;
 
-	const ID = attributes.ID ?? clientId;
-	if (attributes.ID !== ID) setAttributes({ ID });
+	const ID = attributes.ID;
 
 	const {
 		image,
-		tooltipText,
-		showTooltip
+		tooltipText
 	} = attributes;
 
 	const imageSrc = image && image.url ? image.url : (typeof wpmozo_bna_editor_object !== 'undefined' ? wpmozo_bna_editor_object.placeholderImg : '');
@@ -24,19 +22,20 @@ export default function save(props) {
 				)} data-id={ID}
 			>
 				<span className={`wpmozo-stack-item-wrapper stack-item-type-image`}>
-					<img
-						className="wpmozo-stack-item-img"
-						alt={defaultedAlt}
-						src={imageSrc}
-						loading="lazy"
-					/>
+					{'image' === attributes.stackType && (
+						<img
+							className="wpmozo-stack-item-img"
+							alt={defaultedAlt}
+							src={imageSrc}
+							loading="lazy"
+							title={tooltipText}
+						/>
+					)}
+					{'icon' === attributes.stackType && (
+						<i className={attributes.stackIcon} title={tooltipText}></i>
+					)}
 				</span>
 			</div>
-			{true === showTooltip && (
-				<div className={`wpmozo-image-stack-tooltip-content`}  data-id={ID}>
-					<RichText.Content tagName="p" value={tooltipText} className="wpmozo-image-stack-tooltip-content"/>
-				</div>
-			)}
 		</>
 	);
 }

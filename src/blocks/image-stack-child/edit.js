@@ -1,7 +1,6 @@
-import { __ } from '@wordpress/i18n';
-import { useBlockProps } from '@wordpress/block-editor';
-import {Fragment} from "@wordpress/element";
-import { useEffect } from '@wordpress/element';
+import {Fragment,useEffect,useCallback} from "@wordpress/element";
+import {useBlockProps} from "@wordpress/block-editor";
+import { useDispatch, useSelect } from '@wordpress/data';
 import Inspector from './inspector';
 
 
@@ -17,7 +16,6 @@ import './editor.scss';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
 
-
 export default function Edit(props) {
 
 	const { attributes, setAttributes, className, isSelected, clientId } = props;
@@ -27,8 +25,7 @@ export default function Edit(props) {
 
 	const {
 		image,
-		tooltipText,
-		showTooltip
+		tooltipText
 	} = attributes;
 
 	const imageSrc = image && image.url ? image.url : (typeof wpmozo_bna_editor_object !== 'undefined' ? wpmozo_bna_editor_object.placeholderImg : '');
@@ -46,33 +43,54 @@ export default function Edit(props) {
 		}
 	}, [imageSrc, image]);
 
+	const blockProps = useBlockProps({className:'wpmozo-bna-image-stack'});
+
+	const { getBlockRootClientId, getSelectedBlockClientId } = useSelect(
+		(select) => select('core/block-editor'),
+		[]
+	);
+
+	const { selectBlock } = useDispatch('core/block-editor');
+
+	const parentId = getBlockRootClientId(clientId);
+	const selectedBlockId = getSelectedBlockClientId();
+
+	const handleClick = useCallback(() => {
+		// If the child isn't selected already, select it
+		if (selectedBlockId !== clientId) {
+			selectBlock(clientId);
+		}
+		// If the child is already selected or not selectable, fallback to parent
+		else if (parentId) {
+			selectBlock(parentId);
+		}
+	}, [selectedBlockId, clientId, parentId]);
+
+
 	return (
 		<>
 			{ isSelected && (
 				<Inspector attributes={attributes} setAttributes={setAttributes} />
 			) }
-			<div
+			<div {...blockProps} onClick={handleClick}
 				className={classnames('wpmozo-image-stack-item'
 				)} data-id={ID}
 			>
 				<span className={`wpmozo-stack-item-wrapper stack-item-type-image`}>
-					<img
-						className="wpmozo-stack-item-img"
-						alt={defaultedAlt}
-						src={imageSrc}
-						loading="lazy"
-					/>
+					{'image' === attributes.stackType && (
+						<img
+							className="wpmozo-stack-item-img"
+							alt={defaultedAlt}
+							src={imageSrc}
+							loading="lazy"
+							title={tooltipText}
+						/>
+					)}
+					{'icon' === attributes.stackType && (
+						<i className={attributes.stackIcon} title={tooltipText}></i>
+					)}
 				</span>
 			</div>
-			{true === showTooltip && (
-				<div className={`wpmozo-image-stack-tooltip-content`}  data-id={ID}>
-					<RichText
-						tagName="p"
-						value={tooltipText}
-						onChange={(newValue) => setAttributes({titltooltipTexte: newValue})}
-					/>
-				</div>
-			)}
 		</>
 	);
 }
