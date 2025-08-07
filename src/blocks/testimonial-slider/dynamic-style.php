@@ -99,6 +99,97 @@ if ( ! function_exists( 'testimonial_slider_generate_dynamic_style' ) ) {
 			$styles .= "}";
 		}
 
+		// Meta.
+		if ( 'layout1' === $attrs['layout'] && ! empty( $attrs['metaSeparatorColor'] ) ) {
+			$styles .= "{$mainSelector} .wpmozo_testimonial_meta{border-color: {$attrs['metaSeparatorColor']} !important;}";
+		}
+
+		// Simple testimonial.
+		$styles .= "{$mainSelector} .wpmozo_testimonial_slide{";
+			$styles .= ( ! empty( $attrs['testimonialBGGradient'] ) ? "background: {$attrs['testimonialBGGradient']};" : '' );
+			$styles .= ( ! empty( $attrs['testimonialBackground'] ) ? "background-color: {$attrs['testimonialBackground']};" : '' );
+			$styles .= wpmozo_ban_get_border_style( 'testimonial', $attrs, true );
+			$styles .= wpmozo_ban_get_padding_style( 'testimonial', $attrs );
+		$styles .= "}";
+
+		// Slider arrows.
+		if ( true === $attrs['showArrows'] ) {
+			$styles .= "{$mainSelector} .swiper-button-next, {$mainSelector} .swiper-button-prev{";
+				$styles .= ( ! empty( $attrs['arrowIconSize'] ) ? "font-size: {$attrs['arrowIconSize']}px;" : '' );
+				$styles .= ( ! empty( $attrs['arrowBackground'] ) ? "background-color: {$attrs['arrowBackground']};" : '' );
+				$styles .= ( ! empty( $attrs['arrowColor'] ) ? "color: {$attrs['arrowColor']};" : '' );
+				$styles .= ( ! empty( $attrs['arrowborderColor'] ) ? "border-color: {$attrs['arrowborderColor']} !important;" : '' );
+				$styles .= wpmozo_ban_get_border_style( 'arrow', $attrs );
+			$styles .= "}";
+			if ( true === $attrs['showArrowOnHover'] ) {
+				$styles .= "{$mainSelector} .swiper-button-next, {$mainSelector} .swiper-button-prev{";
+					$styles .= "visibility: hidden; opacity: 0; transition: all 300ms ease;";
+				$styles .= "}";
+				$styles .= "{$mainSelector} .wpmozo_swiper_wrapper:hover .swiper-button-next, {$mainSelector} .wpmozo_swiper_wrapper:hover .swiper-button-prev{";
+					$styles .= "visibility: visible; opacity: 1;";
+				$styles .= "}";
+				$styles .= "{$mainSelector} .wpmozo_swiper_wrapper:hover .swiper-button-next.swiper-button-disabled, {$mainSelector} .wpmozo_swiper_wrapper:hover .swiper-button-prev.swiper-button-disabled{";
+					$styles .= "opacity: 0.35;";
+				$styles .= "}";
+				// Outside arrows.
+				$styles .= "{$mainSelector} .wpmozo_arrows_outside .swiper-button-prev{ left: 50px; }";
+				$styles .= "{$mainSelector} .wpmozo_arrows_outside .swiper-button-next{ right: 50px; }";
+				$styles .= "{$mainSelector} .wpmozo_swiper_wrapper:hover .wpmozo_arrows_outside .swiper-button-prev{ left: 0; }";
+				$styles .= "{$mainSelector} .wpmozo_swiper_wrapper:hover .wpmozo_arrows_outside .swiper-button-next{ right: 0; }";
+				// Inside arrows.
+				$styles .= "{$mainSelector} .wpmozo_arrows_inside .swiper-button-prev{ left: -50px; }";
+				$styles .= "{$mainSelector} .wpmozo_arrows_inside .swiper-button-next{ right: -50px; }";
+				$styles .= "{$mainSelector} .wpmozo_swiper_wrapper:hover .wpmozo_arrows_inside .swiper-button-prev{ left: 0; }";
+				$styles .= "{$mainSelector} .wpmozo_swiper_wrapper:hover .wpmozo_arrows_inside .swiper-button-next{ right: 0; }";
+			}
+		}
+
+		// Control dot color.
+		if ( true === $attrs['showControlDot'] ) {
+			if ( ! empty( $attrs['controlDotColorInactive'] ) ) {
+				$styles .= "{$mainSelector} .swiper-pagination-bullet{";
+					$styles .= "background: {$attrs['controlDotColorInactive']};";
+				$styles .= "}";
+				$styles .= "{$mainSelector} .swiper-3d .transparent_dot .swiper-pagination-bullet{";
+					$styles .= "border-color: {$attrs['controlDotColorInactive']} !important;";
+				$styles .= "}";
+			}
+			if ( ! empty( $attrs['controlDotColorActive'] ) ) {
+				$styles .= "{$mainSelector} .swiper-pagination-bullet-active{";
+					$styles .= "background: {$attrs['controlDotColorActive']};";
+				$styles .= "}";
+			}
+			if ( 'stretched_dot' === $attrs['controlDotStyle'] && ! empty( $attrs['transDuration'] ) ) {
+				$styles .= "{$mainSelector} .stretched_dot .swiper-pagination-bullet{";
+					$styles .= "transition: all {$attrs['transDuration']}ms ease;";
+				$styles .= "}";
+			}
+		}
+
+		// Coverflow shadow.
+		if ( true === $attrs['enableCoverflowShadow'] && ! empty( $attrs['coverflowShadowColor'] ) ) {
+			$styles .= "{$mainSelector} .swiper-3d .swiper-slide-shadow-left{";
+				$styles .= "background-image: linear-gradient( to left, {$attrs['coverflowShadowColor']}, rgba(0,0,0,0) )";
+			$styles .= "}";
+			$styles .= "{$mainSelector} .swiper-3d .swiper-slide-shadow-right{";
+				$styles .= "background-image: linear-gradient( to right, {$attrs['coverflowShadowColor']}, rgba(0,0,0,0) )";
+			$styles .= "}";
+		} else {
+			$styles .= "{$mainSelector} .swiper-3d .swiper-slide-shadow-left, {$mainSelector} .swiper-3d .swiper-slide-shadow-right{";
+				$styles .= "background-image: none";
+			$styles .= "}";
+		}
+
+		// Slider container.
+		$styles .= "{$mainSelector} .swiper-container{";
+			$styles .= wpmozo_ban_get_padding_style( 'testimonial', $attrs );
+		$styles .= "}";
+
+		// Linear transition.
+		if ( true === $attrs['enableLinearTrans'] ) {
+			$styles .= "{$mainSelector} .swiper-wrapper{ transition-timing-function : linear !important; }";
+		}
+
 		return ( ! empty( $styles ) ?
 			"<style>{$styles}</style>"
 		: '' );

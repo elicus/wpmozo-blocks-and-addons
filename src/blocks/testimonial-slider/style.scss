@@ -7,10 +7,12 @@
 .wp-block-wpmozo-testimonial-slider{
 	text-align: center;
 }
-.wpmozo_testimonial_slide{ overflow: hidden; }
-.wpmozo_single_testimonial_card{
+.wpmozo_testimonial_slide{
 	background-color: #f4f4f4;
-    padding: 20px;
+	border: 0 solid #000000;
+	overflow: hidden;
+	padding: 20px;
+	box-sizing: border-box;
 }
 .wpmozo_testimonial_quote_icon{
 	display: inline-block;
@@ -98,6 +100,19 @@
     left: 0;
     width: 50%;
     overflow: hidden;
+}
+
+// Equal height.
+.wpmozo_equal_testimonial_height .swiper-slide{
+	height: auto;
+}
+.wpmozo_equal_testimonial_height .wpmozo_single_testimonial_card{
+    display: flex;
+    flex-direction: column;
+    height: 100%
+}
+.wpmozo_equal_testimonial_height .wpmozo_testimonial_desc{
+	flex-grow: 1
 }
 
 // Layout 1.

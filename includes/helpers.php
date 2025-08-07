@@ -181,3 +181,37 @@ function wpmozo_ban_get_border_style( $pre, $props, $use_imp = false ) {
 
 	return $styles;
 }
+
+/**
+ * Get padding styles from props.
+ * 
+ * @since 1.1.0
+ * 
+ * @param string $pre     Prefix for the props.
+ * @param array  $props   All props or attributes.
+ * @param bool   $useImp  Whether to add !important.
+ * 
+ * @return string CSS padding styles.
+ */
+function wpmozo_ban_get_padding_style( $pre, $props, $use_imp = false ) {
+	$imp = $use_imp ? ' !important' : '';
+
+	// Get if padding.
+	if ( empty( $props[ $pre . 'padding' ] ) ) {
+		return '';
+	}
+
+	$styles = '';
+
+	$paddingArr = $props[ $pre . 'padding' ];
+	foreach ( $paddingArr as $key => $padding ) {
+		// Replace preset value.
+		if ( false !== strpos( $padding, 'var' ) ) {
+			$padding = str_replace( '|', '--', str_replace( 'var:', 'var(--wp--', $padding ) ) . ')';
+		}
+
+		$styles .= sprintf( 'padding-%1$s: %2$s%3$s;', $key, $padding, $imp );
+	}
+
+	return $styles;
+}

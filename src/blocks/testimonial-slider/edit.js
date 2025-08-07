@@ -196,13 +196,16 @@ const Edit = (props) => {
 		}
 	}, [props] );
 
+	// Equal height testimonial class.
+	const equalHeightClass = ( attributes.equalHeight ) ? ' wpmozo_equal_testimonial_height' : '';
+
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
 			<div {...useBlockProps()} onClick={selectBlock}>
-				<div className="wpmozo_swiper_wrapper"
+				<div className={"wpmozo_swiper_wrapper" + equalHeightClass}
 					data-clientId={ clientId }
 					data-slide_effect={ attributes.slideEffect || 'slide' }
 					data-slides_per_view={ attributes.slidesPerView || '1' }

@@ -182,12 +182,13 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 				}
 
 				$slider_arrows = sprintf(
-					'<div class="wpmozo-bna-navigation-wrap wpmozo-bna-arrows-%1$s">
+					'<div class="wpmozo_swiper_navigation wpmozo_arrows_%1$s" data-arrows_desktop="%4$s">
 						<div class="%2$s"></div><div class="%3$s"></div>
 					</div>',
 					esc_attr( $attributes['arrowsPosition'] ),
 					esc_attr( $button_next_class ),
-					esc_attr( $button_prev_class )
+					esc_attr( $button_prev_class ),
+					esc_attr( $attributes['arrowsPosition'] )
 				);
 			}
 
@@ -235,6 +236,7 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 				'pause_on_hover'              => $attributes['pauseOnHover'] ? 'true' : 'false',
 				'enable_linear_trans'         => $attributes['enableLinearTrans'] ? 'true' : 'false',
 				'trans_duration'              => $attributes['transDuration'] ?? '1000',
+				'enable_coverflow_shadow'     => $attributes['enableCoverflowShadow'] ?? 'false',
 
 				'show_arrows'                 => $attributes['showArrows'] ? 'true' : 'false',
 				'show_control_dot'            => $attributes['showControlDot'] ? 'true' : 'false',
@@ -246,10 +248,13 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 				$data_attr_str .= ' data-' . esc_attr( $key ) . '="' . esc_attr( $val ) . '"';
 			}
 
+			// Equal height testimonial class.
+			$equal_height_class = ( true === $attributes['equalHeight'] ) ? ' wpmozo_equal_testimonial_height' : '';
+
 			// Render final output.
 			$render_output = sprintf(
 				'<div id="block-%5$s" %1$s>
-					<div class="wpmozo_swiper_wrapper" %4$s>
+					<div class="wpmozo_swiper_wrapper %8$s" %4$s>
 						<div class="wpmozo_testimonial_layout wpmozo_swiper_inner_wrap %2$s">
 							<div class="swiper swiper-container">
 								<div class="swiper-wrapper">%3$s</div>
@@ -257,7 +262,7 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 							%6$s %7$s
 						</div>
 					</div>
-				</div>%8$s',
+				</div>%9$s',
 				wpmozo_esc_previously( $wrapper_attributes ),
 				esc_attr( $layout ),
 				wpmozo_esc_previously( $testimonials ),
@@ -265,6 +270,7 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 				esc_attr( $attributes['ID'] ),
 				wpmozo_esc_previously( $slider_arrows ),
 				wpmozo_esc_previously( $pagination_dots ),
+				esc_attr( $equal_height_class ),
 				wpmozo_bna_get_module_dynamic_style( 'testimonial-slider', $attributes )
 			);
 		}

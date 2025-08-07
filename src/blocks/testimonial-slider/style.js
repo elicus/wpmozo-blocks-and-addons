@@ -188,12 +188,12 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 		}`;
 	}
 
-	// slider container.
+	// Slider container.
 	styles += `.swiper-container{
 		${convertedStyle.container}
 	}`;
 
-	// linear transition.
+	// Linear transition.
 	if ( attributes.enableLinearTrans ) {
 		styles += `.swiper-wrapper{ transition-timing-function : linear !important; }`;
 	}
