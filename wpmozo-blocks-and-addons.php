@@ -24,18 +24,17 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-define( 'WPMOZO_BNA_VERSION'         , '1.1.0' );// Current plugin version.
-define( 'WPMOZO_BNA_FILE'            , __FILE__ );// Plugin main file.
-define( 'WPMOZO_BNA_PLUGIN_DIR_PATH' , plugin_dir_path( __FILE__ ) );// Plugin dir path.
-define( 'WPMOZO_BNA_PLUGIN_DIR_URL'  , plugin_dir_url( __FILE__ ) );// Plugin dir url.
-define( 'WPMOZO_BNA_INC_DIR_PATH'    , WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/' );// Includes dir path.
-define( 'WPMOZO_BNA_INC_DIR_URL'     , WPMOZO_BNA_PLUGIN_DIR_URL . 'includes/' );// Includes dir url.
-define( 'WPMOZO_BNA_ASSETS_DIR_PATH' , WPMOZO_BNA_INC_DIR_PATH . 'assets/' );// Assets dir path.
-define( 'WPMOZO_BNA_ASSETS_DIR_URL'  , WPMOZO_BNA_INC_DIR_URL . 'assets/' );// Assets dir url.
-define( 'WPMOZO_BNA_OPTION'          , 'wpmozo-blocks-and-addons-option' );// Option name.
+define( 'WPMOZO_BNA_VERSION', '1.1.0' );// Current plugin version.
+define( 'WPMOZO_BNA_FILE', __FILE__ );// Plugin main file.
+define( 'WPMOZO_BNA_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );// Plugin dir path.
+define( 'WPMOZO_BNA_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );// Plugin dir url.
+define( 'WPMOZO_BNA_INC_DIR_PATH', WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/' );// Includes dir path.
+define( 'WPMOZO_BNA_INC_DIR_URL', WPMOZO_BNA_PLUGIN_DIR_URL . 'includes/' );// Includes dir url.
+define( 'WPMOZO_BNA_ASSETS_DIR_PATH', WPMOZO_BNA_INC_DIR_PATH . 'assets/' );// Assets dir path.
+define( 'WPMOZO_BNA_ASSETS_DIR_URL', WPMOZO_BNA_INC_DIR_URL . 'assets/' );// Assets dir url.
+define( 'WPMOZO_BNA_OPTION', 'wpmozo-blocks-and-addons-option' );// Option name.
 
 require_once WPMOZO_BNA_INC_DIR_PATH . 'class-mozo-bna-blocks-and-addons.php';
-
 
 /**
  * Registers the block using a `blocks-manifest.php` file, which improves the performance of block type registration.
@@ -73,15 +72,9 @@ function create_block_wpmozo_blocks_and_addons_block_init() {
  * Registers the block category
  */
 function wpmozo_add_block_category($categories) {
-	return array_merge(
-        $categories,
-        array(
-            array(
-                'slug'  => 'wpmozo',
-                'title' => __( 'WPMozo', 'wpmozo-blocks-and-addons' ),
-            )
-        )
-    );
+	return array_merge(  $categories, array(
+		array( 'slug' => 'wpmozo', 'title' => __( 'WPMozo', 'wpmozo-blocks-and-addons' ) )
+	) );
 }
 add_filter( 'block_categories_all', 'wpmozo_add_block_category');
 add_action( 'init', 'create_block_wpmozo_blocks_and_addons_block_init' );
@@ -91,7 +84,6 @@ add_action( 'init', 'create_block_wpmozo_blocks_and_addons_block_init' );
  *
  */
 if( ! function_exists( "wpmozo_bna_run_init_class" ) ){
-
 	function wpmozo_bna_run_init_class() {
 		$wpmozo_bna = Mozo_Bna_Blocks_And_Addons::instance();
 		$wpmozo_bna->run();

@@ -11,14 +11,14 @@ import WpmozoColorCombo from './wpmozo-colorcombo/wpmozo-colorcombo';
 import WpmozoRangeSize from './wpmozo-range-size/wpmozo-range-size';
 
 export {
-WpmozoTypography,
-WpmozoColorPicker,
-WpmozoDimensions,
-WpmozoSize,
-WpmozoBorder,
-WpmozoMediaUploader,
-WpmozoIconpicker,
-WpmozoAlignment,
-WpmozoColorCombo,
-WpmozoRangeSize,
+	WpmozoTypography,
+	WpmozoColorPicker,
+	WpmozoDimensions,
+	WpmozoSize,
+	WpmozoBorder,
+	WpmozoMediaUploader,
+	WpmozoIconpicker,
+	WpmozoAlignment,
+	WpmozoColorCombo,
+	WpmozoRangeSize,
 }

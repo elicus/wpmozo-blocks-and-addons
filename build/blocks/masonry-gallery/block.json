@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpmozo/masonry-gallery",
+  "version": "0.1.0",
+  "title": "Masonry Gallery",
+  "category": "wpmozo",
+  "icon": "smiley",
+  "description": "Display multiple images in a masonry style gallery.",
+  "example": {},
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false
+  },
+  "attributes": {
+    "ID": {
+      "type": "string"
+    },
+    "images": {
+      "type": "array",
+      "default": [],
+      "source": "query",
+      "selector": ".wpmozo-blocks-and-addons-gallery--item",
+      "query": {
+        "url": {
+          "source": "attribute",
+          "selector": "img",
+          "attribute": "src"
+        }
+      }
+    },
+    "gutterSize": {
+      "type": "string"
+    },
+    "customGutterSize": {
+      "type": "number"
+    },
+    "sizeSlug": {
+      "type": "string"
+    },
+    "numberOfColumns": {
+      "type": "number",
+      "default": 3
+    },
+    "showCaption": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "textdomain": "wpmozo-blocks-and-addons",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

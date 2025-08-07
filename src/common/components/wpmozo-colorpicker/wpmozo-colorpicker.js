@@ -64,7 +64,7 @@ const WpmozoColorPicker = (args) => {
 		return (
 			<Dropdown
 				key={`wpmozo-color-dropdown-container-${fullKey}`}
-				className="wpmozo-color-dropdown-container"
+				className={`wpmozo-color-dropdown-container wpmozo-color-dropdown-container-${fullKey}`}
 				contentClassName="wpmozo-color-popover-content"
 				popoverProps={{ placement: 'left-start', offset: 36, shift: true }}
 				renderToggle={({ isOpen, onToggle }) => (

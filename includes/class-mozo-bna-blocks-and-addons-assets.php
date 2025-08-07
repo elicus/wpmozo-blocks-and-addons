@@ -66,6 +66,12 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			array( 'wp-edit-blocks' ),
 			WPMOZO_BNA_VERSION
 		);
+		wp_register_style(
+			$this->plugin_name . '-swiper-wpmozo-style',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/wpmozo-swiper.css',
+			array( 'wp-edit-blocks' ),
+			WPMOZO_BNA_VERSION
+		);
 
 		wp_register_script(
 			$this->plugin_name . '-swiper-script',
@@ -197,6 +203,30 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 	public function enqueue_block_assets() {
 		wp_enqueue_style( $this->plugin_name . '-fontawesome-style' );
 		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
+	}
+
+	/**
+	 * Enqueue adminb side assets.
+	 */
+	public function enqueue_admin_assets( $hooks ) {
+
+		// Get current screen
+		$screen = get_current_screen();
+
+		// Register styles.
+		wp_register_style(
+			$this->plugin_name . '-metaboxes',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'css/wpmozo-admin-metaboxes.css',
+			array(),
+			WPMOZO_BNA_VERSION
+		);
+
+		// Check if we're on post edit/add screen for a specific CPT
+		if ( isset( $screen->post_type ) && $screen->base === 'post' && 
+			$screen->post_type === 'mozo-testimonial'
+		) {
+			wp_enqueue_style( $this->plugin_name . '-metaboxes' );
+		}
 	}
 
 }

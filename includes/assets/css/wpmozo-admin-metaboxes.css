@@ -1,0 +1,78 @@
+#mozo_testimonial_metabox h2{
+	position: relative;
+	font-family: "Open Sans", sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+	letter-spacing: 1px;
+	background-color: #3d3eed;
+	color: #fff;
+	width: 100%;
+	margin: 0;
+	padding: 12px 70px 11px 20px;
+	justify-content: flex-start;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+#mozo_testimonial_metabox .postbox-header{
+	align-items: stretch;
+}
+#mozo_testimonial_metabox .handle-actions{
+	background-color: #4849ef;
+}
+#mozo_testimonial_metabox .handle-actions button,
+#mozo_testimonial_metabox .handlediv .toggle-indicator{
+	color: #fff;
+}
+#mozo_testimonial_metabox .handlediv{
+	z-index: 9;
+	position: relative;
+	color: #fff;
+	background: #3d3eed;
+	padding: 12px 17px;
+	font-size: 20px;
+	margin: 0;
+	width: auto;
+	height: auto;
+}
+#mozo_testimonial_metabox .inside{
+	margin: 5px 25px 10px;
+}
+
+/* Fields. */
+.wpmozo_meta_fields{
+	margin: 20px 0;
+	overflow: hidden;
+}
+.wpmozo_meta_fields label{
+	font-size: 15px;
+	font-weight: 500;
+	display: block;
+	float: left;
+	width: 200px;
+	margin-top: 4px;
+	margin-right: 30px;
+	padding-top: 8px;
+}
+.wpmozo_meta_fields input,
+.wpmozo_meta_fields select,
+.wpmozo_meta_fields textarea{
+	width: 50%;
+	height: 40px;
+	margin: 0;
+	border-radius: 3px;
+	border: 1px solid #e3e3e3;
+	box-shadow: none;
+	background: #f1f5f9;
+	padding: 10px;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #32373c;
+	min-width: 300px;
+}
+.wpmozo_meta_fields input:focus,
+.wpmozo_meta_fields select:focus,
+.wpmozo_meta_fields textarea:focus{
+	box-shadow: none;
+	border-color: #3d3eed;
+}
