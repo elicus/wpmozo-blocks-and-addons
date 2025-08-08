@@ -29,7 +29,7 @@ const Edit = ( props ) => {
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-			<div { ...useBlockProps( { className: 'wpmozo-bna-pricing-table-main' } ) } id={`block-${attributes.ID}`}>
+			<div { ...useBlockProps() } id={`block-${attributes.ID}`}>
 				<div className="wpmozo-bna-pricing-table">
 					<div className="wpmozo-bna-pricing-table-wrapper">
 						<div className="wpmozo-bna-pricing-table-header-graphic">

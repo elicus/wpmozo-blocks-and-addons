@@ -199,6 +199,10 @@ const Edit = (props) => {
 	// Equal height testimonial class.
 	const equalHeightClass = ( attributes.equalHeight ) ? ' wpmozo_equal_testimonial_height' : '';
 
+	let autoHeight = ( attributes.autoHeight ) ?? 'false';
+		autoHeight = ( attributes.equalHeight ) ? 'false' : autoHeight;
+
+
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
@@ -220,6 +224,7 @@ const Edit = (props) => {
 
 					data-enable_coverflow_shadow={ attributes.enableCoverflowShadow ?? 'false' }
 					data-enable_loop={ attributes.enableLoop || 'false' }
+					data-auto_height={ autoHeight || 'false' }
 					data-autoplay={ attributes.autoplay || 'true' }
 					data-autoplay_delay={ attributes.autoplayDelay || '3000' }
 					data-pause_on_hover={ attributes.pauseOnHover || 'true' }

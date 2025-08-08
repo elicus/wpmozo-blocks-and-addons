@@ -13,7 +13,7 @@ const Save = ({ attributes }) => {
 		<>
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-			<div {...useBlockProps.save({className: 'wpmozo-bna-pricing-table-main'})} id={`block-${ID}`}>
+			<div {...useBlockProps.save( { className: attributes.className } ) } id={`block-${ID}`}>
 				<div className="wpmozo-bna-pricing-table">
 					<div className="wpmozo-bna-pricing-table-wrapper">
 						<div className="wpmozo-bna-pricing-table-header-graphic">

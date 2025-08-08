@@ -97,7 +97,7 @@ const Save = ( { attributes } ) => {
 		<>
 			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
-			<div {...useBlockProps.save()} id={`block-${attributes.ID}`}>
+			<div {...useBlockProps.save( { className: attributes.className } )} id={`block-${attributes.ID}`}>
 				<div className="dipl_star_rating_wrapper">
 					{ ( imageUrl && '' !== imageUrl ) && (
 						<div className="dipl_star_rating_image_container">

@@ -9,10 +9,14 @@
   "description": "A Pricing Table Block displays side-by-side plans to compare features and pricing at a glance.",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "customClassName": false
   },
   "attributes": {
     "ID": {
+      "type": "string"
+    },
+    "className": {
       "type": "string"
     },
     "title": {

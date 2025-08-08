@@ -12,10 +12,9 @@ const Save = ({ attributes }) => {
 
     return (
         <>
-            <style>
-                { generateDynamicStyle({attributes }) }
-            </style>
-            <div {...useBlockProps.save({className: 'wpmozo-bna-bar-counter-main'})} id={`block-${ID}`}>
+            <style>{ generateDynamicStyle({attributes }) }</style>
+
+            <div {...useBlockProps.save( { className: attributes.className } ) } id={`block-${ID}`}>
                 <div className={`wpmozo-bna-bar-counter ${emptyBarEnabled}`}>
                     <div className={`wpmozo-ban-bar-counter-wrapper ${attributes.layoutType}`}>
                         <RichText.Content

@@ -21,7 +21,8 @@
       "type": "object"
     },
     "stackType": {
-      "type": "string"
+      "type": "string",
+      "default": "image"
     },
     "stackIcon": {
       "type": "string",
@@ -29,23 +30,14 @@
     },
     "tooltipText": {
       "type": "string"
-    },
-    "showTooltip": {
-      "type": "boolean",
-      "default": false
-    },
-    "imageBorderRadius": {
-      "type": "number",
-      "default": 1
-    },
-    "iconShape": {
-      "type": "string",
-      "default": "none"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "script": [
+    "wpmozo-blocks-and-addons-tippy-script",
+    "file:./script.js"
+  ]
 }

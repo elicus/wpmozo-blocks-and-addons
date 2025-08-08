@@ -9,15 +9,19 @@ return array(
 		'title' => 'Bar Counter',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Bar counter to showcase progress or skill levels visually.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'layoutType' => array(
@@ -1986,12 +1990,55 @@ return array(
 			'stackItemSpacing' => array(
 				'type' => 'number',
 				'default' => 10
+			),
+			'iconColor' => array(
+				'type' => 'string'
+			),
+			'iconShape' => array(
+				'type' => 'string',
+				'default' => 'none'
+			),
+			'iconDimensionspadding' => array(
+				'type' => 'object'
+			),
+			'imageSize' => array(
+				'type' => 'number',
+				'default' => 50
+			),
+			'imageBorderType' => array(
+				'type' => 'string',
+				'default' => 'none'
+			),
+			'imageBorderWidth' => array(
+				'type' => 'number'
+			),
+			'borderColor' => array(
+				'type' => 'string'
+			),
+			'imageBorderRadius' => array(
+				'type' => 'number'
+			),
+			'tooltipColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'tooltipBackgroundColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'showTooltip' => array(
+				'type' => 'boolean',
+				'default' => false
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css'
+		'style' => 'file:./style-index.css',
+		'script' => array(
+			'wpmozo-blocks-and-addons-tippy-script',
+			'file:./script.js'
+		)
 	),
 	'image-stack-child' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -2018,7 +2065,8 @@ return array(
 				'type' => 'object'
 			),
 			'stackType' => array(
-				'type' => 'string'
+				'type' => 'string',
+				'default' => 'image'
 			),
 			'stackIcon' => array(
 				'type' => 'string',
@@ -2026,25 +2074,16 @@ return array(
 			),
 			'tooltipText' => array(
 				'type' => 'string'
-			),
-			'showTooltip' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'imageBorderRadius' => array(
-				'type' => 'number',
-				'default' => 1
-			),
-			'iconShape' => array(
-				'type' => 'string',
-				'default' => 'none'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./view.js'
+		'script' => array(
+			'wpmozo-blocks-and-addons-tippy-script',
+			'file:./script.js'
+		)
 	),
 	'interactive-image-card' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -2757,6 +2796,85 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css'
 	),
+	'mystery-image' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/mystery-image',
+		'version' => '0.1.0',
+		'title' => 'Mystery Image',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Mystery Image block to display random image from selected gallery.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'customClassName' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
+				'type' => 'string'
+			),
+			'images_data' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				),
+				'source' => 'query',
+				'selector' => '.wpmozo-blocks-and-addons-gallery--item',
+				'query' => array(
+					'url' => array(
+						'source' => 'attribute',
+						'selector' => 'img',
+						'attribute' => 'src'
+					)
+				)
+			),
+			'showLightbox' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'lightboxBackgroundColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'lightboxCloseIconColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'enableOverlay' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'overlayBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'overlayIconSize' => array(
+				'type' => 'number'
+			),
+			'overlayIconColor' => array(
+				'type' => 'string'
+			),
+			'overlayIcon' => array(
+				'type' => 'string'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'wpmozo-blocks-and-addons-magnificPopup-style',
+			'file:./style-index.css'
+		),
+		'viewScript' => 'file:./view.js',
+		'script' => array(
+			'wpmozo-blocks-and-addons-magnificPopup-script'
+		)
+	),
 	'pricing-table' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -2770,10 +2888,14 @@ return array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'title' => array(
@@ -3382,15 +3504,19 @@ return array(
 		'title' => 'Star Rating',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Display star ratings for products, services, and reviews using schema for rich, eye-catching results.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'globalTextAlign' => array(
@@ -3566,15 +3692,19 @@ return array(
 		'title' => 'Testimonial Slider',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Testimonial slider to use to display testimonials.',
+		'description' => 'Showcase client feedback beautifully with an interactive testimonial slider for engaging and trustworthy presentations.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'layout' => array(
@@ -3672,6 +3802,10 @@ return array(
 				'default' => 20
 			),
 			'equalHeight' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'autoHeight' => array(
 				'type' => 'boolean',
 				'default' => false
 			),

@@ -6,13 +6,15 @@
 	"title": "Star Rating",
 	"category": "wpmozo",
 	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Display star ratings for products, services, and reviews using schema for rich, eye-catching results.",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"customClassName": false
 	},
 	"attributes": {
 		"ID": { "type": "string" },
+		"className": { "type": "string" },
 
 		"globalTextAlign": { "type": "string" },
 

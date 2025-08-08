@@ -1,47 +1,45 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "wpmozo/mystery-image",
-    "version": "0.1.0",
-    "title": "Mystery Image",
-    "category": "wpmozo",
-    "icon": "smiley",
-    "description": "Example block scaffolded with Create Block tool.",
-    "example": {},
-    "supports": {
-        "html": false
-    },
-    "attributes": {
-		"ID": {
-			"type": "string"
-		},
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/mystery-image",
+	"version": "0.1.0",
+	"title": "Mystery Image",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "Mystery Image block to display random image from selected gallery.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"customClassName": false
+	},
+	"attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+
 		"images_data": {
 			"type": "array",
 			"default": [],
 			"source": "query",
 			"selector": ".wpmozo-blocks-and-addons-gallery--item",
-			"query": {
-				"url": {
-					"source": "attribute",
-					"selector": "img",
-					"attribute": "src"
-				}
-			}
+			"query": { "url": {
+				"source": "attribute",
+				"selector": "img",
+				"attribute": "src"
+			} }
 		},
-		"showLightbox": {"type": "boolean","default":false },
-		"lightboxBackgroundColor": { "type": "string","default": "" },
-		"lightboxCloseIconColor": { "type": "string","default": "" },
-		"enableOverlay": { "type": "boolean","default":false },
+		"showLightbox": { "type": "boolean", "default": false },
+		"lightboxBackgroundColor": { "type": "string", "default": "" },
+		"lightboxCloseIconColor": { "type": "string", "default": "" },
+		"enableOverlay": { "type": "boolean", "default": false },
 		"overlayBackgroundColor" : { "type": "string" },
 		"overlayIconSize" : { "type": "number" },
 		"overlayIconColor" : { "type": "string" },
 		"overlayIcon": { "type": "string" }
 	},
-    "textdomain": "wpmozo-blocks-and-addons",
-    "editorScript": "file:./index.js",
-    "editorStyle": "file:./index.css",
-    "style": ["wpmozo-blocks-and-addons-magnificPopup-style","file:./style-index.css"],
-    "viewScript": "file:./view.js",
-	"script": ["wpmozo-blocks-and-addons-magnificPopup-script"]
-
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": [ "wpmozo-blocks-and-addons-magnificPopup-style", "file:./style-index.css" ],
+	"viewScript": "file:./view.js",
+	"script": [ "wpmozo-blocks-and-addons-magnificPopup-script" ]
 }

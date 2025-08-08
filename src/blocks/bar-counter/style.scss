@@ -1,22 +1,13 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
-
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-percent {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-percent{
     display: block;
     position: relative;
-    vertical-align: middle;
     padding: 0 10px;
     font-size: 16px;
     line-height: 1.4;
     height: 100%;
     align-content: space-evenly
 }
-
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-bar {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-bar{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -24,8 +15,7 @@
     background: #ddd;
     border: 0 solid #333
 }
-
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-filled-bar {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-filled-bar{
     position: absolute;
     left: 0;
     top: 0;
@@ -34,7 +24,7 @@
     height: 100%
 }
 
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter .layout1 .wpmozo-bna-bar-counter-filled-bar-wrapper {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter .layout1 .wpmozo-bna-bar-counter-filled-bar-wrapper {
     position: relative;
     overflow: hidden;
     width: 0;
@@ -43,7 +33,7 @@
     flex-grow: 1
 }
 
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-animated-striped-bar:before,.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-striped-bar:before {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-animated-striped-bar:before,.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-striped-bar:before {
     content: "";
     position: absolute;
     top: 0;
@@ -54,33 +44,28 @@
     background-size: 35px 35px
 }
 
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-animated-striped-bar:before {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-animated-striped-bar:before {
     animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite
 }
 
 @keyframes wpmozo-animated-stripe {
-    0% {
-        background-position: 0 0
-    }
-
-    100% {
-        background-position: 35px 0
-    }
+    0% { background-position: 0 0 }
+    100% { background-position: 35px 0 }
 }
 
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter .layout2 .wpmozo-bna-bar-counter-filled-bar-wrapper {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter .layout2 .wpmozo-bna-bar-counter-filled-bar-wrapper {
     display: flex;
     width: 50%;
     align-items: center
 }
 
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter.empty-bar-enabled .layout2 .wpmozo-bna-bar-counter-filled-bar-wrapper {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter.empty-bar-enabled .layout2 .wpmozo-bna-bar-counter-filled-bar-wrapper {
     width: 100%!important
 }
 
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-chunks {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-chunks {
     position: relative;
     flex-grow: 1;
     background: #ddd;
@@ -89,7 +74,7 @@
     overflow: hidden
 }
 
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-filled-chunks:before {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-filled-chunks:before {
     position: absolute;
     top: 0;
     left: 0;
@@ -99,72 +84,57 @@
     content: ""
 }
 
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:before {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:before {
     animation-name: wpmozo-animate-filled;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
     animation-duration: 0.2s
 }
 
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child( 2 ):before {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child(2):before{
     animation-delay: 0.1s
 }
-
-.wpmozo-bna-bar-counter-main.wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child( 3 ):before {
+.wp-block-wpmozo-bar-counter.wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child(3):before{
     animation-delay: 0.2s
 }
-
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child( 4 ):before {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child(4):before{
     animation-delay: 0.3s
 }
-
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child( 5 ):before {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child(5):before{
     animation-delay: 0.4s
 }
-
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child( 6 ):before {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child(6):before{
     animation-delay: 0.5s
 }
-
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child( 7 ):before {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child(7):before{
     animation-delay: 0.6s
 }
-
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child( 8 ):before {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child(8):before{
     animation-delay: 0.7s
 }
-
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child( 9 ):before {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child(9):before{
     animation-delay: 0.8s
 }
-
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child( 10 ):before {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-filled-chunks.wpmozo-animate-filled:nth-child(10):before{
     animation-delay: 0.9s
 }
 
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter-chunks:last-of-type {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-chunks:last-of-type {
     margin-right: 0
 }
 
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter .layout2 .wpmozo-bna-bar-counter-percent {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter .layout2 .wpmozo-bna-bar-counter-percent {
     padding: 0 0 0 10px
 }
 
 @keyframes wpmozo-animate-filled {
-    0% {
-        width: 0
-    }
-
-    100% {
-        width: 100%
-    }
+    0% { width: 0 }
+    100% { width: 100% }
 }
 
-.wpmozo-bna-bar-counter-main .wpmozo-bna-bar-counter .layout1 .wpmozo-bna-bar-counter-bar-wrapper {
+.wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter .layout1 .wpmozo-bna-bar-counter-bar-wrapper {
     overflow: hidden
 }
-
 .wpmozo-bna-bar-counter-title {
     margin: 6px 0
 }
-
