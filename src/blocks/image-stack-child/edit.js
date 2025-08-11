@@ -73,9 +73,9 @@ export default function Edit(props) {
 				{ 'image' === attributes.stackType && (
 					<img className="wpmozo-stack-item-img"
 						alt={defaultedAlt}
+						title={tooltipText}
 						src={imageSrc}
 						loading="lazy"
-						title={tooltipText}
 					/>
 				) }
 				{ 'icon' === attributes.stackType && (

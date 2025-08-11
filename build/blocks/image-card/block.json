@@ -6,14 +6,17 @@
   "title": "Image Card",
   "category": "wpmozo",
   "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "description": "Image card block to display the card view with it's details.",
   "example": {},
   "supports": {
     "html": false,
-    "shadow": true
+    "customClassName": false
   },
   "attributes": {
     "ID": {
+      "type": "string"
+    },
+    "className": {
       "type": "string"
     },
     "image": {
@@ -80,7 +83,7 @@
     },
     "title": {
       "type": "string",
-      "default": "Image Card Title"
+      "default": "Your title here."
     },
     "titleAlign": {
       "type": "string",

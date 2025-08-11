@@ -10,18 +10,18 @@ jQuery( document ).ready( function ($) {
 		// Merge both into a single array of DOM elements.
 		const tooltipTargets = [ ...$images.toArray(), ...$icons.toArray() ];
 
-		// tippy( tooltipTargets, {
-		// 	trigger: 'mouseenter',
-		// 	theme: 'wpmozo-tippy-' + containerId,
-		// 	interactive: true,
-		// 	animation: 'fade',
-		// 	duration: 350,
-		// 	appendTo: () => document.body,
-		// 	arrow: false,
-		// 	content(reference) {
-		// 		return reference.getAttribute('title') || ''; // prevent null content
-		// 	},
-		// 	maxWidth: 200,
-		// } );
+		tippy( tooltipTargets, {
+			trigger: 'mouseenter',
+			theme: 'wpmozo-tippy-' + containerId,
+			interactive: true,
+			animation: 'fade',
+			duration: 350,
+			appendTo: () => document.body,
+			arrow: false,
+			content(reference) {
+				return reference.getAttribute('title') || ''; // prevent null content
+			},
+			maxWidth: 200,
+		} );
 	} );
- } );
+} );

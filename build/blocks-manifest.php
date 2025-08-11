@@ -1609,16 +1609,19 @@ return array(
 		'title' => 'Image Card',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Image card block to display the card view with it\'s details.',
 		'example' => array(
 			
 		),
 		'supports' => array(
 			'html' => false,
-			'shadow' => true
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'image' => array(
@@ -1685,7 +1688,7 @@ return array(
 			),
 			'title' => array(
 				'type' => 'string',
-				'default' => 'Image Card Title'
+				'default' => 'Your title here.'
 			),
 			'titleAlign' => array(
 				'type' => 'string',
@@ -2096,11 +2099,7 @@ return array(
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'script' => array(
-			'wpmozo-blocks-and-addons-tippy-script',
-			'file:./script.js'
-		)
+		'style' => 'file:./style-index.css'
 	),
 	'interactive-image-card' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
