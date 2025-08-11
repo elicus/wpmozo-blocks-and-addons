@@ -1,8 +1,7 @@
-import {Fragment,useEffect,useCallback} from "@wordpress/element";
+import { useEffect, useCallback } from "@wordpress/element";
 import {useBlockProps} from "@wordpress/block-editor";
 import { useDispatch, useSelect } from '@wordpress/data';
 import Inspector from './inspector';
-
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -11,17 +10,15 @@ import Inspector from './inspector';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 
-import './editor.scss';
-
 import classnames from 'classnames';
-import { RichText } from '@wordpress/block-editor';
+import generateDynamicStyle from "./style";
 
 export default function Edit(props) {
 
-	const { attributes, setAttributes, className, isSelected, clientId } = props;
+	const { attributes, setAttributes, isSelected, clientId } = props;
 
-	const ID = attributes.ID ?? clientId;
-	if (attributes.ID !== ID) setAttributes({ ID });
+	attributes.ID = clientId;
+	setAttributes( { ID: clientId } );
 
 	const {
 		image,
@@ -55,7 +52,7 @@ export default function Edit(props) {
 	const parentId = getBlockRootClientId(clientId);
 	const selectedBlockId = getSelectedBlockClientId();
 
-	const handleClick = useCallback(() => {
+	const handleClick = useCallback( () => {
 		// If the child isn't selected already, select it
 		if (selectedBlockId !== clientId) {
 			selectBlock(clientId);
@@ -64,33 +61,29 @@ export default function Edit(props) {
 		else if (parentId) {
 			selectBlock(parentId);
 		}
-	}, [selectedBlockId, clientId, parentId]);
+	}, [selectedBlockId, clientId, parentId] );
 
+	return ( <>
+		{ isSelected && ( <Inspector attributes={attributes} setAttributes={setAttributes} /> ) }
 
-	return (
-		<>
-			{ isSelected && (
-				<Inspector attributes={attributes} setAttributes={setAttributes} />
-			) }
-			<div {...blockProps} onClick={handleClick}
-				className={classnames('wpmozo-image-stack-item'
-				)} data-id={ID}
-			>
-				<span className={`wpmozo-stack-item-wrapper stack-item-type-image`}>
-					{'image' === attributes.stackType && (
-						<img
-							className="wpmozo-stack-item-img"
-							alt={defaultedAlt}
-							src={imageSrc}
-							loading="lazy"
-							title={tooltipText}
-						/>
-					)}
-					{'icon' === attributes.stackType && (
-						<i className={attributes.stackIcon} title={tooltipText}></i>
-					)}
-				</span>
-			</div>
-		</>
-	);
+		<div {...blockProps} onClick={handleClick}
+			className={ classnames( 'wpmozo-image-stack-item', attributes.className ) } 
+		>
+			<span className={`wpmozo-stack-item-wrapper stack-item-type-` + attributes.stackType}>
+				{ 'image' === attributes.stackType && (
+					<img className="wpmozo-stack-item-img"
+						alt={defaultedAlt}
+						src={imageSrc}
+						loading="lazy"
+						title={tooltipText}
+					/>
+				) }
+				{ 'icon' === attributes.stackType && (
+					<i className={attributes.stackIcon} title={tooltipText}></i>
+				) }
+			</span>
+		</div>
+
+		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+	</> );
 }

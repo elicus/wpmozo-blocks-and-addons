@@ -1,28 +1,32 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "wpmozo/image-stack-child",
-    "version": "0.1.0",
-    "title": "Image Stack Child",
-    "category": "wpmozo",
-    "icon": "smiley",
-    "description": "Example block scaffolded with Create Block tool.",
-    "example": {},
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/image-stack-child",
+	"version": "0.1.0",
+	"title": "Image Stack Item",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "Image Stack Item add the image or icon to an interactive stacked layout that expands on hover.",
+	"example": {},
 	"supports": {
-		"anchor": true,
-		"html": false
+		"html": false,
+		"customClassName": false
 	},
-	"parent": "wpmozo/image-stack",
-    "attributes": {
-		"ID": {"type": "string"},
-		"image": {"type": "object"},
-		"stackType": {"type": "string","default": "image"},
+	"parent": [ "wpmozo/image-stack" ],
+	"attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+
+		"image": { "type": "object" },
+		"stackType": { "type": "string", "default": "image" },
 		"stackIcon": { "type": "string", "default": "fas fa-arrow-right" },
-		"tooltipText": {"type": "string"}
+		"tooltipText": { "type": "string" },
+		"itemBackground": { "type": "string", "default": "#f7f7f7" },
+		"itemBGGradient": { "type": "string" }
 	},
-    "textdomain": "wpmozo-blocks-and-addons",
-    "editorScript": "file:./index.js",
-    "editorStyle": "file:./index.css",
-    "style": "file:./style-index.css",
-	"script": ["wpmozo-blocks-and-addons-tippy-script", "file:./script.js"]
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"script": [ "wpmozo-blocks-and-addons-tippy-script", "file:./script.js" ]
 }

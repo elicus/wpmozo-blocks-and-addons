@@ -12,8 +12,8 @@ import Icon from './icon';
  */
 import './style.scss';
 
-registerBlockType(metadata.name, {
-    edit: Edit,
-    icon: Icon,
-    save,
-});
+registerBlockType( metadata.name, {
+	edit: Edit,
+	icon: Icon,
+	save,
+} );

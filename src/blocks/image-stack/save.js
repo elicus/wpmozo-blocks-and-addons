@@ -1,16 +1,15 @@
 import { InnerBlocks } from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
 
-export default function save({ attributes }) {
+export default function save( { attributes } ) {
 
 	const ID = attributes.ID;
 
 	return (
 		<>
-			<style>
-				{generateDynamicStyle({attributes, ID})}
-			</style>
-			<div className={`wpmozo-bna-image-stack`} id={`block-${attributes.ID}`} >
+			<style>{ generateDynamicStyle( { attributes, ID } ) }</style>
+
+			<div id={`block-${attributes.ID}`} className={ `wpmozo-bna-image-stack ` + attributes.className }>
 				<div className={`wpmozo-image-stack-wrap`}>
 					<div className={`wpmozo-image-stack-inner`}>
 						<InnerBlocks.Content />

@@ -3,18 +3,23 @@
   "apiVersion": 3,
   "name": "wpmozo/image-stack-child",
   "version": "0.1.0",
-  "title": "Image Stack Child",
+  "title": "Image Stack Item",
   "category": "wpmozo",
   "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "description": "Image Stack Item add the image or icon to an interactive stacked layout that expands on hover.",
   "example": {},
   "supports": {
-    "anchor": true,
-    "html": false
+    "html": false,
+    "customClassName": false
   },
-  "parent": "wpmozo/image-stack",
+  "parent": [
+    "wpmozo/image-stack"
+  ],
   "attributes": {
     "ID": {
+      "type": "string"
+    },
+    "className": {
       "type": "string"
     },
     "image": {
@@ -29,6 +34,13 @@
       "default": "fas fa-arrow-right"
     },
     "tooltipText": {
+      "type": "string"
+    },
+    "itemBackground": {
+      "type": "string",
+      "default": "#f7f7f7"
+    },
+    "itemBGGradient": {
       "type": "string"
     }
   },

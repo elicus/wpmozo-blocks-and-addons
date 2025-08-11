@@ -1968,16 +1968,24 @@ return array(
 		'title' => 'Image Stack',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Image Stack lets you showcase images in an interactive stacked layout that expands on hover.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
 				'type' => 'string'
+			),
+			'className' => array(
+				'type' => 'string'
+			),
+			'alighment' => array(
+				'type' => 'string',
+				'default' => 'center'
 			),
 			'stackItemSize' => array(
 				'type' => 'number',
@@ -1991,32 +1999,29 @@ return array(
 				'type' => 'number',
 				'default' => 10
 			),
+			'iconSize' => array(
+				'type' => 'number',
+				'default' => 38
+			),
 			'iconColor' => array(
 				'type' => 'string'
 			),
-			'iconShape' => array(
-				'type' => 'string',
-				'default' => 'none'
-			),
-			'iconDimensionspadding' => array(
+			'itempadding' => array(
 				'type' => 'object'
 			),
-			'imageSize' => array(
-				'type' => 'number',
-				'default' => 50
-			),
-			'imageBorderType' => array(
+			'itemBorderType' => array(
 				'type' => 'string',
 				'default' => 'none'
 			),
-			'imageBorderWidth' => array(
+			'itemBorderWidth' => array(
 				'type' => 'number'
 			),
 			'borderColor' => array(
 				'type' => 'string'
 			),
-			'imageBorderRadius' => array(
-				'type' => 'number'
+			'itemBorderRadius' => array(
+				'type' => 'number',
+				'default' => ''
 			),
 			'tooltipColor' => array(
 				'type' => 'string',
@@ -2045,20 +2050,25 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'wpmozo/image-stack-child',
 		'version' => '0.1.0',
-		'title' => 'Image Stack Child',
+		'title' => 'Image Stack Item',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Image Stack Item add the image or icon to an interactive stacked layout that expands on hover.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'anchor' => true,
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
-		'parent' => 'wpmozo/image-stack',
+		'parent' => array(
+			'wpmozo/image-stack'
+		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'image' => array(
@@ -2073,6 +2083,13 @@ return array(
 				'default' => 'fas fa-arrow-right'
 			),
 			'tooltipText' => array(
+				'type' => 'string'
+			),
+			'itemBackground' => array(
+				'type' => 'string',
+				'default' => '#f7f7f7'
+			),
+			'itemBGGradient' => array(
 				'type' => 'string'
 			)
 		),

@@ -13,9 +13,9 @@ import { DesignPanel } from './settings/designPanel';
 const Inspector = ( { attributes, setAttributes } ) => {
 
 	let props = { attributes, setAttributes };
-			props = Object.assign( {}, props, { preAttributes: {} } );
+		props = Object.assign( {}, props, { preAttributes: {} } );
 	
-		return (
+	return (
 		<InspectorControls>
 			<TabPanel
 				className="wpmozo-settings-tab-panel"
