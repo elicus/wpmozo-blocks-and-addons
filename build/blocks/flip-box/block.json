@@ -6,13 +6,17 @@
   "title": "Flip Box",
   "category": "wpmozo",
   "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "description": "Interactive flip box elements with two sides using Flip or 3D Cube effects in multiple directions.",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "customClassName": false
   },
   "attributes": {
     "ID": {
+      "type": "string"
+    },
+    "className": {
       "type": "string"
     },
     "animationType": {

@@ -6,13 +6,17 @@
     "title": "Content Toggle",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "Example block scaffolded with Create Block tool.",
+    "description": "Content Toggle allows you to create content elements with a toggle/switch that lets you show two versions of the same thing.",
     "example": {},
     "supports": {
-        "html": false
+        "html": false,
+        "anchor": false,
+        "customClassName": false
     },
     "attributes": {
         "ID": { "type": "string" },
+        "className": { "type": "string" },
+        "anchor": { "type": "string" },
         
         "toggleSwitchType": { "type": "string", "default": "rounded" },
         "toggleSwitchAlignment": { "type": "string" },
@@ -33,7 +37,12 @@
         "titleOneIconSpacing": { "type": "number", "default": 5 },
         "titleOneIconColor": { "type": "string" },
         "titleOneFontSize": { "type": "string" },
-        "titleOneFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
+        "titleOneFontAppearance": {
+            "type": "object",
+            "fontStyle": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
         "titleOneLetterSpacing": { "type": "string" },
         "titleOneDecoration": { "type": "string" },
         "titleOneLetterCase": { "type": "string" },
@@ -47,7 +56,12 @@
         "titleTwoIconSpacing": { "type": "number", "default": 5 },
         "titleTwoIconColor": { "type": "string" },
         "titleTwoFontSize": { "type": "string" },
-        "titleTwoFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
+        "titleTwoFontAppearance": {
+            "type": "object",
+            "fontStyle": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
         "titleTwoLetterSpacing": { "type": "string" },
         "titleTwoDecoration": { "type": "string" },
         "titleTwoLetterCase": { "type": "string" },

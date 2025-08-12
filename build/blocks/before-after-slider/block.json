@@ -6,20 +6,25 @@
   "title": "Before After Slider",
   "category": "wpmozo",
   "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "description": "Create stunning before-and-after comparisons with a sleek, responsive slider.",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "customClassName": false
   },
   "attributes": {
     "ID": {
+      "type": "string"
+    },
+    "className": {
       "type": "string"
     },
     "globalcolorHandle": {
       "type": "string"
     },
     "handleOffset": {
-      "type": "number"
+      "type": "number",
+      "default": 0.5
     },
     "moveHandleOnClick": {
       "type": "boolean",

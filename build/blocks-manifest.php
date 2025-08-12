@@ -184,22 +184,27 @@ return array(
 		'title' => 'Before After Slider',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Create stunning before-and-after comparisons with a sleek, responsive slider.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'globalcolorHandle' => array(
 				'type' => 'string'
 			),
 			'handleOffset' => array(
-				'type' => 'number'
+				'type' => 'number',
+				'default' => 0.5
 			),
 			'moveHandleOnClick' => array(
 				'type' => 'boolean',
@@ -340,15 +345,23 @@ return array(
 		'title' => 'Content Toggle',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Content Toggle allows you to create content elements with a toggle/switch that lets you show two versions of the same thing.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
+				'type' => 'string'
+			),
+			'anchor' => array(
 				'type' => 'string'
 			),
 			'toggleSwitchType' => array(
@@ -625,15 +638,19 @@ return array(
 		'title' => 'Fancy Heading',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Add stylish and eye-catching headings to your pages with the Fancy Heading.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'displayInStack' => array(
@@ -828,15 +845,19 @@ return array(
 		'title' => 'Fancy Text',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Enhance your text with gradient colors or image fills for a unique visual effect. With various styling options.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'fancyText' => array(
@@ -928,15 +949,19 @@ return array(
 		'title' => 'Flip Box',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Interactive flip box elements with two sides using Flip or 3D Cube effects in multiple directions.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'animationType' => array(

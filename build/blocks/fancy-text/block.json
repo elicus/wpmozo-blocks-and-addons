@@ -6,13 +6,17 @@
   "title": "Fancy Text",
   "category": "wpmozo",
   "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "description": "Enhance your text with gradient colors or image fills for a unique visual effect. With various styling options.",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "customClassName": false
   },
   "attributes": {
     "ID": {
+      "type": "string"
+    },
+    "className": {
       "type": "string"
     },
     "fancyText": {

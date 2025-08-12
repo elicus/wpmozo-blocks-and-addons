@@ -6,17 +6,17 @@
     "title": "Flip Box",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "Example block scaffolded with Create Block tool.",
+    "description": "Interactive flip box elements with two sides using Flip or 3D Cube effects in multiple directions.",
     "example": {},
     "supports": {
-        "html": false
+        "html": false,
+        "customClassName": false
     },
     "attributes": {
-
         "ID": { "type": "string" },
+        "className": { "type": "string" },
         
         "animationType": { "type": "string", "default": "flip" },
-        
         "flipDirection": { "type": "string", "default": "top" },
         "depth3dEffect": { "type": "boolean", "default": true },
         "shakeOnFlip": { "type": "boolean", "default": false },
@@ -26,14 +26,24 @@
         "globalContentColor": { "type": "string", "default": "#fff" },
         "globalTitletext": { "type": "string" },
         "globalTitleFontSize": { "type": "string" },
-        "globalTitleFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
+        "globalTitleFontAppearance": {
+            "type": "object",
+            "fontStyle": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
         "globalTitleLetterSpacing": { "type": "string" },
         "globalTitleDecoration": { "type": "string" },
         "globalTitleLetterCase": { "type": "string" },
         "globalTitleLineHeight": { "type": "string" },
         "globalContenttext": { "type": "string" },
         "globalContentFontSize": { "type": "string" },
-        "globalContentFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
+        "globalContentFontAppearance": {
+            "type": "object",
+            "fontStyle": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
         "globalContentLetterSpacing": { "type": "string" },
         "globalContentDecoration": { "type": "string" },
         "globalContentLetterCase": { "type": "string" },
@@ -44,7 +54,12 @@
         "frontTitleColor": { "type": "string" },
         "frontTitletext": { "type": "string" },
         "frontTitleFontSize": { "type": "string" },
-        "frontTitleFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
+        "frontTitleFontAppearance": {
+            "type": "object",
+            "fontStyle": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
         "frontTitleLetterSpacing": { "type": "string" },
         "frontTitleDecoration": { "type": "string" },
         "frontTitleLetterCase": { "type": "string" },
@@ -54,7 +69,12 @@
         "frontContentColor": { "type": "string" },
         "frontContenttext": { "type": "string" },
         "frontContentFontSize": { "type": "string" },
-        "frontContentFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
+        "frontContentFontAppearance": {
+            "type": "object",
+            "fontStyle": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
         "frontContentLetterSpacing": { "type": "string" },
         "frontContentDecoration": { "type": "string" },
         "frontContentLetterCase": { "type": "string" },
@@ -86,7 +106,10 @@
         "frontFlipboxborder": { "type": "object" },
         "frontFlipboxborderRadius": { "type": "string" },
         "frontFlipboxBackground": { "type": "string", "default": "#543EC4" },
-        "frontDimensionspadding": { "type": "object", "default": { "top": "10px", "right": "10px", "bottom": "10px", "left": "10px" } },
+        "frontDimensionspadding": {
+            "type": "object",
+            "default": { "top": "10px", "right": "10px", "bottom": "10px", "left": "10px" }
+        },
         "flipboxWidth": { "type": "string", "default": "100%" },
         "flipboxWidthUnit": { "type": "string", "default": "%" },
         
@@ -95,7 +118,12 @@
         "backTitleColor": { "type": "string" },
         "backTitletext": { "type": "string" },
         "backTitleFontSize": { "type": "string" },
-        "backTitleFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
+        "backTitleFontAppearance": {
+            "type": "object",
+            "fontStyle": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
         "backTitleLetterSpacing": { "type": "string" },
         "backTitleDecoration": { "type": "string" },
         "backTitleLetterCase": { "type": "string" },
@@ -105,7 +133,12 @@
         "backContentColor": { "type": "string" },
         "backContenttext": { "type": "string" },
         "backContentFontSize": { "type": "string" },
-        "backContentFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
+        "backContentFontAppearance": {
+            "type": "object",
+            "fontStyle": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
         "backContentLetterSpacing": { "type": "string" },
         "backContentDecoration": { "type": "string" },
         "backContentLetterCase": { "type": "string" },
@@ -136,7 +169,10 @@
         "backFlipboxborder": { "type": "object" },
         "backFlipboxborderRadius": { "type": "string" },
         "backFlipboxBackground": { "type": "string", "default": "#863AD0" },
-        "backDimensionspadding": { "type": "object", "default": { "top": "10px", "right": "10px", "bottom": "10px", "left": "10px" } },
+        "backDimensionspadding": {
+            "type": "object",
+            "default": { "top": "10px", "right": "10px", "bottom": "10px", "left": "10px" }
+        },
         "backIconShapeBorderColor": { "type": "string" },
 
         "backHasButton": { "type": "boolean", "default": false },
@@ -149,14 +185,25 @@
         "backBtnBackground": { "type": "string" },
         "backBtntext": { "type": "string" },
         "backBtnFontSize": { "type": "string" },
-        "backBtnFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
+        "backBtnFontAppearance": {
+            "type": "object",
+            "fontStyle": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
         "backBtnLetterSpacing": { "type": "string" },
         "backBtnDecoration": { "type": "string", "default": "none" },
         "backBtnLetterCase": { "type": "string" },
         "backBtnLineHeight": { "type": "string" },
-        "backBtnborder": { "type": "object", "default": { "width": "1px", "style": "solid", "color": "#fff" } },
+        "backBtnborder": { 
+            "type": "object",
+            "default": { "width": "1px", "style": "solid", "color": "#fff" }
+        },
         "backBtnborderRadius": { "type": "string", "default": "3px" },
-        "backBtnDimensionspadding": { "type": "object", "default": { "top": "5px", "right": "8px", "bottom": "5px", "left": "8px" } },
+        "backBtnDimensionspadding": {
+            "type": "object",
+            "default": { "top": "5px", "right": "8px", "bottom": "5px", "left": "8px" }
+        },
         "backBtnDimensionsmargin": { "type": "object" }
     },
     "textdomain": "wpmozo-blocks-and-addons",

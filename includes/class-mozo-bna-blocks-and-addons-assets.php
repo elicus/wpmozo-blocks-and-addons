@@ -156,7 +156,6 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			array(),
 			WPMOZO_BNA_VERSION
 		);
-
 	}
 
 	/**

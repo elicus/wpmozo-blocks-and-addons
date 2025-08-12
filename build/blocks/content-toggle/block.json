@@ -6,13 +6,21 @@
   "title": "Content Toggle",
   "category": "wpmozo",
   "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "description": "Content Toggle allows you to create content elements with a toggle/switch that lets you show two versions of the same thing.",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "anchor": false,
+    "customClassName": false
   },
   "attributes": {
     "ID": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "anchor": {
       "type": "string"
     },
     "toggleSwitchType": {
