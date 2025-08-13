@@ -1,8 +1,7 @@
 import { __ } from '@wordpress/i18n';
-
+import {HeightControl} from '@wordpress/block-editor';
 import {
-    PanelBody,
-	HeightControl,
+    PanelBody
 } from '@wordpress/components';
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {

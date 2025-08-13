@@ -11,11 +11,8 @@
     "parent": [ "wpmozo/floating-image" ],
     "supports": {
         "html": false,
-        "shadow": true,
-        "spacing": {
-            "margin": true,
-            "padding": true
-        }
+		"anchor": false,
+		"customClassName": false
     },
     "attributes": {
         "ID": { "type": "string" },
