@@ -10,7 +10,9 @@
 	"allowedBlocks": [ "wpmozo/logo-slider-item" ],
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"anchor": false,
+		"customClassName": false
 	},
 	"attributes": {
 		"ID": { "type": "string" },

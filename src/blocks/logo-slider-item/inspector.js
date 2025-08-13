@@ -1,96 +1,60 @@
+// inspector.js
+import { __ } from '@wordpress/i18n';
 import {
-	WpmozoMediaUploader,
-	WpmozoBorder,
-	WpmozoDimensions,
-	WpmozoColorPicker
-} from '../../common/components/index';
-import { __ } from "@wordpress/i18n";
-import { InspectorControls } from "@wordpress/block-editor";
+	InspectorControls,
+} from '@wordpress/block-editor';
 import {
+	TabPanel,
 	PanelBody,
 	TextControl,
-	BaseControl,
-	ButtonGroup,
-	Button,
-	Icon,
-} from "@wordpress/components";
-import { useState } from "@wordpress/element";
-
+	ExternalLink,
+} from '@wordpress/components';
+import { inspectorPanelTabs } from '../../common/utils.js';
+import { GeneralPanel } from './settings/generalPanel';
+import { DesignPanel } from './settings/designPanel';
 const Inspector = ({ attributes, setAttributes }) => {
 
-    let props = { attributes, setAttributes };
-    props = Object.assign({}, props, {preAttributes: {}});
-	const	[ contentType, setContentType ] = useState('front');
+	let props = { attributes, setAttributes };
+	props = Object.assign({}, props, {preAttributes: {}});
 
 	return (
-		<>
-			<InspectorControls key="controls">
-				<PanelBody title={ __( 'General Settings', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
-					<WpmozoMediaUploader
-						attrKye="logo"
-						props={props}
-						imageSrc={attributes.logo ? attributes.logo.url : WPMozoEditorObj.placeholderImg}
-						onSelect={ ( media ) => setAttributes( { logo: media } ) }
-					/>
-					<TextControl
-						label={ __( 'Alt Text', 'wpmozo-blocks-and-addons' ) }
-						value={ attributes.altText }
-						onChange={ ( newValue ) => setAttributes( { altText: newValue } ) }
-					/>
-					<TextControl
-						label={ __( 'Link', 'wpmozo-blocks-and-addons' ) }
-						value={ attributes.link }
-						onChange={ ( newValue ) => setAttributes( { link: newValue } ) }
-					/>
-					<BaseControl
-						label={ __( 'Link Target', 'wpmozo-blocks-and-addons' ) }
-						className="wpmozo-button-tabs-wrap"
-					>
-						<ButtonGroup>
-							<Button
-								className="wpmozo-button-tabs-btn"
-								isPressed={ ( 'same' === attributes.linkTarget ) ? true : false }
-								onClick={ () => setAttributes( { linkTarget: 'same' } ) }
-								icon={ <Icon icon="admin-links" /> }
-								label={ __( 'Same Window', 'wpmozo-blocks-and-addons' ) }
+		<InspectorControls>
+			<TabPanel
+				className="wpmozo-settings-tab-panel"
+				activeClass="is-active"
+				tabs={ inspectorPanelTabs() }
+			>
+				{ ( tab ) => ( <div className="wpmozo-settings-tab-panel-content">
+					{ tab.name === 'general' &&
+						<GeneralPanel attributes={attributes} setAttributes={setAttributes} />
+					}
+					{ tab.name === 'design' &&
+						<DesignPanel attributes={attributes} setAttributes={setAttributes} />
+					}
+					{ tab.name === 'advanced' &&
+						<PanelBody title={ __( 'Advanced', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
+							<TextControl
+								label={ __( 'HTML Anchor', 'wpmozo-blocks-and-addons' ) }
+								value={ attributes.anchor || '' }
+								onChange={ ( value ) => setAttributes( { anchor: value } ) }
+								help={  <>
+									{ __( 'Enter a word or two — without spaces — to make a unique web address just for this block, called an “anchor”. Then, you’ll be able to link directly to this section of your page.', 'wpmozo-blocks-and-addons' ) }{' '}
+									<ExternalLink href="https://wordpress.org/documentation/article/page-jumps/">
+										{ __( 'Learn more about anchors', 'wpmozo-blocks-and-addons' ) }
+									</ExternalLink>
+								</> }
 							/>
-							<Button
-								className="wpmozo-button-tabs-btn"
-								isPressed={ ( 'external' === attributes.linkTarget ) ? true : false }
-								onClick={ () => setAttributes( { linkTarget: 'external' } ) }
-								icon={ <Icon icon="external" /> }
-								label={ __( 'External', 'wpmozo-blocks-and-addons' ) }
+							<TextControl
+								label={ __( 'Additional CSS Class(es)', 'wpmozo-blocks-and-addons' ) }
+								value={ attributes.className || '' }
+								onChange={ ( value ) => setAttributes( { className: value } ) }
+								help={ __( 'Separate multiple classes with spaces.', 'wpmozo-blocks-and-addons' ) }
 							/>
-						</ButtonGroup>
-					</BaseControl>
-				</PanelBody>
-			</InspectorControls>
-			<InspectorControls key="styles" group="styles">
-				<PanelBody title={ __( 'Logo Style', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
-					<WpmozoColorPicker
-						ColorKey="logo"
-						props={props}
-						ColorTypes={[
-							{
-								key: 'Background',
-								label: __( 'Background Color', 'wpmozo-blocks-and-addons' ),
-							}
-						]}
-					/>
-					<WpmozoDimensions
-						DimensionKey='logo'
-						DimensionsTypes={{
-							padding: true
-						}}
-						props={props}
-					/>
-					<WpmozoBorder
-						BorderKey="logo"
-						props={props}
-					/>
-				</PanelBody>
-			</InspectorControls>
-		</>
+						</PanelBody>
+					}
+				</div> ) }
+			</TabPanel>
+		</InspectorControls>
 	);
 };
 
