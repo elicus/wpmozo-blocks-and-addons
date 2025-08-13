@@ -2134,12 +2134,13 @@ return array(
 		'title' => 'Interactive Image Card',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'It allows you to add images with text appearing on hover with different entrance animations.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
@@ -3373,15 +3374,19 @@ return array(
 		'title' => 'Separator',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Separator with multiple options like icons, text, shodow, color, thickness, and many more.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'separatorType' => array(
@@ -4288,15 +4293,19 @@ return array(
 		'title' => 'Tilt Image',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Add an interesting tilt effect to your images for an interactive touch.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'image' => array(

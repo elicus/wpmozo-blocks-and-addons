@@ -6,21 +6,25 @@
 	"title": "Tilt Image",
 	"category": "wpmozo",
 	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Add an interesting tilt effect to your images for an interactive touch.",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"customClassName": false
 	},
 	"attributes": {
 		"ID": { "type": "string" },
+		"className": { "type": "string" },
 		
 		"image": { "type": "string" },
-		
 		"title": { "type": "string" },
 		"titleLevel": { "type": "string", "default": "h2" },
 		"titleColor": { "type": "string" },
 		"titleFontSize": { "type": "string" },
-		"titleFontAppearance": { "type": "object", "default": { "fontStyle": "", "fontWeight": "" } },
+		"titleFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
 		"titleLetterSpacing": { "type": "string" },
 		"titleDecoration": { "type": "string" },
 		"titleLetterCase": { "type": "string" },
@@ -30,7 +34,10 @@
 		"content": { "type": "string" },
 		"descriptionColor": { "type": "string" },
 		"descriptionFontSize": { "type": "string" },
-		"descriptionFontAppearance": { "type": "object", "default": { "fontStyle": "", "fontWeight": "" } },
+		"descriptionFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
 		"descriptionLetterSpacing": { "type": "string" },
 		"descriptionDecoration": { "type": "string" },
 		"descriptionLetterCase": { "type": "string" },
@@ -38,7 +45,6 @@
 		"descriptionAlign": { "type": "string", "default": "left" },
 		
 		"overlayColor": { "type": "string" },
-		
 		"useIcon": { "type": "boolean", "default": false },
 		"icon": { "type": "string" },
 		"iconColor": { "type": "string" },
@@ -53,7 +59,10 @@
 		"buttonTextColor": { "type": "string" },
 		"buttonBackgroundColor": { "type": "string" },
 		"buttonFontSize": { "type": "string" },
-		"buttonFontAppearance": { "type": "object", "default": { "fontStyle": "", "fontWeight": "" } },
+		"buttonFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
 		"buttonLetterSpacing": { "type": "string" },
 		"buttonDecoration": { "type": "string" },
 		"buttonLetterCase": { "type": "string" },
@@ -81,7 +90,6 @@
 		"contentAlignment": { "type": "string", "default": "center" },
 		"contentAnimationDirection": { "type": "string", "default": "off" },
 		"contentpadding": { "type": "object" }
-		
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

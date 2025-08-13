@@ -1,10 +1,3 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
-
 .wpmozo-bna-interactive-image-card-wrap {
 	display: flex;
 	width: 100%;
@@ -118,12 +111,12 @@
 	transition-duration: 0.35s;
 }
 .wpmozo-bna-interactive-image-card-wrap figure.effect-sadie figcaption::before {
+	content: "";
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	content: "";
 }
 .wpmozo-bna-interactive-image-card-wrap figure.effect-sadie .wpmozo-bna-interactive-image-card-title {
 	position: absolute;
@@ -172,13 +165,13 @@
 	z-index: -1;
 }
 .wpmozo-bna-interactive-image-card-wrap figure.effect-roxy figcaption::before {
+	content: "";
 	position: absolute;
 	top: 30px;
 	right: 30px;
 	bottom: 30px;
 	left: 30px;
 	border: 1px solid #fff;
-	content: "";
 	opacity: 0;
 	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
 	transition: opacity 0.35s, transform 0.35s;
@@ -217,12 +210,12 @@
 }
 .wpmozo-bna-interactive-image-card-wrap figure.effect-bubba figcaption::after,
 .wpmozo-bna-interactive-image-card-wrap figure.effect-bubba figcaption::before {
+	content: "";
 	position: absolute;
 	top: 30px;
 	right: 30px;
 	bottom: 30px;
 	left: 30px;
-	content: "";
 	opacity: 0;
 	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
 	transition: opacity 0.35s, transform 0.35s;

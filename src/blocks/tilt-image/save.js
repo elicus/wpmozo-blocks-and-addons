@@ -1,5 +1,5 @@
-import {useBlockProps, RichText} from "@wordpress/block-editor";
-import {wpmozo_is_empty} from '../../common/utils';
+import { useBlockProps, RichText } from "@wordpress/block-editor";
+import { wpmozo_is_empty } from '../../common/utils';
 import generateDynamicStyle from './style';
 
 export default function save({attributes}) {
@@ -9,15 +9,13 @@ export default function save({attributes}) {
 		linkTarget = ('external' === attributes.buttonLinkTarget) ? '_blank' : '_self',
 		animationDirection = attributes.contentAnimationDirection,
 		animationClass = (attributes.contentOnHover && 'off' !== animationDirection) ? ` wpmozo-animation wpmozo-animation-${attributes.contentAnimationDirection}` : '',
-		axis = (attributes.useDisableAxis) ? attributes.tiltDisableAxis : null,
-		glare = (attributes.useGlare) ? attributes.tiltMaxGlare : false;
+		axis = (attributes.useDisableAxis) ? attributes.tiltDisableAxis : null;
 
 	const icon = (
 		<span className="wpmozo-bna-tilt-icon">
-            <i className={`${attributes.icon}`}></i>
-        </span>
+			<i className={`${attributes.icon}`}></i>
+		</span>
 	);
-
 	const button = (
 		<div className="wpmozo-bna-tilt-image-button-wrapper">
 			<a href={attributes.buttonUrl}
@@ -28,47 +26,42 @@ export default function save({attributes}) {
 			</a>
 		</div>
 	);
-	return (
-		<>
-			<style>
-				{generateDynamicStyle({attributes})}
-			</style>
-			<div {...useBlockProps.save({className: 'wpmozo-bna-tilt-image'})}
-				 id={`block-${ID}`}
-				 data-max-tilt={attributes.tiltMax}
-				 data-perspective={attributes.tiltPerspective}
-				 data-scale={attributes.tiltScale}
-				 data-speed={attributes.tiltSpeed}
-				 data-disable-axis={axis}
-				 data-glare={attributes.useGlare}
-				 data-max-alare={attributes.tiltMaxGlare}
-				 data-disable-mobile={attributes.tiltMobile}
-			>
-				<div
-					className={`wpmozo-bna-tilt-image-wrapper wpmozo-editor wpmozo-bna-tilt-align-${contentAlignment}`}>
-					<div className="wpmozo-bna-tilt-image-inner-wrapper">
-						<img className="wpmozo-bna-tilt-image-image" src={image}/>
-						<div className={`wpmozo-bna-tilt-content-wrapper${animationClass}`}>
-							{attributes.useIcon &&
-								icon
-							}
-							<RichText.Content
-								className="wpmozo-bna-tilt-title"
-								tagName={attributes.titleLevel}
-								value={attributes.title}
-							/>
-							<RichText.Content
-								className="wpmozo-bna-tilt-desc"
-								tagName="div"
-								value={attributes.content}
-							/>
-							{attributes.showButton && !wpmozo_is_empty(attributes.buttonText) &&
-								button
-							}
-						</div>
+
+	return ( <>
+		<style>{ generateDynamicStyle( { attributes } ) }</style>
+
+		<div { ...useBlockProps.save( {className: 'wpmozo-bna-tilt-image ' + ( attributes.className || '' ) } ) }
+			id={`block-${ID}`}
+			data-max-tilt={attributes.tiltMax}
+			data-perspective={attributes.tiltPerspective}
+			data-scale={attributes.tiltScale}
+			data-speed={attributes.tiltSpeed}
+			data-disable-axis={axis}
+			data-glare={attributes.useGlare}
+			data-max-alare={attributes.tiltMaxGlare}
+			data-disable-mobile={attributes.tiltMobile}
+		>
+			<div className={`wpmozo-bna-tilt-image-wrapper wpmozo-editor wpmozo-bna-tilt-align-${contentAlignment}`}>
+				<div className="wpmozo-bna-tilt-image-inner-wrapper">
+					<img className="wpmozo-bna-tilt-image-image" src={image}/>
+					<div className={`wpmozo-bna-tilt-content-wrapper${animationClass}`}>
+						{ attributes.useIcon && icon }
+						<RichText.Content
+							className="wpmozo-bna-tilt-title"
+							tagName={attributes.titleLevel}
+							value={attributes.title}
+						/>
+						<RichText.Content
+							tagName="div"
+							className="wpmozo-bna-tilt-desc"
+							value={ attributes.content }
+						/>
+						{ attributes.showButton && !wpmozo_is_empty(attributes.buttonText) &&
+							button
+						}
 					</div>
 				</div>
 			</div>
-		</>
-	);
+		</div>
+	</> );
 }
