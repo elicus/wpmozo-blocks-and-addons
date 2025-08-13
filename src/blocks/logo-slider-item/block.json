@@ -14,19 +14,20 @@
     },
     "attributes": {
 		"ID": { "type": "string" },
-		
+		"className": { "type": "string" },
+
 		"logo": { "type": "object" },
 		"logoborderRadius": { "type": "string" },
 		"logoborder": { "type": "object" },
 
 		"altText": { "type": "string" },
-		
+
 		"link": { "type": "string" },
 		"linkTarget": { "type": "string", "default": "same" },
-		
+
 		"logoBackground": { "type": "string" },
 		"logopadding": { "type": "object" }
-		
+
 	},
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js"

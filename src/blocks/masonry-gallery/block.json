@@ -15,6 +15,7 @@
 	},
 	"attributes": {
 		"ID": { "type": "string" },
+		"className": { "type": "string" },
 		"images": {
 			"type": "array",
 			"default": [],

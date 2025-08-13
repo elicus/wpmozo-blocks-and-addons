@@ -16,6 +16,7 @@
 	},
     "attributes": {
         "ID": { "type": "string" },
+		"className": { "type": "string" },
 
         "layout": { "type": "string", "default": "default" },
 

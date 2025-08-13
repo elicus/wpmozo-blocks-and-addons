@@ -18,6 +18,7 @@
         "parentAtts": { "type": "object" },
 
         "ID": { "type": "string" },
+		"className": { "type": "string" },
 
         "itemmargin": { "type": "object" },
         "itempadding": { "type": "object" },

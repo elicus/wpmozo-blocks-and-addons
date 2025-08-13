@@ -14,6 +14,7 @@
 	},
 	"attributes": {
 		"ID": { "type": "string" },
+		"className": { "type": "string" },
 		"images": { "type": "array" },
 
 		"logoPerSlide": { "type": "string", "default": "4" },
