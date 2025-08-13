@@ -10,83 +10,52 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 
 	const numberOfColumns = attributes.numberOfColumns;
 
+	let finalWidth= 100/numberOfColumns;
+	if (attributes.customGutterSize) {
+		const gutterSize = ( attributes.customGutterSize * (numberOfColumns - 1)) / numberOfColumns;
+		finalWidth = `calc(${finalWidth}% - ${gutterSize}px)`;
+	}
+
+
 	styles += `
-		.masonry-grid {
+		.wpmozo_masonry_gallery_wrapper {
 			column-count: ${numberOfColumns} !important;
 			column-gap: 1rem;
 			padding: 1rem;
 		}
-
+		.wpmozo_masonry_gallery_item_gutter {
+			width: ${attributes.customGutterSize}px !important;
+		}
+		.wpmozo_masonry_gallery_item{
+			width: ${finalWidth};
+			margin-bottom: ${attributes.customGutterSize}px;
+		}
 	`;
 
-
-	// Gutter variables
-	const gutterSmall = '10px';
-	const gutterMedium = '20px';
-	const gutterLarge = '30px';
-	const gutterCustom = attributes.customGutterSize+'px';
-
-	if (attributes.gutterSize === 's') {
-		styles += `
-			@media (max-width: 600px) {
-				.masonry-grid .masonry-brick:not(:last-child) {
-					margin-bottom: calc(${gutterSmall} * 2);
-				}
-			}
-			.masonry-grid .masonry-brick:not(:last-child) {
-				margin-bottom: calc(${gutterSmall});
-			}
-
-		`;
-	}
-
-	if (attributes.gutterSize === 'm') {
-		styles += `
-			@media (max-width: 600px) {
-				.masonry-grid .masonry-brick:not(:last-child) {
-					margin-bottom: calc(${gutterMedium} * 2);
-				}
-			}
-			.masonry-grid .masonry-brick:not(:last-child) {
-				margin-bottom: calc(${gutterMedium});
-			}
-		`;
-	}
-
-	if (attributes.gutterSize === 'l') {
-		styles += `
-			@media (max-width: 600px) {
-				 .masonry-grid .masonry-brick:not(:last-child) {
-					margin-bottom: calc(${gutterLarge} * 2);
-				}
-			}
-			.masonry-grid .masonry-brick:not(:last-child) {
-				margin-bottom: calc(${gutterLarge});
-			}
-
-		`;
-	}
-	if (attributes.gutterSize === 'custom') {
-		styles += `
-			@media (max-width: 600px) {
-				.masonry-grid .masonry-brick:not(:last-child) {
-					margin-bottom: calc(${gutterCustom} * 2);
-				}
-			}
-			.masonry-grid .masonry-brick:not(:last-child) {
-				margin-bottom: calc(${gutterCustom});
-			}
-
-		`;
-	}
 	if (false === attributes.showCaption ) {
-		styles += `.masonry-brick figcaption {
-				display: none;
-		}`;
+		styles += `.wpmozo_masonry_gallery_wrapper figcaption.wp-element-caption {display:none}`;
 	}
-
+	if (true === attributes.enableOverlay ) {
+		styles += `.wpmozo_overlay.wpmozo_pb_inline_icon{background:${attributes.overlayBackgroundColor}!important;}`;
+	} else {
+		styles += `.wpmozo_overlay.wpmozo_pb_inline_icon{background:transparent !important;}`;
+	}
 	styles += `}`;
 
+	if(true === attributes.showLightbox){
+		styles += `.block-${clientId}-lightbox{
+			background:${attributes.lightboxBackgroundColor};
+		}
+		.block-${clientId}-lightbox .mfp-arrow-left:after{
+			border-right-color:${attributes.lightboxArrowColor};
+		}
+		.block-${clientId}-lightbox .mfp-arrow-right:after{
+			border-left-color:${attributes.lightboxArrowColor};
+		}
+		.block-${clientId}-lightbox .mfp-close{
+			color:${attributes.lightboxExitIconColor};
+		}`;
+	}
 	return styles;
 };
 

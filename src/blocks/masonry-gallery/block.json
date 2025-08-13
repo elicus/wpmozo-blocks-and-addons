@@ -6,7 +6,7 @@
     "title": "Masonry Gallery",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "Display multiple images in a masonry style gallery.",
+    "description": "Design a customizable image gallery with a dynamic masonry layout for multiple photos.",
     "example": {},
     "supports": {
 		"anchor": true,
@@ -31,14 +31,27 @@
 				}
 			}
 		},
-		"gutterSize": {"type": "string"},
-		"customGutterSize": {"type": "number"},
+		"images_data": {
+			"type": "array"
+		},
+		"customGutterSize": {"type": "number", "default": 15},
 		"sizeSlug": {"type": "string"},
 		"numberOfColumns": {"type": "number","default": 3},
-		"showCaption": { "type": "boolean", "default": false }
+		"showCaption": { "type": "boolean", "default": false },
+		"showLightbox": { "type": "boolean", "default": false },
+		"enableOverlay": {"type": "boolean","default": false},
+		"overlayBackgroundColor": {"type": "string"},
+		"overlayIconSize": {"type": "number"},
+		"overlayIconColor": {"type": "string"},
+		"overlayIcon": {"type": "string"},
+		"lightboxBackgroundColor": {"type": "string"},
+		"lightboxExitIconColor": {"type": "string"},
+		"lightboxArrowColor": {"type": "string"}
 	},
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",
     "editorStyle": "file:./index.css",
-    "style": "file:./style-index.css"
+    "style": ["wpmozo-blocks-and-addons-magnificPopup-style","file:./style-index.css"],
+	"script": ["wpmozo-blocks-and-addons-isotope-script","wpmozo-blocks-and-addons-imagesloaded-script","wpmozo-blocks-and-addons-magnificPopup-script","file:./script.js"],
+	"render": "file:./render.php"
 }
