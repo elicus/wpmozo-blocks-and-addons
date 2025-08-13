@@ -6,23 +6,24 @@
     "title": "List Item",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "Example block scaffolded with Create Block tool.",
+    "description": "Easily create and organized lists with the List block",
     "example": {},
     "parent": [ "wpmozo/list" ],
-    "supports": {
-        "html": false,
-        "splitting": true
-    },
+	"supports": {
+		"html": false,
+		"anchor": false,
+		"customClassName": false
+	},
     "attributes": {
         "parentAtts": { "type": "object" },
-        
+
         "ID": { "type": "string" },
-        
+
         "itemmargin": { "type": "object" },
         "itempadding": { "type": "object" },
         "itemBackgroundColor": { "type": "text" },
         "itemBackgroundGradient": { "type": "text" },
-        
+
         "text": { "type": "rich-text", "source": "rich-text", "selector": "p", "role": "text" },
         "textNormalColor": { "type": "string", "default": "" },
         "textHoverColor": { "type": "string", "default": "" },
@@ -38,18 +39,18 @@
         "textHoverDecoration": { "type": "string", "default": "" },
         "textHoverLetterCase": { "type": "string", "default": "" },
         "textHoverLineHeight": { "type": "string", "default": "" },
-        
+
         "markerType": { "type": "string", "default": "icon" },
         "markerIcon": { "type": "string", "default": "fas fa-check" },
         "markerImage": { "type": "string", "default": "" },
-        
+
         "styleIcon": { "type": "boolean", "default": false },
         "iconShape": { "type": "string", "default": "square" },
         "iconColor": { "type": "string" },
         "shapeBackground": { "type": "string" },
         "enableShapeBorder": { "type": "boolean", "default": false },
         "shapeBorderColor": { "type": "string" }
-        
+
     },
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js"

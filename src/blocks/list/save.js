@@ -12,7 +12,7 @@ export default function save({ attributes }) {
         <>
             <style>
                 { generateDynamicStyle({ attributes, clientId }) }
-            </style> 
+            </style>
             <div {...useBlockProps.save({ className: 'wpmozo-bna-list' })} id={`block-${clientId}`}>
                 <div>
                     <div className="wpmozo-bna-list-wrapper">
