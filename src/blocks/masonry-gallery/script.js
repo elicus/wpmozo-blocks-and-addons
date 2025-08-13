@@ -20,8 +20,6 @@ jQuery(function($) {
 			}
 		});
 		$gallery.imagesLoaded(function () {
-			console.log('here 85');
-
 			setTimeout(() => {
 				$gallery.isotope('layout');
 				$gallery.isotope('reloadItems');

@@ -8,14 +8,11 @@
     "icon": "smiley",
     "description": "Design a customizable image gallery with a dynamic masonry layout for multiple photos.",
     "example": {},
-    "supports": {
-		"anchor": true,
-		"align": [
-			"wide",
-			"full"
-		],
-        "html": false
-    },
+	"supports": {
+		"html": false,
+		"anchor": false,
+		"customClassName": false
+	},
 	"attributes": {
 		"ID": { "type": "string" },
 		"images": {
