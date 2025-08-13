@@ -1,4 +1,3 @@
-// inspector.js
 import { __ } from '@wordpress/i18n';
 import {
 	InspectorControls
