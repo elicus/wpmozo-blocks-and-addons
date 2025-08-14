@@ -24,69 +24,69 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 
 	// Title.
 	if ( false === attributes.hideTitle ) {
-		styles += `.dipl_star_rating_title_container .dipl_star_rating_title{
+		styles += `.wpmozo_star_rating_title_container .wpmozo_star_rating_title{
 			${attributes.titleColor ? `color: ${attributes.titleColor};` : ''}
 			${convertedStyle.title}
 		}
-		.dipl_star_rating_title_container .dipl_star_rating_title:hover{
+		.wpmozo_star_rating_title_container .wpmozo_star_rating_title:hover{
 			${attributes.titleHoverColor ? `color: ${attributes.titleHoverColor};` : ''}
 			${convertedStyle.titleHover}
 		}`;
 	}
 
 	// Description.
-	styles += `.dipl_star_rating_description{
+	styles += `.wpmozo_star_rating_description{
 		${attributes.descriptionColor ? `color: ${attributes.descriptionColor};` : ''}
 		${convertedStyle.description}
 	}
-	.dipl_star_rating_description:hover{
+	.wpmozo_star_rating_description:hover{
 		${attributes.descriptionHoverColor ? `color: ${attributes.descriptionHoverColor};` : ''}
 		${convertedStyle.descriptionHover}
 	}`;
 
 	// Rate Number.
-	styles += `.dipl_star_rating_number{
+	styles += `.wpmozo_star_rating_number{
 		${attributes.ratingColor ? `color: ${attributes.ratingColor};` : ''}
 		${convertedStyle.rating}
 	}
-	.dipl_star_rating_number:hover{
+	.wpmozo_star_rating_number:hover{
 		${attributes.ratingHoverColor ? `color: ${attributes.ratingHoverColor};` : ''}
 		${convertedStyle.ratingHover}
 	}`;
 
 	// Icon spacing.
-	styles += `.dipl_star_rating_star:not(:last-child){
+	styles += `.wpmozo_star_rating_star:not(:last-child){
 		${attributes.starSpacing ? `margin-right: ` + attributes.starSpacing + `px;` : '' }
 	}`;
 
 	// if svg icon.
 	if ( 'default' !== rateIcon ) {
-		styles += `.dipl_star_rating_star svg{
+		styles += `.wpmozo_star_rating_star svg{
 			${attributes.starFontSize ? `width: ` + attributes.starFontSize + `px;` : '' }
 		}
-		.dipl_star_rating_filled svg, .dipl_star_rating_half_filled svg{
+		.wpmozo_star_rating_filled svg, .wpmozo_star_rating_half_filled svg{
 			${attributes.rateIconFilledColor ? `fill: ` + attributes.rateIconFilledColor + `;` : '' }
 		}
-		.dipl_star_rating_empty svg{
+		.wpmozo_star_rating_empty svg{
 			${attributes.rateIconEmptyColor ? `fill: ` + attributes.rateIconEmptyColor + `;` : '' }
 		}`;
 	} else {
-		styles += `.dipl_star_rating_star{
+		styles += `.wpmozo_star_rating_star{
 			${attributes.starFontSize ? `font-size: ` + attributes.starFontSize + `px;` : '' }
 		}
-		.dipl_star_rating_filled_star, .dipl_star_rating_half_filled_star{
+		.wpmozo_star_rating_filled_star, .wpmozo_star_rating_half_filled_star{
 			${attributes.rateIconFilledColor ? `color: ` + attributes.rateIconFilledColor + `;` : '' }
 		}
-		.dipl_star_rating_empty_star{
+		.wpmozo_star_rating_empty_star{
 			${attributes.rateIconEmptyColor ? `color: ` + attributes.rateIconEmptyColor + `;` : '' }
 		}`;
 	}
 
 	if ( 'after_title' === attributes.ratePosition ) {
-		styles += `.dipl_star_rating_title_container .dipl_star_rating_title, .dipl_star_rating_title_container .dipl_star_rating_rating_wrapper{
+		styles += `.wpmozo_star_rating_title_container .wpmozo_star_rating_title, .wpmozo_star_rating_title_container .wpmozo_star_rating_rating_wrapper{
 			display: inline-block;
 		}
-		.dipl_star_rating_title_container .dipl_star_rating_title{
+		.wpmozo_star_rating_title_container .wpmozo_star_rating_title{
 			margin-right: 5px; padding: 0;
 		}`;
 	}

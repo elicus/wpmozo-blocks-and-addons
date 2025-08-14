@@ -42,13 +42,13 @@ const Save = ( { attributes } ) => {
 			if ( 'default' !== rateIcon ) {
 				let key   = ( scalIcons.includes( rateIcon ) ) ? `${rateIcon}/${mood}_filled` : `${rateIcon}-filled`;
 				const svg = attributes.iconSVGs?.[key]?.[mood] || '';
-				stars.push( 
+				stars.push(
 					<span dangerouslySetInnerHTML={ { __html: svg } }
-						className={`dipl_star_rating_star dipl-rating-icon-custom dipl_star_rating_filled dipl-rating-icon-${rateIcon}`}
+						className={`wpmozo_star_rating_star dipl-rating-icon-custom wpmozo_star_rating_filled dipl-rating-icon-${rateIcon}`}
 					/>
 				 );
 			} else {
-				stars.push( <span className="dipl_star_rating_star dipl_star_rating_filled_star"></span> );
+				stars.push( <span className="wpmozo_star_rating_star wpmozo_star_rating_filled_star"></span> );
 			}
 			mood++;
 		}
@@ -57,10 +57,10 @@ const Save = ( { attributes } ) => {
 				let key   = ( scalIcons.includes( rateIcon ) ) ? `${rateIcon}/${mood}_half_filled` : `${rateIcon}-half_filled`;
 				const svg = attributes.iconSVGs?.[key]?.[mood] || '';
 				stars.push( <span dangerouslySetInnerHTML={ { __html: svg } }
-					className={`dipl_star_rating_star dipl-rating-icon-custom dipl_star_rating_half_filled dipl-rating-icon-${rateIcon}`}
+					className={`wpmozo_star_rating_star dipl-rating-icon-custom wpmozo_star_rating_half_filled dipl-rating-icon-${rateIcon}`}
 				/> );
 			} else {
-				stars.push( <span className="dipl_star_rating_star dipl_star_rating_half_filled_star"></span> );
+				stars.push( <span className="wpmozo_star_rating_star wpmozo_star_rating_half_filled_star"></span> );
 			}
 			mood++;
 			unfilled_stars  = ratingOutOf - Math.abs( parseInt( rating ) ) - 1;
@@ -72,51 +72,51 @@ const Save = ( { attributes } ) => {
 				let key   = ( scalIcons.includes( rateIcon ) ) ? `${rateIcon}/${mood}_empty` : `${rateIcon}-empty`;
 				const svg = attributes.iconSVGs?.[key]?.[mood] || '';
 				stars.push( <span dangerouslySetInnerHTML={ { __html: svg } }
-					className={`dipl_star_rating_star dipl-rating-icon-custom dipl_star_rating_empty dipl-rating-icon-${rateIcon}`}
+					className={`wpmozo_star_rating_star dipl-rating-icon-custom wpmozo_star_rating_empty dipl-rating-icon-${rateIcon}`}
 				/> );
 			} else {
-				stars.push( <span className="dipl_star_rating_star dipl_star_rating_empty_star"></span> );
+				stars.push( <span className="wpmozo_star_rating_star wpmozo_star_rating_empty_star"></span> );
 			}
 			mood++;
 		}
 
 		if ( true === showRateNum ) {
-			rating_number = <span className="dipl_star_rating_number">({rating}/{ratingOutOf})</span>;
+			rating_number = <span className="wpmozo_star_rating_number">({rating}/{ratingOutOf})</span>;
 		}
 
-		ratingWrapper = <div className="dipl_star_rating_rating_wrapper">
+		ratingWrapper = <div className="wpmozo_star_rating_rating_wrapper">
 			<span itemprop="starRating" itemscope itemtype="http://schema.org/Rating">
 				<meta itemprop="ratingValue" content={rating} />
-				<span className="dipl_star_rating_stars">{stars}</span>
+				<span className="wpmozo_star_rating_stars">{stars}</span>
 				{rating_number}
 			</span>
 		</div>;
 	}
-   
+
 	return (
 		<>
 			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
 			<div {...useBlockProps.save( { className: attributes.className } )} id={`block-${attributes.ID}`}>
-				<div className="dipl_star_rating_wrapper">
+				<div className="wpmozo_star_rating_wrapper">
 					{ ( imageUrl && '' !== imageUrl ) && (
-						<div className="dipl_star_rating_image_container">
-							<img src={ imageUrl } alt={ attributes?.imageAlt || '' } class="dipl_star_rating_image" />
+						<div className="wpmozo_star_rating_image_container">
+							<img src={ imageUrl } alt={ attributes?.imageAlt || '' } class="wpmozo_star_rating_image" />
 						</div>
 					) }
-					<div className="dipl_star_rating_title_container">
+					<div className="wpmozo_star_rating_title_container">
 						{ ( false === attributes.hideTitle ) && (
 							<RichText.Content
-								className="dipl_star_rating_title"
+								className="wpmozo_star_rating_title"
 								tagName={ attributes.titleLevel }
 								value={ attributes.title }
 							/>
 						) }
 						{ ratingWrapper }
 					</div>
-					<div className="dipl_star_rating_description">
-						<RichText.Content tagName="div"
-							className="dipl_star_rating_description"
+					<div className="wpmozo_star_rating_description">
+						<RichText.Content tagName="p"
+							className="wpmozo_star_rating_description"
 							value={ attributes.description }
 						/>
 					</div>

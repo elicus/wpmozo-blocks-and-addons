@@ -70,7 +70,7 @@ const renderSVGIcon = ( icon, type, mood = '', setAttributes = null, attributes 
 
 	return svg ? (
 		<span dangerouslySetInnerHTML={ { __html: svg } }
-			className={`dipl_star_rating_star dipl-rating-icon-custom dipl_star_rating_${type} dipl-rating-icon-${icon}`}
+			className={`wpmozo_star_rating_star dipl-rating-icon-custom wpmozo_star_rating_${type} dipl-rating-icon-${icon}`}
 		/>
 	) : null;
 }
@@ -80,7 +80,7 @@ const Edit = (props) => {
 	const attributes    = props.attributes;
 	const setAttributes = props.setAttributes;
 	const clientId      = props.clientId;
-	
+
 	attributes.ID = clientId;
 
 	const imageUrl    = ( attributes.image ) ? attributes.image : '';
@@ -122,12 +122,12 @@ const Edit = (props) => {
 			rating_number   = '',
 			stars           = [],
 			mood            = 1;
-		
+
 		for ( let $i = 1; $i <= Math.abs( parseInt( rating ) ); $i++ ) {
 			if ( 'default' !== rateIcon ) {
 				stars.push( renderSVGIcon( rateIcon, 'filled', mood, setAttributes, attributes ) );
 			} else {
-				stars.push( <span className="dipl_star_rating_star dipl_star_rating_filled_star"></span> );
+				stars.push( <span className="wpmozo_star_rating_star wpmozo_star_rating_filled_star"></span> );
 			}
 			mood++;
 		}
@@ -135,7 +135,7 @@ const Edit = (props) => {
 			if ( 'default' !== rateIcon ) {
 				stars.push( renderSVGIcon( rateIcon, 'half_filled', mood, setAttributes, attributes ) );
 			} else {
-				stars.push( <span className="dipl_star_rating_star dipl_star_rating_half_filled_star"></span> );
+				stars.push( <span className="wpmozo_star_rating_star wpmozo_star_rating_half_filled_star"></span> );
 			}
 			mood++;
 			unfilled_stars  = ratingOutOf - Math.abs( parseInt( rating ) ) - 1;
@@ -146,19 +146,19 @@ const Edit = (props) => {
 			if ( 'default' !== rateIcon ) {
 				stars.push( renderSVGIcon( rateIcon, 'empty', mood, setAttributes, attributes ) );
 			} else {
-				stars.push( <span className="dipl_star_rating_star dipl_star_rating_empty_star"></span> );
+				stars.push( <span className="wpmozo_star_rating_star wpmozo_star_rating_empty_star"></span> );
 			}
 			mood++;
 		}
 
 		if ( true === showRateNum ) {
-			rating_number = <span className="dipl_star_rating_number">({rating}/{ratingOutOf})</span>;
+			rating_number = <span className="wpmozo_star_rating_number">({rating}/{ratingOutOf})</span>;
 		}
 
-		ratingWrapper = <div className="dipl_star_rating_rating_wrapper">
+		ratingWrapper = <div className="wpmozo_star_rating_rating_wrapper">
 			<span itemprop="starRating" itemscope itemtype="http://schema.org/Rating">
 				<meta itemprop="ratingValue" content={rating} />
-				<span className="dipl_star_rating_stars">{stars}</span>
+				<span className="wpmozo_star_rating_stars">{stars}</span>
 				{rating_number}
 			</span>
 		</div>;
@@ -170,16 +170,16 @@ const Edit = (props) => {
 			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
 			<div {...useBlockProps()} id={`block-${attributes.ID}`}>
-				<div className="dipl_star_rating_wrapper">
+				<div className="wpmozo_star_rating_wrapper">
 					{ ( imageUrl && '' !== imageUrl ) && (
-						<div className="dipl_star_rating_image_container">
-							<img src={ imageUrl } alt={ attributes?.imageAlt || '' } className="dipl_star_rating_image" />
+						<div className="wpmozo_star_rating_image_container">
+							<img src={ imageUrl } alt={ attributes?.imageAlt || '' } className="wpmozo_star_rating_image" />
 						</div>
 					) }
-					<div className="dipl_star_rating_title_container">
+					<div className="wpmozo_star_rating_title_container">
 						{ ( false === attributes.hideTitle ) && (
 							<RichText
-								className="dipl_star_rating_title"
+								className="wpmozo_star_rating_title"
 								tagName={ attributes.titleLevel }
 								value={ attributes.title }
 								onChange={ ( newValue ) => setAttributes( { title: newValue } ) }
@@ -188,9 +188,9 @@ const Edit = (props) => {
 						) }
 						{ ratingWrapper }
 					</div>
-					<div className="dipl_star_rating_description">
+					<div className="wpmozo_star_rating_description">
 						<RichText tagName="div"
-							className="dipl_star_rating_description"
+							className="wpmozo_star_rating_description"
 							value={ attributes.description }
 							onChange={ ( newValue ) => setAttributes( { description: newValue } ) }
 							placeholder={ __( 'Your content goes here. Edit this text inline or in the widget Content settings. You can also style every aspect of this content in the widget Design settings.', 'wpmozo-blocks-and-addons' ) }
