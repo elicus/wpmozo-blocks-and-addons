@@ -17,6 +17,7 @@ import {
 
 export const DesignPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	let backImage = ( attributes.fancyTextBackgroundImg ) ? attributes.fancyTextBackgroundImg : WPMozoEditorObj.placeholderImg;
 
 	return ( <>
 		<PanelBody title={__('Fancy Text Style', 'wpmozo-blocks-and-addons')}

@@ -10,6 +10,16 @@ import { wpmozo_is_empty } from '../../../common/utils.js';
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const positionValues = [
+		{
+			label: __( 'Before', 'wpmozo-blocks-and-addons' ),
+			value: 'before',
+		},
+		{
+			label: __( 'After', 'wpmozo-blocks-and-addons' ),
+			value: 'after',
+		}
+	];
 
 	return ( <>
 		{/* Toggle one content. */}
