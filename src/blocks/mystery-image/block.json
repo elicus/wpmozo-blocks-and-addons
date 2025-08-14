@@ -40,6 +40,5 @@
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": [ "wpmozo-blocks-and-addons-magnificPopup-style", "file:./style-index.css" ],
-	"viewScript": "file:./view.js",
-	"script": [ "wpmozo-blocks-and-addons-magnificPopup-script" ]
+	"script": [ "wpmozo-blocks-and-addons-magnificPopup-script", "file:./view.js" ]
 }

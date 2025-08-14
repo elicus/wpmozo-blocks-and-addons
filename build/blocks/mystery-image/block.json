@@ -68,8 +68,8 @@
     "wpmozo-blocks-and-addons-magnificPopup-style",
     "file:./style-index.css"
   ],
-  "viewScript": "file:./view.js",
   "script": [
-    "wpmozo-blocks-and-addons-magnificPopup-script"
+    "wpmozo-blocks-and-addons-magnificPopup-script",
+    "file:./view.js"
   ]
 }

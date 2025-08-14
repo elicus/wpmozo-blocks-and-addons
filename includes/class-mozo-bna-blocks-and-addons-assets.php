@@ -73,6 +73,13 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			WPMOZO_BNA_VERSION
 		);
 
+		wp_register_style(
+			$this->plugin_name . '-magnificPopup-style',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/magnificPopup.css',
+			array(),
+			WPMOZO_BNA_VERSION
+		);
+
 		wp_register_script(
 			$this->plugin_name . '-swiper-script',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/swiper-bundle.js',
@@ -131,6 +138,14 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 		wp_register_script(
 			$this->plugin_name . '-isotope-script',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/isotope.pkgd.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
+		wp_register_script(
+			$this->plugin_name . '-magnificPopup-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/magnificPopup.js',
 			array( 'jquery' ),
 			WPMOZO_BNA_VERSION,
 			true

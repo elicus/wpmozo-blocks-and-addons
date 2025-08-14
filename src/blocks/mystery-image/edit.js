@@ -226,7 +226,7 @@ function Edit( props ) {
 							{true === attributes.enableOverlay && (
 								<>
 									<span className="wpmozo-overlay-icon">
-										<i className="fab fa-app-store-ios"></i>
+										<i className={attributes.overlayIcon}></i>
 									</span>
 								</>
 
