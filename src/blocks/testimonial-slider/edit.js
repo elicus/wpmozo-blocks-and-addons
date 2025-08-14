@@ -73,12 +73,25 @@ const Edit = (props) => {
 			}
 			
 			let authorImage = '';
-			const imageUrl = post._embedded['wp:featuredmedia'][0].source_url ?? '';
+			let imageUrl = '';
+			let altText = '';
+
+			// Safely check for _embedded and 'wp:featuredmedia'
+			if (
+				post._embedded &&
+				Array.isArray(post._embedded['wp:featuredmedia']) &&
+				post._embedded['wp:featuredmedia'][0]
+			) {
+				imageUrl = post._embedded['wp:featuredmedia'][0].source_url ?? '';
+				altText = post._embedded['wp:featuredmedia'][0].alt_text || '';
+			}
+
 			if ( attributes.showAuthorImage && imageUrl ) {
-				authorImage = <div class="wpmozo_testimonial_author_image">
-					<img src={ imageUrl } alt={ post._embedded['wp:featuredmedia'][0].alt_text || '' } />
+				authorImage = <div className="wpmozo_testimonial_author_image">
+					<img src={ imageUrl } alt={ altText } />
 				</div>;
 			}
+			
 
 			let rating = '';
 			if ( attributes.showRating && rateNumber > 0 ) {
