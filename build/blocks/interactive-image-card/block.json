@@ -16,6 +16,9 @@
     "ID": {
       "type": "string"
     },
+    "className": {
+      "type": "string"
+    },
     "title": {
       "type": "string",
       "default": "Image Card Title"

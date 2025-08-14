@@ -1519,23 +1519,14 @@ return array(
 		),
 		'supports' => array(
 			'html' => false,
-			'shadow' => true,
-			'spacing' => array(
-				'margin' => true,
-				'padding' => true
-			),
-			'color' => array(
-				'gradients' => true,
-				'background' => true,
-				'text' => false
-			),
-			'background' => array(
-				'backgroundImage' => true,
-				'backgroundSize' => true
-			)
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'images' => array(
@@ -1566,14 +1557,14 @@ return array(
 		),
 		'supports' => array(
 			'html' => false,
-			'shadow' => true,
-			'spacing' => array(
-				'margin' => true,
-				'padding' => true
-			)
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'image' => array(
@@ -2146,6 +2137,9 @@ return array(
 			'ID' => array(
 				'type' => 'string'
 			),
+			'className' => array(
+				'type' => 'string'
+			),
 			'title' => array(
 				'type' => 'string',
 				'default' => 'Image Card Title'
@@ -2279,7 +2273,7 @@ return array(
 		'title' => 'List',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Easily create and organized lists with the List block',
 		'allowedBlocks' => array(
 			'wpmozo/list-item'
 		),
@@ -2287,10 +2281,15 @@ return array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'layout' => array(
@@ -2417,7 +2416,7 @@ return array(
 		'title' => 'List Item',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Easily create and organized lists with the List block',
 		'example' => array(
 			
 		),
@@ -2426,13 +2425,17 @@ return array(
 		),
 		'supports' => array(
 			'html' => false,
-			'splitting' => true
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'parentAtts' => array(
 				'type' => 'object'
 			),
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'itemmargin' => array(
@@ -2580,10 +2583,15 @@ return array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'images' => array(
@@ -2741,10 +2749,15 @@ return array(
 			'wpmozo/logo-slider'
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'logo' => array(
@@ -2784,20 +2797,20 @@ return array(
 		'title' => 'Masonry Gallery',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Display multiple images in a masonry style gallery.',
+		'description' => 'Design a customizable image gallery with a dynamic masonry layout for multiple photos.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'anchor' => true,
-			'align' => array(
-				'wide',
-				'full'
-			),
-			'html' => false
+			'html' => false,
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'images' => array(
@@ -2815,11 +2828,12 @@ return array(
 					)
 				)
 			),
-			'gutterSize' => array(
-				'type' => 'string'
+			'images_data' => array(
+				'type' => 'array'
 			),
 			'customGutterSize' => array(
-				'type' => 'number'
+				'type' => 'number',
+				'default' => 15
 			),
 			'sizeSlug' => array(
 				'type' => 'string'
@@ -2831,12 +2845,153 @@ return array(
 			'showCaption' => array(
 				'type' => 'boolean',
 				'default' => false
+			),
+			'showLightbox' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'enableOverlay' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'overlayBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'overlayIconSize' => array(
+				'type' => 'number'
+			),
+			'overlayIconColor' => array(
+				'type' => 'string'
+			),
+			'overlayIcon' => array(
+				'type' => 'string'
+			),
+			'lightboxBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'lightboxExitIconColor' => array(
+				'type' => 'string'
+			),
+			'lightboxArrowColor' => array(
+				'type' => 'string'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css'
+		'style' => array(
+			'wpmozo-blocks-and-addons-magnificPopup-style',
+			'file:./style-index.css'
+		),
+		'script' => array(
+			'wpmozo-blocks-and-addons-isotope-script',
+			'wpmozo-blocks-and-addons-imagesloaded-script',
+			'wpmozo-blocks-and-addons-magnificPopup-script',
+			'file:./script.js'
+		),
+		'render' => 'file:./render.php'
+	),
+	'masonry-gallery-old' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/masonry-gallery',
+		'version' => '0.1.0',
+		'title' => 'Masonry Gallery',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Design a customizable image gallery with a dynamic masonry layout for multiple photos.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => false,
+			'customClassName' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
+				'type' => 'string'
+			),
+			'images' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				),
+				'source' => 'query',
+				'selector' => '.wpmozo-blocks-and-addons-gallery--item',
+				'query' => array(
+					'url' => array(
+						'source' => 'attribute',
+						'selector' => 'img',
+						'attribute' => 'src'
+					)
+				)
+			),
+			'images_data' => array(
+				'type' => 'array'
+			),
+			'customGutterSize' => array(
+				'type' => 'number',
+				'default' => 15
+			),
+			'sizeSlug' => array(
+				'type' => 'string'
+			),
+			'numberOfColumns' => array(
+				'type' => 'number',
+				'default' => 3
+			),
+			'showCaption' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showLightbox' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'enableOverlay' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'overlayBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'overlayIconSize' => array(
+				'type' => 'number'
+			),
+			'overlayIconColor' => array(
+				'type' => 'string'
+			),
+			'overlayIcon' => array(
+				'type' => 'string'
+			),
+			'lightboxBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'lightboxExitIconColor' => array(
+				'type' => 'string'
+			),
+			'lightboxArrowColor' => array(
+				'type' => 'string'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'wpmozo-blocks-and-addons-magnificPopup-style',
+			'file:./style-index.css'
+		),
+		'script' => array(
+			'wpmozo-blocks-and-addons-isotope-script',
+			'wpmozo-blocks-and-addons-imagesloaded-script',
+			'wpmozo-blocks-and-addons-magnificPopup-script',
+			'file:./script.js'
+		),
+		'render' => 'file:./render.php'
 	),
 	'mystery-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -2912,9 +3067,9 @@ return array(
 			'wpmozo-blocks-and-addons-magnificPopup-style',
 			'file:./style-index.css'
 		),
-		'viewScript' => 'file:./view.js',
 		'script' => array(
-			'wpmozo-blocks-and-addons-magnificPopup-script'
+			'wpmozo-blocks-and-addons-magnificPopup-script',
+			'file:./view.js'
 		)
 	),
 	'pricing-table' => array(

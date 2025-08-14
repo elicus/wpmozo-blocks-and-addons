@@ -13,23 +13,14 @@
   "example": {},
   "supports": {
     "html": false,
-    "shadow": true,
-    "spacing": {
-      "margin": true,
-      "padding": true
-    },
-    "color": {
-      "gradients": true,
-      "background": true,
-      "text": false
-    },
-    "background": {
-      "backgroundImage": true,
-      "backgroundSize": true
-    }
+    "anchor": false,
+    "customClassName": false
   },
   "attributes": {
     "ID": {
+      "type": "string"
+    },
+    "className": {
       "type": "string"
     },
     "images": {
