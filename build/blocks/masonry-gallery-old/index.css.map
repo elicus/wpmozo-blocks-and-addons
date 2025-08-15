@@ -1,1 +1,0 @@
-{"version":3,"file":"blocks/masonry-gallery-old/index.css","mappings":";;;AAAA;EACC;AACD,C","sources":["webpack://wpmozo-blocks-and-addons/./src/blocks/masonry-gallery-old/editor.scss"],"sourcesContent":[".wpmozo_masonry_gallery_wrapper{\n\theight: auto!important;\n}\n"],"names":[],"sourceRoot":""}

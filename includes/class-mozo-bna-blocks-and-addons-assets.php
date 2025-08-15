@@ -166,6 +166,14 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			true
 		);
 
+		wp_register_script(
+			$this->plugin_name . '-magnify-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/magnify.min.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
 		wp_register_style(
 			$this->plugin_name . '-blocks-style',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'css/blocks/block-style.css',

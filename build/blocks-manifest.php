@@ -1979,6 +1979,68 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'style' => 'file:./style-index.css'
 	),
+	'image-magnifier' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/image-magnifier',
+		'version' => '0.1.0',
+		'title' => 'Image Magnifier',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Image Magnifier that enables a zoom or magnifier effect on images, allowing users to view fine details by hovering or clicking.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'customClassName' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
+				'type' => 'string'
+			),
+			'image' => array(
+				'type' => 'string'
+			),
+			'imageAlignment' => array(
+				'type' => 'string',
+				'default' => 'center'
+			),
+			'lensWidth' => array(
+				'type' => 'number',
+				'default' => 200
+			),
+			'lenseSpeed' => array(
+				'type' => 'number',
+				'default' => 100
+			),
+			'lenseBorderWidth' => array(
+				'type' => 'number',
+				'default' => 7
+			),
+			'imageWidth' => array(
+				'type' => 'number',
+				'default' => 50
+			),
+			'imageMaxWidth' => array(
+				'type' => 'number',
+				'default' => 100
+			),
+			'lenseBorderColor' => array(
+				'type' => 'string'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'style' => 'file:./style-index.css',
+		'script' => array(
+			'wpmozo-blocks-and-addons-magnify-script',
+			'file:./script.js'
+		)
+	),
 	'image-stack' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -2790,108 +2852,6 @@ return array(
 		'editorScript' => 'file:./index.js'
 	),
 	'masonry-gallery' => array(
-		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 3,
-		'name' => 'wpmozo/masonry-gallery',
-		'version' => '0.1.0',
-		'title' => 'Masonry Gallery',
-		'category' => 'wpmozo',
-		'icon' => 'smiley',
-		'description' => 'Design a customizable image gallery with a dynamic masonry layout for multiple photos.',
-		'example' => array(
-			
-		),
-		'supports' => array(
-			'html' => false,
-			'anchor' => false,
-			'customClassName' => false
-		),
-		'attributes' => array(
-			'ID' => array(
-				'type' => 'string'
-			),
-			'className' => array(
-				'type' => 'string'
-			),
-			'images' => array(
-				'type' => 'array',
-				'default' => array(
-					
-				),
-				'source' => 'query',
-				'selector' => '.wpmozo-blocks-and-addons-gallery--item',
-				'query' => array(
-					'url' => array(
-						'source' => 'attribute',
-						'selector' => 'img',
-						'attribute' => 'src'
-					)
-				)
-			),
-			'images_data' => array(
-				'type' => 'array'
-			),
-			'customGutterSize' => array(
-				'type' => 'number',
-				'default' => 15
-			),
-			'sizeSlug' => array(
-				'type' => 'string'
-			),
-			'numberOfColumns' => array(
-				'type' => 'number',
-				'default' => 3
-			),
-			'showCaption' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'showLightbox' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'enableOverlay' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'overlayBackgroundColor' => array(
-				'type' => 'string'
-			),
-			'overlayIconSize' => array(
-				'type' => 'number'
-			),
-			'overlayIconColor' => array(
-				'type' => 'string'
-			),
-			'overlayIcon' => array(
-				'type' => 'string'
-			),
-			'lightboxBackgroundColor' => array(
-				'type' => 'string'
-			),
-			'lightboxExitIconColor' => array(
-				'type' => 'string'
-			),
-			'lightboxArrowColor' => array(
-				'type' => 'string'
-			)
-		),
-		'textdomain' => 'wpmozo-blocks-and-addons',
-		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => array(
-			'wpmozo-blocks-and-addons-magnificPopup-style',
-			'file:./style-index.css'
-		),
-		'script' => array(
-			'wpmozo-blocks-and-addons-isotope-script',
-			'wpmozo-blocks-and-addons-imagesloaded-script',
-			'wpmozo-blocks-and-addons-magnificPopup-script',
-			'file:./script.js'
-		),
-		'render' => 'file:./render.php'
-	),
-	'masonry-gallery-old' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'wpmozo/masonry-gallery',
