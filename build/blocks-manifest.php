@@ -3481,6 +3481,75 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css'
 	),
+	'scroll-image' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/scroll-image',
+		'version' => '0.1.0',
+		'title' => 'Scroll Image',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Scroll Image it includes the easiest options to make images scroll in a particular direction (Top, Bottom, Right, and Left) every time the user hovers.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'customClassName' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
+				'type' => 'string'
+			),
+			'image' => array(
+				'type' => 'string'
+			),
+			'imageAlignment' => array(
+				'type' => 'string'
+			),
+			'imageTitle' => array(
+				'type' => 'string'
+			),
+			'scrollDirection' => array(
+				'type' => 'string'
+			),
+			'scrollSpeed' => array(
+				'type' => 'number',
+				'default' => 5
+			),
+			'containerWidth' => array(
+				'type' => 'string',
+				'default' => '0%'
+			),
+			'containerWidthUnit' => array(
+				'type' => 'string',
+				'default' => '%'
+			),
+			'containerHeight' => array(
+				'type' => 'string'
+			),
+			'containerHeightUnit' => array(
+				'type' => 'string',
+				'default' => 'px'
+			),
+			'imageborderRadius' => array(
+				'type' => 'string'
+			),
+			'imageborder' => array(
+				'type' => 'object'
+			),
+			'imageBorderColor' => array(
+				'type' => 'string'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'style' => 'file:./style-index.css',
+		'script' => 'file:./script.js'
+	),
 	'separator' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

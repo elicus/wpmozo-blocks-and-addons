@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/scroll-image",
+	"version": "0.1.0",
+	"title": "Scroll Image",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "Scroll Image it includes the easiest options to make images scroll in a particular direction (Top, Bottom, Right, and Left) every time the user hovers.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"customClassName": false
+	},
+	"attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+		
+		"image": { "type": "string" },
+		"imageAlignment": { "type": "string", "default": "center" },
+		"imageTitle": { "type": "string" },
+
+		"scrollDirection": { "type": "string" },
+		"scrollSpeed": { "type": "number", "default": 5 },
+		"containerWidth": { "type": "string", "default": "0%" },
+		"containerWidthUnit": { "type": "string", "default": "%" },
+		"imageAlignment": { "type": "string" },
+		"containerHeight": { "type": "string" },
+		"containerHeightUnit": { "type": "string", "default": "px" },
+
+		"imageborderRadius": { "type": "string" },
+		"imageborder": { "type": "object" },
+		"imageBorderColor": { "type": "string" }
+
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"script": "file:./script.js"
+}
