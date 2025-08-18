@@ -16,6 +16,13 @@
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
 
+		"containermargin": { "type": "object"},
+		"containerpadding": { "type": "object" },
+		"containerBackgroundColor": {"type": "string"},
+		"containerborder": {"type": "object"},
+		"containerborderRadius": {"type": "string"},
+		"containerborderColor": {"type": "string"},
+
 		"image": { "type": "string" },
 		"imageBorder": { "type": "string", "default": "" },
 		"imageBorderColor": { "type": "string", "default": "" },
@@ -31,6 +38,8 @@
 		"iconShape": { "type": "string", "default": "square" },
 		"iconBackground": { "type": "string", "default": "" },
 		"shapeBorderColor": { "type": "string", "default": "" },
+		"iconmargin": { "type": "object"},
+		"iconpadding": { "type": "object" },
 
 		"imageHeight": { "type": "number", "default": 200 },
 		"imageWidth": { "type": "number", "default": 200 },
@@ -132,6 +141,8 @@
 		"buttonLinkTarget": { "type": "string", "default": "same" },
 		"buttonTextColor": { "type": "string" },
 		"buttonTextBackground": { "type": "string" },
+		"buttonTextHoverColor": { "type": "string" },
+		"buttonTextHoverBackground": { "type": "string" },
 		"buttonTextAlign": { "type": "string", "default": "left" },
 		"buttonTextFontSize": { "type": "string" },
 		"buttonTextLetterSpacing": { "type": "string" },
@@ -153,7 +164,7 @@
 		"buttonTextFontWeight": { "type": "string" },
 		"buttonTextborder": { "type": "object", "default": { "width": "1px", "style": "solid", "color": "#fff" } },
 		"buttonTextborderRadius": { "type": "string", "default": "3px" },
-		
+
 		"buttonDimensionspadding": { "type": "object", "default": { "top": "5px", "right": "8px", "bottom": "5px", "left": "8px" } },
 		"buttonDimensionsmargin": { "type": "object" },
 
