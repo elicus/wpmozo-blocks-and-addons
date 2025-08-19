@@ -39,9 +39,8 @@
 				{ "list": "feature 3", "icon": "fas fa-check" }
 			]
 		},
-		"featuresIcons": {
-			"type": "array"
-		},
+		"featuresIconFontSize": {"type": "number"},
+		"featuresSpacing": {"type": "number"},
 		"showButton": { "type": "boolean", "default": false },
 		"buttonText": { "type": "string", "default": "Read More" },
 		"buttonUrl": { "type": "string" },

@@ -121,9 +121,13 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 		</PanelBody>
 		<PanelBody title={ __( 'Features', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
 			{ ( attributes.features || [] ).map( ( feature, index ) => (
-				<div key={index} style={ { display: 'flex', alignItems: 'center' } }>
+				<div
+					key={index}
+					className="wpmozo-feature-row"
+					style={{gridTemplateColumns: '1fr auto auto', gap: '12px', alignItems: 'center', marginBottom: '12px', background: '#f8f9fa', padding: '12px 16px', borderRadius: '6px', boxShadow: '0 1px 2px rgba(0,0,0,0.03)'}}
+				>
 					<TextControl
-						label={`Feature ${index + 1}`}
+						label={__(`Feature ${index + 1}`, 'wpmozo-blocks-and-addons')}
 						value={feature['list'] || ''}
 						onChange={ (value) => {
 							const newFeatures = [...(attributes.features || [])];
@@ -132,15 +136,32 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 						} }
 						__next40pxDefaultSize={true}
 						__nextHasNoMarginBottom={true}
+						style={{ minWidth: 0 }}
 					/>
+					<div>
+						<WpmozoIconpicker
+							label={__(`Icon ${index + 1}`, 'wpmozo-blocks-and-addons')}
+							value={feature['icon'] || ''}
+							props={ props }
+							onChange={ (value) => {
+								const newFeatures = [...(attributes.features || [])];
+								newFeatures[index] = { ...newFeatures[index], icon: value };
+								setAttributes({ features: newFeatures });
+							} }
+						/>
+					</div>
 					<Button
 						isDestructive
+						variant="secondary"
+						icon="trash"
+						label={ __( 'Remove', 'wpmozo-blocks-and-addons' ) }
 						onClick={ () => {
 							const newFeatures = (attributes.features || []).filter((_, innerIndex) => innerIndex !== index);
 							setAttributes({ features: newFeatures });
 						} }
+						style={{marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', justifyContent: 'center'}}
 					>
-						{ __( 'Remove', 'wpmozo-blocks-and-addons' ) }
+						<span className="screen-reader-text">{ __( 'Remove', 'wpmozo-blocks-and-addons' ) }</span>
 					</Button>
 				</div>
 			) ) }

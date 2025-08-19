@@ -84,7 +84,7 @@ const Edit = ( props ) => {
 									<dt className="wpmozo-bna-pricing-table-features-list">
 										{true === attributes.showFeaturesIcon && (
 											<span className="wpmozo-bna-pricing-table-feature-icon">
-												<i className={attributes.featuresIcon}></i>
+												<i className={feature.icon}></i>
 											</span>
 										)}
 										<span className="wpmozo-bna-pricing-table-feature-text">

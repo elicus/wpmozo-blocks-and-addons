@@ -115,6 +115,13 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 		.wpmozo-bna-pricing-table-button-wrapper .wpmozo-bna-button{
 			font-size: ${attributes.buttonFontSize}px;
 		}
+		.wpmozo-bna-pricing-table-feature-icon{
+			font-size: ${attributes.featuresIconFontSize}px;
+		}
+		.wpmozo-bna-pricing-table-features-list{
+			padding: ${attributes.featuresSpacing}px 0;
+		}
+
 	`;
 
 	styles += `}`;

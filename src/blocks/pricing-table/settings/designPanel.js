@@ -222,6 +222,18 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				onChange={ ( newValue ) => setAttributes( { feturesAlign: newValue } ) }
 				value={ attributes.feturesAlign }
 			/>
+			<RangeControl
+				label={__('Features Spacing (px)', 'wpmozo-blocks-and-addons')}
+				value={attributes.featuresSpacing}
+				onChange={(newValue) => setAttributes({featuresSpacing: newValue})}
+				min={0} step={1} max={100}
+			/>
+			<RangeControl
+				label={__('Icon Font Size (px)', 'wpmozo-blocks-and-addons')}
+				value={attributes.featuresIconFontSize}
+				onChange={(newValue) => setAttributes({featuresIconFontSize: newValue})}
+				min={0} step={1} max={100}
+			/>
 			<WpmozoColorPicker
 				ColorKey="featuresIcons"
 				props={props}
