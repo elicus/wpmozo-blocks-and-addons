@@ -162,7 +162,7 @@
 		"buttonMediaType": { "type": "string", "default": "icon" },
 		"buttonTextFontStyle": { "type": "string" },
 		"buttonTextFontWeight": { "type": "string" },
-		"buttonTextborder": { "type": "object", "default": { "width": "1px", "style": "solid", "color": "#fff" } },
+		"buttonTextborder": { "type": "object", "default": { "width": "1px", "style": "solid", "color": "#000" } },
 		"buttonTextborderRadius": { "type": "string", "default": "3px" },
 
 		"buttonDimensionspadding": { "type": "object", "default": { "top": "5px", "right": "8px", "bottom": "5px", "left": "8px" } },

@@ -50,14 +50,12 @@ const Edit = ( props ) => {
 								tagName={ attributes.titleLeval }
 								value={ attributes.title }
 								onChange={ (newValue) => setAttributes( { title: newValue } ) }
-								placeholder={ __( 'WPMozo Pricing', 'wpmozo-blocks-and-addons' ) }
 							/>
 							<RichText
 								className="wpmozo-bna-pricing-table-subtitle"
 								tagName="span"
 								value={attributes.subtitle}
 								onChange={(newValue) => setAttributes({subtitle: newValue})}
-								placeholder={__('Ultimate plan', 'wpmozo-blocks-and-addons')}
 							/>
 							<span className="wpmozo-bna-bar-container">
 								<hr className="wpmozo-bna-bar"/>
@@ -84,9 +82,11 @@ const Edit = ( props ) => {
 							{ attributes?.features && attributes.features?.length > 0 && attributes.features.map( ( feature, index ) => (
 								<div key={ `feature-${index}` }>
 									<dt className="wpmozo-bna-pricing-table-features-list">
-										<span className="wpmozo-bna-pricing-table-feature-icon">
-											<i className={attributes.featuresIcon}></i>
-										</span>
+										{true === attributes.showFeaturesIcon && (
+											<span className="wpmozo-bna-pricing-table-feature-icon">
+												<i className={attributes.featuresIcon}></i>
+											</span>
+										)}
 										<span className="wpmozo-bna-pricing-table-feature-text">
 											{feature.list}
 										</span>

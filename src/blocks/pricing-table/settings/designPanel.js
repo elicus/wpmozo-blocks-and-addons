@@ -7,13 +7,15 @@ import {
 	Button,
 	ToggleControl,
 	SelectControl,
+	RangeControl
 } from "@wordpress/components";
 import {
 	WpmozoAlignment,
 	WpmozoColorPicker,
 	WpmozoTypography,
 	WpmozoDimensions,
-	WpmozoRangeSize
+	WpmozoRangeSize,
+	WpmozoBorder
 } from '../../../common/components';
 
 import { headingLevelsList } from '../../../common/utils.js';
@@ -40,11 +42,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					label: __( 'Background Color', 'wpmozo-blocks-and-addons' ),
 				} ] }
 			/>
-			<WpmozoAlignment
-				label={ __( 'Alignment', 'wpmozo-blocks-and-addons') }
-				onChange={ ( newValue ) => setAttributes( { align: newValue } ) }
-				value={ attributes.align }
-			/>
 			<WpmozoDimensions
 				DimensionKey='mainDimensions'
 				DimensionsTypes={ {
@@ -52,6 +49,18 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					margin: true,
 				} }
 				props={props}
+			/>
+			<WpmozoColorPicker
+				ColorKey="wrapper"
+				props={props}
+				ColorTypes={ [ {
+					key: 'BorderColor',
+					label: __( 'Border Color', 'wpmozo-blocks-and-addons' ),
+				} ] }
+			/>
+			<WpmozoBorder
+				props={props}
+				BorderKey="wrapper"
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
@@ -117,7 +126,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				/>
 			}
 			<WpmozoAlignment
-				label={ __( 'Graphics Alignment', 'wpmozo-blocks-and-addons') }
+				label={ __( 'Icon Alignment', 'wpmozo-blocks-and-addons') }
 				onChange={ ( newValue ) => setAttributes( { iconAlign: newValue } ) }
 				value={ attributes.iconAlign }
 			/>
@@ -168,24 +177,15 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					label: __( 'Currency Text Color', 'wpmozo-blocks-and-addons' ),
 				} ] }
 			/>
+			<WpmozoAlignment
+				label={ __( 'Alignment', 'wpmozo-blocks-and-addons') }
+				onChange={ ( newValue ) => setAttributes( { pricealign: newValue } ) }
+				value={ attributes.pricealign }
+			/>
 			<WpmozoTypography
 				TypographyKey="currency"
 				props={props}
 				label="Currency Typography"
-			/>
-			<WpmozoColorPicker
-				ColorKey="price"
-				props={props}
-				label="Price Color"
-				ColorTypes={ [ {
-					key: 'Color',
-					label: __( 'Price Text Color', 'wpmozo-blocks-and-addons' ),
-				} ] }
-			/>
-			<WpmozoTypography
-				TypographyKey="price"
-				props={props}
-				label="Price Typography"
 			/>
 			<WpmozoColorPicker
 				ColorKey="period"
@@ -196,6 +196,12 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					label: __( 'Period Text Color', 'wpmozo-blocks-and-addons' ),
 				} ] }
 			/>
+			<WpmozoTypography
+				TypographyKey="price"
+				props={props}
+				label="Price Typography"
+			/>
+
 			<WpmozoTypography
 				TypographyKey="period"
 				props={props}
@@ -248,6 +254,12 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				label={ __( 'Button Alignment', 'wpmozo-blocks-and-addons') }
 				onChange={ ( newValue ) => setAttributes( { buttonAlign: newValue } ) }
 				value={ attributes.buttonAlign }
+			/>
+			<RangeControl
+				label={__('Button Font Size (px)', 'wpmozo-blocks-and-addons')}
+				value={attributes.buttonFontSize}
+				onChange={(newValue) => setAttributes({buttonFontSize: newValue})}
+				min={0} step={1} max={100}
 			/>
 			<BaseControl>
 				<ButtonGroup style={ { display:'flex' } }>

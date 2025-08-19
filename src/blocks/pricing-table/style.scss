@@ -49,8 +49,6 @@
 .wpmozo-bna-pricing-table-button-wrapper .wpmozo-bna-button img,
 .wpmozo-bna-pricing-table-button-wrapper .wpmozo-bna-button-icon {
     position: relative;
-    width: 18px;
-    height: 18px;
     color: #6EC1E4;
     fill: #6EC1E4;
     transition: color 300ms, fill 300ms, text-shadow 300ms, transform 300ms, height 300ms, width 300ms, opacity 300ms;
@@ -132,14 +130,17 @@
 }
 .wp-block-wpmozo-pricing-table .show-on-hover .wpmozo-bna-button-image,
 .wp-block-wpmozo-pricing-table .show-on-hover .wpmozo-bna-button-icon{
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+	opacity: 0;
+	transform: scale(0);
+	transition: all 0.3s ease;
+	position: absolute;
 }
 
 /* Show the icon when hovering over the button */
 .wp-block-wpmozo-pricing-table .show-on-hover:hover .wpmozo-bna-button-image,
 .wp-block-wpmozo-pricing-table .show-on-hover:hover .wpmozo-bna-button-icon{
-    visibility: visible;
-    opacity: 1;
+	opacity: 1;
+	transform: scale(1);
+	display: inline-block;
+	position: relative;
 }
