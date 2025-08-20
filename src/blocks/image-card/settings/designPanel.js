@@ -54,7 +54,7 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 					props={props}
 					ColorKey="containerborder"
 					ColorTypes={[
-						{key: 'Color', label: __('Background Color', 'wpmozo-blocks-and-addons')}
+						{key: 'Color', label: __('Border Color', 'wpmozo-blocks-and-addons')}
 					]}
 				/>
 			</PanelBody>

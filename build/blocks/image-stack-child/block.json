@@ -37,10 +37,18 @@
       "type": "string"
     },
     "itemBackground": {
-      "type": "string",
-      "default": "#f7f7f7"
+      "type": "string"
     },
     "itemBGGradient": {
+      "type": "string"
+    },
+    "imageborder": {
+      "type": "object"
+    },
+    "imageborderRadius": {
+      "type": "string"
+    },
+    "imageborderColor": {
       "type": "string"
     }
   },

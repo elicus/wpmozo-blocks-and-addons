@@ -20,7 +20,7 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 			${convertedStyle.item}
 		}`;
 	}
-	styles += `	
+	styles += `
 		.wpmozo-image-stack-item .stack-item-type-icon{
 			width: ${attributes.stackItemSize}px;
 			height: ${attributes.stackItemSize}px;
@@ -33,6 +33,9 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 		.wpmozo-image-stack-inner .wpmozo-image-stack-item:not(:last-child){
 			margin-right:${attributes.stackItemSpacing}px;
 			transition: all 300ms;
+		}
+		.wpmozo-image-stack-inner .wpmozo-image-stack-item:nth-last-child(2){
+			margin-right:0;
 		}
 		.wpmozo-stack-item-wrapper i {
 			font-size: ${attributes.iconSize}px !important;
