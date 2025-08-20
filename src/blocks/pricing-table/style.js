@@ -121,6 +121,9 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 		.wpmozo-bna-pricing-table-features-list{
 			padding: ${attributes.featuresSpacing}px 0;
 		}
+		.wpmozo-bna-pricing-table-features div{
+			margin: ${attributes.featuresMargin}px 0;
+		}
 
 	`;
 

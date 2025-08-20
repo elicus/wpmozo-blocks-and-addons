@@ -91,7 +91,6 @@ const Edit = ( props ) => {
 											{feature.list}
 										</span>
 									</dt>
-									<hr className="wpmozo-bna-divider"/>
 								</div>
 							) ) }
 						</dl>

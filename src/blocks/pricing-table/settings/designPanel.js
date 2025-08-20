@@ -229,6 +229,12 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				min={0} step={1} max={100}
 			/>
 			<RangeControl
+				label={__('Features Margin (px)', 'wpmozo-blocks-and-addons')}
+				value={attributes.featuresMargin}
+				onChange={(newValue) => setAttributes({featuresMargin: newValue})}
+				min={0} step={1} max={100}
+			/>
+			<RangeControl
 				label={__('Icon Font Size (px)', 'wpmozo-blocks-and-addons')}
 				value={attributes.featuresIconFontSize}
 				onChange={(newValue) => setAttributes({featuresIconFontSize: newValue})}

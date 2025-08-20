@@ -34,13 +34,14 @@
 		"features": {
 			"type": "array",
 			"default": [
-				{ "list": "feature 1", "icon": "fas fa-check" },
-				{ "list": "feature 2", "icon": "fas fa-check" },
-				{ "list": "feature 3", "icon": "fas fa-check" }
+				{ "list": "feature 1", "icon": "fas fa-check"},
+				{ "list": "feature 2", "icon": "fas fa-check"},
+				{ "list": "feature 3", "icon": "fas fa-check"}
 			]
 		},
 		"featuresIconFontSize": {"type": "number"},
 		"featuresSpacing": {"type": "number"},
+		"featuresMargin": {"type": "number"},
 		"showButton": { "type": "boolean", "default": false },
 		"buttonText": { "type": "string", "default": "Read More" },
 		"buttonUrl": { "type": "string" },
@@ -141,7 +142,6 @@
 		"featuresBackground": { "type": "string" },
 		"feturesAlign": { "type": "string", "default": "center" },
 		"showFeaturesIcon": { "type": "boolean", "default": false },
-		"featuresIcon": { "type": "string" },
 		"featuresIconsColor": { "type": "string" },
 		"featuresIconsSpacing": { "type": "string", "default": "5px" },
 		"featuresDimensionspadding": { "type": "object" },

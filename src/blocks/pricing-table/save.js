@@ -65,22 +65,23 @@ const Save = ({ attributes }) => {
 							{ attributes.features && attributes.features.length > 0 && attributes.features.map( (feature, index) => (
 								<div key={`feature-${index}`}>
 									<dt className="wpmozo-bna-pricing-table-features-list">
-										<span className="wpmozo-bna-pricing-table-feature-icon">
-											<i className={attributes.featuresIcon}></i>
-										</span>
+										{true === attributes.showFeaturesIcon && (
+											<span className="wpmozo-bna-pricing-table-feature-icon">
+												<i className={feature.icon}></i>
+											</span>
+										)}
 										<span className="wpmozo-bna-pricing-table-feature-text">
 											{feature.list}
 										</span>
 									</dt>
-									<hr className="wpmozo-bna-divider"/>
 								</div>
-							) ) }
+							))}
 						</dl>
-						{ true === attributes.showButton && (
+						{true === attributes.showButton && (
 							<div className="wpmozo-bna-pricing-table-button-wrapper">
 								<a href={attributes.buttonUrl}
-									className={ "wpmozo-bna-button " + buttonIconPosition + showIconOnHover }
-									target={ linkTarget }
+								   className={"wpmozo-bna-button " + buttonIconPosition + showIconOnHover}
+								   target={linkTarget}
 								>
 									<span className="button_text">
 										<RichText.Content value={attributes.buttonText} />

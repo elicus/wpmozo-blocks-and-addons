@@ -11,7 +11,7 @@ import {
 } from "@wordpress/components";
 import {
 	WpmozoMediaUploader,
-	WpmozoIconpicker,
+	WpmozoIconpicker, WpmozoColorPicker,
 } from '../../../common/components';
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
@@ -38,6 +38,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 		{ value: '₩', label: __( '₩ Won', 'wpmozo-blocks-and-addons' ) },
 		{ value: 'custom', label: __( 'Custom', 'wpmozo-blocks-and-addons' ) },
 	];
+	console.log(attributes.features);
 
 	return ( <>
 		<PanelBody title={ __( 'Header', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
@@ -129,50 +130,50 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					<TextControl
 						label={__(`Feature ${index + 1}`, 'wpmozo-blocks-and-addons')}
 						value={feature['list'] || ''}
-						onChange={ (value) => {
+						onChange={(value) => {
 							const newFeatures = [...(attributes.features || [])];
-							newFeatures[index] = { ...newFeatures[index], list: value };
-							setAttributes({ features: newFeatures });
-						} }
+							newFeatures[index] = {...newFeatures[index], list: value};
+							setAttributes({features: newFeatures});
+						}}
 						__next40pxDefaultSize={true}
 						__nextHasNoMarginBottom={true}
-						style={{ minWidth: 0 }}
+						style={{minWidth: 0}}
 					/>
 					<div>
 						<WpmozoIconpicker
 							label={__(`Icon ${index + 1}`, 'wpmozo-blocks-and-addons')}
 							value={feature['icon'] || ''}
-							props={ props }
-							onChange={ (value) => {
+							props={props}
+							onChange={(value) => {
 								const newFeatures = [...(attributes.features || [])];
-								newFeatures[index] = { ...newFeatures[index], icon: value };
-								setAttributes({ features: newFeatures });
-							} }
+								newFeatures[index] = {...newFeatures[index], icon: value};
+								setAttributes({features: newFeatures});
+							}}
 						/>
 					</div>
 					<Button
 						isDestructive
 						variant="secondary"
 						icon="trash"
-						label={ __( 'Remove', 'wpmozo-blocks-and-addons' ) }
-						onClick={ () => {
+						label={__('Remove', 'wpmozo-blocks-and-addons')}
+						onClick={() => {
 							const newFeatures = (attributes.features || []).filter((_, innerIndex) => innerIndex !== index);
-							setAttributes({ features: newFeatures });
-						} }
+							setAttributes({features: newFeatures});
+						}}
 						style={{marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', justifyContent: 'center'}}
 					>
-						<span className="screen-reader-text">{ __( 'Remove', 'wpmozo-blocks-and-addons' ) }</span>
+						<span className="screen-reader-text">{__('Remove', 'wpmozo-blocks-and-addons')}</span>
 					</Button>
 				</div>
-			) ) }
+			))}
 
-			<Button style={{ marginBottom: '20px' }}
-				isPrimary
-				onClick={ () => {
-					const newFeature = { list: '' }; // You can add more default fields here if needed
-					const newFeatures = [...(attributes.features || []), newFeature];
-					setAttributes({ features: newFeatures });
-				} }
+			<Button style={{marginBottom: '20px'}}
+					isPrimary
+					onClick={() => {
+						const newFeature = {list: ''}; // You can add more default fields here if needed
+						const newFeatures = [...(attributes.features || []), newFeature];
+						setAttributes({features: newFeatures});
+					}}
 			>
 				{__('Add Item', 'wpmozo-blocks-and-addons')}
 			</Button>
@@ -181,15 +182,6 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				checked={attributes.showFeaturesIcon || false}
 				onChange={(newValue) => setAttributes({showFeaturesIcon: newValue})}
 			/>
-			{attributes.showFeaturesIcon && (
-				<WpmozoIconpicker
-					label={ __( 'Icon', 'wpmozo-blocks-and-addons' ) }
-					iconPickerKey='featuresIcon'
-					props={ props }
-					value={ attributes.featuresIcon }
-					onChange={ ( newValue ) => setAttributes( { featuresIcon: newValue } ) }
-				/>
-			)}
 		</PanelBody>
 		<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
 			<ToggleControl
