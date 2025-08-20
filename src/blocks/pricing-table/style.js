@@ -25,7 +25,6 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 			background-color : ${attributes.backgroundColor};
 			${convertedStyle.mainDimensions}
 			${convertedStyle.wrapper}
-			border-color: ${attributes.wrapperBorderColor};
 		}
 		.wpmozo-bna-pricing-table-title{
 			color: ${attributes.titleColor};

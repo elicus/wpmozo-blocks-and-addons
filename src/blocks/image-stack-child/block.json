@@ -24,8 +24,7 @@
 		"itemBackground": { "type": "string"},
 		"itemBGGradient": { "type": "string" },
 		"imageborder": {"type": "object"},
-		"imageborderRadius": {"type": "string"},
-		"imageborderColor": {"type": "string"}
+		"imageborderRadius": {"type": "string"}
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

@@ -28,13 +28,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				props={props}
 				BorderKey="image"
 			/>
-			<WpmozoColorPicker
-				props={props}
-				ColorKey="imageborder"
-				ColorTypes={[
-					{key: 'Color', label: __('Border Color', 'wpmozo-blocks-and-addons')}
-				]}
-			/>
 		</PanelBody>
 	</> );
 };

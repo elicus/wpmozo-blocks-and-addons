@@ -21,7 +21,6 @@
 		"containerBackgroundColor": {"type": "string"},
 		"containerborder": {"type": "object"},
 		"containerborderRadius": {"type": "string"},
-		"containerborderColor": {"type": "string"},
 
 		"image": { "type": "string" },
 		"imageBorder": { "type": "string", "default": "" },

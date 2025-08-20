@@ -14,7 +14,6 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 	styles += attributes.itemBGGradient ? `background-image:`+ attributes.itemBGGradient + `;` : ''
 
 	styles +=`
-			${attributes.imageborderColor ? `border-color: ${attributes.imageborderColor} !important;` : ''}
 			${convertedStyle.image}
 	`;
 	styles += `}`;

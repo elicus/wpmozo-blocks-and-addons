@@ -21,7 +21,6 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 	styles += `
 	.wpmozo_star_rating_wrapper{
 		${convertedStyle.container}
-		border-color:${attributes.containerBorderColor};
 	}`;
 
 	// Global text align.

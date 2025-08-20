@@ -50,13 +50,6 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 					props={props}
 					BorderKey="container"
 				/>
-				<WpmozoColorPicker
-					props={props}
-					ColorKey="containerborder"
-					ColorTypes={[
-						{key: 'Color', label: __('Border Color', 'wpmozo-blocks-and-addons')}
-					]}
-				/>
 			</PanelBody>
 			{/* Image. */}
 			<PanelBody title={__('Image', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>

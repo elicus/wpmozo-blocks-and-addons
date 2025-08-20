@@ -77,8 +77,7 @@
 		"containerpadding": { "type": "object" },
 		"containermargin": { "type": "object" },
 		"containerborder": {"type": "object"},
-		"containerborderRadius":{"type": "string"},
-		"containerBorderColor": {"type": "string"}
+		"containerborderRadius":{"type": "string"}
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

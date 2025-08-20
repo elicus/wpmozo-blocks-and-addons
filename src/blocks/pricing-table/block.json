@@ -18,7 +18,6 @@
 
 		"wrapperborder":{"type": "object"},
 		"wrapperborderRadius":{"type": "string"},
-		"wrapperBorderColor": {"type":"string"},
 
 		"title": { "type": "string", "default": "WPMozo Pricing" },
 		"titleLeval": { "type": "string", "default": "h2" },

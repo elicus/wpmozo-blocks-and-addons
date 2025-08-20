@@ -30,7 +30,6 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 	styles += `
 		.wpmozo-bna-image-card-wrapper{
 			${attributes.containerBackgroundColor ? `background-color: ${attributes.containerBackgroundColor};` : ''}
-			${attributes.containerborderColor ? `border-color: ${attributes.containerborderColor} !important;` : ''}
 			${convertedStyle.container}
 		}
 		.wpmozo-bna-image-card-icon-wrapper {

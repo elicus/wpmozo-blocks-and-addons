@@ -50,14 +50,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				} }
 				props={props}
 			/>
-			<WpmozoColorPicker
-				ColorKey="wrapper"
-				props={props}
-				ColorTypes={ [ {
-					key: 'BorderColor',
-					label: __( 'Border Color', 'wpmozo-blocks-and-addons' ),
-				} ] }
-			/>
 			<WpmozoBorder
 				props={props}
 				BorderKey="wrapper"
