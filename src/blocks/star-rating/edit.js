@@ -193,7 +193,6 @@ const Edit = (props) => {
 							className="wpmozo_star_rating_description"
 							value={ attributes.description }
 							onChange={ ( newValue ) => setAttributes( { description: newValue } ) }
-							placeholder={ __( 'Your content goes here. Edit this text inline or in the widget Content settings. You can also style every aspect of this content in the widget Design settings.', 'wpmozo-blocks-and-addons' ) }
 						/>
 					</div>
 				</div>

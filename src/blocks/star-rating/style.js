@@ -10,12 +10,19 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 		'descriptionHover',
 		'rating',
 		'ratingHover',
+		'container',
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
 	const rateIcon = ( attributes.rateIcon ) ?? 'default';
 
 	let styles = `#block-${attributes.ID} {`;
+
+	styles += `
+	.wpmozo_star_rating_wrapper{
+		${convertedStyle.container}
+		border-color:${attributes.containerBorderColor};
+	}`;
 
 	// Global text align.
 	if ( attributes?.globalTextAlign ) {
