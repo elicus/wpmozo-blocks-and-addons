@@ -8,7 +8,7 @@
   \********************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/scroll-image","version":"0.1.0","title":"Scroll Image","category":"wpmozo","icon":"smiley","description":"Scroll Image it includes the easiest options to make images scroll in a particular direction (Top, Bottom, Right, and Left) every time the user hovers.","example":{},"supports":{"html":false,"customClassName":false},"attributes":{"ID":{"type":"string"},"className":{"type":"string"},"image":{"type":"string"},"imageAlignment":{"type":"string"},"imageTitle":{"type":"string"},"scrollDirection":{"type":"string"},"scrollSpeed":{"type":"number","default":5},"containerWidth":{"type":"string","default":"0%"},"containerWidthUnit":{"type":"string","default":"%"},"containerHeight":{"type":"string"},"containerHeightUnit":{"type":"string","default":"px"},"imageborderRadius":{"type":"string"},"imageborder":{"type":"object"},"imageBorderColor":{"type":"string"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js","style":"file:./style-index.css","script":"file:./script.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/scroll-image","version":"0.1.0","title":"Scroll Image","category":"wpmozo","icon":"smiley","description":"Scroll Image it includes the easiest options to make images scroll in a particular direction (Top, Bottom, Right, and Left) every time the user hovers.","example":{},"supports":{"html":false,"customClassName":false},"attributes":{"ID":{"type":"string"},"className":{"type":"string"},"image":{"type":"string"},"imageAlignment":{"type":"string"},"imageTitle":{"type":"string"},"scrollDirection":{"type":"string","default":"top"},"scrollSpeed":{"type":"number","default":5},"containerWidth":{"type":"string"},"containerWidthUnit":{"type":"string","default":"%"},"containerHeight":{"type":"string"},"containerHeightUnit":{"type":"string","default":"px"},"imageborderRadius":{"type":"string"},"imageborder":{"type":"object"},"imageBorderColor":{"type":"string"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js","style":"file:./style-index.css","script":"file:./script.js"}');
 
 /***/ }),
 
@@ -22,18 +22,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Edit)
 /* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _inspector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./inspector */ "./src/blocks/scroll-image/inspector.js");
-/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style */ "./src/blocks/scroll-image/style.js");
-/* harmony import */ var _common_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../common/utils */ "./src/common/utils.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
-
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inspector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./inspector */ "./src/blocks/scroll-image/inspector.js");
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style */ "./src/blocks/scroll-image/style.js");
+/* harmony import */ var _common_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../common/utils */ "./src/common/utils.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
@@ -49,26 +46,38 @@ function Edit(props) {
   let image = attributes.image ? attributes.image : wpmozo_bna_editor_object.placeholderImg,
     title = attributes.imageTitle;
   attributes.ID = clientId;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_inspector__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    var $this = (0,_common_utils__WEBPACK_IMPORTED_MODULE_4__.getMainEl)(clientId);
+    jQuery(document).ready(function ($) {
+      jQuery.fn.wpmozo_init_scroll_image($, $this);
+    });
+  });
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    var $this = (0,_common_utils__WEBPACK_IMPORTED_MODULE_4__.getMainEl)(clientId);
+    jQuery(document).ready(function ($) {
+      jQuery.fn.wpmozo_init_scroll_image($, $this);
+    });
+  }, [attributes.scrollDirection]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_inspector__WEBPACK_IMPORTED_MODULE_2__["default"], {
       attributes: attributes,
       setAttributes: setAttributes
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("style", {
-      children: (0,_style__WEBPACK_IMPORTED_MODULE_4__["default"])({
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("style", {
+      children: (0,_style__WEBPACK_IMPORTED_MODULE_3__["default"])({
         attributes,
         clientId
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       id: `block-${attributes.ID}`,
-      ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
+      ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
         className: 'wpmozo-bna-scroll-image'
       }),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "wpmozo-bna-scroll-image-wrapper",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
           className: "wpmozo-bna-scroll-image-inner-wrap",
           "data-direction": attributes.scrollDirection,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
             className: "wpmozo-bna-scroll-image-img",
             title: title,
             src: image
@@ -435,18 +444,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _common_utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../common/utils.js */ "./src/common/utils.js");
+
 const generateDynamicStyle = ({
   attributes,
   clientId
 }) => {
-  let styles = `#block-${attributes.ID}{`;
+  let styles = `#block-${attributes.ID}{`,
+    toConvertStyles = ['image'];
+  let convertedStyle = (0,_common_utils_js__WEBPACK_IMPORTED_MODULE_0__.convertInlineStyleStr)(toConvertStyles, attributes);
+  let imageAlignment = attributes.imageAlignment,
+    wrapperDimensions = '';
+  if ('left' == imageAlignment) {
+    wrapperDimensions = 'margin-left: 0px !important;margin-right: auto !important;';
+  } else if ('center' == imageAlignment) {
+    wrapperDimensions = 'margin-left: auto !important;margin-right: auto !important;';
+  } else if ('right' == imageAlignment) {
+    wrapperDimensions = 'margin-left: auto !important;margin-right: 0px !important;';
+  }
   styles += `.wpmozo-bna-scroll-image-wrapper{
 		width: ${attributes.containerWidth} !important;
 		height: ${attributes.containerHeight} !important;
+		${wrapperDimensions}
 	}
 	.wpmozo-bna-scroll-image-inner-wrap img{
 		transition: all ${attributes.scrollSpeed}s ease-out;
-	}`;
+	}
+	${convertedStyle.image ? ` .wpmozo-bna-scroll-image-inner-wrap { ` + convertedStyle.image + `; }` : ''}`;
   styles += `}`;
   return styles;
 };

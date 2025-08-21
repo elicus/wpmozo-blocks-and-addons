@@ -1,10 +1,9 @@
-import { __ } from "@wordpress/i18n";
 import { useEffect, Fragment } from "@wordpress/element";
 import { useBlockProps } from "@wordpress/block-editor";
 import Inspector from "./inspector";
 
 import generateDynamicStyle from "./style";
-import { wpmozo_is_empty, getMainEl } from '../../common/utils';
+import { getMainEl } from '../../common/utils';
 
 export default function Edit( props ) {
 
@@ -14,6 +13,23 @@ export default function Edit( props ) {
 		title = attributes.imageTitle;
 
 	attributes.ID = clientId;
+
+	useEffect( () => {
+		var $this = getMainEl(clientId);
+		jQuery(document).ready(function($) {
+		    jQuery.fn.wpmozo_init_scroll_image($, $this);
+
+		});
+	} );
+	useEffect( () => {
+		var $this = getMainEl( clientId );
+		jQuery(document).ready(function($) {
+		    jQuery.fn.wpmozo_init_scroll_image($, $this);
+
+		});
+	}, [
+		attributes.scrollDirection
+	] );
 
 	return (
 		<Fragment>

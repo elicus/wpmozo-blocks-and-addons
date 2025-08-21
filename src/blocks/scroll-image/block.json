@@ -17,14 +17,13 @@
 		"className": { "type": "string" },
 		
 		"image": { "type": "string" },
-		"imageAlignment": { "type": "string", "default": "center" },
+		"imageAlignment": { "type": "string" },
 		"imageTitle": { "type": "string" },
 
-		"scrollDirection": { "type": "string" },
+		"scrollDirection": { "type": "string", "default": "top" },
 		"scrollSpeed": { "type": "number", "default": 5 },
-		"containerWidth": { "type": "string", "default": "0%" },
+		"containerWidth": { "type": "string" },
 		"containerWidthUnit": { "type": "string", "default": "%" },
-		"imageAlignment": { "type": "string" },
 		"containerHeight": { "type": "string" },
 		"containerHeightUnit": { "type": "string", "default": "px" },
 

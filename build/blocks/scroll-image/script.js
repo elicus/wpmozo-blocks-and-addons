@@ -2,19 +2,19 @@
 /*!*******************************************!*\
   !*** ./src/blocks/scroll-image/script.js ***!
   \*******************************************/
-(function ($) {
-  if ($('body').find('.wpmozo-bna-scroll-image').length > 0) {
-    $('.wpmozo-bna-scroll-image').each(function () {
+var wpmozo_init_scroll_image = function ($, element = null) {
+  var $el = null !== element ? element : $('body').find('.wpmozo-bna-scroll-image');
+  if ($el.length > 0) {
+    $el.each(function () {
       let $this = $(this).find('.wpmozo-bna-scroll-image-wrapper'),
         $img = $this.find('.wpmozo-bna-scroll-image-inner-wrap').find('img'),
-        direction = $this.find('.wpmozo-bna-scroll-image-inner-wrap').data('direction'),
+        direction = $this.find('.wpmozo-bna-scroll-image-inner-wrap').attr('data-direction'),
         imgHeight = $img.height(),
         imgWidth = $img.width(),
         wrapperHeight = $this.height(),
         wrapperWidth = $this.width(),
         translateY = parseFloat(imgHeight) - parseFloat(wrapperHeight),
         translateX = parseFloat(imgWidth) - parseFloat(wrapperWidth);
-      console.log(direction);
       if ('bottom' === direction) {
         if (imgHeight > wrapperHeight) {
           $img.css('transform', 'translateY(-' + translateY + 'px)');
@@ -28,7 +28,7 @@
       $this.on('mouseenter mouseleave', function (e) {
         let $this = $(this),
           $img = $this.find('.wpmozo-bna-scroll-image-inner-wrap').find('img'),
-          direction = $this.find('.wpmozo-bna-scroll-image-inner-wrap').data('direction'),
+          direction = $this.find('.wpmozo-bna-scroll-image-inner-wrap').attr('data-direction'),
           imgHeight = $img.height(),
           imgWidth = $img.width(),
           wrapperHeight = $this.height(),
@@ -93,7 +93,11 @@
       });
     });
   }
-})(jQuery);
+};
+jQuery(document).ready(function ($) {
+  jQuery.fn.wpmozo_init_scroll_image = wpmozo_init_scroll_image;
+  jQuery.fn.wpmozo_init_scroll_image($);
+});
 /******/ })()
 ;
 //# sourceMappingURL=script.js.map

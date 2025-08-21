@@ -3514,15 +3514,15 @@ return array(
 				'type' => 'string'
 			),
 			'scrollDirection' => array(
-				'type' => 'string'
+				'type' => 'string',
+				'default' => 'top'
 			),
 			'scrollSpeed' => array(
 				'type' => 'number',
 				'default' => 5
 			),
 			'containerWidth' => array(
-				'type' => 'string',
-				'default' => '0%'
+				'type' => 'string'
 			),
 			'containerWidthUnit' => array(
 				'type' => 'string',
