@@ -38,7 +38,6 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 	// Author Image.
 	if ( attributes.showAuthorImage ) {
 		styles += `.wpmozo_testimonial_author_image img{
-			${attributes.authorImageborderColor ? `border-color: ${attributes.authorImageborderColor} !important;` : ''}
 			${convertedStyle.authorImage}
 		}`;
 	}
@@ -116,7 +115,6 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 	styles += `.wpmozo_testimonial_slide{
 		${attributes.testimonialBGGradient ? `background:`+ attributes.testimonialBGGradient + `;` : ''}
 		${attributes.testimonialBackground ? `background-color:`+ attributes.testimonialBackground + `;` : ''}
-		${attributes.testimonialborderColor ? `border-color: ${attributes.testimonialborderColor} !important;` : ''}
 		${convertedStyle.testimonial}
 	}`;
 
@@ -126,7 +124,6 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 			${attributes.arrowIconSize ? `font-size: ${attributes.arrowIconSize}px;` : ''}
 			${attributes.arrowBackground ? `background-color: ${attributes.arrowBackground};` : ''}
 			${attributes.arrowColor ? `color: ${attributes.arrowColor};` : ''}
-			${attributes.arrowborderColor ? `border-color: ${attributes.arrowborderColor} !important;` : ''}
 			${convertedStyle.arrow}
 		}`;
 		if ( attributes.showArrowOnHover ) {

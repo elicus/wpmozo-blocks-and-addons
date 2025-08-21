@@ -54,12 +54,12 @@ endif;
 
 /**
  * Get module dynamic style.
- * 
+ *
  * @since 1.1.0
- * 
+ *
  * @param string module name/slug/folder name.
  * @param array attributes of module.
- * 
+ *
  * @return string style for the module
  */
 function wpmozo_bna_get_module_dynamic_style( $module, $attributes ) {
@@ -76,13 +76,13 @@ function wpmozo_bna_get_module_dynamic_style( $module, $attributes ) {
 
 /**
  * Get font styles from props.
- * 
+ *
  * @since 1.1.0
- * 
+ *
  * @param string $pre     Prefix for the props.
  * @param array  $props   All props or attributes.
  * @param bool   $useImp  Whether to add !important.
- * 
+ *
  * @return string CSS font styles.
  */
 function wpmozo_ban_get_font_style( $pre, $props, $use_imp = false ) {
@@ -115,13 +115,13 @@ function wpmozo_ban_get_font_style( $pre, $props, $use_imp = false ) {
 
 /**
  * Get border styles from props.
- * 
+ *
  * @since 1.1.0
- * 
+ *
  * @param string $pre     Prefix for the props.
  * @param array  $props   All props or attributes.
  * @param bool   $useImp  Whether to add !important.
- * 
+ *
  * @return string CSS border styles.
  */
 function wpmozo_ban_get_border_style( $pre, $props, $use_imp = false ) {
@@ -149,9 +149,15 @@ function wpmozo_ban_get_border_style( $pre, $props, $use_imp = false ) {
 	}
 
 	// Border color.
-	$border_color_key = $pre . 'borderColor';
-	if ( ! empty( $props[ $border_color_key ] ) ) {
-		$styles .= sprintf( 'border-color: %s%s;', $props[ $border_color_key ], $imp );
+	if( isset( $border['color'] ) ) {
+		$styles .= sprintf( 'border-color: %s%s;', $border['color'], $imp );
+	} else {
+		$styles .= sprintf( 'border-color: transparent%s;', $imp );
+	}
+
+	// Border Style
+	if( isset( $border['style'] ) ) {
+		$styles .= sprintf( 'border-style: %s%s;', $border['style'], $imp );
 	}
 
 	// Border radius.
@@ -184,13 +190,13 @@ function wpmozo_ban_get_border_style( $pre, $props, $use_imp = false ) {
 
 /**
  * Get padding styles from props.
- * 
+ *
  * @since 1.1.0
- * 
+ *
  * @param string $pre     Prefix for the props.
  * @param array  $props   All props or attributes.
  * @param bool   $useImp  Whether to add !important.
- * 
+ *
  * @return string CSS padding styles.
  */
 function wpmozo_ban_get_padding_style( $pre, $props, $use_imp = false ) {
