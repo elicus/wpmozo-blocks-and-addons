@@ -29,15 +29,15 @@
       "type": "string"
     },
     "scrollDirection": {
-      "type": "string"
+      "type": "string",
+      "default": "top"
     },
     "scrollSpeed": {
       "type": "number",
       "default": 5
     },
     "containerWidth": {
-      "type": "string",
-      "default": "0%"
+      "type": "string"
     },
     "containerWidthUnit": {
       "type": "string",

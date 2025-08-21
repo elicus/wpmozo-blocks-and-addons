@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var wpmozo_init_scroll_image = function( $, element = null ) {
 
     var $el = ( null !== element ) ? element : $('body').find('.wpmozo-bna-scroll-image');
@@ -8,14 +7,6 @@ var wpmozo_init_scroll_image = function( $, element = null ) {
             let $this           = $(this).find('.wpmozo-bna-scroll-image-wrapper'),
                 $img            = $this.find('.wpmozo-bna-scroll-image-inner-wrap').find('img'),
                 direction       = $this.find('.wpmozo-bna-scroll-image-inner-wrap').attr('data-direction'),
-=======
-( function ( $ ) {
-    if ( $('body').find('.wpmozo-bna-scroll-image').length > 0 ) {
-        $('.wpmozo-bna-scroll-image').each(function(){
-            let $this           = $(this).find('.wpmozo-bna-scroll-image-wrapper'),
-                $img            = $this.find('.wpmozo-bna-scroll-image-inner-wrap').find('img'),
-                direction       = $this.find('.wpmozo-bna-scroll-image-inner-wrap').data('direction'),
->>>>>>> a38faaf (WIP: scroll image)
                 imgHeight       = $img.height(),
                 imgWidth        = $img.width(),
                 wrapperHeight   = $this.height(),
@@ -23,11 +14,6 @@ var wpmozo_init_scroll_image = function( $, element = null ) {
                 translateY      = parseFloat(imgHeight) - parseFloat(wrapperHeight),
                 translateX      = parseFloat(imgWidth) - parseFloat(wrapperWidth);
 
-<<<<<<< HEAD
-=======
-            console.log( direction );
-
->>>>>>> a38faaf (WIP: scroll image)
             if ( 'bottom' === direction ) {
                 if ( imgHeight > wrapperHeight ) {
                     $img.css('transform', 'translateY(-' + translateY + 'px)');
@@ -43,21 +29,14 @@ var wpmozo_init_scroll_image = function( $, element = null ) {
             $this.on('mouseenter mouseleave', function(e) {
                 let $this           = $(this),
                     $img            = $this.find('.wpmozo-bna-scroll-image-inner-wrap').find('img'),
-<<<<<<< HEAD
                     direction       = $this.find('.wpmozo-bna-scroll-image-inner-wrap').attr('data-direction'),
-=======
-                    direction       = $this.find('.wpmozo-bna-scroll-image-inner-wrap').data('direction'),
->>>>>>> a38faaf (WIP: scroll image)
                     imgHeight       = $img.height(),
                     imgWidth        = $img.width(),
                     wrapperHeight   = $this.height(),
                     wrapperWidth    = $this.width(),
                     translateY      = parseFloat(imgHeight) - parseFloat(wrapperHeight),
                     translateX      = parseFloat(imgWidth) - parseFloat(wrapperWidth);
-<<<<<<< HEAD
 
-=======
->>>>>>> a38faaf (WIP: scroll image)
                 switch(direction) {
                     case 'top':
                         // If mouse enter
@@ -120,17 +99,9 @@ var wpmozo_init_scroll_image = function( $, element = null ) {
             });
         });
     }
-
-<<<<<<< HEAD
 }
 
 jQuery(document).ready(function($) {
-
     jQuery.fn.wpmozo_init_scroll_image = wpmozo_init_scroll_image;
     jQuery.fn.wpmozo_init_scroll_image($);
-
-});
-
-=======
-} )( jQuery );
->>>>>>> a38faaf (WIP: scroll image)
+} );
