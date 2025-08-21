@@ -18,11 +18,6 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 
 
 	styles += `
-		.wpmozo_masonry_gallery_wrapper {
-			column-count: ${numberOfColumns} !important;
-			column-gap: 1rem;
-			padding: 1rem;
-		}
 		.wpmozo_masonry_gallery_item_gutter {
 			width: ${attributes.customGutterSize}px !important;
 		}
@@ -40,6 +35,8 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 	} else {
 		styles += `.wpmozo_overlay.wpmozo_pb_inline_icon{background:transparent !important;}`;
 	}
+
+	styles+=`.wpmozo_overlay.wpmozo_pb_inline_icon{font-size:${attributes.overlayIconSize}px`;
 	styles += `}`;
 
 	if(true === attributes.showLightbox){

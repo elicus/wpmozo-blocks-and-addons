@@ -96,6 +96,11 @@ function Edit(props) {
 		}
 	}, [images]);
 
+	useEffect(() => {
+		const event = new CustomEvent('propsChanged');
+		window.dispatchEvent(event);
+	}, [props]);
+
 	useEffect( () => {
 		const changedAttributes = {};
 		const blocks = [];
@@ -225,7 +230,7 @@ function Edit(props) {
 			disableMediaButtons={
 				( hasImages && ! isSelected ) || imagesUploading
 			}
-			handleUpload={ false }
+			handleUpload={ true }
 			isAppender={ hasImages }
 			labels={ {
 				instructions: ! hasImages && PLACEHOLDER_TEXT,
@@ -253,14 +258,17 @@ function Edit(props) {
 			<div {...blockProps}>
 				<div className="wpmozo_pb_module_inner">
 					<div className="wpmozo_masonry_gallery_wrapper">
+						<div className="wpmozo_masonry_gallery_item_gutter"></div>
 						{attributes.images_data && attributes.images_data.length > 0 && (
 							attributes.images_data.map((image, idx) => (
-								<a href={image.url} key={image.id || idx}>
+								<a className="wpmozo_masonry_gallery_item" href={image.url} key={image.id || idx}>
 									<div className="wpmozo_masonry_gallery_image_wrapper">
-										<img src={image.url} alt={image.alt || ''} />
-										<span className="wpmozo_overlay wpmozo_pb_inline_icon" data-icon="0">
-											<i className={attributes.overlayIcon}></i>
-										</span>
+										<img src={image.url} alt={image.alt || ''}/>
+										{true === attributes.enableOverlay && (
+											<span className="wpmozo_overlay wpmozo_pb_inline_icon" data-icon="0">
+												<i className={attributes.overlayIcon}></i>
+											</span>
+										)}
 									</div>
 								</a>
 							))
@@ -268,7 +276,7 @@ function Edit(props) {
 					</div>
 				</div>
 				<View className="gallery-media-placeholder-wrapper">
-					{ mediaPlaceholder }
+				{ mediaPlaceholder }
 				</View>
 			</div>
 		</>

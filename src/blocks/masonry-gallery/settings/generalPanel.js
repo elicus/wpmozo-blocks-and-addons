@@ -16,7 +16,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				label={ __( 'Custom Gutter size (px)', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.customGutterSize }
 				onChange={ ( newValue ) => setAttributes( { customGutterSize: newValue } ) }
-				min={ 0 }
+				min={ 1 }
 				step={ 1 }
 				max={ 100 }
 			/>

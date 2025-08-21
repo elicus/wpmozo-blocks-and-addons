@@ -26,9 +26,6 @@ if ( ! function_exists( 'masonry_gallery_generate_dynamic_style' ) ) {
 
 		if ( ! empty( $attrs['numberOfColumns'] ) ) {
 			$styles .= "
-				{$mainSelector} .wpmozo_masonry_gallery_wrapper{
-					//column-count: {$attrs['numberOfColumns']}
-				}
 				{$mainSelector} .wpmozo_masonry_gallery_item_gutter {
 					width: {$attrs['customGutterSize']}px !important;
 				}

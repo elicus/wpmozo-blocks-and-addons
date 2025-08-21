@@ -3,13 +3,19 @@ jQuery(function($) {
 	var $gallery = $('.wp-block-wpmozo-masonry-gallery.wpmozo_masonry_gallery');
 	var $wrapper = $('.wpmozo_masonry_gallery_wrapper');
 
+	// Use $(window).on('load', ...) instead of deprecated $(window).load
+		window.addEventListener('propsChanged', function() {
+			var $galleryBlocks = $('.wp-block-wpmozo-masonry-gallery');
+			if ($galleryBlocks.length) {
+				$galleryBlocks.each(function() {
+					initMasonryGallery($(this));
+				});
+			}
+		});
 
-	$('.wp-block-wpmozo-masonry-gallery').each(function() {
-
-		let $galleryContainer = $(this);
+	function initMasonryGallery($galleryContainer) {
 		let $this = $galleryContainer.find('.wpmozo_masonry_gallery_wrapper');
 		let $gallery = $this.isotope({
-			// options
 			itemSelector: '.wpmozo_masonry_gallery_item',
 			layoutMode: 'masonry',
 			percentPosition: true,
@@ -24,8 +30,12 @@ jQuery(function($) {
 				$gallery.isotope('layout');
 				$gallery.isotope('reloadItems');
 			}, 200);
-
 		});
+
+		// Remove previous magnificPopup to avoid duplicates
+		if ($this.data('magnificPopup')) {
+			$this.magnificPopup('destroy');
+		}
 
 		if (
 			$this.find('.wpmozo_masonry_gallery_item').is('a') &&
@@ -62,13 +72,25 @@ jQuery(function($) {
 			});
 		} else {
 			// Prevent default link behavior for <a> tags inside the gallery
-			$this.on('click', 'a', function(e) {
+			$this.off('click.wpmozoMasonryGallery').on('click.wpmozoMasonryGallery', 'a', function(e) {
 				e.preventDefault();
 			});
 		}
 
-		$(window).resize(function(){
+		// Remove previous resize handler to avoid stacking
+		$(window).off('resize.wpmozoMasonryGallery-' + $galleryContainer.attr('id'));
+		$(window).on('resize.wpmozoMasonryGallery-' + $galleryContainer.attr('id'), function(){
 			$gallery.isotope('layout');
 		});
+	}
+
+	// Initial gallery setup
+	$('.wp-block-wpmozo-masonry-gallery').each(function() {
+		initMasonryGallery($(this));
+	});
+
+	// Listen for custom event to re-initialize gallery
+	$(document).on('wpmozo-masonry-gallery-init', '.wp-block-wpmozo-masonry-gallery', function() {
+		initMasonryGallery($(this));
 	});
 });
