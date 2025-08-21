@@ -4469,6 +4469,211 @@ return array(
 		),
 		'render' => 'file:./render.php'
 	),
+	'text-animator' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/text-animator',
+		'version' => '0.1.0',
+		'title' => 'Text Animator',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Add a text with attractive animation effects.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'customClassName' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
+				'type' => 'string'
+			),
+			'preText' => array(
+				'type' => 'string',
+				'default' => 'Pre'
+			),
+			'animatedText' => array(
+				'type' => 'string',
+				'default' => 'Animated|Text'
+			),
+			'postText' => array(
+				'type' => 'string',
+				'default' => 'Post'
+			),
+			'selectDisplayTag' => array(
+				'type' => 'string',
+				'default' => 'p'
+			),
+			'selectAnimation' => array(
+				'type' => 'string',
+				'default' => 'fade'
+			),
+			'animationDuration' => array(
+				'type' => 'number',
+				'default' => 500
+			),
+			'animationDelay' => array(
+				'type' => 'number',
+				'default' => 2000
+			),
+			'displayInStack' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'stopAnimationOnHover' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'typeTextSettings' => array(
+				'type' => 'string'
+			),
+			'globalTextColor' => array(
+				'type' => 'string'
+			),
+			'globalTextAlignment' => array(
+				'type' => 'string'
+			),
+			'globalFontSize' => array(
+				'type' => 'string'
+			),
+			'globalFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'globalLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'globalDecoration' => array(
+				'type' => 'string'
+			),
+			'globalLetterCase' => array(
+				'type' => 'string'
+			),
+			'globalLineHeight' => array(
+				'type' => 'string'
+			),
+			'prePostTextColor' => array(
+				'type' => 'string'
+			),
+			'prePostFontSize' => array(
+				'type' => 'string'
+			),
+			'prePostFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'prePostLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'prePostDecoration' => array(
+				'type' => 'string'
+			),
+			'prePostLetterCase' => array(
+				'type' => 'string'
+			),
+			'prePostLineHeight' => array(
+				'type' => 'string'
+			),
+			'animatedTextColor' => array(
+				'type' => 'string'
+			),
+			'animatedFontSize' => array(
+				'type' => 'string'
+			),
+			'animatedFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'animatedLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'animatedDecoration' => array(
+				'type' => 'string'
+			),
+			'animatedLetterCase' => array(
+				'type' => 'string'
+			),
+			'animatedLineHeight' => array(
+				'type' => 'string'
+			),
+			'typeBackgroundSettings' => array(
+				'type' => 'string'
+			),
+			'useBackgroundPrepost' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'useBackgroundAnimated' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'prePostBackgroundType' => array(
+				'type' => 'string'
+			),
+			'prePostBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'prePostBackgroundGradient' => array(
+				'type' => 'string'
+			),
+			'animatedBackgroundType' => array(
+				'type' => 'string'
+			),
+			'animatedBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'animatedBackgroundGradient' => array(
+				'type' => 'string'
+			),
+			'prePostDimensionspadding' => array(
+				'type' => 'object'
+			),
+			'prePostDimensionsmargin' => array(
+				'type' => 'object'
+			),
+			'animatedDimensionspadding' => array(
+				'type' => 'object'
+			),
+			'animatedDimensionsmargin' => array(
+				'type' => 'object'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css'
+	),
 	'tilt-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

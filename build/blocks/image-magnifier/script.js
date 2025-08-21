@@ -1,17 +1,1 @@
-/******/ (() => { // webpackBootstrap
-/*!**********************************************!*\
-  !*** ./src/blocks/image-magnifier/script.js ***!
-  \**********************************************/
-(function ($) {
-  $(".wpmozo-bna-image-magnifier-wrapper").each(function () {
-    let speed = $(this).closest('.wpmozo-bna-image-magnifier').data('speed'),
-      src = $(this).closest('.wpmozo-bna-image-magnifier').data('src');
-    $(this).find(".zoom").magnify({
-      speed: speed,
-      src: src
-    });
-  });
-})(jQuery);
-/******/ })()
-;
-//# sourceMappingURL=script.js.map
+(()=>{var a;(a=jQuery)(".wpmozo-bna-image-magnifier-wrapper").each((function(){let e=a(this).closest(".wpmozo-bna-image-magnifier").data("speed"),i=a(this).closest(".wpmozo-bna-image-magnifier").data("src");a(this).find(".zoom").magnify({speed:e,src:i})}))})();
