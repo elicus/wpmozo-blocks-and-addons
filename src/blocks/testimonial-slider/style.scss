@@ -132,41 +132,4 @@
 	margin-top: 15px;
 }
 
-.wpmozo_testimonial_layout .transparent_dot .swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
-	border-width: 1px;
-	border-style: solid;
-	background: 0 0
-}
 
-.wpmozo_testimonial_layout .transparent_dot .swiper-pagination-bullet-active {
-	border: none
-}
-
-.wpmozo_testimonial_layout .stretched_dot .swiper-pagination-bullet {
-	border-radius: 6px
-}
-
-.wpmozo_testimonial_layout .stretched_dot .swiper-pagination-bullet-active {
-	width: 30px
-}
-
-.wpmozo_testimonial_layout .line .swiper-pagination-bullet,
-.wpmozo_testimonial_layout .line .swiper-pagination-bullet-active {
-	border-radius: 0;
-	width: 30px;
-	height: 3px;
-	vertical-align: middle
-}
-
-.wpmozo_testimonial_layout .rounded_line .swiper-pagination-bullet,
-.wpmozo_testimonial_layout .rounded_line .swiper-pagination-bullet-active {
-	border-radius: 30px;
-	width: 30px;
-	height: 6px;
-	vertical-align: middle
-}
-.wpmozo_testimonial_layout .square_dot .swiper-pagination-bullet,
-.wpmozo_testimonial_layout .square_dot .swiper-pagination-bullet-active {
-	border-radius: 0;
-	vertical-align: middle
-}
