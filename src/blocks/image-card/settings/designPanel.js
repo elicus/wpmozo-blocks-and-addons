@@ -258,7 +258,7 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 					/>
 				}
 				<WpmozoDimensions
-					DimensionKey='container'
+					DimensionKey='icon'
 					DimensionsTypes={{
 						padding: true,
 						margin: true
