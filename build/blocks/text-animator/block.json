@@ -39,6 +39,14 @@
       "type": "string",
       "default": "fade"
     },
+    "typingSpeed": {
+      "type": "number",
+      "default": 100
+    },
+    "erasingSpeed": {
+      "type": "number",
+      "default": 100
+    },
     "animationDuration": {
       "type": "number",
       "default": 500
@@ -55,8 +63,9 @@
       "type": "boolean",
       "default": false
     },
-    "typeTextSettings": {
-      "type": "string"
+    "animateOnlyOnce": {
+      "type": "boolean",
+      "default": false
     },
     "globalTextColor": {
       "type": "string"
@@ -166,7 +175,8 @@
       "default": false
     },
     "prePostBackgroundType": {
-      "type": "string"
+      "type": "string",
+      "default": "classic"
     },
     "prePostBackgroundColor": {
       "type": "string"
@@ -175,7 +185,8 @@
       "type": "string"
     },
     "animatedBackgroundType": {
-      "type": "string"
+      "type": "string",
+      "default": "classic"
     },
     "animatedBackgroundColor": {
       "type": "string"
@@ -183,21 +194,25 @@
     "animatedBackgroundGradient": {
       "type": "string"
     },
-    "prePostDimensionspadding": {
+    "prePostpadding": {
       "type": "object"
     },
-    "prePostDimensionsmargin": {
+    "prePostmargin": {
       "type": "object"
     },
-    "animatedDimensionspadding": {
-      "type": "object"
+    "animatedpadding": {
+      "type": "object",
+      "default": {
+        "left": "10px",
+        "right": "10px"
+      }
     },
-    "animatedDimensionsmargin": {
+    "animatedmargin": {
       "type": "object"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",
   "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css"
+  "style": "file:./style-index.css",
+  "script": "file:./script.js"
 }

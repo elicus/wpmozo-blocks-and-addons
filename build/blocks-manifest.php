@@ -4512,6 +4512,14 @@ return array(
 				'type' => 'string',
 				'default' => 'fade'
 			),
+			'typingSpeed' => array(
+				'type' => 'number',
+				'default' => 100
+			),
+			'erasingSpeed' => array(
+				'type' => 'number',
+				'default' => 100
+			),
 			'animationDuration' => array(
 				'type' => 'number',
 				'default' => 500
@@ -4528,8 +4536,9 @@ return array(
 				'type' => 'boolean',
 				'default' => false
 			),
-			'typeTextSettings' => array(
-				'type' => 'string'
+			'animateOnlyOnce' => array(
+				'type' => 'boolean',
+				'default' => false
 			),
 			'globalTextColor' => array(
 				'type' => 'string'
@@ -4639,7 +4648,8 @@ return array(
 				'default' => false
 			),
 			'prePostBackgroundType' => array(
-				'type' => 'string'
+				'type' => 'string',
+				'default' => 'classic'
 			),
 			'prePostBackgroundColor' => array(
 				'type' => 'string'
@@ -4648,7 +4658,8 @@ return array(
 				'type' => 'string'
 			),
 			'animatedBackgroundType' => array(
-				'type' => 'string'
+				'type' => 'string',
+				'default' => 'classic'
 			),
 			'animatedBackgroundColor' => array(
 				'type' => 'string'
@@ -4656,23 +4667,27 @@ return array(
 			'animatedBackgroundGradient' => array(
 				'type' => 'string'
 			),
-			'prePostDimensionspadding' => array(
+			'prePostpadding' => array(
 				'type' => 'object'
 			),
-			'prePostDimensionsmargin' => array(
+			'prePostmargin' => array(
 				'type' => 'object'
 			),
-			'animatedDimensionspadding' => array(
-				'type' => 'object'
+			'animatedpadding' => array(
+				'type' => 'object',
+				'default' => array(
+					'left' => '10px',
+					'right' => '10px'
+				)
 			),
-			'animatedDimensionsmargin' => array(
+			'animatedmargin' => array(
 				'type' => 'object'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css'
+		'style' => 'file:./style-index.css',
+		'script' => 'file:./script.js'
 	),
 	'tilt-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
