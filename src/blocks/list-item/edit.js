@@ -16,8 +16,6 @@ export default function Edit(props) {
 
     const { attributes, setAttributes, clientId } = props;
 
-    content = attributes.text;
-
     const parentAttributes = useSelect( (select) => {
         const { getBlockRootClientId, getBlock } = select('core/block-editor');
         const parentId = getBlockRootClientId(clientId);
