@@ -47,9 +47,6 @@
     },
     "imageborderRadius": {
       "type": "string"
-    },
-    "imageborderColor": {
-      "type": "string"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",

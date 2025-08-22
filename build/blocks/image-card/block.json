@@ -19,6 +19,21 @@
     "className": {
       "type": "string"
     },
+    "containermargin": {
+      "type": "object"
+    },
+    "containerpadding": {
+      "type": "object"
+    },
+    "containerBackgroundColor": {
+      "type": "string"
+    },
+    "containerborder": {
+      "type": "object"
+    },
+    "containerborderRadius": {
+      "type": "string"
+    },
     "image": {
       "type": "string"
     },
@@ -72,6 +87,12 @@
     "shapeBorderColor": {
       "type": "string",
       "default": ""
+    },
+    "iconmargin": {
+      "type": "object"
+    },
+    "iconpadding": {
+      "type": "object"
     },
     "imageHeight": {
       "type": "number",
@@ -157,7 +178,7 @@
     },
     "description": {
       "type": "string",
-      "default": "Your content goes here. Edit this text inline or in the block Content settings. You can also style every aspect of this content in the block Design settings."
+      "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     },
     "descriptionTextAlign": {
       "type": "string",
@@ -277,6 +298,12 @@
     "buttonTextBackground": {
       "type": "string"
     },
+    "buttonTextHoverColor": {
+      "type": "string"
+    },
+    "buttonTextHoverBackground": {
+      "type": "string"
+    },
     "buttonTextAlign": {
       "type": "string",
       "default": "left"
@@ -330,7 +357,7 @@
       "default": {
         "width": "1px",
         "style": "solid",
-        "color": "#fff"
+        "color": "#000"
       }
     },
     "buttonTextborderRadius": {

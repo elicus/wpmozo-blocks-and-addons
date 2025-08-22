@@ -117,7 +117,7 @@
     },
     "description": {
       "type": "string",
-      "default": ""
+      "default": "Your content goes here. Edit this text inline or in the block content settings. You can also style every aspect of this content in the block design settings."
     },
     "descriptionColor": {
       "type": "string"
@@ -177,6 +177,18 @@
     "starSpacing": {
       "type": "number",
       "default": 2
+    },
+    "containerpadding": {
+      "type": "object"
+    },
+    "containermargin": {
+      "type": "object"
+    },
+    "containerborder": {
+      "type": "object"
+    },
+    "containerborderRadius": {
+      "type": "string"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",

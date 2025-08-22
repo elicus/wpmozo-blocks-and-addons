@@ -5,7 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! function_exists( 'masonry_gallery_render_callback' ) ) {
 	function masonry_gallery_render_callback( $attributes ) {
-
 		$render_output = '';
 		if ( ! empty( $attributes['images_data'] ) ) {
 			$extra_class = array();
@@ -33,9 +32,12 @@ if ( ! function_exists( 'masonry_gallery_render_callback' ) ) {
 					<a class="wpmozo_masonry_gallery_item" href="' . $url . '">
 						<div class="wpmozo_masonry_gallery_image_wrapper">
 							<img src="' . $url . '" alt="' . $image['attributes']['alt'] . '">
-							<span class="wpmozo_overlay wpmozo_pb_inline_icon" data-icon="0">
-								<i class="' . esc_attr( $attributes['overlayIcon'] ?? '' ) . '"></i>
-							</span>
+							' . ( ! empty( $attributes['enableOverlay'] ) && true === $attributes['enableOverlay']
+								? '<span class="wpmozo_overlay wpmozo_pb_inline_icon" data-icon="0">
+										<i class="' . esc_attr( $attributes['overlayIcon'] ?? '' ) . '"></i>
+									</span>'
+								: ''
+							) . '
 						</div>
 						' . ( isset( $image['attributes']['caption'] ) && ! empty( $image['attributes']['caption'] )
 							? '<div class="wpmozo_masonry_gallery_title_caption_wrapper">

@@ -496,10 +496,6 @@
     "arrowborderRadius": {
       "type": "string"
     },
-    "arrowborderColor": {
-      "type": "string",
-      "default": ""
-    },
     "metaSeparatorColor": {
       "type": "string",
       "default": "#dddddd"
@@ -522,17 +518,10 @@
     "testimonialborderRadius": {
       "type": "string"
     },
-    "testimonialborderColor": {
-      "type": "string",
-      "default": ""
-    },
     "authorImageborder": {
       "type": "object"
     },
     "authorImageborderRadius": {
-      "type": "string"
-    },
-    "authorImageborderColor": {
       "type": "string"
     }
   },

@@ -19,6 +19,12 @@
     "className": {
       "type": "string"
     },
+    "wrapperborder": {
+      "type": "object"
+    },
+    "wrapperborderRadius": {
+      "type": "string"
+    },
     "title": {
       "type": "string",
       "default": "WPMozo Pricing"
@@ -74,6 +80,15 @@
         }
       ]
     },
+    "featuresIconFontSize": {
+      "type": "number"
+    },
+    "featuresSpacing": {
+      "type": "number"
+    },
+    "featuresMargin": {
+      "type": "number"
+    },
     "showButton": {
       "type": "boolean",
       "default": false
@@ -89,7 +104,7 @@
       "type": "string",
       "default": "same"
     },
-    "buttonIcontype": {
+    "buttonIconType": {
       "type": "string",
       "default": "icon"
     },
@@ -213,9 +228,6 @@
     "backgroundColor": {
       "type": "string"
     },
-    "align": {
-      "type": "string"
-    },
     "mainDimensionspadding": {
       "type": "object"
     },
@@ -268,6 +280,9 @@
         "fontStyle": "",
         "fontWeight": ""
       }
+    },
+    "pricealign": {
+      "type": "string"
     },
     "priceLetterSpacing": {
       "type": "string"
@@ -360,9 +375,6 @@
       "type": "boolean",
       "default": false
     },
-    "featuresIcon": {
-      "type": "string"
-    },
     "featuresIconsColor": {
       "type": "string"
     },
@@ -438,6 +450,9 @@
     },
     "borderDimensionsmargin": {
       "type": "object"
+    },
+    "buttonFontSize": {
+      "type": "number"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",

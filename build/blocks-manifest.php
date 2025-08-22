@@ -1640,6 +1640,21 @@ return array(
 			'className' => array(
 				'type' => 'string'
 			),
+			'containermargin' => array(
+				'type' => 'object'
+			),
+			'containerpadding' => array(
+				'type' => 'object'
+			),
+			'containerBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'containerborder' => array(
+				'type' => 'object'
+			),
+			'containerborderRadius' => array(
+				'type' => 'string'
+			),
 			'image' => array(
 				'type' => 'string'
 			),
@@ -1693,6 +1708,12 @@ return array(
 			'shapeBorderColor' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'iconmargin' => array(
+				'type' => 'object'
+			),
+			'iconpadding' => array(
+				'type' => 'object'
 			),
 			'imageHeight' => array(
 				'type' => 'number',
@@ -1778,7 +1799,7 @@ return array(
 			),
 			'description' => array(
 				'type' => 'string',
-				'default' => 'Your content goes here. Edit this text inline or in the block Content settings. You can also style every aspect of this content in the block Design settings.'
+				'default' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 			),
 			'descriptionTextAlign' => array(
 				'type' => 'string',
@@ -1898,6 +1919,12 @@ return array(
 			'buttonTextBackground' => array(
 				'type' => 'string'
 			),
+			'buttonTextHoverColor' => array(
+				'type' => 'string'
+			),
+			'buttonTextHoverBackground' => array(
+				'type' => 'string'
+			),
 			'buttonTextAlign' => array(
 				'type' => 'string',
 				'default' => 'left'
@@ -1951,7 +1978,7 @@ return array(
 				'default' => array(
 					'width' => '1px',
 					'style' => 'solid',
-					'color' => '#fff'
+					'color' => '#000'
 				)
 			),
 			'buttonTextborderRadius' => array(
@@ -2105,10 +2132,15 @@ return array(
 				'type' => 'string'
 			),
 			'itemBackground' => array(
-				'type' => 'string',
-				'default' => '#f7f7f7'
+				'type' => 'string'
 			),
 			'itemBGGradient' => array(
+				'type' => 'string'
+			),
+			'imageborder' => array(
+				'type' => 'object'
+			),
+			'imageborderRadius' => array(
 				'type' => 'string'
 			)
 		),
@@ -2891,108 +2923,6 @@ return array(
 		),
 		'render' => 'file:./render.php'
 	),
-	'masonry-gallery-old' => array(
-		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 3,
-		'name' => 'wpmozo/masonry-gallery',
-		'version' => '0.1.0',
-		'title' => 'Masonry Gallery',
-		'category' => 'wpmozo',
-		'icon' => 'smiley',
-		'description' => 'Design a customizable image gallery with a dynamic masonry layout for multiple photos.',
-		'example' => array(
-			
-		),
-		'supports' => array(
-			'html' => false,
-			'anchor' => false,
-			'customClassName' => false
-		),
-		'attributes' => array(
-			'ID' => array(
-				'type' => 'string'
-			),
-			'className' => array(
-				'type' => 'string'
-			),
-			'images' => array(
-				'type' => 'array',
-				'default' => array(
-					
-				),
-				'source' => 'query',
-				'selector' => '.wpmozo-blocks-and-addons-gallery--item',
-				'query' => array(
-					'url' => array(
-						'source' => 'attribute',
-						'selector' => 'img',
-						'attribute' => 'src'
-					)
-				)
-			),
-			'images_data' => array(
-				'type' => 'array'
-			),
-			'customGutterSize' => array(
-				'type' => 'number',
-				'default' => 15
-			),
-			'sizeSlug' => array(
-				'type' => 'string'
-			),
-			'numberOfColumns' => array(
-				'type' => 'number',
-				'default' => 3
-			),
-			'showCaption' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'showLightbox' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'enableOverlay' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'overlayBackgroundColor' => array(
-				'type' => 'string'
-			),
-			'overlayIconSize' => array(
-				'type' => 'number'
-			),
-			'overlayIconColor' => array(
-				'type' => 'string'
-			),
-			'overlayIcon' => array(
-				'type' => 'string'
-			),
-			'lightboxBackgroundColor' => array(
-				'type' => 'string'
-			),
-			'lightboxExitIconColor' => array(
-				'type' => 'string'
-			),
-			'lightboxArrowColor' => array(
-				'type' => 'string'
-			)
-		),
-		'textdomain' => 'wpmozo-blocks-and-addons',
-		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => array(
-			'wpmozo-blocks-and-addons-magnificPopup-style',
-			'file:./style-index.css'
-		),
-		'script' => array(
-			'wpmozo-blocks-and-addons-isotope-script',
-			'wpmozo-blocks-and-addons-imagesloaded-script',
-			'wpmozo-blocks-and-addons-magnificPopup-script',
-			'file:./script.js'
-		),
-		'render' => 'file:./render.php'
-	),
 	'mystery-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -3095,6 +3025,12 @@ return array(
 			'className' => array(
 				'type' => 'string'
 			),
+			'wrapperborder' => array(
+				'type' => 'object'
+			),
+			'wrapperborderRadius' => array(
+				'type' => 'string'
+			),
 			'title' => array(
 				'type' => 'string',
 				'default' => 'WPMozo Pricing'
@@ -3150,6 +3086,15 @@ return array(
 					)
 				)
 			),
+			'featuresIconFontSize' => array(
+				'type' => 'number'
+			),
+			'featuresSpacing' => array(
+				'type' => 'number'
+			),
+			'featuresMargin' => array(
+				'type' => 'number'
+			),
 			'showButton' => array(
 				'type' => 'boolean',
 				'default' => false
@@ -3165,7 +3110,7 @@ return array(
 				'type' => 'string',
 				'default' => 'same'
 			),
-			'buttonIcontype' => array(
+			'buttonIconType' => array(
 				'type' => 'string',
 				'default' => 'icon'
 			),
@@ -3289,9 +3234,6 @@ return array(
 			'backgroundColor' => array(
 				'type' => 'string'
 			),
-			'align' => array(
-				'type' => 'string'
-			),
 			'mainDimensionspadding' => array(
 				'type' => 'object'
 			),
@@ -3344,6 +3286,9 @@ return array(
 					'fontStyle' => '',
 					'fontWeight' => ''
 				)
+			),
+			'pricealign' => array(
+				'type' => 'string'
 			),
 			'priceLetterSpacing' => array(
 				'type' => 'string'
@@ -3436,9 +3381,6 @@ return array(
 				'type' => 'boolean',
 				'default' => false
 			),
-			'featuresIcon' => array(
-				'type' => 'string'
-			),
 			'featuresIconsColor' => array(
 				'type' => 'string'
 			),
@@ -3514,6 +3456,9 @@ return array(
 			),
 			'borderDimensionsmargin' => array(
 				'type' => 'object'
+			),
+			'buttonFontSize' => array(
+				'type' => 'number'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
@@ -3818,7 +3763,7 @@ return array(
 			),
 			'description' => array(
 				'type' => 'string',
-				'default' => ''
+				'default' => 'Your content goes here. Edit this text inline or in the block content settings. You can also style every aspect of this content in the block design settings.'
 			),
 			'descriptionColor' => array(
 				'type' => 'string'
@@ -3878,6 +3823,18 @@ return array(
 			'starSpacing' => array(
 				'type' => 'number',
 				'default' => 2
+			),
+			'containerpadding' => array(
+				'type' => 'object'
+			),
+			'containermargin' => array(
+				'type' => 'object'
+			),
+			'containerborder' => array(
+				'type' => 'object'
+			),
+			'containerborderRadius' => array(
+				'type' => 'string'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
@@ -4387,10 +4344,6 @@ return array(
 			'arrowborderRadius' => array(
 				'type' => 'string'
 			),
-			'arrowborderColor' => array(
-				'type' => 'string',
-				'default' => ''
-			),
 			'metaSeparatorColor' => array(
 				'type' => 'string',
 				'default' => '#dddddd'
@@ -4413,17 +4366,10 @@ return array(
 			'testimonialborderRadius' => array(
 				'type' => 'string'
 			),
-			'testimonialborderColor' => array(
-				'type' => 'string',
-				'default' => ''
-			),
 			'authorImageborder' => array(
 				'type' => 'object'
 			),
 			'authorImageborderRadius' => array(
-				'type' => 'string'
-			),
-			'authorImageborderColor' => array(
 				'type' => 'string'
 			)
 		),

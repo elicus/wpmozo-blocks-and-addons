@@ -14,22 +14,16 @@ import { useSelect } from '@wordpress/data';
 
 export default function Edit(props) {
 
-
-    const WPMozoEditorObj = wpmozo_bna_editor_object;
-
-    const attributes = props.attributes,
-
-    setAttributes = props.setAttributes,
-
-    clientId = props.clientId,
+    const { attributes, setAttributes, clientId } = props;
 
     content = attributes.text;
 
-    const parentAttributes = useSelect((select) => {
+    const parentAttributes = useSelect( (select) => {
         const { getBlockRootClientId, getBlock } = select('core/block-editor');
         const parentId = getBlockRootClientId(clientId);
         return parentId ? getBlock(parentId)?.attributes : null;
-    }, [clientId]);
+    }, [clientId] );
+    
     attributes.parentAtts = parentAttributes;
     
     attributes.ID = clientId;
@@ -37,9 +31,8 @@ export default function Edit(props) {
     return (
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
-            <style>
-                { generateDynamicStyle({ attributes, clientId, parentAttributes }) }
-            </style>
+            <style>{ generateDynamicStyle({ attributes, clientId, parentAttributes }) }</style>
+            
             <div { ...useBlockProps({ className: 'wpmozo-bna-list-item' }) }>
                 <div className="list-item-wrap" >
                     {"icon" === attributes.markerType && true !== attributes.styleIcon && (
@@ -61,7 +54,7 @@ export default function Edit(props) {
                         </div>
                     )}
                     {"image" === attributes.markerType && (
-                        <img className="wpmozo-bna-marker-image" src={( attributes.markerImage ) ? attributes.markerImage : WPMozoEditorObj.placeholderImg }/>
+                        <img className="wpmozo-bna-marker-image" src={( attributes.markerImage ) ? attributes.markerImage : wpmozo_bna_editor_object.placeholderImg }/>
                     )}
                     <div className="wpmozo-bna-list-item-text">
                         <RichText

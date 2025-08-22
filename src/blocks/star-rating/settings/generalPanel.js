@@ -17,7 +17,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	return (
 		<>
 			{/* Configuration. */}
-			<PanelBody title={ __( 'Configuration', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+			<PanelBody title={ __( 'Configuration', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
 				<TextControl
 					label={ __( 'Title', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.title }
@@ -33,7 +33,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				<TextControl
 					label={ __( 'Rating Out Of', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.ratingOutOf }
-					onChange={ ( newValue ) => setAttributes( { ratingOutOf: newValue } ) }
+					onChange={ ( newValue ) => setAttributes( { ratingOutOf: parseInt( newValue ) } ) }
 					__next40pxDefaultSize={ true }  __nextHasNoMarginBottom={ true }
 				/>
 				<WpmozoMediaUploader attrKye="image" props={ props }

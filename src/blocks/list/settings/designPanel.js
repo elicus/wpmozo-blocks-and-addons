@@ -58,7 +58,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 	];
 
 	return ( <>
-		<PanelBody title={ __( 'List', 'wpmozo-blocks-and-addons' ) }  initialOpen={false}>
+		<PanelBody title={ __( 'List', 'wpmozo-blocks-and-addons' ) }  initialOpen={true}>
 			<WpmozoAlignment
 				label={__( 'Alignment', 'wpmozo-blocks-and-addons')}
 				onChange={ ( newValue ) => setAttributes( { listAlignment: newValue } ) }
