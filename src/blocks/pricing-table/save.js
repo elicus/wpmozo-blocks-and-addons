@@ -30,16 +30,20 @@ const Save = ({ attributes }) => {
 							)}
 						</div>
 						<div className="wpmozo-bna-pricing-table-heading">
-							<RichText.Content
-								className="wpmozo-bna-pricing-table-title"
-								tagName={attributes.titleLeval}
-								value={attributes.title}
-							/>
-							<RichText.Content
-								className="wpmozo-bna-pricing-table-subtitle"
-								tagName="span"
-								value={attributes.subtitle}
-							/>
+							{ '' != attributes.title && (
+								<RichText.Content
+									className="wpmozo-bna-pricing-table-title"
+									tagName={attributes.titleLeval}
+									value={attributes.title}
+								/>
+							)}
+							{ '' != attributes.subtitle && (
+								<RichText.Content
+									className="wpmozo-bna-pricing-table-subtitle"
+									tagName="span"
+									value={attributes.subtitle}
+								/>
+							)}
 							<span className="wpmozo-bna-bar-container">
 								<hr className="wpmozo-bna-bar"/>
 							</span>

@@ -124,7 +124,7 @@
 
 /*dots*/
 .wpmozo_testimonial_layout .transparent_dot .swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
-	border-width: 1px;
+	border-width: 2px;
 	border-style: solid;
 	background: 0 0
 }

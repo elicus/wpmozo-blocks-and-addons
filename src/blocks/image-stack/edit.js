@@ -16,7 +16,7 @@ export default function Edit(props) {
 	const { attributes, setAttributes, isSelected, clientId } = props;
 
 	attributes.ID = clientId;
-	
+
 	const innerBlockProps = useInnerBlocksProps(
 		{ className: 'wpmozo-image-stack-inner' },
 		{ allowedBlocks: ALLOWED_BLOCKS }

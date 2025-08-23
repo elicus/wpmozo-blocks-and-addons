@@ -106,7 +106,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				props={props}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Header Graphics', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Header icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			{ 'icon' === attributes.headerGraphics &&
 				<WpmozoColorPicker
 					ColorKey="icon"

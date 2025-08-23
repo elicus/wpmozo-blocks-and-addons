@@ -45,18 +45,22 @@ const Edit = ( props ) => {
 							) }
 						</div>
 						<div className="wpmozo-bna-pricing-table-heading">
-							<RichText
-								className="wpmozo-bna-pricing-table-title"
-								tagName={ attributes.titleLeval }
-								value={ attributes.title }
-								onChange={ (newValue) => setAttributes( { title: newValue } ) }
-							/>
-							<RichText
-								className="wpmozo-bna-pricing-table-subtitle"
-								tagName="span"
-								value={attributes.subtitle}
-								onChange={(newValue) => setAttributes({subtitle: newValue})}
-							/>
+							{ '' != attributes.title && (
+								<RichText
+									className="wpmozo-bna-pricing-table-title"
+									tagName={ attributes.titleLeval }
+									value={ attributes.title }
+									onChange={ (newValue) => setAttributes( { title: newValue } ) }
+								/>
+							)}
+							{ '' != attributes.subtitle && (
+								<RichText
+									className="wpmozo-bna-pricing-table-subtitle"
+									tagName="span"
+									value={attributes.subtitle}
+									onChange={(newValue) => setAttributes({subtitle: newValue})}
+								/>
+							)}
 							<span className="wpmozo-bna-bar-container">
 								<hr className="wpmozo-bna-bar"/>
 							</span>

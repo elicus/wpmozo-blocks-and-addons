@@ -13,9 +13,7 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 	styles += attributes.itemBackground ? `background:`+ attributes.itemBackground + `;` : ''
 	styles += attributes.itemBGGradient ? `background-image:`+ attributes.itemBGGradient + `;` : ''
 
-	styles +=`
-			${convertedStyle.image}
-	`;
+	styles +=`.wpmozo-stack-item-img{${convertedStyle.image}}`;
 	styles += `}`;
 	return styles;
 };
