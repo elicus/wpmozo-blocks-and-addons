@@ -1,0 +1,135 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/promotion-bar",
+	"version": "0.1.0",
+	"title": "Promotion Bar",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "The Promotion Bar helps you create eye-catching banners with customizable countdown timer.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"customClassName": false
+	},
+	"attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+
+		"dateTime": { "type": "string" },
+		"dateTimeUTC": { "type": "string" },
+		
+		"title": { "type": "string", "default": "Your title goes here." },
+		"titleLevel": { "type": "string", "default": "h2" },
+		"hideTitle": { "type": "boolean", "default": false },
+		"titleColor": { "type": "string" },
+		"titleFontSize": { "type": "string" },
+		"titleLetterSpacing": { "type": "string" },
+		"titleDecoration": { "type": "string" },
+		"titleLetterCase": { "type": "string" },
+		"titleLineHeight": { "type": "string" },
+		"titleFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"titleFontStyle": { "type": "string" },
+		"titleFontWeight": { "type": "string" },
+
+		"description": { "type": "string" },
+		"descriptionColor": { "type": "string" },
+		"descriptionFontSize": { "type": "string" },
+		"descriptionLetterSpacing": { "type": "string" },
+		"descriptionDecoration": { "type": "string" },
+		"descriptionLetterCase": { "type": "string" },
+		"descriptionLineHeight": { "type": "string" },
+		"descriptionFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"descriptionFontStyle": { "type": "string" },
+		"descriptionFontWeight": { "type": "string" },
+
+		"showImage": { "type": "boolean", "default": false },
+		"image": { "type": "string", "default": "" },
+		"imageAlt": { "type": "string", "default": "" },
+
+		"showButton": { "type": "boolean", "default": true },
+		"buttonText": { "type": "string", "default": "Read More" },
+		"buttonUrl": { "type": "string", "default": "" },
+		"buttonLinkTarget": { "type": "string", "default": "same" },
+
+		"layout": { "type": "string", "default": "layout1" },
+		"hideDays": { "type": "boolean", "default": false },
+		"displayLabel": { "type": "string", "default": "full" },
+		"stackLabel": { "type": "string", "default": true },
+
+		"contentBoxAlign": { "type": "string" },
+		"contentBoxWidth": { "type": "number", "default": 50 },
+
+		"timerBoxAlign": { "type": "string" },
+		"timerBoxBackground": { "type": "string", "default": "" },
+		"timerBoxBGGradient": { "type": "string" },
+		"timerBoxpadding": { "type": "object", "default": { "top": "10px", "right": "5px", "bottom": "10px", "left": "5px" } },
+		"timerBoxmargin": { "type": "object", "default": { "top": "5px", "right": "5px", "bottom": "5px", "left": "5px" } },
+		"timerBoxRadius": { "type": "string" },
+		"timerBoxborder": { "type": "object" },
+
+		"digitsBackgroundColor": { "type": "string" },
+		"digitspadding": { "type": "object" },
+		"digitsmargin": { "type": "object" },
+		"digitsRadius": { "type": "string" },
+		"digitsborder": { "type": "object" },
+
+		"digitsColor": { "type": "string" },
+		"digitsFontSize": { "type": "string" },
+		"digitsLetterSpacing": { "type": "string" },
+		"digitsDecoration": { "type": "string" },
+		"digitsLetterCase": { "type": "string" },
+		"digitsLineHeight": { "type": "string" },
+		"digitsFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"digitsFontStyle": { "type": "string" },
+		"digitsFontWeight": { "type": "string" },
+
+		"labelsBackgroundColor": { "type": "string" },
+		"labelspadding": { "type": "object" },
+		"labelsmargin": { "type": "object" },
+		"labelsRadius": { "type": "string" },
+		"labelsborder": { "type": "object" },
+
+		"labelsColor": { "type": "string" },
+		"labelsFontSize": { "type": "string" },
+		"labelsLetterSpacing": { "type": "string" },
+		"labelsDecoration": { "type": "string" },
+		"labelsLetterCase": { "type": "string" },
+		"labelsLineHeight": { "type": "string" },
+		"labelsFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"labelsFontStyle": { "type": "string" },
+		"labelsFontWeight": { "type": "string" },
+
+		"showSeparator": { "type": "boolean", "default": false },
+		"separatorText": { "type": "string", "default": ":" },
+		"separatorColor": { "type": "string" },
+		"separatorFontSize": { "type": "string" },
+		"separatorLetterSpacing": { "type": "string" },
+		"separatorDecoration": { "type": "string" },
+		"separatorLetterCase": { "type": "string" },
+		"separatorLineHeight": { "type": "string" },
+		"separatorFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"separatorFontStyle": { "type": "string" },
+		"separatorFontWeight": { "type": "string" }
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

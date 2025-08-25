@@ -3481,6 +3481,335 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css'
 	),
+	'promotion-bar' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/promotion-bar',
+		'version' => '0.1.0',
+		'title' => 'Promotion Bar',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'The Promotion Bar helps you create eye-catching banners with customizable countdown timer.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'customClassName' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
+				'type' => 'string'
+			),
+			'dateTime' => array(
+				'type' => 'string'
+			),
+			'dateTimeUTC' => array(
+				'type' => 'string'
+			),
+			'title' => array(
+				'type' => 'string',
+				'default' => 'Your title goes here.'
+			),
+			'titleLevel' => array(
+				'type' => 'string',
+				'default' => 'h2'
+			),
+			'hideTitle' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'titleColor' => array(
+				'type' => 'string'
+			),
+			'titleFontSize' => array(
+				'type' => 'string'
+			),
+			'titleLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'titleDecoration' => array(
+				'type' => 'string'
+			),
+			'titleLetterCase' => array(
+				'type' => 'string'
+			),
+			'titleLineHeight' => array(
+				'type' => 'string'
+			),
+			'titleFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'titleFontStyle' => array(
+				'type' => 'string'
+			),
+			'titleFontWeight' => array(
+				'type' => 'string'
+			),
+			'description' => array(
+				'type' => 'string'
+			),
+			'descriptionColor' => array(
+				'type' => 'string'
+			),
+			'descriptionFontSize' => array(
+				'type' => 'string'
+			),
+			'descriptionLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'descriptionDecoration' => array(
+				'type' => 'string'
+			),
+			'descriptionLetterCase' => array(
+				'type' => 'string'
+			),
+			'descriptionLineHeight' => array(
+				'type' => 'string'
+			),
+			'descriptionFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'descriptionFontStyle' => array(
+				'type' => 'string'
+			),
+			'descriptionFontWeight' => array(
+				'type' => 'string'
+			),
+			'showImage' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'image' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'showButton' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'buttonText' => array(
+				'type' => 'string',
+				'default' => 'Read More'
+			),
+			'buttonUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'buttonLinkTarget' => array(
+				'type' => 'string',
+				'default' => 'same'
+			),
+			'layout' => array(
+				'type' => 'string',
+				'default' => 'layout1'
+			),
+			'hideDays' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'displayLabel' => array(
+				'type' => 'string',
+				'default' => 'full'
+			),
+			'stackLabel' => array(
+				'type' => 'string',
+				'default' => true
+			),
+			'contentBoxAlign' => array(
+				'type' => 'string'
+			),
+			'contentBoxWidth' => array(
+				'type' => 'number',
+				'default' => 50
+			),
+			'timerBoxAlign' => array(
+				'type' => 'string'
+			),
+			'timerBoxBackground' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'timerBoxBGGradient' => array(
+				'type' => 'string'
+			),
+			'timerBoxpadding' => array(
+				'type' => 'object',
+				'default' => array(
+					'top' => '10px',
+					'right' => '5px',
+					'bottom' => '10px',
+					'left' => '5px'
+				)
+			),
+			'timerBoxmargin' => array(
+				'type' => 'object',
+				'default' => array(
+					'top' => '5px',
+					'right' => '5px',
+					'bottom' => '5px',
+					'left' => '5px'
+				)
+			),
+			'timerBoxRadius' => array(
+				'type' => 'string'
+			),
+			'timerBoxborder' => array(
+				'type' => 'object'
+			),
+			'digitsBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'digitspadding' => array(
+				'type' => 'object'
+			),
+			'digitsmargin' => array(
+				'type' => 'object'
+			),
+			'digitsRadius' => array(
+				'type' => 'string'
+			),
+			'digitsborder' => array(
+				'type' => 'object'
+			),
+			'digitsColor' => array(
+				'type' => 'string'
+			),
+			'digitsFontSize' => array(
+				'type' => 'string'
+			),
+			'digitsLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'digitsDecoration' => array(
+				'type' => 'string'
+			),
+			'digitsLetterCase' => array(
+				'type' => 'string'
+			),
+			'digitsLineHeight' => array(
+				'type' => 'string'
+			),
+			'digitsFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'digitsFontStyle' => array(
+				'type' => 'string'
+			),
+			'digitsFontWeight' => array(
+				'type' => 'string'
+			),
+			'labelsBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'labelspadding' => array(
+				'type' => 'object'
+			),
+			'labelsmargin' => array(
+				'type' => 'object'
+			),
+			'labelsRadius' => array(
+				'type' => 'string'
+			),
+			'labelsborder' => array(
+				'type' => 'object'
+			),
+			'labelsColor' => array(
+				'type' => 'string'
+			),
+			'labelsFontSize' => array(
+				'type' => 'string'
+			),
+			'labelsLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'labelsDecoration' => array(
+				'type' => 'string'
+			),
+			'labelsLetterCase' => array(
+				'type' => 'string'
+			),
+			'labelsLineHeight' => array(
+				'type' => 'string'
+			),
+			'labelsFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'labelsFontStyle' => array(
+				'type' => 'string'
+			),
+			'labelsFontWeight' => array(
+				'type' => 'string'
+			),
+			'showSeparator' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'separatorText' => array(
+				'type' => 'string',
+				'default' => ':'
+			),
+			'separatorColor' => array(
+				'type' => 'string'
+			),
+			'separatorFontSize' => array(
+				'type' => 'string'
+			),
+			'separatorLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'separatorDecoration' => array(
+				'type' => 'string'
+			),
+			'separatorLetterCase' => array(
+				'type' => 'string'
+			),
+			'separatorLineHeight' => array(
+				'type' => 'string'
+			),
+			'separatorFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'separatorFontStyle' => array(
+				'type' => 'string'
+			),
+			'separatorFontWeight' => array(
+				'type' => 'string'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js'
+	),
 	'scroll-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
