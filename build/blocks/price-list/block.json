@@ -29,11 +29,11 @@
     },
     "columnSpacing": {
       "type": "string",
-      "default": "1"
+      "default": "15px"
     },
     "numberOfColumns": {
       "type": "string",
-      "default": "15px"
+      "default": "1"
     },
     "dividerColor": {
       "type": "string"
@@ -60,31 +60,6 @@
     "iconFontSize": {
       "type": "string",
       "default": "100px"
-    },
-    "iconFontAppearance": {
-      "type": "object",
-      "fontStyle": {
-        "type": "string"
-      },
-      "fontWeight": {
-        "type": "string"
-      },
-      "default": {
-        "fontStyle": "",
-        "fontWeight": ""
-      }
-    },
-    "iconLetterSpacing": {
-      "type": "string"
-    },
-    "iconDecoration": {
-      "type": "string"
-    },
-    "iconLetterCase": {
-      "type": "string"
-    },
-    "iconLineHeight": {
-      "type": "string"
     },
     "thumbnailborder": {
       "type": "object"

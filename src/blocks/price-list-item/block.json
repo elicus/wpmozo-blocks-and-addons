@@ -1,14 +1,14 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 3,
-    "name": "wpmozo/list-item",
+    "name": "wpmozo/price-list-item",
     "version": "0.1.0",
     "title": "List Item",
     "category": "wpmozo",
     "icon": "smiley",
     "description": "Easily create and organized lists with the List block",
     "example": {},
-    "parent": [ "wpmozo/list" ],
+    "parent": [ "wpmozo/price-list" ],
 	"supports": {
 		"html": false,
 		"anchor": false,
@@ -20,37 +20,106 @@
         "ID": { "type": "string" },
 		"className": { "type": "string" },
 
-        "itemmargin": { "type": "object" },
-        "itempadding": { "type": "object" },
-        "itemBackgroundColor": { "type": "text" },
-        "itemBackgroundGradient": { "type": "text" },
+        "itemName": { "type": "string" }, 
+        "itemCurrency": { "type": "string" }, 
+        "itemPrice": { "type": "string" }, 
+        "pricePeriod": { "type": "string" }, 
+        "itemThumbnailOption": { "type": "string", "default": "use_image" }, 
+        "icon": { "type": "string" }, 
+        "itemThumbnail": { "type": "string" },
+        "content": { "type": "string" }, 
 
-        "text": { "type": "rich-text", "source": "rich-text", "selector": "p", "role": "text" },
-        "textNormalColor": { "type": "string", "default": "" },
-        "textHoverColor": { "type": "string", "default": "" },
-        "textNormalFontSize": { "type": "string", "default": "" },
-        "textNormalFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
-        "textNormalLetterSpacing": { "type": "string", "default": "" },
-        "textNormalDecoration": { "type": "string", "default": "" },
-        "textNormalLetterCase": { "type": "string", "default": "" },
-        "textNormalLineHeight": { "type": "string", "default": "" },
-        "textHoverFontSize": { "type": "string", "default": "" },
-        "textHoverFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
-        "textHoverLetterSpacing": { "type": "string", "default": "" },
-        "textHoverDecoration": { "type": "string", "default": "" },
-        "textHoverLetterCase": { "type": "string", "default": "" },
-        "textHoverLineHeight": { "type": "string", "default": "" },
-
-        "markerType": { "type": "string", "default": "icon" },
-        "markerIcon": { "type": "string", "default": "fas fa-check" },
-        "markerImage": { "type": "string", "default": "" },
-
-        "styleIcon": { "type": "boolean", "default": false },
-        "iconShape": { "type": "string", "default": "square" },
+        "itemBackground": { "type": "string" },
+        "itemborder": { "type": "object" },
+        "itemborderRadius": { "type": "string" },
+       
         "iconColor": { "type": "string" },
-        "shapeBackground": { "type": "string" },
-        "enableShapeBorder": { "type": "boolean", "default": false },
-        "shapeBorderColor": { "type": "string" }
+        "iconShapBackground": { "type": "string" },
+
+        "iconFontSize": { "type": "string", "default": "100px" },
+
+        "thumbnailborder": { "type": "object" },
+        "thumbnailborderRadius": { "type": "string" },
+
+        "nameColor": { "type": "string" },
+        "nameFontSize": { "type": "string", "default": "20px" },
+        "nameFontAppearance": {
+            "type": "object",
+            "fontStyle": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "default": {
+                "fontStyle": "",
+                "fontWeight": ""
+            }
+        },
+        "nameLetterSpacing": { "type": "string" },
+        "nameDecoration": { "type": "string" },
+        "nameLetterCase": { "type": "string" },
+        "nameLineHeight": { "type": "string" },
+
+        "priceColor": { "type": "string" },
+        "priceFontSize": { "type": "string", "default": "18px" },
+        "priceFontAppearance": {
+            "type": "object",
+            "fontStyle": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "default": {
+                "fontStyle": "",
+                "fontWeight": ""
+            }
+        },
+        "priceLetterSpacing": { "type": "string" },
+        "priceDecoration": { "type": "string" },
+        "priceLetterCase": { "type": "string" },
+        "priceLineHeight": { "type": "string" },
+
+        "currencyColor": { "type": "string" },
+        "currencyFontSize": { "type": "string", "default": "18px" },
+        "currencyFontAppearance": {
+            "type": "object",
+            "fontStyle": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "default": {
+                "fontStyle": "",
+                "fontWeight": ""
+            }
+        },
+        "currencyLetterSpacing": { "type": "string" },
+        "currencyDecoration": { "type": "string" },
+        "currencyLetterCase": { "type": "string" },
+        "currencyLineHeight": { "type": "string" },
+
+        "descriptionColor": { "type": "string" },
+        "descriptionFontSize": { "type": "string", "default": "14px" },
+        "descriptionFontAppearance": {
+            "type": "object",
+            "fontStyle": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "default": {
+                "fontStyle": "",
+                "fontWeight": ""
+            }
+        },
+        "descriptionLetterSpacing": { "type": "string" },
+        "descriptionDecoration": { "type": "string" },
+        "descriptionLetterCase": { "type": "string" },
+        "descriptionLineHeight": { "type": "string" },
+
+        "periodColor": { "type": "string" },
+        "periodFontSize": { "type": "string",  "default": "16px" },
+        "periodFontAppearance": {
+            "type": "object",
+            "fontStyle": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "default": {
+                "fontStyle": "",
+                "fontWeight": ""
+            }
+        },
+        "periodLetterSpacing": { "type": "string" },
+        "periodDecoration": { "type": "string" },
+        "periodLetterCase": { "type": "string" },
+        "periodLineHeight": { "type": "string" }
 
     },
     "textdomain": "wpmozo-blocks-and-addons",

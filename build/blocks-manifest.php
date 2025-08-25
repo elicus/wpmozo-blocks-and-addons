@@ -3065,11 +3065,11 @@ return array(
 			),
 			'columnSpacing' => array(
 				'type' => 'string',
-				'default' => '1'
+				'default' => '15px'
 			),
 			'numberOfColumns' => array(
 				'type' => 'string',
-				'default' => '15px'
+				'default' => '1'
 			),
 			'dividerColor' => array(
 				'type' => 'string'
@@ -3096,31 +3096,6 @@ return array(
 			'iconFontSize' => array(
 				'type' => 'string',
 				'default' => '100px'
-			),
-			'iconFontAppearance' => array(
-				'type' => 'object',
-				'fontStyle' => array(
-					'type' => 'string'
-				),
-				'fontWeight' => array(
-					'type' => 'string'
-				),
-				'default' => array(
-					'fontStyle' => '',
-					'fontWeight' => ''
-				)
-			),
-			'iconLetterSpacing' => array(
-				'type' => 'string'
-			),
-			'iconDecoration' => array(
-				'type' => 'string'
-			),
-			'iconLetterCase' => array(
-				'type' => 'string'
-			),
-			'iconLineHeight' => array(
-				'type' => 'string'
 			),
 			'thumbnailborder' => array(
 				'type' => 'object'
@@ -3300,7 +3275,7 @@ return array(
 	'price-list-item' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'wpmozo/list-item',
+		'name' => 'wpmozo/price-list-item',
 		'version' => '0.1.0',
 		'title' => 'List Item',
 		'category' => 'wpmozo',
@@ -3310,7 +3285,7 @@ return array(
 			
 		),
 		'parent' => array(
-			'wpmozo/list'
+			'wpmozo/price-list'
 		),
 		'supports' => array(
 			'html' => false,
@@ -3327,129 +3302,214 @@ return array(
 			'className' => array(
 				'type' => 'string'
 			),
-			'itemmargin' => array(
+			'itemName' => array(
+				'type' => 'string'
+			),
+			'itemCurrency' => array(
+				'type' => 'string'
+			),
+			'itemPrice' => array(
+				'type' => 'string'
+			),
+			'pricePeriod' => array(
+				'type' => 'string'
+			),
+			'itemThumbnailOption' => array(
+				'type' => 'string',
+				'default' => 'use_image'
+			),
+			'icon' => array(
+				'type' => 'string'
+			),
+			'itemThumbnail' => array(
+				'type' => 'string'
+			),
+			'content' => array(
+				'type' => 'string'
+			),
+			'itemBackground' => array(
+				'type' => 'string'
+			),
+			'itemborder' => array(
 				'type' => 'object'
 			),
-			'itempadding' => array(
-				'type' => 'object'
-			),
-			'itemBackgroundColor' => array(
-				'type' => 'text'
-			),
-			'itemBackgroundGradient' => array(
-				'type' => 'text'
-			),
-			'text' => array(
-				'type' => 'rich-text',
-				'source' => 'rich-text',
-				'selector' => 'p',
-				'role' => 'text'
-			),
-			'textNormalColor' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'textHoverColor' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'textNormalFontSize' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'textNormalFontAppearance' => array(
-				'type' => 'object',
-				'fontStyle' => array(
-					'type' => 'string'
-				),
-				'fontWeight' => array(
-					'type' => 'string'
-				),
-				'default' => array(
-					'fontStyle' => '',
-					'fontWeight' => ''
-				)
-			),
-			'textNormalLetterSpacing' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'textNormalDecoration' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'textNormalLetterCase' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'textNormalLineHeight' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'textHoverFontSize' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'textHoverFontAppearance' => array(
-				'type' => 'object',
-				'fontStyle' => array(
-					'type' => 'string'
-				),
-				'fontWeight' => array(
-					'type' => 'string'
-				),
-				'default' => array(
-					'fontStyle' => '',
-					'fontWeight' => ''
-				)
-			),
-			'textHoverLetterSpacing' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'textHoverDecoration' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'textHoverLetterCase' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'textHoverLineHeight' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'markerType' => array(
-				'type' => 'string',
-				'default' => 'icon'
-			),
-			'markerIcon' => array(
-				'type' => 'string',
-				'default' => 'fas fa-check'
-			),
-			'markerImage' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'styleIcon' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'iconShape' => array(
-				'type' => 'string',
-				'default' => 'square'
+			'itemborderRadius' => array(
+				'type' => 'string'
 			),
 			'iconColor' => array(
 				'type' => 'string'
 			),
-			'shapeBackground' => array(
+			'iconShapBackground' => array(
 				'type' => 'string'
 			),
-			'enableShapeBorder' => array(
-				'type' => 'boolean',
-				'default' => false
+			'iconFontSize' => array(
+				'type' => 'string',
+				'default' => '100px'
 			),
-			'shapeBorderColor' => array(
+			'thumbnailborder' => array(
+				'type' => 'object'
+			),
+			'thumbnailborderRadius' => array(
+				'type' => 'string'
+			),
+			'nameColor' => array(
+				'type' => 'string'
+			),
+			'nameFontSize' => array(
+				'type' => 'string',
+				'default' => '20px'
+			),
+			'nameFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'nameLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'nameDecoration' => array(
+				'type' => 'string'
+			),
+			'nameLetterCase' => array(
+				'type' => 'string'
+			),
+			'nameLineHeight' => array(
+				'type' => 'string'
+			),
+			'priceColor' => array(
+				'type' => 'string'
+			),
+			'priceFontSize' => array(
+				'type' => 'string',
+				'default' => '18px'
+			),
+			'priceFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'priceLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'priceDecoration' => array(
+				'type' => 'string'
+			),
+			'priceLetterCase' => array(
+				'type' => 'string'
+			),
+			'priceLineHeight' => array(
+				'type' => 'string'
+			),
+			'currencyColor' => array(
+				'type' => 'string'
+			),
+			'currencyFontSize' => array(
+				'type' => 'string',
+				'default' => '18px'
+			),
+			'currencyFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'currencyLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'currencyDecoration' => array(
+				'type' => 'string'
+			),
+			'currencyLetterCase' => array(
+				'type' => 'string'
+			),
+			'currencyLineHeight' => array(
+				'type' => 'string'
+			),
+			'descriptionColor' => array(
+				'type' => 'string'
+			),
+			'descriptionFontSize' => array(
+				'type' => 'string',
+				'default' => '14px'
+			),
+			'descriptionFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'descriptionLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'descriptionDecoration' => array(
+				'type' => 'string'
+			),
+			'descriptionLetterCase' => array(
+				'type' => 'string'
+			),
+			'descriptionLineHeight' => array(
+				'type' => 'string'
+			),
+			'periodColor' => array(
+				'type' => 'string'
+			),
+			'periodFontSize' => array(
+				'type' => 'string',
+				'default' => '16px'
+			),
+			'periodFontAppearance' => array(
+				'type' => 'object',
+				'fontStyle' => array(
+					'type' => 'string'
+				),
+				'fontWeight' => array(
+					'type' => 'string'
+				),
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'periodLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'periodDecoration' => array(
+				'type' => 'string'
+			),
+			'periodLetterCase' => array(
+				'type' => 'string'
+			),
+			'periodLineHeight' => array(
 				'type' => 'string'
 			)
 		),

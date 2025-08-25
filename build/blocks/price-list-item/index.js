@@ -8,7 +8,7 @@
   \***********************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/list-item","version":"0.1.0","title":"List Item","category":"wpmozo","icon":"smiley","description":"Easily create and organized lists with the List block","example":{},"parent":["wpmozo/list"],"supports":{"html":false,"anchor":false,"customClassName":false},"attributes":{"parentAtts":{"type":"object"},"ID":{"type":"string"},"className":{"type":"string"},"itemmargin":{"type":"object"},"itempadding":{"type":"object"},"itemBackgroundColor":{"type":"text"},"itemBackgroundGradient":{"type":"text"},"text":{"type":"rich-text","source":"rich-text","selector":"p","role":"text"},"textNormalColor":{"type":"string","default":""},"textHoverColor":{"type":"string","default":""},"textNormalFontSize":{"type":"string","default":""},"textNormalFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"textNormalLetterSpacing":{"type":"string","default":""},"textNormalDecoration":{"type":"string","default":""},"textNormalLetterCase":{"type":"string","default":""},"textNormalLineHeight":{"type":"string","default":""},"textHoverFontSize":{"type":"string","default":""},"textHoverFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"textHoverLetterSpacing":{"type":"string","default":""},"textHoverDecoration":{"type":"string","default":""},"textHoverLetterCase":{"type":"string","default":""},"textHoverLineHeight":{"type":"string","default":""},"markerType":{"type":"string","default":"icon"},"markerIcon":{"type":"string","default":"fas fa-check"},"markerImage":{"type":"string","default":""},"styleIcon":{"type":"boolean","default":false},"iconShape":{"type":"string","default":"square"},"iconColor":{"type":"string"},"shapeBackground":{"type":"string"},"enableShapeBorder":{"type":"boolean","default":false},"shapeBorderColor":{"type":"string"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/price-list-item","version":"0.1.0","title":"List Item","category":"wpmozo","icon":"smiley","description":"Easily create and organized lists with the List block","example":{},"parent":["wpmozo/price-list"],"supports":{"html":false,"anchor":false,"customClassName":false},"attributes":{"parentAtts":{"type":"object"},"ID":{"type":"string"},"className":{"type":"string"},"itemName":{"type":"string"},"itemCurrency":{"type":"string"},"itemPrice":{"type":"string"},"pricePeriod":{"type":"string"},"itemThumbnailOption":{"type":"string","default":"use_image"},"icon":{"type":"string"},"itemThumbnail":{"type":"string"},"content":{"type":"string"},"itemBackground":{"type":"string"},"itemborder":{"type":"object"},"itemborderRadius":{"type":"string"},"iconColor":{"type":"string"},"iconShapBackground":{"type":"string"},"iconFontSize":{"type":"string","default":"100px"},"thumbnailborder":{"type":"object"},"thumbnailborderRadius":{"type":"string"},"nameColor":{"type":"string"},"nameFontSize":{"type":"string","default":"20px"},"nameFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"nameLetterSpacing":{"type":"string"},"nameDecoration":{"type":"string"},"nameLetterCase":{"type":"string"},"nameLineHeight":{"type":"string"},"priceColor":{"type":"string"},"priceFontSize":{"type":"string","default":"18px"},"priceFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"priceLetterSpacing":{"type":"string"},"priceDecoration":{"type":"string"},"priceLetterCase":{"type":"string"},"priceLineHeight":{"type":"string"},"currencyColor":{"type":"string"},"currencyFontSize":{"type":"string","default":"18px"},"currencyFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"currencyLetterSpacing":{"type":"string"},"currencyDecoration":{"type":"string"},"currencyLetterCase":{"type":"string"},"currencyLineHeight":{"type":"string"},"descriptionColor":{"type":"string"},"descriptionFontSize":{"type":"string","default":"14px"},"descriptionFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"descriptionLetterSpacing":{"type":"string"},"descriptionDecoration":{"type":"string"},"descriptionLetterCase":{"type":"string"},"descriptionLineHeight":{"type":"string"},"periodColor":{"type":"string"},"periodFontSize":{"type":"string","default":"16px"},"periodFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"periodLetterSpacing":{"type":"string"},"periodDecoration":{"type":"string"},"periodLetterCase":{"type":"string"},"periodLineHeight":{"type":"string"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js"}');
 
 /***/ }),
 
@@ -64,6 +64,126 @@ function Edit(props) {
   }, [clientId]);
   attributes.parentAtts = parentAttributes;
   attributes.ID = clientId;
+  function layoutWraper() {
+    let NameLevel = attributes.nameHeadingLavel,
+      $thumbnail = attributes.itemThumbnail,
+      $item_currency = attributes.itemCurrency,
+      $item_price = attributes.itemPrice,
+      $item_thumbnail_option = attributes.itemThumbnailOption,
+      $icon_shape = attributes.iconShape;
+    const $icon = '' === attributes.icon ? '' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "icon-wrapper",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
+        className: `${attributes.icon}`
+      })
+    });
+    let $title = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(NameLevel, {
+      className: "wpmozo-bna-price-list-item-name",
+      children: $item_name
+    });
+    if ('' !== $item_thumbnail && 'use_image' === $item_thumbnail_option) {
+      $thumbnail = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+        src: $item_thumbnail,
+        alt: $item_thumbnail_alt
+      });
+    }
+    if ('' !== $icon && 'use_icon' === $item_thumbnail_option) {
+      $thumbnail = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        className: "wpmozo-bna-price-list-icon" + $icon_shape,
+        children: $icon
+      });
+    }
+    if ('' !== $item_price) {
+      $price = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        className: "wpmozo-bna-price-list-item-price",
+        children: $item_price
+      });
+    }
+    if ('' !== $item_currency) {
+      $currency = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        className: "wpmozo-bna-price-list-item-currency",
+        children: $item_currency
+      });
+    }
+    if ('' !== attributes.content) {
+      $description = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        className: "wpmozo-bna-price-list-item-description",
+        children: attributes.content
+      });
+    }
+  }
+  function layout1() {
+    let $no_thumbnail = false,
+      $item_price_wrap = [],
+      $inner_wrap = [],
+      $item_name_wrap = [];
+    if ('' === $thumbnail) {
+      $no_thumbnail = true;
+    }
+    if ('' !== $thumbnail && 'use_image' === $item_thumbnail_option) {
+      $inner_wrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        className: "wpmozo-bna-price-list-item-thumbnail",
+        children: $thumbnail
+      }, $address + "_layout1_thumb"));
+    }
+    if ('' !== $thumbnail && 'use_icon' === $item_thumbnail_option) {
+      if ('wpmozo-bna-icon-shape-hexagon' === $icon_shape) {
+        $thumbnail = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+          className: "wpmozo-bna-icon-hexagon-wrapper",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            className: "wpmozo-bna-icon-hexagon-inner-wrap",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "wpmozo-bna-icon-hexagon",
+              children: $thumbnail
+            })
+          })
+        });
+      }
+      $inner_wrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        className: "wpmozo-bna-price-list-item-icon",
+        children: $thumbnail
+      }, $address + "_layout1_thumb"));
+    }
+    if ('' !== $price) {
+      $item_price_wrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        className: "wpmozo-bna-price-list-item-price-divider"
+      }, $address + "_layout1_price_divider"));
+      $item_price_wrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "wpmozo-bna-price-list-item-price-wrap",
+        children: [$currency, $price]
+      }, $address + "_layout1_price_wrapper"));
+      if ($price_period && '' !== $price_period) {
+        $item_price_wrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          className: "wpmozo-bna-price-list-item-price-period",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+            class: "wpmozo-bna-price-period-divider",
+            children: "/"
+          }), $price_period]
+        }, $address + "_layout1_price_period"));
+      }
+    }
+    $item_name_wrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      className: "wpmozo-bna-price-list-item-name-wrap",
+      children: [$title, $item_price_wrap]
+    }, $address + "_layout1_name_wrap"));
+    $inner_wrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      className: "wpmozo-bna-price-list-item-details",
+      children: [$item_name_wrap, $description]
+    }, $address + "_layout1_desc"));
+    let $wrapper_classes = {
+      'wpmozo-bna-price-list-layout': true,
+      'wpmozo-bna-price-list-layout1': true,
+      'no_thumbnail': $no_thumbnail
+    };
+    let layout = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: $wrapper_classes,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        className: "wpmozo-bna-price-list-item-wrap",
+        children: $inner_wrap
+      })
+    }, $address + "_layout1_item");
+    return layout;
+  }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_inspector__WEBPACK_IMPORTED_MODULE_2__["default"], {
       attributes: attributes,
@@ -169,14 +289,12 @@ const Icon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './deprecated/version-1'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/blocks/price-list-item/block.json");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./src/blocks/price-list-item/edit.js");
-/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./save */ "./src/blocks/price-list-item/save.js");
-/* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./icon */ "./src/blocks/price-list-item/icon.js");
-
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block.json */ "./src/blocks/price-list-item/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/price-list-item/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/blocks/price-list-item/save.js");
+/* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./icon */ "./src/blocks/price-list-item/icon.js");
 
 
 
@@ -190,11 +308,10 @@ Object(function webpackMissingModule() { var e = new Error("Cannot find module '
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name, {
-  edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
-  icon: _icon__WEBPACK_IMPORTED_MODULE_5__["default"],
-  save: _save__WEBPACK_IMPORTED_MODULE_4__["default"],
-  deprecated: [Object(function webpackMissingModule() { var e = new Error("Cannot find module './deprecated/version-1'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())]
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_1__.name, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  icon: _icon__WEBPACK_IMPORTED_MODULE_4__["default"],
+  save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 
 /***/ }),
@@ -377,197 +494,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _common_components_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../common/components/index */ "./src/common/components/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
-
-
-
-
-
-
-const DesignPanel = ({
-  attributes,
-  setAttributes
-}) => {
-  const props = {
-    attributes,
-    setAttributes,
-    preAttributes: {}
-  };
-  const [contentType, setContentType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('front');
-  const [textType, setTextType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('normal');
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Item Text', 'wpmozo-blocks-and-addons'),
-      className: "wpmozo-text-styling-panel wpmozo-typography-panel",
-      initialOpen: true,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
-        className: "wpmozo-button-tabs-wrap",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ButtonGroup, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-            className: "wpmozo-button-tabs-btn",
-            isPressed: 'normal' === textType ? true : false,
-            onClick: () => setTextType('normal'),
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Normal', 'wpmozo-blocks-and-addons')
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-            className: "wpmozo-button-tabs-btn",
-            isPressed: 'hover' === textType ? true : false,
-            onClick: () => setTextType('hover'),
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Hover', 'wpmozo-blocks-and-addons')
-          })]
-        }), 'normal' === textType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
-            ColorKey: "textNormal",
-            props: props,
-            ColorTypes: [{
-              key: 'Color',
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Text Color', 'wpmozo-blocks-and-addons')
-            }]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoTypography, {
-            TypographyKey: "textNormal",
-            props: props
-          })]
-        }), 'hover' === textType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
-            ColorKey: "textHover",
-            props: props,
-            ColorTypes: [{
-              key: 'Color',
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Text Color', 'wpmozo-blocks-and-addons')
-            }]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoTypography, {
-            TypographyKey: "textHover",
-            props: props
-          })]
-        })]
-      })
-    }), 'icon' === attributes.markerType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Icon', 'wpmozo-blocks-and-addons'),
-      initialOpen: false,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Style Icon', 'wpmozo-blocks-and-addons'),
-        checked: attributes.styleIcon,
-        onChange: newValue => setAttributes({
-          styleIcon: newValue
-        })
-      }), true === attributes.styleIcon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Shape', 'wpmozo-blocks-and-addons'),
-        value: attributes.iconShape,
-        options: [{
-          value: 'square',
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Square', 'wpmozo-blocks-and-addons')
-        }, {
-          value: 'circle',
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Circle', 'wpmozo-blocks-and-addons')
-        }, {
-          value: 'hexagon',
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Hexagon', 'wpmozo-blocks-and-addons')
-        }],
-        onChange: newValue => setAttributes({
-          iconShape: newValue
-        })
-      }), true === attributes.styleIcon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
-        ColorKey: "shape",
-        props: props,
-        ColorTypes: [{
-          key: 'Background',
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Shape Background', 'wpmozo-blocks-and-addons')
-        }]
-      }), true === attributes.styleIcon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
-        ColorKey: "icon",
-        props: props,
-        ColorTypes: [{
-          key: 'Color',
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Icon Color', 'wpmozo-blocks-and-addons')
-        }]
-      }), true === attributes.styleIcon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Display Shape Border', 'wpmozo-blocks-and-addons'),
-        checked: attributes.enableShapeBorder,
-        onChange: newValue => setAttributes({
-          enableShapeBorder: newValue
-        })
-      }), true === attributes.styleIcon && true === attributes.enableShapeBorder && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
-        ColorKey: "shapeBorder",
-        props: props,
-        ColorTypes: [{
-          key: 'Color',
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Shape Border Color', 'wpmozo-blocks-and-addons')
-        }]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Spacing', 'wpmozo-blocks-and-addons'),
-      initialOpen: false,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoDimensions, {
-        DimensionKey: "item",
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Item Spacing', 'wpmozo-blocks-and-addons'),
-        DimensionsTypes: {
-          margin: true,
-          padding: true
-        },
-        props: props
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Background', 'wpmozo-blocks-and-addons'),
-      initialOpen: false,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.__experimentalColorGradientControl, {
-        colorValue: attributes.itemBackgroundColor,
-        gradientValue: attributes.itemBackgroundGradient,
-        colors: [{
-          name: 'red',
-          color: '#f00'
-        }, {
-          name: 'white',
-          color: '#fff'
-        }, {
-          name: 'blue',
-          color: '#00f'
-        }],
-        gradients: [{
-          name: 'Vivid cyan blue to vivid purple',
-          gradient: 'linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)',
-          slug: 'vivid-cyan-blue-to-vivid-purple'
-        }, {
-          name: 'Light green cyan to vivid green cyan',
-          gradient: 'linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%)',
-          slug: 'light-green-cyan-to-vivid-green-cyan'
-        }, {
-          name: 'Luminous vivid amber to luminous vivid orange',
-          gradient: 'linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%)',
-          slug: 'luminous-vivid-amber-to-luminous-vivid-orange'
-        }],
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Item Background"),
-        onColorChange: newValue => setAttributes({
-          itemBackgroundColor: newValue
-        }),
-        onGradientChange: newValue => setAttributes({
-          itemBackgroundGradient: newValue
-        })
-      })
-    })]
-  });
-};
-
-/***/ }),
-
-/***/ "./src/blocks/price-list-item/settings/generalPanel.js":
-/*!*************************************************************!*\
-  !*** ./src/blocks/price-list-item/settings/generalPanel.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   DesignPanel: () => (/* binding */ DesignPanel)
-/* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _common_components_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../common/components/index */ "./src/common/components/index.js");
 /* harmony import */ var _common_utils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../common/utils.js */ "./src/common/utils.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
@@ -589,7 +515,7 @@ const DesignPanel = ({
   };
   const [deviceType, setDeviceType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('tablet'),
     [textType, setTextType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('text'),
-    iconShape = [{
+    iconShapes = [{
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Square', 'wpmozo-blocks-and-addons'),
       value: 'square'
     }, {
@@ -600,7 +526,24 @@ const DesignPanel = ({
       value: 'hexagon'
     }];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Item', 'wpmozo-blocks-and-addons'),
+      initialOpen: false,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
+        props: props,
+        ColorTypes: [{
+          key: 'itemBackground',
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Item Background', 'wpmozo-blocks-and-addons')
+        }]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoBorder, {
+        props: props,
+        BorderKey: "item",
+        BorderTypes: {
+          border: true,
+          radius: true
+        }
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Alignment', 'wpmozo-blocks-and-addons'),
       initialOpen: false,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoAlignment, {
@@ -610,56 +553,60 @@ const DesignPanel = ({
         }),
         value: attributes.textAlignment
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Icon', 'wpmozo-blocks-and-addons'),
-      className: "wpmozo-typography-panel",
-      initialOpen: false,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
-        props: props,
-        ColorKey: "icon",
-        ColorTypes: [{
-          key: 'Color',
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Icon Color', 'wpmozo-blocks-and-addons')
-        }, {
-          key: 'ShapBackground',
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Shape Background', 'wpmozo-blocks-and-addons')
-        }]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoTypography, {
-        TypographyKey: "icon",
-        props: props,
-        TypoTypes: {
-          'FontSize': true
-        }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Style Icon', 'wpmozo-blocks-and-addons'),
-        checked: attributes.styleIcon,
-        onChange: newValue => setAttributes({
-          styleIcon: newValue
-        }),
-        __nextHasNoMarginBottom: true
-      }), attributes.styleIcon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Shape', 'wpmozo-blocks-and-addons'),
-          value: attributes.currencySymbolPosition,
-          options: iconShape,
+    }), 'use_icon' === attributes.itemThumbnailOption && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Icon', 'wpmozo-blocks-and-addons'),
+        className: "wpmozo-typography-panel",
+        initialOpen: false,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
+          props: props,
+          ColorKey: "icon",
+          ColorTypes: [{
+            key: 'Color',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Icon Color', 'wpmozo-blocks-and-addons')
+          }, ...(attributes.styleIcon ? [{
+            key: 'ShapBackground',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Shape Background', 'wpmozo-blocks-and-addons')
+          }] : [])]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoTypography, {
+          TypographyKey: "icon",
+          props: props,
+          TypoTypes: {
+            'FontSize': true
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Style Icon', 'wpmozo-blocks-and-addons'),
+          checked: attributes.styleIcon,
           onChange: newValue => setAttributes({
-            currencySymbolPosition: newValue
+            styleIcon: newValue
           }),
-          __next40pxDefaultSize: true,
           __nextHasNoMarginBottom: true
+        }), attributes.styleIcon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Shape', 'wpmozo-blocks-and-addons'),
+            value: attributes.iconShape,
+            options: iconShapes,
+            onChange: newValue => setAttributes({
+              iconShape: newValue
+            }),
+            __next40pxDefaultSize: true,
+            __nextHasNoMarginBottom: true
+          })
+        })]
+      })
+    }), 'use_image' === attributes.itemThumbnailOption && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Thumbnail', 'wpmozo-blocks-and-addons'),
+        className: "wpmozo-typography-panel",
+        initialOpen: false,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoBorder, {
+          props: props,
+          BorderKey: "thumbnail",
+          BorderTypes: {
+            border: true,
+            radius: true
+          }
         })
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Thumbnail', 'wpmozo-blocks-and-addons'),
-      className: "wpmozo-typography-panel",
-      initialOpen: false,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoBorder, {
-        props: props,
-        BorderKey: "thumbnail",
-        BorderTypes: {
-          border: true,
-          radius: true
-        }
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Name', 'wpmozo-blocks-and-addons'),
@@ -706,22 +653,7 @@ const DesignPanel = ({
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Currency', 'wpmozo-blocks-and-addons'),
       className: "wpmozo-typography-panel",
       initialOpen: false,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Currency Symbol Position', 'wpmozo-blocks-and-addons'),
-        value: attributes.currencySymbolPosition,
-        options: [{
-          value: 'left',
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Left', 'wpmozo-blocks-and-addons')
-        }, {
-          value: 'right',
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Right', 'wpmozo-blocks-and-addons')
-        }],
-        onChange: newValue => setAttributes({
-          currencySymbolPosition: newValue
-        }),
-        __next40pxDefaultSize: true,
-        __nextHasNoMarginBottom: true
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
         props: props,
         ColorKey: "currency",
         ColorTypes: [{
@@ -763,6 +695,119 @@ const DesignPanel = ({
         props: props
       })]
     })]
+  });
+};
+
+/***/ }),
+
+/***/ "./src/blocks/price-list-item/settings/generalPanel.js":
+/*!*************************************************************!*\
+  !*** ./src/blocks/price-list-item/settings/generalPanel.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   GeneralPanel: () => (/* binding */ GeneralPanel)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _common_components_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../common/components/index */ "./src/common/components/index.js");
+/* harmony import */ var _common_utils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../common/utils.js */ "./src/common/utils.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+
+
+
+
+
+
+
+const GeneralPanel = ({
+  attributes,
+  setAttributes
+}) => {
+  const props = {
+    attributes,
+    setAttributes,
+    preAttributes: {}
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Content', 'wpmozo-blocks-and-addons'),
+      initialOpen: false,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Item Name', 'wpmozo-blocks-and-addons'),
+        value: attributes.itemName,
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Item Name', 'wpmozo-blocks-and-addons'),
+        onChange: newValue => setAttributes({
+          itemName: newValue
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Currency', 'wpmozo-blocks-and-addons'),
+        value: attributes.itemCurrency,
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('$', 'wpmozo-blocks-and-addons'),
+        onChange: newValue => setAttributes({
+          itemCurrency: newValue
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Item Price', 'wpmozo-blocks-and-addons'),
+        value: attributes.itemPrice,
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('10', 'wpmozo-blocks-and-addons'),
+        onChange: newValue => setAttributes({
+          itemPrice: newValue
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Item Price Period', 'wpmozo-blocks-and-addons'),
+        value: attributes.pricePeriod,
+        onChange: newValue => setAttributes({
+          pricePeriod: newValue
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Image/Icon as thumbnail', 'wpmozo-blocks-and-addons'),
+        value: attributes.itemThumbnailOption,
+        options: [{
+          value: 'use_image',
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Use Image', 'wpmozo-blocks-and-addons')
+        }, {
+          value: 'use_icon',
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Use Icon', 'wpmozo-blocks-and-addons')
+        }],
+        onChange: newValue => setAttributes({
+          itemThumbnailOption: newValue
+        }),
+        __next40pxDefaultSize: true,
+        __nextHasNoMarginBottom: true
+      }), 'use_icon' === attributes.itemThumbnailOption && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoIconpicker, {
+          props: props,
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Icon', 'wpmozo-blocks-and-addons'),
+          iconPickerKey: "icon",
+          value: attributes.icon,
+          onChange: newValue => setAttributes({
+            icon: newValue
+          })
+        })
+      }), 'use_image' === attributes.itemThumbnailOption && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoMediaUploader, {
+          props: props,
+          attrKye: "itemThumbnail",
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Item Thumbnail', 'wpmozo-blocks-and-addons')
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextareaControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Item description', 'wpmozo-blocks-and-addons'),
+        onChange: newValue => setAttributes({
+          content: newValue
+        }),
+        value: attributes.content
+      })]
+    })
   });
 };
 
