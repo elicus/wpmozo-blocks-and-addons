@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { Fragment, useEffect } from "@wordpress/element";
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 import Inspector from './inspector';
 
 /**
@@ -22,6 +22,73 @@ const Edit = (props) => {
 		}
 	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
+	const layout       = attributes.layout ?? 'layout1';
+	const displayLabel = attributes.displayLabel ?? 'full';
+	const hideDays     = attributes.hideDays ?? false;
+
+	// Render image.
+	let $image = '';
+	if ( attributes.showImage && '' !== attributes.image ) {
+		$image = <div className='wpmozo-image-wrap'>
+			<img src={ attributes.image } alt={ attributes.imageAlt } className="wpmozo-promotion-bar-image" />
+		</div>;
+	}
+
+	// Render title and description.
+	let $title = '';
+	if ( attributes.title && '' !== attributes.title ) {
+		$title = <RichText
+			className="wpmozo-pb-title"
+			tagName={ attributes.titleLevel }
+			value={ attributes.title }
+			onChange={ ( newValue ) => setAttributes( { title: newValue } ) }
+			placeholder={ __( 'Your title goes here', 'wpmozo-blocks-and-addons' ) }
+		/>;
+	}
+	let $description = '';
+	if ( attributes.description && '' !== attributes.description ) {
+		$description = <RichText
+			className="wpmozo-pb-desc"
+			tagName='div'
+			value={ attributes.description }
+			onChange={ ( newValue ) => setAttributes( { description: newValue } ) }
+		/>;
+	}
+
+	let $button = '';
+	if ( attributes.showButton && attributes.buttonUrl ) {
+		let $buttonIcon = '';
+		if ( attributes.buttonUseIcon && attributes.buttonIcon ) {
+			$buttonIcon = <i className={ 'wpmozo-icon ' + attributes.buttonIcon }></i>;
+		}
+		$button = <div className="wpmozo-button-wrap">
+			<a href={ attributes.buttonUrl }
+				target={ ( 'external' === attributes.buttonLinkTarget ) ? '_blank' : false }
+				className={ [
+					'wpmozo-button',
+					'wpmozo_promotion_bar_button',
+					( attributes.buttonUseIcon && attributes.buttonIconOnHover ) ? 'wpmozo-icon-on-hover' : '',
+					( attributes.buttonUseIcon && 'before' === attributes.buttonIconPosition ) ? 'wpmozo-icon-at-before' : 'wpmozo-icon-at-after'
+				].join(" ") }
+			>
+				<span className='wpmozo-btn-text'>{ attributes.buttonText && __( 'Get the deal', 'wpmozo-blocks-and-addons' ) }</span>
+				{ $buttonIcon }
+			</a>
+		</div>;
+	}
+
+	let $separator = '';
+	if ( attributes.showSeparator ) {
+		$separator = <span class="wpmozo-pb-separator">{attributes.separatorText ?? ':'}</span>;
+	}
+
+	// List of labels.
+	const labels = {
+		days    : { full: 'Days', short: 'Days', single: 'D' },
+		hours   : { full: 'Hours', short: 'Hrs', single: 'H' },
+		minutes : { full: 'Minutes', short: 'Min', single: 'M' },
+		seconds : { full: 'Seconds', short: 'Sec', single: 'S' }
+	};
 
 	return (
 		<Fragment>
@@ -29,7 +96,51 @@ const Edit = (props) => {
 			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
 			<div {...useBlockProps()} id={`block-${attributes.ID}`}>
-				<p>{ __('Hello from promotion-bar!', 'wpmozo-blocks-and-addons') }</p>
+				<div className={"wpmozo-promotion-bar-wrap " + layout}
+					data-timestamp={ attributes.dateTimeTimestamp }
+				>
+					<div className="wpmozo-promotion-bar-inner">
+						<div className="wpmozo-promotion-bar-content">
+							{ $image }
+							<div className="wpmozo-promotion-bar-content-inner">
+								{ $title }{ $description }
+							</div>
+							{ ( 'layout2' === layout ) ? $button : '' }
+						</div>
+						<div className="wpmozo-promotion-bar-timer">
+							{ ( false === hideDays ) ? 
+								<div className="wpmozo-pb-timer-box wpmozo-pb-days">
+									<span className="wpmozo-pb-number">00</span>
+									{ ( 'none' !== displayLabel ) ? 
+										<span className="wpmozo-pb-label">{ labels.days[ displayLabel ] }</span>
+									: '' }
+								</div>
+							: '' }
+							{ ( false === hideDays ) ? $separator : '' }
+							<div className="wpmozo-pb-timer-box wpmozo-pb-hours">
+								<span className="wpmozo-pb-number">00</span>
+								{ ( 'none' !== displayLabel ) ? 
+									<span className="wpmozo-pb-label">{ labels.hours[ displayLabel ] }</span>
+								: '' }
+							</div>
+							{ $separator }
+							<div className="wpmozo-pb-timer-box wpmozo-pb-minutes">
+								<span className="wpmozo-pb-number">00</span>
+								{ ( 'none' !== displayLabel ) ? 
+									<span className="wpmozo-pb-label">{ labels.minutes[ displayLabel ] }</span>
+								: '' }
+							</div>
+							{ $separator }
+							<div className="wpmozo-pb-timer-box wpmozo-pb-seconds">
+								<span className="wpmozo-pb-number">00</span>
+								{ ( 'none' !== displayLabel ) ? 
+									<span className="wpmozo-pb-label">{ labels.seconds[ displayLabel ] }</span>
+								: '' }
+							</div>
+						</div>
+						{ ( 'layout2' !== layout ) ? $button : '' }
+					</div>
+				</div>
 			</div>
 		</Fragment>
 	);

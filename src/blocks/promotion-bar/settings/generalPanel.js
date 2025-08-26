@@ -35,9 +35,15 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					// Remove the timezone offset received from WP Settings.
 					UTCdate.setMilliseconds( UTCdate.getMilliseconds() - timezone.offset * 60 * 60 * 1000 );
 
+					// Convert to Unix timestamp (seconds, not ms)
+					const timestamp = Math.floor( UTCdate.getTime() / 1000 );
+					console.log('timestamp:: ', timestamp);
+					
+
 					setAttributes( {
-						dateTimeUTC: UTCdate,
-						dateTime: value,
+						dateTimeUTC: UTCdate, // full Date object
+						dateTime: value, // original value string
+						dateTimeTimestamp: timestamp, // Unix timestamp
 					} );
 				} }
 				is12Hour={ true }

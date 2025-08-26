@@ -12,10 +12,13 @@ import {
 	ButtonGroup,
 	RangeControl,
 	ToggleControl,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from '@wordpress/components';
 import {
 	WpmozoBorder,
 	WpmozoAlignment,
+	WpmozoIconpicker,
 	WpmozoTypography,
 	WpmozoDimensions,
 	WpmozoColorPicker,
@@ -30,7 +33,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 	const [ descType, setDescType ]           = useState( 'normal' );
 	const [ digitsType, setDigitsType ]       = useState( 'general' );
 	const [ labelsType, setLabelsType ]       = useState( 'general' );
-	const [ separatorType, setSeparatorType ] = useState( 'normal' );
+	const [ buttonType, setButtonType ]       = useState( 'normal' );
 	
 	return ( <>
 		{/* Content Box. */}
@@ -40,7 +43,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				onChange={ ( newValue ) => setAttributes( { contentBoxAlign: newValue } ) }
 				value={ attributes.contentBoxAlign }
 			/>
-			{ ( [ 'layout2', 'layout2' ].includes( attributes.layout ) ) && ( <>
+			{ ( [ 'layout2', 'layout3' ].includes( attributes.layout ) ) && ( <>
 				<RangeControl
 					label={ __( 'Content Box Width (in %)', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.contentBoxWidth }
@@ -50,6 +53,44 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				/>
 			</> ) }
 		</PanelBody>
+		{/* Image. */}
+		{ ( attributes.showImage ) && ( <>
+			<PanelBody title={ __( 'Image', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<WpmozoDimensions props={ props }
+					label={ __( 'Image Dimensions', 'wpmozo-blocks-and-addons' ) }
+					DimensionKey='image'
+					DimensionsTypes={ { padding: true } }
+				/>
+				<hr />
+				<ToggleControl
+					label={ __( 'Enable Image Min/Max Width', 'wpmozo-blocks-and-addons' ) }
+					checked={ attributes.imageEnableCustomSize || false }
+					onChange={ ( newValue ) => setAttributes( { imageEnableCustomSize: newValue } ) }
+					__nextHasNoMarginBottom={ true }
+				/>
+				{ ( attributes.imageEnableCustomSize ) && ( <>
+					<RangeControl
+						label={ __( 'Image Minimum Width', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.imageMinWidth }
+						onChange={ ( newValue ) => setAttributes( { imageMinWidth: newValue } ) }
+						min={ 1 } max={ 1000 } step={ 1 } allowReset={ true }
+						__next40pxDefaultSize={ true } __nextHasNoMarginBottom={ true }
+					/>
+					<RangeControl
+						label={ __( 'Image Maximum Width', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.imageMaxWidth }
+						onChange={ ( newValue ) => setAttributes( { imageMaxWidth: newValue } ) }
+						min={ 1 } max={ 1000 } step={ 1 } allowReset={ true }
+						__next40pxDefaultSize={ true } __nextHasNoMarginBottom={ true }
+					/>
+				</> ) }
+				<WpmozoBorder props={ props }
+					label={ __( 'Image Border', 'wpmozo-blocks-and-addons' ) }
+					BorderKey="image"
+					BorderTypes={ { border: true, radius: true } }
+				/>
+			</PanelBody>
+		</> ) }
 		{/* Title Text. */}
 		<PanelBody title={ __( 'Title Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			<BaseControl label={ __( 'Heading Level', 'wpmozo-blocks-and-addons' ) }
@@ -185,11 +226,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						isPressed={ ( 'text' === digitsType ) ? true : false }
 						onClick={ () => setDigitsType( 'text' ) }
 					>{ __( 'Text', 'wpmozo-blocks-and-addons' ) }</Button>
-					<Button 
-						className="wpmozo-button-tabs-btn"
-						isPressed={ ( 'hover_text' === digitsType ) ? true : false }
-						onClick={ () => setDigitsType( 'hover_text' ) }
-					>{ __( 'Hover Text', 'wpmozo-blocks-and-addons' ) }</Button>
 				</ButtonGroup>
 				{ 'general' === digitsType && <>
 					<WpmozoColorPicker
@@ -210,6 +246,13 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						BorderKey="digits"
 						BorderTypes={ { border: true, radius: true } }
 					/>
+					<RangeControl
+						label={ __( 'Digit Box Width', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.digitsBoxWidth }
+						onChange={ ( newValue ) => setAttributes( { digitsBoxWidth: newValue } ) }
+						min={ 90 } max={ 350 } step={ 1 } allowReset={ true }
+						__next40pxDefaultSize={ true } __nextHasNoMarginBottom={ true }
+					/>
 				</> }
 				{ 'text' === digitsType && <>
 					<WpmozoColorPicker
@@ -221,18 +264,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					/>
 					<WpmozoTypography props={ props }
 						TypographyKey="digits"
-					/>
-				</> }
-				{ 'hover_text' === digitsType && <>
-					<WpmozoColorPicker
-						ColorKey="digitsHover"
-						props={ props }
-						ColorTypes={ [
-							{ key: 'Color', label: __( 'Digit Hover Color', 'wpmozo-blocks-and-addons' ) }
-						] }
-					/>
-					<WpmozoTypography props={ props }
-						TypographyKey="digitsHover"
 					/>
 				</> }
 			</BaseControl>
@@ -251,11 +282,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						isPressed={ ( 'text' === labelsType ) ? true : false }
 						onClick={ () => setLabelsType( 'text' ) }
 					>{ __( 'Text', 'wpmozo-blocks-and-addons' ) }</Button>
-					<Button 
-						className="wpmozo-button-tabs-btn"
-						isPressed={ ( 'hover_text' === labelsType ) ? true : false }
-						onClick={ () => setLabelsType( 'hover_text' ) }
-					>{ __( 'Hover Text', 'wpmozo-blocks-and-addons' ) }</Button>
 				</ButtonGroup>
 				{ 'general' === labelsType && <>
 					<WpmozoColorPicker
@@ -271,11 +297,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						DimensionKey='labels'
 						DimensionsTypes={ { padding: true, margin: true } }
 					/>
-					<WpmozoBorder props={ props }
-						label={ __( 'Label Border', 'wpmozo-blocks-and-addons' ) }
-						BorderKey="labels"
-						BorderTypes={ { border: true, radius: true } }
-					/>
 				</> }
 				{ 'text' === labelsType && <>
 					<WpmozoColorPicker
@@ -287,18 +308,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					/>
 					<WpmozoTypography props={ props }
 						TypographyKey="labels"
-					/>
-				</> }
-				{ 'hover_text' === labelsType && <>
-					<WpmozoColorPicker
-						ColorKey="labelsHover"
-						props={ props }
-						ColorTypes={ [
-							{ key: 'Color', label: __( 'Label Hover Color', 'wpmozo-blocks-and-addons' ) }
-						] }
-					/>
-					<WpmozoTypography props={ props }
-						TypographyKey="labelsHover"
 					/>
 				</> }
 			</BaseControl>
@@ -318,48 +327,116 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					value={ attributes.separatorText || '' }
 				/>
 				<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>    
-					<ButtonGroup>
-						<Button
-							className="wpmozo-button-tabs-btn"
-							isPressed={ ( 'normal' === separatorType ) ? true : false }
-							onClick={ () => setSeparatorType( 'normal' ) }
-						>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
-						<Button 
-							className="wpmozo-button-tabs-btn"
-							isPressed={ ( 'hover' === separatorType ) ? true : false }
-							onClick={ () => setSeparatorType( 'hover' ) }
-						>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
-					</ButtonGroup>
-					{ 'normal' === separatorType && <>
-						<WpmozoColorPicker
-							ColorKey="separator"
-							props={ props }
-							ColorTypes={ [
-								{ key: 'Color', label: __( 'Separator Color', 'wpmozo-blocks-and-addons' ) }
-							] }
-						/>
-						<WpmozoTypography props={ props }
-							TypographyKey="separator"
-						/>
-					</> }
-					{ 'hover' === separatorType && <>
-						<WpmozoColorPicker
-							ColorKey="separatorHover"
-							props={ props }
-							ColorTypes={ [
-								{ key: 'Color', label: __( 'Separator Hover Color', 'wpmozo-blocks-and-addons' ) }
-							] }
-						/>
-						<WpmozoTypography props={ props }
-							TypographyKey="separatorHover"
-						/>
-					</> }
+					<WpmozoColorPicker
+						ColorKey="separator"
+						props={ props }
+						ColorTypes={ [
+							{ key: 'Color', label: __( 'Separator Color', 'wpmozo-blocks-and-addons' ) }
+						] }
+					/>
+					<WpmozoTypography props={ props }
+						TypographyKey="separator"
+					/>
 				</BaseControl>
 			</> ) }
 		</PanelBody>
 		{ ( attributes.showButton ) && ( <>
-			<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-
+			<PanelBody title={ __( 'Sale Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>   
+					<ButtonGroup>
+						<Button
+							className="wpmozo-button-tabs-btn"
+							isPressed={ ( 'normal' === buttonType ) ? true : false }
+							onClick={ () => setButtonType( 'normal' ) }
+						>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
+						<Button 
+							className="wpmozo-button-tabs-btn"
+							isPressed={ ( 'hover' === buttonType ) ? true : false }
+							onClick={ () => setButtonType( 'hover' ) }
+						>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
+					</ButtonGroup>
+					{ 'normal' === buttonType && <>
+						<ColorGradientControl colors={[]} gradients={[]}
+							label={ __( 'Button Background', 'wpmozo-blocks-and-addons' ) }
+							colorValue={ attributes.buttonBackground }
+							gradientValue={ attributes.buttonBGGradient }
+							onColorChange={ (newValue) => setAttributes( { buttonBackground: newValue } ) }
+							onGradientChange={ (newValue) => setAttributes( { buttonBGGradient: newValue } ) }
+						/>
+						<hr />
+						<ToggleControl
+							label={ __( 'Show Button Icon', 'wpmozo-blocks-and-addons' ) }
+							checked={ attributes.buttonUseIcon || false }
+							onChange={ ( newValue ) => setAttributes( { buttonUseIcon: newValue } ) }
+							__nextHasNoMarginBottom={ true }
+						/>
+						{ ( attributes.buttonUseIcon ) && <>
+							<WpmozoIconpicker props={ props }
+								label={ __( 'Icon', 'wpmozo-blocks-and-addons' ) }
+								iconPickerKey='buttonIcon'
+								value={ attributes.buttonIcon }
+								onChange={ ( newValue ) => setAttributes( { buttonIcon: newValue } ) }
+							/>
+							<ToggleGroupControl
+								label={ __( 'Icon Position', 'wpmozo-blocks-and-addons' ) }
+								value={ attributes.buttonIconPosition }
+								onChange={ ( newValue ) => setAttributes( { buttonIconPosition: newValue } ) }
+							>
+								<ToggleGroupControlOption value="before" label="Before" />
+								<ToggleGroupControlOption value="after" label="After" />
+							</ToggleGroupControl>
+							<ToggleControl
+								label={ __( 'Show Icon On Hover', 'wpmozo-blocks-and-addons' ) }
+								checked={ attributes.buttonIconOnHover }
+								onChange={ ( newValue ) => setAttributes( { buttonIconOnHover: newValue } ) }
+							/>
+						</> }
+						<WpmozoColorPicker props={ props }
+							label={ __( 'Button Text Color', 'wpmozo-blocks-and-addons' ) }
+							ColorKey="button"
+							ColorTypes={ [
+								{ key: 'Color', label: __( 'Button Text Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+						<WpmozoTypography props={ props }
+							TypographyKey="button"
+						/>
+						<WpmozoDimensions props={ props }
+							label={ __( 'Button Dimensions', 'wpmozo-blocks-and-addons' ) }
+							DimensionKey='button'
+							DimensionsTypes={ { padding: true, margin: true } }
+						/>
+						<WpmozoBorder props={ props }
+							label={ __( 'Button Border', 'wpmozo-blocks-and-addons' ) }
+							BorderKey="button"
+							BorderTypes={ { border: true, radius: true } }
+						/>
+					</> }
+					{ 'hover' === buttonType && <>
+						<ColorGradientControl colors={[]} gradients={[]}
+							label={ __( 'Button Hover Background', 'wpmozo-blocks-and-addons' ) }
+							colorValue={ attributes.buttonHoverBackground }
+							gradientValue={ attributes.buttonHoverBGGradient }
+							onColorChange={ (newValue) => setAttributes( { buttonHoverBackground: newValue } ) }
+							onGradientChange={ (newValue) => setAttributes( { buttonHoverBGGradient: newValue } ) }
+						/>
+						<WpmozoColorPicker props={ props }
+							label={ __( 'Button Hover Text Color', 'wpmozo-blocks-and-addons' ) }
+							ColorKey="buttonHover"
+							ColorTypes={ [
+								{ key: 'Color', label: __( 'Button Hover Text Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+						<WpmozoTypography props={ props }
+							TypographyKey="buttonHover"
+						/>
+						<WpmozoBorder props={ props }
+							label={ __( 'Button Hover Border', 'wpmozo-blocks-and-addons' ) }
+							BorderKey="buttonHover"
+							BorderTypes={ { border: true, radius: true } }
+						/>
+					</> }
+				</BaseControl>
 			</PanelBody>
 		</> ) }
 	</> );

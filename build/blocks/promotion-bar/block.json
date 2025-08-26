@@ -25,6 +25,9 @@
     "dateTimeUTC": {
       "type": "string"
     },
+    "dateTimeTimestamp": {
+      "type": "number"
+    },
     "title": {
       "type": "string",
       "default": "Your title goes here."
@@ -41,7 +44,8 @@
       "type": "string"
     },
     "titleFontSize": {
-      "type": "string"
+      "type": "string",
+      "default": "26px"
     },
     "titleLetterSpacing": {
       "type": "string"
@@ -66,6 +70,38 @@
       "type": "string"
     },
     "titleFontWeight": {
+      "type": "string"
+    },
+    "titleHoverColor": {
+      "type": "string"
+    },
+    "titleHoverFontSize": {
+      "type": "string",
+      "default": "26px"
+    },
+    "titleHoverLetterSpacing": {
+      "type": "string"
+    },
+    "titleHoverDecoration": {
+      "type": "string"
+    },
+    "titleHoverLetterCase": {
+      "type": "string"
+    },
+    "titleHoverLineHeight": {
+      "type": "string"
+    },
+    "titleHoverFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "titleHoverFontStyle": {
+      "type": "string"
+    },
+    "titleHoverFontWeight": {
       "type": "string"
     },
     "description": {
@@ -102,6 +138,37 @@
     "descriptionFontWeight": {
       "type": "string"
     },
+    "descriptionHoverColor": {
+      "type": "string"
+    },
+    "descriptionHoverFontSize": {
+      "type": "string"
+    },
+    "descriptionHoverLetterSpacing": {
+      "type": "string"
+    },
+    "descriptionHoverDecoration": {
+      "type": "string"
+    },
+    "descriptionHoverLetterCase": {
+      "type": "string"
+    },
+    "descriptionHoverLineHeight": {
+      "type": "string"
+    },
+    "descriptionHoverFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "descriptionHoverFontStyle": {
+      "type": "string"
+    },
+    "descriptionHoverFontWeight": {
+      "type": "string"
+    },
     "showImage": {
       "type": "boolean",
       "default": false
@@ -114,21 +181,163 @@
       "type": "string",
       "default": ""
     },
+    "imagepadding": {
+      "type": "object"
+    },
+    "imageEnableCustomSize": {
+      "type": "boolean",
+      "default": false
+    },
+    "imageMinWidth": {
+      "type": "number",
+      "default": 100
+    },
+    "imageMaxWidth": {
+      "type": "number"
+    },
+    "imageborder": {
+      "type": "object"
+    },
+    "imageborderRadius": {
+      "type": "string"
+    },
     "showButton": {
       "type": "boolean",
       "default": true
     },
     "buttonText": {
       "type": "string",
-      "default": "Read More"
+      "default": "Get the deal"
     },
     "buttonUrl": {
       "type": "string",
-      "default": ""
+      "default": "#"
     },
     "buttonLinkTarget": {
       "type": "string",
       "default": "same"
+    },
+    "buttonBackground": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonBGGradient": {
+      "type": "string"
+    },
+    "buttonUseIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "buttonIcon": {
+      "type": "string",
+      "default": "fas fa-arrow-right"
+    },
+    "buttonIconPosition": {
+      "type": "string",
+      "default": "after"
+    },
+    "buttonIconOnHover": {
+      "type": "boolean",
+      "default": false
+    },
+    "buttonpadding": {
+      "type": "object",
+      "default": {
+        "top": "10px",
+        "right": "20px",
+        "bottom": "10px",
+        "left": "20px"
+      }
+    },
+    "buttonmargin": {
+      "type": "object"
+    },
+    "buttonborder": {
+      "type": "object",
+      "default": {
+        "width": "2px",
+        "style": "solid",
+        "color": "#313131"
+      }
+    },
+    "buttonborderRadius": {
+      "type": "string",
+      "default": "3px"
+    },
+    "buttonColor": {
+      "type": "string"
+    },
+    "buttonFontSize": {
+      "type": "string"
+    },
+    "buttonLetterSpacing": {
+      "type": "string"
+    },
+    "buttonDecoration": {
+      "type": "string"
+    },
+    "buttonLetterCase": {
+      "type": "string"
+    },
+    "buttonLineHeight": {
+      "type": "string"
+    },
+    "buttonFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "buttonFontStyle": {
+      "type": "string"
+    },
+    "buttonFontWeight": {
+      "type": "string"
+    },
+    "buttonHoverBackground": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonHoverBGGradient": {
+      "type": "string"
+    },
+    "buttonHoverborder": {
+      "type": "object"
+    },
+    "buttonHoverborderRadius": {
+      "type": "string"
+    },
+    "buttonHoverColor": {
+      "type": "string"
+    },
+    "buttonHoverFontSize": {
+      "type": "string"
+    },
+    "buttonHoverLetterSpacing": {
+      "type": "string"
+    },
+    "buttonHoverDecoration": {
+      "type": "string"
+    },
+    "buttonHoverLetterCase": {
+      "type": "string"
+    },
+    "buttonHoverLineHeight": {
+      "type": "string"
+    },
+    "buttonHoverFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "buttonHoverFontStyle": {
+      "type": "string"
+    },
+    "buttonHoverFontWeight": {
+      "type": "string"
     },
     "layout": {
       "type": "string",
@@ -181,11 +390,11 @@
         "left": "5px"
       }
     },
-    "timerBoxRadius": {
-      "type": "string"
-    },
     "timerBoxborder": {
       "type": "object"
+    },
+    "timerBoxborderRadius": {
+      "type": "string"
     },
     "digitsBackgroundColor": {
       "type": "string"
@@ -196,11 +405,11 @@
     "digitsmargin": {
       "type": "object"
     },
-    "digitsRadius": {
-      "type": "string"
-    },
     "digitsborder": {
       "type": "object"
+    },
+    "digitsborderRadius": {
+      "type": "string"
     },
     "digitsColor": {
       "type": "string"
@@ -233,6 +442,10 @@
     "digitsFontWeight": {
       "type": "string"
     },
+    "digitsBoxWidth": {
+      "type": "number",
+      "default": 100
+    },
     "labelsBackgroundColor": {
       "type": "string"
     },
@@ -242,11 +455,11 @@
     "labelsmargin": {
       "type": "object"
     },
-    "labelsRadius": {
-      "type": "string"
-    },
     "labelsborder": {
       "type": "object"
+    },
+    "labelsborderRadius": {
+      "type": "string"
     },
     "labelsColor": {
       "type": "string"
@@ -321,7 +534,8 @@
   },
   "textdomain": "wpmozo-blocks-and-addons",
   "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "script": [
+    "file:./script.js"
+  ]
 }

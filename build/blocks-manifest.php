@@ -3510,6 +3510,9 @@ return array(
 			'dateTimeUTC' => array(
 				'type' => 'string'
 			),
+			'dateTimeTimestamp' => array(
+				'type' => 'number'
+			),
 			'title' => array(
 				'type' => 'string',
 				'default' => 'Your title goes here.'
@@ -3526,7 +3529,8 @@ return array(
 				'type' => 'string'
 			),
 			'titleFontSize' => array(
-				'type' => 'string'
+				'type' => 'string',
+				'default' => '26px'
 			),
 			'titleLetterSpacing' => array(
 				'type' => 'string'
@@ -3551,6 +3555,38 @@ return array(
 				'type' => 'string'
 			),
 			'titleFontWeight' => array(
+				'type' => 'string'
+			),
+			'titleHoverColor' => array(
+				'type' => 'string'
+			),
+			'titleHoverFontSize' => array(
+				'type' => 'string',
+				'default' => '26px'
+			),
+			'titleHoverLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'titleHoverDecoration' => array(
+				'type' => 'string'
+			),
+			'titleHoverLetterCase' => array(
+				'type' => 'string'
+			),
+			'titleHoverLineHeight' => array(
+				'type' => 'string'
+			),
+			'titleHoverFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'titleHoverFontStyle' => array(
+				'type' => 'string'
+			),
+			'titleHoverFontWeight' => array(
 				'type' => 'string'
 			),
 			'description' => array(
@@ -3587,6 +3623,37 @@ return array(
 			'descriptionFontWeight' => array(
 				'type' => 'string'
 			),
+			'descriptionHoverColor' => array(
+				'type' => 'string'
+			),
+			'descriptionHoverFontSize' => array(
+				'type' => 'string'
+			),
+			'descriptionHoverLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'descriptionHoverDecoration' => array(
+				'type' => 'string'
+			),
+			'descriptionHoverLetterCase' => array(
+				'type' => 'string'
+			),
+			'descriptionHoverLineHeight' => array(
+				'type' => 'string'
+			),
+			'descriptionHoverFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'descriptionHoverFontStyle' => array(
+				'type' => 'string'
+			),
+			'descriptionHoverFontWeight' => array(
+				'type' => 'string'
+			),
 			'showImage' => array(
 				'type' => 'boolean',
 				'default' => false
@@ -3599,21 +3666,163 @@ return array(
 				'type' => 'string',
 				'default' => ''
 			),
+			'imagepadding' => array(
+				'type' => 'object'
+			),
+			'imageEnableCustomSize' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'imageMinWidth' => array(
+				'type' => 'number',
+				'default' => 100
+			),
+			'imageMaxWidth' => array(
+				'type' => 'number'
+			),
+			'imageborder' => array(
+				'type' => 'object'
+			),
+			'imageborderRadius' => array(
+				'type' => 'string'
+			),
 			'showButton' => array(
 				'type' => 'boolean',
 				'default' => true
 			),
 			'buttonText' => array(
 				'type' => 'string',
-				'default' => 'Read More'
+				'default' => 'Get the deal'
 			),
 			'buttonUrl' => array(
 				'type' => 'string',
-				'default' => ''
+				'default' => '#'
 			),
 			'buttonLinkTarget' => array(
 				'type' => 'string',
 				'default' => 'same'
+			),
+			'buttonBackground' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'buttonBGGradient' => array(
+				'type' => 'string'
+			),
+			'buttonUseIcon' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'buttonIcon' => array(
+				'type' => 'string',
+				'default' => 'fas fa-arrow-right'
+			),
+			'buttonIconPosition' => array(
+				'type' => 'string',
+				'default' => 'after'
+			),
+			'buttonIconOnHover' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'buttonpadding' => array(
+				'type' => 'object',
+				'default' => array(
+					'top' => '10px',
+					'right' => '20px',
+					'bottom' => '10px',
+					'left' => '20px'
+				)
+			),
+			'buttonmargin' => array(
+				'type' => 'object'
+			),
+			'buttonborder' => array(
+				'type' => 'object',
+				'default' => array(
+					'width' => '2px',
+					'style' => 'solid',
+					'color' => '#313131'
+				)
+			),
+			'buttonborderRadius' => array(
+				'type' => 'string',
+				'default' => '3px'
+			),
+			'buttonColor' => array(
+				'type' => 'string'
+			),
+			'buttonFontSize' => array(
+				'type' => 'string'
+			),
+			'buttonLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'buttonDecoration' => array(
+				'type' => 'string'
+			),
+			'buttonLetterCase' => array(
+				'type' => 'string'
+			),
+			'buttonLineHeight' => array(
+				'type' => 'string'
+			),
+			'buttonFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'buttonFontStyle' => array(
+				'type' => 'string'
+			),
+			'buttonFontWeight' => array(
+				'type' => 'string'
+			),
+			'buttonHoverBackground' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'buttonHoverBGGradient' => array(
+				'type' => 'string'
+			),
+			'buttonHoverborder' => array(
+				'type' => 'object'
+			),
+			'buttonHoverborderRadius' => array(
+				'type' => 'string'
+			),
+			'buttonHoverColor' => array(
+				'type' => 'string'
+			),
+			'buttonHoverFontSize' => array(
+				'type' => 'string'
+			),
+			'buttonHoverLetterSpacing' => array(
+				'type' => 'string'
+			),
+			'buttonHoverDecoration' => array(
+				'type' => 'string'
+			),
+			'buttonHoverLetterCase' => array(
+				'type' => 'string'
+			),
+			'buttonHoverLineHeight' => array(
+				'type' => 'string'
+			),
+			'buttonHoverFontAppearance' => array(
+				'type' => 'object',
+				'default' => array(
+					'fontStyle' => '',
+					'fontWeight' => ''
+				)
+			),
+			'buttonHoverFontStyle' => array(
+				'type' => 'string'
+			),
+			'buttonHoverFontWeight' => array(
+				'type' => 'string'
 			),
 			'layout' => array(
 				'type' => 'string',
@@ -3666,11 +3875,11 @@ return array(
 					'left' => '5px'
 				)
 			),
-			'timerBoxRadius' => array(
-				'type' => 'string'
-			),
 			'timerBoxborder' => array(
 				'type' => 'object'
+			),
+			'timerBoxborderRadius' => array(
+				'type' => 'string'
 			),
 			'digitsBackgroundColor' => array(
 				'type' => 'string'
@@ -3681,11 +3890,11 @@ return array(
 			'digitsmargin' => array(
 				'type' => 'object'
 			),
-			'digitsRadius' => array(
-				'type' => 'string'
-			),
 			'digitsborder' => array(
 				'type' => 'object'
+			),
+			'digitsborderRadius' => array(
+				'type' => 'string'
 			),
 			'digitsColor' => array(
 				'type' => 'string'
@@ -3718,6 +3927,10 @@ return array(
 			'digitsFontWeight' => array(
 				'type' => 'string'
 			),
+			'digitsBoxWidth' => array(
+				'type' => 'number',
+				'default' => 100
+			),
 			'labelsBackgroundColor' => array(
 				'type' => 'string'
 			),
@@ -3727,11 +3940,11 @@ return array(
 			'labelsmargin' => array(
 				'type' => 'object'
 			),
-			'labelsRadius' => array(
-				'type' => 'string'
-			),
 			'labelsborder' => array(
 				'type' => 'object'
+			),
+			'labelsborderRadius' => array(
+				'type' => 'string'
 			),
 			'labelsColor' => array(
 				'type' => 'string'
@@ -3806,9 +4019,10 @@ return array(
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./view.js'
+		'script' => array(
+			'file:./script.js'
+		)
 	),
 	'scroll-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
