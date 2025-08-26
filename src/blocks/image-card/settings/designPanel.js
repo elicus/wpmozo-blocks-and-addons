@@ -303,8 +303,8 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 								props={props}
 								ColorKey="buttonTextHover"
 								ColorTypes={[
-									{key: 'Color', label: __('Label Color', 'wpmozo-blocks-and-addons')},
-									{key: 'Background', label: __('Label Background', 'wpmozo-blocks-and-addons')}
+									{key: 'Color', label: __('Button Color', 'wpmozo-blocks-and-addons')},
+									{key: 'Background', label: __('Button Background', 'wpmozo-blocks-and-addons')}
 								]}
 							/>
 						</>

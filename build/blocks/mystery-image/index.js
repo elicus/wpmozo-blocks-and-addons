@@ -270,7 +270,7 @@ function Edit(props) {
     addToGallery: hasImageIds,
     allowedTypes: ALLOWED_MEDIA_TYPES,
     disableMediaButtons: hasImages && !isSelected || imagesUploading,
-    handleUpload: false,
+    handleUpload: true,
     isAppender: hasImages,
     labels: {
       instructions: !hasImages && PLACEHOLDER_TEXT,

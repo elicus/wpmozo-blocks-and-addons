@@ -4,6 +4,7 @@
 import { concat, find } from 'lodash';
 import {Fragment} from "@wordpress/element";
 import { View } from '@wordpress/primitives';
+import { toHTMLString } from '@wordpress/rich-text';
 
 
 /**
@@ -84,6 +85,7 @@ function Edit(props) {
 				fromSavedContent: Boolean( block.originalContent ),
 				id: block.attributes.id,
 				url: block.attributes.url,
+				caption: toHTMLString( { value: block.attributes.caption } )
 			} ) ),
 		[ innerBlockImages ]
 	);
@@ -268,6 +270,11 @@ function Edit(props) {
 								<a className="wpmozo_masonry_gallery_item" href={image.url} key={image.id || idx}>
 									<div className="wpmozo_masonry_gallery_image_wrapper">
 										<img src={image.url} alt={image.alt || ''}/>
+										{true === attributes.showCaption && (
+											<div className="wpmozo_masonry_gallery_title_caption_wrapper">
+												<figcaption className="wp-element-caption">{image.caption}</figcaption>
+											</div>
+										)}
 										{true === attributes.enableOverlay && (
 											<span className="wpmozo_overlay wpmozo_pb_inline_icon" data-icon="0">
 												<i className={attributes.overlayIcon}></i>

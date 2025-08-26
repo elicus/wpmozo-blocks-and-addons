@@ -97,7 +97,7 @@ const Save = ( { attributes } ) => {
 		<>
 			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
-			<div {...useBlockProps.save( { className: attributes.className } )} id={`block-${attributes.ID}`}>
+			<div {...useBlockProps.save( { className: attributes.className } )} id={`block-${clientId}`}>
 				<div className="wpmozo_star_rating_wrapper">
 					{ ( imageUrl && '' !== imageUrl ) && (
 						<div className="wpmozo_star_rating_image_container">

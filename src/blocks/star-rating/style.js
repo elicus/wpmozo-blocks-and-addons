@@ -16,7 +16,7 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 
 	const rateIcon = ( attributes.rateIcon ) ?? 'default';
 
-	let styles = `#block-${attributes.ID} {`;
+	let styles = `#block-${clientId} {`;
 
 	styles += `
 	.wpmozo_star_rating_wrapper{

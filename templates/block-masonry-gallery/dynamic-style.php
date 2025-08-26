@@ -50,8 +50,10 @@ if ( ! function_exists( 'masonry_gallery_generate_dynamic_style' ) ) {
 		}
 
 		//lightbox
-		if ( ! empty( $attrs['showLightbox'] ) && ! empty( $attrs['lightboxBackgroundColor'] ) ) {
-			$styles .= ".block-{$attrs['ID']}-lightbox { background: {$attrs['lightboxBackgroundColor']} !important; }";
+		if ( ! empty( $attrs['showLightbox'] ) ) {
+			if ( ! empty( $attrs['lightboxBackgroundColor'] ) ) {
+				$styles .= ".block-{$attrs['ID']}-lightbox { background: {$attrs['lightboxBackgroundColor']} !important; }";
+			}
 			$styles .= ".block-{$attrs['ID']}-lightbox .mfp-arrow-left:after { border-right-color: {$attrs['lightboxArrowColor']} !important; }";
 			$styles .= ".block-{$attrs['ID']}-lightbox .mfp-arrow-right:after { border-left-color: {$attrs['lightboxArrowColor']} !important; }";
 			$styles .= ".block-{$attrs['ID']}-lightbox .mfp-close{ color: {$attrs['lightboxExitIconColor']} !important; }";

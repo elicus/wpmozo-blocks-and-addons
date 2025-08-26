@@ -725,7 +725,7 @@ const DesignPanel = ({
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Border Color', 'wpmozo-blocks-and-addons')
         }]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_components__WEBPACK_IMPORTED_MODULE_3__.WpmozoDimensions, {
-        DimensionKey: "container",
+        DimensionKey: "icon",
         DimensionsTypes: {
           padding: true,
           margin: true
@@ -768,10 +768,10 @@ const DesignPanel = ({
             ColorKey: "buttonTextHover",
             ColorTypes: [{
               key: 'Color',
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Label Color', 'wpmozo-blocks-and-addons')
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button Color', 'wpmozo-blocks-and-addons')
             }, {
               key: 'Background',
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Label Background', 'wpmozo-blocks-and-addons')
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button Background', 'wpmozo-blocks-and-addons')
             }]
           })
         })]

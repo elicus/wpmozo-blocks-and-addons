@@ -42,31 +42,32 @@ export default function Edit(props) {
 
 	const blockProps = useBlockProps({className:'wpmozo-bna-image-stack'});
 
-	const { getBlockRootClientId, getSelectedBlockClientId } = useSelect(
-		(select) => select('core/block-editor'),
-		[]
-	);
+	const parentId = useSelect( ( select ) => {
+        return select( 'core/block-editor' ).getBlockRootClientId( clientId );
+    }, [ clientId ] );
 
-	const { selectBlock } = useDispatch('core/block-editor');
+	const selectedBlockId = useSelect( ( select ) =>
+        select( 'core/block-editor' ).getSelectedBlockClientId(),
+    [ ] );
 
-	const parentId = getBlockRootClientId(clientId);
-	const selectedBlockId = getSelectedBlockClientId();
+	//const { selectBlock } = useDispatch('core/block-editor');
 
-	const handleClick = useCallback( () => {
+	const handleClick = () => {
 		// If the child isn't selected already, select it
 		if (selectedBlockId !== clientId) {
 			selectBlock(clientId);
 		}
+		console.log( clientId );
 		// If the child is already selected or not selectable, fallback to parent
-		else if (parentId) {
-			selectBlock(parentId);
-		}
-	}, [selectedBlockId, clientId, parentId] );
+		// else if (parentId) {
+		// 	selectBlock(parentId);
+		// }
+	};
 
 	return ( <>
 		{ isSelected && ( <Inspector attributes={attributes} setAttributes={setAttributes} /> ) }
 
-		<div {...blockProps} onClick={handleClick}
+		<div {...blockProps}
 			className={ classnames( 'wpmozo-image-stack-item', attributes.className ) } 
 		>
 			<span className={`wpmozo-stack-item-wrapper stack-item-type-` + attributes.stackType}>

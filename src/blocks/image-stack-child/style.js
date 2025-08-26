@@ -15,6 +15,7 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 
 	styles +=`.wpmozo-stack-item-img{${convertedStyle.image}}`;
 	styles += `}`;
+
 	return styles;
 };
 

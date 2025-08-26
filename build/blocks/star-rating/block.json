@@ -117,7 +117,7 @@
     },
     "description": {
       "type": "string",
-      "default": "Your content goes here. Edit this text inline or in the block content settings. You can also style every aspect of this content in the block design settings."
+      "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     },
     "descriptionColor": {
       "type": "string"

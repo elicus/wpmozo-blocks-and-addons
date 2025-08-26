@@ -1804,17 +1804,22 @@ const generateDynamicStyle = ({
 
   // Control dot color.
   if (attributes.showControlDot) {
-    if (attributes.controlDotColorInactive) {
+    if (attributes.controlDotColorInactive && 'transparent_dot' != attributes.controlDotStyle) {
       styles += `.swiper-pagination-bullet{
 				background: ${attributes.controlDotColorInactive};
 			}`;
-      styles += `.swiper-3d .transparent_dot .swiper-pagination-bullet{
+    } else {
+      styles += `.transparent_dot .swiper-pagination-bullet{
 				border-color: ${attributes.controlDotColorInactive} !important;
 			}`;
     }
-    if (attributes.controlDotColorActive) {
+    if (attributes.controlDotColorActive && 'transparent_dot' != attributes.controlDotStyle) {
       styles += `.swiper-pagination-bullet-active{
 				background: ${attributes.controlDotColorActive};
+			}`;
+    } else {
+      styles += `.transparent_dot .swiper-pagination-bullet-active{
+				border-color: ${attributes.controlDotColorActive} !important;border-width: 2px;border-style: solid;background: transparent;
 			}`;
     }
     if ('stretched_dot' === attributes.controlDotStyle && attributes.transDuration) {

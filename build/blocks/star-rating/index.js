@@ -8,7 +8,7 @@
   \*******************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/star-rating","version":"0.1.0","title":"Star Rating","category":"wpmozo","icon":"smiley","description":"Display star ratings for products, services, and reviews using schema for rich, eye-catching results.","example":{},"supports":{"html":false,"customClassName":false},"attributes":{"ID":{"type":"string"},"className":{"type":"string"},"globalTextAlign":{"type":"string"},"title":{"type":"string","default":"Review Title"},"titleLevel":{"type":"string","default":"h4"},"hideTitle":{"type":"boolean","default":false},"titleColor":{"type":"string"},"titleFontSize":{"type":"string"},"titleLetterSpacing":{"type":"string"},"titleDecoration":{"type":"string"},"titleLetterCase":{"type":"string"},"titleLineHeight":{"type":"string"},"titleFontAppearance":{"type":"object","default":{"fontStyle":"","fontWeight":""}},"titleFontStyle":{"type":"string"},"titleFontWeight":{"type":"string"},"rating":{"type":"string","default":"5"},"iconSVGs":{"type":"object"},"ratingColor":{"type":"string"},"ratingFontSize":{"type":"string"},"ratingLetterSpacing":{"type":"string"},"ratingDecoration":{"type":"string"},"ratingLetterCase":{"type":"string"},"ratingLineHeight":{"type":"string"},"ratingFontAppearance":{"type":"object","default":{"fontStyle":"","fontWeight":""}},"ratingFontStyle":{"type":"string"},"ratingFontWeight":{"type":"string"},"ratingOutOf":{"type":"number","default":5},"image":{"type":"string","default":""},"imageAlt":{"type":"string","default":""},"description":{"type":"string","default":"Your content goes here. Edit this text inline or in the block content settings. You can also style every aspect of this content in the block design settings."},"descriptionColor":{"type":"string"},"descriptionFontSize":{"type":"string"},"descriptionLetterSpacing":{"type":"string"},"descriptionDecoration":{"type":"string"},"descriptionLetterCase":{"type":"string"},"descriptionLineHeight":{"type":"string"},"descriptionFontAppearance":{"type":"object","default":{"fontStyle":"","fontWeight":""}},"descriptionFontStyle":{"type":"string"},"descriptionFontWeight":{"type":"string"},"rateIcon":{"type":"string","default":"default"},"rateIconFilledColor":{"type":"string","default":"#fac917"},"rateIconEmptyColor":{"type":"string","default":"#fac917"},"ratePosition":{"type":"string","default":"below_title"},"showRateNum":{"type":"boolean","default":true},"starFontSize":{"type":"number","default":24},"starSpacing":{"type":"number","default":2},"containerpadding":{"type":"object"},"containermargin":{"type":"object"},"containerborder":{"type":"object"},"containerborderRadius":{"type":"string"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/star-rating","version":"0.1.0","title":"Star Rating","category":"wpmozo","icon":"smiley","description":"Display star ratings for products, services, and reviews using schema for rich, eye-catching results.","example":{},"supports":{"html":false,"customClassName":false},"attributes":{"ID":{"type":"string"},"className":{"type":"string"},"globalTextAlign":{"type":"string"},"title":{"type":"string","default":"Review Title"},"titleLevel":{"type":"string","default":"h4"},"hideTitle":{"type":"boolean","default":false},"titleColor":{"type":"string"},"titleFontSize":{"type":"string"},"titleLetterSpacing":{"type":"string"},"titleDecoration":{"type":"string"},"titleLetterCase":{"type":"string"},"titleLineHeight":{"type":"string"},"titleFontAppearance":{"type":"object","default":{"fontStyle":"","fontWeight":""}},"titleFontStyle":{"type":"string"},"titleFontWeight":{"type":"string"},"rating":{"type":"string","default":"5"},"iconSVGs":{"type":"object"},"ratingColor":{"type":"string"},"ratingFontSize":{"type":"string"},"ratingLetterSpacing":{"type":"string"},"ratingDecoration":{"type":"string"},"ratingLetterCase":{"type":"string"},"ratingLineHeight":{"type":"string"},"ratingFontAppearance":{"type":"object","default":{"fontStyle":"","fontWeight":""}},"ratingFontStyle":{"type":"string"},"ratingFontWeight":{"type":"string"},"ratingOutOf":{"type":"number","default":5},"image":{"type":"string","default":""},"imageAlt":{"type":"string","default":""},"description":{"type":"string","default":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},"descriptionColor":{"type":"string"},"descriptionFontSize":{"type":"string"},"descriptionLetterSpacing":{"type":"string"},"descriptionDecoration":{"type":"string"},"descriptionLetterCase":{"type":"string"},"descriptionLineHeight":{"type":"string"},"descriptionFontAppearance":{"type":"object","default":{"fontStyle":"","fontWeight":""}},"descriptionFontStyle":{"type":"string"},"descriptionFontWeight":{"type":"string"},"rateIcon":{"type":"string","default":"default"},"rateIconFilledColor":{"type":"string","default":"#fac917"},"rateIconEmptyColor":{"type":"string","default":"#fac917"},"ratePosition":{"type":"string","default":"below_title"},"showRateNum":{"type":"boolean","default":true},"starFontSize":{"type":"number","default":24},"starSpacing":{"type":"number","default":2},"containerpadding":{"type":"object"},"containermargin":{"type":"object"},"containerborder":{"type":"object"},"containerborderRadius":{"type":"string"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ }),
 
@@ -57,11 +57,9 @@ const Edit = props => {
 
   // Ensure ID is set once (no render-time mutation).
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    if (!attributes.ID && clientId) {
-      setAttributes({
-        ID: clientId
-      });
-    }
+    setAttributes({
+      ID: clientId
+    });
   }, [clientId]); // eslint-disable-line react-hooks/exhaustive-deps.
 
   const imageUrl = attributes.image ? attributes.image : '';
@@ -185,7 +183,7 @@ const Edit = props => {
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(),
-      id: `block-${attributes.ID}`,
+      id: `block-${clientId}`,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "wpmozo_star_rating_wrapper",
         children: [imageUrl && '' !== imageUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
@@ -637,7 +635,7 @@ const Save = ({
       ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save({
         className: attributes.className
       }),
-      id: `block-${attributes.ID}`,
+      id: `block-${clientId}`,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "wpmozo_star_rating_wrapper",
         children: [imageUrl && '' !== imageUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -1081,7 +1079,7 @@ const generateDynamicStyle = ({
   const toConvertStyles = ['title', 'titleHover', 'description', 'descriptionHover', 'rating', 'ratingHover', 'container'];
   let convertedStyle = (0,_common_utils_js__WEBPACK_IMPORTED_MODULE_0__.convertInlineStyleStr)(toConvertStyles, attributes);
   const rateIcon = (_attributes$rateIcon = attributes.rateIcon) !== null && _attributes$rateIcon !== void 0 ? _attributes$rateIcon : 'default';
-  let styles = `#block-${attributes.ID} {`;
+  let styles = `#block-${clientId} {`;
   styles += `
 	.wpmozo_star_rating_wrapper{
 		${convertedStyle.container}

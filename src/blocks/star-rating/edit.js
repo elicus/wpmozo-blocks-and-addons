@@ -23,9 +23,7 @@ const Edit = ( props ) => {
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
-		if ( ! attributes.ID && clientId ) {
-			setAttributes({ ID: clientId });
-		}
+		setAttributes({ ID: clientId });
 	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	const imageUrl    = ( attributes.image ) ? attributes.image : '';
@@ -131,7 +129,7 @@ const Edit = ( props ) => {
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
-			<div {...useBlockProps()} id={`block-${attributes.ID}`}>
+			<div {...useBlockProps()} id={`block-${clientId}`}>
 				<div className="wpmozo_star_rating_wrapper">
 					{ ( imageUrl && '' !== imageUrl ) && (
 						<div className="wpmozo_star_rating_image_container">
