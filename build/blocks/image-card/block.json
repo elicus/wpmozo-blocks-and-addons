@@ -37,15 +37,11 @@
     "image": {
       "type": "string"
     },
-    "imageBorder": {
-      "type": "string",
+    "imageborder": {
+      "type": "object",
       "default": ""
     },
-    "imageBorderColor": {
-      "type": "string",
-      "default": ""
-    },
-    "imageBorderRadius": {
+    "imageborderRadius": {
       "type": "string",
       "default": ""
     },

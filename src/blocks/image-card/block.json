@@ -23,9 +23,8 @@
 		"containerborderRadius": {"type": "string"},
 
 		"image": { "type": "string" },
-		"imageBorder": { "type": "string", "default": "" },
-		"imageBorderColor": { "type": "string", "default": "" },
-		"imageBorderRadius": { "type": "string", "default": "" },
+		"imageborder": { "type": "object", "default": "" },
+		"imageborderRadius": { "type": "string", "default": "" },
 		"imageDimensionspadding": { "type": "object", "default": "" },
 
 		"icon": { "type": "string", "default": "far fa-star" },

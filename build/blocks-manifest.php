@@ -1658,15 +1658,11 @@ return array(
 			'image' => array(
 				'type' => 'string'
 			),
-			'imageBorder' => array(
-				'type' => 'string',
+			'imageborder' => array(
+				'type' => 'object',
 				'default' => ''
 			),
-			'imageBorderColor' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'imageBorderRadius' => array(
+			'imageborderRadius' => array(
 				'type' => 'string',
 				'default' => ''
 			),
