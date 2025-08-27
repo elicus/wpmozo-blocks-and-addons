@@ -120,7 +120,13 @@ if ( ! function_exists( 'testimonial_slider_generate_dynamic_style' ) ) {
 				$styles .= ( ! empty( $attrs['arrowColor'] ) ? "color: {$attrs['arrowColor']};" : '' );
 				$styles .= ( ! empty( $attrs['arrowborderColor'] ) ? "border-color: {$attrs['arrowborderColor']} !important;" : '' );
 				$styles .= wpmozo_ban_get_border_style( 'arrow', $attrs );
-			$styles .= "}";
+				$styles .= wpmozo_ban_get_padding_style( 'arrow', $attrs );
+			$styles .= "}
+				.wpmozo_swiper_wrapper .swiper-button-next:after,
+				.wpmozo_swiper_wrapper .swiper-button-prev:after{
+						font-size: {$attrs['arrowIconSize']}px;
+				}
+			";
 			if ( true === $attrs['showArrowOnHover'] ) {
 				$styles .= "{$mainSelector} .swiper-button-next, {$mainSelector} .swiper-button-prev{";
 					$styles .= "visibility: hidden; opacity: 0; transition: all 300ms ease;";

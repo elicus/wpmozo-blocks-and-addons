@@ -121,10 +121,13 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 	// Slider arrows.
 	if ( attributes.showArrows ) {
 		styles += `.swiper-button-next, .swiper-button-prev{
-			${attributes.arrowIconSize ? `font-size: ${attributes.arrowIconSize}px;` : ''}
 			${attributes.arrowBackground ? `background-color: ${attributes.arrowBackground};` : ''}
 			${attributes.arrowColor ? `color: ${attributes.arrowColor};` : ''}
 			${convertedStyle.arrow}
+		}
+		.wpmozo_swiper_wrapper .swiper-button-next:after,
+		.wpmozo_swiper_wrapper .swiper-button-prev:after{
+			${attributes.arrowIconSize ? `font-size: ${attributes.arrowIconSize}px;` : ''}
 		}`;
 		if ( attributes.showArrowOnHover ) {
 			styles += `.swiper-button-next, .swiper-button-prev{
