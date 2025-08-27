@@ -6,7 +6,7 @@
   "title": "Price List",
   "category": "wpmozo",
   "icon": "smiley",
-  "description": "Easily create and organized lists with the List block",
+  "description": "Easily create and organized price lists with the Price List block",
   "allowedBlocks": [
     "wpmozo/price-list-item"
   ],

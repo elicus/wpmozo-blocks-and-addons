@@ -3,10 +3,10 @@
   "apiVersion": 3,
   "name": "wpmozo/price-list-item",
   "version": "0.1.0",
-  "title": "List Item",
+  "title": "Price Item",
   "category": "wpmozo",
   "icon": "smiley",
-  "description": "Easily create and organized lists with the List block",
+  "description": "Easily create and organized price lists with the Price List block",
   "example": {},
   "parent": [
     "wpmozo/price-list"
@@ -27,13 +27,16 @@
       "type": "string"
     },
     "itemName": {
-      "type": "string"
+      "type": "string",
+      "default": "Item Name"
     },
     "itemCurrency": {
-      "type": "string"
+      "type": "string",
+      "default": "$"
     },
     "itemPrice": {
-      "type": "string"
+      "type": "string",
+      "default": "10"
     },
     "pricePeriod": {
       "type": "string"
@@ -75,6 +78,10 @@
     },
     "thumbnailborderRadius": {
       "type": "string"
+    },
+    "nameHeadingLavel": {
+      "type": "string",
+      "default": "h4"
     },
     "nameColor": {
       "type": "string"

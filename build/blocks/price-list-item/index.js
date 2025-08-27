@@ -8,7 +8,231 @@
   \***********************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/price-list-item","version":"0.1.0","title":"List Item","category":"wpmozo","icon":"smiley","description":"Easily create and organized lists with the List block","example":{},"parent":["wpmozo/price-list"],"supports":{"html":false,"anchor":false,"customClassName":false},"attributes":{"parentAtts":{"type":"object"},"ID":{"type":"string"},"className":{"type":"string"},"itemName":{"type":"string"},"itemCurrency":{"type":"string"},"itemPrice":{"type":"string"},"pricePeriod":{"type":"string"},"itemThumbnailOption":{"type":"string","default":"use_image"},"icon":{"type":"string"},"itemThumbnail":{"type":"string"},"content":{"type":"string"},"itemBackground":{"type":"string"},"itemborder":{"type":"object"},"itemborderRadius":{"type":"string"},"iconColor":{"type":"string"},"iconShapBackground":{"type":"string"},"iconFontSize":{"type":"string","default":"100px"},"thumbnailborder":{"type":"object"},"thumbnailborderRadius":{"type":"string"},"nameColor":{"type":"string"},"nameFontSize":{"type":"string","default":"20px"},"nameFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"nameLetterSpacing":{"type":"string"},"nameDecoration":{"type":"string"},"nameLetterCase":{"type":"string"},"nameLineHeight":{"type":"string"},"priceColor":{"type":"string"},"priceFontSize":{"type":"string","default":"18px"},"priceFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"priceLetterSpacing":{"type":"string"},"priceDecoration":{"type":"string"},"priceLetterCase":{"type":"string"},"priceLineHeight":{"type":"string"},"currencyColor":{"type":"string"},"currencyFontSize":{"type":"string","default":"18px"},"currencyFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"currencyLetterSpacing":{"type":"string"},"currencyDecoration":{"type":"string"},"currencyLetterCase":{"type":"string"},"currencyLineHeight":{"type":"string"},"descriptionColor":{"type":"string"},"descriptionFontSize":{"type":"string","default":"14px"},"descriptionFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"descriptionLetterSpacing":{"type":"string"},"descriptionDecoration":{"type":"string"},"descriptionLetterCase":{"type":"string"},"descriptionLineHeight":{"type":"string"},"periodColor":{"type":"string"},"periodFontSize":{"type":"string","default":"16px"},"periodFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"periodLetterSpacing":{"type":"string"},"periodDecoration":{"type":"string"},"periodLetterCase":{"type":"string"},"periodLineHeight":{"type":"string"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/price-list-item","version":"0.1.0","title":"Price Item","category":"wpmozo","icon":"smiley","description":"Easily create and organized price lists with the Price List block","example":{},"parent":["wpmozo/price-list"],"supports":{"html":false,"anchor":false,"customClassName":false},"attributes":{"parentAtts":{"type":"object"},"ID":{"type":"string"},"className":{"type":"string"},"itemName":{"type":"string","default":"Item Name"},"itemCurrency":{"type":"string","default":"$"},"itemPrice":{"type":"string","default":"10"},"pricePeriod":{"type":"string"},"itemThumbnailOption":{"type":"string","default":"use_image"},"icon":{"type":"string"},"itemThumbnail":{"type":"string"},"content":{"type":"string"},"itemBackground":{"type":"string"},"itemborder":{"type":"object"},"itemborderRadius":{"type":"string"},"iconColor":{"type":"string"},"iconShapBackground":{"type":"string"},"iconFontSize":{"type":"string","default":"100px"},"thumbnailborder":{"type":"object"},"thumbnailborderRadius":{"type":"string"},"nameHeadingLavel":{"type":"string","default":"h4"},"nameColor":{"type":"string"},"nameFontSize":{"type":"string","default":"20px"},"nameFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"nameLetterSpacing":{"type":"string"},"nameDecoration":{"type":"string"},"nameLetterCase":{"type":"string"},"nameLineHeight":{"type":"string"},"priceColor":{"type":"string"},"priceFontSize":{"type":"string","default":"18px"},"priceFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"priceLetterSpacing":{"type":"string"},"priceDecoration":{"type":"string"},"priceLetterCase":{"type":"string"},"priceLineHeight":{"type":"string"},"currencyColor":{"type":"string"},"currencyFontSize":{"type":"string","default":"18px"},"currencyFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"currencyLetterSpacing":{"type":"string"},"currencyDecoration":{"type":"string"},"currencyLetterCase":{"type":"string"},"currencyLineHeight":{"type":"string"},"descriptionColor":{"type":"string"},"descriptionFontSize":{"type":"string","default":"14px"},"descriptionFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"descriptionLetterSpacing":{"type":"string"},"descriptionDecoration":{"type":"string"},"descriptionLetterCase":{"type":"string"},"descriptionLineHeight":{"type":"string"},"periodColor":{"type":"string"},"periodFontSize":{"type":"string","default":"16px"},"periodFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"periodLetterSpacing":{"type":"string"},"periodDecoration":{"type":"string"},"periodLetterCase":{"type":"string"},"periodLineHeight":{"type":"string"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js"}');
+
+/***/ }),
+
+/***/ "./src/blocks/price-list-item/edit-layout.jsx":
+/*!****************************************************!*\
+  !*** ./src/blocks/price-list-item/edit-layout.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+function LayoutWrapper({
+  props
+}) {
+  const attributes = props.attributes,
+    setAttributes = props.setAttributes;
+  let {
+    itemThumbnail,
+    itemCurrency,
+    itemPrice,
+    itemThumbnailOption,
+    iconShape,
+    pricePeriod,
+    itemName,
+    icon,
+    content,
+    parentAtts,
+    ID
+  } = attributes;
+  let thumbnail = null,
+    price = null,
+    currency = null,
+    description = null;
+  const iconElement = icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "icon-wrapper",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+      className: icon
+    })
+  }) : null;
+  let itmeHeadingTag = attributes.nameHeadingLavel,
+    parentHeadingLavel = parentAtts.nameHeadingLavel,
+    HeadingTag = 'h4' !== itmeHeadingTag ? itmeHeadingTag : parentHeadingLavel;
+  const title = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
+    className: "wpmozo-bna-price-list-item-name",
+    tagName: HeadingTag,
+    value: attributes.itemName,
+    onChange: newValue => setAttributes({
+      itemName: newValue
+    }),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Item Title', 'wpmozo-blocks-and-addons')
+  });
+  if (itemThumbnail && itemThumbnailOption === "use_image") {
+    thumbnail = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+      src: itemThumbnail,
+      alt: ""
+    });
+  }
+  if (iconElement && itemThumbnailOption === "use_icon") {
+    thumbnail = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+      className: `wpmozo-bna-price-list-icon ${iconShape}`,
+      children: iconElement
+    });
+  }
+  if (itemPrice) {
+    price = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+      className: "wpmozo-bna-price-list-item-price",
+      children: itemPrice
+    });
+  }
+  if (itemCurrency) {
+    currency = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+      className: "wpmozo-bna-price-list-item-currency",
+      children: itemCurrency
+    });
+  }
+  description = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
+    className: "wpmozo-bna-price-list-item-description",
+    tagName: "div",
+    value: attributes.content,
+    onChange: newValue => setAttributes({
+      content: newValue
+    }),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Item Description', 'wpmozo-blocks-and-addons')
+  });
+  return parentAtts.layout === "layout1" ? layout1(thumbnail, currency, price, pricePeriod, title, description, ID, itemThumbnailOption, iconShape) : layout2(thumbnail, currency, price, pricePeriod, title, description, ID, itemThumbnailOption, iconShape);
+}
+function layout1(thumbnail, currency, price, pricePeriod, title, description, address, itemThumbnailOption, iconShape) {
+  const noThumbnail = !thumbnail;
+  const itemPriceWrap = [];
+  const innerWrap = [];
+  const itemNameWrap = [];
+  if (thumbnail && itemThumbnailOption === "use_image") {
+    innerWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wpmozo-bna-price-list-item-thumbnail",
+      children: thumbnail
+    }, `${address}_layout1_thumb`));
+  }
+  if (thumbnail && itemThumbnailOption === "use_icon") {
+    let iconThumb = thumbnail;
+    if (iconShape === "hexagon") {
+      iconThumb = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "wpmozo-bna-icon-hexagon-wrapper",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "wpmozo-bna-icon-hexagon-inner-wrap",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "wpmozo-bna-icon-hexagon",
+            children: thumbnail
+          })
+        })
+      });
+    }
+    innerWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wpmozo-bna-price-list-item-icon",
+      children: iconThumb
+    }, `${address}_layout1_icon`));
+  }
+  if (price) {
+    itemPriceWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wpmozo-bna-price-list-item-price-divider"
+    }, `${address}_layout1_price_divider`));
+    itemPriceWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "wpmozo-bna-price-list-item-price-wrap",
+      children: [currency, price]
+    }, `${address}_layout1_price_wrapper`));
+    if (pricePeriod) {
+      itemPriceWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "wpmozo-bna-price-list-item-price-period",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          className: "wpmozo-bna-price-period-divider",
+          children: "/"
+        }), pricePeriod]
+      }, `${address}_layout1_price_period`));
+    }
+  }
+  itemNameWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "wpmozo-bna-price-list-item-name-wrap",
+    children: [title, itemPriceWrap]
+  }, `${address}_layout1_name_wrap`));
+  innerWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "wpmozo-bna-price-list-item-details",
+    children: [itemNameWrap, description]
+  }, `${address}_layout1_desc`));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "wpmozo-bna-price-list-layout wpmozo-bna-price-list-layout1",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wpmozo-bna-price-list-item-wrap",
+      children: innerWrap
+    })
+  }, `${address}_layout1_item`);
+}
+function layout2(thumbnail, currency, price, pricePeriod, title, description, address, itemThumbnailOption, iconShape) {
+  const innerWrap = [];
+  let noThumbnail = false;
+  if (!thumbnail) {
+    noThumbnail = true;
+  }
+  if (thumbnail && itemThumbnailOption === "use_image") {
+    innerWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wpmozo-bna-price-list-item-thumbnail",
+      children: thumbnail
+    }, `${address}_layout2_thumb`));
+  }
+  if (thumbnail && itemThumbnailOption === "use_icon") {
+    let iconThumb = thumbnail;
+    if (iconShape === "hexagon") {
+      iconThumb = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "wpmozo-bna-icon-hexagon-wrapper",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "wpmozo-bna-icon-hexagon-inner-wrap",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "wpmozo-bna-icon-hexagon",
+            children: thumbnail
+          })
+        })
+      });
+    }
+    innerWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wpmozo-bna-price-list-item-icon",
+      children: iconThumb
+    }, `${address}_layout2_icon`));
+  }
+  if (price) {
+    let pricePeriodHtml = null;
+    if (pricePeriod) {
+      pricePeriodHtml = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
+        className: "wpmozo-bna-price-list-item-price-period",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          className: "wpmozo-bna-price-period-divider",
+          children: "/"
+        }), pricePeriod]
+      });
+    }
+    innerWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "wpmozo-bna-price-list-item-price-wrap",
+      children: [currency, price, pricePeriodHtml]
+    }, `${address}_layout2_price_wrap`));
+  }
+  innerWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "wpmozo-bna-price-list-item-name-wrap",
+    children: title
+  }, `${address}_layout2_name_wrap`));
+  if (description) {
+    innerWrap.push(description);
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "wpmozo-bna-price-list-layout wpmozo-bna-price-list-layout2",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wpmozo-bna-price-list-item-wrap",
+      children: innerWrap
+    })
+  }, `${address}_layout2_item`);
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LayoutWrapper);
 
 /***/ }),
 
@@ -32,8 +256,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style */ "./src/blocks/price-list-item/style.js");
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _edit_layout__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./edit-layout */ "./src/blocks/price-list-item/edit-layout.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
@@ -64,177 +290,22 @@ function Edit(props) {
   }, [clientId]);
   attributes.parentAtts = parentAttributes;
   attributes.ID = clientId;
-  function layoutWraper() {
-    let NameLevel = attributes.nameHeadingLavel,
-      $thumbnail = attributes.itemThumbnail,
-      $item_currency = attributes.itemCurrency,
-      $item_price = attributes.itemPrice,
-      $item_thumbnail_option = attributes.itemThumbnailOption,
-      $icon_shape = attributes.iconShape;
-    const $icon = '' === attributes.icon ? '' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      className: "icon-wrapper",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
-        className: `${attributes.icon}`
-      })
-    });
-    let $title = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(NameLevel, {
-      className: "wpmozo-bna-price-list-item-name",
-      children: $item_name
-    });
-    if ('' !== $item_thumbnail && 'use_image' === $item_thumbnail_option) {
-      $thumbnail = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
-        src: $item_thumbnail,
-        alt: $item_thumbnail_alt
-      });
-    }
-    if ('' !== $icon && 'use_icon' === $item_thumbnail_option) {
-      $thumbnail = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-        className: "wpmozo-bna-price-list-icon" + $icon_shape,
-        children: $icon
-      });
-    }
-    if ('' !== $item_price) {
-      $price = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-        className: "wpmozo-bna-price-list-item-price",
-        children: $item_price
-      });
-    }
-    if ('' !== $item_currency) {
-      $currency = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-        className: "wpmozo-bna-price-list-item-currency",
-        children: $item_currency
-      });
-    }
-    if ('' !== attributes.content) {
-      $description = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-        className: "wpmozo-bna-price-list-item-description",
-        children: attributes.content
-      });
-    }
-  }
-  function layout1() {
-    let $no_thumbnail = false,
-      $item_price_wrap = [],
-      $inner_wrap = [],
-      $item_name_wrap = [];
-    if ('' === $thumbnail) {
-      $no_thumbnail = true;
-    }
-    if ('' !== $thumbnail && 'use_image' === $item_thumbnail_option) {
-      $inner_wrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-        className: "wpmozo-bna-price-list-item-thumbnail",
-        children: $thumbnail
-      }, $address + "_layout1_thumb"));
-    }
-    if ('' !== $thumbnail && 'use_icon' === $item_thumbnail_option) {
-      if ('wpmozo-bna-icon-shape-hexagon' === $icon_shape) {
-        $thumbnail = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-          className: "wpmozo-bna-icon-hexagon-wrapper",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-            className: "wpmozo-bna-icon-hexagon-inner-wrap",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-              className: "wpmozo-bna-icon-hexagon",
-              children: $thumbnail
-            })
-          })
-        });
-      }
-      $inner_wrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-        className: "wpmozo-bna-price-list-item-icon",
-        children: $thumbnail
-      }, $address + "_layout1_thumb"));
-    }
-    if ('' !== $price) {
-      $item_price_wrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-        className: "wpmozo-bna-price-list-item-price-divider"
-      }, $address + "_layout1_price_divider"));
-      $item_price_wrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        className: "wpmozo-bna-price-list-item-price-wrap",
-        children: [$currency, $price]
-      }, $address + "_layout1_price_wrapper"));
-      if ($price_period && '' !== $price_period) {
-        $item_price_wrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-          className: "wpmozo-bna-price-list-item-price-period",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-            class: "wpmozo-bna-price-period-divider",
-            children: "/"
-          }), $price_period]
-        }, $address + "_layout1_price_period"));
-      }
-    }
-    $item_name_wrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-      className: "wpmozo-bna-price-list-item-name-wrap",
-      children: [$title, $item_price_wrap]
-    }, $address + "_layout1_name_wrap"));
-    $inner_wrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-      className: "wpmozo-bna-price-list-item-details",
-      children: [$item_name_wrap, $description]
-    }, $address + "_layout1_desc"));
-    let $wrapper_classes = {
-      'wpmozo-bna-price-list-layout': true,
-      'wpmozo-bna-price-list-layout1': true,
-      'no_thumbnail': $no_thumbnail
-    };
-    let layout = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      className: $wrapper_classes,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-        className: "wpmozo-bna-price-list-item-wrap",
-        children: $inner_wrap
-      })
-    }, $address + "_layout1_item");
-    return layout;
-  }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_inspector__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inspector__WEBPACK_IMPORTED_MODULE_2__["default"], {
       attributes: attributes,
       setAttributes: setAttributes
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("style", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("style", {
       children: (0,_style__WEBPACK_IMPORTED_MODULE_4__["default"])({
         attributes,
         clientId,
         parentAttributes
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-        className: 'wpmozo-bna-list-item'
+        className: 'wpmozo-bna-price-list-item'
       }),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        className: "list-item-wrap",
-        children: ["icon" === attributes.markerType && true !== attributes.styleIcon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-          className: "wpmozo-bna-list-icon use-icon",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
-            className: attributes.markerIcon
-          })
-        }), "icon" === attributes.markerType && true === attributes.styleIcon && ('square' === attributes.iconShape || 'circle' === attributes.iconShape) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-          className: "wpmozo-bna-list-icon use-icon use-" + attributes.iconShape,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
-            className: attributes.markerIcon + ' wpmozo-bna-icon-' + attributes.iconShape + (true === attributes.enableShapeBorder ? ' wpmozo-bna-icon-shape-border' : '')
-          })
-        }), "icon" === attributes.markerType && true === attributes.styleIcon && 'hexagon' === attributes.iconShape && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-          className: "wpmozo-bna-list-icon use-icon shape-hexagon use-" + attributes.iconShape,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-            className: "hexagon" + (true === attributes.enableShapeBorder ? ' wpmozo-bna-border-hex' : ''),
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
-              className: attributes.markerIcon
-            })
-          })
-        }), "image" === attributes.markerType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
-          className: "wpmozo-bna-marker-image",
-          src: attributes.markerImage ? attributes.markerImage : WPMozoEditorObj.placeholderImg
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-          className: "wpmozo-bna-list-item-text",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-            identifier: "text",
-            tagName: "p",
-            value: attributes.text,
-            onChange: newContent => setAttributes({
-              text: newContent
-            }),
-            placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enter list item…", "wpmozo-blocks-and-addons")
-          }, "editable")
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-          className: "wpmozo-bna-list-divider"
-        })]
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_edit_layout__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        props: props
       })
     })]
   });
@@ -257,25 +328,36 @@ __webpack_require__.r(__webpack_exports__);
 
 const Icon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
-  viewBox: "0 0 23.94 19",
-  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("title", {
-    children: "Asset 1"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("g", {
-    id: "Layer_2",
-    "data-name": "Layer 2",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("g", {
-      id: "Layer_1-2",
-      "data-name": "Layer 1",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
-        d: "M17,19H7a1.5,1.5,0,0,1-1.5-1.5V1.5A1.5,1.5,0,0,1,7,0H17a1.5,1.5,0,0,1,1.5,1.5v16A1.5,1.5,0,0,1,17,19ZM7,1a.5.5,0,0,0-.5.5v16A.5.5,0,0,0,7,18H17a.5.5,0,0,0,.5-.5V1.5A.5.5,0,0,0,17,1Z"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
-        d: "M14.7,12.54a1.88,1.88,0,0,1-.07.55,1.72,1.72,0,0,1-.21.43,1.54,1.54,0,0,1-.3.32,1.31,1.31,0,0,1-.36.21,1.82,1.82,0,0,1-.37.13l-.36,0H10.87a1.84,1.84,0,0,1-.55-.07,1.91,1.91,0,0,1-.43-.21,1.54,1.54,0,0,1-.32-.3,1.68,1.68,0,0,1-.21-.36,1.9,1.9,0,0,1-.13-.38,2.26,2.26,0,0,1,0-.35V10.13a1.73,1.73,0,0,1,.16-.78,1.66,1.66,0,0,1,.42-.52,1.71,1.71,0,0,1,.55-.29,2.14,2.14,0,0,1,.54-.08h1.37V9.65H10.88a.45.45,0,0,0-.36.13.45.45,0,0,0-.13.35v2.4a.49.49,0,0,0,.12.36.45.45,0,0,0,.36.13H13a.45.45,0,0,0,.36-.13.48.48,0,0,0,.12-.35V4.79H14.7Z"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
-        d: "M21,12.84l2.77-2.92a.62.62,0,0,0,0-.84L21,6.16a.62.62,0,1,0-.89.85L22.47,9.5,20.11,12a.61.61,0,0,0,0,.87.58.58,0,0,0,.42.17A.6.6,0,0,0,21,12.84Z"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
-        d: "M3.38,13a.59.59,0,0,0,.43-.17.62.62,0,0,0,0-.87L1.47,9.5,3.83,7a.62.62,0,0,0,0-.87.61.61,0,0,0-.87,0L.17,9.08a.6.6,0,0,0,0,.84l2.77,2.92A.59.59,0,0,0,3.38,13Z"
-      })]
-    })
+  version: "1.1",
+  width: "1024",
+  height: "1024",
+  viewBox: "0 0 1024 1024",
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("g", {
+    id: "icomoon-ignore"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+    fill: "#000",
+    d: "M584.533 326.4c-6.4 10.667-12.8 17.067-23.467 25.6-10.667 6.4-23.467 10.667-38.4 12.8v27.733h-21.333v-27.733c-21.333-2.133-38.4-8.533-51.2-19.2s-19.2-25.6-19.2-44.8h40.533c0 8.533 4.267 14.933 8.533 21.333s12.8 8.533 21.333 10.667v-72.533c-14.933-4.267-27.733-8.533-36.267-10.667-8.533-4.267-17.067-10.667-23.467-19.2s-10.667-19.2-10.667-34.133c0-19.2 6.4-34.133 19.2-46.933s29.867-19.2 51.2-21.333v-27.733h21.333v27.733c19.2 2.133 36.267 8.533 46.933 19.2 12.8 10.667 19.2 25.6 19.2 42.667h-40.533c0-6.4-4.267-12.8-8.533-19.2s-10.667-8.533-19.2-10.667v72.533c14.933 4.267 27.733 6.4 36.267 10.667s17.067 10.667 23.467 19.2c6.4 8.533 10.667 19.2 10.667 34.133 2.133 10.667 0 21.333-6.4 29.867zM477.867 213.333c6.4 4.267 12.8 8.533 23.467 12.8v-68.267c-8.533 2.133-17.067 4.267-23.467 10.667-4.267 6.4-8.533 12.8-8.533 23.467 0 8.533 4.267 17.067 8.533 21.333zM546.133 320c6.4-6.4 8.533-14.933 8.533-23.467s-2.133-14.933-8.533-21.333c-6.4-4.267-12.8-8.533-23.467-12.8v68.267c10.667 0 17.067-4.267 23.467-10.667z"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+    fill: "#000",
+    d: "M757.333 605.867h-298.667c-12.8 0-21.333-8.533-21.333-21.333v0c0-12.8 8.533-21.333 21.333-21.333h298.667c12.8 0 21.333 8.533 21.333 21.333v0c0 10.667-8.533 21.333-21.333 21.333z"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+    fill: "#000",
+    d: "M757.333 733.867h-298.667c-12.8 0-21.333-8.533-21.333-21.333v0c0-12.8 8.533-21.333 21.333-21.333h298.667c12.8 0 21.333 8.533 21.333 21.333v0c0 10.667-8.533 21.333-21.333 21.333z"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+    fill: "#000",
+    d: "M761.6 864h-298.667c-12.8 0-21.333-8.533-21.333-21.333v0c0-12.8 8.533-21.333 21.333-21.333h298.667c12.8 0 21.333 8.533 21.333 21.333v0c0 12.8-10.667 21.333-21.333 21.333z"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+    fill: "#000",
+    d: "M384 554.667c0 4.267-2.133 10.667-6.4 12.8l-78.933 59.733c-6.4 4.267-14.933 4.267-21.333 0-2.133 0-2.133-2.133-4.267-4.267l-21.333-25.6c-6.4-6.4-4.267-17.067 2.133-23.467 2.133-2.133 6.4-4.267 10.667-4.267s10.667 2.133 12.8 6.4l10.667 14.933 66.133-51.2c6.4-6.4 17.067-4.267 23.467 2.133 4.267 4.267 6.4 8.533 6.4 12.8z"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+    fill: "#000",
+    d: "M384 682.667c0 4.267-2.133 10.667-6.4 12.8l-78.933 59.733c-6.4 4.267-14.933 4.267-21.333 0-2.133 0-2.133-2.133-4.267-4.267l-21.333-25.6c-6.4-6.4-4.267-17.067 2.133-23.467 2.133-2.133 6.4-4.267 10.667-4.267s10.667 2.133 12.8 6.4l10.667 14.933 66.133-51.2c6.4-6.4 17.067-4.267 23.467 2.133 4.267 4.267 6.4 8.533 6.4 12.8z"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+    fill: "#000",
+    d: "M390.4 812.8c0 4.267-2.133 10.667-6.4 12.8l-78.933 61.867c-6.4 4.267-14.933 4.267-21.333 0-2.133 0-2.133-2.133-4.267-4.267l-21.333-25.6c-6.4-6.4-4.267-17.067 2.133-23.467 2.133-2.133 6.4-4.267 10.667-4.267s10.667 2.133 12.8 6.4l10.667 14.933 66.133-51.2c6.4-6.4 17.067-4.267 23.467 2.133 4.267 4.267 6.4 6.4 6.4 10.667z"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+    fill: "#000",
+    d: "M746.667 224c-10.667-119.467-110.933-213.333-234.667-213.333s-221.867 93.867-234.667 213.333c-87.467 19.2-151.467 96-151.467 187.733v411.733c0 106.667 85.333 192 192 192h386.133c106.667 0 192-85.333 192-192v-411.733c2.133-93.867-64-170.667-149.333-187.733zM512 53.333c96 0 177.067 72.533 189.867 166.4 2.133 8.533 2.133 17.067 2.133 27.733 0 6.4 0 10.667 0 17.067-8.533 98.133-91.733 177.067-192 177.067s-183.467-76.8-192-177.067c0-6.4 0-10.667 0-17.067 0-8.533 0-17.067 2.133-27.733 12.8-93.867 93.867-166.4 189.867-166.4zM855.467 821.333c0 83.2-66.133 149.333-149.333 149.333h-388.267c-83.2 0-149.333-66.133-149.333-149.333v-409.6c0-68.267 46.933-125.867 108.8-142.933 10.667 119.467 110.933 213.333 234.667 213.333s221.867-93.867 234.667-213.333c64 17.067 108.8 74.667 108.8 142.933v409.6z"
   })]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Icon);
@@ -401,6 +483,220 @@ const Inspector = ({
 
 /***/ }),
 
+/***/ "./src/blocks/price-list-item/save-layout.jsx":
+/*!****************************************************!*\
+  !*** ./src/blocks/price-list-item/save-layout.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+function LayoutWrapper({
+  attributes
+}) {
+  let {
+    itemThumbnail,
+    itemCurrency,
+    itemPrice,
+    itemThumbnailOption,
+    iconShape,
+    pricePeriod,
+    itemName,
+    icon,
+    content,
+    parentAtts,
+    ID
+  } = attributes;
+  let thumbnail = null,
+    price = null,
+    currency = null,
+    description = null;
+  const iconElement = icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "icon-wrapper",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+      className: icon
+    })
+  }) : null;
+  let itmeHeadingTag = attributes.nameHeadingLavel,
+    parentHeadingLavel = parentAtts.nameHeadingLavel,
+    HeadingTag = 'h4' !== itmeHeadingTag ? itmeHeadingTag : parentHeadingLavel;
+  const title = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
+    className: "wpmozo-bna-price-list-item-name",
+    tagName: HeadingTag,
+    value: attributes.itemName
+  });
+  if (itemThumbnail && itemThumbnailOption === "use_image") {
+    thumbnail = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+      src: itemThumbnail,
+      alt: ""
+    });
+  }
+  if (iconElement && itemThumbnailOption === "use_icon") {
+    thumbnail = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+      className: `wpmozo-bna-price-list-icon ${iconShape}`,
+      children: iconElement
+    });
+  }
+  if (itemPrice) {
+    price = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+      className: "wpmozo-bna-price-list-item-price",
+      children: itemPrice
+    });
+  }
+  if (itemCurrency) {
+    currency = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+      className: "wpmozo-bna-price-list-item-currency",
+      children: itemCurrency
+    });
+  }
+  description = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
+    className: "wpmozo-bna-price-list-item-description",
+    tagName: "div",
+    value: attributes.content
+  });
+  return parentAtts.layout === "layout1" ? layout1(thumbnail, currency, price, pricePeriod, title, description, ID, itemThumbnailOption, iconShape) : layout2(thumbnail, currency, price, pricePeriod, title, description, ID, itemThumbnailOption, iconShape);
+}
+function layout1(thumbnail, currency, price, pricePeriod, title, description, address, itemThumbnailOption, iconShape) {
+  const noThumbnail = !thumbnail;
+  const itemPriceWrap = [];
+  const innerWrap = [];
+  const itemNameWrap = [];
+  if (thumbnail && itemThumbnailOption === "use_image") {
+    innerWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wpmozo-bna-price-list-item-thumbnail",
+      children: thumbnail
+    }, `${address}_layout1_thumb`));
+  }
+  if (thumbnail && itemThumbnailOption === "use_icon") {
+    let iconThumb = thumbnail;
+    if (iconShape === "hexagon") {
+      iconThumb = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "wpmozo-bna-icon-hexagon-wrapper",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "wpmozo-bna-icon-hexagon-inner-wrap",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "wpmozo-bna-icon-hexagon",
+            children: thumbnail
+          })
+        })
+      });
+    }
+    innerWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wpmozo-bna-price-list-item-icon",
+      children: iconThumb
+    }, `${address}_layout1_icon`));
+  }
+  if (price) {
+    itemPriceWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wpmozo-bna-price-list-item-price-divider"
+    }, `${address}_layout1_price_divider`));
+    itemPriceWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "wpmozo-bna-price-list-item-price-wrap",
+      children: [currency, price]
+    }, `${address}_layout1_price_wrapper`));
+    if (pricePeriod) {
+      itemPriceWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "wpmozo-bna-price-list-item-price-period",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          className: "wpmozo-bna-price-period-divider",
+          children: "/"
+        }), pricePeriod]
+      }, `${address}_layout1_price_period`));
+    }
+  }
+  itemNameWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "wpmozo-bna-price-list-item-name-wrap",
+    children: [title, itemPriceWrap]
+  }, `${address}_layout1_name_wrap`));
+  innerWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "wpmozo-bna-price-list-item-details",
+    children: [itemNameWrap, description]
+  }, `${address}_layout1_desc`));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "wpmozo-bna-price-list-layout wpmozo-bna-price-list-layout1",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wpmozo-bna-price-list-item-wrap",
+      children: innerWrap
+    })
+  }, `${address}_layout1_item`);
+}
+function layout2(thumbnail, currency, price, pricePeriod, title, description, address, itemThumbnailOption, iconShape) {
+  const innerWrap = [];
+  let noThumbnail = false;
+  if (!thumbnail) {
+    noThumbnail = true;
+  }
+  if (thumbnail && itemThumbnailOption === "use_image") {
+    innerWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wpmozo-bna-price-list-item-thumbnail",
+      children: thumbnail
+    }, `${address}_layout2_thumb`));
+  }
+  if (thumbnail && itemThumbnailOption === "use_icon") {
+    let iconThumb = thumbnail;
+    if (iconShape === "hexagon") {
+      iconThumb = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "wpmozo-bna-icon-hexagon-wrapper",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "wpmozo-bna-icon-hexagon-inner-wrap",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "wpmozo-bna-icon-hexagon",
+            children: thumbnail
+          })
+        })
+      });
+    }
+    innerWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wpmozo-bna-price-list-item-icon",
+      children: iconThumb
+    }, `${address}_layout2_icon`));
+  }
+  if (price) {
+    let pricePeriodHtml = null;
+    if (pricePeriod) {
+      pricePeriodHtml = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
+        className: "wpmozo-bna-price-list-item-price-period",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          className: "wpmozo-bna-price-period-divider",
+          children: "/"
+        }), pricePeriod]
+      });
+    }
+    innerWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "wpmozo-bna-price-list-item-price-wrap",
+      children: [currency, price, pricePeriodHtml]
+    }, `${address}_layout2_price_wrap`));
+  }
+  innerWrap.push(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "wpmozo-bna-price-list-item-name-wrap",
+    children: title
+  }, `${address}_layout2_name_wrap`));
+  if (description) {
+    innerWrap.push(description);
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "wpmozo-bna-price-list-layout wpmozo-bna-price-list-layout2",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "wpmozo-bna-price-list-item-wrap",
+      children: innerWrap
+    })
+  }, `${address}_layout2_item`);
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LayoutWrapper);
+
+/***/ }),
+
 /***/ "./src/blocks/price-list-item/save.js":
 /*!********************************************!*\
   !*** ./src/blocks/price-list-item/save.js ***!
@@ -414,8 +710,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style */ "./src/blocks/price-list-item/style.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _save_layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./save-layout */ "./src/blocks/price-list-item/save-layout.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -423,51 +721,19 @@ function save({
   attributes
 }) {
   const clientId = attributes.ID;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("style", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("style", {
       children: (0,_style__WEBPACK_IMPORTED_MODULE_1__["default"])({
         attributes,
         clientId
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save({
-        className: "wpmozo-bna-list-item",
+        className: "wpmozo-bna-price-list-item",
         ID: `block-${clientId}`
       }),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "list-item-wrap",
-        children: [attributes.markerType === "icon" && !attributes.styleIcon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "wpmozo-bna-list-icon use-icon",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-            className: attributes.markerIcon
-          })
-        }), attributes.markerType === "icon" && attributes.styleIcon && (attributes.iconShape === "square" || attributes.iconShape === "circle") && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: `wpmozo-bna-list-icon use-icon use-${attributes.iconShape}`,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-            className: `${attributes.markerIcon} wpmozo-bna-icon-${attributes.iconShape} 
-                            ${attributes.enableShapeBorder ? "wpmozo-bna-icon-shape-border" : ""}`
-          })
-        }), attributes.markerType === "icon" && attributes.styleIcon && attributes.iconShape === "hexagon" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "wpmozo-bna-list-icon use-icon shape-hexagon",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-            className: `hexagon yoyo ${attributes.enableShapeBorder ? "wpmozo-bna-border-hex" : ""}`,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-              className: attributes.markerIcon
-            })
-          })
-        }), attributes.markerType === "image" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-          className: "wpmozo-bna-marker-image",
-          src: attributes.markerImage,
-          alt: ""
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "wpmozo-bna-list-item-text",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
-            tagName: "p",
-            value: attributes.text
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "wpmozo-bna-list-divider"
-        })]
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_save_layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        attributes: attributes
       })
     })]
   });

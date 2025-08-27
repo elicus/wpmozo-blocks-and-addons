@@ -3040,7 +3040,7 @@ return array(
 		'title' => 'Price List',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Easily create and organized lists with the List block',
+		'description' => 'Easily create and organized price lists with the Price List block',
 		'allowedBlocks' => array(
 			'wpmozo/price-list-item'
 		),
@@ -3277,10 +3277,10 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'wpmozo/price-list-item',
 		'version' => '0.1.0',
-		'title' => 'List Item',
+		'title' => 'Price Item',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Easily create and organized lists with the List block',
+		'description' => 'Easily create and organized price lists with the Price List block',
 		'example' => array(
 			
 		),
@@ -3303,13 +3303,16 @@ return array(
 				'type' => 'string'
 			),
 			'itemName' => array(
-				'type' => 'string'
+				'type' => 'string',
+				'default' => 'Item Name'
 			),
 			'itemCurrency' => array(
-				'type' => 'string'
+				'type' => 'string',
+				'default' => '$'
 			),
 			'itemPrice' => array(
-				'type' => 'string'
+				'type' => 'string',
+				'default' => '10'
 			),
 			'pricePeriod' => array(
 				'type' => 'string'
@@ -3351,6 +3354,10 @@ return array(
 			),
 			'thumbnailborderRadius' => array(
 				'type' => 'string'
+			),
+			'nameHeadingLavel' => array(
+				'type' => 'string',
+				'default' => 'h4'
 			),
 			'nameColor' => array(
 				'type' => 'string'

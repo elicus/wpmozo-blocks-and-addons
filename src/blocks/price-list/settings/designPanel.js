@@ -156,25 +156,27 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				props={props}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Divider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			<WpmozoColorPicker props={props}
-				ColorKey="divider"
-				ColorTypes={ [
-					{ key: 'Color', label: __( 'Description Color', 'wpmozo-blocks-and-addons' ) }
-				] }
-			/>
-			<WpmozoRangeSize props={props}
-				label={ __( 'Divider Width', 'wpmozo-blocks-and-addons') }
-				rangeSizeKey='dividerWidth'
-			/>
-			<SelectControl
-				label={ __( 'Divider Style', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.dividerStyle }
-				options={ dividerStyle }
-				onChange={ (newValue) => setAttributes( { dividerStyle: newValue } ) }
-				__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
-			/>
-		</PanelBody>
+		{ 'layout1' === attributes.layout && ( <>
+			<PanelBody title={ __( 'Divider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<WpmozoColorPicker props={props}
+					ColorKey="divider"
+					ColorTypes={ [
+						{ key: 'Color', label: __( 'Description Color', 'wpmozo-blocks-and-addons' ) }
+					] }
+				/>
+				<WpmozoRangeSize props={props}
+					label={ __( 'Divider Width', 'wpmozo-blocks-and-addons') }
+					rangeSizeKey='dividerWidth'
+				/>
+				<SelectControl
+					label={ __( 'Divider Style', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.dividerStyle }
+					options={ dividerStyle }
+					onChange={ (newValue) => setAttributes( { dividerStyle: newValue } ) }
+					__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+				/>
+			</PanelBody>
+		</> ) }
 		<PanelBody title={ __( 'Period', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			<WpmozoColorPicker props={props}
 				ColorKey="period"

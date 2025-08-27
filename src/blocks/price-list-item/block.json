@@ -3,10 +3,10 @@
     "apiVersion": 3,
     "name": "wpmozo/price-list-item",
     "version": "0.1.0",
-    "title": "List Item",
+    "title": "Price Item",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "Easily create and organized lists with the List block",
+    "description": "Easily create and organized price lists with the Price List block",
     "example": {},
     "parent": [ "wpmozo/price-list" ],
 	"supports": {
@@ -20,9 +20,9 @@
         "ID": { "type": "string" },
 		"className": { "type": "string" },
 
-        "itemName": { "type": "string" }, 
-        "itemCurrency": { "type": "string" }, 
-        "itemPrice": { "type": "string" }, 
+        "itemName": { "type": "string", "default": "Item Name" }, 
+        "itemCurrency": { "type": "string", "default": "$" }, 
+        "itemPrice": { "type": "string", "default": "10" }, 
         "pricePeriod": { "type": "string" }, 
         "itemThumbnailOption": { "type": "string", "default": "use_image" }, 
         "icon": { "type": "string" }, 
@@ -41,6 +41,7 @@
         "thumbnailborder": { "type": "object" },
         "thumbnailborderRadius": { "type": "string" },
 
+        "nameHeadingLavel": { "type": "string", "default": "h4" },
         "nameColor": { "type": "string" },
         "nameFontSize": { "type": "string", "default": "20px" },
         "nameFontAppearance": {

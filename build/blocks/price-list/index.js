@@ -8,7 +8,7 @@
   \******************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/price-list","version":"1.0.0","title":"Price List","category":"wpmozo","icon":"smiley","description":"Easily create and organized lists with the List block","allowedBlocks":["wpmozo/price-list-item"],"example":{},"supports":{"html":false,"anchor":false,"customClassName":false},"attributes":{"ID":{"type":"string"},"className":{"type":"string"},"layout":{"type":"string","default":"layout1"},"columnSpacing":{"type":"string","default":"15px"},"numberOfColumns":{"type":"string","default":"1"},"dividerColor":{"type":"string"},"textAlignment":{"type":"string"},"nameHeadingLavel":{"type":"string","default":"h4"},"currencySymbolPosition":{"type":"string"},"dividerStyle":{"type":"string"},"iconColor":{"type":"string"},"iconShapBackground":{"type":"string"},"iconFontSize":{"type":"string","default":"100px"},"thumbnailborder":{"type":"object"},"thumbnailborderRadius":{"type":"string"},"nameColor":{"type":"string"},"nameFontSize":{"type":"string","default":"20px"},"nameFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"nameLetterSpacing":{"type":"string"},"nameDecoration":{"type":"string"},"nameLetterCase":{"type":"string"},"nameLineHeight":{"type":"string"},"priceColor":{"type":"string"},"priceFontSize":{"type":"string","default":"18px"},"priceFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"priceLetterSpacing":{"type":"string"},"priceDecoration":{"type":"string"},"priceLetterCase":{"type":"string"},"priceLineHeight":{"type":"string"},"currencyColor":{"type":"string"},"currencyFontSize":{"type":"string","default":"18px"},"currencyFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"currencyLetterSpacing":{"type":"string"},"currencyDecoration":{"type":"string"},"currencyLetterCase":{"type":"string"},"currencyLineHeight":{"type":"string"},"descriptionColor":{"type":"string"},"descriptionFontSize":{"type":"string","default":"14px"},"descriptionFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"descriptionLetterSpacing":{"type":"string"},"descriptionDecoration":{"type":"string"},"descriptionLetterCase":{"type":"string"},"descriptionLineHeight":{"type":"string"},"dividerWidth":{"type":"string","default":"1px"},"periodColor":{"type":"string"},"periodFontSize":{"type":"string","default":"16px"},"periodFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"periodLetterSpacing":{"type":"string"},"periodDecoration":{"type":"string"},"periodLetterCase":{"type":"string"},"periodLineHeight":{"type":"string"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js","style":"file:./style-index.css"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/price-list","version":"1.0.0","title":"Price List","category":"wpmozo","icon":"smiley","description":"Easily create and organized price lists with the Price List block","allowedBlocks":["wpmozo/price-list-item"],"example":{},"supports":{"html":false,"anchor":false,"customClassName":false},"attributes":{"ID":{"type":"string"},"className":{"type":"string"},"layout":{"type":"string","default":"layout1"},"columnSpacing":{"type":"string","default":"15px"},"numberOfColumns":{"type":"string","default":"1"},"dividerColor":{"type":"string"},"textAlignment":{"type":"string"},"nameHeadingLavel":{"type":"string","default":"h4"},"currencySymbolPosition":{"type":"string"},"dividerStyle":{"type":"string"},"iconColor":{"type":"string"},"iconShapBackground":{"type":"string"},"iconFontSize":{"type":"string","default":"100px"},"thumbnailborder":{"type":"object"},"thumbnailborderRadius":{"type":"string"},"nameColor":{"type":"string"},"nameFontSize":{"type":"string","default":"20px"},"nameFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"nameLetterSpacing":{"type":"string"},"nameDecoration":{"type":"string"},"nameLetterCase":{"type":"string"},"nameLineHeight":{"type":"string"},"priceColor":{"type":"string"},"priceFontSize":{"type":"string","default":"18px"},"priceFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"priceLetterSpacing":{"type":"string"},"priceDecoration":{"type":"string"},"priceLetterCase":{"type":"string"},"priceLineHeight":{"type":"string"},"currencyColor":{"type":"string"},"currencyFontSize":{"type":"string","default":"18px"},"currencyFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"currencyLetterSpacing":{"type":"string"},"currencyDecoration":{"type":"string"},"currencyLetterCase":{"type":"string"},"currencyLineHeight":{"type":"string"},"descriptionColor":{"type":"string"},"descriptionFontSize":{"type":"string","default":"14px"},"descriptionFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"descriptionLetterSpacing":{"type":"string"},"descriptionDecoration":{"type":"string"},"descriptionLetterCase":{"type":"string"},"descriptionLineHeight":{"type":"string"},"dividerWidth":{"type":"string","default":"1px"},"periodColor":{"type":"string"},"periodFontSize":{"type":"string","default":"16px"},"periodFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"periodLetterSpacing":{"type":"string"},"periodDecoration":{"type":"string"},"periodLetterCase":{"type":"string"},"periodLineHeight":{"type":"string"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js","style":"file:./style-index.css"}');
 
 /***/ }),
 
@@ -33,8 +33,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style */ "./src/blocks/price-list/style.js");
 /* harmony import */ var _common_utils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../common/utils.js */ "./src/common/utils.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
 
 
 
@@ -65,29 +67,47 @@ function Edit(props) {
     text: childAttributes.text
   }] // Prefills a child block when parent is inserted
   ];
+  const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => select('core/block-editor').getBlocks(clientId), [clientId]);
+  const {
+    insertBlocks
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useDispatch)('core/block-editor');
+  const addChildBlock = () => {
+    const newBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__.createBlock)('wpmozo/price-list-item', {
+      text: childAttributes.text
+    });
+    insertBlocks(newBlock, innerBlocks.length, clientId);
+  };
   attributes.ID = clientId;
-  const hideDivider = true === attributes.lastDivider ? "wpmozo-bna-hide-last-divider" : "";
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inspector__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_inspector__WEBPACK_IMPORTED_MODULE_2__["default"], {
       attributes: attributes,
       setAttributes: setAttributes
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("style", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("style", {
       children: (0,_style__WEBPACK_IMPORTED_MODULE_5__["default"])({
         attributes,
         clientId
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-        className: 'wpmozo-bna-list'
+        className: 'wpmozo-bna-price-list'
       }),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-          className: "wpmozo-bna-list-wrapper",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-            className: "wpmozo-bna-list-layout wpmozo-bna-list-" + attributes.layout + " " + hideDivider,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
-              templateLock: false,
-              template: TEMPLATE
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
+        templateLock: false,
+        template: TEMPLATE,
+        renderAppender: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
+          onClick: addChildBlock,
+          type: "button",
+          className: "components-button block-editor-button-block-appender",
+          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Add Price Item', 'wpmozo-blocks-and-addons'),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("svg", {
+            xmlns: "http://www.w3.org/2000/svg",
+            viewBox: "0 0 24 24",
+            width: "24",
+            height: "24",
+            "aria-hidden": "true",
+            focusable: "false",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("path", {
+              d: "M11 12.5V17.5H12.5V12.5H17.5V11H12.5V6H11V11H6V12.5H11Z"
             })
           })
         })
@@ -112,8 +132,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
 
 const Icon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-  version: "1.1",
   xmlns: "http://www.w3.org/2000/svg",
+  version: "1.1",
   width: "1024",
   height: "1024",
   viewBox: "0 0 1024 1024",
@@ -121,22 +141,28 @@ const Icon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs
     id: "icomoon-ignore"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
     fill: "#000",
-    d: "M117.333 224c-59.733 0-106.667-46.933-106.667-106.667s46.933-106.667 106.667-106.667 106.667 46.933 106.667 106.667-46.933 106.667-106.667 106.667zM117.333 53.333c-36.267 0-64 27.733-64 64s27.733 64 64 64 64-27.733 64-64-27.733-64-64-64z"
+    d: "M584.533 326.4c-6.4 10.667-12.8 17.067-23.467 25.6-10.667 6.4-23.467 10.667-38.4 12.8v27.733h-21.333v-27.733c-21.333-2.133-38.4-8.533-51.2-19.2s-19.2-25.6-19.2-44.8h40.533c0 8.533 4.267 14.933 8.533 21.333s12.8 8.533 21.333 10.667v-72.533c-14.933-4.267-27.733-8.533-36.267-10.667-8.533-4.267-17.067-10.667-23.467-19.2s-10.667-19.2-10.667-34.133c0-19.2 6.4-34.133 19.2-46.933s29.867-19.2 51.2-21.333v-27.733h21.333v27.733c19.2 2.133 36.267 8.533 46.933 19.2 12.8 10.667 19.2 25.6 19.2 42.667h-40.533c0-6.4-4.267-12.8-8.533-19.2s-10.667-8.533-19.2-10.667v72.533c14.933 4.267 27.733 6.4 36.267 10.667s17.067 10.667 23.467 19.2c6.4 8.533 10.667 19.2 10.667 34.133 2.133 10.667 0 21.333-6.4 29.867zM477.867 213.333c6.4 4.267 12.8 8.533 23.467 12.8v-68.267c-8.533 2.133-17.067 4.267-23.467 10.667-4.267 6.4-8.533 12.8-8.533 23.467 0 8.533 4.267 17.067 8.533 21.333zM546.133 320c6.4-6.4 8.533-14.933 8.533-23.467s-2.133-14.933-8.533-21.333c-6.4-4.267-12.8-8.533-23.467-12.8v68.267c10.667 0 17.067-4.267 23.467-10.667z"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
     fill: "#000",
-    d: "M117.333 618.667c-59.733 0-106.667-46.933-106.667-106.667s46.933-106.667 106.667-106.667 106.667 46.933 106.667 106.667-46.933 106.667-106.667 106.667zM117.333 448c-36.267 0-64 27.733-64 64s27.733 64 64 64 64-27.733 64-64-27.733-64-64-64z"
+    d: "M757.333 605.867h-298.667c-12.8 0-21.333-8.533-21.333-21.333v0c0-12.8 8.533-21.333 21.333-21.333h298.667c12.8 0 21.333 8.533 21.333 21.333v0c0 10.667-8.533 21.333-21.333 21.333z"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
     fill: "#000",
-    d: "M117.333 1013.333c-59.733 0-106.667-46.933-106.667-106.667s46.933-106.667 106.667-106.667 106.667 46.933 106.667 106.667-46.933 106.667-106.667 106.667zM117.333 842.667c-36.267 0-64 27.733-64 64s27.733 64 64 64 64-27.733 64-64-27.733-64-64-64z"
+    d: "M757.333 733.867h-298.667c-12.8 0-21.333-8.533-21.333-21.333v0c0-12.8 8.533-21.333 21.333-21.333h298.667c12.8 0 21.333 8.533 21.333 21.333v0c0 10.667-8.533 21.333-21.333 21.333z"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
     fill: "#000",
-    d: "M970.667 160h-640c-23.467 0-42.667-19.2-42.667-42.667v0c0-23.467 19.2-42.667 42.667-42.667h640c23.467 0 42.667 19.2 42.667 42.667v0c0 23.467-19.2 42.667-42.667 42.667z"
+    d: "M761.6 864h-298.667c-12.8 0-21.333-8.533-21.333-21.333v0c0-12.8 8.533-21.333 21.333-21.333h298.667c12.8 0 21.333 8.533 21.333 21.333v0c0 12.8-10.667 21.333-21.333 21.333z"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
     fill: "#000",
-    d: "M970.667 554.667h-640c-23.467 0-42.667-19.2-42.667-42.667v0c0-23.467 19.2-42.667 42.667-42.667h640c23.467 0 42.667 19.2 42.667 42.667v0c0 23.467-19.2 42.667-42.667 42.667z"
+    d: "M384 554.667c0 4.267-2.133 10.667-6.4 12.8l-78.933 59.733c-6.4 4.267-14.933 4.267-21.333 0-2.133 0-2.133-2.133-4.267-4.267l-21.333-25.6c-6.4-6.4-4.267-17.067 2.133-23.467 2.133-2.133 6.4-4.267 10.667-4.267s10.667 2.133 12.8 6.4l10.667 14.933 66.133-51.2c6.4-6.4 17.067-4.267 23.467 2.133 4.267 4.267 6.4 8.533 6.4 12.8z"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
     fill: "#000",
-    d: "M800 949.333h-469.333c-23.467 0-42.667-19.2-42.667-42.667v0c0-23.467 19.2-42.667 42.667-42.667h469.333c23.467 0 42.667 19.2 42.667 42.667v0c0 23.467-19.2 42.667-42.667 42.667z"
+    d: "M384 682.667c0 4.267-2.133 10.667-6.4 12.8l-78.933 59.733c-6.4 4.267-14.933 4.267-21.333 0-2.133 0-2.133-2.133-4.267-4.267l-21.333-25.6c-6.4-6.4-4.267-17.067 2.133-23.467 2.133-2.133 6.4-4.267 10.667-4.267s10.667 2.133 12.8 6.4l10.667 14.933 66.133-51.2c6.4-6.4 17.067-4.267 23.467 2.133 4.267 4.267 6.4 8.533 6.4 12.8z"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+    fill: "#000",
+    d: "M390.4 812.8c0 4.267-2.133 10.667-6.4 12.8l-78.933 61.867c-6.4 4.267-14.933 4.267-21.333 0-2.133 0-2.133-2.133-4.267-4.267l-21.333-25.6c-6.4-6.4-4.267-17.067 2.133-23.467 2.133-2.133 6.4-4.267 10.667-4.267s10.667 2.133 12.8 6.4l10.667 14.933 66.133-51.2c6.4-6.4 17.067-4.267 23.467 2.133 4.267 4.267 6.4 6.4 6.4 10.667z"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+    fill: "#000",
+    d: "M746.667 224c-10.667-119.467-110.933-213.333-234.667-213.333s-221.867 93.867-234.667 213.333c-87.467 19.2-151.467 96-151.467 187.733v411.733c0 106.667 85.333 192 192 192h386.133c106.667 0 192-85.333 192-192v-411.733c2.133-93.867-64-170.667-149.333-187.733zM512 53.333c96 0 177.067 72.533 189.867 166.4 2.133 8.533 2.133 17.067 2.133 27.733 0 6.4 0 10.667 0 17.067-8.533 98.133-91.733 177.067-192 177.067s-183.467-76.8-192-177.067c0-6.4 0-10.667 0-17.067 0-8.533 0-17.067 2.133-27.733 12.8-93.867 93.867-166.4 189.867-166.4zM855.467 821.333c0 83.2-66.133 149.333-149.333 149.333h-388.267c-83.2 0-149.333-66.133-149.333-149.333v-409.6c0-68.267 46.933-125.867 108.8-142.933 10.667 119.467 110.933 213.333 234.667 213.333s221.867-93.867 234.667-213.333c64 17.067 108.8 74.667 108.8 142.933v409.6z"
   })]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Icon);
@@ -509,31 +535,33 @@ const DesignPanel = ({
         TypographyKey: "description",
         props: props
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Divider', 'wpmozo-blocks-and-addons'),
-      className: "wpmozo-typography-panel",
-      initialOpen: false,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
-        props: props,
-        ColorKey: "divider",
-        ColorTypes: [{
-          key: 'Color',
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Description Color', 'wpmozo-blocks-and-addons')
-        }]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoRangeSize, {
-        props: props,
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Divider Width', 'wpmozo-blocks-and-addons'),
-        rangeSizeKey: "dividerWidth"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Divider Style', 'wpmozo-blocks-and-addons'),
-        value: attributes.dividerStyle,
-        options: dividerStyle,
-        onChange: newValue => setAttributes({
-          dividerStyle: newValue
-        }),
-        __next40pxDefaultSize: true,
-        __nextHasNoMarginBottom: true
-      })]
+    }), 'layout1' === attributes.layout && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Divider', 'wpmozo-blocks-and-addons'),
+        className: "wpmozo-typography-panel",
+        initialOpen: false,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
+          props: props,
+          ColorKey: "divider",
+          ColorTypes: [{
+            key: 'Color',
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Description Color', 'wpmozo-blocks-and-addons')
+          }]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoRangeSize, {
+          props: props,
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Divider Width', 'wpmozo-blocks-and-addons'),
+          rangeSizeKey: "dividerWidth"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Divider Style', 'wpmozo-blocks-and-addons'),
+          value: attributes.dividerStyle,
+          options: dividerStyle,
+          onChange: newValue => setAttributes({
+            dividerStyle: newValue
+          }),
+          __next40pxDefaultSize: true,
+          __nextHasNoMarginBottom: true
+        })]
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Period', 'wpmozo-blocks-and-addons'),
       className: "wpmozo-typography-panel",
