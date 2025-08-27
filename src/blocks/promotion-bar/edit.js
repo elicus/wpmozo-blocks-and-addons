@@ -62,7 +62,7 @@ const Edit = (props) => {
 			$buttonIcon = <i className={ 'wpmozo-icon ' + attributes.buttonIcon }></i>;
 		}
 		$button = <div className="wpmozo-button-wrap">
-			<a href={ attributes.buttonUrl }
+			<a href="javascript:void(0)"
 				target={ ( 'external' === attributes.buttonLinkTarget ) ? '_blank' : false }
 				className={ [
 					'wpmozo-button',
@@ -108,10 +108,10 @@ const Edit = (props) => {
 							{ ( 'layout2' === layout ) ? $button : '' }
 						</div>
 						<div className="wpmozo-promotion-bar-timer">
-							{ ( false === hideDays ) ? 
+							{ ( false === hideDays ) ?
 								<div className="wpmozo-pb-timer-box wpmozo-pb-days">
 									<span className="wpmozo-pb-number">00</span>
-									{ ( 'none' !== displayLabel ) ? 
+									{ ( 'none' !== displayLabel ) ?
 										<span className="wpmozo-pb-label">{ labels.days[ displayLabel ] }</span>
 									: '' }
 								</div>
@@ -119,21 +119,21 @@ const Edit = (props) => {
 							{ ( false === hideDays ) ? $separator : '' }
 							<div className="wpmozo-pb-timer-box wpmozo-pb-hours">
 								<span className="wpmozo-pb-number">00</span>
-								{ ( 'none' !== displayLabel ) ? 
+								{ ( 'none' !== displayLabel ) ?
 									<span className="wpmozo-pb-label">{ labels.hours[ displayLabel ] }</span>
 								: '' }
 							</div>
 							{ $separator }
 							<div className="wpmozo-pb-timer-box wpmozo-pb-minutes">
 								<span className="wpmozo-pb-number">00</span>
-								{ ( 'none' !== displayLabel ) ? 
+								{ ( 'none' !== displayLabel ) ?
 									<span className="wpmozo-pb-label">{ labels.minutes[ displayLabel ] }</span>
 								: '' }
 							</div>
 							{ $separator }
 							<div className="wpmozo-pb-timer-box wpmozo-pb-seconds">
 								<span className="wpmozo-pb-number">00</span>
-								{ ( 'none' !== displayLabel ) ? 
+								{ ( 'none' !== displayLabel ) ?
 									<span className="wpmozo-pb-label">{ labels.seconds[ displayLabel ] }</span>
 								: '' }
 							</div>
