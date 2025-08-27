@@ -15,19 +15,20 @@ export default function Edit(props) {
 
 	const { attributes, setAttributes, isSelected, clientId } = props;
 
+	const blockProps = useBlockProps({ className: 'wpmozo-bna-image-stack' });
+
 	attributes.ID = clientId;
 
-	const innerBlockProps = useInnerBlocksProps(
-		{ className: 'wpmozo-image-stack-inner' },
-		{ allowedBlocks: ALLOWED_BLOCKS }
-	);
+	const innerBlocksProps = useInnerBlocksProps( blockProps, {
+		allowedBlocks: ALLOWED_BLOCKS
+	});
 
 	return (
 		<>
 			{ isSelected && ( <Inspector attributes={attributes} setAttributes={setAttributes} /> ) }
 			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
-			<div { ...useBlockProps( { className: 'wpmozo-bna-image-stack ' + attributes.className } ) } >
+			<div className="wpmozo-bna-image-stack" id={`block-${clientId}`}  data-client-id={clientId}  >
 				<div className={`wpmozo-image-stack-wrap`}
 					data-speech-bubble="yes"
 					data-animation-type="away"
@@ -36,7 +37,7 @@ export default function Edit(props) {
 					data-tooltip-id="elementor-baca216"
 					data-trigger="hover"
 				>
-					<div {...innerBlockProps} />
+					{innerBlocksProps.children}
 				</div>
 			</div>
 		</>
