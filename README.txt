@@ -13,7 +13,7 @@ WPMozo Blocks and Addons is a plugin designed to extend the functionality of the
 
 ### Key Features:
 - **Before After Slider** – Create stunning before-and-after comparisons with a sleek, responsive slider. Perfect for showcasing transformations, this WordPress before-and-after slider is ideal for websites using Gutenberg. Easily compare images side by side with smooth transitions, making it a must-have for portfolios, product showcases, and more. Fully customizable for any theme.
-- **Content Toggle** – Organize content with collapsible sections using the Content Toggle block. Ideal for FAQs, product details, or lengthy content, this feature enhances readability and user experience. 
+- **Content Toggle** – Organize content with collapsible sections using the Content Toggle block. Ideal for FAQs, product details, or lengthy content, this feature enhances readability and user experience.
 - **Fancy Heading** – Design eye-catching headings with advanced styling options. Create pre-headings, main headings, and post-headings with unique fonts, colors, and effects. Ideal for creating visually appealing titles that stand out.
 - **Fancy Text** – Add creative text effects with animations, gradients, and custom styles. Highlight important text or create engaging call-to-action elements to make your content more dynamic.
 - **Flip Box** – Create interactive flip boxes with front and back content. Showcase information, images, or calls-to-action in a visually engaging way—perfect for portfolios, team profiles, or product highlights.
@@ -26,10 +26,10 @@ WPMozo Blocks and Addons is a plugin designed to extend the functionality of the
 
 This plugin is fully compatible with Gutenberg and WordPress block editor, ensuring seamless integration with your website.
 
-== Related Plugins ==  
-- [WPMozo Product Grid for WooCommerce](https://wordpress.org/plugins/wpmozo-product-grid-for-woocommerce/) – Gutenberg block plugin to display WooCommerce products grid.  
-- [WPMozo Product Carousel for WooCommerce](https://wordpress.org/plugins/wpmozo-product-carousel-for-woocommerce/) – Gutenberg block plugin to display WooCommerce products carousel.  
-- [WPMozo Addons Lite for Elementor](https://wordpress.org/plugins/wpmozo-addons-lite-for-elementor/) – 30+ widgets for Elementor page builder.  
+== Related Plugins ==
+- [WPMozo Product Grid for WooCommerce](https://wordpress.org/plugins/wpmozo-product-grid-for-woocommerce/) – Gutenberg block plugin to display WooCommerce products grid.
+- [WPMozo Product Carousel for WooCommerce](https://wordpress.org/plugins/wpmozo-product-carousel-for-woocommerce/) – Gutenberg block plugin to display WooCommerce products carousel.
+- [WPMozo Addons Lite for Elementor](https://wordpress.org/plugins/wpmozo-addons-lite-for-elementor/) – 30+ widgets for Elementor page builder.
 
 
 == Screenshots ==
@@ -80,7 +80,17 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
-2025-04-02 - version 1.0.0
+2025-08-28 - Version 1.1.0
+* New: Image Card Block.
+* New: Star Rating Block.
+* New: Pricing Table Block.
+* New: Image Stack Block.
+* New: Testimonial Slider Block.
+* New: Mystery Image Block.
+* New: Masonry Gallery Block.
+* IMPROVEMENT: All modules updated the settings side panel with a better UI to make it user-friendly.
+
+2025-04-02 - Version 1.0.0
 * New - Initial release with 11 blocks
 * New - Before After Slider block
 * New - Content Toggle block
