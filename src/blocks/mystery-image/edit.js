@@ -187,7 +187,7 @@ function Edit( props ) {
 			disableMediaButtons={
 				( hasImages && ! isSelected ) || imagesUploading
 			}
-			handleUpload={ false }
+			handleUpload={ true }
 			isAppender={ hasImages }
 			labels={ {
 				instructions: ! hasImages && PLACEHOLDER_TEXT,
@@ -226,7 +226,7 @@ function Edit( props ) {
 							{true === attributes.enableOverlay && (
 								<>
 									<span className="wpmozo-overlay-icon">
-										<i className="fab fa-app-store-ios"></i>
+										<i className={attributes.overlayIcon}></i>
 									</span>
 								</>
 

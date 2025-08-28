@@ -163,8 +163,8 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 				}
 
 				$testimonials .= '<div class="wpmozo_testimonial_slide swiper-slide">';
-				if ( file_exists( WPMOZO_BNA_PLUGIN_DIR_PATH . 'src/blocks/testimonial-slider/layouts/' . sanitize_file_name( $layout ) . '.php' ) ) {
-					include WPMOZO_BNA_PLUGIN_DIR_PATH . 'src/blocks/testimonial-slider/layouts/' . sanitize_file_name( $layout ) . '.php';
+				if ( file_exists( WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-testimonial-slider/' . sanitize_file_name( $layout ) . '.php' ) ) {
+					include WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-testimonial-slider/' . sanitize_file_name( $layout ) . '.php';
 				}
 				$testimonials .= '</div>';
 			}
@@ -214,7 +214,12 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 			}
 
 			// Get wrapper attributes.
-			$wrapper_attributes = get_block_wrapper_attributes();
+			$wrapper_attributes = get_block_wrapper_attributes( array(
+				'class' => ( $attributes['className'] ) ?? ''
+			) );
+
+			$auto_height = ( $attributes['autoHeight'] ) ? 'true' : 'false';
+			$auto_height = ( true === $attributes['equalHeight'] ) ? 'false' : $auto_height;
 
 			// Get data attrs.
 			$data_attrs = array(
@@ -230,6 +235,7 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 				'space_between_slides_tablet' => $attributes['spaceBetweenSlidesTablet'] ?? '20',
 				'space_between_slides_mobile' => $attributes['spaceBetweenSlidesMobile'] ?? '20',
 
+				'auto_height'                 => esc_attr( $auto_height ),
 				'enable_loop'                 => $attributes['enableLoop'] ? 'true' : 'false',
 				'autoplay'                    => $attributes['autoplay'] ? 'true' : 'false',
 				'autoplay_delay'              => $attributes['autoplayDelay'] ?? '3000',

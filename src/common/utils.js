@@ -244,3 +244,23 @@ export const headingLevelsList = [
 		value: 'h6'
 	}
 ];
+
+export const inspectorPanelTabs = () => {
+	return [
+		{
+			name: 'general',
+			title: __( 'General', 'wpmozo-blocks-and-addons' ),
+			className: 'wpmozo-inspector-tab-general',
+		},
+		{
+			name: 'design',
+			title: __( 'Design', 'wpmozo-blocks-and-addons' ),
+			className: 'wpmozo-inspector-tab-design',
+		},
+		{
+			name: 'advanced',
+			title: __( 'Advanced', 'wpmozo-blocks-and-addons' ),
+			className: 'wpmozo-inspector-tab-advanced',
+		}
+	];
+};

@@ -1,9 +1,11 @@
 import V1 from './deprecated/version-1';
 import { registerBlockType } from '@wordpress/blocks';
+
 import metadata from './block.json';
 import Edit from './edit';
 import save from './save';
 import Icon from './icon';
+
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * All files containing  keyword are bundled together. The code used
@@ -13,9 +15,9 @@ import Icon from './icon';
  */
 import './style.scss';
 
-registerBlockType(metadata.name, {
-    edit: Edit,
-    icon: Icon,
-    save,
-    deprecated: [ V1 ]
-});
+registerBlockType( metadata.name, {
+	edit: Edit,
+	icon: Icon,
+	save,
+	deprecated: [ V1 ]
+} );

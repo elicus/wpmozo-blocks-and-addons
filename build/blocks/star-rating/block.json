@@ -6,13 +6,17 @@
   "title": "Star Rating",
   "category": "wpmozo",
   "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "description": "Display star ratings for products, services, and reviews using schema for rich, eye-catching results.",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "customClassName": false
   },
   "attributes": {
     "ID": {
+      "type": "string"
+    },
+    "className": {
       "type": "string"
     },
     "globalTextAlign": {
@@ -113,7 +117,7 @@
     },
     "description": {
       "type": "string",
-      "default": ""
+      "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     },
     "descriptionColor": {
       "type": "string"
@@ -173,6 +177,18 @@
     "starSpacing": {
       "type": "number",
       "default": 2
+    },
+    "containerpadding": {
+      "type": "object"
+    },
+    "containermargin": {
+      "type": "object"
+    },
+    "containerborder": {
+      "type": "object"
+    },
+    "containerborderRadius": {
+      "type": "string"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",

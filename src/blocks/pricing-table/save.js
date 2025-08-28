@@ -13,7 +13,7 @@ const Save = ({ attributes }) => {
 		<>
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-			<div {...useBlockProps.save({className: 'wpmozo-bna-pricing-table-main'})} id={`block-${ID}`}>
+			<div {...useBlockProps.save( { className: attributes.className } ) } id={`block-${ID}`}>
 				<div className="wpmozo-bna-pricing-table">
 					<div className="wpmozo-bna-pricing-table-wrapper">
 						<div className="wpmozo-bna-pricing-table-header-graphic">
@@ -30,16 +30,20 @@ const Save = ({ attributes }) => {
 							)}
 						</div>
 						<div className="wpmozo-bna-pricing-table-heading">
-							<RichText.Content
-								className="wpmozo-bna-pricing-table-title"
-								tagName={attributes.titleLeval}
-								value={attributes.title}
-							/>
-							<RichText.Content
-								className="wpmozo-bna-pricing-table-subtitle"
-								tagName="span"
-								value={attributes.subtitle}
-							/>
+							{ '' != attributes.title && (
+								<RichText.Content
+									className="wpmozo-bna-pricing-table-title"
+									tagName={attributes.titleLeval}
+									value={attributes.title}
+								/>
+							)}
+							{ '' != attributes.subtitle && (
+								<RichText.Content
+									className="wpmozo-bna-pricing-table-subtitle"
+									tagName="span"
+									value={attributes.subtitle}
+								/>
+							)}
 							<span className="wpmozo-bna-bar-container">
 								<hr className="wpmozo-bna-bar"/>
 							</span>
@@ -65,22 +69,23 @@ const Save = ({ attributes }) => {
 							{ attributes.features && attributes.features.length > 0 && attributes.features.map( (feature, index) => (
 								<div key={`feature-${index}`}>
 									<dt className="wpmozo-bna-pricing-table-features-list">
-										<span className="wpmozo-bna-pricing-table-feature-icon">
-											<i className={attributes.featuresIcon}></i>
-										</span>
+										{true === attributes.showFeaturesIcon && (
+											<span className="wpmozo-bna-pricing-table-feature-icon">
+												<i className={feature.icon}></i>
+											</span>
+										)}
 										<span className="wpmozo-bna-pricing-table-feature-text">
 											{feature.list}
 										</span>
 									</dt>
-									<hr className="wpmozo-bna-divider"/>
 								</div>
-							) ) }
+							))}
 						</dl>
-						{ true === attributes.showButton && (
+						{true === attributes.showButton && (
 							<div className="wpmozo-bna-pricing-table-button-wrapper">
 								<a href={attributes.buttonUrl}
-									className={ "wpmozo-bna-button " + buttonIconPosition + showIconOnHover }
-									target={ linkTarget }
+								   className={"wpmozo-bna-button " + buttonIconPosition + showIconOnHover}
+								   target={linkTarget}
 								>
 									<span className="button_text">
 										<RichText.Content value={attributes.buttonText} />

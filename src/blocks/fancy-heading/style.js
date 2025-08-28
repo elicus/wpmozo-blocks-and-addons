@@ -1,54 +1,46 @@
-import {convertInlineStyleStr, wpmozo_is_empty} from '../../common/utils.js';
+import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ({attributes, clientId}) => {
+const generateDynamicStyle = ( { attributes, clientId } ) => {
+	const toConvertStyles = [
+		'preText',
+		'preTextDimensions',
+		'mainText',
+		'mainTextDimensions',
+		'postText',
+		'postTextDimensions',
+	];
+	const convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
-	const {iconFontSize, separatorColor} = attributes,
-		parent = '#block-' + clientId,
-		toConvertStyles = [
-			'preText',
-			'preTextDimensions',
-			'mainText',
-			'mainTextDimensions',
-			'postText',
-			'postTextDimensions',
-		];
-	let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes),
-		flexDirection = attributes.displayInStack ? 'column' : 'initial',
-		headingAlignment = ('left' === attributes.headingAlignment) ? 'flex-start' : 'flex-end',
-		preTextAlignment = ('left' === attributes.preTextAlignment) ? 'flex-start' : 'flex-end',
-		mainTextAlignment = ('left' === attributes.mainTextAlignment) ? 'flex-start' : 'flex-end',
-		postTextAlignment = ('left' === attributes.postTextAlignment) ? 'flex-start' : 'flex-end',
-		preTextAddi = convertedStyle.preText + convertedStyle.preTextDimensions,
-		mainTextAddi = convertedStyle.mainText + convertedStyle.mainTextDimensions,
-		postTextAddi = convertedStyle.postText + convertedStyle.postTextDimensions;
+	const alignMap = {
+		left: 'flex-start',
+		center: 'center',
+		right: 'flex-end'
+	};
 
-	if ('center' === attributes.headingAlignment) {
-		headingAlignment = 'center';
-	}
-	if ('center' === attributes.preTextAlignment) {
-		preTextAlignment = 'center';
-	}
-	if ('center' === attributes.mainTextAlignment) {
-		mainTextAlignment = 'center';
-	}
-	if ('center' === attributes.postTextAlignment) {
-		postTextAlignment = 'center';
-	}
+	let	flexDirection     = attributes.displayInStack ? 'column' : 'initial',
+		headingAlignment  = alignMap[ attributes.headingAlignment ] || '',
+		preTextAlignment  = alignMap[ attributes.preTextAlignment ] || '',
+		mainTextAlignment = alignMap[ attributes.mainTextAlignment ] || '',
+		postTextAlignment = alignMap[ attributes.postTextAlignment ] || '',
+		preTextAddi       = convertedStyle.preText + convertedStyle.preTextDimensions,
+		mainTextAddi      = convertedStyle.mainText + convertedStyle.mainTextDimensions,
+		postTextAddi      = convertedStyle.postText + convertedStyle.postTextDimensions;
 
 	let styles = `#block-${attributes.ID}{`;
 
 	styles += `
 		.wpmozo-bna-fancy-heading-inner {
 			display: flex;
+			align-items: center;
 			line-height: 1;
 			padding: 0;
 			margin: 0;
-			${ ( attributes.displayInStack && attributes.headingAlignment ) ? `align-items: ${headingAlignment};` : ''}
-			${ attributes.headingAlignment ? `text-align: ${headingAlignment};` : ''}
 			white-space: pre-wrap;
 			flex-wrap: wrap;
-			${ attributes.headingAlignment ? `justify-content: ${headingAlignment};` : ''}
 			flex-direction: ${flexDirection};
+			${ attributes.headingAlignment ? `text-align: ${headingAlignment};` : ''}
+			${ attributes.headingAlignment ? `justify-content: ${headingAlignment};` : ''}
+			${ ( attributes.displayInStack && attributes.headingAlignment ) ? `align-items: ${headingAlignment};` : ''}
 		}
 		.wpmozo-bna-fancy-heading-inner span {
 			display: inline-block;
@@ -56,23 +48,23 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 			background: ${attributes.headingBackground};
 		}
 		span.wpmozo-bna-pre-text {
+            transition: all 300ms;
 			color: ${attributes.preTextColor};
     		background: ${attributes.preTextBackground};
             ${ ( attributes.displayInStack && attributes.preTextAlignment ) ? `align-self: ${preTextAlignment};`: ''}
             ${ attributes.preTextAlignment ? `text-align: ${preTextAlignment};` : ''}
-            transition: all 300ms;
-           	${preTextAddi}
+			${preTextAddi}
 		}
 		span.wpmozo-bna-pre-text:hover {
 			color: ${attributes.preTextHoverColor};
     		background: ${attributes.preTextHoverBackground};
 		}
 		span.wpmozo-bna-main-text {
+    		transition: all 300ms;
 			color: ${attributes.mainTextColor};
     		background: ${attributes.mainTextBackground};
     		${ ( attributes.displayInStack && attributes.mainTextAlignment ) ? `align-self: ${mainTextAlignment};`: ''}
     		${attributes.mainTextAlignment ? `text-align: ${attributes.mainTextAlignment};` : ''}
-    		transition: all 300ms;
     		${mainTextAddi}
 		}
 		span.wpmozo-bna-main-text:hover {
@@ -80,11 +72,11 @@ const generateDynamicStyle = ({attributes, clientId}) => {
     		background: ${attributes.mainTextHoverBackground};
 		}
 		span.wpmozo-bna-post-text {
+    		transition: all 300ms;
 			color: ${attributes.postTextColor};
     		background: ${attributes.postTextBackground};
     		${ ( attributes.displayInStack && attributes.postTextAlignment ) ? `align-self: ${postTextAlignment};`: ''}
     		${attributes.postTextAlignment ? `text-align: ${attributes.postTextAlignment};`: ''}
-    		transition: all 300ms;
     		${postTextAddi}
 		}
 		span.wpmozo-bna-post-text:hover {
@@ -94,7 +86,6 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 	`;
 
 	styles += `}`;
-
 	return styles;
 };
 

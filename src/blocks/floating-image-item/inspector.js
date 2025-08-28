@@ -1,170 +1,49 @@
-// inspector.js
-import { __ } from '@wordpress/i18n';
+import { __ } from "@wordpress/i18n";
+import { InspectorControls } from "@wordpress/block-editor";
+
 import {
-    InspectorControls
-} from '@wordpress/block-editor';
-import {
-    PanelBody,
-    TextControl,
-    RangeControl,
-    SelectControl,
-    __experimentalUnitControl
+	TabPanel,
+	PanelBody,
+	TextControl,
 } from '@wordpress/components';
-import { WpmozoMediaUploader, WpmozoBorder, WpmozoSize } from '../../common/components/index';
-import { useState } from "@wordpress/element";
 
-const Inspector = ({ attributes, setAttributes }) => {
-    const WPMozoEditorObj = wpmozo_bna_editor_object;
+import { inspectorPanelTabs } from '../../common/utils.js';
+import { GeneralPanel } from './settings/generalPanel';
+import { DesignPanel } from './settings/designPanel';
 
-    let props = { attributes, setAttributes };
-    props = Object.assign({}, props, {preAttributes: {}});
+const Inspector = ( { attributes, setAttributes } ) => {
 
-    const [ contentType, setContentType ] = useState('front');
+	let props = { attributes, setAttributes };
+	props = Object.assign( {}, props, { preAttributes: {} } );
 
-    const floatingImageEffects = [
-        {
-            label: __( 'Up Down', 'wpmozo-blocks-and-addons' ),
-            value: 'up_down'
-        },
-        {
-            label: __( 'Left Right', 'wpmozo-blocks-and-addons' ),
-            value: 'left_right'
-        },
-        {
-            label: __( 'No Effect', 'wpmozo-blocks-and-addons' ),
-            value: 'no_effect'
-        }
-    ];
-    const speedCurveOptions = [
-        {
-            label: __( 'Ease-In-Out', 'wpmozo-blocks-and-addons' ),
-            value: 'ease-in-out'
-        },
-        {
-            label: __( 'Ease', 'wpmozo-blocks-and-addons' ),
-            value: 'ease'
-        },
-        {
-            label: __( 'Ease-In', 'wpmozo-blocks-and-addons' ),
-            value: 'ease-in'
-        },
-        {
-            label: __( 'Ease-Out', 'wpmozo-blocks-and-addons' ),
-            value: 'ease-out'
-        },
-        {
-            label: __( 'Linear', 'wpmozo-blocks-and-addons' ),
-            value: 'linear'
-        }
-    ];
-    const animationRepeat = [
-        {
-            label: __( 'Infinite', 'wpmozo-blocks-and-addons' ),
-            value: 'infinite'
-        },
-        {
-            label: __( 'Initial', 'wpmozo-blocks-and-addons' ),
-            value: 'initial'
-        },
-    ];
-
-    return (
-        <>
-            <InspectorControls key="controls">
-                <PanelBody title={ __( 'General Settings', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
-                    <WpmozoMediaUploader 
-                        attrKye="image" 
-                        props={props}
-                        imageSrc={attributes.image ? attributes.image.url : WPMozoEditorObj.placeholderImg}
-                        onSelect={ ( media ) => setAttributes( { image: media} ) }
-                    />
-                    <TextControl
-                        label={ __( 'Alt Text', 'wpmozo-blocks-and-addons' ) }
-                        __next40pxDefaultSize = {true}
-                        __nextHasNoMarginBottom = {true}
-                        value={ attributes.altText }
-                        onChange={ ( newValue ) => setAttributes( { altText: newValue } ) }
-                    />
-                </PanelBody>
-            </InspectorControls>
-            <InspectorControls key="styles" group="styles">
-                <PanelBody title={ __( 'Image Position', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
-                    <__experimentalUnitControl
-                        label={ __( 'Horizontal Align', 'wpmozo-blocks-and-addons' ) }
-                        value={ attributes.horizontalAlign }
-                        onChange={ ( newValue ) => setAttributes( { horizontalAlign: newValue } ) }
-                        __next40pxDefaultSize = {true}
-                    />
-                    <__experimentalUnitControl
-                        label={ __( 'Vertical Align', 'wpmozo-blocks-and-addons' ) }
-                        value={ attributes.verticalAlign }
-                        onChange={ ( newValue ) => setAttributes( { verticalAlign: newValue } ) }
-                        __next40pxDefaultSize = {true}
-                    />
-                </PanelBody>
-                <PanelBody title={ __( 'Image Animation', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
-                    <SelectControl
-                        label={ __( 'Floating Effect', 'wpmozo-blocks-and-addons' ) }
-                        value={ attributes.animationEffect }
-                        options={floatingImageEffects}
-                        onChange={ ( newValue ) => setAttributes( { animationEffect: newValue } ) }
-                        __next40pxDefaultSize = {true}
-                        __nextHasNoMarginBottom = {true}
-                    />
-                    <RangeControl
-                        label={ __( 'Animation Delay', 'wpmozo-blocks-and-addons' ) }
-                        value={ attributes.animationDelay }
-                        onChange={ ( newValue ) => setAttributes( { animationDelay: newValue } ) }
-                        min={ 0 }
-                        step={ 1 }
-                        max={ 5000 }
-                        __next40pxDefaultSize = {true}
-                        __nextHasNoMarginBottom = {true}
-                    />
-                    <RangeControl
-                        label={ __( 'Animation Duration', 'wpmozo-blocks-and-addons' ) }
-                        value={ attributes.animationDuration }
-                        onChange={ ( newValue ) => setAttributes( { animationDuration: newValue } ) }
-                        min={ 0 }
-                        step={ 1 }
-                        max={ 9000 }
-                        __next40pxDefaultSize = {true}
-                        __nextHasNoMarginBottom = {true}
-                    />
-                    <SelectControl
-                        label={ __( 'Animation Speed Curve', 'wpmozo-blocks-and-addons' ) }
-                        value={ attributes.speedCurve }
-                        options={speedCurveOptions}
-                        onChange={ ( newValue ) => setAttributes( { speedCurve: newValue } ) }
-                        __next40pxDefaultSize = {true}
-                        __nextHasNoMarginBottom = {true}
-                    />
-                    <SelectControl
-                        label={ __( 'Animation Repeat', 'wpmozo-blocks-and-addons' ) }
-                        value={ attributes.animationRepeat }
-                        options={animationRepeat}
-                        onChange={ ( newValue ) => setAttributes( { animationRepeat: newValue } ) }
-                        __next40pxDefaultSize = {true}
-                        __nextHasNoMarginBottom = {true}
-                    />
-                </PanelBody>
-                <PanelBody title={ __( 'Image Sizing', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-                    <WpmozoSize
-                        SizeKey="image"
-                        props={props}
-                        __next40pxDefaultSize = {true}
-                        __nextHasNoMarginBottom = {true}
-                    />
-                </PanelBody>
-                 <PanelBody title={ __( 'Image Border', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-                    <WpmozoBorder
-                        BorderKey="image"
-                        props={props}
-                    />
-                </PanelBody>
-            </InspectorControls>
-        </>
-    );
+	return (
+		<InspectorControls>
+			<TabPanel
+				className="wpmozo-settings-tab-panel"
+				activeClass="is-active"
+				tabs={ inspectorPanelTabs() }
+			>
+				{ ( tab ) => ( <div className="wpmozo-settings-tab-panel-content">
+					{ tab.name === 'general' &&
+						<GeneralPanel attributes={attributes} setAttributes={setAttributes} />
+					}
+					{ tab.name === 'design' &&
+						<DesignPanel attributes={attributes} setAttributes={setAttributes} />
+					}
+					{ tab.name === 'advanced' &&
+						<PanelBody title={ __( 'Advanced', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
+							<TextControl
+								label={ __( 'Additional CSS Class(es)', 'wpmozo-blocks-and-addons' ) }
+								value={ attributes.className || '' }
+								onChange={ ( value ) => setAttributes( { className: value } ) }
+								help={ __( 'Separate multiple classes with spaces.', 'wpmozo-blocks-and-addons' ) }
+							/>
+						</PanelBody>
+					}
+				</div> ) }
+			</TabPanel>
+		</InspectorControls>
+	);
 };
 
 export default Inspector;

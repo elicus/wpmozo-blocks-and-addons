@@ -6,18 +6,18 @@
 	"title": "Fancy Text",
 	"category": "wpmozo",
 	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Enhance your text with gradient colors or image fills for a unique visual effect. With various styling options.",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"customClassName": false
 	},
 	"attributes": {
 		"ID": { "type": "string" },
+		"className": { "type": "string" },
 		
 		"fancyText": { "type": "string", "default": "Here you can set text." },
-		
 		"textStyle": { "type": "string", "default": "gradient" },
-		
 		"fancyTextBackground": { "type": "string", "default": "linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)" },
 		
 		"fancyTextBackgroundImg": { "type": "string", "default": "/wp-content/plugins/wpmozo-blocks-and-addons/includes/assets/images/placeholder.webp" },
@@ -29,7 +29,6 @@
 		"textBgOverlayColor": { "type": "string" },
 		"textBgOverlayColorSolid": { "type": "string" },
 		"textBgOverlayColorGradient": { "type": "string" },
-		
 		"textBgDimensionspadding": { "type": "object" },
 		
 		"textAlignment": { "type": "string", "default": "center" },

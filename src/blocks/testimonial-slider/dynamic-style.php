@@ -17,7 +17,7 @@ if ( ! function_exists( 'testimonial_slider_generate_dynamic_style' ) ) {
 		if ( ! empty( $attrs['globalTextAlign'] ) ) {
 			$styles .= "{$mainSelector}{text-align: {$attrs['globalTextAlign']};}";
 		}
-		
+
 		// Testimonial content body.
 		$styles .= "{$mainSelector} .wpmozo_testimonial_desc, {$mainSelector} .wpmozo_testimonial_desc p{";
 			$styles .= ( ! empty( $attrs['bodyColor'] ) ? "color: {$attrs['bodyColor']};" : '' );
@@ -120,7 +120,13 @@ if ( ! function_exists( 'testimonial_slider_generate_dynamic_style' ) ) {
 				$styles .= ( ! empty( $attrs['arrowColor'] ) ? "color: {$attrs['arrowColor']};" : '' );
 				$styles .= ( ! empty( $attrs['arrowborderColor'] ) ? "border-color: {$attrs['arrowborderColor']} !important;" : '' );
 				$styles .= wpmozo_ban_get_border_style( 'arrow', $attrs );
-			$styles .= "}";
+				$styles .= wpmozo_ban_get_padding_style( 'arrow', $attrs );
+			$styles .= "}
+				.wpmozo_swiper_wrapper .swiper-button-next:after,
+				.wpmozo_swiper_wrapper .swiper-button-prev:after{
+						font-size: {$attrs['arrowIconSize']}px;
+				}
+			";
 			if ( true === $attrs['showArrowOnHover'] ) {
 				$styles .= "{$mainSelector} .swiper-button-next, {$mainSelector} .swiper-button-prev{";
 					$styles .= "visibility: hidden; opacity: 0; transition: all 300ms ease;";
@@ -147,16 +153,23 @@ if ( ! function_exists( 'testimonial_slider_generate_dynamic_style' ) ) {
 		// Control dot color.
 		if ( true === $attrs['showControlDot'] ) {
 			if ( ! empty( $attrs['controlDotColorInactive'] ) ) {
-				$styles .= "{$mainSelector} .swiper-pagination-bullet{";
+				if(  'transparent_dot' != $attrs['controlDotStyle'] ){
+					$styles .= "{$mainSelector} .swiper-pagination-bullet{";
 					$styles .= "background: {$attrs['controlDotColorInactive']};";
-				$styles .= "}";
-				$styles .= "{$mainSelector} .swiper-3d .transparent_dot .swiper-pagination-bullet{";
+					$styles .= "}";
+				} else {
+					$styles .= "{$mainSelector} .transparent_dot .swiper-pagination-bullet{";
 					$styles .= "border-color: {$attrs['controlDotColorInactive']} !important;";
-				$styles .= "}";
+					$styles .= "}";
+				}
 			}
-			if ( ! empty( $attrs['controlDotColorActive'] ) ) {
+			if ( ! empty( $attrs['controlDotColorActive'] ) && 'transparent_dot' != $attrs['controlDotStyle'] ) {
 				$styles .= "{$mainSelector} .swiper-pagination-bullet-active{";
 					$styles .= "background: {$attrs['controlDotColorActive']};";
+				$styles .= "}";
+			} else {
+				$styles .= "{$mainSelector} .transparent_dot .swiper-pagination-bullet-active{";
+				$styles .= "border-color: {$attrs['controlDotColorActive']} !important;border-width: 2px;border-style: solid;background: transparent;";
 				$styles .= "}";
 			}
 			if ( 'stretched_dot' === $attrs['controlDotStyle'] && ! empty( $attrs['transDuration'] ) ) {

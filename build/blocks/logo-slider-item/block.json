@@ -12,10 +12,15 @@
     "wpmozo/logo-slider"
   ],
   "supports": {
-    "html": false
+    "html": false,
+    "anchor": false,
+    "customClassName": false
   },
   "attributes": {
     "ID": {
+      "type": "string"
+    },
+    "className": {
       "type": "string"
     },
     "logo": {

@@ -18,9 +18,8 @@ $( document ).ready( function(e) {
 	if ( $( document ).find( '.wp-block-wpmozo-testimonial-slider' ).length > 0 ) {
 		$( document ).find( '.wp-block-wpmozo-testimonial-slider' ).each( function() {
 			let $arrows = $(this).find('.wpmozo_swiper_navigation').data();
-			console.log('sss::', $arrows);
 			if ( $arrows ) {
-				
+
 				if ( $winWidth > 980 && typeof( $arrows['arrows_desktop'] ) !== 'undefined' ) {
 					wpmozo_remove_arrows_classes( $(this).find('.wpmozo_swiper_navigation') );
 					$(this).find('.wpmozo_swiper_navigation').addClass( 'wpmozo_arrows_' + $arrows['arrows_desktop'] );
@@ -62,6 +61,7 @@ function initWPMozoTestimonialSlider( blockObj ) {
 		'show_arrow'                  : wrapObj.attr( 'data-show_arrows' ),
 		'show_control_dot'            : wrapObj.attr( 'data-show_control_dot' ),
 		'enable_loop'                 : wrapObj.attr( 'data-enable_loop' ),
+		'auto_height'                 : wrapObj.attr( 'data-auto_height' ),
 		'autoplay'                    : wrapObj.attr( 'data-autoplay' ),
 		'autoplay_delay'              : wrapObj.attr( 'data-autoplay_delay' ),
 		'trans_duration'              : wrapObj.attr( 'data-trans_duration' ),
@@ -82,7 +82,7 @@ function initWPMozoTestimonialSlider( blockObj ) {
 	};
 
 	let $orderId   = 'block-' + clientId,
-		
+
 		$slidesPerGroup              = 1,
 		$slidesPerGroupIpad          = 1,
 		$slidesPerGroupMobile	     = 1,
@@ -95,8 +95,8 @@ function initWPMozoTestimonialSlider( blockObj ) {
 		$space_between_slides        = 0,
 		$space_between_slides_ipad	 = 0,
 		$space_between_slides_mobile = 0;
-	
-	let slideEffect = ( settings.slide_effect ) ?? 'slide'; 
+
+	let slideEffect = ( settings.slide_effect ) ?? 'slide';
 	if ( 'slide' === slideEffect || 'coverflow' === slideEffect ) {
 		$slides_per_view             = ( settings?.per_view ) ? settings.per_view : '1';
 		$slides_per_view_ipad        = ( settings?.per_view_tablet ) ? settings.per_view_tablet : $slides_per_view;
@@ -129,7 +129,7 @@ function initWPMozoTestimonialSlider( blockObj ) {
 
 	let $arrow_params = 'false';
 	if ( 'true' === settings?.show_arrow ) {
-		$arrow_params = {    
+		$arrow_params = {
 			nextEl: '#' + $orderId + ' .swiper-button-next',
 			prevEl: '#' + $orderId + ' .swiper-button-prev',
 		};
@@ -142,7 +142,7 @@ function initWPMozoTestimonialSlider( blockObj ) {
 			clickable: true,
 		}
 	}
-	
+
 	let $autoplay_param = 0;
 	if ( 'true' === settings?.autoplay ) {
 		$autoplay_param = {
@@ -185,7 +185,7 @@ function initWPMozoTestimonialSlider( blockObj ) {
 		cubeEffect: $slide_setting_cube,
 		coverflowEffect: $slide_setting_coverflow,
 		fadeEffect: $fade,
-		autoHeight: ( 'true' === settings?.auto_height_slider ) ? true : false,
+		autoHeight: ( 'true' === settings?.auto_height ) ? true : false,
 		speed: parseInt( transition_duration ),
 		loop: loop_param,
 		pagination: $control_dot_params,

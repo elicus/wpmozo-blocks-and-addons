@@ -6,36 +6,39 @@
     "title": "List",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "Example block scaffolded with Create Block tool.",
+    "description": "Easily create and organized lists with the List block",
     "allowedBlocks": [ "wpmozo/list-item" ],
     "example": {},
-    "supports": {
-        "html": false
-    },
+	"supports": {
+		"html": false,
+		"anchor": false,
+		"customClassName": false
+	},
     "attributes": {
         "ID": { "type": "string" },
-        
+		"className": { "type": "string" },
+
         "layout": { "type": "string", "default": "default" },
-        
+
         "listAlignment": { "type": "string", "default": "center" },
-        
+
         "globalItemBackgroundGradient": { "type": "string" },
         "globalItemBackgroundColor": { "type": "string" },
-        
+
         "iconFontSize": { "type": "number", "default": 22 },
         "iconColor": {
             "type": "string" },
-        
+
         "imageWidth": { "type": "number", "default": 40 },
-        
+
         "dividerSize": { "type": "number", "default": 0 },
         "dividerStyle": { "type": "string", "default": "solid" },
         "dividerColor": { "type": "string", "default": "#d3d3d3" },
         "dividermargin": { "type": "object" },
         "lastDivider": { "type": "boolean", "default": true },
-        
+
         "indentation": { "type": "number" },
-        
+
         "linkColor": { "type": "string", "default": "#000000" },
         "linkFontSize": { "type": "string" },
         "linkFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
@@ -43,7 +46,7 @@
         "linkDecoration": { "type": "string" },
         "linkLetterCase": { "type": "string" },
         "linkLineHeight": { "type": "string" },
-        
+
         "textColor": { "type": "string", "default": "#222222" },
         "textFontSize": { "type": "string" },
         "textFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },

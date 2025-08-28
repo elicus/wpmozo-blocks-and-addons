@@ -81,3 +81,46 @@
 .wpmozo-bna-fancy-text-inner.clipping {
 	color: transparent !important;
 }
+
+/* Settings tabs. */
+.wpmozo-settings-tab-panel .wpmozo-inspector-tab-general,
+.wpmozo-settings-tab-panel .wpmozo-inspector-tab-design,
+.wpmozo-settings-tab-panel .wpmozo-inspector-tab-advanced{
+	width: 33.33%;
+	text-align: center;
+	justify-content: center;
+	background-color: #f4f4f4;
+	color: #666666;
+	font-size: 14px;
+	letter-spacing: 0.5px;
+	height: 42px !important;
+}
+.wpmozo-settings-tab-panel .wpmozo-inspector-tab-general:hover,
+.wpmozo-settings-tab-panel .wpmozo-inspector-tab-design:hover,
+.wpmozo-settings-tab-panel .wpmozo-inspector-tab-advanced:hover{
+	color: #111111;
+}
+.wpmozo-settings-tab-panel button.is-active,
+.wpmozo-settings-tab-panel button.is-active:hover{
+	background-color: #5600b7;
+	color: #ffffff;
+}
+.wpmozo-settings-tab-panel button::before,
+.wpmozo-settings-tab-panel button::after{
+	display: none;
+}
+/* Arrow. */
+/* .wpmozo-settings-tab-panel button.is-active::after{
+	content: "";
+	position: absolute;
+	bottom: -9px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 0;
+	background-color: #fff;
+	border-left: 9px solid transparent;
+	border-right: 9px solid transparent;
+	border-top: 9px solid #3DDA85;
+	z-index: 99;
+} */

@@ -1,44 +1,30 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from './style';
 
-export default function save({ attributes }) {
-    const WPMozoEditorObj = wpmozo_bna_editor_object;
+export default function save( { attributes } ) {
 
-    const elId = `block-${attributes.ID}`;
-    const clientId = attributes.ID,
-        ID = clientId;
+	const ID = attributes.ID;
+	const clientId = ID;
 
-    let beforeImage = ( attributes.beforeImage ) ? attributes.beforeImage : WPMozoEditorObj.placeholderImg,
-        afterImage = ( attributes.afterImage ) ? attributes.afterImage : WPMozoEditorObj.placeholderImg,
-        beforeLabel = ( attributes.beforeHasLabel ) ? attributes.beforeLabel : '',
-        afterLabel = ( attributes.afterHasLabel ) ? attributes.afterLabel : '', 
-        no_overlay = attributes.overlayOnHover ? false : true,
-        handleOffset = attributes.handleOffset,
-        sliderOrientation = attributes.sliderOrientation,
-        moveHandleOnHover = attributes.moveHandleOnHover,
-        moveHandleOnClick = attributes.moveHandleOnClick;
-    
-    return (
-        <>
-            <style>
-                { generateDynamicStyle({ attributes, clientId }) }
-            </style>
-            <div {...useBlockProps.save({ className: 'wpmozo-bna-before-after-main' })} id={`block-${ID}`}>
-                <div 
-                    className="wpmozo-bna-before-after-image-wrapper"
-                    id={elId}
-                    data-before-label={beforeLabel} 
-                    data-after-label={afterLabel} 
-                    data-handle-offset={handleOffset} 
-                    data-slider-orientation={sliderOrientation} 
-                    data-move-onhover={moveHandleOnHover} 
-                    data-move-onclick={moveHandleOnClick}
-                    data-no-overlay={no_overlay} 
-                >
-                    <img src={beforeImage} />
-                    <img src={afterImage} />
-                </div>
-            </div>
-        </>
-    );
+	const beforeImage = ( attributes.beforeImage ) ? attributes.beforeImage : wpmozo_bna_editor_object.placeholderImg;
+	const afterImage  = ( attributes.afterImage ) ? attributes.afterImage : wpmozo_bna_editor_object.placeholderImg;
+	
+	return ( <>
+		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+
+		<div id={`block-${ID}`} { ...useBlockProps.save( { className: 'wpmozo-bna-before-after-main ' + attributes.className } ) }>
+			<div className="wpmozo-bna-before-after-image-wrapper"
+				data-before-label={ attributes.beforeHasLabel || 'false' } 
+				data-after-label={ attributes.afterHasLabel || 'false' } 
+				data-handle-offset={ attributes.handleOffset || 0.5 } 
+				data-slider-orientation={ attributes.sliderOrientation || 'horizontal' } 
+				data-move-onhover={ attributes.moveHandleOnHover || 'false' } 
+				data-move-onclick={ attributes.moveHandleOnClick || 'false' }
+				data-no-overlay={ attributes.overlayOnHover ? 'false' : 'true' } 
+			>
+				<img src={beforeImage} />
+				<img src={afterImage} />
+			</div>
+		</div>
+	</> );
 }

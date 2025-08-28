@@ -9,15 +9,19 @@ return array(
 		'title' => 'Bar Counter',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Bar counter to showcase progress or skill levels visually.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'layoutType' => array(
@@ -180,22 +184,27 @@ return array(
 		'title' => 'Before After Slider',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Create stunning before-and-after comparisons with a sleek, responsive slider.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'globalcolorHandle' => array(
 				'type' => 'string'
 			),
 			'handleOffset' => array(
-				'type' => 'number'
+				'type' => 'number',
+				'default' => 0.5
 			),
 			'moveHandleOnClick' => array(
 				'type' => 'boolean',
@@ -336,15 +345,23 @@ return array(
 		'title' => 'Content Toggle',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Content Toggle allows you to create content elements with a toggle/switch that lets you show two versions of the same thing.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
+				'type' => 'string'
+			),
+			'anchor' => array(
 				'type' => 'string'
 			),
 			'toggleSwitchType' => array(
@@ -621,15 +638,19 @@ return array(
 		'title' => 'Fancy Heading',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Add stylish and eye-catching headings to your pages with the Fancy Heading.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'displayInStack' => array(
@@ -824,15 +845,19 @@ return array(
 		'title' => 'Fancy Text',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Enhance your text with gradient colors or image fills for a unique visual effect. With various styling options.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'fancyText' => array(
@@ -924,15 +949,19 @@ return array(
 		'title' => 'Flip Box',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Interactive flip box elements with two sides using Flip or 3D Cube effects in multiple directions.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'animationType' => array(
@@ -1490,23 +1519,14 @@ return array(
 		),
 		'supports' => array(
 			'html' => false,
-			'shadow' => true,
-			'spacing' => array(
-				'margin' => true,
-				'padding' => true
-			),
-			'color' => array(
-				'gradients' => true,
-				'background' => true,
-				'text' => false
-			),
-			'background' => array(
-				'backgroundImage' => true,
-				'backgroundSize' => true
-			)
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'images' => array(
@@ -1537,14 +1557,14 @@ return array(
 		),
 		'supports' => array(
 			'html' => false,
-			'shadow' => true,
-			'spacing' => array(
-				'margin' => true,
-				'padding' => true
-			)
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'image' => array(
@@ -1605,30 +1625,44 @@ return array(
 		'title' => 'Image Card',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Image card block to display the card view with it\'s details.',
 		'example' => array(
 			
 		),
 		'supports' => array(
 			'html' => false,
-			'shadow' => true
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
 				'type' => 'string'
 			),
+			'className' => array(
+				'type' => 'string'
+			),
+			'containermargin' => array(
+				'type' => 'object'
+			),
+			'containerpadding' => array(
+				'type' => 'object'
+			),
+			'containerBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'containerborder' => array(
+				'type' => 'object'
+			),
+			'containerborderRadius' => array(
+				'type' => 'string'
+			),
 			'image' => array(
 				'type' => 'string'
 			),
-			'imageBorder' => array(
-				'type' => 'string',
+			'imageborder' => array(
+				'type' => 'object',
 				'default' => ''
 			),
-			'imageBorderColor' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'imageBorderRadius' => array(
+			'imageborderRadius' => array(
 				'type' => 'string',
 				'default' => ''
 			),
@@ -1671,6 +1705,12 @@ return array(
 				'type' => 'string',
 				'default' => ''
 			),
+			'iconmargin' => array(
+				'type' => 'object'
+			),
+			'iconpadding' => array(
+				'type' => 'object'
+			),
 			'imageHeight' => array(
 				'type' => 'number',
 				'default' => 200
@@ -1681,7 +1721,7 @@ return array(
 			),
 			'title' => array(
 				'type' => 'string',
-				'default' => 'Image Card Title'
+				'default' => 'Your title here.'
 			),
 			'titleAlign' => array(
 				'type' => 'string',
@@ -1755,7 +1795,7 @@ return array(
 			),
 			'description' => array(
 				'type' => 'string',
-				'default' => 'Your content goes here. Edit this text inline or in the block Content settings. You can also style every aspect of this content in the block Design settings.'
+				'default' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 			),
 			'descriptionTextAlign' => array(
 				'type' => 'string',
@@ -1875,6 +1915,12 @@ return array(
 			'buttonTextBackground' => array(
 				'type' => 'string'
 			),
+			'buttonTextHoverColor' => array(
+				'type' => 'string'
+			),
+			'buttonTextHoverBackground' => array(
+				'type' => 'string'
+			),
 			'buttonTextAlign' => array(
 				'type' => 'string',
 				'default' => 'left'
@@ -1928,7 +1974,7 @@ return array(
 				'default' => array(
 					'width' => '1px',
 					'style' => 'solid',
-					'color' => '#fff'
+					'color' => '#000'
 				)
 			),
 			'buttonTextborderRadius' => array(
@@ -1964,16 +2010,24 @@ return array(
 		'title' => 'Image Stack',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Image Stack lets you showcase images in an interactive stacked layout that expands on hover.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
 				'type' => 'string'
+			),
+			'className' => array(
+				'type' => 'string'
+			),
+			'alighment' => array(
+				'type' => 'string',
+				'default' => 'center'
 			),
 			'stackItemSize' => array(
 				'type' => 'number',
@@ -1986,39 +2040,85 @@ return array(
 			'stackItemSpacing' => array(
 				'type' => 'number',
 				'default' => 10
+			),
+			'iconSize' => array(
+				'type' => 'number',
+				'default' => 38
+			),
+			'iconColor' => array(
+				'type' => 'string'
+			),
+			'itempadding' => array(
+				'type' => 'object'
+			),
+			'itemBorderType' => array(
+				'type' => 'string',
+				'default' => 'none'
+			),
+			'itemBorderWidth' => array(
+				'type' => 'number'
+			),
+			'borderColor' => array(
+				'type' => 'string'
+			),
+			'itemBorderRadius' => array(
+				'type' => 'number',
+				'default' => ''
+			),
+			'tooltipColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'tooltipBackgroundColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'showTooltip' => array(
+				'type' => 'boolean',
+				'default' => false
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css'
+		'style' => 'file:./style-index.css',
+		'script' => array(
+			'wpmozo-blocks-and-addons-tippy-script',
+			'file:./script.js'
+		)
 	),
 	'image-stack-child' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'wpmozo/image-stack-child',
 		'version' => '0.1.0',
-		'title' => 'Image Stack Child',
+		'title' => 'Image Stack Item',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Image Stack Item add the image or icon to an interactive stacked layout that expands on hover.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'anchor' => true,
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
-		'parent' => 'wpmozo/image-stack',
+		'parent' => array(
+			'wpmozo/image-stack'
+		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'image' => array(
 				'type' => 'object'
 			),
 			'stackType' => array(
-				'type' => 'string'
+				'type' => 'string',
+				'default' => 'image'
 			),
 			'stackIcon' => array(
 				'type' => 'string',
@@ -2027,24 +2127,23 @@ return array(
 			'tooltipText' => array(
 				'type' => 'string'
 			),
-			'showTooltip' => array(
-				'type' => 'boolean',
-				'default' => false
+			'itemBackground' => array(
+				'type' => 'string'
 			),
-			'imageBorderRadius' => array(
-				'type' => 'number',
-				'default' => 1
+			'itemBGGradient' => array(
+				'type' => 'string'
 			),
-			'iconShape' => array(
-				'type' => 'string',
-				'default' => 'none'
+			'imageborder' => array(
+				'type' => 'object'
+			),
+			'imageborderRadius' => array(
+				'type' => 'string'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./view.js'
+		'style' => 'file:./style-index.css'
 	),
 	'interactive-image-card' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -2054,15 +2153,19 @@ return array(
 		'title' => 'Interactive Image Card',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'It allows you to add images with text appearing on hover with different entrance animations.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'title' => array(
@@ -2198,7 +2301,7 @@ return array(
 		'title' => 'List',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Easily create and organized lists with the List block',
 		'allowedBlocks' => array(
 			'wpmozo/list-item'
 		),
@@ -2206,10 +2309,15 @@ return array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'layout' => array(
@@ -2336,7 +2444,7 @@ return array(
 		'title' => 'List Item',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Easily create and organized lists with the List block',
 		'example' => array(
 			
 		),
@@ -2345,13 +2453,17 @@ return array(
 		),
 		'supports' => array(
 			'html' => false,
-			'splitting' => true
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'parentAtts' => array(
 				'type' => 'object'
 			),
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'itemmargin' => array(
@@ -2499,10 +2611,15 @@ return array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'images' => array(
@@ -2660,10 +2777,15 @@ return array(
 			'wpmozo/logo-slider'
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'logo' => array(
@@ -2703,20 +2825,20 @@ return array(
 		'title' => 'Masonry Gallery',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Display multiple images in a masonry style gallery.',
+		'description' => 'Design a customizable image gallery with a dynamic masonry layout for multiple photos.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'anchor' => true,
-			'align' => array(
-				'wide',
-				'full'
-			),
-			'html' => false
+			'html' => false,
+			'anchor' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'images' => array(
@@ -2734,11 +2856,12 @@ return array(
 					)
 				)
 			),
-			'gutterSize' => array(
-				'type' => 'string'
+			'images_data' => array(
+				'type' => 'array'
 			),
 			'customGutterSize' => array(
-				'type' => 'number'
+				'type' => 'number',
+				'default' => 15
 			),
 			'sizeSlug' => array(
 				'type' => 'string'
@@ -2750,12 +2873,130 @@ return array(
 			'showCaption' => array(
 				'type' => 'boolean',
 				'default' => false
+			),
+			'showLightbox' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'enableOverlay' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'overlayBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'overlayIconSize' => array(
+				'type' => 'number'
+			),
+			'overlayIconColor' => array(
+				'type' => 'string'
+			),
+			'overlayIcon' => array(
+				'type' => 'string'
+			),
+			'lightboxBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'lightboxExitIconColor' => array(
+				'type' => 'string'
+			),
+			'lightboxArrowColor' => array(
+				'type' => 'string'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css'
+		'style' => array(
+			'wpmozo-blocks-and-addons-magnificPopup-style',
+			'file:./style-index.css'
+		),
+		'script' => array(
+			'wpmozo-blocks-and-addons-isotope-script',
+			'wpmozo-blocks-and-addons-imagesloaded-script',
+			'wpmozo-blocks-and-addons-magnificPopup-script',
+			'file:./script.js'
+		),
+		'render' => 'file:./render.php'
+	),
+	'mystery-image' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wpmozo/mystery-image',
+		'version' => '0.1.0',
+		'title' => 'Mystery Image',
+		'category' => 'wpmozo',
+		'icon' => 'smiley',
+		'description' => 'Mystery Image block to display random image from selected gallery.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'customClassName' => false
+		),
+		'attributes' => array(
+			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
+				'type' => 'string'
+			),
+			'images_data' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				),
+				'source' => 'query',
+				'selector' => '.wpmozo-blocks-and-addons-gallery--item',
+				'query' => array(
+					'url' => array(
+						'source' => 'attribute',
+						'selector' => 'img',
+						'attribute' => 'src'
+					)
+				)
+			),
+			'showLightbox' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'lightboxBackgroundColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'lightboxCloseIconColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'enableOverlay' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'overlayBackgroundColor' => array(
+				'type' => 'string'
+			),
+			'overlayIconSize' => array(
+				'type' => 'number'
+			),
+			'overlayIconColor' => array(
+				'type' => 'string'
+			),
+			'overlayIcon' => array(
+				'type' => 'string'
+			)
+		),
+		'textdomain' => 'wpmozo-blocks-and-addons',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'wpmozo-blocks-and-addons-magnificPopup-style',
+			'file:./style-index.css'
+		),
+		'script' => array(
+			'wpmozo-blocks-and-addons-magnificPopup-script',
+			'file:./view.js'
+		)
 	),
 	'pricing-table' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -2770,10 +3011,20 @@ return array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
+				'type' => 'string'
+			),
+			'wrapperborder' => array(
+				'type' => 'object'
+			),
+			'wrapperborderRadius' => array(
 				'type' => 'string'
 			),
 			'title' => array(
@@ -2831,6 +3082,15 @@ return array(
 					)
 				)
 			),
+			'featuresIconFontSize' => array(
+				'type' => 'number'
+			),
+			'featuresSpacing' => array(
+				'type' => 'number'
+			),
+			'featuresMargin' => array(
+				'type' => 'number'
+			),
 			'showButton' => array(
 				'type' => 'boolean',
 				'default' => false
@@ -2846,7 +3106,7 @@ return array(
 				'type' => 'string',
 				'default' => 'same'
 			),
-			'buttonIcontype' => array(
+			'buttonIconType' => array(
 				'type' => 'string',
 				'default' => 'icon'
 			),
@@ -2970,9 +3230,6 @@ return array(
 			'backgroundColor' => array(
 				'type' => 'string'
 			),
-			'align' => array(
-				'type' => 'string'
-			),
 			'mainDimensionspadding' => array(
 				'type' => 'object'
 			),
@@ -3025,6 +3282,9 @@ return array(
 					'fontStyle' => '',
 					'fontWeight' => ''
 				)
+			),
+			'pricealign' => array(
+				'type' => 'string'
 			),
 			'priceLetterSpacing' => array(
 				'type' => 'string'
@@ -3117,9 +3377,6 @@ return array(
 				'type' => 'boolean',
 				'default' => false
 			),
-			'featuresIcon' => array(
-				'type' => 'string'
-			),
 			'featuresIconsColor' => array(
 				'type' => 'string'
 			),
@@ -3195,6 +3452,9 @@ return array(
 			),
 			'borderDimensionsmargin' => array(
 				'type' => 'object'
+			),
+			'buttonFontSize' => array(
+				'type' => 'number'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
@@ -3210,15 +3470,19 @@ return array(
 		'title' => 'Separator',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Separator with multiple options like icons, text, shodow, color, thickness, and many more.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'separatorType' => array(
@@ -3382,15 +3646,19 @@ return array(
 		'title' => 'Star Rating',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Display star ratings for products, services, and reviews using schema for rich, eye-catching results.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'globalTextAlign' => array(
@@ -3491,7 +3759,7 @@ return array(
 			),
 			'description' => array(
 				'type' => 'string',
-				'default' => ''
+				'default' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 			),
 			'descriptionColor' => array(
 				'type' => 'string'
@@ -3551,6 +3819,18 @@ return array(
 			'starSpacing' => array(
 				'type' => 'number',
 				'default' => 2
+			),
+			'containerpadding' => array(
+				'type' => 'object'
+			),
+			'containermargin' => array(
+				'type' => 'object'
+			),
+			'containerborder' => array(
+				'type' => 'object'
+			),
+			'containerborderRadius' => array(
+				'type' => 'string'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
@@ -3566,15 +3846,19 @@ return array(
 		'title' => 'Testimonial Slider',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Testimonial slider to use to display testimonials.',
+		'description' => 'Showcase client feedback beautifully with an interactive testimonial slider for engaging and trustworthy presentations.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'layout' => array(
@@ -3672,6 +3956,10 @@ return array(
 				'default' => 20
 			),
 			'equalHeight' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'autoHeight' => array(
 				'type' => 'boolean',
 				'default' => false
 			),
@@ -4052,10 +4340,6 @@ return array(
 			'arrowborderRadius' => array(
 				'type' => 'string'
 			),
-			'arrowborderColor' => array(
-				'type' => 'string',
-				'default' => ''
-			),
 			'metaSeparatorColor' => array(
 				'type' => 'string',
 				'default' => '#dddddd'
@@ -4078,17 +4362,10 @@ return array(
 			'testimonialborderRadius' => array(
 				'type' => 'string'
 			),
-			'testimonialborderColor' => array(
-				'type' => 'string',
-				'default' => ''
-			),
 			'authorImageborder' => array(
 				'type' => 'object'
 			),
 			'authorImageborderRadius' => array(
-				'type' => 'string'
-			),
-			'authorImageborderColor' => array(
 				'type' => 'string'
 			)
 		),
@@ -4113,15 +4390,19 @@ return array(
 		'title' => 'Tilt Image',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Add an interesting tilt effect to your images for an interactive touch.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'customClassName' => false
 		),
 		'attributes' => array(
 			'ID' => array(
+				'type' => 'string'
+			),
+			'className' => array(
 				'type' => 'string'
 			),
 			'image' => array(

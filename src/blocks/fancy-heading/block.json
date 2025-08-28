@@ -6,16 +6,17 @@
 	"title": "Fancy Heading",
 	"category": "wpmozo",
 	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Add stylish and eye-catching headings to your pages with the Fancy Heading.",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"customClassName": false
 	},
 	"attributes": {
 		"ID": { "type": "string" },
+		"className": { "type": "string" },
 		
 		"displayInStack": { "type": "boolean", "default": false },
-		
 		"headingLevel": { "type": "string", "default": "h2" },
 		"headingAlignment": { "type": "string", "default": "" },
 		"headingColor": { "type": "string" },
@@ -30,7 +31,12 @@
 		"preTextDimensionspadding": { "type": "object" },
 		"preTextDimensionsmargin": { "type": "object" },
 		"preTextFontSize": { "type": "string" },
-		"preTextFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
+		"preTextFontAppearance": {
+			"type": "object",
+			"fontStyle": { "type": "string" },
+			"fontWeight": { "type": "string" },
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
 		"preTextLetterSpacing": { "type": "string" },
 		"preTextDecoration": { "type": "string" },
 		"preTextLetterCase": { "type": "string" },

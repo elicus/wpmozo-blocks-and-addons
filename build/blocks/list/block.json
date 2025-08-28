@@ -6,16 +6,21 @@
   "title": "List",
   "category": "wpmozo",
   "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "description": "Easily create and organized lists with the List block",
   "allowedBlocks": [
     "wpmozo/list-item"
   ],
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "anchor": false,
+    "customClassName": false
   },
   "attributes": {
     "ID": {
+      "type": "string"
+    },
+    "className": {
       "type": "string"
     },
     "layout": {

@@ -1,112 +1,117 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
-
-/* Main wrapper for the image card */
+/* Main wrapper for the image card. */
 .wpmozo-bna-image-card-wrapper {
-  overflow: hidden; /* Prevents overflowing content */
-  background-color: #fff; /* Card background color */
+	overflow: hidden;
+	background-color: #fff;
 }
-/* Style for the image */
+
+/* Style for the image. */
 .wpmozo-bna-image-card-image {
-  width: 100%; /* Makes image responsive to card width */
-  height: auto; /* Maintains aspect ratio */
-  display: block; /* Prevents inline spacing */
-  box-sizing: border-box;
+	width: 100%;
+	height: auto;
+	display: block;
+	box-sizing: border-box;
 }
-/* Icon wrapper styles */
+
+/* Icon wrapper styles. */
 .wpmozo-bna-image-card-title,
 .wpmozo-bna-image-card-content,
 .wpmozo-bna-image-card-content-wrapper,
 .wpmozo-bna-image-card-button.show-on-hover i,
 .wpmozo-bna-image-card-button.show-on-hover img,
 .wpmozo-bna-image-card-button-wrap-inner {
-  transition: all 300ms;
+	transition: all 300ms;
 }
-/* Icon wrapper styles */
+
+/* Icon wrapper styles. */
 .wpmozo-bna-image-card-icon-wrapper i{
-  font-size: 32px;
-  z-index: 1;
+	font-size: 32px;
+	z-index: 1;
 }
-/* Title styling */
-.wpmozo-bna-image-card-title {
-  font-size: 1.5em; /* Adjust font size for the title */
-  margin: 0 0 10px 0; /* Margin above and below */
-  padding-top: 30px;
+
+/* Title styling. */
+.wpmozo-bna-image-card-title{
+	font-size: 1.5em;
+	margin: 0 0 10px 0;
+	padding-top: 30px;
 }
-/* Content text styling */
+/* Content text styling. */
 .wpmozo-bna-image-card-content {
-  font-size: 1em; /* Font size for content */
-  color: #666; /* Slightly grey text for content */
-  margin-bottom: 15px; /* Margin below content */
+	font-size: 1em;
+	color: #666;
+	margin-bottom: 15px;
 }
 .wpmozo-bna-image-card-button-wrap{
-     margin-top: 10px;
- }
- .wpmozo-bna-image-card-button-wrap-inner {
-     display: inline-block;
-     white-space: nowrap;
- }
- .wpmozo-bna-image-card-button {
-     display: inline-flex;
-     flex-flow: row wrap;
-     align-items: center;
-     font-size: 20px;
- }
- .wpmozo-bna-image-card-button:not(.show-on-hover) {
-     column-gap: 10px;
- }
- .wpmozo-bna-image-card-button.show-on-hover {
-     column-gap: 0px;
- }
- .wpmozo-bna-image-card-button.show-on-hover:hover {
-     column-gap: 10px;
- }
- .wpmozo-bna-image-card-button.show-on-hover i,.wpmozo-bna-image-card-button.show-on-hover img {
-     opacity: 0;
- }
- .wpmozo-bna-image-card-button.show-on-hover:hover i,.wpmozo-bna-image-card-button.show-on-hover:hover img {
-     opacity: 1;
-     margin-left: 0;
- }
- .wpmozo-bna-image-card-button.show-on-hover:hover i,.wpmozo-bna-image-card-button.show-on-hover:hover img {
-     display: block;
- }
+	margin-top: 10px;
+}
+.wpmozo-bna-image-card-button-wrap-inner {
+	display: inline-block;
+	white-space: nowrap;
+}
+.wpmozo-bna-image-card-button {
+	display: inline-flex;
+	flex-flow: row wrap;
+	align-items: center;
+	font-size: 20px;
+}
+.wpmozo-bna-image-card-button:not(.show-on-hover) {
+	column-gap: 10px;
+}
+.wpmozo-bna-image-card-button.show-on-hover {
+	column-gap: 0px;
+}
+.wpmozo-bna-image-card-button.show-on-hover:hover {
+	column-gap: 10px;
+}
+.wpmozo-bna-image-card-button.show-on-hover i,
+.wpmozo-bna-image-card-button.show-on-hover img{
+	opacity: 0;
+}
+.wpmozo-bna-image-card-button.show-on-hover:hover i,
+.wpmozo-bna-image-card-button.show-on-hover:hover img{
+	opacity: 1;
+	margin-left: 0;
+}
+.wpmozo-bna-image-card-button.show-on-hover:hover i,
+.wpmozo-bna-image-card-button.show-on-hover:hover img{
+	display: block;
+}
 .wp-block-wpmozo-image-card .hexagon {
-     width: 100%;
-     aspect-ratio: 20/11;
-     position: relative;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     box-sizing: content-box;
- }
- .wp-block-wpmozo-image-card .hexagon::before,
- .wp-block-wpmozo-image-card .hexagon::after {
-     content: '';
-     position: absolute;
-     top: 0;
-     left: 0;
-     height: 100%;
-     z-index: 0;
-     box-sizing: border-box;
- }
+	width: 100%;
+	aspect-ratio: 20/11;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: content-box;
+}
+.wp-block-wpmozo-image-card .hexagon::before,
+.wp-block-wpmozo-image-card .hexagon::after{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	z-index: 0;
+	box-sizing: border-box;
+}
 .wp-block-wpmozo-image-card .wpmozo-bna-icon-circle {
-     padding: 16px;
-     border-radius: 50%;
- }
- .wp-block-wpmozo-image-card .wpmozo-bna-icon-square,
- .wp-block-wpmozo-image-card .wpomzo-bna-image-card-icon-wrap.shape-hexagon {
-     padding: 16px;
-     box-sizing: content-box;
- }
- .wp-block-wpmozo-image-card .wpomzo-bna-image-card-icon-wrap.shape-hexagon {
-     padding: 16px 0px;
-     box-sizing: content-box;
- }
- .wp-block-wpmozo-image-card .wpmozo-bna-icon-shape-border {
-     border: 2px solid;
- }
+	padding: 16px;
+	border-radius: 50%;
+}
+.wp-block-wpmozo-image-card .wpmozo-bna-icon-square,
+.wp-block-wpmozo-image-card .wpomzo-bna-image-card-icon-wrap.shape-hexagon {
+	padding: 16px;
+	box-sizing: content-box;
+}
+.wp-block-wpmozo-image-card .wpomzo-bna-image-card-icon-wrap.shape-hexagon {
+	padding: 16px 0px;
+	box-sizing: content-box;
+}
+.wp-block-wpmozo-image-card .wpmozo-bna-icon-shape-border {
+	border: 2px solid;
+}
+
+a.wpmozo-bna-image-card-button {
+	outline: none;
+	box-shadow: none;
+}

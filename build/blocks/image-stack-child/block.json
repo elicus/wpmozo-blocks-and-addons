@@ -3,25 +3,31 @@
   "apiVersion": 3,
   "name": "wpmozo/image-stack-child",
   "version": "0.1.0",
-  "title": "Image Stack Child",
+  "title": "Image Stack Item",
   "category": "wpmozo",
   "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "description": "Image Stack Item add the image or icon to an interactive stacked layout that expands on hover.",
   "example": {},
   "supports": {
-    "anchor": true,
-    "html": false
+    "html": false,
+    "customClassName": false
   },
-  "parent": "wpmozo/image-stack",
+  "parent": [
+    "wpmozo/image-stack"
+  ],
   "attributes": {
     "ID": {
+      "type": "string"
+    },
+    "className": {
       "type": "string"
     },
     "image": {
       "type": "object"
     },
     "stackType": {
-      "type": "string"
+      "type": "string",
+      "default": "image"
     },
     "stackIcon": {
       "type": "string",
@@ -30,22 +36,21 @@
     "tooltipText": {
       "type": "string"
     },
-    "showTooltip": {
-      "type": "boolean",
-      "default": false
+    "itemBackground": {
+      "type": "string"
     },
-    "imageBorderRadius": {
-      "type": "number",
-      "default": 1
+    "itemBGGradient": {
+      "type": "string"
     },
-    "iconShape": {
-      "type": "string",
-      "default": "none"
+    "imageborder": {
+      "type": "object"
+    },
+    "imageborderRadius": {
+      "type": "string"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "style": "file:./style-index.css"
 }

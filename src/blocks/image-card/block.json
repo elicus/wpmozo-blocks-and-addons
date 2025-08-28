@@ -1,166 +1,174 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "wpmozo/image-card",
-    "version": "0.1.0",
-    "title": "Image Card",
-    "category": "wpmozo",
-    "icon": "smiley",
-    "description": "Example block scaffolded with Create Block tool.",
-    "example": {},
-    "supports": {
-        "html": false,
-        "shadow": true
-    },
-    "attributes": {
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/image-card",
+	"version": "0.1.0",
+	"title": "Image Card",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "Image card block to display the card view with it's details.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"customClassName": false
+	},
+	"attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
 
-        "ID": { "type": "string" },
+		"containermargin": { "type": "object"},
+		"containerpadding": { "type": "object" },
+		"containerBackgroundColor": {"type": "string"},
+		"containerborder": {"type": "object"},
+		"containerborderRadius": {"type": "string"},
 
-        "image": { "type": "string" },
-        "imageBorder": { "type": "string", "default": "" },
-        "imageBorderColor": { "type": "string", "default": "" },
-        "imageBorderRadius": { "type": "string", "default": "" },
-        "imageDimensionspadding": { "type": "object", "default": "" },
+		"image": { "type": "string" },
+		"imageborder": { "type": "object", "default": "" },
+		"imageborderRadius": { "type": "string", "default": "" },
+		"imageDimensionspadding": { "type": "object", "default": "" },
 
-        "icon": { "type": "string", "default": "far fa-star" },
-        "iconColor": { "type": "string" },
-        "iconFontSize": { "type": "number", "default": "" },
-        "iconAlign": { "type": "string", "default": "left" },
-        "styleIcon": { "type": "boolean", "default": false },
-        "showShapeBorder": { "type": "boolean", "default": false },
-        "iconShape": { "type": "string", "default": "square" },
-        "iconBackground": { "type": "string", "default": "" },
-        "shapeBorderColor": { "type": "string", "default": "" },
+		"icon": { "type": "string", "default": "far fa-star" },
+		"iconColor": { "type": "string" },
+		"iconFontSize": { "type": "number", "default": "" },
+		"iconAlign": { "type": "string", "default": "left" },
+		"styleIcon": { "type": "boolean", "default": false },
+		"showShapeBorder": { "type": "boolean", "default": false },
+		"iconShape": { "type": "string", "default": "square" },
+		"iconBackground": { "type": "string", "default": "" },
+		"shapeBorderColor": { "type": "string", "default": "" },
+		"iconmargin": { "type": "object"},
+		"iconpadding": { "type": "object" },
 
-        "imageHeight": { "type": "number", "default": 200 },
-        "imageWidth": { "type": "number", "default": 200 },
+		"imageHeight": { "type": "number", "default": 200 },
+		"imageWidth": { "type": "number", "default": 200 },
 
-        "title": { "type": "string", "default": "Image Card Title" },
-        "titleAlign": { "type": "string", "default": "left" },
-        "titleColor": { "type": "string" },
-        "titleFontSize": { "type": "string" },
-        "titleLetterSpacing": { "type": "string" },
-        "titleDecoration": { "type": "string" },
-        "titleLetterCase": { "type": "string" },
-        "titleLineHeight": { "type": "string" },
-        "titleLevel": { "type": "string", "default": "h2" },
-        "titleFontAppearance": {
-            "type": "object",
-            "default": {
-                "fontStyle": "",
-                "fontWeight": ""
-            }
-        },
-        "titleFontStyle": { "type": "string" },
-        "titleFontWeight": { "type": "string" },
+		"title": { "type": "string", "default": "Your title here." },
+		"titleAlign": { "type": "string", "default": "left" },
+		"titleColor": { "type": "string" },
+		"titleFontSize": { "type": "string" },
+		"titleLetterSpacing": { "type": "string" },
+		"titleDecoration": { "type": "string" },
+		"titleLetterCase": { "type": "string" },
+		"titleLineHeight": { "type": "string" },
+		"titleLevel": { "type": "string", "default": "h2" },
+		"titleFontAppearance": {
+			"type": "object",
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"titleFontStyle": { "type": "string" },
+		"titleFontWeight": { "type": "string" },
 
+		"titleHoverColor": { "type": "string" },
+		"titleHoverFontSize": { "type": "string" },
+		"titleHoverLetterSpacing": { "type": "string" },
+		"titleHoverDecoration": { "type": "string" },
+		"titleHoverLetterCase": { "type": "string" },
+		"titleHoverLineHeight": { "type": "string" },
+		"titleHoverFontAppearance": {
+			"type": "object",
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"titleHoverFontStyle": { "type": "string" },
+		"titleHoverFontWeight": { "type": "string" },
 
-        "titleHoverColor": { "type": "string" },
-        "titleHoverFontSize": { "type": "string" },
-        "titleHoverLetterSpacing": { "type": "string" },
-        "titleHoverDecoration": { "type": "string" },
-        "titleHoverLetterCase": { "type": "string" },
-        "titleHoverLineHeight": { "type": "string" },
-        "titleHoverFontAppearance": {
-            "type": "object",
-            "default": {
-                "fontStyle": "",
-                "fontWeight": ""
-            }
-        },
-        "titleHoverFontStyle": { "type": "string" },
-        "titleHoverFontWeight": { "type": "string" },
+		"description": {
+			"type": "string",
+			"default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+		},
+		"descriptionTextAlign": { "type": "string", "default": "left" },
+		"descriptionTextColor": { "type": "string" },
+		"descriptionTextFontSize": { "type": "string" },
+		"descriptionTextLetterSpacing": { "type": "string" },
+		"descriptionTextDecoration": { "type": "string" },
+		"descriptionTextLetterCase": { "type": "string" },
+		"descriptionTextLineHeight": { "type": "string" },
 
-        "description": {
-            "type": "string",
-            "default": "Your content goes here. Edit this text inline or in the block Content settings. You can also style every aspect of this content in the block Design settings."
-        },
-        "descriptionTextAlign": { "type": "string", "default": "left" },
-        "descriptionTextColor": { "type": "string" },
-        "descriptionTextFontSize": { "type": "string" },
-        "descriptionTextLetterSpacing": { "type": "string" },
-        "descriptionTextDecoration": { "type": "string" },
-        "descriptionTextLetterCase": { "type": "string" },
-        "descriptionTextLineHeight": { "type": "string" },
+		"descriptionHoverTextColor": { "type": "string" },
+		"descriptionHoverTextFontSize": { "type": "string" },
+		"descriptionHoverTextLetterSpacing": { "type": "string" },
+		"descriptionHoverTextDecoration": { "type": "string" },
+		"descriptionHoverTextLetterCase": { "type": "string" },
+		"descriptionHoverTextLineHeight": { "type": "string" },
 
-        "descriptionHoverTextColor": { "type": "string" },
-        "descriptionHoverTextFontSize": { "type": "string" },
-        "descriptionHoverTextLetterSpacing": { "type": "string" },
-        "descriptionHoverTextDecoration": { "type": "string" },
-        "descriptionHoverTextLetterCase": { "type": "string" },
-        "descriptionHoverTextLineHeight": { "type": "string" },
+		"contentAlign": { "type": "string", "default": "left" },
+		"contentColor": { "type": "string" },
+		"contentHoverColor": { "type": "string" },
+		"contentFontSize": { "type": "string" },
+		"contentLetterSpacing": { "type": "string" },
+		"contentDecoration": { "type": "string" },
+		"contentLetterCase": { "type": "string" },
+		"contentLineHeight": { "type": "string" },
+		"contentFontAppearance": {
+			"type": "object",
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"contentBackgroundColor": { "type": "string" },
+		"contentpadding": {
+			"type": "object",
+			"default": {
+				"top": "",
+				"right": "15px",
+				"bottom": "",
+				"left": "15px"
+			}
+		},
 
-        "contentAlign": { "type": "string", "default": "left" },
-        "contentColor": { "type": "string" },
-        "contentHoverColor": { "type": "string" },
-        "contentFontSize": { "type": "string" },
-        "contentLetterSpacing": { "type": "string" },
-        "contentDecoration": { "type": "string" },
-        "contentLetterCase": { "type": "string" },
-        "contentLineHeight": { "type": "string" },
-        "contentFontAppearance": {
-            "type": "object",
-            "default": {
-                "fontStyle": "",
-                "fontWeight": ""
-            }
-        },
-        "contentBackgroundColor": { "type": "string" },
-        "contentpadding": {
-            "type": "object",
-            "default": {
-                "top": "",
-                "right": "15px",
-                "bottom": "",
-                "left": "15px"
-            }
-        },
+		"contentHoverBackgroundColor": { "type": "string" },
+		"contentHoverpadding": {
+			"type": "object",
+			"default": {
+				"top": "",
+				"right": "15px",
+				"bottom": "",
+				"left": "15px"
+			}
+		},
 
-        "contentHoverBackgroundColor": { "type": "string" },
-        "contentHoverpadding": {
-            "type": "object",
-            "default": {
-                "top": "",
-                "right": "15px",
-                "bottom": "",
-                "left": "15px"
-            }
-        },
+		"showButton": { "type": "boolean", "default": false },
+		"buttonText": { "type": "string", "default": "Read More" },
+		"buttonUrl": { "type": "string", "default": "" },
+		"buttonLinkTarget": { "type": "string", "default": "same" },
+		"buttonTextColor": { "type": "string" },
+		"buttonTextBackground": { "type": "string" },
+		"buttonTextHoverColor": { "type": "string" },
+		"buttonTextHoverBackground": { "type": "string" },
+		"buttonTextAlign": { "type": "string", "default": "left" },
+		"buttonTextFontSize": { "type": "string" },
+		"buttonTextLetterSpacing": { "type": "string" },
+		"buttonTextDecoration": { "type": "string","default": "none" },
+		"buttonTextLetterCase": { "type": "string" },
+		"buttonTextLineHeight": { "type": "string" },
+		"buttonTextFontAppearance": {
+			"type": "object",
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"buttonIcon": { "type": "string", "default": "fas fa-arrow-right" },
+		"buttonImage": { "type": "string" },
+		"buttonMediaPosition": { "type": "string", "default": "after" },
+		"buttonMediaType": { "type": "string", "default": "icon" },
+		"buttonTextFontStyle": { "type": "string" },
+		"buttonTextFontWeight": { "type": "string" },
+		"buttonTextborder": { "type": "object", "default": { "width": "1px", "style": "solid", "color": "#000" } },
+		"buttonTextborderRadius": { "type": "string", "default": "3px" },
 
-        "showButton": { "type": "boolean", "default": false },
-        "buttonText": { "type": "string", "default": "Read More" },
-        "buttonUrl": { "type": "string", "default": "" },
-        "buttonLinkTarget": { "type": "string", "default": "same" },
-        "buttonTextColor": { "type": "string" },
-        "buttonTextBackground": { "type": "string" },
-        "buttonTextAlign": { "type": "string", "default": "left" },
-        "buttonTextFontSize": { "type": "string" },
-        "buttonTextLetterSpacing": { "type": "string" },
-        "buttonTextDecoration": { "type": "string","default": "none" },
-        "buttonTextLetterCase": { "type": "string" },
-        "buttonTextLineHeight": { "type": "string" },
-        "buttonTextFontAppearance": {
-            "type": "object",
-            "default": {
-                "fontStyle": "",
-                "fontWeight": ""
-            }
-        },
-        "buttonIcon": { "type": "string", "default": "fas fa-arrow-right" },
-        "buttonImage": { "type": "string" },
-        "buttonMediaPosition": { "type": "string", "default": "after" },
-        "buttonMediaType": { "type": "string", "default": "icon" },
-        "buttonTextFontStyle": { "type": "string" },
-        "buttonTextFontWeight": { "type": "string" },
-        "buttonTextborder": { "type": "object", "default": { "width": "1px", "style": "solid", "color": "#fff" } },
-        "buttonTextborderRadius": { "type": "string", "default": "3px" },
-        
-        "buttonDimensionspadding": { "type": "object", "default": { "top": "5px", "right": "8px", "bottom": "5px", "left": "8px" } },
-        "buttonDimensionsmargin": { "type": "object" },
+		"buttonDimensionspadding": { "type": "object", "default": { "top": "5px", "right": "8px", "bottom": "5px", "left": "8px" } },
+		"buttonDimensionsmargin": { "type": "object" },
 
-        "showMediaOnHover": { "type": "boolean", "default": false }
-    },
-    "textdomain": "wpmozo-blocks-and-addons",
-    "editorScript": "file:./index.js",
-    "style": "file:./style-index.css"
+		"showMediaOnHover": { "type": "boolean", "default": false }
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css"
 }

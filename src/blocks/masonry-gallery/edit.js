@@ -1,9 +1,12 @@
 /**
  * External dependencies
  */
-import classnames from 'classnames';
 import { concat, find } from 'lodash';
 import {Fragment} from "@wordpress/element";
+import { View } from '@wordpress/primitives';
+import { toHTMLString } from '@wordpress/rich-text';
+
+
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -20,19 +23,16 @@ import { __ } from '@wordpress/i18n';
 import { compose } from '@wordpress/compose';
 import { createBlobURL } from '@wordpress/blob';
 import { createBlock } from '@wordpress/blocks';
-import { store as blockEditorStore, MediaPlaceholder, useBlockProps } from '@wordpress/block-editor';
-import { Icon, withNotices } from '@wordpress/components';
+import { store as blockEditorStore, MediaPlaceholder, useBlockProps, useInnerBlocksProps, InnerBlocks } from '@wordpress/block-editor';
+import { withNotices } from '@wordpress/components';
 import { Platform, useEffect, useMemo } from '@wordpress/element';
 import { useDispatch, useSelect } from '@wordpress/data';
 
 /**
  * Internal dependencies
  */
-import Gallery from '../../common/components/wpmozo-block-gallery/gallery';
 import Inspector from './inspector';
 import { pickRelevantMediaFiles } from '../../common/components/wpmozo-block-gallery/shared-helpers';
-import useGetMedia from '../../common/components/wpmozo-block-gallery/use-get-media';
-import useGetNewImages from '../../common/components/wpmozo-block-gallery/use-get-new-images';
 import generateDynamicStyle from "./style";
 
 
@@ -42,23 +42,17 @@ const PLACEHOLDER_TEXT = Platform.isNative
 	? __( 'ADD MEDIA', 'wpmozo-blocks-and-addons' )
 	: __( 'Drag images, upload new ones or select files from your library.', 'wpmozo-blocks-and-addons' );
 
-function Edit( props ) {
+
+function Edit(props) {
 	const {
 		setAttributes,
 		attributes,
-		className,
 		clientId,
 		noticeOperations,
 		isSelected,
-		insertBlocksAfter,
 	} = props;
 
 	const {
-		sizeSlug,
-	} = attributes;
-
-	const {
-		replaceBlocks,
 		replaceInnerBlocks,
 		updateBlockAttributes,
 	} = useDispatch( blockEditorStore );
@@ -91,43 +85,27 @@ function Edit( props ) {
 				fromSavedContent: Boolean( block.originalContent ),
 				id: block.attributes.id,
 				url: block.attributes.url,
+				caption: toHTMLString( { value: block.attributes.caption } )
 			} ) ),
 		[ innerBlockImages ]
 	);
 
-	useEffect( () => {
-		/**
-		 * This logic should only fire in the case of block deprecations.
-		 * Deprecated markup come in with old attributes and the block
-		 *must be replaced for proper instantiation.
-		 */
-		if ( !! attributes?.images?.length && ! images?.length ) {
-			const newBlocks = attributes?.images.map( ( image ) => {
-				return createBlock( 'core/image', {
-					alt: image.alt,
-					caption: image.caption?.toString(),
-					id: parseInt( image.id ),
-					url: image.url,
-				} );
-			} );
-
-			const migratedAttributes = { ...attributes };
-			delete migratedAttributes.images;
-			delete migratedAttributes.gutter;
-			delete migratedAttributes.gutterCustom;
-
-			const transformedBlock = createBlock( 'wpmozo/masonry-gallery', { ...migratedAttributes }, newBlocks );
-
-			replaceBlocks(
-				[ clientId ],
-				transformedBlock,
-			);
+	// Set attributes.images whenever images change
+	useEffect(() => {
+		if (Array.isArray(images) && images.length > 0) {
+			// setAttributes({ images });
+			setAttributes({ images_data:images });
 		}
-	}, [] );
+	}, [images]);
 
-	const imageData = useGetMedia( innerBlockImages );
-
-	const newImages = useGetNewImages( images, imageData );
+	useEffect(() => {
+		const event = new CustomEvent('WPMozoMasonryGalleryPropsChanged');
+		window.dispatchEvent(event);
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
+		}
+	}, [props]);
 
 	useEffect( () => {
 		const changedAttributes = {};
@@ -138,37 +116,6 @@ function Edit( props ) {
 		} );
 		updateBlockAttributes( blocks, changedAttributes, true );
 	}, [] );
-
-	useEffect( () => {
-		newImages?.forEach( ( newImage ) => {
-			updateBlockAttributes( newImage.clientId, {
-				...buildImageAttributes( newImage.attributes ),
-				align: undefined,
-				id: newImage.id,
-			} );
-		} );
-	}, [ newImages ] );
-
-	function buildImageAttributes( imageAttributes ) {
-		const image = imageAttributes.id
-			? find( imageData, { id: imageAttributes.id } )
-			: null;
-
-		let newClassName;
-		if ( imageAttributes.className && imageAttributes.className !== '' ) {
-			newClassName = imageAttributes.className;
-		} else {
-			newClassName = preferredStyle
-				? `is-style-${ preferredStyle }`
-				: undefined;
-		}
-
-		return {
-			...pickRelevantMediaFiles( imageAttributes, sizeSlug ),
-			className: newClassName,
-			sizeSlug,
-		};
-	}
 
 	function isValidFileType( file ) {
 		return (
@@ -289,8 +236,7 @@ function Edit( props ) {
 			disableMediaButtons={
 				( hasImages && ! isSelected ) || imagesUploading
 			}
-			handleUpload={ false }
-			// icon={ ! hasImages && <Icon icon={ icon } /> }
+			handleUpload={ true }
 			isAppender={ hasImages }
 			labels={ {
 				instructions: ! hasImages && PLACEHOLDER_TEXT,
@@ -303,8 +249,7 @@ function Edit( props ) {
 		/>
 	);
 
-	const blockProps = useBlockProps( {
-		className: classnames( className)} );
+	const blockProps = useBlockProps({className:'wpmozo_masonry_gallery'});
 
 	return (
 		<>
@@ -316,17 +261,39 @@ function Edit( props ) {
 			<style>
 				{generateDynamicStyle({attributes, clientId})}
 			</style>
-				<Gallery
-					{ ...props }
-					blockProps={ blockProps }
-					images={ images }
-					insertBlocksAfter={ insertBlocksAfter }
-					mediaPlaceholder={ mediaPlaceholder }
-					wrapperClass="masonry-grid"
-				/>
+			<div {...blockProps}>
+				<div className="wpmozo_pb_module_inner">
+					<div className="wpmozo_masonry_gallery_wrapper">
+						<div className="wpmozo_masonry_gallery_item_gutter"></div>
+						{attributes.images_data && attributes.images_data.length > 0 && (
+							attributes.images_data.map((image, idx) => (
+								<a className="wpmozo_masonry_gallery_item" href={image.url} key={image.id || idx}>
+									<div className="wpmozo_masonry_gallery_image_wrapper">
+										<img src={image.url} alt={image.alt || ''}/>
+										{true === attributes.showCaption && (
+											<div className="wpmozo_masonry_gallery_title_caption_wrapper">
+												<figcaption className="wp-element-caption">{image.caption}</figcaption>
+											</div>
+										)}
+										{true === attributes.enableOverlay && (
+											<span className="wpmozo_overlay wpmozo_pb_inline_icon" data-icon="0">
+												<i className={attributes.overlayIcon}></i>
+											</span>
+										)}
+									</div>
+								</a>
+							))
+						)}
+					</div>
+				</div>
+				<View className="gallery-media-placeholder-wrapper">
+				{ mediaPlaceholder }
+				</View>
+			</div>
 		</>
 	);
 }
+
 export default compose( [
 	withNotices,
 ] )( Edit );

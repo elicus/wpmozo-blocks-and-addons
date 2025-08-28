@@ -89,3 +89,10 @@
 	transition: .3s ease-in
 }
 
+.wp-block-wpmozo-mystery-image .mystery-show a {
+	pointer-events: none;
+	cursor: default;
+}
+.wpmozo-mystery-image-lightbox .mystery-show a {
+	pointer-events: auto;
+}

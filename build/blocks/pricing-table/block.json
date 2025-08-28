@@ -9,10 +9,20 @@
   "description": "A Pricing Table Block displays side-by-side plans to compare features and pricing at a glance.",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "customClassName": false
   },
   "attributes": {
     "ID": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "wrapperborder": {
+      "type": "object"
+    },
+    "wrapperborderRadius": {
       "type": "string"
     },
     "title": {
@@ -70,6 +80,15 @@
         }
       ]
     },
+    "featuresIconFontSize": {
+      "type": "number"
+    },
+    "featuresSpacing": {
+      "type": "number"
+    },
+    "featuresMargin": {
+      "type": "number"
+    },
     "showButton": {
       "type": "boolean",
       "default": false
@@ -85,7 +104,7 @@
       "type": "string",
       "default": "same"
     },
-    "buttonIcontype": {
+    "buttonIconType": {
       "type": "string",
       "default": "icon"
     },
@@ -209,9 +228,6 @@
     "backgroundColor": {
       "type": "string"
     },
-    "align": {
-      "type": "string"
-    },
     "mainDimensionspadding": {
       "type": "object"
     },
@@ -264,6 +280,9 @@
         "fontStyle": "",
         "fontWeight": ""
       }
+    },
+    "pricealign": {
+      "type": "string"
     },
     "priceLetterSpacing": {
       "type": "string"
@@ -356,9 +375,6 @@
       "type": "boolean",
       "default": false
     },
-    "featuresIcon": {
-      "type": "string"
-    },
     "featuresIconsColor": {
       "type": "string"
     },
@@ -434,6 +450,9 @@
     },
     "borderDimensionsmargin": {
       "type": "object"
+    },
+    "buttonFontSize": {
+      "type": "number"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",

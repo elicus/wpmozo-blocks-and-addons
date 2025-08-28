@@ -6,14 +6,16 @@
 	"title": "Interactive Image Card",
 	"category": "wpmozo",
 	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "It allows you to add images with text appearing on hover with different entrance animations.",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"customClassName": false
 	},
 	"attributes": {
 		"ID": { "type": "string" },
-		
+		"className": { "type": "string" },
+
 		"title": { "type": "string", "default": "Image Card Title" },
 		"titleLevel": { "type": "string", "default": "h2" },
 		"titleNormalColor": { "type": "string", "default": "#222222" },
@@ -31,7 +33,7 @@
 		"titleHoverLetterCase": { "type": "string" },
 		"titleHoverLineHeight": { "type": "string" },
 		"titleAlign": { "type": "string", "default": "center" },
-		
+
 		"content": { "type": "string", "default": "Your content goes here. Edit this text inline or in the widget Content settings. You can also style every aspect of this content in the widget Design settings." },
 		"contentColor": { "type": "string", "default": "#222222" },
 		"contentFontSize": { "type": "string" },
@@ -41,13 +43,16 @@
 		"contentLetterCase": { "type": "string" },
 		"contentLineHeight": { "type": "string" },
 		"contentAlign": { "type": "string", "default": "center" },
-		
+
 		"backImage": { "type": "string" },
 		"imageOpacity": { "type": "number", "default": 0.7 },
-		
+
 		"layout": { "type": "string", "default": "lily" },
-		"layoutborder": { "type": "object", "default": { "color": "#000000", "width": "1px", "style": "solid" } },
-		
+		"layoutborder": {
+			"type": "object",
+			"default": { "color": "#000000", "width": "1px", "style": "solid" }
+		},
+
 		"overlayColor": { "type": "string" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",

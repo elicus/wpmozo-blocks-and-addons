@@ -199,6 +199,9 @@ class Mozo_Bna_Blocks_And_Addons {
 		add_action( 'init', array( $this->classes['astreg'], 'wpmozo_register_scripts_and_styles' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this->classes['astreg'], 'enqueue_block_editor_assets' ) );
 		add_action( 'wp_enqueue_scripts', array( $this->classes['astreg'], 'enqueue_block_assets' ) );
+
+		// Load all script.js file in footer.
+		add_action( 'wp_enqueue_scripts', array( $this->classes['astreg'], 'enqueue_block_script_in_footer' ), 20 );
 	}
 
 	/**

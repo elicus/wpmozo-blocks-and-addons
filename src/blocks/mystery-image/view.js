@@ -19,7 +19,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/#view-script
  */
-
+import $ from 'jquery';
 /* eslint-disable no-console */
 var images = document.querySelectorAll('.wp-block-wpmozo-mystery-image .wp-block-image');
 if (images.length > 0) {
@@ -52,18 +52,9 @@ if (images.length > 0) {
 			overlay.appendChild(iTag);
 		}
 	}
-
-	// {
-	// 	// Add overlay span
-    //     var overlay = document.createElement('span');
-    //     overlay.className = 'wpmozo-overlay-icon';
-    //     anchor.appendChild(overlay);
-	// }
-
 }
 
-jQuery(document).ready(function($) {
-
+$(document).ready(function(e) {
 	// Updated JS code to initialize magnificPopup for the .mystery-show image inside .wpmozo-mystery-image-lightbox
 	$('.wpmozo-mystery-image-lightbox').each(function() {
 		const $container = $(this);
@@ -99,7 +90,6 @@ jQuery(document).ready(function($) {
 			});
 		}
 	});
-
 });
 
 /* eslint-enable no-console */

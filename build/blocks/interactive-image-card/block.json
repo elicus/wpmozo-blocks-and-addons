@@ -6,13 +6,17 @@
   "title": "Interactive Image Card",
   "category": "wpmozo",
   "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "description": "It allows you to add images with text appearing on hover with different entrance animations.",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "customClassName": false
   },
   "attributes": {
     "ID": {
+      "type": "string"
+    },
+    "className": {
       "type": "string"
     },
     "title": {

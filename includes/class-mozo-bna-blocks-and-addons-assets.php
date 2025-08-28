@@ -73,6 +73,13 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			WPMOZO_BNA_VERSION
 		);
 
+		wp_register_style(
+			$this->plugin_name . '-magnificPopup-style',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/magnificPopup.css',
+			array(),
+			WPMOZO_BNA_VERSION
+		);
+
 		wp_register_script(
 			$this->plugin_name . '-swiper-script',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/swiper-bundle.js',
@@ -129,9 +136,32 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 		);*/
 
 		wp_register_script(
-			$this->plugin_name . '-tippy-script',
-			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/tippy-bundle.js',
+			$this->plugin_name . '-isotope-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/isotope.pkgd.js',
 			array( 'jquery' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
+		wp_register_script(
+			$this->plugin_name . '-magnificPopup-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/magnificPopup.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
+		wp_register_script(
+			$this->plugin_name . '-popper-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/popper.min.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+		wp_register_script(
+			$this->plugin_name . '-tippy-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/tippy-bundle.umd.min.js',
+			array( 'jquery', $this->plugin_name . '-popper-script' ),
 			WPMOZO_BNA_VERSION,
 			true
 		);
@@ -149,7 +179,6 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			array(),
 			WPMOZO_BNA_VERSION
 		);
-
 	}
 
 	/**
@@ -172,8 +201,8 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 		wp_enqueue_script( $this->plugin_name . '-editor-script' );
 		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
 		wp_enqueue_script( $this->plugin_name . '-tilt-script' );
+		wp_enqueue_script( $this->plugin_name . '-popper-script' );
 		wp_enqueue_script( $this->plugin_name . '-tippy-script' );
-
 	}
 
 	/**
@@ -216,6 +245,30 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 	}
 
 	/**
+	 * Enqueue block script in footer.
+	 * @since 1.1.0
+	 */
+	public function enqueue_block_script_in_footer() {
+		global $wp_scripts;
+
+		$allBlocks = glob( WPMOZO_BNA_PLUGIN_DIR_PATH . 'build/blocks' . '/*' , GLOB_ONLYDIR );
+		$allBlocks = array_map( function( $block ) {
+			return 'wpmozo-' . basename( $block );
+		}, $allBlocks );
+
+		// Checking in all blocks.
+		foreach ( $allBlocks as $block ) {
+			$prefix = $block; // e.g., wpmozo-image-stack
+
+			foreach ( $wp_scripts->registered as $handle => $script ) {
+				if ( strpos( $handle, $prefix ) === 0 ) { // starts with prefix
+					$wp_scripts->registered[ $handle ]->extra['group'] = 1; // load in footer
+				}
+			}
+		}
+	}
+
+	/**
 	 * Enqueue adminb side assets.
 	 */
 	public function enqueue_admin_assets( $hooks ) {
@@ -232,7 +285,7 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 		);
 
 		// Check if we're on post edit/add screen for a specific CPT
-		if ( isset( $screen->post_type ) && $screen->base === 'post' && 
+		if ( isset( $screen->post_type ) && $screen->base === 'post' &&
 			$screen->post_type === 'mozo-testimonial'
 		) {
 			wp_enqueue_style( $this->plugin_name . '-metaboxes' );

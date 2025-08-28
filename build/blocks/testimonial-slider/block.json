@@ -6,13 +6,17 @@
   "title": "Testimonial Slider",
   "category": "wpmozo",
   "icon": "smiley",
-  "description": "Testimonial slider to use to display testimonials.",
+  "description": "Showcase client feedback beautifully with an interactive testimonial slider for engaging and trustworthy presentations.",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "customClassName": false
   },
   "attributes": {
     "ID": {
+      "type": "string"
+    },
+    "className": {
       "type": "string"
     },
     "layout": {
@@ -108,6 +112,10 @@
       "default": 20
     },
     "equalHeight": {
+      "type": "boolean",
+      "default": false
+    },
+    "autoHeight": {
       "type": "boolean",
       "default": false
     },
@@ -488,10 +496,6 @@
     "arrowborderRadius": {
       "type": "string"
     },
-    "arrowborderColor": {
-      "type": "string",
-      "default": ""
-    },
     "metaSeparatorColor": {
       "type": "string",
       "default": "#dddddd"
@@ -514,17 +518,10 @@
     "testimonialborderRadius": {
       "type": "string"
     },
-    "testimonialborderColor": {
-      "type": "string",
-      "default": ""
-    },
     "authorImageborder": {
       "type": "object"
     },
     "authorImageborderRadius": {
-      "type": "string"
-    },
-    "authorImageborderColor": {
       "type": "string"
     }
   },

@@ -1,13 +1,10 @@
 /**
  * WordPress dependencies
  */
-import { Spinner } from '@wordpress/components';
-import { lazy, Suspense } from '@wordpress/element';
 
 import { registerBlockType } from '@wordpress/blocks';
 import metadata from './block.json';
 import Edit from './edit';
-import save from './save';
 import Icon from './icon';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -19,11 +16,7 @@ import Icon from './icon';
 import './style.scss';
 
 registerBlockType(metadata.name, {
-	edit: ( props ) => (
-		<Suspense fallback={ <Spinner /> }>
-			<Edit { ...props } />
-		</Suspense>
-	),
-    icon: Icon,
-    save,
+	edit: Edit,
+	icon: Icon,
+	save: () => null,
 });
