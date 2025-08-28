@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {convertInlineStyleStr} from '../../common/utils.js';
 
 const generateDynamicStyle = ({attributes, clientId}) => {
@@ -18,16 +19,29 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 	}else if( 'right' == imageAlignment ) {
 		wrapperDimensions = 'margin-left: auto !important;margin-right: 0px !important;';
 	}
+=======
+
+const generateDynamicStyle = ({attributes, clientId}) => {
+
+	let styles = `#block-${attributes.ID}{`;
+>>>>>>> a38faaf (WIP: scroll image)
 
 	styles += `.wpmozo-bna-scroll-image-wrapper{
 		width: ${attributes.containerWidth} !important;
 		height: ${attributes.containerHeight} !important;
+<<<<<<< HEAD
 		${wrapperDimensions}
 	}
 	.wpmozo-bna-scroll-image-inner-wrap img{
 		transition: all ${attributes.scrollSpeed}s ease-out;
 	}
 	${ (convertedStyle.image) ? ` .wpmozo-bna-scroll-image-inner-wrap { `+ convertedStyle.image + `; }` : '' }`;
+=======
+	}
+	.wpmozo-bna-scroll-image-inner-wrap img{
+		transition: all ${attributes.scrollSpeed}s ease-out;
+	}`;
+>>>>>>> a38faaf (WIP: scroll image)
 	
 	styles += `}`;
 	return styles;

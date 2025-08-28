@@ -17,6 +17,7 @@
 		"className": { "type": "string" },
 		
 		"image": { "type": "string" },
+<<<<<<< HEAD
 		"imageAlignment": { "type": "string" },
 		"imageTitle": { "type": "string" },
 
@@ -24,6 +25,16 @@
 		"scrollSpeed": { "type": "number", "default": 5 },
 		"containerWidth": { "type": "string" },
 		"containerWidthUnit": { "type": "string", "default": "%" },
+=======
+		"imageAlignment": { "type": "string", "default": "center" },
+		"imageTitle": { "type": "string" },
+
+		"scrollDirection": { "type": "string" },
+		"scrollSpeed": { "type": "number", "default": 5 },
+		"containerWidth": { "type": "string", "default": "0%" },
+		"containerWidthUnit": { "type": "string", "default": "%" },
+		"imageAlignment": { "type": "string" },
+>>>>>>> a38faaf (WIP: scroll image)
 		"containerHeight": { "type": "string" },
 		"containerHeightUnit": { "type": "string", "default": "px" },
 
