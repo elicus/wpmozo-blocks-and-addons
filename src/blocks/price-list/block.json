@@ -20,6 +20,11 @@
         "layout": { "type": "string", "default": "layout1" },
         "columnSpacing": { "type": "string", "default": "15px" },
         "numberOfColumns": { "type": "string", "default": "1" },
+        "bottomSpacing": { "type": "string", "default": "2.75%" },
+
+        "itemBackground": { "type": "string" },
+        "itemborder": { "type": "object" },
+        "itemborderRadius": { "type": "string" },
 
         "dividerColor": { "type": "string" },  
         "textAlignment": { "type": "string" },
@@ -32,6 +37,7 @@
 
         "iconFontSize": { "type": "string", "default": "100px" },
 
+        "thumbnailWidth": { "type": "string", "default": "100px" },
         "thumbnailborder": { "type": "object" },
         "thumbnailborderRadius": { "type": "string" },
 

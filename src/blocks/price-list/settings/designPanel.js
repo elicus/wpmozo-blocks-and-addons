@@ -65,6 +65,18 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				value={ attributes.textAlignment }
 			/>
 		</PanelBody>
+		<PanelBody title={ __( 'Item', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<WpmozoColorPicker props={props}
+				ColorKey=""
+				ColorTypes={ [
+					{ key: 'itemBackground', label: __( 'Item Background', 'wpmozo-blocks-and-addons' ) }
+				] }
+			/>
+			<WpmozoBorder props={props}
+				BorderKey="item"
+				BorderTypes={ { border: true,radius: true } }
+			/>
+		</PanelBody>
 		<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			<WpmozoColorPicker props={props}
 				ColorKey="icon"
@@ -82,6 +94,10 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Thumbnail', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<WpmozoRangeSize props={props}
+				label={ __( 'Thumbnail Width', 'wpmozo-blocks-and-addons') }
+				rangeSizeKey='thumbnailWidth'
+			/>
 			<WpmozoBorder props={props}
 				BorderKey="thumbnail"
 				BorderTypes={ { border: true,radius: true } }
@@ -161,7 +177,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				<WpmozoColorPicker props={props}
 					ColorKey="divider"
 					ColorTypes={ [
-						{ key: 'Color', label: __( 'Description Color', 'wpmozo-blocks-and-addons' ) }
+						{ key: 'Color', label: __( 'Divider Color', 'wpmozo-blocks-and-addons' ) }
 					] }
 				/>
 				<WpmozoRangeSize props={props}

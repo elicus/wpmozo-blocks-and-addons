@@ -1,3 +1,6 @@
+.wpmozo-bna-price-list{
+    display: grid;
+}
 .wpmozo-bna-price-list-item-thumbnail img {
     border-width: 0;
     border-style: solid;
@@ -66,4 +69,10 @@
 }
 .wpmozo-bna-price-list-item-price-period {
     font-size: 16px;
+}
+.wpmozo-bna-price-list.wpmozo-bna-currency-pos-right .wpmozo-bna-price-list-item-price-wrap {
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    align-items: center;
 }

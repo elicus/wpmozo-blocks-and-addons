@@ -35,6 +35,19 @@
       "type": "string",
       "default": "1"
     },
+    "bottomSpacing": {
+      "type": "string",
+      "default": "2.75%"
+    },
+    "itemBackground": {
+      "type": "string"
+    },
+    "itemborder": {
+      "type": "object"
+    },
+    "itemborderRadius": {
+      "type": "string"
+    },
     "dividerColor": {
       "type": "string"
     },
@@ -58,6 +71,10 @@
       "type": "string"
     },
     "iconFontSize": {
+      "type": "string",
+      "default": "100px"
+    },
+    "thumbnailWidth": {
       "type": "string",
       "default": "100px"
     },

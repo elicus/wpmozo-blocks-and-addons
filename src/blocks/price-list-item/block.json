@@ -12,7 +12,8 @@
 	"supports": {
 		"html": false,
 		"anchor": false,
-		"customClassName": false
+		"customClassName": false,
+        "inserter": false
 	},
     "attributes": {
         "parentAtts": { "type": "object" },
@@ -36,14 +37,14 @@
         "iconColor": { "type": "string" },
         "iconShapBackground": { "type": "string" },
 
-        "iconFontSize": { "type": "string", "default": "100px" },
+        "iconFontSize": { "type": "string" },
 
         "thumbnailborder": { "type": "object" },
         "thumbnailborderRadius": { "type": "string" },
 
         "nameHeadingLavel": { "type": "string", "default": "h4" },
         "nameColor": { "type": "string" },
-        "nameFontSize": { "type": "string", "default": "20px" },
+        "nameFontSize": { "type": "string" },
         "nameFontAppearance": {
             "type": "object",
             "fontStyle": { "type": "string" },
@@ -59,7 +60,7 @@
         "nameLineHeight": { "type": "string" },
 
         "priceColor": { "type": "string" },
-        "priceFontSize": { "type": "string", "default": "18px" },
+        "priceFontSize": { "type": "string" },
         "priceFontAppearance": {
             "type": "object",
             "fontStyle": { "type": "string" },
@@ -75,7 +76,7 @@
         "priceLineHeight": { "type": "string" },
 
         "currencyColor": { "type": "string" },
-        "currencyFontSize": { "type": "string", "default": "18px" },
+        "currencyFontSize": { "type": "string" },
         "currencyFontAppearance": {
             "type": "object",
             "fontStyle": { "type": "string" },
@@ -91,7 +92,7 @@
         "currencyLineHeight": { "type": "string" },
 
         "descriptionColor": { "type": "string" },
-        "descriptionFontSize": { "type": "string", "default": "14px" },
+        "descriptionFontSize": { "type": "string" },
         "descriptionFontAppearance": {
             "type": "object",
             "fontStyle": { "type": "string" },
@@ -107,7 +108,7 @@
         "descriptionLineHeight": { "type": "string" },
 
         "periodColor": { "type": "string" },
-        "periodFontSize": { "type": "string",  "default": "16px" },
+        "periodFontSize": { "type": "string" },
         "periodFontAppearance": {
             "type": "object",
             "fontStyle": { "type": "string" },

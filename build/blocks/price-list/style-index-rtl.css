@@ -1,6 +1,10 @@
 /*!*********************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/price-list/style.scss ***!
   \*********************************************************************************************************************************************************************************************************************************************************/
+.wpmozo-bna-price-list {
+  display: grid;
+}
+
 .wpmozo-bna-price-list-item-thumbnail img {
   border-width: 0;
   border-style: solid;
@@ -84,4 +88,11 @@
 
 .wpmozo-bna-price-list-item-price-period {
   font-size: 16px;
+}
+
+.wpmozo-bna-price-list.wpmozo-bna-currency-pos-right .wpmozo-bna-price-list-item-price-wrap {
+  display: inline-flex;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  align-items: center;
 }

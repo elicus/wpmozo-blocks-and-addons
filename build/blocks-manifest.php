@@ -3071,6 +3071,19 @@ return array(
 				'type' => 'string',
 				'default' => '1'
 			),
+			'bottomSpacing' => array(
+				'type' => 'string',
+				'default' => '2.75%'
+			),
+			'itemBackground' => array(
+				'type' => 'string'
+			),
+			'itemborder' => array(
+				'type' => 'object'
+			),
+			'itemborderRadius' => array(
+				'type' => 'string'
+			),
 			'dividerColor' => array(
 				'type' => 'string'
 			),
@@ -3094,6 +3107,10 @@ return array(
 				'type' => 'string'
 			),
 			'iconFontSize' => array(
+				'type' => 'string',
+				'default' => '100px'
+			),
+			'thumbnailWidth' => array(
 				'type' => 'string',
 				'default' => '100px'
 			),
@@ -3290,7 +3307,8 @@ return array(
 		'supports' => array(
 			'html' => false,
 			'anchor' => false,
-			'customClassName' => false
+			'customClassName' => false,
+			'inserter' => false
 		),
 		'attributes' => array(
 			'parentAtts' => array(
@@ -3346,8 +3364,7 @@ return array(
 				'type' => 'string'
 			),
 			'iconFontSize' => array(
-				'type' => 'string',
-				'default' => '100px'
+				'type' => 'string'
 			),
 			'thumbnailborder' => array(
 				'type' => 'object'
@@ -3363,8 +3380,7 @@ return array(
 				'type' => 'string'
 			),
 			'nameFontSize' => array(
-				'type' => 'string',
-				'default' => '20px'
+				'type' => 'string'
 			),
 			'nameFontAppearance' => array(
 				'type' => 'object',
@@ -3395,8 +3411,7 @@ return array(
 				'type' => 'string'
 			),
 			'priceFontSize' => array(
-				'type' => 'string',
-				'default' => '18px'
+				'type' => 'string'
 			),
 			'priceFontAppearance' => array(
 				'type' => 'object',
@@ -3427,8 +3442,7 @@ return array(
 				'type' => 'string'
 			),
 			'currencyFontSize' => array(
-				'type' => 'string',
-				'default' => '18px'
+				'type' => 'string'
 			),
 			'currencyFontAppearance' => array(
 				'type' => 'object',
@@ -3459,8 +3473,7 @@ return array(
 				'type' => 'string'
 			),
 			'descriptionFontSize' => array(
-				'type' => 'string',
-				'default' => '14px'
+				'type' => 'string'
 			),
 			'descriptionFontAppearance' => array(
 				'type' => 'object',
@@ -3491,8 +3504,7 @@ return array(
 				'type' => 'string'
 			),
 			'periodFontSize' => array(
-				'type' => 'string',
-				'default' => '16px'
+				'type' => 'string'
 			),
 			'periodFontAppearance' => array(
 				'type' => 'object',

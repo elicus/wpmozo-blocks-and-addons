@@ -14,7 +14,8 @@
   "supports": {
     "html": false,
     "anchor": false,
-    "customClassName": false
+    "customClassName": false,
+    "inserter": false
   },
   "attributes": {
     "parentAtts": {
@@ -70,8 +71,7 @@
       "type": "string"
     },
     "iconFontSize": {
-      "type": "string",
-      "default": "100px"
+      "type": "string"
     },
     "thumbnailborder": {
       "type": "object"
@@ -87,8 +87,7 @@
       "type": "string"
     },
     "nameFontSize": {
-      "type": "string",
-      "default": "20px"
+      "type": "string"
     },
     "nameFontAppearance": {
       "type": "object",
@@ -119,8 +118,7 @@
       "type": "string"
     },
     "priceFontSize": {
-      "type": "string",
-      "default": "18px"
+      "type": "string"
     },
     "priceFontAppearance": {
       "type": "object",
@@ -151,8 +149,7 @@
       "type": "string"
     },
     "currencyFontSize": {
-      "type": "string",
-      "default": "18px"
+      "type": "string"
     },
     "currencyFontAppearance": {
       "type": "object",
@@ -183,8 +180,7 @@
       "type": "string"
     },
     "descriptionFontSize": {
-      "type": "string",
-      "default": "14px"
+      "type": "string"
     },
     "descriptionFontAppearance": {
       "type": "object",
@@ -215,8 +211,7 @@
       "type": "string"
     },
     "periodFontSize": {
-      "type": "string",
-      "default": "16px"
+      "type": "string"
     },
     "periodFontAppearance": {
       "type": "object",

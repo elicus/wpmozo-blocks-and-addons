@@ -1,48 +1,85 @@
-import {convertInlineStyleStr} from '../../common/utils.js';
+import {convertInlineStyleStr, wpmozo_is_empty} from '../../common/utils.js';
 
 const generateDynamicStyle = ({ attributes, clientId }) => {
 
-     // Re-run when clientId changes
-	/*console.log(parentAttributes);*/
 	const toConvertStyles = [
-    	'textNormal',
-        'textHover',
-        'item'
-    ];
-    let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
-    let iconFontSize = attributes.parentAtts ? attributes.parentAtts.iconFontSize : '';
+		'thumbnail',
+		'name',
+		'price',
+		'currency',
+		'description',
+		'period',
+		'item'
+	];
+    let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes ),
+    	parentAtts = attributes.parentAtts,
+    	iconFontSize = ( ! wpmozo_is_empty( attributes.iconFontSize ) ) ? attributes.iconFontSize : parentAtts.iconFontSize;
 
-
-	let styles = `#block-${clientId}.wpmozo-bna-list-item{`;
-	if ( undefined === attributes.itemBackgroundColor ) {
-		styles += `${(attributes.itemBackgroundGradient) ? `background:` +attributes.itemBackgroundGradient+`;` : ''}`;
-	} else {
-        styles += `${(attributes.itemBackgroundColor) ? `background:` +attributes.itemBackgroundColor+`;` : ''}`;
-	}
-    styles += `${(convertedStyle.item) ? convertedStyle.item : ''}`;
-
-	styles += ` .wpmozo-bna-list-item-text p { ${(attributes.textNormalColor) ? `color:` +attributes.textNormalColor+`;` : ''} ${ (convertedStyle.textNormal) ? convertedStyle.textNormal : ''} } .wpmozo-bna-list-item-text p:hover { ${ (attributes.textHoverColor)?`color:`+ attributes.textHoverColor+`;` : '' } ${ (convertedStyle.textHover) ? convertedStyle.textHover : '' }
-		} ${ (iconFontSize)?`.wpmozo-bna-list-icon i { font-size: `+ iconFontSize+`px;}` : '' } `;
-
-	if ( 'icon' === attributes.markerType ) {
-		styles += `${ (attributes.iconColor) ? `.wpmozo-bna-list-icon i { color:`+ attributes.iconColor+`;}` : '' }`;
-		if( true === attributes.styleIcon ){
-			if( 'hexagon' === attributes.iconShape ){
-				if( true === attributes.enableShapeBorder ){
-					styles += `${ (attributes.shapeBorderColor) ? `.wpmozo-bna-list-icon .hexagon.wpmozo-bna-border-hex { box-shadow: 2px 0px 0px 0px inset `+ attributes.shapeBorderColor + `, -2px 0px 0px 0px inset `+ attributes.shapeBorderColor +`;} .wpmozo-bna-list-icon .hexagon.wpmozo-bna-border-hex:after {border-right: 2px solid ` + attributes.shapeBorderColor + `;border-bottom: 2px solid ` + attributes.shapeBorderColor + `;transform: rotate(45deg) skew(-15.8deg, -15.8deg) translate( 72%, 27%);width: 55%;height: 100%;}.wpmozo-bna-list-icon .hexagon.wpmozo-bna-border-hex:before {border-top: 2px solid` + attributes.shapeBorderColor + `;border-left: 2px solid` + attributes.shapeBorderColor + `;transform: rotate(45deg) skew(-15.8deg, -15.8deg) translate(-27%, -72%);width: 55%;height: 100%;}` : '' }`;
-				} else {
-					styles += `.wpmozo-bna-list-icon .hexagon:after{ transform: rotate(45deg) skew(-16deg, -16deg) translate( 72%, 27%); width: 55%; } .wpmozo-bna-list-icon .hexagon:before { transform: rotate(45deg) skew(-16deg, -16deg) translate(-27%, -72%); width: 55%; } `;
-				}
-				styles += ` ${ parentAttributes.iconFontSize ? `.wpmozo-bna-list-icon { width: calc(${parentAttributes.iconFontSize}px + ${(parentAttributes.iconFontSize / 1.15)}px); }` : ''} ${ attributes.shapeBackground ? `.wpmozo-bna-list-icon .hexagon:before, .wpmozo-bna-list-icon .hexagon:after, .wpmozo-bna-list-icon .hexagon { background-color: ${attributes.shapeBackground}; }` : '' }`;
-			} else {
-				if( true === attributes.enableShapeBorder ){
-					styles += `${(attributes.shapeBorderColor) ? `.wpmozo-bna-list-icon i { border:2px solid `+attributes.shapeBorderColor+`;}` : ''}`;
-				}
-			}
-			styles += `${ (attributes.shapeBackground) ? `.wpmozo-bna-list-icon i { background-color:`+attributes.shapeBackground+`;}` : '' }`;
-		} 
-	} 	
+	let styles = `#block-${clientId}.wpmozo-bna-price-list-item{`;
+		styles += `
+		.wpmozo-bna-price-list-icon i{
+			color: ${attributes.iconColor};
+			font-size: ${attributes.iconFontSize};
+		}
+		.wpmozo-bna-price-list-item-thumbnail img{
+			width: ${attributes.thumbnailWidth};
+			${convertedStyle.thumbnail}
+		}
+		.wpmozo-bna-price-list-item-name{
+			color: ${attributes.nameColor};
+			${convertedStyle.name}
+		}
+		.wpmozo-bna-price-list-item-price{
+			color: ${attributes.priceColor};
+			${convertedStyle.price}
+		}
+		.wpmozo-bna-price-list-item-currency{
+			color: ${attributes.currencyColor};
+			${convertedStyle.currency}
+		}
+		.wpmozo-bna-price-list-item-description{
+			color: ${attributes.descriptionColor};
+			${convertedStyle.description}
+		}
+		.wpmozo-bna-price-list-item-price-period{
+			color: ${attributes.periodColor};
+			${convertedStyle.period}
+		}
+		`;
 	styles += `}`;
+
+	if ( ! wpmozo_is_empty(attributes.textAlignment) ) {
+		styles += `#block-${clientId}.wpmozo-bna-price-list-item{
+			text-align: ${attributes.textAlignment};
+		}`;
+	}
+
+	if ( ! wpmozo_is_empty(attributes.itemBackground) ) {
+		styles += `#block-${clientId}.wpmozo-bna-price-list-item{
+			background-color: ${attributes.itemBackground} !important;
+		}`;
+	}
+
+	if ( ! wpmozo_is_empty(convertedStyle.item) ) {
+		styles += `#block-${clientId}.wpmozo-bna-price-list-item{
+			${convertedStyle.item}
+		}`;
+	}
+
+	if ( attributes.styleIcon && 'circle' === attributes.iconShape ) {
+		styles += `#block-${clientId}.wpmozo-bna-price-list-item .wpmozo-bna-price-list-icon{
+			height: ${iconFontSize} !important;
+		}
+		#block-${clientId}.wpmozo-bna-price-list-item .wpmozo-bna-price-list-icon .icon-wrapper{
+			display: inline-flex;
+		    align-items: center;
+		    justify-content: center;
+		    width: calc(${iconFontSize} + 16%);
+		    height: calc(${iconFontSize} + 16%);
+		    border-radius: 50%;
+		    background-color: ${attributes.iconShapBackground};
+		}`;
+	}
 
 	return styles;
 };

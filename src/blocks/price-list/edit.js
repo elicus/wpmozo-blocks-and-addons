@@ -42,13 +42,15 @@ export default function Edit(props) {
 
     attributes.ID = clientId;
 
+    let currencyPosition = ( 'right' === attributes.currencySymbolPosition ) ? ' wpmozo-bna-currency-pos-right' : '';
+
     return (
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
                 { generateDynamicStyle({ attributes, clientId }) }
             </style>  
-            <div {...useBlockProps({ className: 'wpmozo-bna-price-list' })}>
+            <div {...useBlockProps({ className: `wpmozo-bna-price-list${currencyPosition}` })}>
                 <InnerBlocks 
                     templateLock={false} 
                     template={ TEMPLATE }

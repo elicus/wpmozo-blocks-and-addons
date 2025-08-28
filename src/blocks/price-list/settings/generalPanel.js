@@ -13,7 +13,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 
 	return ( <>
 		{/* Gallery settings. */}
-		<PanelBody title={ __( 'Configuration', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+		<PanelBody title={ __( 'Configuration', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
 			<SelectControl
 				label={ __( 'Layout', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.layout }
@@ -59,6 +59,10 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			<WpmozoRangeSize props={props}
 				label={ __( 'Column Spacing', 'wpmozo-blocks-and-addons') }
 				rangeSizeKey='columnSpacing'
+			/>
+			<WpmozoRangeSize props={props}
+				label={ __( 'Bottom Spacing', 'wpmozo-blocks-and-addons') }
+				rangeSizeKey='bottomSpacing'
 			/>
 		</PanelBody>
 	</> );

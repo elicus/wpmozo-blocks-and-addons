@@ -12,7 +12,7 @@ export default function save({ attributes }) {
             <style>
                 { generateDynamicStyle({ attributes, clientId }) }
             </style>
-            <div {...useBlockProps.save({ className: "wpmozo-bna-price-list-item", ID:`block-${clientId}` })}>
+            <div {...useBlockProps.save({ className: "wpmozo-bna-price-list-item", id:`block-${clientId}` })}>
                 <LayoutWrapper attributes={attributes} />
             </div>
         </>

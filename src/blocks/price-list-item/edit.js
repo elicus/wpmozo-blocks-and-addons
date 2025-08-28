@@ -15,16 +15,9 @@ import LayoutWrapper from "./edit-layout";
 
 export default function Edit(props) {
 
-
-    const WPMozoEditorObj = wpmozo_bna_editor_object;
-
     const attributes = props.attributes,
-
-    setAttributes = props.setAttributes,
-
-    clientId = props.clientId,
-
-    content = attributes.text;
+        setAttributes = props.setAttributes,
+        clientId = props.clientId;
 
     const parentAttributes = useSelect((select) => {
         const { getBlockRootClientId, getBlock } = select('core/block-editor');
@@ -41,7 +34,7 @@ export default function Edit(props) {
             <style>
                 { generateDynamicStyle({ attributes, clientId, parentAttributes }) }
             </style>
-            <div { ...useBlockProps({ className: 'wpmozo-bna-price-list-item' }) }>
+            <div { ...useBlockProps({ className: 'wpmozo-bna-price-list-item', id:`block-${clientId}` }) }>
                 <LayoutWrapper props={props} />
             </div>
         </Fragment>
