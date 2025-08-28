@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/image-magnifier",
+	"version": "0.1.0",
+	"title": "Image Magnifier",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "Image Magnifier that enables a zoom or magnifier effect on images, allowing users to view fine details by hovering or clicking.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"customClassName": false
+	},
+	"attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+		
+		"image": { "type": "string" },
+		"imageAlignment": { "type": "string", "default": "center" },
+
+		"lensWidth": { "type": "number", "default": 200 },
+		"lenseSpeed": { "type": "number", "default": 100 },
+		"lenseBorderWidth": { "type": "number", "default": 7 },
+		"imageWidth": { "type": "number", "default": 50 },
+		"imageMaxWidth": { "type": "number", "default": 100 },
+		"lenseBorderColor": { "type": "string" }
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"script": [
+		"wpmozo-blocks-and-addons-magnify-script",
+		"file:./script.js"
+	]
+}
