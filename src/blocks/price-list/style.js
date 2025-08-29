@@ -61,7 +61,7 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 
 	styles += `
 	html:not(.block-editor-iframe__html) #block-${clientId}, 
-	.editor-styles-wrapper .wpmozo-bna-price-list .block-editor-inner-blocks > div{
+	.editor-styles-wrapper #block-${clientId}.wpmozo-bna-price-list .block-editor-inner-blocks > div{
 		grid-template-columns: repeat(${attributes.numberOfColumns}, 1fr);
 		gap: ${attributes.columnSpacing};
 	}`;
