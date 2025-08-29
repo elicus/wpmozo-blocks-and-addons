@@ -5305,6 +5305,9 @@ return array(
 				'default' => 'fade'
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7eedd9a (Completed text animator block.)
 			'typingSpeed' => array(
 				'type' => 'number',
 				'default' => 100
@@ -5313,8 +5316,11 @@ return array(
 				'type' => 'number',
 				'default' => 100
 			),
+<<<<<<< HEAD
 =======
 >>>>>>> 5f7ae3c (WIP: imported module but does not working.)
+=======
+>>>>>>> 7eedd9a (Completed text animator block.)
 			'animationDuration' => array(
 				'type' => 'number',
 				'default' => 500
@@ -5332,6 +5338,7 @@ return array(
 				'default' => false
 			),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			'animateOnlyOnce' => array(
 				'type' => 'boolean',
 				'default' => false
@@ -5339,6 +5346,11 @@ return array(
 			'typeTextSettings' => array(
 				'type' => 'string'
 >>>>>>> 5f7ae3c (WIP: imported module but does not working.)
+=======
+			'animateOnlyOnce' => array(
+				'type' => 'boolean',
+				'default' => false
+>>>>>>> 7eedd9a (Completed text animator block.)
 			),
 			'globalTextColor' => array(
 				'type' => 'string'
@@ -5449,11 +5461,16 @@ return array(
 			),
 			'prePostBackgroundType' => array(
 <<<<<<< HEAD
+<<<<<<< HEAD
 				'type' => 'string',
 				'default' => 'classic'
 =======
 				'type' => 'string'
 >>>>>>> 5f7ae3c (WIP: imported module but does not working.)
+=======
+				'type' => 'string',
+				'default' => 'classic'
+>>>>>>> 7eedd9a (Completed text animator block.)
 			),
 			'prePostBackgroundColor' => array(
 				'type' => 'string'
@@ -5463,11 +5480,16 @@ return array(
 			),
 			'animatedBackgroundType' => array(
 <<<<<<< HEAD
+<<<<<<< HEAD
 				'type' => 'string',
 				'default' => 'classic'
 =======
 				'type' => 'string'
 >>>>>>> 5f7ae3c (WIP: imported module but does not working.)
+=======
+				'type' => 'string',
+				'default' => 'classic'
+>>>>>>> 7eedd9a (Completed text animator block.)
 			),
 			'animatedBackgroundColor' => array(
 				'type' => 'string'
@@ -5475,6 +5497,7 @@ return array(
 			'animatedBackgroundGradient' => array(
 				'type' => 'string'
 			),
+<<<<<<< HEAD
 <<<<<<< HEAD
 			'prePostpadding' => array(
 				'type' => 'object'
@@ -5492,21 +5515,33 @@ return array(
 			'animatedmargin' => array(
 =======
 			'prePostDimensionspadding' => array(
+=======
+			'prePostpadding' => array(
+>>>>>>> 7eedd9a (Completed text animator block.)
 				'type' => 'object'
 			),
-			'prePostDimensionsmargin' => array(
+			'prePostmargin' => array(
 				'type' => 'object'
 			),
-			'animatedDimensionspadding' => array(
-				'type' => 'object'
+			'animatedpadding' => array(
+				'type' => 'object',
+				'default' => array(
+					'left' => '10px',
+					'right' => '10px'
+				)
 			),
+<<<<<<< HEAD
 			'animatedDimensionsmargin' => array(
 >>>>>>> 5f7ae3c (WIP: imported module but does not working.)
+=======
+			'animatedmargin' => array(
+>>>>>>> 7eedd9a (Completed text animator block.)
 				'type' => 'object'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
+<<<<<<< HEAD
 <<<<<<< HEAD
 		'style' => 'file:./style-index.css',
 		'script' => 'file:./script.js'
@@ -5514,6 +5549,10 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css'
 >>>>>>> 5f7ae3c (WIP: imported module but does not working.)
+=======
+		'style' => 'file:./style-index.css',
+		'script' => 'file:./script.js'
+>>>>>>> 7eedd9a (Completed text animator block.)
 	),
 	'tilt-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',

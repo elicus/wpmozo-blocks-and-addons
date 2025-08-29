@@ -20,24 +20,16 @@
 		"animatedText": { "type": "string", "default": "Animated|Text" },
 		"postText": { "type": "string", "default": "Post" },
 		"selectDisplayTag": { "type": "string", "default": "p" },
-<<<<<<< HEAD
 
 		"selectAnimation": { "type": "string", "default": "fade" },
 		"typingSpeed": { "type": "number", "default": 100 },
 		"erasingSpeed": { "type": "number", "default": 100 },
-=======
-		"selectAnimation": { "type": "string", "default": "fade" },
->>>>>>> 5f7ae3c (WIP: imported module but does not working.)
 		"animationDuration": { "type": "number", "default": 500 },
 		"animationDelay": { "type": "number", "default": 2000 },
 		"displayInStack": { "type": "boolean", "default": false },
 		"stopAnimationOnHover": { "type": "boolean", "default": false },
-<<<<<<< HEAD
 		"animateOnlyOnce": { "type": "boolean", "default": false },
 		
-=======
-		"typeTextSettings": { "type": "string" },
->>>>>>> 5f7ae3c (WIP: imported module but does not working.)
 		"globalTextColor": { "type": "string" },
 		"globalTextAlignment": { "type": "string" },
 		"globalFontSize": { "type": "string" },
@@ -54,10 +46,7 @@
 		"globalDecoration": { "type": "string" },
 		"globalLetterCase": { "type": "string" },
 		"globalLineHeight": { "type": "string" },
-<<<<<<< HEAD
 		
-=======
->>>>>>> 5f7ae3c (WIP: imported module but does not working.)
 		"prePostTextColor": { "type": "string" },
 		"prePostFontSize": { "type": "string" },
 		"prePostFontAppearance": {
@@ -73,10 +62,7 @@
 		"prePostDecoration": { "type": "string" },
 		"prePostLetterCase": { "type": "string" },
 		"prePostLineHeight": { "type": "string" },
-<<<<<<< HEAD
 		
-=======
->>>>>>> 5f7ae3c (WIP: imported module but does not working.)
 		"animatedTextColor": { "type": "string" },
 		"animatedFontSize": { "type": "string" },
 		"animatedFontAppearance": {
@@ -92,7 +78,6 @@
 		"animatedDecoration": { "type": "string" },
 		"animatedLetterCase": { "type": "string" },
 		"animatedLineHeight": { "type": "string" },
-<<<<<<< HEAD
 		
 		"typeBackgroundSettings": { "type": "string" },
 		"useBackgroundPrepost": { "type": "boolean", "default": false },
@@ -113,24 +98,4 @@
 	"editorScript": "file:./index.js",
 	"style": "file:./style-index.css",
 	"script": "file:./script.js"
-=======
-		"typeBackgroundSettings": { "type": "string" },
-		"useBackgroundPrepost": { "type": "boolean", "default": false },
-		"useBackgroundAnimated": { "type": "boolean", "default": false },
-		"prePostBackgroundType": { "type": "string" },
-		"prePostBackgroundColor": { "type": "string" },
-		"prePostBackgroundGradient": { "type": "string" },
-		"animatedBackgroundType": { "type": "string" },
-		"animatedBackgroundColor": { "type": "string" },
-		"animatedBackgroundGradient": { "type": "string" },
-		"prePostDimensionspadding": { "type": "object" },
-		"prePostDimensionsmargin": { "type": "object" },
-		"animatedDimensionspadding": { "type": "object" },
-		"animatedDimensionsmargin": { "type": "object" }
-	},
-	"textdomain": "wpmozo-blocks-and-addons",
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
->>>>>>> 5f7ae3c (WIP: imported module but does not working.)
 }
