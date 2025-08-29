@@ -1,0 +1,336 @@
+/* Base Styles. */
+.wpmozo-bna-image-hover-effect-inner {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    border: 0 solid #000000;
+}
+.wpmozo-bna-image-hover-effect-inner:hover {
+    opacity: 1;
+}
+
+/* General Image Styling. */
+.wpmozo-bna-image-hover-effect-inner img{
+    display: block;
+    height: auto;
+    border: 0 solid #000000;
+}
+
+/* circle and half-circle comman css (circle). */
+.wpmozo-bna-image-hover-effect-inner.circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    z-index: 2;
+}
+.wpmozo-bna-image-hover-effect-inner.circle:hover::before {
+    animation: wpmozo-bna-circleIn 0.5s forwards ease-out;
+}
+.wpmozo-bna-image-hover-effect-inner.circle:not(:hover)::before {
+    animation: wpmozo-bna-circleOut 0.5s forwards ease-in;
+}
+
+@keyframes wpmozo-bna-circleIn {
+    0% { width: 150%; height: 150%; }
+    100% { width: 0; height: 0; background: rgba(255, 255, 255, 0.5); }
+}
+@keyframes wpmozo-bna-circleOut {
+    0% { width: 0; height: 0; background: rgba(0, 0, 0); }
+    100% { width: 150%; height: 150%; background: rgba(0, 0, 0, 0); }
+}
+
+/* circle, half circle, flash, Layout 05 and Layout 06 comman css (Zoom). */
+.wpmozo-bna-image-hover-effect-inner.zoom img {
+    transform: scale(1);
+    transition: transform 0.5s ease-in-out;
+    transform-origin: center center;
+}
+.wpmozo-bna-image-hover-effect-inner.zoom:hover img {
+    transform: scale(1.3);
+}
+
+/* Layout 02 css (rotate). */
+.wpmozo-bna-image-hover-effect-inner.rotate img {
+    transition: transform 0.5s ease-in-out;
+}
+.wpmozo-bna-image-hover-effect-inner.rotate:hover img {
+    transform: rotate(-4deg) scale(1.1);
+    transition: 0.8s ease-in-out;
+}
+.wpmozo-bna-image-hover-effect-inner.rotate::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    background: rgba(0, 0, 0, 0.7);
+    top: -50%;
+    right: -50%;
+    transform: translate(0%, 0%);
+    border-radius: 100%;
+    opacity: 0;
+    z-index: 2;
+    display: block;
+    transition: transform 0.4s ease;
+}
+.wpmozo-bna-image-hover-effect-inner.rotate:hover::before {
+    animation: wpmozo-bna-rotateIn 0.8s forwards ease-out;
+}
+.wpmozo-bna-image-hover-effect-inner.rotate:not(:hover)::before {
+    animation: wpmozo-bna-rotateOut 0.55s forwards ease-in;
+}
+
+@keyframes wpmozo-bna-rotateIn {
+    0% { opacity: 1; width: 200%; height: 200%; }
+    100% { opacity: 0; }
+}
+@keyframes wpmozo-bna-rotateOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; width: 200%; height: 200%; }
+}
+
+/* Layout 03, Layout 04 and Layout 05 css (filter). */
+.wpmozo-bna-image-hover-effect-inner.filter:hover img {
+    animation: wpmozo-bna-filterIn 0.5s forwards ease-out;
+}
+
+@keyframes wpmozo-bna-filterIn {
+    0% { filter: brightness(400%) saturate(200%) hue-rotate(100deg); }
+    25% { filter: brightness(100%) saturate(100%) hue-rotate(100deg); }
+}
+
+/* Layout 04 css (Flash). */
+.wpmozo-bna-image-hover-effect-inner.flash,
+.wpmozo-bna-image-hover-effect-inner.flash-rev,
+.wpmozo-bna-image-hover-effect-inner.flash-inst-rev {
+    position: relative;
+}
+.wpmozo-bna-image-hover-effect-inner.flash::before,
+.wpmozo-bna-image-hover-effect-inner.flash-rev::before,
+.wpmozo-bna-image-hover-effect-inner.flash-inst-rev::before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    z-index: 2;
+    display: block;
+}
+.wpmozo-bna-image-hover-effect-inner.flash::before {
+    background: linear-gradient(to right, rgba(255, 255, 250, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+    left: -75%;
+}
+.wpmozo-bna-image-hover-effect-inner.flash:hover::before {
+    animation: wpmozo-bna-flashIN 0.8s forwards ease-out;
+}
+@keyframes wpmozo-bna-flashIN {
+    100% { left: 125%; }
+}
+
+.wpmozo-bna-image-hover-effect-inner.flash:not(:hover)::before {
+    animation: wpmozo-bna-flashOut 0.5s forwards ease-in;
+}
+@keyframes wpmozo-bna-flashOut {
+    0% { left: 125%; }
+}
+
+/* Layout 05 css. */
+.wpmozo-bna-image-hover-effect-inner.flash-inst-rev {
+    display: inline-block;
+    transform: scaleX(1);
+}
+.wpmozo-bna-image-hover-effect-inner.flash-inst-rev:hover {
+    transform: scaleX(-1);
+}
+.wpmozo-bna-image-hover-effect-inner.flash-inst-rev::before {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+    right: -75%;
+}
+.wpmozo-bna-image-hover-effect-inner.flash-inst-rev:hover::before {
+    animation: wpmozo-bna-flashinstrevIn1 0.5s forwards ease-out, wpmozo-bna-flashinstrevIn2 0.5s forwards ease-in 0.4s;
+}
+@keyframes wpmozo-bna-flashinstrevIn1 { 100% { right: 125%; } }
+@keyframes wpmozo-bna-flashinstrevIn2 { 100% { right: -125%; } }
+
+.wpmozo-bna-image-hover-effect-inner.flash-inst-rev:not(:hover)::before {
+    animation: wpmozo-bna-flashinstrevOut1 0.5s forwards ease-out, wpmozo-bna-flashinstrevOut2 0.5s forwards ease-in 0.4s;
+}
+@keyframes wpmozo-bna-flashinstrevOut1 { 100% { right: 125%; } }
+@keyframes wpmozo-bna-flashinstrevOut2 { 100% { right: -125%; } }
+
+/* Shine-Filter Effect. */
+.wpmozo-bna-image-hover-effect-inner.flash.filter:hover img,
+.wpmozo-bna-image-hover-effect-inner.flash-rev.filter:hover img,
+.wpmozo-bna-image-hover-effect-inner.flash-inst-rev.filter:hover img {
+    animation: wpmozo-bna-flashfilterIn 0.25s forwards ease-out;
+}
+@keyframes wpmozo-bna-flashfilterIn {
+    0% { filter: brightness(150%) saturate(150%) hue-rotate(100deg); }
+    15% { filter: brightness(100%) saturate(100%) hue-rotate(100deg); }
+}
+
+/* diagonal. */
+.wpmozo-bna-image-hover-effect-inner.diagonal::before,
+.wpmozo-bna-image-hover-effect-inner.diagonal::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 2;
+    opacity: 1;
+    transition: all 0.5s;
+}
+.wpmozo-bna-image-hover-effect-inner.diagonal::before {
+    clip-path: polygon(0 0, 0% 100%, 100% 0);
+    transform: rotate(-90deg);
+    transform-origin: left bottom;
+}
+.wpmozo-bna-image-hover-effect-inner.diagonal::after {
+    clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+    top: 0;
+    transform: rotate(-90deg);
+    transform-origin: top right;
+}
+.wpmozo-bna-image-hover-effect-wrapper.wpmozo-bna-effect-diagonal:hover .wpmozo-bna-image-hover-effect-inner.diagonal::before {
+    transform: rotate(0deg);
+    background: rgba(255, 255, 255, 0);
+}
+.wpmozo-bna-image-hover-effect-wrapper.wpmozo-bna-effect-diagonal:hover .wpmozo-bna-image-hover-effect-inner.diagonal::after {
+    transform: rotate(0deg);
+    background: rgba(255, 255, 255, 0);
+}
+
+/* glitch effect css. */
+.wpmozo-bna-glitch-image {
+    transition: transform 0.4s ease;
+}
+.wpmozo-bna-glitch-image:hover {
+    transform: scale(0.95);
+    transition: transform 1.5s ease;
+}
+.wpmozo-bna-glitch-image::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 15%;
+    left: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(1px);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.wpmozo-bna-glitch-image:hover::before {
+    animation: wpmozo-bna-glitchUpIn 0.8s forwards ease-out;
+    opacity: 1;
+}
+.wpmozo-bna-glitch-image:not(:hover)::before {
+    animation: wpmozo-bna-glitchDownOut 0.4s forwards ease-in;
+    opacity: 1;
+}
+@keyframes wpmozo-bna-glitchUpIn {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-800%); }
+}
+@keyframes wpmozo-bna-glitchDownOut {
+    0% { transform: translateY(-600%); opacity: 1; }
+    100% { transform: translateY(100%); opacity: 0; }
+}
+
+/* slide glitch effect. */
+.wpmozo-bna-slide-glitch{
+    background-color: #000;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.wpmozo-bna-slide-glitch::before,
+.wpmozo-bna-slide-glitch::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 2;
+    animation: wpmozo-bna-glitchRGB 0.6s steps(2, end) infinite;
+}
+.wpmozo-bna-slide-glitch::before {
+    filter: contrast(200%) hue-rotate(270deg);
+}
+.wpmozo-bna-slide-glitch::after {
+    filter: contrast(200%) hue-rotate(90deg);
+}
+.wpmozo-bna-slide-glitch:hover::before,
+.wpmozo-bna-slide-glitch:hover::after {
+    opacity: 0.2;
+}
+
+@keyframes wpmozo-bna-glitchRGB{
+    0%   { transform: translate( 0, 0 ); }
+    20%  { transform: translate( -2px, -2px ); }
+    40%  { transform: translate( 2px, 2px ); }
+    60%  { transform: translate( -1px, 2px ); }
+    80%  { transform: translate( 1px, -1px ); }
+    100% { transform: translate( 0, 0 ); }
+}
+
+.wpmozo-bna-slide-glitch-overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 3;
+}
+.wpmozo-bna-slide-glitch-overlay .quadrant{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: none;
+    opacity: 1;
+    transition: all 0.25s ease;
+}
+.wpmozo-bna-slide-glitch-overlay .quad1{
+    clip-path: polygon(0 0, 50% 0, 50% 50%, 0 50%);
+    transform: translateX(-100%);
+    transition-delay: 0s;
+}
+.wpmozo-bna-slide-glitch-overlay .quad2{
+    clip-path: polygon(50% 0, 100% 0, 100% 50%, 50% 50%);
+    transform: translateY(-100%);
+    transition-delay: 0.5s;
+}
+.wpmozo-bna-slide-glitch-overlay .quad3{
+    clip-path: polygon(0 50%, 50% 50%, 50% 100%, 0 100%);
+    transform: translateY(100%);
+    transition-delay: 0.75s;
+}
+.wpmozo-bna-slide-glitch-overlay .quad4{
+    clip-path: polygon(50% 50%, 100% 50%, 100% 100%, 50% 100%);
+    transform: translateX(100%);
+    transition-delay: 1s;
+}
+
+.wpmozo-bna-slide-glitch:hover .quadrant {
+    transform: translate(0, 0);
+    opacity: 1;
+}
+.wpmozo-bna-slide-glitch:hover .quad1,
+.wpmozo-bna-slide-glitch:hover .quad2,
+.wpmozo-bna-slide-glitch:hover .quad3,
+.wpmozo-bna-slide-glitch:hover .quad4 {
+    backdrop-filter: saturate(200%);
+}
