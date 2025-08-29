@@ -2,19 +2,19 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/blocks/text-animator/block.json":
+/***/ "./src/blocks/promotion-bar/block.json":
 /*!*********************************************!*\
-  !*** ./src/blocks/text-animator/block.json ***!
+  !*** ./src/blocks/promotion-bar/block.json ***!
   \*********************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/text-animator","version":"0.1.0","title":"Text Animator","category":"wpmozo","icon":"smiley","description":"Add a text with attractive animation effects.","example":{},"supports":{"html":false,"customClassName":false},"attributes":{"ID":{"type":"string"},"className":{"type":"string"},"preText":{"type":"string","default":"Pre"},"animatedText":{"type":"string","default":"Animated|Text"},"postText":{"type":"string","default":"Post"},"selectDisplayTag":{"type":"string","default":"p"},"selectAnimation":{"type":"string","default":"fade"},"typingSpeed":{"type":"number","default":100},"erasingSpeed":{"type":"number","default":100},"animationDuration":{"type":"number","default":500},"animationDelay":{"type":"number","default":2000},"displayInStack":{"type":"boolean","default":false},"stopAnimationOnHover":{"type":"boolean","default":false},"animateOnlyOnce":{"type":"boolean","default":false},"globalTextColor":{"type":"string"},"globalTextAlignment":{"type":"string"},"globalFontSize":{"type":"string"},"globalFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"globalLetterSpacing":{"type":"string"},"globalDecoration":{"type":"string"},"globalLetterCase":{"type":"string"},"globalLineHeight":{"type":"string"},"prePostTextColor":{"type":"string"},"prePostFontSize":{"type":"string"},"prePostFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"prePostLetterSpacing":{"type":"string"},"prePostDecoration":{"type":"string"},"prePostLetterCase":{"type":"string"},"prePostLineHeight":{"type":"string"},"animatedTextColor":{"type":"string"},"animatedFontSize":{"type":"string"},"animatedFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"animatedLetterSpacing":{"type":"string"},"animatedDecoration":{"type":"string"},"animatedLetterCase":{"type":"string"},"animatedLineHeight":{"type":"string"},"typeBackgroundSettings":{"type":"string"},"useBackgroundPrepost":{"type":"boolean","default":false},"useBackgroundAnimated":{"type":"boolean","default":false},"prePostBackgroundType":{"type":"string","default":"classic"},"prePostBackgroundColor":{"type":"string"},"prePostBackgroundGradient":{"type":"string"},"animatedBackgroundType":{"type":"string","default":"classic"},"animatedBackgroundColor":{"type":"string"},"animatedBackgroundGradient":{"type":"string"},"prePostpadding":{"type":"object"},"prePostmargin":{"type":"object"},"animatedpadding":{"type":"object","default":{"left":"10px","right":"10px"}},"animatedmargin":{"type":"object"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js","style":"file:./style-index.css","script":"file:./script.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/promotion-bar","version":"0.1.0","title":"Promotion Bar","category":"wpmozo","icon":"smiley","description":"The Promotion Bar helps you create eye-catching banners with customizable countdown timer.","example":{},"supports":{"html":false,"customClassName":false},"attributes":{"ID":{"type":"string"},"className":{"type":"string"},"dateTime":{"type":"string"},"dateTimeUTC":{"type":"string"},"dateTimeTimestamp":{"type":"number"},"title":{"type":"string","default":"Your title goes here."},"titleLevel":{"type":"string","default":"h2"},"hideTitle":{"type":"boolean","default":false},"titleColor":{"type":"string"},"titleFontSize":{"type":"string","default":"26px"},"titleLetterSpacing":{"type":"string"},"titleDecoration":{"type":"string"},"titleLetterCase":{"type":"string"},"titleLineHeight":{"type":"string"},"titleFontAppearance":{"type":"object","default":{"fontStyle":"","fontWeight":""}},"titleFontStyle":{"type":"string"},"titleFontWeight":{"type":"string"},"titleHoverColor":{"type":"string"},"titleHoverFontSize":{"type":"string","default":"26px"},"titleHoverLetterSpacing":{"type":"string"},"titleHoverDecoration":{"type":"string"},"titleHoverLetterCase":{"type":"string"},"titleHoverLineHeight":{"type":"string"},"titleHoverFontAppearance":{"type":"object","default":{"fontStyle":"","fontWeight":""}},"titleHoverFontStyle":{"type":"string"},"titleHoverFontWeight":{"type":"string"},"description":{"type":"string"},"descriptionColor":{"type":"string"},"descriptionFontSize":{"type":"string"},"descriptionLetterSpacing":{"type":"string"},"descriptionDecoration":{"type":"string"},"descriptionLetterCase":{"type":"string"},"descriptionLineHeight":{"type":"string"},"descriptionFontAppearance":{"type":"object","default":{"fontStyle":"","fontWeight":""}},"descriptionFontStyle":{"type":"string"},"descriptionFontWeight":{"type":"string"},"descriptionHoverColor":{"type":"string"},"descriptionHoverFontSize":{"type":"string"},"descriptionHoverLetterSpacing":{"type":"string"},"descriptionHoverDecoration":{"type":"string"},"descriptionHoverLetterCase":{"type":"string"},"descriptionHoverLineHeight":{"type":"string"},"descriptionHoverFontAppearance":{"type":"object","default":{"fontStyle":"","fontWeight":""}},"descriptionHoverFontStyle":{"type":"string"},"descriptionHoverFontWeight":{"type":"string"},"showImage":{"type":"boolean","default":false},"image":{"type":"string","default":""},"imageAlt":{"type":"string","default":""},"imagepadding":{"type":"object"},"imageEnableCustomSize":{"type":"boolean","default":false},"imageMinWidth":{"type":"number","default":100},"imageMaxWidth":{"type":"number"},"imageborder":{"type":"object"},"imageborderRadius":{"type":"string"},"showButton":{"type":"boolean","default":true},"buttonText":{"type":"string","default":"Get the deal"},"buttonUrl":{"type":"string","default":"#"},"buttonLinkTarget":{"type":"string","default":"same"},"buttonBackground":{"type":"string","default":""},"buttonBGGradient":{"type":"string"},"buttonUseIcon":{"type":"boolean","default":true},"buttonIcon":{"type":"string","default":"fas fa-arrow-right"},"buttonIconPosition":{"type":"string","default":"after"},"buttonIconOnHover":{"type":"boolean","default":false},"buttonpadding":{"type":"object","default":{"top":"10px","right":"20px","bottom":"10px","left":"20px"}},"buttonmargin":{"type":"object"},"buttonborder":{"type":"object","default":{"width":"2px","style":"solid","color":"#313131"}},"buttonborderRadius":{"type":"string","default":"3px"},"buttonColor":{"type":"string"},"buttonFontSize":{"type":"string"},"buttonLetterSpacing":{"type":"string"},"buttonDecoration":{"type":"string"},"buttonLetterCase":{"type":"string"},"buttonLineHeight":{"type":"string"},"buttonFontAppearance":{"type":"object","default":{"fontStyle":"","fontWeight":""}},"buttonFontStyle":{"type":"string"},"buttonFontWeight":{"type":"string"},"buttonHoverBackground":{"type":"string","default":""},"buttonHoverBGGradient":{"type":"string"},"buttonHoverborder":{"type":"object"},"buttonHoverborderRadius":{"type":"string"},"buttonHoverColor":{"type":"string"},"buttonHoverFontSize":{"type":"string"},"buttonHoverLetterSpacing":{"type":"string"},"buttonHoverDecoration":{"type":"string"},"buttonHoverLetterCase":{"type":"string"},"buttonHoverLineHeight":{"type":"string"},"buttonHoverFontAppearance":{"type":"object","default":{"fontStyle":"","fontWeight":""}},"buttonHoverFontStyle":{"type":"string"},"buttonHoverFontWeight":{"type":"string"},"layout":{"type":"string","default":"layout1"},"hideDays":{"type":"boolean","default":false},"displayLabel":{"type":"string","default":"full"},"stackLabel":{"type":"string","default":true},"contentBoxAlign":{"type":"string"},"contentBoxWidth":{"type":"number","default":50},"timerBoxAlign":{"type":"string"},"timerBoxBackground":{"type":"string","default":""},"timerBoxBGGradient":{"type":"string"},"timerBoxpadding":{"type":"object","default":{"top":"10px","right":"5px","bottom":"10px","left":"5px"}},"timerBoxmargin":{"type":"object","default":{"top":"5px","right":"5px","bottom":"5px","left":"5px"}},"timerBoxborder":{"type":"object"},"timerBoxborderRadius":{"type":"string"},"digitsBackgroundColor":{"type":"string"},"digitspadding":{"type":"object"},"digitsmargin":{"type":"object"},"digitsborder":{"type":"object"},"digitsborderRadius":{"type":"string"},"digitsColor":{"type":"string"},"digitsFontSize":{"type":"string"},"digitsLetterSpacing":{"type":"string"},"digitsDecoration":{"type":"string"},"digitsLetterCase":{"type":"string"},"digitsLineHeight":{"type":"string"},"digitsFontAppearance":{"type":"object","default":{"fontStyle":"","fontWeight":""}},"digitsFontStyle":{"type":"string"},"digitsFontWeight":{"type":"string"},"digitsBoxWidth":{"type":"number","default":100},"labelsBackgroundColor":{"type":"string"},"labelspadding":{"type":"object"},"labelsmargin":{"type":"object"},"labelsborder":{"type":"object"},"labelsborderRadius":{"type":"string"},"labelsColor":{"type":"string"},"labelsFontSize":{"type":"string"},"labelsLetterSpacing":{"type":"string"},"labelsDecoration":{"type":"string"},"labelsLetterCase":{"type":"string"},"labelsLineHeight":{"type":"string"},"labelsFontAppearance":{"type":"object","default":{"fontStyle":"","fontWeight":""}},"labelsFontStyle":{"type":"string"},"labelsFontWeight":{"type":"string"},"showSeparator":{"type":"boolean","default":false},"separatorText":{"type":"string","default":":"},"separatorColor":{"type":"string"},"separatorFontSize":{"type":"string"},"separatorLetterSpacing":{"type":"string"},"separatorDecoration":{"type":"string"},"separatorLetterCase":{"type":"string"},"separatorLineHeight":{"type":"string"},"separatorFontAppearance":{"type":"object","default":{"fontStyle":"","fontWeight":""}},"separatorFontStyle":{"type":"string"},"separatorFontWeight":{"type":"string"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js","style":"file:./style-index.css","script":["file:./script.js"]}');
 
 /***/ }),
 
-/***/ "./src/blocks/text-animator/edit.js":
+/***/ "./src/blocks/promotion-bar/edit.js":
 /*!******************************************!*\
-  !*** ./src/blocks/text-animator/edit.js ***!
+  !*** ./src/blocks/promotion-bar/edit.js ***!
   \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -28,8 +28,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _inspector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./inspector */ "./src/blocks/text-animator/inspector.js");
-/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style */ "./src/blocks/text-animator/style.js");
+/* harmony import */ var _inspector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./inspector */ "./src/blocks/promotion-bar/inspector.js");
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style */ "./src/blocks/promotion-bar/style.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 
@@ -37,9 +37,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+/**
+ * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
+ * Those files can contain any CSS code that gets applied to the editor.
+ *
+ * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
+ */
+
 
 const Edit = props => {
-  var _attributes$selectAni, _attributes$animatedT, _attributes$animation, _attributes$typingSpe, _attributes$erasingSp, _attributes$stopAnima, _attributes$animateOn, _attributes$animation2, _attributes$animation3, _attributes$stopAnima2, _attributes$animateOn2;
+  var _attributes$layout, _attributes$displayLa, _attributes$hideDays;
   const {
     attributes,
     setAttributes,
@@ -55,50 +62,100 @@ const Edit = props => {
     }
   }, [clientId]); // eslint-disable-line react-hooks/exhaustive-deps.
 
-  const Tag = attributes.selectDisplayTag || 'p'; // fallback to "p" if not set.
-  const animation = (_attributes$selectAni = attributes.selectAnimation) !== null && _attributes$selectAni !== void 0 ? _attributes$selectAni : 'fade';
-  const animatedText = (_attributes$animatedT = attributes.animatedText) !== null && _attributes$animatedT !== void 0 ? _attributes$animatedT : '';
+  const layout = (_attributes$layout = attributes.layout) !== null && _attributes$layout !== void 0 ? _attributes$layout : 'layout1';
+  const displayLabel = (_attributes$displayLa = attributes.displayLabel) !== null && _attributes$displayLa !== void 0 ? _attributes$displayLa : 'full';
+  const hideDays = (_attributes$hideDays = attributes.hideDays) !== null && _attributes$hideDays !== void 0 ? _attributes$hideDays : false;
 
-  // Get first part before "|"
-  const initialText = animatedText.split('|')[0];
-  let $animatedPhrase = '';
-  switch (animation) {
-    case "typing":
-      $animatedPhrase = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-        className: "animated_text wpmozo_main_part",
-        "data-wait-time": parseInt((_attributes$animation = attributes?.animationDelay) !== null && _attributes$animation !== void 0 ? _attributes$animation : 2000),
-        "data-typing-time": parseInt((_attributes$typingSpe = attributes?.typingSpeed) !== null && _attributes$typingSpe !== void 0 ? _attributes$typingSpe : 100),
-        "data-erasing-time": parseInt((_attributes$erasingSp = attributes?.erasingSpeed) !== null && _attributes$erasingSp !== void 0 ? _attributes$erasingSp : 100),
-        "data-stop-animation-on-hover": (_attributes$stopAnima = attributes?.stopAnimationOnHover) !== null && _attributes$stopAnima !== void 0 ? _attributes$stopAnima : 'false',
-        "data-animate-only-once": (_attributes$animateOn = attributes?.animateOnlyOnce) !== null && _attributes$animateOn !== void 0 ? _attributes$animateOn : 'false',
-        "data-text": animatedText,
-        "data-interval-id": "0"
-      });
-      break;
-    default:
-      $animatedPhrase = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-        className: "animated_text wpmozo_main_part",
-        "data-wait-time": parseInt((_attributes$animation2 = attributes?.animationDelay) !== null && _attributes$animation2 !== void 0 ? _attributes$animation2 : 2000),
-        "data-animation-time": parseInt((_attributes$animation3 = attributes.animationDuration) !== null && _attributes$animation3 !== void 0 ? _attributes$animation3 : 500),
-        "data-stop-animation-on-hover": (_attributes$stopAnima2 = attributes?.stopAnimationOnHover) !== null && _attributes$stopAnima2 !== void 0 ? _attributes$stopAnima2 : 'false',
-        "data-animate-only-once": (_attributes$animateOn2 = attributes?.animateOnlyOnce) !== null && _attributes$animateOn2 !== void 0 ? _attributes$animateOn2 : 'false',
-        "data-text": animatedText,
-        children: initialText
-      });
-      break;
-  }
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    const event = new CustomEvent('WPMozoTextAnimatorPropsChanged', {
-      detail: {
-        clientId: attributes.ID
-      }
+  // Render image.
+  let $image = '';
+  if (attributes.showImage && '' !== attributes.image) {
+    $image = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      className: "wpmozo-image-wrap",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+        src: attributes.image,
+        alt: attributes.imageAlt,
+        className: "wpmozo-promotion-bar-image"
+      })
     });
-    window.dispatchEvent(event);
-    const iframe = document.querySelector('iframe[name="editor-canvas"]');
-    if (iframe?.contentWindow) {
-      iframe.contentWindow.dispatchEvent(event);
+  }
+
+  // Render title and description.
+  let $title = '';
+  if (attributes.title && '' !== attributes.title) {
+    $title = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+      className: "wpmozo-pb-title",
+      tagName: attributes.titleLevel,
+      value: attributes.title,
+      onChange: newValue => setAttributes({
+        title: newValue
+      }),
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Your title goes here', 'wpmozo-blocks-and-addons')
+    });
+  }
+  let $description = '';
+  if (attributes.description && '' !== attributes.description) {
+    $description = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+      className: "wpmozo-pb-desc",
+      tagName: "div",
+      value: attributes.description,
+      onChange: newValue => setAttributes({
+        description: newValue
+      })
+    });
+  }
+  let $button = '';
+  if (attributes.showButton && attributes.buttonUrl) {
+    let $buttonIcon = '';
+    if (attributes.buttonUseIcon && attributes.buttonIcon) {
+      $buttonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+        className: 'wpmozo-icon ' + attributes.buttonIcon
+      });
     }
-  }, [animation]);
+    $button = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      className: "wpmozo-button-wrap",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
+        href: "javascript:void(0)",
+        target: 'external' === attributes.buttonLinkTarget ? '_blank' : false,
+        className: ['wpmozo-button', 'wpmozo_promotion_bar_button', attributes.buttonUseIcon && attributes.buttonIconOnHover ? 'wpmozo-icon-on-hover' : '', attributes.buttonUseIcon && 'before' === attributes.buttonIconPosition ? 'wpmozo-icon-at-before' : 'wpmozo-icon-at-after'].join(" "),
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          className: "wpmozo-btn-text",
+          children: attributes.buttonText && (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Get the deal', 'wpmozo-blocks-and-addons')
+        }), $buttonIcon]
+      })
+    });
+  }
+  let $separator = '';
+  if (attributes.showSeparator) {
+    var _attributes$separator;
+    $separator = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+      class: "wpmozo-pb-separator",
+      children: (_attributes$separator = attributes.separatorText) !== null && _attributes$separator !== void 0 ? _attributes$separator : ':'
+    });
+  }
+
+  // List of labels.
+  const labels = {
+    days: {
+      full: 'Days',
+      short: 'Days',
+      single: 'D'
+    },
+    hours: {
+      full: 'Hours',
+      short: 'Hrs',
+      single: 'H'
+    },
+    minutes: {
+      full: 'Minutes',
+      short: 'Min',
+      single: 'M'
+    },
+    seconds: {
+      full: 'Seconds',
+      short: 'Sec',
+      single: 'S'
+    }
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_inspector__WEBPACK_IMPORTED_MODULE_3__["default"], {
       attributes: attributes,
@@ -112,16 +169,56 @@ const Edit = props => {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(),
       id: `block-${attributes.ID}`,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: `animated_text_wrapper wpmozo-${attributes.selectAnimation}`,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(Tag, {
-          className: `wpmozo-animated-text`,
-          children: [attributes.preText && '' !== attributes.preText && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-            className: "pre_text_wrapper wpmozo_pre_post",
-            children: attributes.preText
-          }), $animatedPhrase, attributes.postText && '' !== attributes.postText && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-            className: "post_text_wrapper wpmozo_pre_post",
-            children: attributes.postText
-          })]
+        className: "wpmozo-promotion-bar-wrap " + layout,
+        "data-timestamp": attributes.dateTimeTimestamp,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          className: "wpmozo-promotion-bar-inner",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "wpmozo-promotion-bar-content",
+            children: [$image, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              className: "wpmozo-promotion-bar-content-inner",
+              children: [$title, $description]
+            }), 'layout2' === layout ? $button : '']
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "wpmozo-promotion-bar-timer",
+            children: [false === hideDays ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              className: "wpmozo-pb-timer-box wpmozo-pb-days",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                className: "wpmozo-pb-number",
+                children: "00"
+              }), 'none' !== displayLabel ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                className: "wpmozo-pb-label",
+                children: labels.days[displayLabel]
+              }) : '']
+            }) : '', false === hideDays ? $separator : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              className: "wpmozo-pb-timer-box wpmozo-pb-hours",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                className: "wpmozo-pb-number",
+                children: "00"
+              }), 'none' !== displayLabel ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                className: "wpmozo-pb-label",
+                children: labels.hours[displayLabel]
+              }) : '']
+            }), $separator, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              className: "wpmozo-pb-timer-box wpmozo-pb-minutes",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                className: "wpmozo-pb-number",
+                children: "00"
+              }), 'none' !== displayLabel ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                className: "wpmozo-pb-label",
+                children: labels.minutes[displayLabel]
+              }) : '']
+            }), $separator, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              className: "wpmozo-pb-timer-box wpmozo-pb-seconds",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                className: "wpmozo-pb-number",
+                children: "00"
+              }), 'none' !== displayLabel ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                className: "wpmozo-pb-label",
+                children: labels.seconds[displayLabel]
+              }) : '']
+            })]
+          }), 'layout2' !== layout ? $button : '']
         })
       })
     })]
@@ -131,9 +228,9 @@ const Edit = props => {
 
 /***/ }),
 
-/***/ "./src/blocks/text-animator/icon.js":
+/***/ "./src/blocks/promotion-bar/icon.js":
 /*!******************************************!*\
-  !*** ./src/blocks/text-animator/icon.js ***!
+  !*** ./src/blocks/promotion-bar/icon.js ***!
   \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -145,43 +242,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
 
 const Icon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-  xmlns: "http://www.w3.org/2000/svg",
   version: "1.1",
+  xmlns: "http://www.w3.org/2000/svg",
   width: "1024",
   height: "1024",
   viewBox: "0 0 1024 1024",
-  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("g", {
-    id: "icomoon-ignore"
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+    fill: "#000",
+    d: "M928 170.667h-21.333c-4.267-89.6-78.933-160-170.667-160h-448c-91.733 0-166.4 70.4-170.667 160h-21.333c-46.933 0-85.333 38.4-85.333 85.333v192c0 46.933 38.4 85.333 85.333 85.333h21.333v309.333c0 93.867 76.8 170.667 170.667 170.667h448c93.867 0 170.667-76.8 170.667-170.667v-309.333h21.333c46.933 0 85.333-38.4 85.333-85.333v-192c0-46.933-38.4-85.333-85.333-85.333zM288 53.333h448c68.267 0 123.733 51.2 128 117.333h-704c6.4-66.133 59.733-117.333 128-117.333zM864 842.667c0 70.4-57.6 128-128 128h-448c-70.4 0-128-57.6-128-128v-309.333h704v309.333zM970.667 448c0 23.467-19.2 42.667-42.667 42.667h-832c-23.467 0-42.667-19.2-42.667-42.667v-192c0-23.467 19.2-42.667 42.667-42.667h832c23.467 0 42.667 19.2 42.667 42.667v192z"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
-    d: "M757.333 10.667h-490.667c-140.8 0-256 115.2-256 256v490.667c0 140.8 115.2 256 256 256h315.733l-21.333-42.667h-294.4c-117.333 0-213.333-96-213.333-213.333v-183.467h315.733l-2.133-42.667h-313.6v-23.467l345.6-262.4 181.333 181.333c4.267 4.267 10.667 6.4 14.933 6.4s10.667-2.133 14.933-4.267l155.733-136.533 204.8 170.667v68.267h-328.533l55.467 42.667h273.067v183.467c0 98.133-66.133 179.2-155.733 204.8l27.733 36.267c100.267-34.133 170.667-130.133 170.667-241.067v-490.667c0-140.8-115.2-256-256-256v0zM53.333 454.4v-187.733c0-117.333 96-213.333 213.333-213.333h490.667c117.333 0 213.333 96 213.333 213.333v140.8l-189.867-157.867c-4.267-4.267-8.533-4.267-12.8-4.267s-10.667 2.133-14.933 4.267l-155.733 134.4-181.333-181.333c-4.267-4.267-8.533-6.4-14.933-6.4-4.267 0-8.533 2.133-12.8 4.267l-334.933 253.867z"
+    fill: "#000",
+    d: "M501.333 326.4h-341.333c-12.8 0-21.333-8.533-21.333-21.333v0c0-12.8 8.533-21.333 21.333-21.333h341.333c12.8 0 21.333 8.533 21.333 21.333v0c0 10.667-8.533 21.333-21.333 21.333z"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
-    d: "M375.467 686.933h-183.467c-10.667 0-21.333 8.533-21.333 21.333 0 10.667 10.667 21.333 21.333 21.333h185.6l-2.133-42.667z"
+    fill: "#000",
+    d: "M416 422.4h-256c-12.8 0-21.333-8.533-21.333-21.333v0c0-12.8 8.533-21.333 21.333-21.333h256c12.8 0 21.333 8.533 21.333 21.333v0c0 10.667-8.533 21.333-21.333 21.333z"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
-    d: "M379.733 812.8h-187.733c-10.667 0-21.333 10.667-21.333 21.333v0c0 10.667 10.667 21.333 21.333 21.333h189.867l-2.133-42.667z"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
-    d: "M612.267 121.6c-10.667 4.267-19.2 12.8-23.467 23.467-23.467 49.067 19.2 96 66.133 85.333 21.333-4.267 38.4-21.333 42.667-42.667 10.667-46.933-36.267-89.6-85.333-66.133zM640 200.533c-14.933 0-27.733-12.8-27.733-27.733s12.8-27.733 27.733-27.733 27.733 12.8 27.733 27.733-12.8 27.733-27.733 27.733z"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
-    d: "M680.533 778.667l115.2-12.8c19.2-2.133 25.6-25.6 10.667-38.4l-4.267-2.133-49.067-38.4-145.067-113.067-55.467-42.667-121.6-96 6.4 96 2.133 42.667 6.4 113.067 2.133 42.667 4.267 83.2 2.133 42.667 2.133 51.2c2.133 19.2 23.467 27.733 36.267 12.8l59.733-66.133 17.067-17.067 66.133 132.267 17.067 32c4.267 6.4 10.667 10.667 17.067 10.667 2.133 0 6.4 0 8.533-2.133l78.933-40.533c8.533-4.267 12.8-17.067 8.533-25.6l-85.333-164.267zM680.533 968.533l-74.667-147.2-25.6-49.067-36.267 40.533-38.4 42.667-10.667 10.667v-10.667l-2.133-42.667-4.267-83.2-2.133-42.667-6.4-113.067-2.133-42.667v-12.8l17.067 12.8 55.467 42.667 145.067 113.067 53.333 42.667 6.4 4.267-72.533 8.533-61.867 4.267 25.6 49.067 76.8 149.333-42.667 23.467z"
+    fill: "#000",
+    d: "M844.8 394.667h-128c-23.467 0-42.667-19.2-42.667-42.667v0c0-23.467 19.2-42.667 42.667-42.667h128c23.467 0 42.667 19.2 42.667 42.667v0c0 23.467-19.2 42.667-42.667 42.667z"
   })]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Icon);
 
 /***/ }),
 
-/***/ "./src/blocks/text-animator/index.js":
+/***/ "./src/blocks/promotion-bar/index.js":
 /*!*******************************************!*\
-  !*** ./src/blocks/text-animator/index.js ***!
+  !*** ./src/blocks/promotion-bar/index.js ***!
   \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block.json */ "./src/blocks/text-animator/block.json");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/text-animator/edit.js");
-/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/blocks/text-animator/save.js");
-/* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./icon */ "./src/blocks/text-animator/icon.js");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/text-animator/style.scss");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block.json */ "./src/blocks/promotion-bar/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/promotion-bar/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/blocks/promotion-bar/save.js");
+/* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./icon */ "./src/blocks/promotion-bar/icon.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/promotion-bar/style.scss");
 
 
 
@@ -204,9 +301,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/blocks/text-animator/inspector.js":
+/***/ "./src/blocks/promotion-bar/inspector.js":
 /*!***********************************************!*\
-  !*** ./src/blocks/text-animator/inspector.js ***!
+  !*** ./src/blocks/promotion-bar/inspector.js ***!
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -221,8 +318,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _common_utils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../common/utils.js */ "./src/common/utils.js");
-/* harmony import */ var _settings_generalPanel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./settings/generalPanel */ "./src/blocks/text-animator/settings/generalPanel.js");
-/* harmony import */ var _settings_designPanel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./settings/designPanel */ "./src/blocks/text-animator/settings/designPanel.js");
+/* harmony import */ var _settings_generalPanel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./settings/generalPanel */ "./src/blocks/promotion-bar/settings/generalPanel.js");
+/* harmony import */ var _settings_designPanel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./settings/designPanel */ "./src/blocks/promotion-bar/settings/designPanel.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
 
@@ -276,9 +373,9 @@ const Inspector = ({
 
 /***/ }),
 
-/***/ "./src/blocks/text-animator/save.js":
+/***/ "./src/blocks/promotion-bar/save.js":
 /*!******************************************!*\
-  !*** ./src/blocks/text-animator/save.js ***!
+  !*** ./src/blocks/promotion-bar/save.js ***!
   \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -286,73 +383,171 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style */ "./src/blocks/text-animator/style.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style */ "./src/blocks/promotion-bar/style.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
 const Save = ({
   attributes
 }) => {
-  var _attributes$selectAni, _attributes$animatedT, _attributes$animation, _attributes$typingSpe, _attributes$erasingSp, _attributes$stopAnima, _attributes$animateOn, _attributes$animation2, _attributes$animation3, _attributes$stopAnima2, _attributes$animateOn2;
+  var _attributes$layout, _attributes$displayLa, _attributes$hideDays;
   const clientId = attributes.ID;
-  const Tag = attributes.selectDisplayTag || 'p'; // fallback to "p" if not set.
-  const animation = (_attributes$selectAni = attributes.selectAnimation) !== null && _attributes$selectAni !== void 0 ? _attributes$selectAni : 'fade';
-  const animatedText = (_attributes$animatedT = attributes.animatedText) !== null && _attributes$animatedT !== void 0 ? _attributes$animatedT : '';
+  const layout = (_attributes$layout = attributes.layout) !== null && _attributes$layout !== void 0 ? _attributes$layout : 'layout1';
+  const displayLabel = (_attributes$displayLa = attributes.displayLabel) !== null && _attributes$displayLa !== void 0 ? _attributes$displayLa : 'full';
+  const hideDays = (_attributes$hideDays = attributes.hideDays) !== null && _attributes$hideDays !== void 0 ? _attributes$hideDays : false;
 
-  // Get first part before "|"
-  const initialText = animatedText.split('|')[0];
-  let $animatedPhrase = '';
-  switch (animation) {
-    case "typing":
-      $animatedPhrase = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-        className: "animated_text wpmozo_main_part",
-        "data-wait-time": parseInt((_attributes$animation = attributes?.animationDelay) !== null && _attributes$animation !== void 0 ? _attributes$animation : 2000),
-        "data-typing-time": parseInt((_attributes$typingSpe = attributes?.typingSpeed) !== null && _attributes$typingSpe !== void 0 ? _attributes$typingSpe : 100),
-        "data-erasing-time": parseInt((_attributes$erasingSp = attributes?.erasingSpeed) !== null && _attributes$erasingSp !== void 0 ? _attributes$erasingSp : 100),
-        "data-stop-animation-on-hover": (_attributes$stopAnima = attributes?.stopAnimationOnHover) !== null && _attributes$stopAnima !== void 0 ? _attributes$stopAnima : 'false',
-        "data-animate-only-once": (_attributes$animateOn = attributes?.animateOnlyOnce) !== null && _attributes$animateOn !== void 0 ? _attributes$animateOn : 'false',
-        "data-text": animatedText,
-        "data-interval-id": "0"
-      });
-      break;
-    default:
-      $animatedPhrase = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-        className: "animated_text wpmozo_main_part",
-        "data-wait-time": parseInt((_attributes$animation2 = attributes?.animationDelay) !== null && _attributes$animation2 !== void 0 ? _attributes$animation2 : 2000),
-        "data-animation-time": parseInt((_attributes$animation3 = attributes.animationDuration) !== null && _attributes$animation3 !== void 0 ? _attributes$animation3 : 500),
-        "data-stop-animation-on-hover": (_attributes$stopAnima2 = attributes?.stopAnimationOnHover) !== null && _attributes$stopAnima2 !== void 0 ? _attributes$stopAnima2 : 'false',
-        "data-animate-only-once": (_attributes$animateOn2 = attributes?.animateOnlyOnce) !== null && _attributes$animateOn2 !== void 0 ? _attributes$animateOn2 : 'false',
-        "data-text": animatedText,
-        children: initialText
-      });
-      break;
+  // Render image.
+  let $image = '';
+  if (attributes.showImage && '' !== attributes.image) {
+    $image = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "wpmozo-image-wrap",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+        src: attributes.image,
+        alt: attributes.imageAlt,
+        className: "wpmozo-promotion-bar-image"
+      })
+    });
   }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("style", {
-      children: (0,_style__WEBPACK_IMPORTED_MODULE_1__["default"])({
+
+  // Render title and description.
+  let $title = '';
+  if (attributes.title && '' !== attributes.title) {
+    $title = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+      className: "wpmozo-pb-title",
+      tagName: attributes.titleLevel,
+      value: attributes.title
+    });
+  }
+  let $description = '';
+  if (attributes.description && '' !== attributes.description) {
+    $description = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+      className: "wpmozo-pb-desc",
+      tagName: "div",
+      value: attributes.description
+    });
+  }
+  let $button = '';
+  if (attributes.showButton && attributes.buttonUrl) {
+    let $buttonIcon = '';
+    if (attributes.buttonUseIcon && attributes.buttonIcon) {
+      $buttonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+        className: 'wpmozo-icon ' + attributes.buttonIcon
+      });
+    }
+    $button = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "wpmozo-button-wrap",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("a", {
+        href: attributes.buttonUrl,
+        target: 'external' === attributes.buttonLinkTarget ? '_blank' : false,
+        className: ['wpmozo-button', 'wpmozo_promotion_bar_button', attributes.buttonUseIcon && attributes.buttonIconOnHover ? 'wpmozo-icon-on-hover' : '', attributes.buttonUseIcon && 'before' === attributes.buttonIconPosition ? 'wpmozo-icon-at-before' : 'wpmozo-icon-at-after'].join(" "),
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+          className: "wpmozo-btn-text",
+          children: attributes.buttonText && (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Get the deal', 'wpmozo-blocks-and-addons')
+        }), $buttonIcon]
+      })
+    });
+  }
+  let $separator = '';
+  if (attributes.showSeparator) {
+    var _attributes$separator;
+    $separator = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      class: "wpmozo-pb-separator",
+      children: (_attributes$separator = attributes.separatorText) !== null && _attributes$separator !== void 0 ? _attributes$separator : ':'
+    });
+  }
+
+  // List of labels.
+  const labels = {
+    days: {
+      full: 'Days',
+      short: 'Days',
+      single: 'D'
+    },
+    hours: {
+      full: 'Hours',
+      short: 'Hrs',
+      single: 'H'
+    },
+    minutes: {
+      full: 'Minutes',
+      short: 'Min',
+      single: 'M'
+    },
+    seconds: {
+      full: 'Seconds',
+      short: 'Sec',
+      single: 'S'
+    }
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("style", {
+      children: (0,_style__WEBPACK_IMPORTED_MODULE_2__["default"])({
         attributes,
         clientId
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       id: `block-${clientId}`,
-      ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save({
+      ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
         className: attributes.className
       }),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: `animated_text_wrapper wpmozo-${attributes.selectAnimation}`,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(Tag, {
-          className: `wpmozo-animated-text`,
-          children: [attributes.preText && '' !== attributes.preText && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-            className: "pre_text_wrapper wpmozo_pre_post",
-            children: attributes.preText
-          }), $animatedPhrase, attributes.postText && '' !== attributes.postText && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-            className: "post_text_wrapper wpmozo_pre_post",
-            children: attributes.postText
-          })]
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "wpmozo-promotion-bar-wrap " + layout,
+        "data-timestamp": attributes.dateTimeTimestamp,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "wpmozo-promotion-bar-inner",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "wpmozo-promotion-bar-content",
+            children: [$image, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "wpmozo-promotion-bar-content-inner",
+              children: [$title, $description]
+            }), 'layout2' === layout ? $button : '']
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "wpmozo-promotion-bar-timer",
+            children: [false === hideDays ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "wpmozo-pb-timer-box wpmozo-pb-days",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                className: "wpmozo-pb-number",
+                children: "00"
+              }), 'none' !== displayLabel ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                className: "wpmozo-pb-label",
+                children: labels.days[displayLabel]
+              }) : '']
+            }) : '', false === hideDays ? $separator : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "wpmozo-pb-timer-box wpmozo-pb-hours",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                className: "wpmozo-pb-number",
+                children: "00"
+              }), 'none' !== displayLabel ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                className: "wpmozo-pb-label",
+                children: labels.hours[displayLabel]
+              }) : '']
+            }), $separator, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "wpmozo-pb-timer-box wpmozo-pb-minutes",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                className: "wpmozo-pb-number",
+                children: "00"
+              }), 'none' !== displayLabel ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                className: "wpmozo-pb-label",
+                children: labels.minutes[displayLabel]
+              }) : '']
+            }), $separator, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "wpmozo-pb-timer-box wpmozo-pb-seconds",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                className: "wpmozo-pb-number",
+                children: "00"
+              }), 'none' !== displayLabel ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                className: "wpmozo-pb-label",
+                children: labels.seconds[displayLabel]
+              }) : '']
+            })]
+          }), 'layout2' !== layout ? $button : '']
         })
       })
     })]
@@ -362,9 +557,9 @@ const Save = ({
 
 /***/ }),
 
-/***/ "./src/blocks/text-animator/settings/designPanel.js":
+/***/ "./src/blocks/promotion-bar/settings/designPanel.js":
 /*!**********************************************************!*\
-  !*** ./src/blocks/text-animator/settings/designPanel.js ***!
+  !*** ./src/blocks/promotion-bar/settings/designPanel.js ***!
   \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -374,13 +569,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _common_components_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../common/components/index.js */ "./src/common/components/index.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _common_components_index_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../common/components/index.js */ "./src/common/components/index.js");
+/* harmony import */ var _common_utils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../common/utils.js */ "./src/common/utils.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+
+
 
 
 
@@ -395,216 +595,520 @@ const DesignPanel = ({
     setAttributes,
     preAttributes: {}
   };
-  const [textTypeTab, setTextTypeTab] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('global');
-  const [textBGTab, setTextBGTab] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('prePost');
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Text Typography', 'wpmozo-blocks-and-addons'),
-      className: "wpmozo-typography-panel",
+  const [titleType, setTitleType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)('normal');
+  const [descType, setDescType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)('normal');
+  const [digitsType, setDigitsType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)('general');
+  const [labelsType, setLabelsType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)('general');
+  const [buttonType, setButtonType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)('normal');
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Content Box', 'wpmozo-blocks-and-addons'),
       initialOpen: true,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
-        className: "wpmozo-button-tabs-wrap",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ButtonGroup, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-            className: "wpmozo-button-tabs-btn",
-            isPressed: 'global' === textTypeTab ? true : false,
-            onClick: () => setTextTypeTab('global'),
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Global', 'wpmozo-blocks-and-addons'),
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Global', 'wpmozo-blocks-and-addons')
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-            className: "wpmozo-button-tabs-btn",
-            isPressed: 'prePost' === textTypeTab ? true : false,
-            onClick: () => setTextTypeTab('prePost'),
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Pre/Post', 'wpmozo-blocks-and-addons'),
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Pre/Post', 'wpmozo-blocks-and-addons')
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-            className: "wpmozo-button-tabs-btn",
-            isPressed: 'animated' === textTypeTab ? true : false,
-            onClick: () => setTextTypeTab('animated'),
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Animated', 'wpmozo-blocks-and-addons'),
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Animated', 'wpmozo-blocks-and-addons')
-          })]
-        })
-      }), 'global' === textTypeTab && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_2__.WpmozoColorPicker, {
-          props: props,
-          ColorKey: "globalText",
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Global Text', 'wpmozo-blocks-and-addons'),
-          ColorTypes: [{
-            key: 'Color',
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Global Text Color', 'wpmozo-blocks-and-addons')
-          }]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_2__.WpmozoAlignment, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Global Text Alignment', 'wpmozo-blocks-and-addons'),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoAlignment, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Content Box Alignment', 'wpmozo-blocks-and-addons'),
+        onChange: newValue => setAttributes({
+          contentBoxAlign: newValue
+        }),
+        value: attributes.contentBoxAlign
+      }), ['layout2', 'layout3'].includes(attributes.layout) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Content Box Width (in %)', 'wpmozo-blocks-and-addons'),
+          value: attributes.contentBoxWidth,
           onChange: newValue => setAttributes({
-            globalTextAlignment: newValue
+            contentBoxWidth: newValue
           }),
-          value: attributes.globalTextAlignment
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_2__.WpmozoTypography, {
-          props: props,
-          TypographyKey: "global",
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Global Typography', 'wpmozo-blocks-and-addons')
-        })]
-      }), 'prePost' === textTypeTab && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_2__.WpmozoColorPicker, {
-          props: props,
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Pre/Post Text', 'wpmozo-blocks-and-addons'),
-          ColorKey: "prePostText",
-          ColorTypes: [{
-            key: 'Color',
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Pre/Post Text Color', 'wpmozo-blocks-and-addons')
-          }]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_2__.WpmozoTypography, {
-          props: props,
-          TypographyKey: "prePost",
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Pre/Post Typography', 'wpmozo-blocks-and-addons')
-        })]
-      }), 'animated' === textTypeTab && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_2__.WpmozoColorPicker, {
-          props: props,
-          ColorKey: "animatedText",
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Animated Text', 'wpmozo-blocks-and-addons'),
-          ColorTypes: [{
-            key: 'Color',
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Animated Text Color', 'wpmozo-blocks-and-addons')
-          }]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_2__.WpmozoTypography, {
-          props: props,
-          TypographyKey: "animated",
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Animated Typography', 'wpmozo-blocks-and-addons')
-        })]
+          min: 1,
+          max: 100,
+          step: 1,
+          allowReset: true,
+          __next40pxDefaultSize: true,
+          __nextHasNoMarginBottom: true
+        })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Text Styling', 'wpmozo-blocks-and-addons'),
+    }), attributes.showImage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Image', 'wpmozo-blocks-and-addons'),
+        className: "wpmozo-typography-panel",
+        initialOpen: false,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoDimensions, {
+          props: props,
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Image Dimensions', 'wpmozo-blocks-and-addons'),
+          DimensionKey: "image",
+          DimensionsTypes: {
+            padding: true
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enable Image Min/Max Width', 'wpmozo-blocks-and-addons'),
+          checked: attributes.imageEnableCustomSize || false,
+          onChange: newValue => setAttributes({
+            imageEnableCustomSize: newValue
+          }),
+          __nextHasNoMarginBottom: true
+        }), attributes.imageEnableCustomSize && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Image Minimum Width', 'wpmozo-blocks-and-addons'),
+            value: attributes.imageMinWidth,
+            onChange: newValue => setAttributes({
+              imageMinWidth: newValue
+            }),
+            min: 1,
+            max: 1000,
+            step: 1,
+            allowReset: true,
+            __next40pxDefaultSize: true,
+            __nextHasNoMarginBottom: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Image Maximum Width', 'wpmozo-blocks-and-addons'),
+            value: attributes.imageMaxWidth,
+            onChange: newValue => setAttributes({
+              imageMaxWidth: newValue
+            }),
+            min: 1,
+            max: 1000,
+            step: 1,
+            allowReset: true,
+            __next40pxDefaultSize: true,
+            __nextHasNoMarginBottom: true
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoBorder, {
+          props: props,
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Image Border', 'wpmozo-blocks-and-addons'),
+          BorderKey: "image",
+          BorderTypes: {
+            border: true,
+            radius: true
+          }
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Title Text', 'wpmozo-blocks-and-addons'),
       className: "wpmozo-typography-panel",
       initialOpen: false,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Heading Level', 'wpmozo-blocks-and-addons'),
+        __nextHasNoMarginBottom: true,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ButtonGroup, {
+          children: _common_utils_js__WEBPACK_IMPORTED_MODULE_5__.headingLevelsList.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+            isPressed: item.value === attributes.titleLevel,
+            onClick: () => setAttributes({
+              titleLevel: item.value
+            }),
+            children: item.label
+          }, item.value))
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, {
         className: "wpmozo-button-tabs-wrap",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ButtonGroup, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+        __nextHasNoMarginBottom: true,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ButtonGroup, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
             className: "wpmozo-button-tabs-btn",
-            isPressed: 'prePost' === textBGTab ? true : false,
-            onClick: () => setTextBGTab('prePost'),
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Pre/Post', 'wpmozo-blocks-and-addons'),
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Pre/Post', 'wpmozo-blocks-and-addons')
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+            isPressed: 'normal' === titleType ? true : false,
+            onClick: () => setTitleType('normal'),
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Normal', 'wpmozo-blocks-and-addons')
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
             className: "wpmozo-button-tabs-btn",
-            isPressed: 'animated' === textBGTab ? true : false,
-            onClick: () => setTextBGTab('animated'),
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Animated', 'wpmozo-blocks-and-addons'),
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Animated', 'wpmozo-blocks-and-addons')
+            isPressed: 'hover' === titleType ? true : false,
+            onClick: () => setTitleType('hover'),
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Hover', 'wpmozo-blocks-and-addons')
           })]
-        }), 'prePost' === textBGTab && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Use Background', 'wpmozo-blocks-and-addons'),
-            checked: attributes.useBackgroundPrepost,
-            onChange: newValue => setAttributes({
-              useBackgroundPrepost: newValue
-            })
-          }), attributes.useBackgroundPrepost && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
-              className: "wpmozo-button-tabs-wrap",
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Background Type', 'wpmozo-blocks-and-addons'),
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ButtonGroup, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-                  className: "wpmozo-button-tabs-btn",
-                  isPressed: 'classic' === attributes.prePostBackgroundType ? true : false,
-                  onClick: () => setAttributes({
-                    prePostBackgroundType: 'classic'
-                  }),
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Classic', 'wpmozo-blocks-and-addons'),
-                  children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Classic', 'wpmozo-blocks-and-addons')
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-                  className: "wpmozo-button-tabs-btn",
-                  isPressed: 'gradient' === attributes.prePostBackgroundType ? true : false,
-                  onClick: () => setAttributes({
-                    prePostBackgroundType: 'gradient'
-                  }),
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Gradient', 'wpmozo-blocks-and-addons'),
-                  children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Gradient', 'wpmozo-blocks-and-addons')
-                })]
-              }), 'classic' === attributes.prePostBackgroundType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_2__.WpmozoColorPicker, {
-                props: props,
-                ColorKey: "prePostBackground",
-                ColorTypes: [{
-                  key: 'Color',
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Background Color', 'wpmozo-blocks-and-addons')
-                }]
-              }), 'gradient' === attributes.prePostBackgroundType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_2__.WpmozoColorPicker, {
-                props: props,
-                ColorKey: "prePostBackground",
-                ColorTypes: [{
-                  key: 'Gradient',
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Gradient Color', 'wpmozo-blocks-and-addons'),
-                  onlyGradient: true
-                }]
-              })]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_2__.WpmozoDimensions, {
+        }), 'normal' === titleType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
+            ColorKey: "title",
             props: props,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Pre/Post Text Dimensions', 'wpmozo-blocks-and-addons'),
-            DimensionKey: "prePost",
-            DimensionsTypes: {
-              padding: true,
-              margin: true
-            }
+            ColorTypes: [{
+              key: 'Color',
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Title Color', 'wpmozo-blocks-and-addons')
+            }]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoTypography, {
+            props: props,
+            TypographyKey: "title"
           })]
-        }), 'animated' === textBGTab && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Use Background', 'wpmozo-blocks-and-addons'),
-            checked: attributes.useBackgroundAnimated,
-            onChange: newValue => setAttributes({
-              useBackgroundAnimated: newValue
-            })
-          }), attributes.useBackgroundAnimated && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
-              className: "wpmozo-button-tabs-wrap",
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Background Type', 'wpmozo-blocks-and-addons'),
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ButtonGroup, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-                  className: "wpmozo-button-tabs-btn",
-                  isPressed: 'classic' === attributes.animatedBackgroundType ? true : false,
-                  onClick: () => setAttributes({
-                    animatedBackgroundType: 'classic'
-                  }),
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Classic', 'wpmozo-blocks-and-addons'),
-                  children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Classic', 'wpmozo-blocks-and-addons')
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-                  className: "wpmozo-button-tabs-btn",
-                  isPressed: 'gradient' === attributes.animatedBackgroundType ? true : false,
-                  onClick: () => setAttributes({
-                    animatedBackgroundType: 'gradient'
-                  }),
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Gradient', 'wpmozo-blocks-and-addons'),
-                  children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Gradient', 'wpmozo-blocks-and-addons')
-                })]
-              }), 'classic' === attributes.animatedBackgroundType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_2__.WpmozoColorPicker, {
-                props: props,
-                ColorKey: "animatedBackground",
-                ColorTypes: [{
-                  key: 'Color',
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Background Color', 'wpmozo-blocks-and-addons')
-                }]
-              }), 'gradient' === attributes.animatedBackgroundType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_2__.WpmozoColorPicker, {
-                props: props,
-                ColorKey: "animatedBackground",
-                ColorTypes: [{
-                  key: 'Gradient',
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Gradient Color', 'wpmozo-blocks-and-addons'),
-                  onlyGradient: true
-                }]
-              })]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_2__.WpmozoDimensions, {
+        }), 'hover' === titleType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
+            ColorKey: "titleHover",
             props: props,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Animated Text Dimensions', 'wpmozo-blocks-and-addons'),
-            DimensionKey: "animated",
-            DimensionsTypes: {
-              padding: true,
-              margin: true
-            }
+            ColorTypes: [{
+              key: 'Color',
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Title Hover Color', 'wpmozo-blocks-and-addons')
+            }]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoTypography, {
+            props: props,
+            TypographyKey: "titleHover"
           })]
         })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Description Text', 'wpmozo-blocks-and-addons'),
+      className: "wpmozo-typography-panel",
+      initialOpen: false,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, {
+        className: "wpmozo-button-tabs-wrap",
+        __nextHasNoMarginBottom: true,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ButtonGroup, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+            className: "wpmozo-button-tabs-btn",
+            isPressed: 'normal' === descType ? true : false,
+            onClick: () => setDescType('normal'),
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Normal', 'wpmozo-blocks-and-addons')
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+            className: "wpmozo-button-tabs-btn",
+            isPressed: 'hover' === descType ? true : false,
+            onClick: () => setDescType('hover'),
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Hover', 'wpmozo-blocks-and-addons')
+          })]
+        }), 'normal' === descType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
+            ColorKey: "description",
+            props: props,
+            ColorTypes: [{
+              key: 'Color',
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Description Color', 'wpmozo-blocks-and-addons')
+            }]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoTypography, {
+            props: props,
+            TypographyKey: "description"
+          })]
+        }), 'hover' === descType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
+            ColorKey: "descriptionHover",
+            props: props,
+            ColorTypes: [{
+              key: 'Color',
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Description Hover Color', 'wpmozo-blocks-and-addons')
+            }]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoTypography, {
+            props: props,
+            TypographyKey: "descriptionHover"
+          })]
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Timer/Clock Box', 'wpmozo-blocks-and-addons'),
+      className: "wpmozo-typography-panel",
+      initialOpen: false,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoAlignment, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Timer Box Alignment', 'wpmozo-blocks-and-addons'),
+        onChange: newValue => setAttributes({
+          timerBoxAlign: newValue
+        }),
+        value: attributes.timerBoxAlign
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.__experimentalColorGradientControl, {
+        colors: [],
+        gradients: [],
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Timer Box Background', 'wpmozo-blocks-and-addons'),
+        colorValue: attributes.timerBoxBackground,
+        gradientValue: attributes.timerBoxBGGradient,
+        onColorChange: newValue => setAttributes({
+          timerBoxBackground: newValue
+        }),
+        onGradientChange: newValue => setAttributes({
+          timerBoxBGGradient: newValue
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoDimensions, {
+        props: props,
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Timer Box Dimensions', 'wpmozo-blocks-and-addons'),
+        DimensionKey: "timerBox",
+        DimensionsTypes: {
+          padding: true,
+          margin: true
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoBorder, {
+        props: props,
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Timer Box Border', 'wpmozo-blocks-and-addons'),
+        BorderKey: "timerBox",
+        BorderTypes: {
+          border: true,
+          radius: true
+        }
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Timer/Clock Digits', 'wpmozo-blocks-and-addons'),
+      className: "wpmozo-typography-panel",
+      initialOpen: false,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, {
+        className: "wpmozo-button-tabs-wrap",
+        __nextHasNoMarginBottom: true,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ButtonGroup, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+            className: "wpmozo-button-tabs-btn",
+            isPressed: 'general' === digitsType ? true : false,
+            onClick: () => setDigitsType('general'),
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('General', 'wpmozo-blocks-and-addons')
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+            className: "wpmozo-button-tabs-btn",
+            isPressed: 'text' === digitsType ? true : false,
+            onClick: () => setDigitsType('text'),
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Text', 'wpmozo-blocks-and-addons')
+          })]
+        }), 'general' === digitsType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Background Color', 'wpmozo-blocks-and-addons'),
+            ColorKey: "digits",
+            props: props,
+            ColorTypes: [{
+              key: 'BackgroundColor',
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Digit Background Color', 'wpmozo-blocks-and-addons')
+            }]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoDimensions, {
+            props: props,
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Digit Dimensions', 'wpmozo-blocks-and-addons'),
+            DimensionKey: "digits",
+            DimensionsTypes: {
+              padding: true,
+              margin: true
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoBorder, {
+            props: props,
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Digit Border', 'wpmozo-blocks-and-addons'),
+            BorderKey: "digits",
+            BorderTypes: {
+              border: true,
+              radius: true
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Digit Box Width', 'wpmozo-blocks-and-addons'),
+            value: attributes.digitsBoxWidth,
+            onChange: newValue => setAttributes({
+              digitsBoxWidth: newValue
+            }),
+            min: 90,
+            max: 350,
+            step: 1,
+            allowReset: true,
+            __next40pxDefaultSize: true,
+            __nextHasNoMarginBottom: true
+          })]
+        }), 'text' === digitsType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
+            ColorKey: "digits",
+            props: props,
+            ColorTypes: [{
+              key: 'Color',
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Digit Color', 'wpmozo-blocks-and-addons')
+            }]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoTypography, {
+            props: props,
+            TypographyKey: "digits"
+          })]
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Timer/Clock Labels', 'wpmozo-blocks-and-addons'),
+      className: "wpmozo-typography-panel",
+      initialOpen: false,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, {
+        className: "wpmozo-button-tabs-wrap",
+        __nextHasNoMarginBottom: true,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ButtonGroup, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+            className: "wpmozo-button-tabs-btn",
+            isPressed: 'general' === labelsType ? true : false,
+            onClick: () => setLabelsType('general'),
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('General', 'wpmozo-blocks-and-addons')
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+            className: "wpmozo-button-tabs-btn",
+            isPressed: 'text' === labelsType ? true : false,
+            onClick: () => setLabelsType('text'),
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Text', 'wpmozo-blocks-and-addons')
+          })]
+        }), 'general' === labelsType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Background Color', 'wpmozo-blocks-and-addons'),
+            ColorKey: "labels",
+            props: props,
+            ColorTypes: [{
+              key: 'BackgroundColor',
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Label Background Color', 'wpmozo-blocks-and-addons')
+            }]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoDimensions, {
+            props: props,
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Label Dimensions', 'wpmozo-blocks-and-addons'),
+            DimensionKey: "labels",
+            DimensionsTypes: {
+              padding: true,
+              margin: true
+            }
+          })]
+        }), 'text' === labelsType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
+            ColorKey: "labels",
+            props: props,
+            ColorTypes: [{
+              key: 'Color',
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Label Color', 'wpmozo-blocks-and-addons')
+            }]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoTypography, {
+            props: props,
+            TypographyKey: "labels"
+          })]
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Timer Separator', 'wpmozo-blocks-and-addons'),
+      className: "wpmozo-typography-panel",
+      initialOpen: false,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Show Separator', 'wpmozo-blocks-and-addons'),
+        checked: attributes.showSeparator || false,
+        onChange: newValue => setAttributes({
+          showSeparator: newValue
+        }),
+        __nextHasNoMarginBottom: true
+      }), attributes.showSeparator && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Separator Text', 'wpmozo-blocks-and-addons'),
+          onChange: newValue => setAttributes({
+            separatorText: newValue
+          }),
+          value: attributes.separatorText || ''
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, {
+          className: "wpmozo-button-tabs-wrap",
+          __nextHasNoMarginBottom: true,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
+            ColorKey: "separator",
+            props: props,
+            ColorTypes: [{
+              key: 'Color',
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Separator Color', 'wpmozo-blocks-and-addons')
+            }]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoTypography, {
+            props: props,
+            TypographyKey: "separator"
+          })]
+        })]
+      })]
+    }), attributes.showButton && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Sale Button', 'wpmozo-blocks-and-addons'),
+        className: "wpmozo-typography-panel",
+        initialOpen: false,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, {
+          className: "wpmozo-button-tabs-wrap",
+          __nextHasNoMarginBottom: true,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ButtonGroup, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+              className: "wpmozo-button-tabs-btn",
+              isPressed: 'normal' === buttonType ? true : false,
+              onClick: () => setButtonType('normal'),
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Normal', 'wpmozo-blocks-and-addons')
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+              className: "wpmozo-button-tabs-btn",
+              isPressed: 'hover' === buttonType ? true : false,
+              onClick: () => setButtonType('hover'),
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Hover', 'wpmozo-blocks-and-addons')
+            })]
+          }), 'normal' === buttonType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.__experimentalColorGradientControl, {
+              colors: [],
+              gradients: [],
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button Background', 'wpmozo-blocks-and-addons'),
+              colorValue: attributes.buttonBackground,
+              gradientValue: attributes.buttonBGGradient,
+              onColorChange: newValue => setAttributes({
+                buttonBackground: newValue
+              }),
+              onGradientChange: newValue => setAttributes({
+                buttonBGGradient: newValue
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Show Button Icon', 'wpmozo-blocks-and-addons'),
+              checked: attributes.buttonUseIcon || false,
+              onChange: newValue => setAttributes({
+                buttonUseIcon: newValue
+              }),
+              __nextHasNoMarginBottom: true
+            }), attributes.buttonUseIcon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoIconpicker, {
+                props: props,
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Icon', 'wpmozo-blocks-and-addons'),
+                iconPickerKey: "buttonIcon",
+                value: attributes.buttonIcon,
+                onChange: newValue => setAttributes({
+                  buttonIcon: newValue
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Icon Position', 'wpmozo-blocks-and-addons'),
+                value: attributes.buttonIconPosition,
+                onChange: newValue => setAttributes({
+                  buttonIconPosition: newValue
+                }),
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOption, {
+                  value: "before",
+                  label: "Before"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToggleGroupControlOption, {
+                  value: "after",
+                  label: "After"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Show Icon On Hover', 'wpmozo-blocks-and-addons'),
+                checked: attributes.buttonIconOnHover,
+                onChange: newValue => setAttributes({
+                  buttonIconOnHover: newValue
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
+              props: props,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button Text Color', 'wpmozo-blocks-and-addons'),
+              ColorKey: "button",
+              ColorTypes: [{
+                key: 'Color',
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button Text Color', 'wpmozo-blocks-and-addons')
+              }]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoTypography, {
+              props: props,
+              TypographyKey: "button"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoDimensions, {
+              props: props,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button Dimensions', 'wpmozo-blocks-and-addons'),
+              DimensionKey: "button",
+              DimensionsTypes: {
+                padding: true,
+                margin: true
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoBorder, {
+              props: props,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button Border', 'wpmozo-blocks-and-addons'),
+              BorderKey: "button",
+              BorderTypes: {
+                border: true,
+                radius: true
+              }
+            })]
+          }), 'hover' === buttonType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.__experimentalColorGradientControl, {
+              colors: [],
+              gradients: [],
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button Hover Background', 'wpmozo-blocks-and-addons'),
+              colorValue: attributes.buttonHoverBackground,
+              gradientValue: attributes.buttonHoverBGGradient,
+              onColorChange: newValue => setAttributes({
+                buttonHoverBackground: newValue
+              }),
+              onGradientChange: newValue => setAttributes({
+                buttonHoverBGGradient: newValue
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoColorPicker, {
+              props: props,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button Hover Text Color', 'wpmozo-blocks-and-addons'),
+              ColorKey: "buttonHover",
+              ColorTypes: [{
+                key: 'Color',
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button Hover Text Color', 'wpmozo-blocks-and-addons')
+              }]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoTypography, {
+              props: props,
+              TypographyKey: "buttonHover"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index_js__WEBPACK_IMPORTED_MODULE_4__.WpmozoBorder, {
+              props: props,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button Hover Border', 'wpmozo-blocks-and-addons'),
+              BorderKey: "buttonHover",
+              BorderTypes: {
+                border: true,
+                radius: true
+              }
+            })]
+          })]
+        })
       })
     })]
   });
@@ -612,9 +1116,9 @@ const DesignPanel = ({
 
 /***/ }),
 
-/***/ "./src/blocks/text-animator/settings/generalPanel.js":
+/***/ "./src/blocks/promotion-bar/settings/generalPanel.js":
 /*!***********************************************************!*\
-  !*** ./src/blocks/text-animator/settings/generalPanel.js ***!
+  !*** ./src/blocks/promotion-bar/settings/generalPanel.js ***!
   \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -624,10 +1128,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_date__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/date */ "@wordpress/date");
+/* harmony import */ var _wordpress_date__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_date__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _common_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../common/components */ "./src/common/components/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+
+
 
 
 
@@ -640,154 +1149,170 @@ const GeneralPanel = ({
     setAttributes,
     preAttributes: {}
   };
-  const displayTag = [{
-    value: 'h1',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('H1', 'wpmozo-blocks-and-addons')
-  }, {
-    value: 'h2',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('H2', 'wpmozo-blocks-and-addons')
-  }, {
-    value: 'h3',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('H3', 'wpmozo-blocks-and-addons')
-  }, {
-    value: 'h4',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('H4', 'wpmozo-blocks-and-addons')
-  }, {
-    value: 'h5',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('H5', 'wpmozo-blocks-and-addons')
-  }, {
-    value: 'h6',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('H6', 'wpmozo-blocks-and-addons')
-  }, {
-    value: 'p',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('P', 'wpmozo-blocks-and-addons')
-  }];
-  const animationType = [{
-    value: 'fade',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Fade', 'wpmozo-blocks-and-addons')
-  }, {
-    value: 'flip',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Flip', 'wpmozo-blocks-and-addons')
-  }, {
-    value: 'typing',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Typing', 'wpmozo-blocks-and-addons')
-  }, {
-    value: 'slide',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Slide', 'wpmozo-blocks-and-addons')
-  }, {
-    value: 'zoom',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Zoom', 'wpmozo-blocks-and-addons')
-  }, {
-    value: 'bounce',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Bounce', 'wpmozo-blocks-and-addons')
-  }, {
-    value: 'wipe',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Wipe', 'wpmozo-blocks-and-addons')
-  }, {
-    value: 'wave',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Wave', 'wpmozo-blocks-and-addons')
-  }];
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Content', 'wpmozo-blocks-and-addons'),
+  const {
+    timezone
+  } = (0,_wordpress_date__WEBPACK_IMPORTED_MODULE_1__.getSettings)();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Date & Time', 'wpmozo-blocks-and-addons'),
       initialOpen: true,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Prefix Text', 'wpmozo-blocks-and-addons'),
-        value: attributes.preText,
-        onChange: newValue => setAttributes({
-          preText: newValue
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Animated Text ( | Separated )', 'wpmozo-blocks-and-addons'),
-        value: attributes.animatedText,
-        onChange: newValue => setAttributes({
-          animatedText: newValue
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Postfix Text', 'wpmozo-blocks-and-addons'),
-        value: attributes.postText,
-        onChange: newValue => setAttributes({
-          postText: newValue
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Select Display Tag', 'wpmozo-blocks-and-addons'),
-        value: attributes.selectDisplayTag,
-        options: displayTag,
-        onChange: newValue => setAttributes({
-          selectDisplayTag: newValue
-        })
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Animation', 'wpmozo-blocks-and-addons'),
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.DateTimePicker, {
+        className: "wpmozo-date-time-picker",
+        currentDate: attributes.dateTime || new Date(),
+        onChange: value => {
+          // Make sure the time is set in UTC, so that we can easily remove the timezone offset from WP Settings.
+          const UTCValue = value + 'Z';
+          const UTCdate = new Date(UTCValue);
+
+          // Remove the timezone offset received from WP Settings.
+          UTCdate.setMilliseconds(UTCdate.getMilliseconds() - timezone.offset * 60 * 60 * 1000);
+
+          // Convert to Unix timestamp (seconds, not ms)
+          const timestamp = Math.floor(UTCdate.getTime() / 1000);
+          console.log('timestamp:: ', timestamp);
+          setAttributes({
+            dateTimeUTC: UTCdate,
+            // full Date object
+            dateTime: value,
+            // original value string
+            dateTimeTimestamp: timestamp // Unix timestamp
+          });
+        },
+        is12Hour: true,
+        __nextRemoveResetButton: true,
+        __nextRemoveHelpButton: true
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Content', 'wpmozo-blocks-and-addons'),
       initialOpen: false,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Select Animation', 'wpmozo-blocks-and-addons'),
-        value: attributes.selectAnimation,
-        options: animationType,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Title', 'wpmozo-blocks-and-addons'),
         onChange: newValue => setAttributes({
-          selectAnimation: newValue
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Display Text in Stack', 'wpmozo-blocks-and-addons'),
-        checked: attributes.displayInStack,
-        onChange: newValue => setAttributes({
-          displayInStack: newValue
-        })
-      }), 'typing' === attributes.selectAnimation && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Typing Speed(in ms)', 'wpmozo-blocks-and-addons'),
-          value: attributes.typingSpeed,
-          onChange: newValue => setAttributes({
-            typingSpeed: newValue
-          }),
-          min: 10,
-          step: 10,
-          max: 5000,
-          allowReset: true
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Erasing Speed(in ms)', 'wpmozo-blocks-and-addons'),
-          value: attributes.erasingSpeed,
-          onChange: newValue => setAttributes({
-            erasingSpeed: newValue
-          }),
-          min: 10,
-          step: 10,
-          max: 5000,
-          allowReset: true
-        })]
-      }), 'typing' !== attributes.selectAnimation && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Animation Duration(in ms)', 'wpmozo-blocks-and-addons'),
-          value: attributes.animationDuration,
-          onChange: newValue => setAttributes({
-            animationDuration: newValue
-          }),
-          min: 10,
-          step: 10,
-          max: 5000,
-          allowReset: true
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Animation Delay(in ms)', 'wpmozo-blocks-and-addons'),
-        value: attributes.animationDelay,
-        onChange: newValue => setAttributes({
-          animationDelay: newValue
+          title: newValue
         }),
-        min: 10,
-        step: 10,
-        max: 5000,
-        allowReset: true
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Stop Animation on Hover', 'wpmozo-blocks-and-addons'),
-        checked: attributes.stopAnimationOnHover,
+        value: attributes.title || ''
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Description', 'wpmozo-blocks-and-addons'),
         onChange: newValue => setAttributes({
-          stopAnimationOnHover: newValue
+          description: newValue
+        }),
+        value: attributes.description || ''
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Show Image', 'wpmozo-blocks-and-addons'),
+        checked: attributes.showImage || false,
+        onChange: newValue => setAttributes({
+          showImage: newValue
+        }),
+        __nextHasNoMarginBottom: true
+      }), attributes.showImage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_common_components__WEBPACK_IMPORTED_MODULE_3__.WpmozoMediaUploader, {
+          attrKye: "image",
+          props: props,
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Image', 'wpmozo-blocks-and-addons')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Image Alt Text', 'wpmozo-blocks-and-addons'),
+          value: attributes.imageAlt,
+          onChange: newValue => setAttributes({
+            imageAlt: newValue
+          }),
+          __next40pxDefaultSize: true,
+          __nextHasNoMarginBottom: true
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Show Button', 'wpmozo-blocks-and-addons'),
+        checked: attributes.showButton,
+        onChange: newValue => setAttributes({
+          showButton: newValue
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Animate Only Once', 'wpmozo-blocks-and-addons'),
-        checked: attributes.animateOnlyOnce,
+      }), attributes.showButton && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button Text', 'wpmozo-blocks-and-addons'),
+          value: attributes.buttonText,
+          onChange: newValue => setAttributes({
+            buttonText: newValue
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button URL', 'wpmozo-blocks-and-addons'),
+          onChange: newValue => setAttributes({
+            buttonUrl: newValue
+          }),
+          value: attributes.buttonUrl
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button Link Target', 'wpmozo-blocks-and-addons'),
+          value: attributes.buttonLinkTarget,
+          onChange: newValue => setAttributes({
+            buttonLinkTarget: newValue
+          }),
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControlOptionIcon, {
+            value: "external",
+            icon: "external",
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('New Window', 'wpmozo-blocks-and-addons')
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControlOptionIcon, {
+            value: "same",
+            icon: "admin-links",
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Same Window', 'wpmozo-blocks-and-addons')
+          })]
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Display', 'wpmozo-blocks-and-addons'),
+      initialOpen: false,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Layout', 'wpmozo-blocks-and-addons'),
+        value: attributes.layout,
+        options: [{
+          value: 'layout1',
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Layout 1', 'wpmozo-blocks-and-addons')
+        }, {
+          value: 'layout2',
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Layout 2', 'wpmozo-blocks-and-addons')
+        }, {
+          value: 'layout3',
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Layout 3', 'wpmozo-blocks-and-addons')
+        }],
         onChange: newValue => setAttributes({
-          animateOnlyOnce: newValue
+          layout: newValue
+        }),
+        __next40pxDefaultSize: true,
+        __nextHasNoMarginBottom: true
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Hide Days', 'wpmozo-blocks-and-addons'),
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Hide/Show days box in timer.', 'wpmozo-blocks-and-addons'),
+          checked: attributes.hideDays,
+          onChange: newValue => setAttributes({
+            hideDays: newValue
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Display Labels', 'wpmozo-blocks-and-addons'),
+        value: attributes.displayLabel,
+        options: [{
+          value: 'none',
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('None', 'wpmozo-blocks-and-addons')
+        }, {
+          value: 'full',
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Full Label', 'wpmozo-blocks-and-addons')
+        }, {
+          value: 'short',
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Short Label', 'wpmozo-blocks-and-addons')
+        }, {
+          value: 'single',
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Single Character', 'wpmozo-blocks-and-addons')
+        }],
+        onChange: newValue => setAttributes({
+          displayLabel: newValue
+        }),
+        __next40pxDefaultSize: true,
+        __nextHasNoMarginBottom: true
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Display Labels In Stack', 'wpmozo-blocks-and-addons'),
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Show stacked (In new line) label.', 'wpmozo-blocks-and-addons'),
+          checked: attributes.stackLabel,
+          onChange: newValue => setAttributes({
+            stackLabel: newValue
+          })
         })
       })]
     })]
@@ -796,9 +1321,9 @@ const GeneralPanel = ({
 
 /***/ }),
 
-/***/ "./src/blocks/text-animator/style.js":
+/***/ "./src/blocks/promotion-bar/style.js":
 /*!*******************************************!*\
-  !*** ./src/blocks/text-animator/style.js ***!
+  !*** ./src/blocks/promotion-bar/style.js ***!
   \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -812,44 +1337,110 @@ const generateDynamicStyle = ({
   attributes,
   clientId
 }) => {
-  const toConvertStyles = ['global', 'prePost', 'animated', 'prePostDimensions', 'animatedDimensions'];
+  const toConvertStyles = ['image', 'title', 'titleHover', 'description', 'descriptionHover', 'button', 'buttonHover', 'timerBox', 'digits', 'labels', 'separator'];
   let convertedStyle = (0,_common_utils_js__WEBPACK_IMPORTED_MODULE_0__.convertInlineStyleStr)(toConvertStyles, attributes);
   let styles = `#block-${attributes.ID} {`;
 
-  // Display in stack.
-  if (attributes?.displayInStack) {
-    styles += `.pre_text_wrapper, .post_text_wrapper{ display: block; }`;
+  // Content box align.
+  if (attributes.contentBoxAlign) {
+    styles += `.wpmozo-promotion-bar-content{
+			text-align: ${attributes.contentBoxAlign};
+			${!attributes.layout ? `background:` + attributes.timerBoxBGGradient + `;` : ''}
+		}`;
+    // Content box width.
+    if (attributes.layout && 'layout1' !== attributes.layout && attributes.contentBoxWidth) {
+      styles += `.wpmozo-promotion-bar-wrap.layout2 .wpmozo-promotion-bar-content, .wpmozo-promotion-bar-wrap.layout3 .wpmozo-promotion-bar-content{
+				width: ${attributes.contentBoxWidth}%;
+			}`;
+    }
   }
-
-  // Animation duration.
-  if ('typing' !== attributes.selectAnimation) {
-    styles += `.animated_text{
-			${attributes.animationDuration ? `animation-duration: ${attributes.animationDuration}ms;` : ''}
+  // Timer box align.
+  if (attributes.timerBoxAlign) {
+    styles += `.wpmozo-promotion-bar-timer{
+			justify-content: ${'left' === attributes.timerBoxAlign ? 'flex-start' : 'right' === attributes.timerBoxAlign ? 'flex-end' : attributes.timerBoxAlign};
 		}`;
   }
 
-  // Global text.
-  styles += `.wpmozo-animated-text{
-		${attributes.globalTextColor ? `color: ${attributes.globalTextColor};` : ''}
-		${attributes.globalTextAlignment ? `text-align: ${attributes.globalTextAlignment};` : ''}
-		${convertedStyle.global}
+  // Stack labels.
+  if (false === attributes.stackLabel) {
+    styles += `.wpmozo-pb-timer-box{display: flex; align-items: center; justify-content: center;}`;
+  }
+  // Timerbox.
+  styles += `.wpmozo-pb-timer-box{
+		${attributes.timerBoxBGGradient ? `background:` + attributes.timerBoxBGGradient + `;` : ''}
+		${attributes.timerBoxBackground ? `background-color:` + attributes.timerBoxBackground + `;` : ''}
+		${convertedStyle.timerBox}
 	}`;
-  // Pre/Post text.
-  styles += `.pre_text_wrapper, .post_text_wrapper{
-		${attributes.prePostTextColor ? `color: ${attributes.prePostTextColor};` : ''}
-		${convertedStyle.prePost}
 
-		${attributes.useBackgroundPrepost && 'classic' === attributes.prePostBackgroundType ? attributes.prePostBackgroundColor ? `background-color: ${attributes.prePostBackgroundColor};` : '' : ''}
-		${attributes.useBackgroundPrepost && 'gradient' === attributes.prePostBackgroundType ? attributes.prePostBackgroundGradient ? `background-image: ${attributes.prePostBackgroundGradient}` : '' : ''}
-	}`;
-  // Animated text.
-  styles += `.animated_text{
-		${attributes.animatedTextColor ? `color: ${attributes.animatedTextColor};` : ''}
-		${convertedStyle.animated}
+  // Image.
+  if (attributes.showImage) {
+    styles += `.wpmozo-image-wrap .wpmozo-promotion-bar-image{
+			${attributes.imageEnableCustomSize && attributes.imageMinWidth ? `min-width: ${attributes.imageMinWidth}px;` : ''}
+			${attributes.imageEnableCustomSize && attributes.imageMaxWidth ? `max-width: ${attributes.imageMaxWidth}px;` : ''}
+			${convertedStyle.image}
+		}`;
+  }
 
-		${attributes.useBackgroundAnimated && 'classic' === attributes.animatedBackgroundType ? attributes.animatedBackgroundColor ? `background-color: ${attributes.animatedBackgroundColor};` : '' : ''}
-		${attributes.useBackgroundAnimated && 'gradient' === attributes.animatedBackgroundType ? attributes.animatedBackgroundGradient ? `background-image: ${attributes.animatedBackgroundGradient}` : '' : ''}
+  // Title.
+  styles += `.wpmozo-pb-title{
+		${attributes.titleColor ? `color: ${attributes.titleColor};` : ''}
+		${convertedStyle.title}
 	}`;
+  styles += `.wpmozo-pb-title:hover{
+		${attributes.titleHoverColor ? `color: ${attributes.titleHoverColor};` : ''}
+		${convertedStyle.titleHover}
+	}`;
+
+  // Description.
+  styles += `.wpmozo-pb-desc{
+		${attributes.descriptionColor ? `color: ${attributes.descriptionColor};` : ''}
+		${convertedStyle.description}
+	}`;
+  styles += `.wpmozo-pb-desc:hover{
+		${attributes.descriptionHoverColor ? `color: ${attributes.descriptionHoverColor};` : ''}
+		${convertedStyle.descriptionHover}
+	}`;
+
+  // Digits CSS.
+  styles += `.wpmozo-pb-timer-box .wpmozo-pb-number{
+		${attributes.digitsColor ? `color: ${attributes.digitsColor};` : ''}
+		${attributes.digitsBoxWidth ? `min-width: ${attributes.digitsBoxWidth}px;` : ''}
+		${attributes.digitsBackgroundColor ? `background-color: ${attributes.digitsBackgroundColor};` : ''}
+		${convertedStyle.digits}
+	}`;
+
+  // Labels CSS.
+  if (attributes.displayLabel && 'none' !== attributes.displayLabel) {
+    styles += `.wpmozo-pb-timer-box .wpmozo-pb-label{
+			${attributes.labelsColor ? `color: ${attributes.labelsColor};` : ''}
+			${attributes.labelsBackgroundColor ? `background-color: ${attributes.labelsBackgroundColor};` : ''}
+			${convertedStyle.labels}
+		}`;
+  }
+
+  // Separator.
+  if (attributes.showSeparator) {
+    styles += `.wpmozo-promotion-bar-timer .wpmozo-pb-separator{
+			${attributes.separatorColor ? `color: ${attributes.separatorColor};` : ''}
+			${convertedStyle.separator}
+		}`;
+  }
+
+  // Sale Button.
+  if (attributes.showButton) {
+    styles += `.wpmozo-button-wrap .wpmozo-button{
+			${attributes.buttonBGGradient ? `background:` + attributes.buttonBGGradient + `;` : ''}
+			${attributes.buttonBackground ? `background:` + attributes.buttonBackground + `;` : ''}
+			${attributes.buttonColor ? `color: ${attributes.buttonColor};` : ''}
+			${convertedStyle.button}
+		}`;
+    styles += `.wpmozo-button-wrap .wpmozo-button:hover{
+			${attributes.buttonHoverBGGradient ? `background:` + attributes.buttonHoverBGGradient + `;` : ''}
+			${attributes.buttonHoverBackground ? `background:` + attributes.buttonHoverBackground + `;` : ''}
+			${attributes.buttonHoverColor ? `color: ${attributes.buttonHoverColor};` : ''}
+			${convertedStyle.buttonHover}
+		}`;
+  }
   styles += `}`;
   return styles;
 };
@@ -857,9 +1448,9 @@ const generateDynamicStyle = ({
 
 /***/ }),
 
-/***/ "./src/blocks/text-animator/style.scss":
+/***/ "./src/blocks/promotion-bar/style.scss":
 /*!*********************************************!*\
-  !*** ./src/blocks/text-animator/style.scss ***!
+  !*** ./src/blocks/promotion-bar/style.scss ***!
   \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2419,6 +3010,16 @@ module.exports = window["wp"]["compose"];
 
 /***/ }),
 
+/***/ "@wordpress/date":
+/*!******************************!*\
+  !*** external ["wp","date"] ***!
+  \******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["date"];
+
+/***/ }),
+
 /***/ "@wordpress/element":
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -2559,9 +3160,9 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"blocks/text-animator/index": 0,
+/******/ 			"blocks/promotion-bar/index": 0,
 /******/ 			"blocks/bar-counter/style-index": 0,
-/******/ 			"blocks/text-animator/style-index": 0
+/******/ 			"blocks/promotion-bar/style-index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -2611,7 +3212,7 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/bar-counter/style-index","blocks/text-animator/style-index"], () => (__webpack_require__("./src/blocks/text-animator/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/bar-counter/style-index","blocks/promotion-bar/style-index"], () => (__webpack_require__("./src/blocks/promotion-bar/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
