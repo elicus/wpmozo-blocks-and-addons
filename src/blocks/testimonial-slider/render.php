@@ -163,8 +163,8 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 				}
 
 				$testimonials .= '<div class="wpmozo_testimonial_slide swiper-slide">';
-				if ( file_exists( WPMOZO_BNA_PLUGIN_DIR_PATH . 'templates/block-testimonial-slider/' . sanitize_file_name( $layout ) . '.php' ) ) {
-					include WPMOZO_BNA_PLUGIN_DIR_PATH . 'templates/block-testimonial-slider/' . sanitize_file_name( $layout ) . '.php';
+				if ( file_exists( WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-testimonial-slider/' . sanitize_file_name( $layout ) . '.php' ) ) {
+					include WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-testimonial-slider/' . sanitize_file_name( $layout ) . '.php';
 				}
 				$testimonials .= '</div>';
 			}

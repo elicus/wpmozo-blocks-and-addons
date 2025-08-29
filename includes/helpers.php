@@ -63,8 +63,8 @@ endif;
  * @return string style for the module
  */
 function wpmozo_bna_get_module_dynamic_style( $module, $attributes ) {
-	if ( file_exists( WPMOZO_BNA_PLUGIN_DIR_PATH . 'templates/block-' . esc_attr( $module ) . '/dynamic-style.php' ) ) {
-		include WPMOZO_BNA_PLUGIN_DIR_PATH . 'templates/block-' . esc_attr( $module ) . '/dynamic-style.php';
+	if ( file_exists( WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-' . esc_attr( $module ) . '/dynamic-style.php' ) ) {
+		include WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-' . esc_attr( $module ) . '/dynamic-style.php';
 
 		$callback_function = str_replace( '-', '_', $module ) . '_generate_dynamic_style';
 		if ( function_exists( $callback_function ) ) {
