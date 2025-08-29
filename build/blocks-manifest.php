@@ -5304,6 +5304,7 @@ return array(
 				'type' => 'string',
 				'default' => 'fade'
 			),
+<<<<<<< HEAD
 			'typingSpeed' => array(
 				'type' => 'number',
 				'default' => 100
@@ -5312,6 +5313,8 @@ return array(
 				'type' => 'number',
 				'default' => 100
 			),
+=======
+>>>>>>> 5f7ae3c (WIP: imported module but does not working.)
 			'animationDuration' => array(
 				'type' => 'number',
 				'default' => 500
@@ -5328,9 +5331,14 @@ return array(
 				'type' => 'boolean',
 				'default' => false
 			),
+<<<<<<< HEAD
 			'animateOnlyOnce' => array(
 				'type' => 'boolean',
 				'default' => false
+=======
+			'typeTextSettings' => array(
+				'type' => 'string'
+>>>>>>> 5f7ae3c (WIP: imported module but does not working.)
 			),
 			'globalTextColor' => array(
 				'type' => 'string'
@@ -5440,8 +5448,12 @@ return array(
 				'default' => false
 			),
 			'prePostBackgroundType' => array(
+<<<<<<< HEAD
 				'type' => 'string',
 				'default' => 'classic'
+=======
+				'type' => 'string'
+>>>>>>> 5f7ae3c (WIP: imported module but does not working.)
 			),
 			'prePostBackgroundColor' => array(
 				'type' => 'string'
@@ -5450,8 +5462,12 @@ return array(
 				'type' => 'string'
 			),
 			'animatedBackgroundType' => array(
+<<<<<<< HEAD
 				'type' => 'string',
 				'default' => 'classic'
+=======
+				'type' => 'string'
+>>>>>>> 5f7ae3c (WIP: imported module but does not working.)
 			),
 			'animatedBackgroundColor' => array(
 				'type' => 'string'
@@ -5459,6 +5475,7 @@ return array(
 			'animatedBackgroundGradient' => array(
 				'type' => 'string'
 			),
+<<<<<<< HEAD
 			'prePostpadding' => array(
 				'type' => 'object'
 			),
@@ -5473,13 +5490,30 @@ return array(
 				)
 			),
 			'animatedmargin' => array(
+=======
+			'prePostDimensionspadding' => array(
+				'type' => 'object'
+			),
+			'prePostDimensionsmargin' => array(
+				'type' => 'object'
+			),
+			'animatedDimensionspadding' => array(
+				'type' => 'object'
+			),
+			'animatedDimensionsmargin' => array(
+>>>>>>> 5f7ae3c (WIP: imported module but does not working.)
 				'type' => 'object'
 			)
 		),
 		'textdomain' => 'wpmozo-blocks-and-addons',
 		'editorScript' => 'file:./index.js',
+<<<<<<< HEAD
 		'style' => 'file:./style-index.css',
 		'script' => 'file:./script.js'
+=======
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css'
+>>>>>>> 5f7ae3c (WIP: imported module but does not working.)
 	),
 	'tilt-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',

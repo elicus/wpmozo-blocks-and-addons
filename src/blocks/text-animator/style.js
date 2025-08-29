@@ -5,12 +5,17 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 		'global',
 		'prePost',
 		'animated',
+<<<<<<< HEAD
+=======
+		'post',
+>>>>>>> 5f7ae3c (WIP: imported module but does not working.)
 		'prePostDimensions',
 		'animatedDimensions'
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
     let styles = `#block-${attributes.ID} {`;
+<<<<<<< HEAD
 
 	// Display in stack.
 	if ( attributes?.displayInStack ) {
@@ -55,6 +60,9 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 		: '' }
 	}`;
 
+=======
+	
+>>>>>>> 5f7ae3c (WIP: imported module but does not working.)
     styles += `}`;
 	return styles;
 }
