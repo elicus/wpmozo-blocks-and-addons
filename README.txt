@@ -2,7 +2,7 @@
 Contributors: elicus
 Tags: gutenberg, blocks, gutenberg blocks, gutenberg editor, wordpress blocks
 Tested up to: 6.8
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,34 +39,34 @@ The Image Card block lets you showcase images with a title, icon, and CTA. Simpl
 - ### [Before After Slider](https://wpmozoblocks.com/before-after-slider/ "Before After Slider for Gutenberg")
 Create stunning before-and-after comparisons with a sleek, responsive slider. Perfect for showcasing transformations, this WordPress before-and-after slider is ideal for websites using Gutenberg. Easily compare images side by side with smooth transitions, making it a must-have for portfolios, product showcases, and more. Fully customizable for any theme.
 
-- ### [Content Toggle](https://wpmozoblocks.com/content-toggle/ "Content Toggle for Gutenberg")  
+- ### [Content Toggle](https://wpmozoblocks.com/content-toggle/ "Content Toggle for Gutenberg")
 Organize content with collapsible sections using the Content Toggle block. Ideal for FAQs, product details, or lengthy content, this feature enhances readability and user experience.
 
-- ### [Fancy Heading](https://wpmozoblocks.com/fancy-heading/ "Fancy Heading for Gutenberg")  
+- ### [Fancy Heading](https://wpmozoblocks.com/fancy-heading/ "Fancy Heading for Gutenberg")
 Craft visually striking headings with the Fancy Heading block. Combine pre-headings, main headings, and sub-headings using custom fonts, vibrant colors, and animation effects. Perfect for creating bold section titles that draw attention and elevate your content presentation.
 
-- ### [Fancy Text](https://wpmozoblocks.com/fancy-text/ "Fancy Text for Gutenberg")  
+- ### [Fancy Text](https://wpmozoblocks.com/fancy-text/ "Fancy Text for Gutenberg")
 Add engaging animated text with the Fancy Text block. Create typewriter effects, text transitions, and gradient highlights to bring dynamic flair to your content. Ideal for call-to-actions, hero sections, or key messages that need to stand out.
 
-- ### [Flip Box](https://wpmozoblocks.com/flip-box/ "Flip Box for Gutenberg")  
+- ### [Flip Box](https://wpmozoblocks.com/flip-box/ "Flip Box for Gutenberg")
 Add interactive, double-sided boxes with the Flip Box block. Showcase content or images on both sides with a smooth flip animation. Great for portfolios, service highlights, team member cards, or promotional sections with visual appeal.
 
-- ### [Floating Image](https://wpmozoblocks.com/floating-image/ "Floating Image for Gutenberg")  
+- ### [Floating Image](https://wpmozoblocks.com/floating-image/ "Floating Image for Gutenberg")
 Make images come alive with subtle floating animations. The Floating Image block adds motion effects that capture attention and bring a modern, interactive feel to your visualsâ€”perfect for creative and tech-forward sites.
 
-- ### [Interactive Image Card](https://wpmozoblocks.com/interactive-image-card/ "Interactive Image Card for Gutenberg")  
+- ### [Interactive Image Card](https://wpmozoblocks.com/interactive-image-card/ "Interactive Image Card for Gutenberg")
 Display images with interactive overlays, hover effects, and call-to-action buttons using the Interactive Image Card block. Ideal for showcasing products, projects, or team members with engaging and clickable visuals.
 
-- ### [List](https://wpmozoblocks.com/list/ "List Block for Gutenberg")  
+- ### [List](https://wpmozoblocks.com/list/ "List Block for Gutenberg")
 Design beautiful and customizable lists with icons, numbers, or symbols using the List block. With advanced styling options, it's perfect for feature lists, step-by-step guides, or comparisons that match your brandâ€™s design.
 
-- ### [Logo Slider](https://wpmozoblocks.com/logo-slider/ "Logo Slider for Gutenberg")  
+- ### [Logo Slider](https://wpmozoblocks.com/logo-slider/ "Logo Slider for Gutenberg")
 Showcase brand partners, clients, or sponsors with the responsive Logo Slider block. Smooth transitions, autoplay options, and full styling control make it a perfect addition to testimonial sections or partner pages.
 
-- ### [Separator](https://wpmozoblocks.com/separator/ "Separator for Gutenberg")  
+- ### [Separator](https://wpmozoblocks.com/separator/ "Separator for Gutenberg")
 Add elegant visual dividers between sections with the Separator block. Choose from lines, icons, or custom shapes to enhance layout clarity and create a professional design flow.
 
-- ### [Tilt Image](https://wpmozoblocks.com/tilt-image/ "Tilt Image for Gutenberg")  
+- ### [Tilt Image](https://wpmozoblocks.com/tilt-image/ "Tilt Image for Gutenberg")
 Add 3D tilt effects to your images for a subtle yet interactive user experience. The Tilt Image block enhances visual depth and engagement, making it great for modern design portfolios or creative websites.
 
 This plugin is fully compatible with Gutenberg and WordPress block editor, ensuring seamless integration with your website.
