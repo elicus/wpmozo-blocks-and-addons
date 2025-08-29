@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "wpmozo/price-list-item",
   "version": "0.1.0",
-  "title": "Price Item",
+  "title": "Price List Item",
   "category": "wpmozo",
   "icon": "smiley",
   "description": "Easily create and organized price lists with the Price List block",
@@ -68,7 +68,16 @@
       "type": "string"
     },
     "iconShapBackground": {
-      "type": "string"
+      "type": "string",
+      "default": "#9E9E9E"
+    },
+    "styleIcon": {
+      "type": "boolean",
+      "default": false
+    },
+    "iconShape": {
+      "type": "string",
+      "default": "square"
     },
     "iconFontSize": {
       "type": "string"

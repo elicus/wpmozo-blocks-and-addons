@@ -4,7 +4,7 @@ import Inspector from './inspector';
 import { Fragment } from "@wordpress/element";
 import generateDynamicStyle from './style';
 import { useSelect } from '@wordpress/data';
-import LayoutWrapper from "./edit-layout";
+import WPMozoPriceListLayout from "./edit-layout";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -35,7 +35,7 @@ export default function Edit(props) {
                 { generateDynamicStyle({ attributes, clientId, parentAttributes }) }
             </style>
             <div { ...useBlockProps({ className: 'wpmozo-bna-price-list-item', id:`block-${clientId}` }) }>
-                <LayoutWrapper props={props} />
+                <WPMozoPriceListLayout props={props} />
             </div>
         </Fragment>
     );

@@ -3073,7 +3073,7 @@ return array(
 			),
 			'bottomSpacing' => array(
 				'type' => 'string',
-				'default' => '2.75%'
+				'default' => '20px'
 			),
 			'itemBackground' => array(
 				'type' => 'string'
@@ -3294,7 +3294,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'wpmozo/price-list-item',
 		'version' => '0.1.0',
-		'title' => 'Price Item',
+		'title' => 'Price List Item',
 		'category' => 'wpmozo',
 		'icon' => 'smiley',
 		'description' => 'Easily create and organized price lists with the Price List block',
@@ -3361,7 +3361,16 @@ return array(
 				'type' => 'string'
 			),
 			'iconShapBackground' => array(
-				'type' => 'string'
+				'type' => 'string',
+				'default' => '#9E9E9E'
+			),
+			'styleIcon' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'iconShape' => array(
+				'type' => 'string',
+				'default' => 'square'
 			),
 			'iconFontSize' => array(
 				'type' => 'string'

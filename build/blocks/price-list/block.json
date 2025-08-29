@@ -37,7 +37,7 @@
     },
     "bottomSpacing": {
       "type": "string",
-      "default": "2.75%"
+      "default": "20px"
     },
     "itemBackground": {
       "type": "string"

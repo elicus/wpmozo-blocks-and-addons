@@ -1,7 +1,7 @@
 import { RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
-function LayoutWrapper({ attributes }) {
+function WPMozoPriceListLayout({ attributes }) {
 
   let {
     itemThumbnail,
@@ -124,15 +124,6 @@ function layout1(
 
   if (thumbnail && itemThumbnailOption === "use_icon") {
     let iconThumb = thumbnail;
-    if (iconShape === "hexagon") {
-      iconThumb = (
-        <div className="wpmozo-bna-icon-hexagon-wrapper">
-          <div className="wpmozo-bna-icon-hexagon-inner-wrap">
-            <div className="wpmozo-bna-icon-hexagon">{thumbnail}</div>
-          </div>
-        </div>
-      );
-    }
     innerWrap.push(
       <div
         className="wpmozo-bna-price-list-item-icon"
@@ -230,17 +221,6 @@ function layout2(
 
   if (thumbnail && itemThumbnailOption === "use_icon") {
     let iconThumb = thumbnail;
-
-    if (iconShape === "hexagon") {
-      iconThumb = (
-        <div className="wpmozo-bna-icon-hexagon-wrapper">
-          <div className="wpmozo-bna-icon-hexagon-inner-wrap">
-            <div className="wpmozo-bna-icon-hexagon">{thumbnail}</div>
-          </div>
-        </div>
-      );
-    }
-
     innerWrap.push(
       <div
         className="wpmozo-bna-price-list-item-icon"
@@ -295,4 +275,4 @@ function layout2(
   );
 }
 
-export default LayoutWrapper;
+export default WPMozoPriceListLayout;

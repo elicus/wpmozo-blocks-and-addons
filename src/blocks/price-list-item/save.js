@@ -1,6 +1,6 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from './style';
-import LayoutWrapper from "./save-layout";
+import WPMozoPriceListLayout from "./save-layout";
 
 
 export default function save({ attributes }) {
@@ -13,7 +13,7 @@ export default function save({ attributes }) {
                 { generateDynamicStyle({ attributes, clientId }) }
             </style>
             <div {...useBlockProps.save({ className: "wpmozo-bna-price-list-item", id:`block-${clientId}` })}>
-                <LayoutWrapper attributes={attributes} />
+                <WPMozoPriceListLayout attributes={attributes} />
             </div>
         </>
     );

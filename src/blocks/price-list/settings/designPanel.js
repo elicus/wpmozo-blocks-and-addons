@@ -65,7 +65,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				value={ attributes.textAlignment }
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Item', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Price Item', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			<WpmozoColorPicker props={props}
 				ColorKey=""
 				ColorTypes={ [

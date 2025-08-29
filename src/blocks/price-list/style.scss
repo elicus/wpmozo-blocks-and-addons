@@ -1,4 +1,4 @@
-.wpmozo-bna-price-list{
+html:not(.block-editor-iframe__html) .wpmozo-bna-price-list{
     display: grid;
 }
 .wpmozo-bna-price-list-item-thumbnail img {
@@ -75,4 +75,30 @@
     flex-wrap: wrap;
     flex-direction: row-reverse;
     align-items: center;
+}
+.wpmozo-bna-price-list-icon i{
+    text-align: center;
+}
+.wpmozo-bna-price-list-icon.hexagon {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    line-height: 1;
+    width: 1.6em;
+    height: 1.6em;
+}
+.wpmozo-bna-price-list-icon.hexagon::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    z-index: 0;
+}
+.wpmozo-bna-price-list-icon.hexagon .icon-wrapper {
+    position: relative;
+    z-index: 1;
+    font-size: 1em;
+}
+.editor-styles-wrapper .wpmozo-bna-price-list .block-editor-inner-blocks > div{
+    display: grid;
 }
