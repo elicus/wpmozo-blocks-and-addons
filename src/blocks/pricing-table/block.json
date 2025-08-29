@@ -16,6 +16,9 @@
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
 
+		"wrapperborder":{"type": "object"},
+		"wrapperborderRadius":{"type": "string"},
+
 		"title": { "type": "string", "default": "WPMozo Pricing" },
 		"titleLeval": { "type": "string", "default": "h2" },
 		"subtitle": { "type": "string", "default": "Ultimate plan" },
@@ -30,16 +33,19 @@
 		"features": {
 			"type": "array",
 			"default": [
-				{ "list": "feature 1", "icon": "fas fa-check" },
-				{ "list": "feature 2", "icon": "fas fa-check" },
-				{ "list": "feature 3", "icon": "fas fa-check" }
+				{ "list": "feature 1", "icon": "fas fa-check"},
+				{ "list": "feature 2", "icon": "fas fa-check"},
+				{ "list": "feature 3", "icon": "fas fa-check"}
 			]
 		},
+		"featuresIconFontSize": {"type": "number"},
+		"featuresSpacing": {"type": "number"},
+		"featuresMargin": {"type": "number"},
 		"showButton": { "type": "boolean", "default": false },
 		"buttonText": { "type": "string", "default": "Read More" },
 		"buttonUrl": { "type": "string" },
 		"buttonLinkTarget": { "type": "string", "default": "same" },
-		"buttonIcontype": { "type": "string", "default": "icon" },
+		"buttonIconType": { "type": "string", "default": "icon" },
 		"buttonIcon": { "type": "string", "default": "" },
 		"buttonIconImage": { "type": "string" },
 		"buttonIconPosition": { "type": "string", "default": "icon-after" },
@@ -80,7 +86,6 @@
 		"headerGraphicsDimensionspadding": { "type": "object" },
 		"headerGraphicsDimensionsmargin": { "type": "object" },
 		"backgroundColor": { "type": "string" },
-		"align": { "type": "string" },
 		"mainDimensionspadding": { "type": "object" },
 		"mainDimensionsmargin": { "type": "object" },
 		"currencyColor": { "type": "string" },
@@ -102,6 +107,7 @@
 			"fontWeight": { "type": "string" },
 			"default": { "fontStyle": "", "fontWeight": "" }
 		},
+		"pricealign": {"type": "string"},
 		"priceLetterSpacing": { "type": "string" },
 		"priceDecoration": { "type": "string" },
 		"priceLetterCase": { "type": "string" },
@@ -135,7 +141,6 @@
 		"featuresBackground": { "type": "string" },
 		"feturesAlign": { "type": "string", "default": "center" },
 		"showFeaturesIcon": { "type": "boolean", "default": false },
-		"featuresIcon": { "type": "string" },
 		"featuresIconsColor": { "type": "string" },
 		"featuresIconsSpacing": { "type": "string", "default": "5px" },
 		"featuresDimensionspadding": { "type": "object" },
@@ -159,7 +164,8 @@
 		"borderRadiusHover": { "type": "string" },
 		"borderHoverColor": { "type": "string" },
 		"borderDimensionspadding": { "type": "object" },
-		"borderDimensionsmargin": { "type": "object" }
+		"borderDimensionsmargin": { "type": "object" },
+		"buttonFontSize": {"type": "number"}
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

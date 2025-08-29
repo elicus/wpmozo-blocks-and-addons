@@ -16,10 +16,15 @@
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
 
+		"containermargin": { "type": "object"},
+		"containerpadding": { "type": "object" },
+		"containerBackgroundColor": {"type": "string"},
+		"containerborder": {"type": "object"},
+		"containerborderRadius": {"type": "string"},
+
 		"image": { "type": "string" },
-		"imageBorder": { "type": "string", "default": "" },
-		"imageBorderColor": { "type": "string", "default": "" },
-		"imageBorderRadius": { "type": "string", "default": "" },
+		"imageborder": { "type": "object", "default": "" },
+		"imageborderRadius": { "type": "string", "default": "" },
 		"imageDimensionspadding": { "type": "object", "default": "" },
 
 		"icon": { "type": "string", "default": "far fa-star" },
@@ -31,6 +36,8 @@
 		"iconShape": { "type": "string", "default": "square" },
 		"iconBackground": { "type": "string", "default": "" },
 		"shapeBorderColor": { "type": "string", "default": "" },
+		"iconmargin": { "type": "object"},
+		"iconpadding": { "type": "object" },
 
 		"imageHeight": { "type": "number", "default": 200 },
 		"imageWidth": { "type": "number", "default": 200 },
@@ -72,7 +79,7 @@
 
 		"description": {
 			"type": "string",
-			"default": "Your content goes here. Edit this text inline or in the block Content settings. You can also style every aspect of this content in the block Design settings."
+			"default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
 		},
 		"descriptionTextAlign": { "type": "string", "default": "left" },
 		"descriptionTextColor": { "type": "string" },
@@ -132,6 +139,8 @@
 		"buttonLinkTarget": { "type": "string", "default": "same" },
 		"buttonTextColor": { "type": "string" },
 		"buttonTextBackground": { "type": "string" },
+		"buttonTextHoverColor": { "type": "string" },
+		"buttonTextHoverBackground": { "type": "string" },
 		"buttonTextAlign": { "type": "string", "default": "left" },
 		"buttonTextFontSize": { "type": "string" },
 		"buttonTextLetterSpacing": { "type": "string" },
@@ -151,9 +160,9 @@
 		"buttonMediaType": { "type": "string", "default": "icon" },
 		"buttonTextFontStyle": { "type": "string" },
 		"buttonTextFontWeight": { "type": "string" },
-		"buttonTextborder": { "type": "object", "default": { "width": "1px", "style": "solid", "color": "#fff" } },
+		"buttonTextborder": { "type": "object", "default": { "width": "1px", "style": "solid", "color": "#000" } },
 		"buttonTextborderRadius": { "type": "string", "default": "3px" },
-		
+
 		"buttonDimensionspadding": { "type": "object", "default": { "top": "5px", "right": "8px", "bottom": "5px", "left": "8px" } },
 		"buttonDimensionsmargin": { "type": "object" },
 

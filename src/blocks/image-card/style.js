@@ -11,11 +11,13 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
         'buttonText',
 		'buttonDimensions',
 		'imageDimensions',
-		'image'
+		'image',
+		'container',
+		'icon'
     ];
     let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
 
-    let buttonMediaPosition = attributes.buttonMediaPosition, 
+    let buttonMediaPosition = attributes.buttonMediaPosition,
     	buttonAddi = convertedStyle.buttonText + convertedStyle.buttonDimensions;
 
     if ( 'before' === buttonMediaPosition ) {
@@ -25,9 +27,15 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
     }
 
     let styles = `#block-${attributes.ID}{`;
-	styles += `.wpmozo-bna-image-card-icon-wrapper {
+	styles += `
+		.wpmozo-bna-image-card-wrapper{
+			${attributes.containerBackgroundColor ? `background-color: ${attributes.containerBackgroundColor};` : ''}
+			${convertedStyle.container}
+		}
+		.wpmozo-bna-image-card-icon-wrapper {
 			${attributes.iconAlign ? `text-align : `+attributes.iconAlign+`;` : '' }
 			${ attributes.iconShape && 'hexagon' === attributes.iconShape ? "display:flex;justify-content:" + attributes.iconAlign + ";": ''}
+			${convertedStyle.icon}
 		}
 		${ attributes.iconColor ?  `
 			.wpmozo-bna-image-card-icon-wrapper i {
@@ -64,9 +72,13 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 			${attributes.buttonTextColor ? `color: ${attributes.buttonTextColor};` : ''}
 			${attributes.buttonTextBackground ? `background: ${attributes.buttonTextBackground};` : ''}
 		}
+		.wpmozo-bna-image-card-button:hover {
+			${attributes.buttonTextHoverColor ? `color: ${attributes.buttonTextHoverColor};` : ''}
+			${attributes.buttonTextHoverBackground ? `background: ${attributes.buttonTextHoverBackground};` : ''}
+		}
 		${ attributes.buttonTextAlign ? `
-			.wpmozo-bna-image-card-button-wrap { 
-				text-align: ${attributes.buttonTextAlign}; 
+			.wpmozo-bna-image-card-button-wrap {
+				text-align: ${attributes.buttonTextAlign};
 			}` : ''
 		}
 		.wpmozo-bna-image-card-inner-content-wrapper {
@@ -83,41 +95,46 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 			background-color: ${attributes.buttonTextBackground || 'transparent'};
 			${ buttonAddi || '' }
 		}
-		${ 'image' === attributes.buttonMediaType ? `.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button img { 
-			width: ${attributes.buttonTextFontSize ? attributes.buttonTextFontSize : "20px"}; 
+		.wpmozo-bna-image-card-button:hover {
+			color: ${attributes.buttonTextHoverColor || 'inherit'};
+			background-color: ${attributes.buttonTextHoverBackground || 'transparent'};
+			${ buttonAddi || '' }
+		}
+		${ 'image' === attributes.buttonMediaType ? `.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button img {
+			width: ${attributes.buttonTextFontSize ? attributes.buttonTextFontSize : "20px"};
 		}` : '' }
 
 		${ attributes.showMediaOnHover ? `
-			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover:hover { 
-				column-gap: 10px; 
+			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover:hover {
+				column-gap: 10px;
 			}
-			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover { 
-				column-gap: 0px; 
+			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover {
+				column-gap: 0px;
 			}`
 		: '' }
 		${ ( attributes.buttonMediaPosition ) ? `
-			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button { 
-				flex-direction: ${buttonMediaPosition}; 
+			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button {
+				flex-direction: ${buttonMediaPosition};
 			}`
 		: '' }
 		${ ( true === attributes.showMediaOnHover && 'before' === attributes.buttonMediaPosition ) ? `
-			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover i, 
-			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover img { 
-				margin-right: -${ (attributes.buttonTextFontSize) ? attributes.buttonTextFontSize : '20px'}; 	
+			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover i,
+			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover img {
+				margin-right: -${ (attributes.buttonTextFontSize) ? attributes.buttonTextFontSize : '20px'};
 			}
 			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover:hover i,
-			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover:hover img { 
-				margin-right: 0; 
+			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover:hover img {
+				margin-right: 0;
 			}`
 		: '' }
 		${ ( true === attributes.showMediaOnHover && 'after' === attributes.buttonMediaPosition ) ? `
 			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover i,
-			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover img { 
-				margin-left: -${ (attributes.buttonTextFontSize) ? attributes.buttonTextFontSize : '20px'}; 
+			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover img {
+				margin-left: -${ (attributes.buttonTextFontSize) ? attributes.buttonTextFontSize : '20px'};
 			}
 			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover:hover i,
-			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover:hover img { 
-				margin-left: 0; 
+			.wpmozo-bna-image-card-button-wrap .wpmozo-bna-image-card-button-wrap-inner .wpmozo-bna-image-card-button.show-on-hover:hover img {
+				margin-left: 0;
 			}`
 		: '' }
 	` : '' }`;
@@ -205,15 +222,15 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 			}
 		} else if ( ! hasStyleIcon ) {
 			if ( hasFontSize ) {
-				styles += `.wpmozo-bna-image-card-icon-wrapper i { 
-					font-size: ${fontSize}px; 
+				styles += `.wpmozo-bna-image-card-icon-wrapper i {
+					font-size: ${fontSize}px;
 				}`;
 				if ( showBorder ) {
 					styles += `.wpmozo-bna-image-card-icon-wrapper {
 						margin-top : calc( -${attributes.iconFontSize/2 + "px - " + (attributes.contentpadding.top ? attributes.contentpadding.top : "0px") } - 7px ) ;
 					}`;
-					styles += `.wpmozo-bna-image-card-icon-wrapper i { 
-						border: 2px solid ${attributes.shapeBorderColor}; padding: 5px; 
+					styles += `.wpmozo-bna-image-card-icon-wrapper i {
+						border: 2px solid ${attributes.shapeBorderColor}; padding: 5px;
 					}`;
 				} else {
 					styles += `.wpmozo-bna-image-card-icon-wrapper {

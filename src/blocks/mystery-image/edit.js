@@ -187,7 +187,7 @@ function Edit( props ) {
 			disableMediaButtons={
 				( hasImages && ! isSelected ) || imagesUploading
 			}
-			handleUpload={ false }
+			handleUpload={ true }
 			isAppender={ hasImages }
 			labels={ {
 				instructions: ! hasImages && PLACEHOLDER_TEXT,

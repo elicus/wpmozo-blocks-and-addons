@@ -38,7 +38,6 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 	// Author Image.
 	if ( attributes.showAuthorImage ) {
 		styles += `.wpmozo_testimonial_author_image img{
-			${attributes.authorImageborderColor ? `border-color: ${attributes.authorImageborderColor} !important;` : ''}
 			${convertedStyle.authorImage}
 		}`;
 	}
@@ -116,18 +115,19 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 	styles += `.wpmozo_testimonial_slide{
 		${attributes.testimonialBGGradient ? `background:`+ attributes.testimonialBGGradient + `;` : ''}
 		${attributes.testimonialBackground ? `background-color:`+ attributes.testimonialBackground + `;` : ''}
-		${attributes.testimonialborderColor ? `border-color: ${attributes.testimonialborderColor} !important;` : ''}
 		${convertedStyle.testimonial}
 	}`;
 
 	// Slider arrows.
 	if ( attributes.showArrows ) {
 		styles += `.swiper-button-next, .swiper-button-prev{
-			${attributes.arrowIconSize ? `font-size: ${attributes.arrowIconSize}px;` : ''}
 			${attributes.arrowBackground ? `background-color: ${attributes.arrowBackground};` : ''}
 			${attributes.arrowColor ? `color: ${attributes.arrowColor};` : ''}
-			${attributes.arrowborderColor ? `border-color: ${attributes.arrowborderColor} !important;` : ''}
 			${convertedStyle.arrow}
+		}
+		.wpmozo_swiper_wrapper .swiper-button-next:after,
+		.wpmozo_swiper_wrapper .swiper-button-prev:after{
+			${attributes.arrowIconSize ? `font-size: ${attributes.arrowIconSize}px;` : ''}
 		}`;
 		if ( attributes.showArrowOnHover ) {
 			styles += `.swiper-button-next, .swiper-button-prev{
@@ -154,17 +154,23 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 
 	// Control dot color.
 	if ( attributes.showControlDot ) {
-		if ( attributes.controlDotColorInactive ) {
+		if ( attributes.controlDotColorInactive && 'transparent_dot' != attributes.controlDotStyle ) {
 			styles += `.swiper-pagination-bullet{
 				background: ${attributes.controlDotColorInactive};
 			}`;
-			styles += `.swiper-3d .transparent_dot .swiper-pagination-bullet{
+
+		} else {
+			styles += `.transparent_dot .swiper-pagination-bullet{
 				border-color: ${attributes.controlDotColorInactive} !important;
 			}`;
 		}
-		if ( attributes.controlDotColorActive ) {
+		if ( attributes.controlDotColorActive && 'transparent_dot' != attributes.controlDotStyle) {
 			styles += `.swiper-pagination-bullet-active{
 				background: ${attributes.controlDotColorActive};
+			}`;
+		} else {
+			styles += `.transparent_dot .swiper-pagination-bullet-active{
+				border-color: ${attributes.controlDotColorActive} !important;border-width: 2px;border-style: solid;background: transparent;
 			}`;
 		}
 		if ( 'stretched_dot' === attributes.controlDotStyle && attributes.transDuration ) {

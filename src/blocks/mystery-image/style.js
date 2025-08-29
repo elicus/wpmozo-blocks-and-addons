@@ -16,6 +16,15 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 		`;
 	styles += `}`;
 
+	if(true === attributes.showLightbox){
+		styles += `.block-block-${clientId}_lightbox{
+			background:${attributes.lightboxBackgroundColor};
+		}
+		.block-block-${clientId}_lightbox .mfp-close{
+			color:${attributes.lightboxCloseIconColor} !important;
+		}`;
+	}
+
 	return styles;
 };
 

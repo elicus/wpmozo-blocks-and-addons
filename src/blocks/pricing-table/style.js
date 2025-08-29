@@ -13,7 +13,8 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 			'period',
 			'features',
 			'featuresDimensions',
-			'borderDimensions'
+			'borderDimensions',
+			'wrapper'
 		];
 	let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
 
@@ -22,8 +23,8 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 	styles += `
 		.wpmozo-bna-pricing-table-wrapper{
 			background-color : ${attributes.backgroundColor};
-			text-align: ${attributes.align};
 			${convertedStyle.mainDimensions}
+			${convertedStyle.wrapper}
 		}
 		.wpmozo-bna-pricing-table-title{
 			color: ${attributes.titleColor};
@@ -50,16 +51,18 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 			${convertedStyle.headerGraphicsDimensions}
 		}
 
+		.wpmozo-bna-pricing-table-pricing{
+			text-align: ${attributes.pricealign};
+			${convertedStyle.currency}
+		}
 		.wpmozo-bna-pricing-table-currency-symbol{
 			color: ${attributes.currencyColor};
-			${convertedStyle.currency}
 		}
 
 		.wpmozo-bna-pricing-table-price{
-			color: ${attributes.priceColor};
+			color: ${attributes.periodColor};
 			${convertedStyle.price}
 		}
-
 		.wpmozo-bna-pricing-table-period{
 			color: ${attributes.periodColor};
 			${convertedStyle.period}
@@ -107,6 +110,20 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 			color: ${attributes.iconTextColor};
 			background-color: ${attributes.iconTextBackground};
 		}
+
+		.wpmozo-bna-pricing-table-button-wrapper .wpmozo-bna-button{
+			font-size: ${attributes.buttonFontSize}px;
+		}
+		.wpmozo-bna-pricing-table-feature-icon{
+			font-size: ${attributes.featuresIconFontSize}px;
+		}
+		.wpmozo-bna-pricing-table-features-list{
+			padding: ${attributes.featuresSpacing}px 0;
+		}
+		.wpmozo-bna-pricing-table-features div{
+			margin: ${attributes.featuresMargin}px 0;
+		}
+
 	`;
 
 	styles += `}`;

@@ -25,7 +25,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
 	const [ quoteIconTab, setQuoteIconTab ] = useState( 'opening' );
-	
+
 	const [ bodyTextTab, setBodyTextTab ]       = useState( 'normal' );
 	const [ authorNameTab, setAuthorNameTab ]   = useState( 'normal' );
 	const [ designationTab, setDesignationTab ] = useState( 'normal' );
@@ -53,7 +53,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						isPressed={ ( 'normal' === bodyTextTab ) ? true : false }
 						onClick={ () => setBodyTextTab( 'normal' ) }
 					>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
-					<Button 
+					<Button
 						className="wpmozo-button-tabs-btn"
 						isPressed={ ( 'hover' === bodyTextTab ) ? true : false }
 						onClick={ () => setBodyTextTab( 'hover' ) }
@@ -95,13 +95,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					BorderKey="authorImage"
 					BorderTypes={ { border: true, radius: true } }
 				/>
-				<WpmozoColorPicker
-					ColorKey="authorImageborder"
-					props={ props }
-					ColorTypes={ [
-						{ key: 'Color', label: __( 'Border Color', 'wpmozo-blocks-and-addons' ) }
-					] }
-				/>
 			</PanelBody>
 		}
 		{/* Author Name. */}
@@ -116,7 +109,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						isPressed={ ( 'normal' === authorNameTab ) ? true : false }
 						onClick={ () => setAuthorNameTab( 'normal' ) }
 					>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
-					<Button 
+					<Button
 						className="wpmozo-button-tabs-btn"
 						isPressed={ ( 'hover' === authorNameTab ) ? true : false }
 						onClick={ () => setAuthorNameTab( 'hover' ) }
@@ -163,7 +156,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 							isPressed={ ( 'normal' === designationTab ) ? true : false }
 							onClick={ () => setDesignationTab( 'normal' ) }
 						>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
-						<Button 
+						<Button
 							className="wpmozo-button-tabs-btn"
 							isPressed={ ( 'hover' === designationTab ) ? true : false }
 							onClick={ () => setDesignationTab( 'hover' ) }
@@ -211,7 +204,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 							isPressed={ ( 'normal' === companyNameTab ) ? true : false }
 							onClick={ () => setCompanyNameTab( 'normal' ) }
 						>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
-						<Button 
+						<Button
 							className="wpmozo-button-tabs-btn"
 							isPressed={ ( 'hover' === companyNameTab ) ? true : false }
 							onClick={ () => setCompanyNameTab( 'hover' ) }
@@ -350,13 +343,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				BorderKey="arrow"
 				BorderTypes={ { border: true, radius: true } }
 			/>
-			<WpmozoColorPicker props={props}
-				label={ __( 'Arrows Border Color', 'wpmozo-blocks-and-addons' ) }
-				ColorKey="arrowborder"
-				ColorTypes={ [
-					{ key: 'Color', label: __( 'Border Color', 'wpmozo-blocks-and-addons' ) },
-				] }
-			/>
 			{ attributes.showControlDot && <>
 				<WpmozoColorPicker
 					label={ __( 'Control Dot Color', 'wpmozo-blocks-and-addons' ) }
@@ -370,7 +356,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			</> }
 		</PanelBody>
 		{/* Meta. */}
-		{ 'layout1' === attributes.layout && 
+		{ 'layout1' === attributes.layout &&
 			<PanelBody title={ __( 'Meta', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 				<WpmozoColorPicker props={props}
 					label={ __( 'Meta Separator', 'wpmozo-blocks-and-addons' ) }
@@ -399,13 +385,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				label={ __( 'Testimonial Border', 'wpmozo-blocks-and-addons' ) }
 				BorderKey="testimonial"
 				BorderTypes={ { border: true, radius: true } }
-			/>
-			<WpmozoColorPicker props={ props }
-				ColorKey="testimonialborder"
-				label={ __( 'Testimonial Border Color', 'wpmozo-blocks-and-addons' ) }
-				ColorTypes={ [
-					{ key: 'Color', label: __( 'Border Color', 'wpmozo-blocks-and-addons' ) }
-				] }
 			/>
 		</PanelBody>
 		{/* Slider Container. */}

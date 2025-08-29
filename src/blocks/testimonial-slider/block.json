@@ -144,7 +144,7 @@
 		},
 		"designationHoverFontStyle": { "type": "string" },
 		"designationHoverFontWeight": { "type": "string" },
-		
+
 		"companyNameColor": { "type": "string" },
 		"companyNameFontSize": { "type": "string" },
 		"companyNameLetterSpacing": { "type": "string" },
@@ -184,7 +184,6 @@
 		"arrowBackground": { "type": "string", "default": "" },
 		"arrowborder": { "type": "object" },
         "arrowborderRadius": { "type": "string" },
-		"arrowborderColor": { "type": "string", "default": "" },
 
 		"metaSeparatorColor": { "type": "string", "default": "#dddddd" },
 		"containerpadding": { "type": "object" },
@@ -193,11 +192,9 @@
 		"testimonialBGGradient": { "type": "string" },
 		"testimonialborder": { "type": "object" },
         "testimonialborderRadius": { "type": "string" },
-		"testimonialborderColor": { "type": "string", "default": "" },
 
 		"authorImageborder": { "type": "object" },
-		"authorImageborderRadius": { "type": "string" },
-		"authorImageborderColor": { "type": "string" }
+		"authorImageborderRadius": { "type": "string" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

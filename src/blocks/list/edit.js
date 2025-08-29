@@ -14,19 +14,16 @@ import {getIdByClientid} from '../../common/utils.js';
  */
 
 export default function Edit(props) {
-    const attributes = props.attributes,
-    setAttributes = props.setAttributes,
-    clientId = props.clientId,
-    blockProps = useBlockProps({ className: 'wpmozo-bna-list' });
 
-    const childBlocks = useSelect((select) => {
+    const { attributes, setAttributes, clientId } = props;
+
+    const childBlocks = useSelect( (select) => {
         return select('core/block-editor').getBlocks(clientId);
-    }, [clientId]);
+    }, [clientId] );
 
-    const childAttributes = childBlocks.map(block => block.attributes);
-
+    const childAttributes = childBlocks.map( block => block.attributes );
     const TEMPLATE = [
-        [ 'wpmozo/list-item', { text: childAttributes.text} ] // Prefills a child block when parent is inserted
+        [ 'wpmozo/list-item', { text: childAttributes.text} ] // Prefills a child block when parent is inserted.
     ];
 
     attributes.ID = clientId;
@@ -35,10 +32,9 @@ export default function Edit(props) {
     return (
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
-            <style>
-                { generateDynamicStyle({ attributes, clientId }) }
-            </style>  
-            <div {...useBlockProps({ className: 'wpmozo-bna-list' })}>
+            <style>{ generateDynamicStyle({ attributes, clientId }) }</style>
+
+            <div { ...useBlockProps( { className: 'wpmozo-bna-list' } ) }>
                 <div>
                     <div className="wpmozo-bna-list-wrapper">
                         <div className={"wpmozo-bna-list-layout wpmozo-bna-list-" + attributes.layout + " " + hideDivider}>

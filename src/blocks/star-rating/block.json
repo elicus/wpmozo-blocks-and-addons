@@ -53,7 +53,7 @@
 		"ratingOutOf": { "type": "number", "default": 5 },
 		"image": { "type": "string", "default": "" },
 		"imageAlt": { "type": "string", "default": "" },
-		"description": { "type": "string", "default": "" },
+		"description": { "type": "string", "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
 		"descriptionColor": { "type": "string" },
 		"descriptionFontSize": { "type": "string" },
 		"descriptionLetterSpacing": { "type": "string" },
@@ -66,14 +66,18 @@
 		},
 		"descriptionFontStyle": { "type": "string" },
 		"descriptionFontWeight": { "type": "string" },
-		
+
 		"rateIcon": { "type": "string", "default": "default" },
 		"rateIconFilledColor": { "type": "string", "default": "#fac917" },
 		"rateIconEmptyColor": { "type": "string", "default": "#fac917" },
 		"ratePosition": { "type": "string", "default": "below_title" },
 		"showRateNum": { "type": "boolean", "default": true },
 		"starFontSize": { "type": "number", "default": 24 },
-		"starSpacing": { "type": "number", "default": 2 }
+		"starSpacing": { "type": "number", "default": 2 },
+		"containerpadding": { "type": "object" },
+		"containermargin": { "type": "object" },
+		"containerborder": {"type": "object"},
+		"containerborderRadius":{"type": "string"}
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
