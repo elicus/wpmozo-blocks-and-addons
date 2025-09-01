@@ -18,7 +18,10 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 			${convertedStyle.title}
 		}
 		.wpmozo-bna-bar-counter-filled-bar-wrapper .wpmozo-bna-bar-counter-filled-bar.wpmozo-bna-bar-counter-animated-striped-bar:before {
-			background-image : ${attributes.stripeColor};
+			${attributes.stripeBackgroundType === 'classic'
+				? `background-image: ${attributes.classicColor};`
+				: `background-image: ${attributes.stripeColor};`
+			}
 		}
 		.wpmozo-bna-bar-counter-percent {
 			color : ${attributes.percentageColor};

@@ -23,10 +23,12 @@
 		"displayEmptyBar": { "type": "boolean", "default": false },
 		"useStripes": { "type": "boolean", "default": false },
 
+		"stripeBackgroundType": {"type": "string","default": "classic"},
+		"classicColor": { "type": "string" },
 		"stripeColor": { "type": "string" },
 		"stripeAnimation": { "type": "boolean", "default": false },
 		"stripeAnimationSpeed": { "type": "number" },
-	
+
 		"titleColor": { "type": "string" },
 		"titleAlign": { "type": "string" },
 		"titleFontSize": { "type": "string" },
@@ -43,7 +45,7 @@
 		"titleDecoration": { "type": "string" },
 		"titleLetterCase": { "type": "string" },
 		"titleLineHeight": { "type": "string" },
-	
+
 		"percentageColor": { "type": "string" },
 		"percentageAlign": { "type": "string" },
 		"percentageFontSize": { "type": "string" },
