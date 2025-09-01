@@ -1,6 +1,6 @@
 import { __ } from "@wordpress/i18n";
 import { Fragment, useEffect } from "@wordpress/element";
-import { useBlockProps, RichText } from "@wordpress/block-editor";
+import { useBlockProps } from "@wordpress/block-editor";
 
 import Inspector from "./inspector";
 import generateDynamicStyle from "./style";
@@ -16,6 +16,16 @@ const Edit = (props) => {
 		}
 	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
+	useEffect( () => {
+		const event = new CustomEvent( 'WPMozoScrollTextPropsChanged' );
+		window.dispatchEvent( event );
+
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
+		}
+	}, [props] );
+
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
@@ -30,13 +40,9 @@ const Edit = (props) => {
 					data-animation_end_element_pos={ attributes.animationEndElementPos || '0%' }
 					data-animation_end_viewport_pos={ attributes.animationEndViewportPos || '40%' }
 				>
-					<RichText
-						className="wpmozo-scroll-text-inner"
-						tagName="div"
-						value={ attributes.scrollText }
-						onChange={ ( newValue ) => setAttributes( { scrollText: newValue } ) }
-						placeholder={ __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non augue eget est vestibulum ultrices eu in leo. Quisque sem diam, finibus ac condimentum eu, finibus id arcu', 'wpmozo-blocks-and-addons' ) }
-					/>
+					<div className="wpmozo-scroll-text-inner">
+						{ attributes.scrollText || __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non augue eget est vestibulum ultrices eu in leo. Quisque sem diam, finibus ac condimentum eu, finibus id arcu', 'wpmozo-blocks-and-addons' ) }
+					</div>
 				</div>
 			</div>
 		</Fragment>

@@ -1,4 +1,4 @@
-import { useBlockProps, RichText } from "@wordpress/block-editor";
+import { useBlockProps } from "@wordpress/block-editor";
 import generateDynamicStyle from "./style";
 
 const Save = ( { attributes } ) => {
@@ -17,11 +17,9 @@ const Save = ( { attributes } ) => {
 				data-animation_end_element_pos={ attributes.animationEndElementPos || '0%' }
 				data-animation_end_viewport_pos={ attributes.animationEndViewportPos || '40%' }
 			>
-				<RichText.Content
-					className="wpmozo-scroll-text-inner"
-					tagName="div"
-					value={ attributes.scrollText }
-				/>
+				<div className="wpmozo-scroll-text-inner">
+					{ attributes.scrollText || __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non augue eget est vestibulum ultrices eu in leo. Quisque sem diam, finibus ac condimentum eu, finibus id arcu', 'wpmozo-blocks-and-addons' ) }
+				</div>
 			</div>
 		</div>
 	</> );
