@@ -192,4 +192,4 @@ const WpmozoTypography = (args) => {
 	);
 };
 
-export default compose()(WpmozoTypography);
+export default WpmozoTypography;

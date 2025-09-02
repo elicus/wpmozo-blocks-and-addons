@@ -85,7 +85,7 @@ export function convertInlineStyle(options = {}, atts = {}) {
 			append('border', str);
 		}
 
-		if (options.border.top) {
+		if ( options.border.top || options.border.bottom || options.border.left || options.border.right ) {
 			for (const border in options.border) {
 				for (const item in options.border[border]) {
 					append(`border-${border}-${item}`, options.border[border][item]);
