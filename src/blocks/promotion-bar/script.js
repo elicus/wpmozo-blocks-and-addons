@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 jQuery( document ).ready( function($) {
 
 	window.addEventListener('WPMozoPromotionPropsChanged', () => {
