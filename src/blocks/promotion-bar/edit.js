@@ -90,6 +90,15 @@ const Edit = (props) => {
 		seconds : { full: 'Seconds', short: 'Sec', single: 'S' }
 	};
 
+	useEffect(() => {
+		const event = new CustomEvent('WPMozoPromotionPropsChanged');
+		window.dispatchEvent(event);
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
+		}
+	}, [props]);
+
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />

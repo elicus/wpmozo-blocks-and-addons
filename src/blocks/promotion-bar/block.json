@@ -19,7 +19,7 @@
 		"dateTime": { "type": "string" },
 		"dateTimeUTC": { "type": "string" },
 		"dateTimeTimestamp": { "type": "number" },
-		
+
 		"title": { "type": "string", "default": "Your title goes here." },
 		"titleLevel": { "type": "string", "default": "h2" },
 		"hideTitle": { "type": "boolean", "default": false },
@@ -89,7 +89,7 @@
 		"buttonText": { "type": "string", "default": "Get the deal" },
 		"buttonUrl": { "type": "string", "default": "#" },
 		"buttonLinkTarget": { "type": "string", "default": "same" },
-		
+
 		"buttonBackground": { "type": "string", "default": "" },
 		"buttonBGGradient": { "type": "string" },
 		"buttonUseIcon": { "type": "boolean", "default": true },
@@ -202,5 +202,5 @@
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
 	"style": "file:./style-index.css",
-	"script": [ "file:./script.js" ]
+	"script": "file:./script.js"
 }

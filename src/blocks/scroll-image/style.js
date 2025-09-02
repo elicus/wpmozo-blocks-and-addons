@@ -26,9 +26,9 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 	}
 	.wpmozo-bna-scroll-image-inner-wrap img{
 		transition: all ${attributes.scrollSpeed}s ease-out;
-	}
-	${ (convertedStyle.image) ? ` .wpmozo-bna-scroll-image-inner-wrap { `+ convertedStyle.image + `; }` : '' }`;
-	
+		${convertedStyle.image}
+	}`
+
 	styles += `}`;
 	return styles;
 };
