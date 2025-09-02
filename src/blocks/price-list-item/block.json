@@ -35,7 +35,7 @@
         "itemborderRadius": { "type": "string" },
        
         "iconColor": { "type": "string" },
-        "iconShapBackground": { "type": "string", "default": "#9E9E9E" },
+        "iconShapBackground": { "type": "string" },
         "styleIcon": { "type": "boolean", "default": false },
         "iconShape": { "type": "string", "default": "square" },
 

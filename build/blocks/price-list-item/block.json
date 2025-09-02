@@ -68,8 +68,7 @@
       "type": "string"
     },
     "iconShapBackground": {
-      "type": "string",
-      "default": "#9E9E9E"
+      "type": "string"
     },
     "styleIcon": {
       "type": "boolean",
