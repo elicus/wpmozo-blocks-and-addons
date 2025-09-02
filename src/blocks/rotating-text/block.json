@@ -1,0 +1,65 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/rotating-text",
+	"version": "0.1.0",
+	"title": "Rotating Text",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "Rotating Text description.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"customClassName": false
+	},
+	"attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+		
+		"image": { "type": "string" },
+		"icon": { "type": "string" },
+		"rotatingText": { "type": "string" },
+		"useImage": { "type": "boolean", "default": false },
+
+		"wrapperBackground": { "type": "string" },
+		"circleSize": { "type": "string" },
+		"circleAnimationSpeed": { "type": "string" },
+		"circleAnimationSpeed": { "type": "string" },
+		"wrapperborder": { "type": "object" },
+        "wrapperborderRadius": { "type": "string" },
+
+        "textColor": { "type": "string" },
+        "textFontSize": { "type": "string" },
+		"textFontAppearance": {
+			"type": "object",
+			"fontStyle": { "type": "string" },
+			"fontWeight": { "type": "string" },
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"textLetterSpacing": { "type": "string" },
+		"textDecoration": { "type": "string" },
+		"textLetterCase": { "type": "string" },
+		"textLineHeight": { "type": "string" },
+
+		"iconColor": { "type": "string" },
+		"iconBackground": { "type": "string" },
+		"iconWrapperSize": { "type": "string" },
+		"iconSize": { "type": "string" },
+		"iconpadding": { "type": "object" },
+		"iconborder": { "type": "object" },
+        "iconborderRadius": { "type": "string" },
+
+		"imageBackground": { "type": "string" },
+		"imageWrapperSize": { "type": "string" },
+		"imagepadding": { "type": "object" },
+		"imageborder": { "type": "object" },
+        "imageborderRadius": { "type": "string" }
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"script": "file:./script.js"
+}
