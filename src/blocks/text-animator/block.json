@@ -29,24 +29,7 @@
 		"displayInStack": { "type": "boolean", "default": false },
 		"stopAnimationOnHover": { "type": "boolean", "default": false },
 		"animateOnlyOnce": { "type": "boolean", "default": false },
-		
-		"globalTextColor": { "type": "string" },
-		"globalTextAlignment": { "type": "string" },
-		"globalFontSize": { "type": "string" },
-		"globalFontAppearance": {
-			"type": "object",
-			"fontStyle": { "type": "string" },
-			"fontWeight": { "type": "string" },
-			"default": {
-				"fontStyle": "",
-				"fontWeight": ""
-			}
-		},
-		"globalLetterSpacing": { "type": "string" },
-		"globalDecoration": { "type": "string" },
-		"globalLetterCase": { "type": "string" },
-		"globalLineHeight": { "type": "string" },
-		
+
 		"prePostTextColor": { "type": "string" },
 		"prePostFontSize": { "type": "string" },
 		"prePostFontAppearance": {
@@ -62,7 +45,7 @@
 		"prePostDecoration": { "type": "string" },
 		"prePostLetterCase": { "type": "string" },
 		"prePostLineHeight": { "type": "string" },
-		
+
 		"animatedTextColor": { "type": "string" },
 		"animatedFontSize": { "type": "string" },
 		"animatedFontAppearance": {
@@ -78,7 +61,7 @@
 		"animatedDecoration": { "type": "string" },
 		"animatedLetterCase": { "type": "string" },
 		"animatedLineHeight": { "type": "string" },
-		
+
 		"typeBackgroundSettings": { "type": "string" },
 		"useBackgroundPrepost": { "type": "boolean", "default": false },
 		"useBackgroundAnimated": { "type": "boolean", "default": false },
@@ -88,7 +71,7 @@
 		"animatedBackgroundType": { "type": "string", "default": "classic" },
 		"animatedBackgroundColor": { "type": "string" },
 		"animatedBackgroundGradient": { "type": "string" },
-		
+
 		"prePostpadding": { "type": "object" },
 		"prePostmargin": { "type": "object" },
 		"animatedpadding": { "type": "object", "default": { "left": "10px", "right": "10px" } },

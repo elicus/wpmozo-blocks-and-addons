@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 jQuery( document ).ready( function($) {
 	if ( jQuery( document ).find( '.wp-block-wpmozo-text-animator' ).length > 0 ) {
 		$( document ).find( '.wp-block-wpmozo-text-animator' ).each( function() {
@@ -6,14 +8,11 @@ jQuery( document ).ready( function($) {
 
 		// On change on props, update the slider again.
 		window.addEventListener( 'WPMozoTextAnimatorPropsChanged', (e) => {
-			console.log('length:: ', $( '#block-' + e.detail.clientId ).length );
-			console.log('selector: ', '#block-' + e.detail.clientId);
-			
-			
+
+
 			if ( '' !== e?.detail?.clientId && $( '#block-' + e.detail.clientId ).length > 0 ) {
 				initWPMozoTextAnimator( $( '#block-' + e.detail.clientId ) );
-				console.log('cjanged');
-				
+
 			}
 		} );
 	}
@@ -41,7 +40,7 @@ function initWPMozoTextAnimator( $thisObj ) {
 	if ( '' !== animatedBlock.data('text') && undefined !== animatedBlock.data('text') ) {
 		words = animatedBlock.data('text').toString().split("|").map(function(e){return e.trim();});
 	}
-	
+
 	if ( words.length > 0 ) {
 		if ( $thisObj.find('.wpmozo-fade').length > 0 ) {
 			wpmozoFadeEffect( animatedBlock, words );
@@ -67,7 +66,7 @@ function initWPMozoTextAnimator( $thisObj ) {
 		if ( $thisObj.find('.wpmozo-wave').length > 0 ) {
 			wpmozoWaveEffect( animatedBlock, words );
 		}
-		if ( 'on' === animatedBlock.data( 'stop-animation-on-hover' ) ) {
+		if ( true === animatedBlock.data( 'stop-animation-on-hover' ) ) {
 			$thisObj.find( '.animated_text_wrapper' ).on( 'mouseenter mouseleave', function(e) {
 				if ( e.type === 'mouseenter' ) {
 					animatedBlock.addClass( 'wpmozo_animation_paused' );
@@ -110,7 +109,7 @@ function wpmozoTypingEffect( animatedBlock, words ) {
 		animatedBlock.text(text);
 		charIndex++;
 
-		if ( text === words[i] ) {            
+		if ( text === words[i] ) {
 			clearInterval( currentIntervalId );
 			setTimeout( function() {
 				currentIntervalId = setInterval( erase, erasingTime );
@@ -128,7 +127,7 @@ function wpmozoTypingEffect( animatedBlock, words ) {
 		}
 
 		// Stop the animation, on animate only once. also do not clear the last text.
-		if ( i === ( words.length - 1 ) && 'on' === animateOnlyOnce ) {
+		if ( i === ( words.length - 1 ) && true === animateOnlyOnce ) {
 			clearInterval( currentIntervalId );
 			animatedBlock.addClass( 'wpmozo_animation_stop' );
 			return;
@@ -145,7 +144,7 @@ function wpmozoTypingEffect( animatedBlock, words ) {
 			} else {
 				i++;
 			}
-			
+
 			charIndex = 0;
 			setTimeout( function() {
 				currentIntervalId = setInterval( type, typingTime );
@@ -165,7 +164,7 @@ function wpmozoWaveEffect( animatedBlock, words ) {
 	let currentIntervalId = 0;
 	let i                 = 0;
 
-	if ( intervalId !== 0 ) { 
+	if ( intervalId !== 0 ) {
 		clearInterval( intervalId );
 		animatedBlock.removeClass( 'wpmozo-wipeIn wpmozo-wipeOut wpmozo-zoomIn wpmozo-zoomOut wpmozo-bounceIn wpmozo-bounceOut wpmozo-flipUpFirst wpmozo-flipUpSecond wpmozo-slideIn wpmozo-slideOut wpmozo-fadeIn wpmozo-fadeOut' );
 	}
@@ -187,7 +186,7 @@ function wpmozoWaveEffect( animatedBlock, words ) {
 	}
 
 	animatedBlock.html(splitWords[0]);
-	
+
 	let animateLetterOut = function( cw, i ) {
 		let animation = parseInt(animationTime/cw.length);
 		setTimeout(function() {
@@ -212,7 +211,7 @@ function wpmozoWaveEffect( animatedBlock, words ) {
 		}
 
 		// Stop the animation, on animate only once. also do not clear the last text.
-		if ( splitWords.length === ( i + 1 ) && 'on' === animateOnlyOnce ) {
+		if ( splitWords.length === ( i + 1 ) && true === animateOnlyOnce ) {
 			clearInterval(currentIntervalId);
 			animatedBlock.addClass( 'wpmozo_animation_stop' );
 			return;
@@ -224,7 +223,7 @@ function wpmozoWaveEffect( animatedBlock, words ) {
 		for ( let j = 0; j < cw.length; j++) {
 			animateLetterOut(cw, j);
 		}
-		
+
 		setTimeout( function() {
 			animatedBlock.html(nw);
 			for ( let j = 0; j < nw.length; j++) {
@@ -233,7 +232,7 @@ function wpmozoWaveEffect( animatedBlock, words ) {
 				animateLetterIn(nw, j);
 			}
 		}, animationTime);
-		
+
 		i = splitWords.length === ( i + 1 ) ? 0 : i + 1;
 	}
 
@@ -249,7 +248,7 @@ function wpmozoBounceEffect( animatedBlock, words ) {
 	let currentIntervalId = 0;
 	let i                 = 0;
 
-	if ( intervalId !== 0 ) { 
+	if ( intervalId !== 0 ) {
 		clearInterval( intervalId );
 		animatedBlock.removeClass( 'wpmozo-wipeIn wpmozo-wipeOut wpmozo-zoomIn wpmozo-zoomOut wpmozo-bounceIn wpmozo-bounceOut wpmozo-flipUpFirst wpmozo-flipUpSecond wpmozo-slideIn wpmozo-slideOut wpmozo-fadeIn wpmozo-fadeOut' );
 	}
@@ -260,7 +259,7 @@ function wpmozoBounceEffect( animatedBlock, words ) {
 		}
 
 		// Stop the animation, on animate only once. also do not clear the last text.
-		if ( words.length === ( parseInt(i) + 1 ) && 'on' === animateOnlyOnce ) {
+		if ( words.length === ( parseInt(i) + 1 ) && true === animateOnlyOnce ) {
 			clearInterval(currentIntervalId);
 			animatedBlock.addClass( 'wpmozo_animation_stop' );
 			return;
@@ -295,7 +294,7 @@ function wpmozoZoomEffect( animatedBlock, words ) {
 	let currentIntervalId = 0;
 	let i                 = 0;
 
-	if ( intervalId !== 0 ) { 
+	if ( intervalId !== 0 ) {
 		clearInterval( intervalId );
 		animatedBlock.removeClass( 'wpmozo-wipeIn wpmozo-wipeOut wpmozo-zoomIn wpmozo-zoomOut wpmozo-bounceIn wpmozo-bounceOut wpmozo-flipUpFirst wpmozo-flipUpSecond wpmozo-slideIn wpmozo-slideOut wpmozo-fadeIn wpmozo-fadeOut' );
 	}
@@ -306,7 +305,7 @@ function wpmozoZoomEffect( animatedBlock, words ) {
 		}
 
 		// Stop the animation, on animate only once. also do not clear the last text.
-		if ( words.length === ( parseInt(i) + 1 ) && 'on' === animateOnlyOnce ) {
+		if ( words.length === ( parseInt(i) + 1 ) && true === animateOnlyOnce ) {
 			clearInterval(currentIntervalId);
 			animatedBlock.addClass( 'wpmozo_animation_stop' );
 			return;
@@ -341,18 +340,18 @@ function wpmozoSlideEffect( animatedBlock, words ) {
 	let currentIntervalId = 0;
 	let i                 = 0;
 
-	if ( intervalId !== 0 ) { 
+	if ( intervalId !== 0 ) {
 		clearInterval( intervalId );
 		animatedBlock.removeClass( 'wpmozo-wipeIn wpmozo-wipeOut wpmozo-zoomIn wpmozo-zoomOut wpmozo-bounceIn wpmozo-bounceOut wpmozo-flipUpFirst wpmozo-flipUpSecond wpmozo-slideIn wpmozo-slideOut wpmozo-fadeIn wpmozo-fadeOut' );
 	}
-	
+
 	let slide = function() {
 		if ( animatedBlock.hasClass( 'wpmozo_animation_paused' ) ) {
 			return false;
 		}
 
 		// Stop the animation, on animate only once. also do not clear the last text.
-		if ( words.length === ( parseInt(i) + 1 ) && 'on' === animateOnlyOnce ) {
+		if ( words.length === ( parseInt(i) + 1 ) && true === animateOnlyOnce ) {
 			clearInterval(currentIntervalId);
 			animatedBlock.addClass( 'wpmozo_animation_stop' );
 			return;
@@ -387,18 +386,18 @@ function wpmozoFlipEffect( animatedBlock, words ) {
 	let currentIntervalId = 0;
 	let i                 = 0;
 
-	if ( intervalId !== 0 ) { 
+	if ( intervalId !== 0 ) {
 		clearInterval( intervalId );
 		animatedBlock.removeClass( 'wpmozo-wipeIn wpmozo-wipeOut wpmozo-zoomIn wpmozo-zoomOut wpmozo-bounceIn wpmozo-bounceOut wpmozo-flipUpFirst wpmozo-flipUpSecond wpmozo-slideIn wpmozo-slideOut wpmozo-fadeIn wpmozo-fadeOut' );
 	}
-	
+
 	let flip = function(){
 		if ( animatedBlock.hasClass( 'wpmozo_animation_paused' ) ) {
 			return false;
 		}
 
 		// Stop the animation, on animate only once. also do not clear the last text.
-		if ( words.length === ( parseInt(i) + 1 ) && 'on' === animateOnlyOnce ) {
+		if ( words.length === ( parseInt(i) + 1 ) && true === animateOnlyOnce ) {
 			clearInterval(currentIntervalId);
 			animatedBlock.addClass( 'wpmozo_animation_stop' );
 			return;
@@ -430,21 +429,22 @@ function wpmozoFadeEffect( animatedBlock, words ) {
 	let waitTime          = animatedBlock.data('wait-time') ? parseInt( animatedBlock.data('wait-time') ) : 500;
 	let animationTime     = animatedBlock.data('animation-time') ? parseInt( animatedBlock.data('animation-time') ) : 1500;
 	let animateOnlyOnce   = animatedBlock.data('animate-only-once') ? animatedBlock.data('animate-only-once') : 'off';
+	console.log(typeof animateOnlyOnce);
 	let currentIntervalId = 0;
 	let i                 = 0;
 
-	if ( intervalId !== 0 ) { 
+	if ( intervalId !== 0 ) {
 		clearInterval( intervalId );
 		animatedBlock.removeClass( 'wpmozo-wipeIn wpmozo-wipeOut wpmozo-zoomIn wpmozo-zoomOut wpmozo-bounceIn wpmozo-bounceOut wpmozo-flipUpFirst wpmozo-flipUpSecond wpmozo-slideIn wpmozo-slideOut wpmozo-fadeIn wpmozo-fadeOut' );
 	}
-	
+
 	let fade = function(){
 		if ( animatedBlock.hasClass( 'wpmozo_animation_paused' ) ) {
 			return false;
 		}
 
 		// Stop the animation, on animate only once. also do not clear the last text.
-		if ( words.length === ( parseInt(i) + 1 ) && 'on' === animateOnlyOnce ) {
+		if ( words.length === ( parseInt(i) + 1 ) && true === animateOnlyOnce ) {
 			clearInterval(currentIntervalId);
 			animatedBlock.addClass( 'wpmozo_animation_stop' );
 			return;
@@ -478,7 +478,7 @@ function wpmozoWipeEffect( animatedBlock, words ) {
 	let currentIntervalId = 0;
 	let i                 = 0;
 
-	if ( intervalId !== 0 ) { 
+	if ( intervalId !== 0 ) {
 		clearInterval( intervalId );
 		animatedBlock.removeClass( 'wpmozo-wipeIn wpmozo-wipeOut wpmozo-zoomIn wpmozo-zoomOut wpmozo-bounceIn wpmozo-bounceOut wpmozo-flipUpFirst wpmozo-flipUpSecond wpmozo-slideIn wpmozo-slideOut wpmozo-fadeIn wpmozo-fadeOut' );
 	}
@@ -487,9 +487,9 @@ function wpmozoWipeEffect( animatedBlock, words ) {
 		if ( animatedBlock.hasClass( 'wpmozo_animation_paused' ) ) {
 			return false;
 		}
-		
+
 		// Stop the animation, on animate only once. also do not clear the last text.
-		if ( words.length === ( parseInt(i) + 1 ) && 'on' === animateOnlyOnce ) {
+		if ( words.length === ( parseInt(i) + 1 ) && true === animateOnlyOnce ) {
 			clearInterval(currentIntervalId);
 			animatedBlock.addClass( 'wpmozo_animation_stop' );
 			return;
