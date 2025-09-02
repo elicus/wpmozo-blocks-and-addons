@@ -38,24 +38,27 @@ export default function Edit(props) {
 				<div className={`wpmozo-bna-text-highlighter ${attributes.displayInStack ? 'wpmozo-bna-text-highlighter-stack' : ''}`}>
 					<div className={`wpmozo-bna-text-highlighter-wrapper wpmozo-highlight-${attributes.textHighlighterShape}`}>
 						{attributes.wrapInHeadingTag ? (
-							<h2 className="wpmozo-bna-text-highlighter-title">
-								<span className="wpmozo-bna-text-highlighter-pre-inner-wrapper">{attributes.pre}</span>
-								<span className="wpmozo-bna-text-highlighter-inner-wrapper">
-                                    <span className="wpmozo-bna-text-highlighted-content">{attributes.main}</span>
-									{Shape[heighlighterShape]}
-                                </span>
-								<span
-									className="wpmozo-bna-text-highlighter-post-inner-wrapper">{attributes.post}</span>
-							</h2>
+							(() => {
+								const Tag = attributes.headingLevel || 'h2';
+								return (
+									<Tag className="wpmozo-bna-text-highlighter-title">
+										<span className="wpmozo-bna-text-highlighter-pre-inner-wrapper">{attributes.pre}</span>
+										<span className="wpmozo-bna-text-highlighter-inner-wrapper">
+											<span className="wpmozo-bna-text-highlighted-content">{attributes.main}</span>
+											{Shape[heighlighterShape]}
+										</span>
+										<span className="wpmozo-bna-text-highlighter-post-inner-wrapper">{attributes.post}</span>
+									</Tag>
+								);
+							})()
 						) : (
 							<>
 								<span className="wpmozo-bna-text-highlighter-pre-inner-wrapper">{attributes.pre}</span>
 								<span className="wpmozo-bna-text-highlighter-inner-wrapper">
-                                    <span className="wpmozo-bna-text-highlighted-content">{attributes.main}</span>
+									<span className="wpmozo-bna-text-highlighted-content">{attributes.main}</span>
 									{Shape[heighlighterShape]}
-                                </span>
-								<span
-									className="wpmozo-bna-text-highlighter-post-inner-wrapper">{attributes.post}</span>
+								</span>
+								<span className="wpmozo-bna-text-highlighter-post-inner-wrapper">{attributes.post}</span>
 							</>
 						)}
 					</div>

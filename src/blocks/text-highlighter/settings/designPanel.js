@@ -1,5 +1,10 @@
 import { __ } from '@wordpress/i18n';
-import {WpmozoAlignment, WpmozoTypography, WpmozoColorPicker} from '../../../common/components/index.js';
+import {
+	WpmozoAlignment,
+	WpmozoTypography,
+	WpmozoColorPicker,
+	WpmozoDimensions
+} from '../../../common/components/index.js';
 import {
 	Button,
 	PanelBody,
@@ -80,14 +85,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				<ButtonGroup>
 					<Button
 						className="wpmozo-button-tabs-btn"
-						isPressed={('global' === attributes.typeTextSettings) ? true : false}
-						onClick={() => setAttributes({typeTextSettings: 'global'})}
-						label={__('Global', 'wpmozo-blocks-and-addons')}
-					>
-						{__('Global', 'wpmozo-blocks-and-addons')}
-					</Button>
-					<Button
-						className="wpmozo-button-tabs-btn"
 						isPressed={('pre' === attributes.typeTextSettings) ? true : false}
 						onClick={() => setAttributes({typeTextSettings: 'pre'})}
 						label={__('Pre', 'wpmozo-blocks-and-addons')}
@@ -112,30 +109,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					</Button>
 				</ButtonGroup>
 			</BaseControl>
-			{ 'global' === attributes.typeTextSettings && (
-				<>
-					<WpmozoColorPicker
-						ColorKey="globalText"
-						props={props}
-						ColorTypes={[
-							{
-								key: 'Color',
-								label: __( 'Global Text Color', 'wpmozo-blocks-and-addons' ),
-							}
-						]}
-					/>
-					<WpmozoAlignment
-						label={__('Global Text Alignment', 'wpmozo-blocks-and-addons')}
-						onChange={(newValue) => setAttributes({globalTextAlignment: newValue})}
-						value={attributes.globalTextAlignment}
-					/>
-					<WpmozoTypography
-						TypographyKey="global"
-						label="Global Typography"
-						props={props}
-					/>
-				</>
-			)}
 			{ 'pre' === attributes.typeTextSettings && (
 				<>
 					<WpmozoColorPicker
@@ -152,6 +125,12 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						TypographyKey="pre"
 						label="Pre Typography"
 						props={props}
+					/>
+					<WpmozoDimensions
+						props={props}
+						label={ __( 'Pre Text Dimensions', 'wpmozo-blocks-and-addons' ) }
+						DimensionKey='pre'
+						DimensionsTypes={ { padding: true, margin: true } }
 					/>
 				</>
 			)}
@@ -172,6 +151,12 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						label="Main Typography"
 						props={props}
 					/>
+					<WpmozoDimensions
+						props={props}
+						label={ __( 'Main Text Dimensions', 'wpmozo-blocks-and-addons' ) }
+						DimensionKey='main'
+						DimensionsTypes={ { padding: true, margin: true } }
+					/>
 				</>
 			)}
 			{ 'post' === attributes.typeTextSettings && (
@@ -190,6 +175,12 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						TypographyKey="post"
 						label="Post Typography"
 						props={props}
+					/>
+					<WpmozoDimensions
+						props={props}
+						label={ __( 'Post Text Dimensions', 'wpmozo-blocks-and-addons' ) }
+						DimensionKey='post'
+						DimensionsTypes={ { padding: true, margin: true } }
 					/>
 				</>
 			)}
