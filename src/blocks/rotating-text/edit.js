@@ -22,7 +22,7 @@ export default function Edit( props ) {
 				className="wpmozo-bna-rotating-text-img-img_icon"
 		  	/>
 		);
-	} else if ( props.icon ) {
+	} else if ( attributes.icon ) {
 		iconImage = (
 			<div className="icon-wrapper">
 				<i className={attributes.icon}></i>

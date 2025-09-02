@@ -22,6 +22,6 @@ var wpmozo_init_rotating_text = function( $, element = null ) {
 jQuery( document ).ready( function($) {
 
     let element = jQuery('.wpmozo-bna-rotating-text');
-    wpmozo_init_rotating_text( element );
+    wpmozo_init_rotating_text( $, element );
 
 } );
