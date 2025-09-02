@@ -1,6 +1,8 @@
 
 const generateDynamicStyle = ({attributes, clientId}) => {
 
+	const lenseBorderColor = attributes.lenseBorderColor ?? '#000';
+
 	let styles = `#block-${attributes.ID}{`;
 
 	styles += `.wpmozo-bna-image-magnifier-wrapper .magnify{
@@ -11,14 +13,14 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 		height: ${attributes.lensWidth}px !important;
 	}
 	.magnify .magnify-lens{
-		box-shadow: 0 0 0 ${attributes.lenseBorderWidth}px ${attributes.lenseBorderColor};
+		box-shadow: 0 0 0 ${attributes.lenseBorderWidth}px ${lenseBorderColor};
 	}
 	.magnify img{
 		width: ${attributes.imageWidth}% !important;
 		max-width: ${attributes.imageMaxWidth}% !important;
 	}
 	`;
-	
+
 	styles += `}`;
 	return styles;
 };
