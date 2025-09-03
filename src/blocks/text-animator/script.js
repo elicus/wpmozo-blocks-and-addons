@@ -429,7 +429,6 @@ function wpmozoFadeEffect( animatedBlock, words ) {
 	let waitTime          = animatedBlock.data('wait-time') ? parseInt( animatedBlock.data('wait-time') ) : 500;
 	let animationTime     = animatedBlock.data('animation-time') ? parseInt( animatedBlock.data('animation-time') ) : 1500;
 	let animateOnlyOnce   = animatedBlock.data('animate-only-once') ? animatedBlock.data('animate-only-once') : 'off';
-	console.log(typeof animateOnlyOnce);
 	let currentIntervalId = 0;
 	let i                 = 0;
 

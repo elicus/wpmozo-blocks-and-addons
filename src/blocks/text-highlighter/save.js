@@ -6,7 +6,8 @@ import generateDynamicStyle from "./style";
 export default function save({ attributes }) {
 
 	const heighlighterShape = attributes.textHighlighterShape,
-		ID = attributes.ID;
+		ID = attributes.ID,
+		displayInStackSpace = attributes.displayInStack ? '' : '\u00A0';
 
     return (
 		<>
@@ -19,9 +20,9 @@ export default function save({ attributes }) {
 							const Tag = attributes.headingLevel || 'h2';
 							return (
 								<Tag className="wpmozo-bna-text-highlighter-title">
-									<span className="wpmozo-bna-text-highlighter-pre-inner-wrapper">{attributes.pre}</span>
+									<span className="wpmozo-bna-text-highlighter-pre-inner-wrapper">{attributes.pre}{displayInStackSpace}</span>
 									<span className="wpmozo-bna-text-highlighter-inner-wrapper">
-											<span className="wpmozo-bna-text-highlighted-content">{attributes.main}</span>
+											<span className="wpmozo-bna-text-highlighted-content">{attributes.main}{displayInStackSpace}</span>
 										{Shape[heighlighterShape]}
 										</span>
 									<span className="wpmozo-bna-text-highlighter-post-inner-wrapper">{attributes.post}</span>
@@ -30,9 +31,9 @@ export default function save({ attributes }) {
 						})()
 					) : (
 						<>
-							<span className="wpmozo-bna-text-highlighter-pre-inner-wrapper">{attributes.pre}</span>
+							<span className="wpmozo-bna-text-highlighter-pre-inner-wrapper">{attributes.pre}{displayInStackSpace}</span>
 							<span className="wpmozo-bna-text-highlighter-inner-wrapper">
-                                    <span className="wpmozo-bna-text-highlighted-content">{attributes.main}</span>
+                                    <span className="wpmozo-bna-text-highlighted-content">{attributes.main}{displayInStackSpace}</span>
 								{Shape[heighlighterShape]}
                                 </span>
 							<span className="wpmozo-bna-text-highlighter-post-inner-wrapper">{attributes.post}</span>

@@ -4,10 +4,11 @@ import generateDynamicStyle from "./style";
 const Save = ( { attributes } ) => {
 
 	const clientId = attributes.ID;
-	
+
 	const Tag          = attributes.selectDisplayTag || 'p'; // fallback to "p" if not set.
 	const animation    = attributes.selectAnimation ?? 'fade';
 	const animatedText = attributes.animatedText ?? '';
+	const displayInStackSpace = attributes.displayInStack ? '' : '\u00A0';
 
 	// Get first part before "|"
 	const initialText = animatedText.split('|')[0];
@@ -48,9 +49,9 @@ const Save = ( { attributes } ) => {
 				<Tag className={`wpmozo-animated-text`}>
 					{/* Post text. */}
 					{ ( attributes.preText && '' !== attributes.preText ) && (
-						<span className="pre_text_wrapper wpmozo_pre_post">{ attributes.preText }</span>
+						<span className="pre_text_wrapper wpmozo_pre_post">{ attributes.preText } {displayInStackSpace}</span>
 					) }
-					{ $animatedPhrase }
+					{ $animatedPhrase } {displayInStackSpace}
 					{/* Post text. */}
 					{ ( attributes.postText && '' !== attributes.postText ) && (
 						<span className="post_text_wrapper wpmozo_pre_post">{ attributes.postText }</span>

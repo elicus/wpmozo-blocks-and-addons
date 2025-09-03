@@ -16,15 +16,17 @@ export default function Edit(props) {
 
 	const attributes = props.attributes,
 		setAttributes = props.setAttributes,
-		clientId = props.clientId,blockProps = useBlockProps(),
-		heighlighterShape = attributes.textHighlighterShape;
+		clientId = props.clientId,
+		blockProps = useBlockProps(),
+		heighlighterShape = attributes.textHighlighterShape,
+		displayInStackSpace = attributes.displayInStack ? '' : '\u00A0';
 
 	useEffect(() => {
 		const event = new CustomEvent('WPMozoTextHighlighterPropsChanged');
 		window.dispatchEvent(event);
-		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
-		if ( iframe?.contentWindow ) {
-			iframe.contentWindow.dispatchEvent( event );
+		const iframe = document.querySelector('iframe[name="editor-canvas"]');
+		if (iframe?.contentWindow) {
+			iframe.contentWindow.dispatchEvent(event);
 		}
 	}, [props]);
 
@@ -42,20 +44,24 @@ export default function Edit(props) {
 								const Tag = attributes.headingLevel || 'h2';
 								return (
 									<Tag className="wpmozo-bna-text-highlighter-title">
-										<span className="wpmozo-bna-text-highlighter-pre-inner-wrapper">{attributes.pre}</span>
+										<span className="wpmozo-bna-text-highlighter-pre-inner-wrapper">
+											{attributes.pre}
+											{displayInStackSpace}
+										</span>
 										<span className="wpmozo-bna-text-highlighter-inner-wrapper">
-											<span className="wpmozo-bna-text-highlighted-content">{attributes.main}</span>
+											<span className="wpmozo-bna-text-highlighted-content"> {attributes.main} {displayInStackSpace}</span>
 											{Shape[heighlighterShape]}
 										</span>
-										<span className="wpmozo-bna-text-highlighter-post-inner-wrapper">{attributes.post}</span>
+										<span className="wpmozo-bna-text-highlighter-post-inner-wrapper"> {attributes.post} </span>
 									</Tag>
 								);
 							})()
 						) : (
 							<>
-								<span className="wpmozo-bna-text-highlighter-pre-inner-wrapper">{attributes.pre}</span>
+								<span className="wpmozo-bna-text-highlighter-pre-inner-wrapper">{attributes.pre}
+									{displayInStackSpace}</span>
 								<span className="wpmozo-bna-text-highlighter-inner-wrapper">
-									<span className="wpmozo-bna-text-highlighted-content">{attributes.main}</span>
+									<span className="wpmozo-bna-text-highlighted-content">{attributes.main} {displayInStackSpace}</span>
 									{Shape[heighlighterShape]}
 								</span>
 								<span className="wpmozo-bna-text-highlighter-post-inner-wrapper">{attributes.post}</span>
