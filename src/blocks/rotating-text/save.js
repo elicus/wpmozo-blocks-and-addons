@@ -3,7 +3,8 @@ import generateDynamicStyle from './style';
 
 export default function save({attributes}) {
 	
-	const ID = attributes.ID;
+	const clientId = attributes.ID;
+
 	let image = ( attributes.image ) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,	
 		useImage = attributes.useImage,
 		text = attributes.rotatingText,
@@ -26,10 +27,10 @@ export default function save({attributes}) {
 	}
 
 	return ( <>
-		<style>{ generateDynamicStyle( { attributes } ) }</style>
+		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
 		<div { ...useBlockProps.save( {className: 'wpmozo-bna-rotating-text ' + ( attributes.className || '' ) } ) }
-			id={`block-${ID}`}
+			id={`block-${clientId}`}
 		>
 			<div className="wpmozo-bna-rotating-text-wrap">
 	            <div className="wpmozo-bna-rotating-text-inner">

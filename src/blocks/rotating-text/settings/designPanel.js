@@ -54,55 +54,35 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 					TypographyKey="text"
 				/>
 			</PanelBody>
-			{/* Icon. */}
-			{ !attributes.useImage && ( <>
-				<PanelBody title={__('Icon', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
-					<WpmozoColorPicker props={props}
-						ColorKey="icon"
-						ColorTypes={[
-							{key: 'Color', label: __('Icon Color', 'wpmozo-blocks-and-addons')},
-							{key: 'Background', label: __('Icon Background Color', 'wpmozo-blocks-and-addons')}
-						]}
-					/>
-					<WpmozoRangeSize props={props}
-						label={ __( 'Icon Wrapper Size', 'wpmozo-blocks-and-addons') }
-						rangeSizeKey='iconWrapperSize'
-					/>
+			{/* Image/Icon. */}
+			<PanelBody title={__('Image/Icon', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
+				<WpmozoColorPicker props={props}
+					ColorKey="element"
+					ColorTypes={[
+						...(!attributes.useImage 
+	      					? [{ key: 'Color', label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ) }] 
+	      					: []),
+						{key: 'Background', label: __('Image/Icon Background Color', 'wpmozo-blocks-and-addons')}
+					]}
+				/>
+				<WpmozoRangeSize props={props}
+					label={ __( 'Image/Icon Wrapper Size', 'wpmozo-blocks-and-addons') }
+					rangeSizeKey='elementWrapperSize'
+				/>
+				{ !attributes.useImage && ( <>
 					<WpmozoRangeSize props={props}
 						label={ __( 'Icon Size', 'wpmozo-blocks-and-addons') }
 						rangeSizeKey='iconSize'
 					/>
-					<WpmozoDimensions props={props}
-						DimensionKey='icon'
-						DimensionsTypes={{padding: true}}
-					/>
-					<WpmozoBorder props={props}
-						BorderKey="icon"
-					/>
-				</PanelBody>
-			</> ) }
-			{/* Image. */}
-			{ attributes.useImage && ( <>
-				<PanelBody title={__('Image', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
-					<WpmozoColorPicker props={props}
-						ColorKey="image"
-						ColorTypes={[
-							{key: 'Background', label: __('Image Background Color', 'wpmozo-blocks-and-addons')}
-						]}
-					/>
-					<WpmozoRangeSize props={props}
-						label={ __( 'Image Wrapper Size', 'wpmozo-blocks-and-addons') }
-						rangeSizeKey='imageWrapperSize'
-					/>
-					<WpmozoDimensions props={props}
-						DimensionKey='image'
-						DimensionsTypes={{padding: true}}
-					/>
-					<WpmozoBorder props={props}
-						BorderKey="image"
-					/>
-				</PanelBody>
-			</> ) }
+				</> ) }
+				<WpmozoDimensions props={props}
+					DimensionKey='element'
+					DimensionsTypes={{padding: true}}
+				/>
+				<WpmozoBorder props={props}
+					BorderKey="element"
+				/>
+			</PanelBody>
 		</>
 	);
 };

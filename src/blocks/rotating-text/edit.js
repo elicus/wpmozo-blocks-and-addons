@@ -4,10 +4,18 @@ import { useBlockProps } from "@wordpress/block-editor";
 import Inspector from "./inspector";
 
 import generateDynamicStyle from "./style";
+import { getMainEl } from '../../common/utils';
 
 export default function Edit( props ) {
 
 	const { attributes, setAttributes, clientId } = props;
+
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( ! attributes.ID && clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	let image = ( attributes.image ) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,	
 		useImage = attributes.useImage,
@@ -29,6 +37,14 @@ export default function Edit( props ) {
 		    </div>
 		);
 	}
+
+	useEffect(() => {
+		const event = new CustomEvent('WPMozoRotatingTextPropsChanged');
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
+		}
+	}, [attributes.icon]);
 
 	return (
 		<Fragment>
