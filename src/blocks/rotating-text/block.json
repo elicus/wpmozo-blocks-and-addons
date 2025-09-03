@@ -17,8 +17,8 @@
 		"className": { "type": "string" },
 		
 		"image": { "type": "string" },
-		"icon": { "type": "string" },
-		"rotatingText": { "type": "string" },
+		"icon": { "type": "string", "default": "fas fa-house" },
+		"rotatingText": { "type": "string", "default": "Your content goes here" },
 		"useImage": { "type": "boolean", "default": false },
 
 		"wrapperBackground": { "type": "string" },

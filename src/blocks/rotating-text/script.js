@@ -4,7 +4,11 @@ var wpmozo_init_rotating_text = function( $, element = null ) {
         element.each( function () {
             
             const $textEl = $(this).find( '.wpmozo-bna-rotating-text-inner' );
-            const text    = $textEl.text().trim() + ' '; // Add space at end to show space.
+            let text    = $textEl.text().trim() + ' '; // Add space at end to show space.
+
+            if ( $(this).find('.wpmozo-bna-rotating-text-input').length > 0 ) {
+                text = $(this).find('.wpmozo-bna-rotating-text-input').val().trim() + ' ';
+            }
 
             $textEl.empty();
             const total = text.length;
@@ -23,17 +27,14 @@ jQuery(document).ready(function(e) {
 
     window.addEventListener('WPMozoRotatingTextPropsChanged', () => {
         let element = jQuery('.wpmozo-bna-rotating-text');
-        console.log(element);
         wpmozo_init_rotating_text( jQuery, element );
     });
 
 });
 
-// jQuery( document ).ready( function($) {
+jQuery( document ).ready( function($) {
 
-    
+    let element = jQuery('.wpmozo-bna-rotating-text');
+    wpmozo_init_rotating_text( $, element );
 
-//     let element = jQuery('.wpmozo-bna-rotating-text');
-//     wpmozo_init_rotating_text( $, element );
-
-// } );
+} );
