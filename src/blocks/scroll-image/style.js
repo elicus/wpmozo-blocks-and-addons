@@ -25,7 +25,6 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 		${wrapperDimensions}
 	}
 	.wpmozo-bna-scroll-image-inner-wrap img{
-		transition: all ${attributes.scrollSpeed}s ease-out;
 		${convertedStyle.image}
 	}`
 
