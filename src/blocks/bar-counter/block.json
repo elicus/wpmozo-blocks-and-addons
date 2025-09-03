@@ -23,9 +23,6 @@
 		"displayEmptyBar": { "type": "boolean", "default": false },
 		"useStripes": { "type": "boolean", "default": false },
 
-		"stripeBackgroundType": {"type": "string","default": "classic"},
-		"classicColor": { "type": "string" },
-		"stripeColor": { "type": "string" },
 		"stripeAnimation": { "type": "boolean", "default": false },
 		"stripeAnimationSpeed": { "type": "number" },
 

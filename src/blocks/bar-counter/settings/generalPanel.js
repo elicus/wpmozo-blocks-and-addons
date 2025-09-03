@@ -58,45 +58,6 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					__nextHasNoMarginBottom={true}
 				/>
 				{ true === attributes.useStripes && ( <>
-					<BaseControl
-						label={ __( 'Background Type', 'wpmozo-blocks-and-addons' ) }
-						className="wpmozo-button-tabs-wrap"
-					>
-						<ButtonGroup>
-							<Button
-								className="wpmozo-button-tabs-btn"
-								isPressed={ ( 'classic' === attributes.stripeBackgroundType ) ? true : false }
-								onClick={ () => setAttributes( { stripeBackgroundType: 'classic' } ) }
-								label={ __( 'Classic', 'wpmozo-blocks-and-addons' ) }
-							>{ __( 'Classic', 'wpmozo-blocks-and-addons' ) }</Button>
-							<Button
-								className="wpmozo-button-tabs-btn"
-								isPressed={ ( 'gradient' === attributes.stripeBackgroundType ) ? true : false }
-								onClick={ () => setAttributes( { stripeBackgroundType: 'gradient' } ) }
-								label={ __( 'Gradient', 'wpmozo-blocks-and-addons' ) }
-							>{ __( 'Gradient', 'wpmozo-blocks-and-addons' ) }</Button>
-						</ButtonGroup>
-						{ 'classic' === attributes.stripeBackgroundType && (
-							<WpmozoColorPicker
-								props={props}
-							    ColorKey="classic"
-							    ColorTypes={ [
-								   { key: 'Color', label: __( 'Stripe Classic Color', 'wpmozo-blocks-and-addons' ) }
-							    ] }
-							/>
-						) }
-						{ 'gradient'=== attributes.stripeBackgroundType && (
-							<WpmozoColorPicker
-								props={props}
-								ColorKey="stripe"
-								ColorTypes={ [ {
-								   key: 'Color',
-								   label: __( 'Stripe Gradient Color', 'wpmozo-blocks-and-addons' ),
-								   onlyGradient: true,
-							   	} ] }
-							/>
-						) }
-					</BaseControl>
 					<ToggleControl
 						label={ __( 'Enable Stripe Animation', 'wpmozo-blocks-and-addons' ) }
 						checked={ attributes.stripeAnimation }
