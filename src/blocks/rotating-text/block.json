@@ -22,9 +22,8 @@
 		"useImage": { "type": "boolean", "default": false },
 
 		"wrapperBackground": { "type": "string" },
-		"circleSize": { "type": "string" },
-		"circleAnimationSpeed": { "type": "string" },
-		"circleAnimationSpeed": { "type": "string" },
+		"circleSize": { "type": "string", "default": "150px" },
+		"circleAnimationSpeed": { "type": "number", "default": 8000 },
 		"wrapperborder": { "type": "object" },
         "wrapperborderRadius": { "type": "string" },
 
@@ -44,19 +43,13 @@
 		"textLetterCase": { "type": "string" },
 		"textLineHeight": { "type": "string" },
 
-		"iconColor": { "type": "string" },
-		"iconBackground": { "type": "string" },
-		"iconWrapperSize": { "type": "string" },
+		"elementColor": { "type": "string" },
+		"elementBackground": { "type": "string" },
+		"elementWrapperSize": { "type": "string" },
 		"iconSize": { "type": "string" },
-		"iconpadding": { "type": "object" },
-		"iconborder": { "type": "object" },
-        "iconborderRadius": { "type": "string" },
-
-		"imageBackground": { "type": "string" },
-		"imageWrapperSize": { "type": "string" },
-		"imagepadding": { "type": "object" },
-		"imageborder": { "type": "object" },
-        "imageborderRadius": { "type": "string" }
+		"elementpadding": { "type": "object" },
+		"elementborder": { "type": "object" },
+        "elementborderRadius": { "type": "string" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
