@@ -10,7 +10,7 @@ export default function save({attributes}) {
 		text = attributes.rotatingText,
 		iconImage = null;
 
-	if ( useImage === "on" ) {
+	if ( useImage ) {
 		iconImage = (
 		  	<img
 				src={image}

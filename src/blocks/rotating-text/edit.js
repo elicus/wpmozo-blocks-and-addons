@@ -22,7 +22,7 @@ export default function Edit( props ) {
 		text = attributes.rotatingText,
 		iconImage = null;
 
-	if ( useImage === "on" ) {
+	if ( useImage ) {
 		iconImage = (
 		  	<img
 				src={image}
@@ -44,7 +44,9 @@ export default function Edit( props ) {
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [attributes.icon]);
+	}, [
+		text
+	]);
 
 	return (
 		<Fragment>
@@ -62,6 +64,7 @@ export default function Edit( props ) {
 		                </div>
 		            )}
 		        </div>
+		        <input className="wpmozo-bna-rotating-text-input" type="hidden" value={text} />
 			</div>
 		</Fragment>
 	);
