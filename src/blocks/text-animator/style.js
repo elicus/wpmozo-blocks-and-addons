@@ -14,7 +14,9 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 
 	// Display in stack.
 	if ( attributes?.displayInStack ) {
-		styles += `.pre_text_wrapper, .post_text_wrapper{ display: block; }`;
+		styles += `
+		.wpmozo-animated-text{display: flex;flex-direction: column;place-items: flex-start;}
+		.pre_text_wrapper, .post_text_wrapper{ vertical-align: -webkit-baseline-middle; }`;
 	}
 
 	// Animation duration.
