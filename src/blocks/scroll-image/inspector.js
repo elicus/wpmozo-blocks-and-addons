@@ -10,26 +10,26 @@ import {
 
 import { inspectorPanelTabs } from '../../common/utils.js';
 import { GeneralPanel } from './settings/generalPanel';
-import { DesignPanel } from './settings/designPanel';
 
 const Inspector = ( { attributes, setAttributes } ) => {
 
-	let props = { attributes, setAttributes };
-		props = Object.assign( {}, props, { preAttributes: {} } );
+	let props = { attributes, setAttributes },
+		tabsArr = inspectorPanelTabs();
+	
+	props = Object.assign( {}, props, { preAttributes: {} } );
+
+	tabsArr = tabsArr.filter(item => item.name !== "design");
 
 	return (
 		<InspectorControls>
 			<TabPanel
 				className="wpmozo-settings-tab-panel"
 				activeClass="is-active"
-				tabs={ inspectorPanelTabs() }
+				tabs={ tabsArr }
 			>
 				{ ( tab ) => ( <div className="wpmozo-settings-tab-panel-content">
 					{ tab.name === 'general' && 
 						<GeneralPanel attributes={attributes} setAttributes={setAttributes} />
-					}
-					{ tab.name === 'design' && 
-						<DesignPanel attributes={attributes} setAttributes={setAttributes} />
 					}
 					{ tab.name === 'advanced' && 
 						<PanelBody title={ __( 'Advanced', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
