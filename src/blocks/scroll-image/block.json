@@ -25,11 +25,7 @@
 		"containerWidth": { "type": "string" },
 		"containerWidthUnit": { "type": "string", "default": "%" },
 		"containerHeight": { "type": "string" },
-		"containerHeightUnit": { "type": "string", "default": "px" },
-
-		"imageborderRadius": { "type": "string" },
-		"imageborder": { "type": "object" },
-		"imageBorderColor": { "type": "string" }
+		"containerHeightUnit": { "type": "string", "default": "px" }
 
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
