@@ -26,6 +26,13 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 		}`;
 	}
 
+	// Global text.
+	styles += `.wpmozo-animated-text{
+		${attributes.globalTextColor ? `color: ${attributes.globalTextColor};` : ''}
+		${attributes.globalTextAlignment ? `text-align: ${attributes.globalTextAlignment};` : ''}
+		${convertedStyle.global}
+	}`;
+
 	// Pre/Post text.
 	styles += `.pre_text_wrapper, .post_text_wrapper{
 		${attributes.prePostTextColor ? `color: ${attributes.prePostTextColor};` : ''}

@@ -27,6 +27,11 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			<BaseControl className="wpmozo-button-tabs-wrap">
 				<ButtonGroup>
 					<Button className="wpmozo-button-tabs-btn"
+							isPressed={ ( 'global' === textTypeTab ) ? true : false }
+							onClick={ () => setTextTypeTab( 'global' ) }
+							label={ __( 'Global', 'wpmozo-blocks-and-addons' ) }
+					>{ __( 'Global', 'wpmozo-blocks-and-addons' ) }</Button>
+					<Button className="wpmozo-button-tabs-btn"
 						isPressed={ ( 'prePost' === textTypeTab ) ? true : false }
 						onClick={ () => setTextTypeTab( 'prePost' ) }
 						label={ __( 'Pre/Post', 'wpmozo-blocks-and-addons' ) }
@@ -38,6 +43,33 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					>{ __( 'Animated', 'wpmozo-blocks-and-addons' ) }</Button>
 				</ButtonGroup>
 			</BaseControl>
+			{ 'global' === textTypeTab && ( <>
+				<WpmozoColorPicker
+					props={props}
+				   	ColorKey="globalText"
+				   	label={ __( 'Global Text', 'wpmozo-blocks-and-addons' ) }
+				   	ColorTypes={ [
+					   { key: 'Color', label: __( 'Global Text Color', 'wpmozo-blocks-and-addons' ) }
+				   	] }
+				/>
+				<WpmozoAlignment
+					label={ __( 'Global Text Alignment', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( newValue ) => setAttributes( { globalTextAlignment: newValue } ) }
+					value={ attributes.globalTextAlignment }
+				/>
+				<WpmozoTypography
+					TypoTypes={{
+						'FontSize': true,
+						'LetterSpacing': true,
+						'FontAppearance': true,
+						'LetterCase': true,
+						'LineHeight': true,
+					}}
+					props={props}
+					TypographyKey="global"
+					label={ __( 'Global Typography', 'wpmozo-blocks-and-addons' ) }
+				/>
+			</> ) }
 			{ 'prePost' === textTypeTab && ( <>
 				<WpmozoColorPicker props={props}
 					label={ __( 'Pre/Post Text', 'wpmozo-blocks-and-addons' ) }

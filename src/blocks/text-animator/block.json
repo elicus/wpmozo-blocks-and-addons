@@ -30,6 +30,22 @@
 		"stopAnimationOnHover": { "type": "boolean", "default": false },
 		"animateOnlyOnce": { "type": "boolean", "default": false },
 
+		"globalTextColor": { "type": "string" },
+		"globalTextAlignment": { "type": "string" },
+		"globalFontSize": { "type": "string" },
+		"globalFontAppearance": {
+			"type": "object",
+			"fontStyle": { "type": "string" },
+			"fontWeight": { "type": "string" },
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"globalLetterSpacing": { "type": "string" },
+		"globalLetterCase": { "type": "string" },
+		"globalLineHeight": { "type": "string" },
+
 		"prePostTextColor": { "type": "string" },
 		"prePostFontSize": { "type": "string" },
 		"prePostFontAppearance": {
