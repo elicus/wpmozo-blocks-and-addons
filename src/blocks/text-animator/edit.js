@@ -19,7 +19,6 @@ const Edit = (props) => {
 	const Tag          = attributes.selectDisplayTag || 'p'; // fallback to "p" if not set.
 	const animation    = attributes.selectAnimation ?? 'fade';
 	const animatedText = attributes.animatedText ?? '';
-	const displayInStackSpace = attributes.displayInStack ? '' : '\u00A0';
 
 	// Get first part before "|"
 	const initialText = animatedText.split('|')[0];
@@ -74,9 +73,9 @@ const Edit = (props) => {
 					<Tag className={`wpmozo-animated-text`}>
 						{/* Post text. */}
 						{ ( attributes.preText && '' !== attributes.preText ) && (
-							<span className="pre_text_wrapper wpmozo_pre_post">{ attributes.preText }{displayInStackSpace}</span>
+							<span className="pre_text_wrapper wpmozo_pre_post">{ attributes.preText }</span>
 						) }
-						{ $animatedPhrase } {displayInStackSpace}
+						{ $animatedPhrase }
 						{/* Post text. */}
 						{ ( attributes.postText && '' !== attributes.postText ) && (
 							<span className="post_text_wrapper wpmozo_pre_post">{ attributes.postText }</span>
