@@ -6,7 +6,7 @@
 	"title": "Rotating Text",
 	"category": "wpmozo",
 	"icon": "smiley",
-	"description": "Rotating Text description.",
+	"description": "This block makes it possible to rotate text by adding it in a circular shape with a background color and image in the center.",
 	"example": {},
 	"supports": {
 		"html": false,
