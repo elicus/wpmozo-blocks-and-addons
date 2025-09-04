@@ -15,6 +15,30 @@ WPMozo Blocks and Addons is a plugin designed to extend the functionality of the
 
 ### Key Features:
 
+- ### [Price List](https://wpmozoblocks.com/price-list/ "Price List for Gutenberg")
+Display pricing elegantly on your website with the Price List Block.
+
+- ### [Text Highlighter](https://wpmozoblocks.com/text-highlighter/ "Text Highlighter for Gutenberg")
+Highlight important text using the Text Highlighter block.
+
+- ### [Bar Counter](https://wpmozoblocks.com/bar-counter/ "Bar Counter for Gutenberg")
+Highlight progress or achievements with bar counters, allowing you to showcase statistics or milestones effectively on your WordPress site.
+
+- ### [Promotion Bar](https://wpmozoblocks.com/promotion-bar/ "Promotion Bar for Gutenberg")
+Highlight announcements, offers, or seasonal deals with the WPMozo Promotion Bar block. Perfect for grabbing user attention and boosting conversions.
+
+- ### [Lottie](https://wpmozoblocks.com/lottie/ "Lottie for Gutenberg")
+Show interactive animations with customizable controls, triggers, and responsiveness using the Lottie Block.
+
+- ### [Text Animator](https://wpmozoblocks.com/text-animator/ "Text Animator for Gutenberg")
+Animate your text with various effects to grab attention using the Text Animator Block.
+
+- ### [Scroll Image](https://wpmozoblocks.com/scroll-image/ "Scroll Image for Gutenberg")
+Showcase images with a smooth scrolling effect using the Scroll Image Block.
+
+- ### [Image Magnifier](https://wpmozoblocks.com/image-magnifier/ "Image Magnifier for Gutenberg")
+Enable users to zoom in on images for a closer look, enhancing the viewing experience for visuals on your WordPress website.
+
 - ### [Masonry Gallery](https://wpmozoblocks.com/masonry-gallery/ "Masonry Gallery for Gutenberg")
 Craft beautiful masonry galleries with the WPMozo Blocks and Addons, offering intuitive features without the need for CSS. Customize number of columns, lightbox functionality, optimized image gaps, and enhanced visibility for an appealing showcase.
 
@@ -125,6 +149,16 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
+2025-09-05 - Version 1.2.0
+* New: Price List Block.
+* New: Text Highlighter Block.
+* New: Bar Counter Block.
+* New: Promotion Bar Block.
+* New: Lottie Block.
+* New: Text Animator Block.
+* New: Scroll Image Block.
+* New: Image Magnifier Block.
+
 2025-08-28 - Version 1.1.0
 * New: Image Card Block.
 * New: Star Rating Block.

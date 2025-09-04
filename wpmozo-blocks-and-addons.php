@@ -24,7 +24,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-define( 'WPMOZO_BNA_VERSION', '1.1.0' );// Current plugin version.
+define( 'WPMOZO_BNA_VERSION', '1.2.0' );// Current plugin version.
 define( 'WPMOZO_BNA_FILE', __FILE__ );// Plugin main file.
 define( 'WPMOZO_BNA_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );// Plugin dir path.
 define( 'WPMOZO_BNA_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );// Plugin dir url.
