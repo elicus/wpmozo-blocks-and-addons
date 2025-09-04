@@ -32,7 +32,22 @@
 		"wrapInHeadingTag": { "type": "boolean", "default": false },
 		"headingLevel": { "type": "string", "default": "h2" },
 
-		"typeTextSettings": { "type": "string", "default": "pre" },
+		"typeTextSettings": { "type": "string", "default": "global" },
+		"globalTextColor": { "type": "string" },
+		"globalTextAlignment": { "type": "string" },
+		"globalFontSize": { "type": "string" },
+		"globalFontAppearance": {
+			"type": "object",
+			"fontStyle": { "type": "string" },
+			"fontWeight": { "type": "string" },
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"globalLetterSpacing": { "type": "string" },
+		"globalLetterCase": { "type": "string" },
+		"globalLineHeight": { "type": "string" },
 
 		"preTextColor": { "type": "string" },
 		"preTextAlignment": { "type": "string" },

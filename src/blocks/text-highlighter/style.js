@@ -15,6 +15,11 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 	let styles = `#block-${attributes.ID}{`;
 
 	styles += `
+		.wpmozo-bna-text-highlighter-wrapper{
+			${attributes.globalTextColor ? `color: ${attributes.globalTextColor};` : ''}
+			${attributes.globalTextAlignment ? `text-align: ${attributes.globalTextAlignment};` : ''}
+			${convertedStyle.global}
+		}
 		.wpmozo-bna-text-highlighter-pre-inner-wrapper{
 			color: ${attributes.preTextColor};
 			${convertedStyle.pre}
