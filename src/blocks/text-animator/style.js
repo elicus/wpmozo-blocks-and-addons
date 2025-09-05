@@ -10,12 +10,21 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
+	let alignItems;
+	if ('left' === attributes.globalTextAlignment) {
+		alignItems = 'flex-start';
+	} else if ('right' === attributes.globalTextAlignment) {
+		alignItems = 'flex-end';
+	} else {
+		alignItems = 'center';
+	}
+
     let styles = `#block-${attributes.ID} {`;
 
 	// Display in stack.
 	if ( attributes?.displayInStack ) {
 		styles += `
-		.wpmozo-animated-text{display: flex;flex-direction: column;place-items: flex-start;}
+		.wpmozo-animated-text{display: flex;flex-direction: column;place-items: ${alignItems};}
 		.pre_text_wrapper, .post_text_wrapper{ vertical-align: -webkit-baseline-middle; }`;
 	}
 
