@@ -15,12 +15,9 @@ const Edit = (props) => {
 
 	const { attributes, setAttributes, clientId } = props;
 
-	// Ensure ID is set once (no render-time mutation).
-	useEffect( () => {
-		if ( ! attributes.ID && clientId ) {
-			setAttributes( { ID: clientId } );
-		}
-	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+	let clientID = props.clientId;
+
+	attributes.ID = clientID;
 
 	const layout       = attributes.layout ?? 'layout1';
 	const displayLabel = attributes.displayLabel ?? 'full';
@@ -102,7 +99,7 @@ const Edit = (props) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, clientID } ) }</style>
 
 			<div {...useBlockProps()} id={`block-${attributes.ID}`}>
 				<div className={"wpmozo-promotion-bar-wrap " + layout}
