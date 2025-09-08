@@ -6,7 +6,7 @@
 	"title": "Rotating Text",
 	"category": "wpmozo",
 	"icon": "smiley",
-	"description": "Rotating Text description.",
+	"description": "Engage visitors and highlight messages with dynamic, customizable text animations using the Block.",
 	"example": {},
 	"supports": {
 		"html": false,
@@ -15,7 +15,7 @@
 	"attributes": {
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
-		
+
 		"image": { "type": "string" },
 		"icon": { "type": "string", "default": "fas fa-house" },
 		"rotatingText": { "type": "string", "default": "Your content goes here" },

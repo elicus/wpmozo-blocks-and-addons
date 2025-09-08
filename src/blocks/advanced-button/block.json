@@ -6,7 +6,7 @@
 	"title": "Advanced Button",
 	"category": "wpmozo",
 	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Design inline, interactive buttons with hover effects, marking text, and icon controls using the Block.",
 	"example": {},
 	"supports": {
 		"html": false,

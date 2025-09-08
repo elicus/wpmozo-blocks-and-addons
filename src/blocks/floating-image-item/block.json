@@ -6,7 +6,7 @@
     "title": "Floating Image Item",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "Example block scaffolded with Create Block tool.",
+    "description": "Make images float effortlessly with customizable effects using the Block.",
     "example": {},
     "parent": [ "wpmozo/floating-image" ],
     "supports": {
