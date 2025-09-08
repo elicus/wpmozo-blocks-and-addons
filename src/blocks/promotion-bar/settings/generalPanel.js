@@ -37,8 +37,6 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 
 					// Convert to Unix timestamp (seconds, not ms)
 					const timestamp = Math.floor( UTCdate.getTime() / 1000 );
-					console.log('timestamp:: ', timestamp);
-					
 
 					setAttributes( {
 						dateTimeUTC: UTCdate, // full Date object

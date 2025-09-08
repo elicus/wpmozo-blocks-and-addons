@@ -127,6 +127,14 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			true
 		);
 
+		wp_register_script(
+			$this->plugin_name . '-lottie-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/lottie.min.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
 		/*wp_register_script(
 			$this->plugin_name . '-blocks-script',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'js/frontend/frontend.js',
@@ -167,9 +175,17 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 		);
 
 		wp_register_script(
+			$this->plugin_name . '-waypoints-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/waypoints.min.js',
+			array( 'jquery'),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
+    wp_register_script(
 			$this->plugin_name . '-magnify-script',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/magnify.min.js',
-			array( 'jquery' ),
+			array( 'jquery'),
 			WPMOZO_BNA_VERSION,
 			true
 		);

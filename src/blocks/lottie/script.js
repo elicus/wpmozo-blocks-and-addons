@@ -1,29 +1,49 @@
 import $ from 'jquery';
 
+function getLottieContainer($paramElem) {
+	// The .wp-block-wpmozo-lottie is the parent block for this param element
+	return $paramElem.closest('.wp-block-wpmozo-lottie');
+}
+
+function getLottieUniqueID($container, $paramElem) {
+	return (
+		$paramElem.attr('id') ||
+		$container.attr('id') ||
+		$container.data('id') ||
+		''
+	);
+}
+
+// Listen for custom event to re-trigger change on all lottie params
 window.addEventListener('WPMozoLottiePropsChanged', () => {
 	$('.wpmozo-bna-lottie-params').trigger('change');
 });
 
-$(document).on('change', '.wpmozo-bna-lottie-params', function(e) {
-	// Initial gallery setup
-	let newAttributes = JSON.parse($(this).attr('data-attr'));
-	initLottie($(this), newAttributes );
+// On change of any lottie param, only re-init that instance
+$(document).on('change', '.wpmozo-bna-lottie-params', function (e) {
+	const $paramElem = $(this);
+	const $container = getLottieContainer($paramElem);
+	if ($container.length) {
+		let newAttributes = JSON.parse($paramElem.attr('data-attr'));
+		initLottie($container, $paramElem, newAttributes);
+	}
 });
 
-$(document).ready(function(e) {
-
-	// Initial gallery setup
-	$('.wpmozo-bna-lottie-params').each(function() {
-		let newAttributes = JSON.parse($(this).attr('data-attr'));
-		initLottie($(this), newAttributes );
+// On document ready, initialize all lottie instances
+$(document).ready(function () {
+	$('.wpmozo-bna-lottie-params').each(function () {
+		const $paramElem = $(this);
+		const $container = getLottieContainer($paramElem);
+		if ($container.length) {
+			let newAttributes = JSON.parse($paramElem.attr('data-attr'));
+			initLottie($container, $paramElem, newAttributes);
+		}
 	});
 });
 
-function initLottie($container, attributes){
-
-	var $container = $('.wp-block-wpmozo-lottie'),
-		$params = $container.find('.wpmozo-bna-lottie-params'),
-		uniqueID = $params.attr('id') || $container.attr('id') || $container.data('id') || '';
+// Main function: initialize a single lottie instance in its own container
+function initLottie($container, $paramElem, attributes) {
+	const uniqueID = getLottieUniqueID($container, $paramElem);
 
 	let trigger = attributes.animationTrigger,
 		direction = attributes.direction,
@@ -31,8 +51,14 @@ function initLottie($container, attributes){
 		speed = attributes.animationSpeed,
 		filePath = attributes.filePath;
 
+	// Find or create the animation wrapper inside this container
+	let $animWrapper = $container.find('.wpmozo-bna-lottie-anim');
+	if ($animWrapper.length === 0) {
+		$animWrapper = $('<div class="wpmozo-bna-lottie-anim"></div>');
+		$paramElem.before($animWrapper);
+	}
+
 	// If filePath is missing, destroy Lottie if available or return
-	var $animWrapper = $container.find('.wpmozo-bna-lottie-anim');
 	if (!filePath) {
 		if ($animWrapper.length && $animWrapper[0] && $animWrapper[0].__lottie) {
 			try {
@@ -49,22 +75,14 @@ function initLottie($container, attributes){
 
 	// Fetch the Lottie JSON and initialize the animation
 	$.getJSON(filePath, function (lottieJson) {
-
-		// Create or empty the animation wrapper
-		var $animWrapper = $container.find('.wpmozo-bna-lottie-anim');
-		if ($animWrapper.length === 0) {
-			$animWrapper = $('<div class="wpmozo-bna-lottie-anim"></div>');
-			$params.before($animWrapper);
-		} else {
-			// Destroy previous Lottie instance if exists
-			if ($animWrapper[0] && $animWrapper[0].__lottie) {
-				try {
-					$animWrapper[0].__lottie.destroy();
-				} catch (e) {}
-				$animWrapper[0].__lottie = null;
-			}
-			$animWrapper.empty();
+		// Destroy previous Lottie instance if exists
+		if ($animWrapper[0] && $animWrapper[0].__lottie) {
+			try {
+				$animWrapper[0].__lottie.destroy();
+			} catch (e) {}
+			$animWrapper[0].__lottie = null;
 		}
+		$animWrapper.empty();
 
 		var lottieAnimation = lottie.loadAnimation({
 			container: $animWrapper[0],
@@ -81,7 +99,8 @@ function initLottie($container, attributes){
 		lottieAnimation.setDirection(direction);
 		lottieAnimation.setSpeed(speed);
 
-		$container.off('.wpmozoLottie');
+		// Remove previous event handlers for this instance
+		$animWrapper.off('.wpmozoLottie');
 
 		// Use the animation wrapper for mouse/click events
 		if (trigger === 'hover') {
@@ -94,7 +113,6 @@ function initLottie($container, attributes){
 				});
 		} else if (trigger === 'click') {
 			$animWrapper.on('click.wpmozoLottie', function () {
-				// Use isPaused() method if available, else fallback to property
 				var paused = typeof lottieAnimation.isPaused === 'function'
 					? lottieAnimation.isPaused()
 					: !!lottieAnimation.isPaused;

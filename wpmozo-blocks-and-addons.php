@@ -1,16 +1,16 @@
 <?php
 /**
- * 
+ *
  * * @link            https://elicus.com
  * @since             1.0.0
  * @package           WPMozo_Blocks_And_Addons
- * 
+ *
  * @wordpress-plugin
- * Plugin Name:       Wpmozo Blocks And Addons
+ * Plugin Name:       WPMozo Blocks And Addons
  * Plugin URI:        https://wpmozo.com/product/wpmozo-blocks-and-addons
  * Description:       WPMozo Blocks and Addons is a plugin designed to extend the functionality of the Gutenberg editor.
  * It provides a variety of blocks to help you create stunning and interactive content in WordPress effortlessly.
- * Version:           1.1.0
+ * Version:           1.2.0
  * Requires at least: 5.0
  * Requires PHP:      5.6
  * Author:            Elicus
@@ -24,7 +24,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-define( 'WPMOZO_BNA_VERSION', '1.1.0' );// Current plugin version.
+define( 'WPMOZO_BNA_VERSION', '1.2.0' );// Current plugin version.
 define( 'WPMOZO_BNA_FILE', __FILE__ );// Plugin main file.
 define( 'WPMOZO_BNA_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );// Plugin dir path.
 define( 'WPMOZO_BNA_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );// Plugin dir url.

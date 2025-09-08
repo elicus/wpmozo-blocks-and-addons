@@ -1,24 +1,42 @@
+import $ from 'jquery';
+
 jQuery( document ).ready( function($) {
+
+	window.addEventListener('WPMozoPromotionPropsChanged', () => {
+		$('.wp-block-wpmozo-promotion-bar').each(function() {
+			// Clear if there is interval id.
+			let interval_id = $(this).attr( 'data-interval-id' );
+			if ( '' !== interval_id ) {
+				clearInterval( interval_id );
+				$(this).attr( 'data-interval-id', '' );
+			}
+
+			const timestamp = $(this).find('.wpmozo-promotion-bar-wrap').attr('data-timestamp');
+			wpmozoInitPromotionBarClock($(this), timestamp);
+		});
+	});
+
 	if ( $( '.wp-block-wpmozo-promotion-bar' ).length > 0 ) {
 		$( '.wp-block-wpmozo-promotion-bar' ).each( function() {
-			wpmozoInitPromotionBarClock( $( this ) );
+			const timestamp = $(this).find('.wpmozo-promotion-bar-wrap').attr('data-timestamp');
+			wpmozoInitPromotionBarClock( $( this ), timestamp );
 		} );
 	}
 } ); // Document ready.
 
 // Init promotion bar clock.
-function wpmozoInitPromotionBarClock( thisObj ) {
-
+function wpmozoInitPromotionBarClock( thisObj, dateStr ) {
 	const wrapObj = thisObj.find( '.wpmozo-promotion-bar-wrap' );
-	const dateStr = wrapObj.data( 'timestamp' );
-
+	if(dateStr === ''){
+		dateStr = wrapObj.data( 'timestamp' );
+	}
 	if ( dateStr ) {
 
 		thisObj.find( '.wpmozo-promotion-bar-timer' ).removeClass( 'wpmozo-timer-expired' );
 
 		// Update the count down every 1 second.
 		let timerIntervalId = setInterval( function() {
-			
+
 			// Find the distance between now and the count down date.
 			let distance = parseInt( dateStr ) - ( new Date ).getTime() / 1e3;
 
@@ -28,7 +46,7 @@ function wpmozoInitPromotionBarClock( thisObj ) {
 					days     = ( days && days > 0 ) ? days : 0;
 					distance %= 86400;
 					days    = ( days.toString().length < 2 ) ? "00" . concat( days ).slice( -2 ) : days;
-			
+
 				thisObj.find( '.wpmozo-pb-days .wpmozo-pb-number' ).html( days );
 				if ( parseInt( days ) < 1 ) {
 					thisObj.find( '.wpmozo-pb-days' ).addClass( 'wpmozo-has-zero-number' );

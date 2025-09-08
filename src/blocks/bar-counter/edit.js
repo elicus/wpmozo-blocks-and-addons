@@ -35,14 +35,14 @@ const Edit = (props) => {
             <div {...blockProps} id={`block-${attributes.ID}`}>
                 <div className={`wpmozo-bna-bar-counter ${emptyBarEnabled}`}>
                     <div className={`wpmozo-ban-bar-counter-wrapper ${attributes.layoutType}`}>
-                        <RichText
-                            className="wpmozo-bna-bar-counter-title"
-                            tagName={attributes.titleLavel}
-                            value={attributes.title}
-                            onChange={(newValue) => setAttributes({title: newValue})}
-                            placeholder={__('WPMozo Title', 'wpmozo-blocks-and-addons')}
-                        />
-
+						{attributes.title && (
+							<RichText
+								className="wpmozo-bna-bar-counter-title"
+								tagName={attributes.titleLavel}
+								value={attributes.title}
+								onChange={(newValue) => setAttributes({title: newValue})}
+							/>
+						)}
                         <div className="wpmozo-bna-bar-counter-bar-wrapper">
                             {/* Layout 1 */}
                             {attributes.layoutType === 'layout1' && (

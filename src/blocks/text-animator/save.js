@@ -5,7 +5,7 @@ import generateDynamicStyle from "./style";
 const Save = ( { attributes } ) => {
 
 	const clientId = attributes.ID;
-	
+
 	const Tag          = attributes.selectDisplayTag || 'p'; // fallback to "p" if not set.
 	const animation    = attributes.selectAnimation ?? 'fade';
 	const animatedText = attributes.animatedText ?? '';
