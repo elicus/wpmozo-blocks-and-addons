@@ -1,9 +1,3 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
 .wp-block-wpmozo-testimonial-slider{
 	text-align: center;
 }
@@ -130,9 +124,4 @@
 .wp-block-wpmozo-testimonial-slider .layout2 .wpmozo_testimonial_rating,
 .wp-block-wpmozo-testimonial-slider .layout2 .wpmozo_testimonial_meta{
 	margin-top: 15px;
-}
-
-.swiper-button-next,
-.swiper-button-prev{
-	display:flow-root !important;
 }

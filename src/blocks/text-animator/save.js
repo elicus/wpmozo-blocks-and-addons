@@ -1,3 +1,4 @@
+
 import { useBlockProps } from "@wordpress/block-editor";
 import generateDynamicStyle from "./style";
 
