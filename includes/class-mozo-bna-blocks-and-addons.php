@@ -202,6 +202,9 @@ class Mozo_Bna_Blocks_And_Addons {
 
 		// Load all script.js file in footer.
 		add_action( 'wp_enqueue_scripts', array( $this->classes['astreg'], 'enqueue_block_script_in_footer' ), 20 );
+
+		// Use a higher priority to ensure our filter runs after others.
+		add_filter( 'upload_mimes', array( $this, 'wpmozo_custom_upload_mimes' ), 999 );
 	}
 
 	/**
@@ -230,5 +233,23 @@ class Mozo_Bna_Blocks_And_Addons {
 			$this->load_admin_dependencies();
 			$this->add_admin_hooks();
 		}
+	}
+
+	/**
+	 * Add .json files as supported format in the uploader.
+	 *
+	 * @param array<string, string> $mimes Already supported mime types.
+	 * @return array<string, string>
+	 */
+	public function wpmozo_custom_upload_mimes( $mimes ){
+		// Remove any existing .json mime type to avoid conflicts.
+		foreach ( $mimes as $ext => $type ) {
+			if ( $ext === 'json' ) {
+				unset( $mimes[ $ext ] );
+			}
+		}
+		// Allow JSON files.
+		$mimes['json'] = 'application/json';
+		return $mimes;
 	}
 }

@@ -1,0 +1,50 @@
+import { __ } from "@wordpress/i18n";
+import {
+	InspectorControls
+} from '@wordpress/block-editor';
+import {
+	TabPanel,
+	PanelBody,
+	TextControl
+} from '@wordpress/components';
+
+import { inspectorPanelTabs } from '../../common/utils.js';
+import { GeneralPanel } from './settings/generalPanel';
+
+const Inspector = ( { attributes, setAttributes } ) => {
+
+	let props = { attributes, setAttributes },
+		tabsArr = inspectorPanelTabs();
+	
+	props = Object.assign( {}, props, { preAttributes: {} } );
+
+	tabsArr = tabsArr.filter(item => item.name !== "design");
+
+	return (
+		<InspectorControls>
+			<TabPanel
+				className="wpmozo-settings-tab-panel"
+				activeClass="is-active"
+				tabs={ tabsArr }
+			>
+				{ ( tab ) => ( <div className="wpmozo-settings-tab-panel-content">
+					{ tab.name === 'general' && 
+						<GeneralPanel attributes={attributes} setAttributes={setAttributes} />
+					}
+					{ tab.name === 'advanced' && 
+						<PanelBody title={ __( 'Advanced', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
+							<TextControl
+								label={ __( 'Additional CSS Class(es)', 'wpmozo-blocks-and-addons' ) }
+								value={ attributes.className || '' }
+								onChange={ ( value ) => setAttributes( { className: value } ) }
+								help={ __( 'Separate multiple classes with spaces.', 'wpmozo-blocks-and-addons' ) }
+							/>
+						</PanelBody>
+					}
+				</div> ) }
+			</TabPanel>
+		</InspectorControls>
+	);
+};
+
+export default Inspector;

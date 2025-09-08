@@ -13,6 +13,7 @@
 	padding-bottom: 6px;
 	padding-top: 6px;
 	text-align: center;
+	white-space: nowrap;
 }
 .wpmozo-active-sub-block{
 	border-radius: 1px;
@@ -109,6 +110,13 @@
 .wpmozo-settings-tab-panel button::after{
 	display: none;
 }
+
+.wpmozo-settings-tab-panel .components-datetime__time-field-hours-input,
+.wpmozo-settings-tab-panel .components-datetime__time-field,
+.wpmozo-settings-tab-panel .components-datetime__date h3{
+	margin-bottom: 0 !important;
+}
+
 /* Arrow. */
 /* .wpmozo-settings-tab-panel button.is-active::after{
 	content: "";

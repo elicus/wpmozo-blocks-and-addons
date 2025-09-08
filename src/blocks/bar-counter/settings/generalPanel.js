@@ -6,6 +6,9 @@ import {
     RangeControl,
     ToggleControl,
     SelectControl,
+	BaseControl,
+	ButtonGroup,
+	Button
 } from "@wordpress/components";
 import {
     WpmozoColorPicker,
@@ -14,7 +17,7 @@ import {
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
-	
+
 	return ( <>
 		<PanelBody title={ __( 'Configuration', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
 			<SelectControl
@@ -55,15 +58,6 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					__nextHasNoMarginBottom={true}
 				/>
 				{ true === attributes.useStripes && ( <>
-					<WpmozoColorPicker ColorKey="stripe"
-						label={ __( 'Stripe Color', 'wpmozo-blocks-and-addons' ) }
-						props={props}
-						ColorTypes={ [ {
-							key: 'Color',
-							label: __('Stripe Color', 'wpmozo-blocks-and-addons'),
-							onlyGradient: true,
-						} ] }
-					/>
 					<ToggleControl
 						label={ __( 'Enable Stripe Animation', 'wpmozo-blocks-and-addons' ) }
 						checked={ attributes.stripeAnimation }
