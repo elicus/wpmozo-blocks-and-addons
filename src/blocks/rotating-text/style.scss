@@ -1,0 +1,55 @@
+.wpmozo-bna-rotating-text-wrap {
+    display: grid;
+    place-content: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    background: #e3e3e3;
+    color: #000000;
+    transition: background 300ms, transform 200ms;
+    text-align: center;
+    appearance: none;
+    border: 0 solid;
+    user-select: none;
+}
+.wpmozo-bna-rotating-text-inner {
+    position: absolute;
+    inset: 0;
+    animation: wpmozo-bna-text-rotation 8000ms linear infinite;
+    font-size: 16px;
+    transform-origin: center;
+}
+/* Styling individual characters */
+.wpmozo-bna-rotating-text-inner span {
+    position: absolute;
+    transform: rotate(calc(var(--angle-step) * var(--index) * 1deg));
+    transform-origin: center;
+    inset: 5px;
+}
+/* Icon wrapper inside the button */
+.wpmozo-bna-rotating-text-icon-wrapper{
+    position: relative;
+    width: 55px;
+    height: 55px;
+    overflow: hidden;
+    background: #fff;
+    border: 0 solid;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wpmozo-bna-rotating-text-icon-wrapper img{
+    width: 100%;
+    height: auto;
+}
+.wpmozo-bna-rotating-text-icon-wrapper{
+    font-size: 28px;
+}
+
+/* Keyframe for text rotation */
+@keyframes wpmozo-bna-text-rotation {
+    to { transform: rotate(360deg); }
+}
