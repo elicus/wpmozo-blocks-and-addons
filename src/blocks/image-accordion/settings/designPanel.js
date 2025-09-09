@@ -14,7 +14,9 @@ import {
 	WpmozoColorPicker,
 	WpmozoTypography,
 	WpmozoRangeSize,
-	WpmozoBorder
+	WpmozoBorder,
+	WpmozoDimensions,
+	WpmozoIconpicker
 } from '../../../common/components/index';
 import { headingLevelsList } from '../../../common/utils.js';
 
@@ -118,34 +120,67 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			<ToggleControl
-				label={ __( 'Use Custom Styles For Button', 'wpmozo-blocks-and-addons' ) }
-				checked={ attributes.styleButton }
-				onChange={ ( newValue ) => setAttributes( { styleButton: newValue } ) }
+			<WpmozoColorPicker props={props}
+				ColorKey="button"
+				ColorTypes={[
+					{ key: 'TextColor', label: __( 'Text Color', 'wpmozo-blocks-and-addons' ) },
+					{ key: 'BackgroundColor', label: __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
+				] }
 			/>
 			<WpmozoAlignment
 				label={__( 'Button Alignment', 'wpmozo-blocks-and-addons')}
 				onChange={ ( newValue ) => setAttributes( { buttonAlignment: newValue } ) }
 				value={ attributes.buttonAlignment }
 			/>
-			{ attributes.styleButton && ( <>
+			<WpmozoTypography props={props}
+				TypographyKey="button"
+			/>
+			<ToggleControl
+				label={ __( 'Use Button Icon', 'wpmozo-blocks-and-addons' ) }
+				checked={ attributes.useButtonIcon }
+				onChange={ ( newValue ) => setAttributes( { useButtonIcon: newValue } ) }
+			/>
+			{ attributes.useButtonIcon && ( <>
 				<WpmozoColorPicker props={props}
 					ColorKey="button"
 					ColorTypes={[
-						{ key: 'TextColor', label: __( 'Text Color', 'wpmozo-blocks-and-addons' ) },
-						{ key: 'BackgroundColor', label: __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
+						{ key: 'IconColor', label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ) },
 					] }
 				/>
-				<WpmozoTypography props={props}
-					TypographyKey="button"
+				<WpmozoIconpicker
+					label={ __( 'Icon', 'wpmozo-blocks-and-addons' ) }
+					iconPickerKey='buttonIcon'
+					props={ props }
+					value={ attributes.buttonIcon }
+					onChange={ ( newValue ) => setAttributes( { buttonIcon: newValue } ) }
 				/>
-				<WpmozoBorder props={props}
-					BorderKey="button"
+				<SelectControl
+					label={ __( 'Icon Placement', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.buttonIconPlacement }
+					options={[
+						{
+							value: 'right',
+							label: __( 'Right', 'wpmozo-blocks-and-addons' ),
+						},
+						{
+							value: 'left',
+							label: __( 'Left', 'wpmozo-blocks-and-addons' ),
+						},
+					]}
+					onChange={ ( newValue ) => setAttributes( { buttonIconPlacement: newValue } ) }
 				/>
-				<WpmozoDimensions props={props}
-					DimensionKey='button'
+				<ToggleControl
+					label={ __( 'Show Button Icon On Hover', 'wpmozo-blocks-and-addons' ) }
+					checked={ attributes.buttonIconHover }
+					onChange={ ( newValue ) => setAttributes( { buttonIconHover: newValue } ) }
 				/>
 			</> ) }
+			<WpmozoBorder props={props}
+				BorderKey="button"
+			/>
+			<WpmozoDimensions props={props}
+				DimensionKey='button'
+			/>
 		</PanelBody>
 	</> );
 };
