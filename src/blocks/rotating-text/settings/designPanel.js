@@ -3,14 +3,15 @@ import {useState} from "@wordpress/element";
 
 import {
 	PanelBody,
-	RangeControl
+	RangeControl,
+	SelectControl
 } from "@wordpress/components";
 import {
 	WpmozoColorPicker,
 	WpmozoTypography,
 	WpmozoDimensions,
 	WpmozoBorder,
-	WpmozoRangeSize
+	WpmozoRangeSize, WpmozoAlignment
 } from '../../../common/components';
 
 export const DesignPanel = ({attributes, setAttributes}) => {
@@ -27,6 +28,11 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 						{key: 'Background', label: __('Background Color', 'wpmozo-blocks-and-addons')}
 					]}
 				/>
+				<WpmozoAlignment
+					label={ __( 'Alignment', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.rotatingAlign }
+					onChange={ ( newValue ) => setAttributes( { rotatingAlign: newValue } ) }
+				/>
 				<WpmozoRangeSize props={props}
 					label={ __( 'Circle Size', 'wpmozo-blocks-and-addons') }
 					rangeSizeKey='circleSize'
@@ -36,6 +42,15 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 					value={attributes.circleAnimationSpeed}
 					onChange={(newValue) => setAttributes({circleAnimationSpeed: newValue})}
 					min={1000} step={100} max={25000}
+				/>
+				<SelectControl
+					label={ __( 'Text Rotation', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.textRotation }
+					options={ [
+						{ value: 'clockwise', label: __( 'Clockwise', 'wpmozo-blocks-and-addons' ) },
+						{ value: 'anti-clockwise', label: __( 'Anti-Clockwise', 'wpmozo-blocks-and-addons' ) }
+					] }
+					onChange={ ( newValue ) => setAttributes( { textRotation: newValue } ) }
 				/>
 				<WpmozoBorder
 					props={props}
@@ -59,8 +74,8 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 				<WpmozoColorPicker props={props}
 					ColorKey="element"
 					ColorTypes={[
-						...(!attributes.useImage 
-	      					? [{ key: 'Color', label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ) }] 
+						...(!attributes.useImage
+	      					? [{ key: 'Color', label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ) }]
 	      					: []),
 						{key: 'Background', label: __('Image/Icon Background Color', 'wpmozo-blocks-and-addons')}
 					]}
