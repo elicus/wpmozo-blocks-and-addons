@@ -4,6 +4,8 @@
     position: relative;
     display: inline-block;
     border: 0 solid #000000;
+    float: unset !important;
+    margin: 0 !important;
 }
 .wpmozo-bna-image-hover-effect-inner:hover {
     opacity: 1;
