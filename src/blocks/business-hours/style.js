@@ -12,10 +12,13 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
     let styles = `#block-${attributes.ID} {
+    .wpmozo_business_hours_wrap{
 		border: 0 solid #000;
 		${attributes.blockBGGradient ? `background:`+ attributes.blockBGGradient + `;` : ''}
 		${attributes.blockBackground ? `background:`+ attributes.blockBackground + `;` : ''}
-		${ convertedStyle.block }`;
+		${ convertedStyle.block }
+		}
+	}`;
 
 	// Wrapper styling.
 	styles += `.wpmozo_business_hour_wrapper{ display: flex; align-items: center; }`;
