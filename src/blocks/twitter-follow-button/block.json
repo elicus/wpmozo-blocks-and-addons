@@ -1,0 +1,44 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/twitter-follow-button",
+	"version": "0.1.0",
+	"title": "Twitter Follow",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "Use the Twitter Follow Button to make users follow you on your twitter account from your website.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"customClassName": false
+	},
+	"attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+
+		"twitterUsername": { "type": "string" },
+		"doNotTrack": { "type": "boolean", "default": false },
+		"showUsername": { "type": "boolean", "default": false },
+		"showCount": { "type": "boolean", "default": false },
+		"buttonSize": { "type": "string", "default": "small" },
+
+		"buttonAlign": { "type": "string" },
+		
+		"fallbackTextColor": { "type": "string" },
+		"fallbackTextFontSize": { "type": "string", "default": "14px" },
+		"fallbackTextLetterSpacing": { "type": "string" },
+		"fallbackTextDecoration": { "type": "string" },
+		"fallbackTextLetterCase": { "type": "string" },
+		"fallbackTextLineHeight": { "type": "string" },
+		"fallbackTextFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"fallbackTextFontStyle": { "type": "string" },
+		"fallbackTextFontWeight": { "type": "string" }
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"script": [ "file:./script.js" ]
+}

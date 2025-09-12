@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/twitter-tweet-button",
+	"version": "0.1.0",
+	"title": "Twitter Share",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "Use the Twitter Share Button to share post on their twitter accounts containing your content.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"customClassName": false
+	},
+	"attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+
+		"customText": { "type": "rich-text" },
+		"customUrl": { "type": "string" },
+		"hashtags": { "type": "string" },
+		"via": { "type": "string" },
+		"related": { "type": "string" },
+		"doNotTrack": { "type": "boolean", "default": false },
+
+		"buttonSize": { "type": "string", "default": "small" }
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"script": [ "file:./script.js" ]
+}

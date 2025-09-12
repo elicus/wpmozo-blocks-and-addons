@@ -150,3 +150,11 @@
 	display: block;
 	margin-right: auto;
 }
+
+/* Custom field warning. */
+.wpmozo-field-warning.is-warning{
+	border: 1px solid #f0b849;
+}
+.wpmozo-field-warning .components-notice__content{
+	margin: 0;
+}
