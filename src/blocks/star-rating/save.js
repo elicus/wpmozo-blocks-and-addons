@@ -9,8 +9,7 @@ const Save = ( { attributes } ) => {
 	const rateIcon    = ( attributes.rateIcon ) ?? 'default';
 	const showRateNum = ( attributes.showRateNum ) ?? true;
 
-	let ratingOutOf = parseInt( attributes.ratingOutOf ) ?? 5;
-
+	let ratingOutOf = ( attributes.ratingOutOf && '' !== attributes.ratingOutOf ) ? attributes.ratingOutOf : 5;
 	// For smily icons, out of icons must be 5.
 	if ( [ 'smiley_scale' ].includes( rateIcon ) && ratingOutOf !== 5 ) {
 		ratingOutOf = 5;

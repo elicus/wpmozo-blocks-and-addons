@@ -32,9 +32,9 @@ const Edit = ( props ) => {
 
 	// Track previous rateIcon to force reload even if "same" is chosen.
 	const prevRateIcon = useRef( null );
-	
+
 	// ratingOutOf (force 5 for smiley).
-	let ratingOutOf = attributes.ratingOutOf ?? 5;
+	let ratingOutOf = ( attributes.ratingOutOf && '' !== attributes.ratingOutOf ) ? attributes.ratingOutOf : 5;
 	if ( isSmiley( rateIcon ) && ratingOutOf !== 5 ) {
 		ratingOutOf = 5;
 	}

@@ -33,7 +33,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				<TextControl
 					label={ __( 'Rating Out Of', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.ratingOutOf }
-					onChange={ ( newValue ) => setAttributes( { ratingOutOf: parseInt( newValue ) } ) }
+					onChange={ ( newValue ) => setAttributes( { ratingOutOf: newValue } ) }
 					__next40pxDefaultSize={ true }  __nextHasNoMarginBottom={ true }
 				/>
 				<WpmozoMediaUploader attrKye="image" props={ props }
