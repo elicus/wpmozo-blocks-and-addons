@@ -26,7 +26,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
 	return ( <>
-		<PanelBody title={ __( 'Text', 'wpmozo-blocks-and-addons' ) }  initialOpen={false}>
+		<PanelBody title={ __( 'Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel"  initialOpen={false}>
 			<WpmozoAlignment
 				label={__( 'Text Alignment', 'wpmozo-blocks-and-addons')}
 				onChange={ ( newValue ) => setAttributes( { textAlignment: newValue } ) }
@@ -88,8 +88,8 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					{ headingLevelsList.map( ( item, index ) => (
 						<Button
 							key={`heading-level-${index}`}
-							isPressed={item.value === attributes.titleLavel}
-							onClick={() => setAttributes({titleLavel: item.value})}
+							isPressed={item.value === attributes.descriptionLavel}
+							onClick={() => setAttributes({descriptionLavel: item.value})}
 						>{item.label}</Button>
 					) ) }
 				</ButtonGroup>

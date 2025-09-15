@@ -25,7 +25,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
     };
 
 	return ( <>
-		{/* Gallery settings. */}
+		{/* Configuration settings. */}
 		<PanelBody title={ __( 'Configuration', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
 			<SelectControl
 				label={ __( 'Accordion Trigger', 'wpmozo-blocks-and-addons' ) }

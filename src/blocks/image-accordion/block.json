@@ -18,40 +18,21 @@
         "ID": { "type": "string" },
 		"className": { "type": "string" },
         "accordionTrigger": { "type": "string", "default": "hover" },
-        accordionOrientation
-        contentAlignment
-        inactiveState
-        activeAccordionSize
-        activeAccordion
-        accordionTransitionDuration
-        "layout": { "type": "string", "default": "layout1" },
-        "columnSpacing": { "type": "string", "default": "15px" },
-        "numberOfColumns": { "type": "string", "default": "1" },
+        "accordionOrientation" : { "type": "string" },
+        "contentAlignment" : { "type": "string" },
         "inactiveState": { "type": "array", "default": [] },
-        "bottomSpacing": { "type": "string", "default": "20px" },
+        "activeAccordionSize" : { "number": "string", "default": 4 },
+        "activeAccordion" : { "type": "number" },
+        "accordionTransitionDuration" : { "type": "number", "default": 500 },
 
-        "itemBackground": { "type": "string" },
-        "itemborder": { "type": "object" },
-        "itemborderRadius": { "type": "string" },
-
-        "dividerColor": { "type": "string" },  
+        "textColor": { "type": "string" },  
         "textAlignment": { "type": "string" },
-        "nameHeadingLavel": { "type": "string", "default": "h4" },
-        "currencySymbolPosition": { "type": "string" },
-        "dividerStyle": { "type": "string" },
 
-        "iconColor": { "type": "string" },
-        "iconShapBackground": { "type": "string" },
-
-        "iconFontSize": { "type": "string", "default": "100px" },
-
-        "thumbnailWidth": { "type": "string", "default": "100px" },
-        "thumbnailborder": { "type": "object" },
-        "thumbnailborderRadius": { "type": "string" },
-
-        "nameColor": { "type": "string" },
-        "nameFontSize": { "type": "string", "default": "20px" },
-        "nameFontAppearance": {
+        "titleColor": { "type": "string" },  
+        "titleAlign": { "type": "string" },
+        "titleLavel": { "type": "string", "default": "h4" },
+        "titleFontSize": { "type": "string", "default": "18px" },
+        "titleFontAppearance": {
             "type": "object",
             "fontStyle": { "type": "string" },
             "fontWeight": { "type": "string" },
@@ -60,45 +41,15 @@
                 "fontWeight": ""
             }
         },
-        "nameLetterSpacing": { "type": "string" },
-        "nameDecoration": { "type": "string" },
-        "nameLetterCase": { "type": "string" },
-        "nameLineHeight": { "type": "string" },
+        "titleLetterSpacing": { "type": "string" },
+        "titleDecoration": { "type": "string" },
+        "titleLetterCase": { "type": "string" },
+        "titleLineHeight": { "type": "string" },
 
-        "priceColor": { "type": "string" },
-        "priceFontSize": { "type": "string", "default": "18px" },
-        "priceFontAppearance": {
-            "type": "object",
-            "fontStyle": { "type": "string" },
-            "fontWeight": { "type": "string" },
-            "default": {
-                "fontStyle": "",
-                "fontWeight": ""
-            }
-        },
-        "priceLetterSpacing": { "type": "string" },
-        "priceDecoration": { "type": "string" },
-        "priceLetterCase": { "type": "string" },
-        "priceLineHeight": { "type": "string" },
-
-        "currencyColor": { "type": "string" },
-        "currencyFontSize": { "type": "string", "default": "18px" },
-        "currencyFontAppearance": {
-            "type": "object",
-            "fontStyle": { "type": "string" },
-            "fontWeight": { "type": "string" },
-            "default": {
-                "fontStyle": "",
-                "fontWeight": ""
-            }
-        },
-        "currencyLetterSpacing": { "type": "string" },
-        "currencyDecoration": { "type": "string" },
-        "currencyLetterCase": { "type": "string" },
-        "currencyLineHeight": { "type": "string" },
-
-        "descriptionColor": { "type": "string" },
-        "descriptionFontSize": { "type": "string", "default": "14px" },
+        "descriptionColor": { "type": "string" },  
+        "descriptionAlign": { "type": "string" },
+        "descriptionLavel": { "type": "string", "default": "h4" },
+        "descriptionFontSize": { "type": "string", "default": "18px" },
         "descriptionFontAppearance": {
             "type": "object",
             "fontStyle": { "type": "string" },
@@ -113,12 +64,14 @@
         "descriptionLetterCase": { "type": "string" },
         "descriptionLineHeight": { "type": "string" },
 
-        "dividerColor": { "type": "string" },
-        "dividerWidth": { "type": "string", "default": "1px" },
+        "iconColor": { "type": "string" },
+        "iconFontSize": { "type": "string", "default": "32px" },
 
-        "periodColor": { "type": "string" },
-        "periodFontSize": { "type": "string",  "default": "16px" },
-        "periodFontAppearance": {
+        "buttonTextColor": { "type": "string" },
+        "buttonBackgroundColor": { "type": "string" },
+        "buttonAlignment": { "type": "string" },
+        "buttonFontSize": { "type": "string", "default": "18px" },
+        "buttonFontAppearance": {
             "type": "object",
             "fontStyle": { "type": "string" },
             "fontWeight": { "type": "string" },
@@ -127,10 +80,20 @@
                 "fontWeight": ""
             }
         },
-        "periodLetterSpacing": { "type": "string" },
-        "periodDecoration": { "type": "string" },
-        "periodLetterCase": { "type": "string" },
-        "periodLineHeight": { "type": "string" }
+        "buttonLetterSpacing": { "type": "string" },
+        "buttonDecoration": { "type": "string" },
+        "buttonLetterCase": { "type": "string" },
+        "buttonLineHeight": { "type": "string" },
+        "useButtonIcon": { "type": "boolean", "default": false },
+        "buttonIconColor": { "type": "string" },
+        "buttonIcon": { "type": "string" },
+        "buttonIconPlacement": { "type": "string" },
+        "buttonIconHover": { "type": "string" },
+        "buttonborder": { "type": "object" },
+        "buttonborderRadius": { "type": "string" },
+        "buttonpadding": { "type": "object" },
+        "buttonmargin": { "type": "object" },
+        "buttonposition": { "type": "object" } 
     },
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",

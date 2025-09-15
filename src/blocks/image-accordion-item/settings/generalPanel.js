@@ -6,7 +6,11 @@ import {
 	ButtonGroup,
 	Button,
 	SelectControl,
-	TextareaControl
+	TextareaControl,
+	ToggleControl,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
+    __experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon
 } from '@wordpress/components';
 import { __experimentalColorGradientControl as ColorGradientControl } from "@wordpress/block-editor"
 import { useState } from "@wordpress/element";
@@ -28,57 +32,47 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	return ( <>
 		<PanelBody title={ __( 'Content', 'wpmozo-blocks-and-addons' ) }  initialOpen={false}>
 			<TextControl
-				label={ __( 'Item Name', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.itemName }
-				placeholder={ __( 'Item Name', 'wpmozo-blocks-and-addons' ) }
-				onChange={ ( newValue ) => setAttributes( { itemName: newValue } ) }
+				label={ __( 'Title', 'wpmozo-blocks-and-addons' ) }
+				value={ attributes.itemTitle }
+				placeholder={ __( 'Title', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( newValue ) => setAttributes( { itemTitle: newValue } ) }
 			/>
-			<TextControl
-				label={ __( 'Currency', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.itemCurrency }
-				placeholder={ __( '$', 'wpmozo-blocks-and-addons' ) }
-				onChange={ ( newValue ) => setAttributes( { itemCurrency: newValue } ) }
-			/>
-			<TextControl
-				label={ __( 'Item Price', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.itemPrice }
-				placeholder={ __( '10', 'wpmozo-blocks-and-addons' ) }
-				onChange={ ( newValue ) => setAttributes( { itemPrice: newValue } ) }
-			/>
-			<TextControl
-				label={ __( 'Item Price Period', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.pricePeriod }
-				onChange={ ( newValue ) => setAttributes( { pricePeriod: newValue } ) }
-			/>
-			<SelectControl
-				label={ __( 'Image/Icon as thumbnail', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.itemThumbnailOption }
-				options={ [
-					{ value: 'use_image', label: __( 'Use Image', 'wpmozo-blocks-and-addons' ) },
-					{ value: 'use_icon', label: __( 'Use Icon', 'wpmozo-blocks-and-addons' ) }
-				] }
-				onChange={ (newValue) => setAttributes( { itemThumbnailOption: newValue } ) }
-				__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
-			/>
-			{ 'use_icon' === attributes.itemThumbnailOption && ( <>
-				<WpmozoIconpicker props={ props }
-					label={ __( 'Icon', 'wpmozo-blocks-and-addons' ) }
-					iconPickerKey='icon'
-					value={ attributes.icon }
-					onChange={ ( newValue ) => setAttributes( { icon: newValue } ) }
-				/>
-			</> ) }
-			{ 'use_image' === attributes.itemThumbnailOption && ( <>
-				<WpmozoMediaUploader props={props} 
-					attrKye="itemThumbnail"
-					label={ __( 'Item Thumbnail', 'wpmozo-blocks-and-addons' ) }
-				/>
-			</> ) }
 			<TextareaControl
-				label={ __( 'Item description', 'wpmozo-blocks-and-addons' ) }
-				onChange={ ( newValue ) => setAttributes( { content: newValue } ) }
-				value={ attributes.content }
+				label={ __( 'Description', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( newValue ) => setAttributes( { itemDescription: newValue } ) }
+				value={ attributes.itemDescription }
 			/>
+			<WpmozoIconpicker props={ props }
+				label={ __( 'Icon', 'wpmozo-blocks-and-addons' ) }
+				iconPickerKey='icon'
+				value={ attributes.itemIcon }
+				onChange={ ( newValue ) => setAttributes( { itemIcon: newValue } ) }
+			/>
+			<ToggleControl
+				label={ __( 'Show Button', 'wpmozo-blocks-and-addons' ) }
+				checked={ attributes.showButton }
+				onChange={ ( newValue ) => setAttributes( { showButton: newValue } ) }
+			/>
+			{ attributes.showButton && ( <>
+				<TextControl
+					label={ __( 'Button Text', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( newValue ) => setAttributes( { itemButtonText: newValue } ) }
+					value={ attributes.itemButtonText }
+				/>
+				<TextControl
+					label={ __( 'Button Link URL', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.itemButtonUrl }
+					onChange={ ( newValue ) => setAttributes( { itemButtonUrl: newValue } ) }
+				/>
+				<ToggleGroupControl
+					label={ __( 'Link Target', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.itemButtonLinkTarget }
+					onChange={ ( newValue ) => setAttributes( { itemButtonLinkTarget: newValue } ) }
+				>
+					<ToggleGroupControlOptionIcon value="external" icon="external" label={ __( 'New Window', 'wpmozo-blocks-and-addons' ) } />
+					<ToggleGroupControlOptionIcon value="same" icon="admin-links" label={ __( 'Same Window', 'wpmozo-blocks-and-addons' ) } />
+				</ToggleGroupControl>
+			</> ) }
 		</PanelBody>
 	</> );
 };

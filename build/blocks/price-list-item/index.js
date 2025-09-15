@@ -1528,6 +1528,7 @@ const WpmozoColorPicker = args => {
   } = args;
   const preAttributes = props.preAttributes;
   const AllColors = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.__experimentalUseMultipleOriginColorsAndGradients)();
+  console.log(AllColors);
   const setValue = (styleType, value) => {
     if (value === null && typeof preAttributes[ColorKey + styleType] !== 'undefined' && preAttributes[ColorKey + styleType].hasOwnProperty('default')) {
       value = preAttributes[ColorKey + styleType].default;
