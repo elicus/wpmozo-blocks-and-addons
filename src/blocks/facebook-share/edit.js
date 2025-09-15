@@ -21,19 +21,16 @@ const Edit = ( props ) => {
 	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	// Get attributes.
-	const customText = attributes.customText ?? '';
-	const customUrl  = attributes.customUrl ?? '';
-	const hashtags   = attributes.hashtags ?? '';
-	const via        = attributes.via ?? '';
-	const related    = attributes.related ?? '';
-	const doNotTrack = ( false === attributes.doNotTrack ) ? 0 : 1;
-	
-	const buttonSize = attributes.buttonSize ?? 'small';
+	const fbAppId      = attributes.fbAppId ?? '';
+	const buttonLayout = attributes.buttonLayout ?? '';
+	const pageURL      = attributes.pageURL ?? 'https://wpmozoblocks.com/';
+	const lazyLoading  = attributes.lazyLoading ?? '';
+	const buttonSize   = attributes.buttonSize ?? 'small';
 
 	// Props change event.
 	useEffect( () => {
-		const event = new CustomEvent( 'WPMozoTwitterShareButtonPropsChanged', {
-			detail: { clientId: attributes.ID }
+		const event = new CustomEvent( 'WPMozoFacebookSharePropsChanged', {
+			detail: { clientId: clientId }
 		} );
 		window.dispatchEvent( event );
 
@@ -41,7 +38,7 @@ const Edit = ( props ) => {
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [ customText, customUrl, hashtags, via, related, doNotTrack, buttonSize ] );
+	}, [ fbAppId, buttonLayout, pageURL, buttonSize ] );
 
 	return (
 		<Fragment>
@@ -49,18 +46,18 @@ const Edit = ( props ) => {
 			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
 			<div {...useBlockProps()} id={`block-${clientId}`}>
-				<div className="wpmozo_twitter_embedded_tweet_button">
-					<a className="wpmozo_twitter_embed_tweet_button"
-						href="https://x.com/intent/tweet"
-						data-text={ customText }
-						data-url={ customUrl }
+				{ ( fbAppId && '' !== fbAppId ) && (
+					<div className="fb-share-button"
+						data-fb-app={ fbAppId }
+						data-href={ pageURL }
+						data-layout={ buttonLayout }
 						data-size={ buttonSize }
-						data-dnt={ doNotTrack }
-						data-hashtags={ hashtags }
-						data-via={ via }
-						data-related={ related }
-					>Tweet</a>
-				</div>
+						data-lazy={ lazyLoading }
+					></div>
+				) }
+				{ ( ! fbAppId || '' === fbAppId ) && (
+					<small>(Builder Placeholder) Please enter facebook app id to preview the facebook share.</small>
+				) }
 			</div>
 		</Fragment>
 	);

@@ -21,14 +21,18 @@ const Edit = ( props ) => {
 	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	// Get attributes.
-	const twitterUsername = attributes.twitterUsername ?? '';
-	const buttonSize      = attributes.buttonSize ?? 'small';
-	const doNotTrack      = ( false === attributes.doNotTrack ) ? 0 : 1;
-	const showUsername    = attributes.showUsername ?? false;
+	const fbAppId         = attributes.fbAppId ?? '';
+	const videoURL        = attributes.videoURL ?? '';
+	const frameWidth      = attributes.frameWidth ?? 450;
+	const autoplay        = attributes.autoplay ?? false;
+	const allowFullScreen = attributes.allowFullScreen ?? false;
+	const displayText     = attributes.displayText ?? false;
+	const displayCaption  = attributes.displayCaption ?? false;
+	const lazyLoading     = attributes.lazyLoading ?? false;
 
 	// Props change event.
 	useEffect( () => {
-		const event = new CustomEvent( 'WPMozoTwitterFollowButtonPropsChanged', {
+		const event = new CustomEvent( 'WPMozoFacebookEmbeddedVideoPropsChanged', {
 			detail: { clientId: attributes.ID }
 		} );
 		window.dispatchEvent( event );
@@ -37,30 +41,30 @@ const Edit = ( props ) => {
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [ twitterUsername, buttonSize, doNotTrack, showUsername ] );
+	}, [ props ] );
 
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
-			<div {...useBlockProps()} id={`block-${clientId}`}>
-				{ ( twitterUsername && '' !== twitterUsername ) && (
-					<div className="wpmozo_twitter_embedded_follow_button">
-						<a className="wpmozo_twitter_embed_follow_button"
-							href={ "https://twitter.com/" + twitterUsername }
-							data-show-screen-name={ showUsername }
-							data-size={ buttonSize }
-							data-dnt={ doNotTrack }
-							data-name={ twitterUsername }
-						>
-							{ __( 'Follow', 'wpmozo-blocks-and-addons' ) }
-							{ ( true === showUsername ) && ' @' + twitterUsername }
-						</a>
+			<div {...useBlockProps()} id={`block-${attributes.ID}`}>
+				{ ( fbAppId && '' !== fbAppId && videoURL && '' !== videoURL ) && (
+					<div className="wpmozo_fb_embedded_video_wrapper">
+						<div className="fb-video"
+							data-fb-app={ fbAppId }
+							data-href={ videoURL }
+							data-width={ frameWidth + 'px' }
+							data-autoplay={ autoplay }
+							data-allowfullscreen={ allowFullScreen }
+							data-show-text={ displayText }
+							data-show-captions={ displayCaption }
+							data-lazy={ lazyLoading }
+						></div>
 					</div>
 				) }
-				{ ( ! twitterUsername || '' === twitterUsername ) && (
-					<small>(Builder Placeholder) Please enter tweet username to preview the Twitter Follow Button.</small>
+				{ ( ! fbAppId || '' === fbAppId || ! videoURL || '' === videoURL ) && (
+					<small>(Builder Placeholder) Please enter facebook app id and video URL to preview the facebook embedded video.</small>
 				) }
 			</div>
 		</Fragment>

@@ -11,7 +11,6 @@ const Save = ( { attributes } ) => {
 	const buttonSize      = attributes.buttonSize ?? 'small';
 	const doNotTrack      = ( false === attributes.doNotTrack ) ? 0 : 1;
 	const showUsername    = attributes.showUsername ?? false;
-	const showCount       = attributes.showCount ?? false;
 	
 	return ( <>
 		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
@@ -22,7 +21,6 @@ const Save = ( { attributes } ) => {
 					<a className="wpmozo_twitter_embed_follow_button"
 						href={ "https://twitter.com/" + twitterUsername }
 						data-show-screen-name={ showUsername }
-						data-show-count={ showCount }
 						data-size={ buttonSize }
 						data-dnt={ doNotTrack }
 						data-name={ twitterUsername }

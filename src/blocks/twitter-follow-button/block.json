@@ -19,7 +19,6 @@
 		"twitterUsername": { "type": "string" },
 		"doNotTrack": { "type": "boolean", "default": false },
 		"showUsername": { "type": "boolean", "default": false },
-		"showCount": { "type": "boolean", "default": false },
 		"buttonSize": { "type": "string", "default": "small" },
 
 		"buttonAlign": { "type": "string" },

@@ -45,11 +45,6 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				checked={ attributes.showUsername }
 				onChange={ ( newValue ) => setAttributes( { showUsername: newValue } ) }
 			/><hr />
-			<ToggleControl
-				label={ __( 'Show Count', 'wpmozo-blocks-and-addons' ) }
-				checked={ attributes.showCount }
-				onChange={ ( newValue ) => setAttributes( { showCount: newValue } ) }
-			/><hr />
 			<SelectControl
 				label={ __( 'Size', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.buttonSize }

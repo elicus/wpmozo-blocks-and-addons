@@ -16,14 +16,30 @@
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
 
-		"customText": { "type": "rich-text" },
+		"customText": { "type": "string" },
 		"customUrl": { "type": "string" },
 		"hashtags": { "type": "string" },
 		"via": { "type": "string" },
 		"related": { "type": "string" },
 		"doNotTrack": { "type": "boolean", "default": false },
 
-		"buttonSize": { "type": "string", "default": "small" }
+		"buttonSize": { "type": "string", "default": "small" },
+		"buttonAlign": { "type": "string" },
+		"buttonborder": { "type": "object" },
+		"buttonborderRadius": { "type": "string" },
+
+		"fallbackTextColor": { "type": "string" },
+		"fallbackTextFontSize": { "type": "string", "default": "16px" },
+		"fallbackTextLetterSpacing": { "type": "string" },
+		"fallbackTextDecoration": { "type": "string" },
+		"fallbackTextLetterCase": { "type": "string" },
+		"fallbackTextLineHeight": { "type": "string" },
+		"fallbackTextFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"fallbackTextFontStyle": { "type": "string" },
+		"fallbackTextFontWeight": { "type": "string" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

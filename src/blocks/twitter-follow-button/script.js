@@ -34,7 +34,6 @@ function wpmozo_init_twitter_follow_button( thisObj ) {
 			container[0],
 			{
 				showScreenName: buttonObj.attr( 'data-show-screen-name' ),
-				showCount:      buttonObj.attr( 'data-show-count' ),
 				size:           buttonObj.attr( 'data-size' ),
 				dnt:            buttonObj.attr( 'data-dnt' ),
 			}

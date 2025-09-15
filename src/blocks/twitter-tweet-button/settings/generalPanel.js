@@ -5,6 +5,7 @@ import {
 	PanelBody,
 	TextControl,
 	ToggleControl,
+	SelectControl,
 	TextareaControl,
 } from '@wordpress/components';
 
@@ -31,12 +32,14 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				value={ attributes.hashtags }
 				onChange={ ( newValue ) => setAttributes( { hashtags: newValue } ) }
 				__next40pxDefaultSize={ true } __nextHasNoMarginBottom={ true }
+				help={ __( 'A comma-separated list of hashtags without the preceding # character to be appended to default Tweet text.', 'wpmozo-blocks-and-addons' ) }
 			/>
 			<TextControl
 				label={ __( 'Via', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.via }
 				onChange={ ( newValue ) => setAttributes( { via: newValue } ) }
 				__next40pxDefaultSize={ true } __nextHasNoMarginBottom={ true }
+				help={ __( 'A Twitter username to associate with the Tweet, such as your site’s Twitter account. The provided username will be appended to the end of the Tweet with the text “via @username”. A logged-out Twitter user will be encouraged to sign-in or join Twitter to engage with the via account’s Tweets. The account may be suggested as an account to follow after the user posts a Tweet.', 'wpmozo-blocks-and-addons' ) }
 			/>
 			<TextControl
 				label={ __( 'Related', 'wpmozo-blocks-and-addons' ) }
@@ -62,7 +65,15 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 		</PanelBody>
 		{/* Display. */}
 		<PanelBody title={ __( 'Display', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
-
+			<SelectControl
+				label={ __( 'Button Size', 'wpmozo-blocks-and-addons' ) }
+				value={ attributes.buttonSize }
+				options={ [
+					{ value: 'small', label: __( 'Small', 'wpmozo-blocks-and-addons' ) },
+					{ value: 'large', label: __( 'Large', 'wpmozo-blocks-and-addons' ) }
+				] }
+				onChange={ ( newValue ) => setAttributes( { buttonSize: newValue } ) }
+			/>
 		</PanelBody>
 	</> );
 };
