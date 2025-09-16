@@ -1,6 +1,6 @@
 jQuery( document ).ready( function($) {
 	// Each elements loop.
-	$( '.wp-block-facebook-embedded-video' ).each( function() {
+	$( '.wp-block-wpmozo-facebook-embedded-video' ).each( function() {
 		wpmozo_init_facebook_embedded_video( $( this ) );
 	} );
 
@@ -17,9 +17,10 @@ jQuery( document ).ready( function($) {
  */
 function wpmozo_init_facebook_embedded_video( thisObj ) {
 
-	const appId = thisObj.find( '.fb-video' ).attr( 'data-fb-app' );
+	const appId    = thisObj.find( '.fb-video' ).attr( 'data-fb-app' );
+	const videoURL = thisObj.find( '.fb-video' ).attr( 'data-href' );
 
-	if ( appId ) {
+	if ( appId && videoURL ) {
 		jQuery.getScript( 'https://connect.facebook.net/en_US/sdk.js', function() {  
 			window.FB.init( {
 				appId: appId,
