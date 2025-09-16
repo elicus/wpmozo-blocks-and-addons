@@ -19,5 +19,15 @@
 	},
 	"dependencies": {
 		"classnames": "^2.5.1"
+	},
+	"wp-plugin-zip": {
+		"files": [
+			"build",
+			"includes",
+			"patterns",
+			"assets",
+			"wpmozo-blocks-and-addons.php",
+			"README.txt"
+		]
 	}
 }

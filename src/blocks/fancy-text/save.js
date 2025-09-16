@@ -1,12 +1,24 @@
 import { useBlockProps, RichText } from "@wordpress/block-editor";
 import generateDynamicStyle from './style';
 
-export default function save({attributes}) {
-	const ID = attributes.ID;
-	return ( <>
-		<style>{ generateDynamicStyle( { attributes } ) }</style>
+export default function save( { attributes } ) {
 
-		<div id={`block-${ID}`} { ...useBlockProps.save( { className: 'wpmozo-bna-fancy-text-wrap ' + attributes.className } ) }>
+	const { ID, className } = attributes;
+
+	// Only add ID attribute if it exists
+	const blockProps = useBlockProps.save( {
+		className: 'wpmozo-bna-fancy-text-wrap ' + ( className || '' ),
+		...( ID ? { id: `block-${ ID }` } : {} ),
+	} );
+
+	return ( <>
+		{/* Only output <style> if ID exists. */}
+		{ ( ID && '' !== ID ) && (
+			<style>{ generateDynamicStyle( { attributes } ) }</style>
+		) }
+
+		{/* Final block output. */}
+		<div { ...blockProps }>
 			<div className={`wpmozo-bna-fancy-text-inner ${attributes.textStyle}`}>
 				<RichText.Content
 					tagName=''

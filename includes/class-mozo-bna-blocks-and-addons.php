@@ -205,6 +205,8 @@ class Mozo_Bna_Blocks_And_Addons {
 
 		// Use a higher priority to ensure our filter runs after others.
 		add_filter( 'upload_mimes', array( $this, 'wpmozo_custom_upload_mimes' ), 999 );
+
+		add_action( 'init', array( __class__, 'register_block_patterns' ) );
 	}
 
 	/**
@@ -232,6 +234,36 @@ class Mozo_Bna_Blocks_And_Addons {
 		if ( is_admin() ) {
 			$this->load_admin_dependencies();
 			$this->add_admin_hooks();
+		}
+	}
+
+	/**
+	 * Register all custom block patterns for the WPMozo plugin.
+	 *
+	 * This function:
+	 * Registers a custom pattern category ("WPMozo Patterns").
+	 * Loads all pattern definition files from the /patterns directory.
+	 * Registers each pattern with WordPress.
+	 */
+	public static function register_block_patterns() {
+
+		// Register a custom category for our plugin's patterns.
+		if ( function_exists( 'register_block_pattern_category' ) ) {
+			register_block_pattern_category(
+				'wpmozo',
+				array( 'label' => __( 'WPMozo', 'wpmozo-blocks-and-addons' ) )
+			);
+		}
+
+		// Find all PHP files inside the /patterns folder.
+		$pattern_files = glob( WPMOZO_BNA_PLUGIN_DIR_PATH . 'patterns/*.php' );
+
+		// Loop through each file and register the pattern.
+		foreach ( $pattern_files as $file ) {
+			register_block_pattern(
+				'wpmozo/' . basename( $file, '.php' ), // Unique pattern name.
+				require $file // Pattern settings array returned from the file.
+			);
 		}
 	}
 
