@@ -6,16 +6,30 @@ const generateDynamicStyle = ({attributes}) => {
 	];
 	let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
 
-	let btnOrientation = attributes.btnOrientation === 'horizontal' ? 'inline-block' : 'block';
+	let alignment = ( attributes.buttonAlignment ) ?? 'center';
+	alignment = ( 'left' === alignment ) ? 'flex-start' : ( ( 'right' === alignment ) ? 'flex-end' : alignment );
 
 	let styles = `#block-${attributes.ID}{`;
 
-	styles += `}
-	.wp-block-wpmozo-advanced-button-child{
-		display:${btnOrientation};
-		text-align:${attributes.buttonAlignment};
+	if('horizontal' === attributes.btnOrientation){
+		styles +=`
+		.block-editor-block-list__layout[data-is-drop-zone="true"] {
+			display: flex !important;
+			flex-wrap: wrap !important;
+			justify-content: ${alignment} !important;
+			gap: 0.5rem;
+		}`
+	} else {
+		styles +=`
+		.block-editor-block-list__layout[data-is-drop-zone="true"] {
+			display: flex !important;
+			flex-direction: column !important;
+  			align-items: ${alignment} !important;
+  			gap: 0.5rem;
+		}`
 	}
-	`
+
+	styles += `}`
 	return styles;
 };
 

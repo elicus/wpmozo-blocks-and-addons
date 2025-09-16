@@ -6,7 +6,7 @@
     "title": "Advanced Button Child",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "Example block scaffolded with Create Block tool.",
+    "description": "Create inline buttons without utilizing button custom CSS using the block.",
     "example": {},
     "supports": {
 		"html": false,

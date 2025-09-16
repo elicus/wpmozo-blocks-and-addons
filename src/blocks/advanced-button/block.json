@@ -6,12 +6,12 @@
     "title": "Advanced Button",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "Example block scaffolded with Create Block tool.",
+    "description": "Create inline buttons without utilizing button custom CSS using the block.",
     "example": {},
 	"supports": {
-		"anchor": true,
-		"align": [ "wide", "full" ],
-		"html": false
+		"html": false,
+		"anchor": false,
+		"customClassName": false
 	},
     "attributes": {
 		"ID": { "type": "string" },

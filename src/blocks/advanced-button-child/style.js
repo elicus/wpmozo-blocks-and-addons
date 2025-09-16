@@ -9,6 +9,9 @@ const generateDynamicStyle = ({ attributes }) => {
 	];
 	const convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
 
+	const alignmentMap = { left: 'flex-start', right: 'flex-end', center: 'center' };
+	let alignment = alignmentMap[attributes.buttonAlign] || 'auto';
+
 	let buttonMediaPosition = attributes.buttonMediaPosition;
 	if (buttonMediaPosition === 'before') {
 		buttonMediaPosition = 'row-reverse';
@@ -19,9 +22,8 @@ const generateDynamicStyle = ({ attributes }) => {
 	let styles = `#block-${attributes.ID} {`;
 
 	styles += `
+		align-self: ${alignment};
 		.wpmozo-button-link {
-			text-align: ${attributes.buttonAlign};
-			flex-direction: ${buttonMediaPosition};
 			${convertedStyle.buttonContainer}
 		}
 		.wpmozo-button-text {
@@ -104,12 +106,20 @@ const generateDynamicStyle = ({ attributes }) => {
 
 	// Hover background
 	if (attributes.filledBackgroundTypeHover === 'classic') {
-		styles += `
+		if (attributes.classicBackgroundImageHover) {
+			styles += `
 		.wpmozo-button-link:hover {
-			background-color: ${attributes.classicBackgroundColorHover};
-			background-image: none !important;
+			background-image: url(${attributes.classicBackgroundImageHover});
 		}
 		`;
+		} else {
+			styles += `
+			.wpmozo-button-link:hover {
+				background-color: ${attributes.classicBackgroundColorHover};
+				background-image: none !important;
+			}
+			`;
+		}
 	} else {
 		styles += `
 		.wpmozo-button-link:hover {
@@ -119,13 +129,7 @@ const generateDynamicStyle = ({ attributes }) => {
 	}
 
 	// Hover background image
-	if (attributes.classicBackgroundImageHover) {
-		styles += `
-		.wpmozo-button-link:hover {
-			background-image: url(${attributes.classicBackgroundImageHover});
-		}
-		`;
-	}
+
 
 	// Primary text hover color
 	if (attributes.ButtonHoverColor) {
