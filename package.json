@@ -1,33 +1,23 @@
 {
 	"name": "wpmozo-blocks-and-addons",
 	"version": "0.1.0",
-	"description": "Example block scaffolded with Create Block tool.",
-	"author": "The WordPress Contributors",
+	"description": "WPMozo Blocks and Addons is a plugin designed to extend the functionality of the Gutenberg editor.",
+	"author": "Elicus",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"scripts": {
+		"start": "wp-scripts start --blocks-manifest",
 		"build": "wp-scripts build --blocks-manifest",
 		"format": "wp-scripts format",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start --blocks-manifest"
+		"plugin-zip": "node package-plugin.js"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^30.15.0"
 	},
 	"dependencies": {
 		"classnames": "^2.5.1"
-	},
-	"wp-plugin-zip": {
-		"files": [
-			"build",
-			"includes",
-			"patterns",
-			"assets",
-			"wpmozo-blocks-and-addons.php",
-			"README.txt"
-		]
 	}
 }

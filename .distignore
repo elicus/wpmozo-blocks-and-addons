@@ -1,0 +1,13 @@
+# Exclude dev files
+node_modules
+package.json
+package-lock.json
+plugin.json
+composer.json
+composer.lock
+*.md
+*.zip
+.git
+.github
+src
+add-block.sh
