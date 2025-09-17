@@ -83,6 +83,7 @@ const generateDynamicStyle = ({ attributes }) => {
 		.wpmozo-button-link {
 			background-color: ${attributes.classicBackgroundColor};
 		}
+
 		`;
 	} else {
 		styles += `
@@ -98,7 +99,6 @@ const generateDynamicStyle = ({ attributes }) => {
 		.wpmozo-button-link {
 			background-image: url(${attributes.classicBackgroundImage});
 			background-color: transparent;
-			background-size: contain;
 			background-repeat: no-repeat;
 		}
 		`;
@@ -111,6 +111,11 @@ const generateDynamicStyle = ({ attributes }) => {
 		.wpmozo-button-link:hover {
 			background-image: url(${attributes.classicBackgroundImageHover});
 		}
+		.wpmozo-button-link::before,
+		.wpmozo-button-link::after{
+			background-color:transparent;
+			background-image:url(${attributes.classicBackgroundImageHover});
+		}
 		`;
 		} else {
 			styles += `
@@ -118,12 +123,21 @@ const generateDynamicStyle = ({ attributes }) => {
 				background-color: ${attributes.classicBackgroundColorHover};
 				background-image: none !important;
 			}
+			.wpmozo-button-link::before,
+			.wpmozo-button-link::after{
+				background-color:${attributes.classicBackgroundColorHover}
+			}
 			`;
 		}
 	} else {
 		styles += `
 		.wpmozo-button-link:hover {
 			background-image: ${attributes.gradientBackgroundColorHover};
+		}
+		.wpmozo-button-link::before,
+		.wpmozo-button-link::after{
+			background-color:transparent;
+			background-image:${attributes.gradientBackgroundColorHover}
 		}
 		`;
 	}
