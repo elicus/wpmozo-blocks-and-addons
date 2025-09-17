@@ -6,6 +6,13 @@ const generateDynamicStyle = ({attributes}) => {
 	];
 	let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
 
+	let frontVerticalAlign = attributes.btnVerticalAlign;
+	if ( 'top' === attributes.btnVerticalAlign ) {
+		frontVerticalAlign = 'flex-start';
+	}else if( 'bottom' === attributes.btnVerticalAlign ){
+		frontVerticalAlign = 'flex-end';
+	}
+
 	let alignment = ( attributes.buttonAlignment ) ?? 'center';
 	alignment = ( 'left' === alignment ) ? 'flex-start' : ( ( 'right' === alignment ) ? 'flex-end' : alignment );
 
@@ -13,6 +20,9 @@ const generateDynamicStyle = ({attributes}) => {
 
 	if('horizontal' === attributes.btnOrientation){
 		styles +=`
+		.wpmozo-advanced-button-child{
+			align-self:${frontVerticalAlign};
+		}
 		.block-editor-block-list__layout[data-is-drop-zone="true"] {
 			display: flex !important;
 			flex-wrap: wrap !important;

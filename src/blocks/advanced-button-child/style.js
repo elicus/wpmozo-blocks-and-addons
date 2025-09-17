@@ -22,7 +22,6 @@ const generateDynamicStyle = ({ attributes }) => {
 	let styles = `#block-${attributes.ID} {`;
 
 	styles += `
-		align-self: ${alignment};
 		.wpmozo-button-link {
 			${convertedStyle.buttonContainer}
 		}
@@ -37,10 +36,14 @@ const generateDynamicStyle = ({ attributes }) => {
 		}
 		.wpmozo-button-secondary-text {
 			color: ${attributes.secondaryTextColor};
+			display: flex;
+			justify-content: ${attributes.secAlign};
 			${convertedStyle.secondaryText}
 		}
 		.wpmozo-primary-text-with-icon {
 			flex-direction: ${buttonMediaPosition};
+			display:flex;
+			justify-content: ${attributes.primaryAlign};
 		}
 	`;
 

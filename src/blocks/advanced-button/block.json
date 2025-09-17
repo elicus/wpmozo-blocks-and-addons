@@ -16,8 +16,9 @@
     "attributes": {
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
-        "buttonAlignment": { "type": "string","default":"left" },
-		"btnOrientation": {"type": "string","default": "horizontal"}
+		"btnOrientation": {"type": "string","default": "horizontal"},
+		"buttonAlignment": { "type": "string","default":"left" },
+		"btnVerticalAlign": {"type":"string","default": "center"}
 	},
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",

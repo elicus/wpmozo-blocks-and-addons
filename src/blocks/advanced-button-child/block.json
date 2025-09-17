@@ -62,7 +62,10 @@
 		"ButtonHoverIconColor": {"type": "string"},
 		"classicBackgroundColorHover": {"type": "string"},
 		"classicBackgroundImageHover": {"type": "string"},
-		"gradientBackgroundColorHover": {"type": "string"}
+		"gradientBackgroundColorHover": {"type": "string"},
+
+		"primaryAlign": {"type": "string"},
+		"secAlign": {"type": "string"}
 	},
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",

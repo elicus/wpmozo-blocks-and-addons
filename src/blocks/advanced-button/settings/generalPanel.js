@@ -14,11 +14,6 @@ export const GeneralPanel = ({attributes, setAttributes}) => {
 
 	return (<>
 		<PanelBody title={__('Configuration', 'wpmozo-blocks-and-addons')} initialOpen={true}>
-			<WpmozoAlignment
-				label={__( 'Button Alignment', 'wpmozo-blocks-and-addons')}
-				onChange={ ( newValue ) => setAttributes( { buttonAlignment: newValue } ) }
-				value={ attributes.buttonAlignment }
-			/>
 			<ToggleGroupControl
 				label={ __( 'Orientation', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.btnOrientation }
@@ -27,6 +22,19 @@ export const GeneralPanel = ({attributes, setAttributes}) => {
 				<ToggleGroupControlOption value="horizontal" label="Horizontal" />
 				<ToggleGroupControlOption value="vertical" label="Vertical" />
 			</ToggleGroupControl>
+			<WpmozoAlignment
+				label={__( 'Button Alignment', 'wpmozo-blocks-and-addons')}
+				onChange={ ( newValue ) => setAttributes( { buttonAlignment: newValue } ) }
+				value={ attributes.buttonAlignment }
+			/>
+			{'horizontal' === attributes.btnOrientation && (
+				<WpmozoAlignment
+					type="vertical"
+					label={__( 'Vertical Alignment', 'wpmozo-blocks-and-addons')}
+					onChange={ ( newValue ) => setAttributes( { btnVerticalAlign: newValue } ) }
+					value={ attributes.btnVerticalAlign }
+				/>
+			)}
 		</PanelBody>
 	</>);
 };
