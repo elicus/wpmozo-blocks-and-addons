@@ -4,7 +4,7 @@ import generateDynamicStyle from "./style";
 
 const Save = ( { attributes } ) => {
 
-	const clientId = attributes.ID;
+	const { ID, className } = attributes;
 
 	// Get attributes.
 	const fbAppId         = attributes.fbAppId ?? '';
@@ -15,11 +15,20 @@ const Save = ( { attributes } ) => {
 	const displayText     = attributes.displayText ?? false;
 	const displayCaption  = attributes.displayCaption ?? false;
 	const lazyLoading     = attributes.lazyLoading ?? false;
+
+	// Only add ID attribute if it exists.
+	const blockProps = useBlockProps.save( {
+		className: className,
+		...( ID ? { id: `block-${ ID }` } : {} ),
+	} );
 	
 	return ( <>
-		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+		{/* Only output <style> if ID exists. */}
+		{ ( ID && '' !== ID ) && (
+			<style>{ generateDynamicStyle( { attributes, ID } ) }</style>
+		) }
 
-		<div {...useBlockProps.save( { className: attributes.className } )} id={`block-${attributes.ID}`}>
+		<div { ...blockProps }>
 			{ ( fbAppId && '' !== fbAppId && videoURL && '' !== videoURL ) && (
 				<div className="wpmozo_fb_embedded_video_wrapper">
 					<div className="fb-video"

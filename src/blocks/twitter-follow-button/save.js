@@ -4,18 +4,27 @@ import generateDynamicStyle from "./style";
 
 const Save = ( { attributes } ) => {
 
-	const clientId = attributes.ID;
+	const { ID, className } = attributes;
 
 	// Get attributes.
 	const twitterUsername = attributes.twitterUsername ?? '';
 	const buttonSize      = attributes.buttonSize ?? 'small';
 	const doNotTrack      = ( false === attributes.doNotTrack ) ? 0 : 1;
 	const showUsername    = attributes.showUsername ?? false;
+
+	// Only add ID attribute if it exists
+	const blockProps = useBlockProps.save( {
+		className: className,
+		...( ID ? { id: `block-${ ID }` } : {} ),
+	} );
 	
 	return ( <>
-		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+		{/* Only output <style> if ID exists. */}
+		{ ( ID && '' !== ID ) && (
+			<style>{ generateDynamicStyle( { attributes, ID } ) }</style>
+		) }
 
-		<div {...useBlockProps.save( { className: attributes.className } )} id={`block-${clientId}`}>
+		<div { ...blockProps }>
 			{ ( twitterUsername && '' !== twitterUsername ) && (
 				<div className="wpmozo_twitter_embedded_follow_button">
 					<a className="wpmozo_twitter_embed_follow_button"

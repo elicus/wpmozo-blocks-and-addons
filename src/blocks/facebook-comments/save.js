@@ -4,7 +4,7 @@ import generateDynamicStyle from "./style";
 
 const Save = ( { attributes } ) => {
 
-	const clientId = attributes.ID;
+	const { ID, className } = attributes;
 
 	// Get attributes.
 	const fbAppId     = attributes.fbAppId ?? '';
@@ -13,10 +13,19 @@ const Save = ( { attributes } ) => {
 	const orderBy     = attributes.orderBy ?? 'social';
 	const lazyLoading = attributes.lazyLoading ?? false;
 
-	return ( <>
-		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+	// Only add ID attribute if it exists.
+	const blockProps = useBlockProps.save( {
+		className: className,
+		...( ID ? { id: `block-${ ID }` } : {} ),
+	} );
 
-		<div {...useBlockProps.save( { className: attributes.className } )} id={`block-${attributes.ID}`}>
+	return ( <>
+		{/* Only output <style> if ID exists. */}
+		{ ( ID && '' !== ID ) && (
+			<style>{ generateDynamicStyle( { attributes, ID } ) }</style>
+		) }
+
+		<div { ...blockProps }>
 			{ ( fbAppId && '' !== fbAppId && pageURL && '' !== pageURL ) && (
 				<div className="wpmozo_fb_comments_wrapper">
 					<div className="fb-comments"

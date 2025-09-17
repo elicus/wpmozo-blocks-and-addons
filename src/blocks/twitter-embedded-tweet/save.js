@@ -3,7 +3,7 @@ import generateDynamicStyle from "./style";
 
 const Save = ( { attributes } ) => {
 
-	const clientId = attributes.ID;
+	const { ID, className } = attributes;
 
 	// Get attributes.
 	const tweetId      = attributes.tweetId ?? '';
@@ -13,10 +13,19 @@ const Save = ( { attributes } ) => {
 	const theme        = attributes.theme ?? 'light';
 	const maxWidth     = attributes.maxWidth ?? 350;
 
-	return ( <>
-		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+	// Only add ID attribute if it exists.
+	const blockProps = useBlockProps.save( {
+		className: className,
+		...( ID ? { id: `block-${ ID }` } : {} ),
+	} );
 
-		<div {...useBlockProps.save( { className: attributes.className } )} id={`block-${clientId}`}>
+	return ( <>
+		{/* Only output <style> if ID exists. */}
+		{ ( ID && '' !== ID ) && (
+			<style>{ generateDynamicStyle( { attributes, ID } ) }</style>
+		) }
+
+		<div { ...blockProps }>
 			{ ( attributes.tweetId && '' !== attributes.tweetId ) && (
 				<div className="wpmozo_twitter_embedded_tweet_wrapper">
 					<blockquote className="wpmozo_tweet"
