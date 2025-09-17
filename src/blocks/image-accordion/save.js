@@ -2,17 +2,22 @@ import { InnerBlocks, useBlockProps, useInnerBlocksProps } from '@wordpress/bloc
 import generateDynamicStyle from './style';
 
 export default function save({ attributes }) {
-    const clientId = attributes.ID,
-        TEMPLATE = [
-            [ 'wpmozo/image-accordion-item', {} ] // Prefills a child block when parent is inserted
-        ];
+    
+    const { ID } = attributes;
+
+    // Only add ID attribute if it exists
+    const blockProps = useBlockProps.save( {
+        className: attributes.className,
+        ...( ID ? { id: `block-${ ID }` } : {} ),
+    } );
 
     return (
         <>
-            <style>
-                { generateDynamicStyle({ attributes, clientId }) }
-            </style>
-            <div {...useBlockProps.save({ className: 'wpmozo-bna-image-accordion' })} id={`block-${clientId}`}>
+            {/* Only output <style> if ID exists. */}
+            { ( ID && '' !== ID ) && (
+                <style>{ generateDynamicStyle( { attributes } ) }</style>
+            ) }
+            <div { ...blockProps }>
                 <InnerBlocks.Content/>
             </div>
         </>

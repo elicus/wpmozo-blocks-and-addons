@@ -6,6 +6,8 @@ import {
 	ButtonGroup,
 	Button,
 	ToggleControl,
+	 __experimentalToggleGroupControl as ToggleGroupControl,
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption
 } from '@wordpress/components';
 import { __experimentalColorGradientControl as ColorGradientControl } from "@wordpress/block-editor"
 import { useState } from "@wordpress/element";
@@ -15,7 +17,9 @@ import {
 	WpmozoTypography,
 	WpmozoRangeSize,
 	WpmozoBorder,
-	WpmozoMediaUploader
+	WpmozoMediaUploader,
+	WpmozoDimensions,
+	WpmozoIconpicker
 } from '../../../common/components/index';
 import { headingLevelsList } from '../../../common/utils.js';
 
@@ -251,21 +255,14 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					value={ attributes.buttonIcon }
 					onChange={ ( newValue ) => setAttributes( { buttonIcon: newValue } ) }
 				/>
-				<SelectControl
-					label={ __( 'Icon Placement', 'wpmozo-blocks-and-addons' ) }
+				<ToggleGroupControl
+					label={ __( 'Icon Position', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.buttonIconPlacement }
-					options={[
-						{
-							value: 'right',
-							label: __( 'Right', 'wpmozo-blocks-and-addons' ),
-						},
-						{
-							value: 'left',
-							label: __( 'Left', 'wpmozo-blocks-and-addons' ),
-						},
-					]}
 					onChange={ ( newValue ) => setAttributes( { buttonIconPlacement: newValue } ) }
-				/>
+				>
+					<ToggleGroupControlOption value="before" label="Before" />
+					<ToggleGroupControlOption value="after" label="After" />
+				</ToggleGroupControl>
 				<ToggleControl
 					label={ __( 'Show Button Icon On Hover', 'wpmozo-blocks-and-addons' ) }
 					checked={ attributes.buttonIconHover }

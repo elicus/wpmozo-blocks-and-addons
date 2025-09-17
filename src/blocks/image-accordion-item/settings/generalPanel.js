@@ -30,7 +30,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
 	return ( <>
-		<PanelBody title={ __( 'Content', 'wpmozo-blocks-and-addons' ) }  initialOpen={false}>
+		<PanelBody title={ __( 'Content', 'wpmozo-blocks-and-addons' ) }  initialOpen={true}>
 			<TextControl
 				label={ __( 'Title', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.itemTitle }
@@ -44,7 +44,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			/>
 			<WpmozoIconpicker props={ props }
 				label={ __( 'Icon', 'wpmozo-blocks-and-addons' ) }
-				iconPickerKey='icon'
+				iconPickerKey='itemIcon'
 				value={ attributes.itemIcon }
 				onChange={ ( newValue ) => setAttributes( { itemIcon: newValue } ) }
 			/>

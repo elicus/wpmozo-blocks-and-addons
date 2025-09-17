@@ -19,7 +19,7 @@
 		"className": { "type": "string" },
         "accordionTrigger": { "type": "string", "default": "hover" },
         "accordionOrientation" : { "type": "string" },
-        "contentAlignment" : { "type": "string" },
+        "contentAlignment" : { "type": "string", "default": "center"  },
         "inactiveState": { "type": "array", "default": [] },
         "activeAccordionSize" : { "number": "string", "default": 4 },
         "activeAccordion" : { "type": "number" },
@@ -97,5 +97,6 @@
     },
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",
-    "style": "file:./style-index.css"
+    "style": "file:./style-index.css",
+    "script": "file:./script.js"
 }

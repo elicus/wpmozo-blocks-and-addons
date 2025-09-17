@@ -21,13 +21,13 @@
         "ID": { "type": "string" },
 		"className": { "type": "string" },
 
-        "itemTitle": { "type": "string" },
-        "itemDescription": { "type": "string" },
+        "itemTitle": { "type": "string", "default": "Title" },
+        "itemDescription": { "type": "string", "default": "Description" },
         "itemIcon": { "type": "string" },
         "showButton": { "type": "boolean", "default": false },
         "itemButtonText": { "type": "string" },
         "itemButtonUrl": { "type": "string" },
-        "itemButtonLinkTarget": { "type": "string" },
+        "itemButtonLinkTarget": { "type": "string", "default": "external" },
 
         "normalAccordionBackgroundGradient": {
             "type": "string",
@@ -103,7 +103,7 @@
         "useButtonIcon": { "type": "boolean", "default": false },
         "buttonIconColor": { "type": "string" },
         "buttonIcon": { "type": "string" },
-        "buttonIconPlacement": { "type": "string" },
+        "buttonIconPlacement": { "type": "string", "default": "after" },
         "buttonIconHover": { "type": "string" },
         "buttonborder": { "type": "object" },
         "buttonborderRadius": { "type": "string" },
