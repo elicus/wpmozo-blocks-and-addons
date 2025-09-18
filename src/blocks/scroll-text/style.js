@@ -32,6 +32,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 
 	styles +=`
 		.wpmozo-scroll-text-wrap{
+			text-align:${attributes.textAlign};
 			${convertedStyle.block}
 		}
 		.wpmozo-scroll-text-inner .wpmozo_st_word,

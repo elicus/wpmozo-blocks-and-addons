@@ -59,7 +59,9 @@
         "blockpadding": { "type": "object" },
 		"blockmargin": { "type": "object" },
         "blockborder": { "type": "object" },
-		"blockborderRadius": { "type": "string" }
+		"blockborderRadius": { "type": "string" },
+
+		"textAlign": {"type": "string","default": "left"}
     },
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",
