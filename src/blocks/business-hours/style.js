@@ -17,8 +17,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 		${attributes.blockBGGradient ? `background:`+ attributes.blockBGGradient + `;` : ''}
 		${attributes.blockBackground ? `background:`+ attributes.blockBackground + `;` : ''}
 		${ convertedStyle.block }
-		}
-	}`;
+		}`;
 
 	// Wrapper styling.
 	styles += `.wpmozo_business_hour_wrapper{ display: flex; align-items: center; }`;
