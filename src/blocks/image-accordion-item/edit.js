@@ -4,6 +4,7 @@ import Inspector from './inspector';
 import { Fragment, useEffect } from "@wordpress/element";
 import generateDynamicStyle from './style';
 import { useSelect } from '@wordpress/data';
+import { wpmozo_is_empty } from '../../common/utils.js';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -28,7 +29,9 @@ export default function Edit(props) {
         setAttributes( { ID: clientId } );
     }, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
-    const {
+    attributes.ID = clientId;
+
+    let {
         itemButtonText,
         itemButtonUrl,
         itemButtonLinkTarget,
@@ -44,9 +47,10 @@ export default function Edit(props) {
         useButtonIcon
     } = attributes;
 
-    const buttonText = itemButtonText || 'Learn More';
-    const urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self';
-    const resolvedIconShape = styleIcon === 'on' ? iconShape : '';
+    let buttonText = itemButtonText,
+        urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
+        resolvedIconShape = styleIcon === 'on' ? iconShape : '',
+        titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttributes.titleLavel;
 
     let renderedIcon = null;
     if (itemIcon) {
@@ -62,16 +66,35 @@ export default function Edit(props) {
     let btnIcon = '',
         buttonClass = '';
 
+    if ( parentAttributes.useButtonIcon ) {
+        btnIcon = '' === parentAttributes.buttonIcon ? '' : (
+            <i className={ parentAttributes.buttonIcon }></i>
+        );
+    }
+
+    buttonClass += 'wpmozo-bna-btn wp-block-button__link wp-element-button';
+    if ( parentAttributes.buttonIcon ) {
+        if( 'after' === parentAttributes.buttonIconPlacement ){
+            buttonText = ( <>{itemButtonText}{btnIcon}</> );
+        }else{
+            buttonText = ( <>{btnIcon}{itemButtonText}</> );
+        }
+    }
+
     if ( useButtonIcon ) {
         btnIcon = '' === buttonIcon ? '' : (
             <i className={ buttonIcon }></i>
         );
     }
 
-    buttonClass += 'wpmozo-bna-btn';
-    if ( buttonIcon ) {
-        buttonClass += ( useButtonIcon && 'after' === buttonIconPlacement ) ? ' wpmozo-bna-icon-right' : ' wpmozo-bna-icon-left';
+    if ( useButtonIcon && buttonIcon && ! wpmozo_is_empty( buttonIconPlacement ) ) {
+        if( 'after' === buttonIconPlacement ){
+            buttonText = ( <>{itemButtonText}{btnIcon}</> );
+        }else{
+            buttonText = ( <>{btnIcon}{itemButtonText}</> );
+        }
     }
+
 
     return (
         <Fragment>
@@ -84,7 +107,7 @@ export default function Edit(props) {
                     <div className={`wpmozo-bna-image-accordion-item-content-inner-wrap`}>
                         {renderedIcon}
                         <RichText
-                            tagName={titleLavel}
+                            tagName={titleHeadingLavel}
                             className="wpmozo-bna-image-accordion-item-title"
                             value={itemTitle}
                             onChange={(value) => setAttributes({ itemTitle: value })}
@@ -98,14 +121,13 @@ export default function Edit(props) {
                             placeholder={ __( 'Add content...', 'wpmozo-blocks-and-addons' ) }
                         />
                         {itemButtonUrl && itemButtonUrl !== '' && showButton && (
-                            <div>
+                            <div className="wpmozo-bna-image-accordion-item-btn-wrapper">
                                 <a
                                     href={itemButtonUrl}
                                     target={urlNewWindow}
                                     className={buttonClass}
                                 >
                                     {buttonText}
-                                    {btnIcon}
                                 </a>
                             </div>
                         )}

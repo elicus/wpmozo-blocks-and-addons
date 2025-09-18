@@ -15,10 +15,16 @@ export default function save({ attributes }) {
         <>
             {/* Only output <style> if ID exists. */}
             { ( ID && '' !== ID ) && (
-                <style>{ generateDynamicStyle( { attributes } ) }</style>
+                <style>{ generateDynamicStyle( { attributes, ID } ) }</style>
             ) }
             <div { ...blockProps }>
-                <InnerBlocks.Content/>
+                <div 
+                    className={`wpmozo-bna-image-accordion-wrapper wpmozo-bna-image-accordion-content-${attributes.contentAlignment}`}
+                    data-trigger={attributes.accordionTrigger}
+                    data-default-active={attributes.activeAccordion}
+                >
+                    <InnerBlocks.Content/>
+                </div>
             </div>
         </>
     );

@@ -27,8 +27,6 @@ const WpmozoColorPicker = (args) => {
 	const preAttributes = props.preAttributes;
 	const AllColors = __experimentalUseMultipleOriginColorsAndGradients();
 
-	console.log(AllColors);
-
 	const setValue = (styleType, value) => {
 		if (
 			value === null &&

@@ -1,6 +1,6 @@
 import {convertInlineStyleStr, wpmozo_is_empty} from '../../common/utils.js';
 
-const generateDynamicStyle = ({ attributes, clientId }) => {
+const generateDynamicStyle = ({ attributes, ID }) => {
 
 	const toConvertStyles = [
 	];
@@ -17,7 +17,7 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 	    }
 	}
 
-	let styles = `#block-${clientId}.wpmozo-bna-image-accordion-item{`;
+	let styles = `#block-${ID}.wpmozo-bna-image-accordion-item{`;
 	styles += `
 		${ (attributes.useButtonIcon) ? `.wpmozo-bna-btn { flex-direction: ${btnPos}; }` : '' }
 	`;

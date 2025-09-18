@@ -121,7 +121,6 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				onChange={ ( newValue ) => setAttributes( { activeAccordion: newValue } ) }
 				min={ 0 }
 				step={ 1 }
-				max={ 10 }
 				__next40pxDefaultSize = {true}
 				__nextHasNoMarginBottom = {true}
 			/>

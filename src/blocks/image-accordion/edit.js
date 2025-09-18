@@ -32,7 +32,7 @@ export default function Edit(props) {
         [ 'wpmozo/image-accordion-item', { text: childAttributes.text} ] // Prefills a child block when parent is inserted
     ];
 
-     const innerBlocks = useSelect(
+    const innerBlocks = useSelect(
         (select) => select('core/block-editor').getBlocks(clientId),
         [clientId]
     );
@@ -53,18 +53,19 @@ export default function Edit(props) {
         attributes.accordionTrigger
     ]);
 
-    attributes.ID = clientId;
+    let ID = clientId;
 
     return (
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
-                { generateDynamicStyle({ attributes, clientId }) }
+                { generateDynamicStyle({ attributes, ID }) }
             </style>  
-            <div {...useBlockProps({ className: `wpmozo-bna-image-accordion` })}>
+            <div {...useBlockProps()}>
                 <div 
                     className={`wpmozo-bna-image-accordion-wrapper wpmozo-bna-image-accordion-content-${attributes.contentAlignment}`}
                     data-trigger={attributes.accordionTrigger}
+                    data-default-active={attributes.activeAccordion}
                 >
                     <InnerBlocks 
                         templateLock={false} 

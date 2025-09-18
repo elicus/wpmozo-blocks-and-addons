@@ -18,7 +18,7 @@
         "ID": { "type": "string" },
 		"className": { "type": "string" },
         "accordionTrigger": { "type": "string", "default": "hover" },
-        "accordionOrientation" : { "type": "string" },
+        "accordionOrientation" : { "type": "string", "default": "horizontal" },
         "contentAlignment" : { "type": "string", "default": "center"  },
         "inactiveState": { "type": "array", "default": [] },
         "activeAccordionSize" : { "number": "string", "default": 4 },
@@ -48,7 +48,6 @@
 
         "descriptionColor": { "type": "string" },  
         "descriptionAlign": { "type": "string" },
-        "descriptionLavel": { "type": "string", "default": "h4" },
         "descriptionFontSize": { "type": "string", "default": "18px" },
         "descriptionFontAppearance": {
             "type": "object",
@@ -87,7 +86,7 @@
         "useButtonIcon": { "type": "boolean", "default": false },
         "buttonIconColor": { "type": "string" },
         "buttonIcon": { "type": "string" },
-        "buttonIconPlacement": { "type": "string" },
+        "buttonIconPlacement": { "type": "string", "default": "after" },
         "buttonIconHover": { "type": "string" },
         "buttonborder": { "type": "object" },
         "buttonborderRadius": { "type": "string" },
