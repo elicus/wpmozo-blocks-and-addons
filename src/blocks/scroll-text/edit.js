@@ -11,7 +11,7 @@ const Edit = (props) => {
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
-		if ( ! attributes.ID && clientId ) {
+		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
 		}
 	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
