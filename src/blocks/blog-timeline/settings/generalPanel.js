@@ -61,8 +61,8 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					label={ __( 'Order', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.postOrder }
 					options={ [
-						{ value: 'DESC', label: __( 'DESC', 'wpmozo-blocks-and-addons' ) },
-						{ value: 'ASC', label: __( 'ASC', 'wpmozo-blocks-and-addons' ) }
+						{ value: 'desc', label: __( 'DESC', 'wpmozo-blocks-and-addons' ) },
+						{ value: 'asc', label: __( 'ASC', 'wpmozo-blocks-and-addons' ) }
 					] }
 					onChange={ ( newValue ) => setAttributes( { postOrder: newValue } ) }
 					__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}

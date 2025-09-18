@@ -16,7 +16,7 @@ const Save = ( { attributes } ) => {
     return ( <>
 		{/* Only output <style> if ID exists. */}
 		{ ( ID && '' !== ID ) && (
-			<style>{ generateDynamicStyle( { attributes, ID } ) }</style>
+			<style>{ generateDynamicStyle( { attributes } ) }</style>
 		) }
 
 		<div { ...blockProps }>

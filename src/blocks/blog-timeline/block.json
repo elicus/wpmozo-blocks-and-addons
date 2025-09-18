@@ -18,7 +18,7 @@
 	
 		"postsNumber": { "type": "number", "default": 10 },
 		"offsetNumber": { "type": "number", "default": 0 },
-		"postOrder": { "type": "string", "default": "DESC" },
+		"postOrder": { "type": "string", "default": "desc" },
 		"postOrderBy": { "type": "string", "default": "date" },
 		"includesCategories": { "type": "array", "default": [] },
 		"ignoreStickyPosts": { "type": "boolean", "default": false },
@@ -50,20 +50,21 @@
 		"tlIconShapeBorderFillColor": { "type": "string", "default": "#000000" },
 		"tlIconShapeBorderSize": { "type": "number", "default": 2 },
 
-		"barSize": { "type": "number", "default": "2" },
+		"barSize": { "type": "number", "default": 2 },
 		"barColor": { "type": "string", "default": "#eeeeee" },
 		"barFillColor": { "type": "string", "default": "#000000" },
 
 		"thumbnailSize": { "type": "number", "default": 100 },
-		"thumbnailAlign": { "type": "number", "default": 100 },
+		"thumbnailAlign": { "type": "string", "default": "center" },
 
 		"postborder": { "type": "object" },
 		"postborderRadius": { "type": "string" },
-		"postpadding": { "type": "object" },
+		"postpadding": { "type": "object", "default": { "top": "20px", "right": "20px", "bottom": "20px", "left": "20px" } },
 		"postBackground": { "type": "string" },
 		"postBGGradient": { "type": "string" },
 
 		"titleColor": { "type": "string" },
+		"titleLevel": { "type": "string", "default": "h3" },
 		"titleFontSize": { "type": "string" },
 		"titleLetterSpacing": { "type": "string" },
 		"titleDecoration": { "type": "string" },
