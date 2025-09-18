@@ -53,16 +53,23 @@ export default function Edit(props) {
 			<style>
 				{ generateDynamicStyle({ attributes }) }
 			</style>
+			{/* Parent wrapper for the Advanced Button block */}
 			<div {...useBlockProps({ className: `wpmozo-advanced-button` })}>
+
+				{/* InnerBlocks allows adding child button blocks inside this parent */}
 				<InnerBlocks
-					templateLock={false}
-					template={ TEMPLATE }
+					templateLock={false} // Child blocks can be added/removed freely
+					template={ TEMPLATE } // Default block template (predefined structure)
+
+					{/* Custom appender button for adding new child blocks */}
 					renderAppender={() => (
 						<button
-							onClick={addChildBlock}
+							onClick={addChildBlock} // Custom handler to add a new child button
 							type="button"
-							className="components-button block-editor-button-block-appender"
-							title={ __('Add Button Item', 'wpmozo-blocks-and-addons') }>
+							className="components-button block-editor-button-block-appender" // Default Gutenberg button style
+							title={ __('Add Button Item', 'wpmozo-blocks-and-addons') } // Tooltip text
+						>
+							{/* Plus (+) icon inside button */}
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
 								<path d="M11 12.5V17.5H12.5V12.5H17.5V11H12.5V6H11V11H6V12.5H11Z"></path>
 							</svg>
@@ -70,6 +77,7 @@ export default function Edit(props) {
 					)}
 				/>
 			</div>
+
 		</Fragment>
 	);
 }

@@ -12,8 +12,13 @@ export default function save({ attributes }) {
 			<style>
 				{ generateDynamicStyle({ attributes }) }
 			</style>
+			{/* Save function output for Advanced Button block */}
 			<div {...useBlockProps.save({ className: 'wpmozo-advanced-button' })} id={`block-${clientId}`}>
+
+				{/* Inner wrapper for child blocks (drop zone area in editor) */}
 				<div class="block-editor-block-list__layout" data-is-drop-zone="true">
+
+					{/* Renders all nested child blocks inside the parent block */}
 					<InnerBlocks.Content/>
 				</div>
 			</div>

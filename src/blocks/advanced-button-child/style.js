@@ -45,6 +45,9 @@ const generateDynamicStyle = ({ attributes }) => {
 			display:flex;
 			justify-content: ${attributes.primaryAlign};
 		}
+		.wpmozo-bna-button-icon{
+			transition:all 0.3s ease-in-out;
+		}
 	`;
 
 	if (attributes.showMediaOnHover) {

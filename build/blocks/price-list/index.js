@@ -2481,7 +2481,7 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"blocks/price-list/index": 0,
-/******/ 			"blocks/advanced-button/style-index": 0,
+/******/ 			"blocks/advanced-button-child/style-index": 0,
 /******/ 			"blocks/price-list/style-index": 0
 /******/ 		};
 /******/ 		
@@ -2532,7 +2532,7 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/advanced-button/style-index","blocks/price-list/style-index"], () => (__webpack_require__("./src/blocks/price-list/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/advanced-button-child/style-index","blocks/price-list/style-index"], () => (__webpack_require__("./src/blocks/price-list/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
