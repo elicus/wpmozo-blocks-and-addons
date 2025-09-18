@@ -61,7 +61,7 @@ export default function Edit(props) {
 					templateLock={false} // Child blocks can be added/removed freely
 					template={ TEMPLATE } // Default block template (predefined structure)
 
-					{/* Custom appender button for adding new child blocks */}
+					//Custom appender button for adding new child blocks
 					renderAppender={() => (
 						<button
 							onClick={addChildBlock} // Custom handler to add a new child button
