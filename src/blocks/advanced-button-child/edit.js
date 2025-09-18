@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import Inspector from './inspector';
-import { Fragment } from "@wordpress/element";
+import { Fragment,useEffect } from "@wordpress/element";
 import generateDynamicStyle from './style';
 import { useSelect } from '@wordpress/data';
 
@@ -20,21 +20,18 @@ export default function Edit(props) {
 		showOnHover = (attributes.showMediaOnHover) ? ' show-on-hover' : '',
 		bkStyle = attributes.backgroundFillStyle ? ` wpmozo_button_${attributes.backgroundFillStyle}` : '';
 
-
-	const parentAttributes = useSelect((select) => {
-		const { getBlockRootClientId, getBlock } = select('core/block-editor');
-		const parentId = getBlockRootClientId(clientId);
-		return parentId ? getBlock(parentId)?.attributes : null;
-	}, [clientId]);
-	attributes.parentAtts = parentAttributes;
-
-	attributes.ID = clientId;
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>
-				{ generateDynamicStyle({ attributes, clientId, parentAttributes }) }
+				{ generateDynamicStyle({ attributes }) }
 			</style>
 			<div {...useBlockProps({className: 'wpmozo-advanced-button-child', id: `block-${clientId}`})}>
 				<div className="wpmozo-button-container">

@@ -12,12 +12,12 @@ export default function Edit( props ) {
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
-		if ( ! attributes.ID && clientId ) {
+		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
 		}
 	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
-	let image = ( attributes.image ) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,	
+	let image = ( attributes.image ) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,
 		useImage = attributes.useImage,
 		text = attributes.rotatingText,
 		iconImage = null;
@@ -51,7 +51,7 @@ export default function Edit( props ) {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
 			<div id={`block-${attributes.ID}`} { ...useBlockProps( { className: 'wpmozo-bna-rotating-text' } ) }>
 				<div className="wpmozo-bna-rotating-text-wrap">

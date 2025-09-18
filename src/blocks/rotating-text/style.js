@@ -1,5 +1,5 @@
 import {convertInlineStyleStr} from '../../common/utils.js';
-const generateDynamicStyle = ({attributes, clientId}) => {
+const generateDynamicStyle = ({attributes}) => {
 
 	const toConvertStyles = [
 		'wrapper',
@@ -16,7 +16,7 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 		textRotation = 'wpmozo-bna-text-rotation-reverse';
 	}
 
-	let styles = `#block-${clientId}{`;
+	let styles = `#block-${attributes.ID}{`;
 
 	styles += `
 		.wpmozo-bna-rotating-text-wrap{

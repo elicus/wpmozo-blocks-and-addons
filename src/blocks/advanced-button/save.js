@@ -10,10 +10,12 @@ export default function save({ attributes }) {
 	return (
 		<>
 			<style>
-				{ generateDynamicStyle({ attributes, clientId }) }
+				{ generateDynamicStyle({ attributes }) }
 			</style>
 			<div {...useBlockProps.save({ className: 'wpmozo-advanced-button' })} id={`block-${clientId}`}>
-				<InnerBlocks.Content/>
+				<div class="block-editor-block-list__layout" data-is-drop-zone="true">
+					<InnerBlocks.Content/>
+				</div>
 			</div>
 		</>
 	);

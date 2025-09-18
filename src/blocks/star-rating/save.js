@@ -94,7 +94,7 @@ const Save = ( { attributes } ) => {
 
 	return (
 		<>
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
 			<div {...useBlockProps.save( { className: attributes.className } )} id={`block-${clientId}`}>
 				<div className="wpmozo_star_rating_wrapper">

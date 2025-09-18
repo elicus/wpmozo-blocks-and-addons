@@ -11,7 +11,7 @@ export default function save({ attributes }) {
 	return (
 		<>
 			<style>
-				{ generateDynamicStyle({ attributes, clientId }) }
+				{ generateDynamicStyle({ attributes }) }
 			</style>
 			<div {...useBlockProps.save({className: "wpmozo-advanced-button-child", id: `block-${clientId}`})}>
 				<div className="wpmozo-button-container">

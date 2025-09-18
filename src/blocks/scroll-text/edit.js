@@ -29,7 +29,7 @@ const Edit = (props) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
 			<div { ...useBlockProps() } id={`block-${attributes.ID}`}>
 				<div className="wpmozo-scroll-text-wrap"

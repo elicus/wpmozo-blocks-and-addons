@@ -1,7 +1,7 @@
 
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ( { attributes, clientId } ) => {
+const generateDynamicStyle = ( { attributes } ) => {
 
 	const toConvertStyles = [
 		'title',
@@ -16,7 +16,7 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 
 	const rateIcon = ( attributes.rateIcon ) ?? 'default';
 
-	let styles = `#block-${clientId} {`;
+	let styles = `#block-${attributes.ID} {`;
 
 	styles += `
 	.wpmozo_star_rating_wrapper{

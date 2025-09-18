@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import Inspector from './inspector';
 import { useSelect, useDispatch  } from '@wordpress/data';
-import { Fragment } from "@wordpress/element";
+import { Fragment,useEffect } from "@wordpress/element";
 import generateDynamicStyle from './style';
 import {getIdByClientid} from '../../common/utils.js';
 import { createBlock } from '@wordpress/blocks';
@@ -40,13 +40,18 @@ export default function Edit(props) {
 		insertBlocks( newBlock, innerBlocks.length, clientId );
 	};
 
-	attributes.ID = clientId;
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>
-				{ generateDynamicStyle({ attributes, clientId }) }
+				{ generateDynamicStyle({ attributes }) }
 			</style>
 			<div {...useBlockProps({ className: `wpmozo-advanced-button` })}>
 				<InnerBlocks

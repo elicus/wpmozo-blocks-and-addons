@@ -1,6 +1,6 @@
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ( { attributes, clientId } ) => {
+const generateDynamicStyle = ( { attributes } ) => {
 	const toConvertStyles = [
 		'button',
 		'buttonHover',
@@ -34,13 +34,13 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 		${convertedStyle.submenu}
 	}`;
 
-	// Submenu item. 
+	// Submenu item.
 	styles += `.wpmozo_dropdown_button_item a{
 		${attributes.linkTextColor ? `color:`+ attributes.linkTextColor + `;` : ''}
 		${attributes.linkTextBackground ? `background:`+ attributes.linkTextBackground + `;` : ''}
 		${convertedStyle.linkText}
 	}`;
-	// Submenu item Hover. 
+	// Submenu item Hover.
 	styles += `.wpmozo_dropdown_button_item a:hover{
 		${attributes.linkTextHoverColor ? `color:`+ attributes.linkTextHoverColor + `;` : ''}
 		${attributes.linkTextHoverBackground ? `background:`+ attributes.linkTextHoverBackground + `;` : ''}

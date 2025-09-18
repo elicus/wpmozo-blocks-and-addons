@@ -1,6 +1,6 @@
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ( { attributes, clientId } ) => {
+const generateDynamicStyle = ( { attributes } ) => {
 	const toConvertStyles = [
 		'day',
 		'dayHover',
