@@ -2,10 +2,11 @@ import { useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from './style';
 import { RichText } from '@wordpress/block-editor';
 import {wpmozo_is_empty} from '../../common/utils.js';
+import { useSelect } from '@wordpress/data';
 
 export default function save({ attributes }) {
     
-    const { ID } = attributes;
+    const { ID, parentAtts } = attributes;
 
     // Only add ID attribute if it exists
     const blockProps = useBlockProps.save( {
@@ -13,7 +14,7 @@ export default function save({ attributes }) {
         ...( ID ? { id: `block-${ ID }` } : {} ),
     } );
 
-    const parentAttributes = attributes.parentAtts;
+    let parentAttsTitleLavel = ( ! wpmozo_is_empty( parentAtts ) ) ? parentAtts.titleLavel : 'h4';
 
     const {
         itemButtonText,
@@ -31,10 +32,10 @@ export default function save({ attributes }) {
         useButtonIcon
     } = attributes;
 
-     let buttonText = itemButtonText || 'Learn More',
+    let buttonText = itemButtonText || 'Learn More',
         urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
-        resolvedIconShape = styleIcon === 'on' ? iconShape : '',
-        titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttributes.titleLavel;
+        resolvedIconShape = styleIcon ? iconShape : '',
+        titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttsTitleLavel;
 
     let renderedIcon = null;
     if (itemIcon) {
@@ -50,19 +51,23 @@ export default function save({ attributes }) {
    let btnIcon = '',
         buttonClass = '';
 
-    if ( parentAttributes.useButtonIcon ) {
-        btnIcon = '' === parentAttributes.buttonIcon ? '' : (
-            <i className={ parentAttributes.buttonIcon }></i>
-        );
-    }
+    if ( ! wpmozo_is_empty( parentAtts ) ) {
 
-     buttonClass += 'wpmozo-bna-btn wp-block-button__link wp-element-button';
-    if ( parentAttributes.buttonIcon ) {
-        if( 'after' === parentAttributes.buttonIconPlacement ){
-            buttonText = ( <>{itemButtonText}{btnIcon}</> );
-        }else{
-            buttonText = ( <>{btnIcon}{itemButtonText}</> );
+        if ( parentAtts.useButtonIcon ) {
+            btnIcon = '' === parentAtts.buttonIcon ? '' : (
+                <i className={ parentAtts.buttonIcon }></i>
+            );
         }
+
+         buttonClass += 'wpmozo-bna-btn wp-block-button__link wp-element-button';
+        if ( parentAtts.buttonIcon ) {
+            if( 'after' === parentAtts.buttonIconPlacement ){
+                buttonText = ( <>{itemButtonText}{btnIcon}</> );
+            }else{
+                buttonText = ( <>{btnIcon}{itemButtonText}</> );
+            }
+        }
+        
     }
 
     if ( useButtonIcon ) {

@@ -17,19 +17,24 @@ export default function Edit(props) {
 
     const { attributes, setAttributes, clientId } = props;
 
-    const parentAttributes = useSelect((select) => {
-        const { getBlockRootClientId, getBlock } = select('core/block-editor');
-        const parentId = getBlockRootClientId(clientId);
-        return parentId ? getBlock(parentId)?.attributes : null;
-    }, [clientId]);
-    attributes.parentAtts = parentAttributes;
+    let ID = clientId;
     
     // Ensure ID is set once (no render-time mutation).
     useEffect( () => {
         setAttributes( { ID: clientId } );
     }, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
-    attributes.ID = clientId;
+    const blockProps = useBlockProps( {
+        className: attributes.className,
+        ...( ID ? { id: `block-${ ID }` } : {} ),
+    } );
+
+    const parentAttributes = useSelect((select) => {
+        const { getBlockRootClientId, getBlock } = select('core/block-editor');
+        const parentId = getBlockRootClientId(clientId);
+        return parentId ? getBlock(parentId)?.attributes : null;
+    }, [clientId]);
+    attributes.parentAtts = parentAttributes;
 
     let {
         itemButtonText,
@@ -49,7 +54,7 @@ export default function Edit(props) {
 
     let buttonText = itemButtonText,
         urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
-        resolvedIconShape = styleIcon === 'on' ? iconShape : '',
+        resolvedIconShape = styleIcon ? iconShape : '',
         titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttributes.titleLavel;
 
     let renderedIcon = null;
@@ -100,9 +105,9 @@ export default function Edit(props) {
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
-                { generateDynamicStyle({ attributes, clientId, parentAttributes }) }
+                { generateDynamicStyle({ attributes, ID, parentAttributes }) }
             </style>
-            <div { ...useBlockProps({ className: 'wpmozo-bna-image-accordion-item', id:`block-${clientId}` }) }>
+            <div { ...blockProps }>
                 <div className="wpmozo-bna-image-accordion-item-content-wrapper">
                     <div className={`wpmozo-bna-image-accordion-item-content-inner-wrap`}>
                         {renderedIcon}

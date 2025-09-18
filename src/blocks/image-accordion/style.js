@@ -24,7 +24,10 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 		iconFontSize,
 		buttonTextColor,
 		buttonBackgroundColor,
-		buttonAlignment
+		buttonAlignment,
+		buttonIconColor,
+		buttonIconHover,
+		buttonIconPlacement
     } = attributes,
     flexDirection = ( 'horizontal' === accordionOrientation ) ? 'row' : 'column',
     textColorStyle = ( 'dark' === textColor ) ? '#666' : '#fff';
@@ -61,6 +64,9 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 		}
 		.wpmozo-bna-image-accordion-item-btn-wrapper{
 			text-align: ${buttonAlignment};
+		}
+		.wpmozo-bna-btn i{
+			color: ${buttonIconColor};
 		}
 		`; 
 
@@ -100,6 +106,35 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 				styles += `
 				.wp-block-wpmozo-image-accordion-item .wpmozo-bna-image-accordion-item-icon {
 					display: block !important;
+				}
+				`;
+			}
+		}
+		if ( buttonIconHover ) {
+			styles += `
+			.wpmozo-bna-btn i {
+				opacity: 0 !important;
+			}
+			.wpmozo-bna-btn:hover i {
+				opacity: 1 !important;
+			}
+			`;
+			if ( 'after' === buttonIconPlacement ) {
+				styles += `
+				.wpmozo-bna-btn i {
+					margin-left: -15px !important;
+				}
+				.wpmozo-bna-btn:hover i {
+					margin-left: 0px !important;
+				}
+				`;
+			}else{
+				styles += `
+				.wpmozo-bna-btn i {
+					margin-right: -15px !important;
+				}
+				.wpmozo-bna-btn:hover i {
+					margin-right: 0px !important;
 				}
 				`;
 			}

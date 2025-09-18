@@ -49,9 +49,7 @@ export default function Edit(props) {
         if ( iframe?.contentWindow ) {
             iframe.contentWindow.dispatchEvent( event );
         }
-    }, [
-        attributes.accordionTrigger
-    ]);
+    }, [props]);
 
     let ID = clientId;
 

@@ -44,7 +44,7 @@
         "iconShape": { "type": "string", "default": "square" },
         "iconFontSize": { "type": "string", "default": "32px" },
 
-        "textColor": { "type": "string" },  
+        "textColor": { "type": "string", "default": "dark" },  
         "textAlignment": { "type": "string" },
 
         "titleColor": { "type": "string" },  
@@ -104,7 +104,7 @@
         "buttonIconColor": { "type": "string" },
         "buttonIcon": { "type": "string" },
         "buttonIconPlacement": { "type": "string", "default": "after" },
-        "buttonIconHover": { "type": "string" },
+        "buttonIconHover": { "type": "boolean", "default": false },
         "buttonborder": { "type": "object" },
         "buttonborderRadius": { "type": "string" },
         "buttonpadding": { "type": "object" },

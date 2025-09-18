@@ -39,11 +39,7 @@ html:not(.block-editor-iframe__html) .wpmozo-bna-image-accordion-wrapper{
     visibility: hidden;
     opacity: 0;
 }
-html:not(.block-editor-iframe__html) .wpmozo-bna-image-accordion-item .wpmozo-bna-image-accordion-item-content-wrapper {
-    visibility: hidden;
-    opacity: 0;
-}
-html:not(.block-editor-iframe__html) .wpmozo-bna-active-image-accordion-item .wpmozo-bna-image-accordion-item-content-wrapper {
+.wpmozo-bna-active-image-accordion-item .wpmozo-bna-image-accordion-item-content-wrapper {
     visibility: visible;
     opacity: 1;
     transition: all 0.3s ease-in-out;
@@ -77,14 +73,17 @@ html:not(.block-editor-iframe__html) .wpmozo-bna-active-image-accordion-item .wp
     align-items: flex-end;
     justify-content: center;
 }
-.wpmozo-bna-image-accordion-item-icon {
-    display: inline-block;
-}
 .wpmozo-bna-image-accordion-item-title {
     padding-bottom: 0;
 }
 .wp-block-wpmozo-image-accordion-item .wpmozo-bna-btn {
     display: inline-block;
+}
+.wp-block-wpmozo-image-accordion-item .wpmozo-bna-btn i {
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    -webkit-transition-property: all !important;
+    transition-property: all !important;
 }
 .wpmozo-bna-image-accordion-item-desc + .wpmozo-bna-image-accordion-item-btn-wrapper,
 .wpmozo-bna-image-accordion-item-icon + .wpmozo-bna-image-accordion-item-desc,
@@ -93,6 +92,9 @@ html:not(.block-editor-iframe__html) .wpmozo-bna-active-image-accordion-item .wp
 .wpmozo-bna-image-accordion-item-title + .wpmozo-bna-image-accordion-item-desc,
 .wpmozo-bna-image-accordion-item-title + .wpmozo-bna-image-accordion-item-btn-wrapper {
     margin-top: 10px;
+}
+.wpmozo-bna-image-accordion-item-icon{
+    text-align: center;
 }
 .wpmozo-bna-icon-shape-circle {
     border-radius: 50%;
@@ -144,4 +146,24 @@ html:not(.block-editor-iframe__html) .wpmozo-bna-active-image-accordion-item .wp
     flex-flow: row wrap;
     align-items: center;
     column-gap: 10px;
+}
+.wpmozo-bna-image-accordion-item-icon.hexagon {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    line-height: 1;
+    width: 1.6em;
+    height: 1.6em;
+}
+.wpmozo-bna-image-accordion-item-icon.hexagon::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    z-index: 0;
+}
+.wpmozo-bna-image-accordion-item-icon.hexagon .icon-wrapper {
+    position: relative;
+    z-index: 1;
+    font-size: 1em;
 }
