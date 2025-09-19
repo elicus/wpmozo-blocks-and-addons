@@ -29,10 +29,12 @@
         "itemButtonUrl": { "type": "string" },
         "itemButtonLinkTarget": { "type": "string", "default": "external" },
 
+        "normalAccordionBackground": { "type": "string" },
         "normalAccordionBackgroundGradient": {
             "type": "string",
             "default": "linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)"
         },
+        "activeAccordionBackground": { "type": "string" },
         "activeAccordionBackgroundGradient": {
             "type": "string",
             "default": "linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)"
