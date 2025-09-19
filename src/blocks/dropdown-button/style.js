@@ -12,6 +12,11 @@ const generateDynamicStyle = ( { attributes } ) => {
 
     let styles = `#block-${attributes.ID} {`;
 
+	//alignment
+	styles +=`.wpmozo_dropdown_button_wrap{
+		text-align:${attributes.buttonAlign};
+	}`;
+
 	// Dropdown button.
 	styles += `.wpmozo_dropdown_button_wrap .wpmozo_dropdown_button{
 		${attributes.buttonBGGradient ? `background:`+ attributes.buttonBGGradient + `;` : ''}
