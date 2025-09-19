@@ -3,6 +3,7 @@ import generateDynamicStyle from './style';
 import { RichText } from '@wordpress/block-editor';
 import {wpmozo_is_empty} from '../../common/utils.js';
 import { useSelect } from '@wordpress/data';
+import { __ } from '@wordpress/i18n';
 
 export default function save({ attributes }) {
     
@@ -32,8 +33,7 @@ export default function save({ attributes }) {
         useButtonIcon
     } = attributes;
 
-    let buttonText = itemButtonText || 'Learn More',
-        urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
+    let urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
         resolvedIconShape = styleIcon ? iconShape : '',
         titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttsTitleLavel;
 
@@ -63,9 +63,9 @@ export default function save({ attributes }) {
     let btnIcon = '',
         buttonIconPlacementClass = '';
 
-    if ( parentAttributes.useButtonIcon ) {
-        btnIcon = '' === parentAttributes.buttonIcon ? '' : (
-            <i className={ parentAttributes.buttonIcon }></i>
+    if ( parentAtts.useButtonIcon ) {
+        btnIcon = '' === parentAtts.buttonIcon ? '' : (
+            <i className={ parentAtts.buttonIcon }></i>
         );
     }
 
@@ -75,8 +75,8 @@ export default function save({ attributes }) {
         );
     }
 
-    if ( parentAttributes.buttonIcon ) {
-        if( 'after' === parentAttributes.buttonIconPlacement ){
+    if ( parentAtts.buttonIcon ) {
+        if( 'after' === parentAtts.buttonIconPlacement ){
             buttonIconPlacementClass = 'wpmozo-icon-at-after';
         }else{
             buttonIconPlacementClass = 'wpmozo-icon-at-before';

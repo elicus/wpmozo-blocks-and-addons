@@ -53,7 +53,8 @@ export default function Edit(props) {
         buttonIconHover
     } = attributes;
 
-    let urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
+    let buttonText = itemButtonText || __( 'Read More', 'wpmozo-blocks-and-addons' ),
+        urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
         resolvedIconShape = styleIcon ? iconShape : '',
         titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttributes.titleLavel;
 
@@ -147,7 +148,7 @@ export default function Edit(props) {
                                         buttonIconPlacementClass
                                     ].join(" ") }
                                 >
-                                    <span className='wpmozo-bna-btn-text'>{ itemButtonText && __( 'Read More', 'wpmozo-blocks-and-addons' ) }</span>
+                                    <span className='wpmozo-bna-btn-text'>{ buttonText }</span>
                                     {btnIcon}
                                 </a>
                             </div>
