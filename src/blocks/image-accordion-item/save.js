@@ -39,13 +39,25 @@ export default function save({ attributes }) {
 
     let renderedIcon = null;
     if (itemIcon) {
-        renderedIcon = (
-            <span className={`wpmozo-bna-image-accordion-item-icon ${resolvedIconShape}`}>
-                <div className="icon-wrapper">
-                    <i className={itemIcon}></i>
+        if ( 'hexagon' === resolvedIconShape ) {
+            renderedIcon = ( 
+                <div className="wpmozo-bna-icon-hexagon-wrapper">
+                    <div className="wpmozo-bna-icon-hexagon-inner-wrap">
+                        <div className="wpmozo-bna-icon-hexagon">
+                            <i className={`${itemIcon}`}></i>
+                        </div>
+                    </div>
                 </div>
-            </span>
-        );
+            );
+        }else{
+            renderedIcon = (
+                <span className={`wpmozo-bna-image-accordion-item-icon ${resolvedIconShape}`}>
+                    <div className="icon-wrapper">
+                        <i className={`${itemIcon} wpmozo-bna-icon-shape-${resolvedIconShape}`}></i>
+                    </div>
+                </span>
+            );
+        }
     }
 
    let btnIcon = '',

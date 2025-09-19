@@ -37,6 +37,9 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 		.wpmozo-bna-image-accordion-wrapper .block-editor-block-list__layout {
 			flex-direction: ${flexDirection};
 		}
+		.wpmozo-bna-image-accordion-wrapper {
+			flex-direction: ${flexDirection};
+		}
 		.wpmozo-bna-image-accordion-wrapper .wpmozo-bna-active-image-accordion-item {
 			flex: ${activeAccordionSize} 0 auto !important;
 		}

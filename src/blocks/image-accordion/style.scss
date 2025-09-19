@@ -38,6 +38,7 @@ html:not(.block-editor-iframe__html) .wpmozo-bna-image-accordion-wrapper{
     padding: 20px;
     visibility: hidden;
     opacity: 0;
+    box-sizing: border-box;
 }
 .wpmozo-bna-active-image-accordion-item .wpmozo-bna-image-accordion-item-content-wrapper {
     visibility: visible;
@@ -49,27 +50,27 @@ html:not(.block-editor-iframe__html) .wpmozo-bna-image-accordion-wrapper{
     align-items: center;
     justify-content: center;
 }
-.wpmozo-bna-image-accordion-content-top-left .wpmozo-bna-image-accordion-item-content-wrapper {
+.wpmozo-bna-image-accordion-content-top_left .wpmozo-bna-image-accordion-item-content-wrapper {
     align-items: flex-start;
     justify-content: flex-start;
 }
-.wpmozo-bna-image-accordion-content-top-right .wpmozo-bna-image-accordion-item-content-wrapper {
+.wpmozo-bna-image-accordion-content-top_right .wpmozo-bna-image-accordion-item-content-wrapper {
     align-items: flex-start;
     justify-content: flex-end;
 }
-.wpmozo-bna-image-accordion-content-top-center .wpmozo-bna-image-accordion-item-content-wrapper {
+.wpmozo-bna-image-accordion-content-top_center .wpmozo-bna-image-accordion-item-content-wrapper {
     align-items: flex-start;
     justify-content: center;
 }
-.wpmozo-bna-image-accordion-content-bottom-left .wpmozo-bna-image-accordion-item-content-wrapper {
+.wpmozo-bna-image-accordion-content-bottom_left .wpmozo-bna-image-accordion-item-content-wrapper {
     align-items: flex-end;
     justify-content: flex-start;
 }
-.wpmozo-bna-image-accordion-content-bottom-right .wpmozo-bna-image-accordion-item-content-wrapper {
+.wpmozo-bna-image-accordion-content-bottom_right .wpmozo-bna-image-accordion-item-content-wrapper {
     align-items: flex-end;
     justify-content: flex-end;
 }
-.wpmozo-bna-image-accordion-content-bottom-center .wpmozo-bna-image-accordion-item-content-wrapper {
+.wpmozo-bna-image-accordion-content-bottom_center .wpmozo-bna-image-accordion-item-content-wrapper {
     align-items: flex-end;
     justify-content: center;
 }
@@ -93,9 +94,6 @@ html:not(.block-editor-iframe__html) .wpmozo-bna-image-accordion-wrapper{
 .wpmozo-bna-image-accordion-item-title + .wpmozo-bna-image-accordion-item-btn-wrapper {
     margin-top: 10px;
 }
-.wpmozo-bna-image-accordion-item-icon{
-    text-align: center;
-}
 .wpmozo-bna-icon-shape-circle {
     border-radius: 50%;
     padding: 12px;
@@ -109,6 +107,14 @@ html:not(.block-editor-iframe__html) .wpmozo-bna-image-accordion-wrapper{
     margin-left: -40.25%;
     padding: 12px;
     transform: rotate(-30deg);
+}
+.wpmozo-bna-icon-hexagon i{
+    position: relative;
+    z-index: 99;
+    margin-left: -40.25%;
+    padding: 12px;
+    transform: rotate(-30deg);
+    display: inline-block;
 }
 .wpmozo-bna-icon-hexagon-wrapper {
     display: inline-block;

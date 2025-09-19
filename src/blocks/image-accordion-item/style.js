@@ -48,9 +48,6 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 		}
 
 		styles += `
-			.wpmozo-bna-image-accordion-item-icon:not(.hexagon){
-				background-color: ${iconShapBackground};
-			}
 			.wpmozo-bna-image-accordion-item-title {
 				color: ${titleColor};
 				text-align: ${titleAlign};
@@ -85,45 +82,15 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 				color: ${attributes.iconColor};
 			}`;
 
-			if ( 
-				! attributes.styleIcon ||
-				( attributes.styleIcon && 'hexagon' !== attributes.iconShape )
-			) {
+			if ( attributes.styleIcon ){
 				styles += `
-				.wpmozo-bna-image-accordion-item-icon i{
-					font-size: ${iconFontSize};
-					width: ${iconFontSize};
-				}`;
-			}
-
-			// Icon shape style
-			if ( attributes.styleIcon && 'circle' === attributes.iconShape ) {
-				styles += `
-				.wpmozo-bna-image-accordion-item-icon .icon-wrapper{
-					padding: 12px;
-		    		border-radius: 50%;
-				    background-color: ${attributes.iconShapBackground};
-				}`;
-			}
-			if ( attributes.styleIcon && 'square' === attributes.iconShape ) {
-				styles += `
-				.wpmozo-bna-image-accordion-item-icon .icon-wrapper{
-					padding: 9px;
-				    background-color: ${attributes.iconShapBackground};
-				}`;
-			}
-			if ( attributes.styleIcon && 'hexagon' === attributes.iconShape ) {
-				styles += `
-				.wpmozo-bna-image-accordion-item-icon.hexagon{
-					font-size: ${iconFontSize};
-				}
-				.wpmozo-bna-image-accordion-item-icon i{
-					font-size: inherit !important;
-				}
-				.wpmozo-bna-image-accordion-item-icon.hexagon::before{
+				.wpmozo-bna-icon-shape-circle, 
+				.wpmozo-bna-icon-shape-square, 
+				.wpmozo-bna-icon-hexagon {
 					background-color: ${attributes.iconShapBackground};
 				}`;
 			}
+
 		}
 
 	styles += `}`;
