@@ -2,7 +2,7 @@
 Contributors: elicus
 Tags: gutenberg, blocks, gutenberg blocks, gutenberg editor, wordpress blocks
 Tested up to: 6.8
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,18 @@ Showcase brand partners, clients, or sponsors with the responsive Logo Slider bl
 Add elegant visual dividers between sections with the Separator block. Choose from lines, icons, or custom shapes to enhance layout clarity and create a professional design flow.
 26. [Tilt Image](https://wpmozoblocks.com/tilt-image/ "Tilt Image for Gutenberg")
 Add 3D tilt effects to your images for a subtle yet interactive user experience. The Tilt Image block enhances visual depth and engagement, making it great for modern design portfolios or creative websites.
+27. [Advanced Button](https://wpmozoblocks.com/advanced-button/ "Advanced Button for Gutenberg")
+Add enhanced functionality and styling options to buttons, including hover effects, animations, and customization with Advanced Button widget.
+28. [Rotating Text](https://wpmozoblocks.com/rotating-text/ "Rotating Text for Gutenberg")
+Highlight key words or phrases with smooth rotating effects using the WPMozo Rotating Text block for perfect for drawing attention and boosting engagement.
+29. [Business Hours](https://wpmozoblocks.com/business-hours/ "Business Hours for Gutenberg")
+Showcase your business’s opening hours clearly and attractively with the Business Hours Block. This block lets you display dates, weekday names, and customize the design to keep your visitors informed and engaged.
+30. [Dropdown Button](https://wpmozoblocks.com/dropdown-button/ "Dropdown Button for Gutenberg")
+Display hidden links or content in a compact and user-friendly way with the WPMozo Dropdown Button block, perfect for navigation menus, quick actions, or additional options without cluttering the layout.
+31. [Scroll Text](https://wpmozoblocks.com/scroll-text/ "Scroll Text for Gutenberg")
+Add animated scrolling text to your WordPress site with the WPMozo Scroll Text block for perfect for highlighting important messages with smooth scroll effects.
+32. [Image Hover Effect](https://wpmozoblocks.com/image-hover-effect/ "Image Hover Effect for Gutenberg")
+Add stylish visual appeal to your website with interactive hover animations using the WPMozo Image Hover Effect block, ideal for highlighting images with elegant effects and smooth transitions.
 
 This plugin is fully compatible with Gutenberg and WordPress block editor, ensuring seamless integration with your website.
 
@@ -124,6 +136,14 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
+2025-09-19 - Version 1.3.0
+* New: Advanced Button Block.
+* New: Rotating Text Block.
+* New: Business Hours Block.
+* New: Dropdown Button Block.
+* New: Scroll Text Block.
+* New: Image Hover Effect Block.
+
 2025-09-05 - Version 1.2.0
 * New: Price List Block.
 * New: Text Highlighter Block.
