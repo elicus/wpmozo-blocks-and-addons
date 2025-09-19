@@ -2,6 +2,7 @@ import { __ } from "@wordpress/i18n";
 import { Fragment, useEffect } from "@wordpress/element";
 import { useBlockProps } from "@wordpress/block-editor";
 import { useSelect } from '@wordpress/data';
+import { renderToString } from '@wordpress/element';
 
 import Inspector from "./inspector";
 import generateDynamicStyle from "./style";
@@ -59,16 +60,21 @@ const Edit = (props) => {
 	const orientation = attributes.orientation ?? 'alternate';
 
 	// Render post items based on layout.
-	let postItems = [];
-	if ( posts && posts.length > 0 ) {
-		postItems = posts.map( ( post ) => {
-			if ( 'layout2' === layout ) {
-				return <Layout2 key={ post.id } post={ post } attributes={ attributes } />;
-			}
-			// default to layout1
-			return <Layout1 key={ post.id } post={ post } attributes={ attributes } />;
-		} );
-	}
+	let postItems = '';
+	useEffect( () => {
+		if ( posts && posts.length > 0 ) {
+			postItems = posts.map( ( post ) => {
+				if ( 'layout2' === layout ) {
+					return renderToString( <Layout2 key={ post.id } post={ post } attributes={ attributes } /> );
+				}
+				// default to layout1
+				return renderToString( <Layout1 key={ post.id } post={ post } attributes={ attributes } /> );
+			} ).join('');
+
+			// Save items html to db.
+			setAttributes( { postItemsDB: postItems } );			
+		}
+	}, [ posts, props ] );
 
 	return (
 		<Fragment>
@@ -76,12 +82,14 @@ const Edit = (props) => {
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
 			<div { ...useBlockProps() } id={`block-${attributes.ID}`}>
-				<div className={`wpmozo_bna_blog_timeline_wrapper ${layout} wpmozo_bna_blog_timeline_${orientation}`}>
-					{ postItems }
-					<div className={`wpmozo_bna_stem_wrapper wpmozo_bna_blog_timeline_${orientation}_stem`}>
-						<div className="wpmozo_bna_blog_stem"></div>
-					</div>
-				</div>
+				<div className={`wpmozo_bna_blog_timeline_wrapper ${layout} wpmozo_bna_blog_timeline_${orientation}`}
+					dangerouslySetInnerHTML={ {
+						__html: ( attributes.postItemsDB || '' ) +
+						renderToString( <div className={`wpmozo_bna_stem_wrapper wpmozo_bna_blog_timeline_${orientation}_stem`}>
+							<div className="wpmozo_bna_blog_stem"></div>
+						</div> )
+					} }
+				/>
 			</div>
 		</Fragment>
 	);

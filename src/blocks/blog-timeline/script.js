@@ -1,70 +1,68 @@
 jQuery( document ).ready( function($) {
-	if ( $('body').find( '.wp-block-wpmozo-blog-timeline' ).length > 0 ) {
 
-		// On change on props, update the stem timeline.
-		window.addEventListener( 'WPMozoBlogTimelinePropsChanged', (e) => {
-			if ( '' !== e?.detail?.clientId && $( '#block-' + e.detail.clientId ).length > 0 ) {
-				wpmozo_bna_timeline_stem( $( '#block-' + e.detail.clientId ) );
-
-				// Set steam position and size.
-				wpmozo_bna_stem_responsive_adjustment( $( '#block-' + e.detail.clientId ) );
-			}
-		} );
-
-		// Initial execution of the timeline stem setup.
-		$('body').find( '.wp-block-wpmozo-blog-timeline' ).each( function() {
-			var $this = $(this);
-			if ( $this.find( '.wpmozo_bna_blog_timeline_post' ).length > 0 ) {
-				wpmozo_bna_timeline_stem( $this );
-			}
+	// On change on props, update the stem timeline.
+	window.addEventListener( 'WPMozoBlogTimelinePropsChanged', (e) => {
+		if ( '' !== e?.detail?.clientId && $( '#block-' + e.detail.clientId ).length > 0 ) {
+			wpmozo_bna_timeline_stem( $( '#block-' + e.detail.clientId ) );
 
 			// Set steam position and size.
-			wpmozo_bna_stem_responsive_adjustment( $this );
+			wpmozo_bna_stem_responsive_adjustment( $( '#block-' + e.detail.clientId ) );
+		}
+	} );
+
+	// Initial execution of the timeline stem setup.
+	$('body').find( '.wp-block-wpmozo-blog-timeline' ).each( function() {
+		var $this = $(this);
+		if ( $this.find( '.wpmozo_bna_blog_timeline_post' ).length > 0 ) {
+			wpmozo_bna_timeline_stem( $this );
+		}
+
+		// Set steam position and size.
+		wpmozo_bna_stem_responsive_adjustment( $this );
+	} );
+
+	// On resize.
+	$( window ).resize( function() {
+		$('body').find('.wp-block-wpmozo-blog-timeline').each( function() {
+			var $this = $(this);
+			if ($this.find( '.wpmozo_bna_blog_timeline_post').length > 0 ) {
+				wpmozo_bna_timeline_stem($this);
+			}
+
+			// Handle responsive content right and left timelines.
+			if ( $(window).width() > 767 ) {
+				// Content Right Timeline.
+				if ( $this.find('.layout2.wpmozo_bna_blog_timeline_right').length > 0 ) {
+					var outer_container = $this.find( '.wpmozo_bna_blog_timeline_outer_container' ).outerWidth();
+					var stem_width      = $this.find( '.wpmozo_bna_blog_timeline_stem_center' ).outerWidth();
+					var stem_position   = (outer_container + (stem_width / 2) + 10) + 'px';
+					$this.find( '.wpmozo_bna_stem_wrapper' ).css( 'left', stem_position );
+				}
+
+				// Content Left Timeline.
+				if ( $this.find('.layout2.wpmozo_bna_blog_timeline_left').length > 0 ) {
+					var outer_container = $this.find( '.wpmozo_bna_blog_timeline_outer_container' ).outerWidth();
+					var stem_width      = $this.find( '.wpmozo_bna_blog_timeline_stem_center' ).outerWidth();
+					var stem_position   = ( outer_container + (stem_width / 2) + 10 ) + 'px';
+					$this.find( '.wpmozo_bna_stem_wrapper' ).css( 'right', stem_position );
+				}
+			} else {
+				// Content Right Timeline.
+				if ( $this.find( '.layout2.wpmozo_bna_blog_timeline_right' ).length > 0 ) {
+					var stem_width    = $this.find( '.wpmozo_bna_blog_timeline_stem_center' ).outerWidth();
+					var stem_position = (stem_width / 2) + 'px';
+					$this.find('.wpmozo_bna_stem_wrapper').css( 'left', stem_position );
+				}
+
+				// Content Left Timeline.
+				if ( $this.find('.layout2.wpmozo_bna_blog_timeline_left').length > 0 ) {
+					var stem_width    = $this.find( '.wpmozo_bna_blog_timeline_stem_center' ).outerWidth();
+					var stem_position = (stem_width / 2) + 'px';
+					$this.find('.wpmozo_bna_stem_wrapper').css( 'right', stem_position );
+				}
+			}
 		} );
-
-		// On resize.
-		$(window).resize( function() {
-			$('body').find('.wp-block-wpmozo-blog-timeline').each(function() {
-				var $this = $(this);
-				if ($this.find('.dipl_blog_timeline_post').length > 0) {
-					wpmozo_bna_timeline_stem($this);
-				}
-
-				// Handle responsive content right and left timelines
-				if ($(window).width() > 767) {
-					/*Content Right Timeline*/
-					if ($this.find('.layout2.dipl_blog_timeline_right').length > 0) {
-						var outer_container = $this.find('.dipl_blog_timeline_outer_container').outerWidth();
-						var stem_width = $this.find('.dipl_blog_timeline_stem_center').outerWidth();
-						var stem_position = (outer_container + (stem_width / 2) + 10) + 'px';
-						$this.find('.dipl_stem_wrapper').css('left', stem_position);
-					}
-
-					/*Content Left Timeline*/
-					if ($this.find('.layout2.dipl_blog_timeline_left').length > 0) {
-						var outer_container = $this.find('.dipl_blog_timeline_outer_container').outerWidth();
-						var stem_width = $this.find('.dipl_blog_timeline_stem_center').outerWidth();
-						var stem_position = (outer_container + (stem_width / 2) + 10) + 'px';
-						$this.find('.dipl_stem_wrapper').css('right', stem_position);
-					}
-				} else {
-					/*Content Right Timeline*/
-					if ($this.find('.layout2.dipl_blog_timeline_right').length > 0) {
-						var stem_width = $this.find('.dipl_blog_timeline_stem_center').outerWidth();
-						var stem_position = (stem_width / 2) + 'px';
-						$this.find('.dipl_stem_wrapper').css('left', stem_position);
-					}
-
-					/*Content Left Timeline*/
-					if ($this.find('.layout2.dipl_blog_timeline_left').length > 0) {
-						var stem_width = $this.find('.dipl_blog_timeline_stem_center').outerWidth();
-						var stem_position = (stem_width / 2) + 'px';
-						$this.find('.dipl_stem_wrapper').css('right', stem_position);
-					}
-				}
-			});
-		});
-	}
+	} );
 
 	// Init timeline stem.
 	function wpmozo_bna_timeline_stem($this) {
@@ -118,8 +116,8 @@ jQuery( document ).ready( function($) {
 			}
 
 			// Add or remove icon fill class based on scroll position.
-			$this.find('.dipl_blog_timeline_post').each(function() {
-				var $icon = $(this).find('.dipl_blog_timeline_stem_center');
+			$this.find( '.wpmozo_bna_blog_timeline_post' ).each(function() {
+				var $icon = $(this).find( '.wpmozo_bna_blog_timeline_stem_center' );
 				if ( $icon.offset().top < ( screen_height_center + scroll_amount ) ) {
 					$icon.find( '.wpmozo_bna_blog_timeline_post_icon' ).addClass( 'wpmozo_bna_icon_fill' );
 				} else {
@@ -142,6 +140,10 @@ jQuery( document ).ready( function($) {
 
 	// Adjust responsive stem position.
 	function wpmozo_bna_stem_responsive_adjustment( $this ) {
+
+		// Remove both if not needed.
+        $this.find( '.wpmozo_bna_stem_wrapper' ).css( { left: '', right: '' } );
+
 		// Responsive adjustments for content left and right timelines.
 		if ( $(window).width() > 767 ) {
 			// Content Right Timeline.

@@ -144,12 +144,17 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			<WpmozoBorder props={ props }
 				label={ __( 'Post Border', 'wpmozo-blocks-and-addons' ) }
 				BorderKey="post"
-				BorderTypes={ { border: true, radius: true } }
+				BorderTypes={ { radius: true } }
 			/>
 		</PanelBody>
 		{/* Post Title. */}
 		<PanelBody title={ __( 'Post Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			<br />
+			<WpmozoAlignment showJustify
+				label={ __( 'Title Alignment', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( newValue ) => setAttributes( { titleAlign: newValue } ) }
+				value={ attributes.titleAlign }
+			/>
 			<BaseControl label={ __( 'Title Level', 'wpmozo-blocks-and-addons' ) }>
 				<ButtonGroup>
 					{ headingLevelsList.map( ( item, index ) => (
@@ -199,6 +204,11 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		</PanelBody>
 		{/* Post Excerpt. */}
 		<PanelBody title={ __( 'Post Excerpt', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<WpmozoAlignment showJustify
+				label={ __( 'Excerpt Alignment', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( newValue ) => setAttributes( { excerptAlign: newValue } ) }
+				value={ attributes.excerptAlign }
+			/>
 			<WpmozoColorPicker props={ props }
 				ColorKey="excerpt"
 				ColorTypes={ [

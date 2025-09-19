@@ -1,7 +1,8 @@
 import { dateI18n } from '@wordpress/date';
 
-import PostMeta from './parts/PostMeta';
 import Thumbnail from './parts/Thumbnail';
+import PostMeta from './parts/PostMeta';
+import ReadMoreButton from './parts/ReadMoreButton';
 
 const Layout1 = ( { post, attributes } ) => {
 
@@ -56,6 +57,7 @@ const Layout1 = ( { post, attributes } ) => {
 					{/* Post meta. */}
 					<PostMeta post={ post } attributes={ attributes } />
 					{ postExcerpt }
+					<ReadMoreButton post={ post } attributes={ attributes } />
 				</div>
 			</div>
 			<div className="wpmozo_bna_blog_timeline_outer_container"></div>

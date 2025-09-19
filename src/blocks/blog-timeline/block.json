@@ -15,6 +15,8 @@
 	"attributes": {
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
+
+		"postItemsDB": { "type": "string" },
 	
 		"postsNumber": { "type": "number", "default": 10 },
 		"offsetNumber": { "type": "number", "default": 0 },
@@ -40,7 +42,7 @@
 		"timelineIcon": { "type": "string", "default": "fas fa-angles-down" },
 		"timelineIconColor": { "type": "string", "default": "#000000" },
 		"timelineIconFillColor": { "type": "string", "default": "#cccccc" },
-		"timelineIconFontSize": { "type": "number", "default": 32 },
+		"timelineIconFontSize": { "type": "number", "default": 22 },
 
 		"tlIconShape": { "type": "string", "default": "none" },
 		"tlIconShapeColor": { "type": "string", "default": "#eeeeee" },
@@ -64,6 +66,7 @@
 		"postBGGradient": { "type": "string" },
 
 		"titleColor": { "type": "string" },
+		"titleAlign": { "type": "string" },
 		"titleLevel": { "type": "string", "default": "h3" },
 		"titleFontSize": { "type": "string" },
 		"titleLetterSpacing": { "type": "string" },
@@ -91,6 +94,7 @@
 		"titleHoverFontWeight": { "type": "string" },
 
 		"excerptColor": { "type": "string" },
+		"excerptAlign": { "type": "string" },
 		"excerptFontSize": { "type": "string" },
 		"excerptLetterSpacing": { "type": "string" },
 		"excerptDecoration": { "type": "string" },
@@ -171,6 +175,6 @@
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
-	"style": "file:./style-index.css",
+	"style": [ "wpmozo-blocks-and-addons-blocks-style", "file:./style-index.css" ],
 	"script": [ "file:./script.js" ]
 }

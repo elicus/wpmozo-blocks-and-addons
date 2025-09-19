@@ -8,6 +8,7 @@ import {
 	SelectControl,
 	ToggleControl,
 	TextareaControl,
+	RangeControl,
 } from '@wordpress/components';
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
@@ -28,17 +29,17 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	return ( <>
 		{/* Content. */}
 		<PanelBody title={ __( 'Content', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
-			<TextControl
+			<RangeControl
 				label={ __( 'Number of Posts', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.postsNumber || 10 }
 				onChange={ ( newValue ) => setAttributes( { postsNumber: newValue } ) }
-				__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+				min={2} max={50} step={1}
 			/>
-			<TextControl
+			<RangeControl
 				label={ __( 'Post Offset Number', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.offsetNumber || 0 }
 				onChange={ ( newValue ) => setAttributes( { offsetNumber: newValue } ) }
-				__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+				min={2} max={50} step={1}
 			/>
 			<SelectControl
 				label={ __( 'Order by', 'wpmozo-blocks-and-addons' ) }
