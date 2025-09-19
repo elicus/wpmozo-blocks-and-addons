@@ -3,10 +3,10 @@
     "apiVersion": 3,
     "name": "wpmozo/image-accordion-item",
     "version": "0.1.0",
-    "title": "Image According Item",
+    "title": "Image Accordion Item",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "The Image According block enables you to turn simple images into stylish one and show content on them when users hover or click on them",
+    "description": "The Image Accordion block enables you to turn simple images into stylish one and show content on them when users hover or click on them",
     "example": {},
     "parent": [ "wpmozo/image-accordion" ],
 	"supports": {

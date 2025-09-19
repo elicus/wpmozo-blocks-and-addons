@@ -6,7 +6,7 @@
     "title": "Image Accordion",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "The Image According block enables you to turn simple images into stylish one and show content on them when users hover or click on them",
+    "description": "The Image Accordion block enables you to turn simple images into stylish one and show content on them when users hover or click on them",
     "allowedBlocks": [ "wpmozo/image-accordion-item" ],
     "example": {},
 	"supports": {
