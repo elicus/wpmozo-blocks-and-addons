@@ -40,13 +40,12 @@ export default function Edit( props ) {
 
 	useEffect(() => {
 		const event = new CustomEvent('WPMozoRotatingTextPropsChanged');
+		window.dispatchEvent(event);
 		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [
-		text
-	]);
+	}, [props]);
 
 	return (
 		<Fragment>
