@@ -49,11 +49,11 @@ export default function Edit(props) {
         titleLavel,
         itemDescription,
         buttonIconPlacement,
-        useButtonIcon
+        useButtonIcon,
+        buttonIconHover
     } = attributes;
 
-    let buttonText = itemButtonText,
-        urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
+    let urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
         resolvedIconShape = styleIcon ? iconShape : '',
         titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttributes.titleLavel;
 
@@ -81,21 +81,12 @@ export default function Edit(props) {
     }
 
     let btnIcon = '',
-        buttonClass = '';
+        buttonIconPlacementClass = '';
 
     if ( parentAttributes.useButtonIcon ) {
         btnIcon = '' === parentAttributes.buttonIcon ? '' : (
             <i className={ parentAttributes.buttonIcon }></i>
         );
-    }
-
-    buttonClass += 'wpmozo-bna-btn wp-block-button__link wp-element-button';
-    if ( parentAttributes.buttonIcon ) {
-        if( 'after' === parentAttributes.buttonIconPlacement ){
-            buttonText = ( <>{itemButtonText}{btnIcon}</> );
-        }else{
-            buttonText = ( <>{btnIcon}{itemButtonText}</> );
-        }
     }
 
     if ( useButtonIcon ) {
@@ -104,11 +95,19 @@ export default function Edit(props) {
         );
     }
 
+    if ( parentAttributes.buttonIcon ) {
+        if( 'after' === parentAttributes.buttonIconPlacement ){
+            buttonIconPlacementClass = 'wpmozo-icon-at-after';
+        }else{
+            buttonIconPlacementClass = 'wpmozo-icon-at-before';
+        }
+    }
+
     if ( useButtonIcon && buttonIcon && ! wpmozo_is_empty( buttonIconPlacement ) ) {
         if( 'after' === buttonIconPlacement ){
-            buttonText = ( <>{itemButtonText}{btnIcon}</> );
+            buttonIconPlacementClass = 'wpmozo-icon-at-after';
         }else{
-            buttonText = ( <>{btnIcon}{itemButtonText}</> );
+            buttonIconPlacementClass = 'wpmozo-icon-at-before';
         }
     }
 
@@ -138,13 +137,18 @@ export default function Edit(props) {
                             placeholder={ __( 'Add content...', 'wpmozo-blocks-and-addons' ) }
                         />
                         {itemButtonUrl && itemButtonUrl !== '' && showButton && (
-                            <div className="wpmozo-bna-image-accordion-item-btn-wrapper">
+                            <div className="wpmozo-bna-button-wrap wpmozo-bna-imsage-accordion-btn">
                                 <a
                                     href={itemButtonUrl}
                                     target={urlNewWindow}
-                                    className={buttonClass}
+                                    className={ [
+                                        'wpmozo-bna-button',
+                                        ( useButtonIcon && buttonIconHover ) ? 'wpmozo-icon-on-hover' : '',
+                                        buttonIconPlacementClass
+                                    ].join(" ") }
                                 >
-                                    {buttonText}
+                                    <span className='wpmozo-bna-btn-text'>{ itemButtonText && __( 'Read More', 'wpmozo-blocks-and-addons' ) }</span>
+                                    {btnIcon}
                                 </a>
                             </div>
                         )}

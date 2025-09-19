@@ -274,6 +274,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 			<WpmozoDimensions props={props}
 				DimensionKey='button'
+				DimensionsTypes={ { padding: true, margin: true } }
 			/>
 		</PanelBody>
 	</> );

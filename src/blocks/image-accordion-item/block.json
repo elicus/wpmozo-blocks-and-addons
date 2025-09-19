@@ -108,8 +108,7 @@
         "buttonborder": { "type": "object" },
         "buttonborderRadius": { "type": "string" },
         "buttonpadding": { "type": "object" },
-        "buttonmargin": { "type": "object" },
-        "buttonposition": { "type": "object" }
+        "buttonmargin": { "type": "object" }
 
     },
     "textdomain": "wpmozo-blocks-and-addons",
