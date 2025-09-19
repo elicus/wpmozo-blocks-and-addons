@@ -18,7 +18,7 @@
 
         "scrollText": { "type": "string", "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non augue eget est vestibulum ultrices eu in leo. Quisque sem diam, finibus ac condimentum eu, finibus id arcu." },
         "textColor": { "type": "string" },
-		"textFontSize": { "type": "string" },
+		"textFontSize": { "type": "string", "default": "55px" },
 		"textLetterSpacing": { "type": "string" },
 		"textDecoration": { "type": "string" },
 		"textLetterCase": { "type": "string" },
