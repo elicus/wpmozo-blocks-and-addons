@@ -6,7 +6,7 @@
  * @package           WPMozo_Blocks_And_Addons
  *
  * @wordpress-plugin
- * Plugin Name:       WPMozo Blocks And Addons
+ * Plugin Name:       WPMozo Blocks and Addons
  * Plugin URI:        https://wpmozo.com/product/wpmozo-blocks-and-addons
  * Description:       WPMozo Blocks and Addons is a plugin designed to extend the functionality of the Gutenberg editor.
  * It provides a variety of blocks to help you create stunning and interactive content in WordPress effortlessly.
