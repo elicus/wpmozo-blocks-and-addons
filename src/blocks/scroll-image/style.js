@@ -24,11 +24,13 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 		height: ${attributes.containerHeight} !important;
 		${wrapperDimensions}
 	}
-	.wpmozo-bna-scroll-image-inner-wrap img{
+	.wpmozo-bna-scroll-image-inner-wrap img{ 
 		transition: all ${attributes.scrollSpeed}s ease-out;
 	}
-	${ (convertedStyle.image) ? ` .wpmozo-bna-scroll-image-inner-wrap { `+ convertedStyle.image + `; }` : '' }`;
-	
+	.wpmozo-bna-scroll-image-wrapper{
+		${convertedStyle.image}
+	}`
+
 	styles += `}`;
 	return styles;
 };

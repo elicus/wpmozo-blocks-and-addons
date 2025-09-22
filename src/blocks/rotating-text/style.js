@@ -1,5 +1,5 @@
 import {convertInlineStyleStr} from '../../common/utils.js';
-const generateDynamicStyle = ({attributes, clientId}) => {
+const generateDynamicStyle = ({attributes}) => {
 
 	const toConvertStyles = [
 		'wrapper',
@@ -7,17 +7,27 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 		'element'
 	];
 	let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
-	let styles = `#block-${clientId}{`;
+
+	// Determine text rotation direction class
+	let textRotation;
+	if (attributes.textRotation === 'clockwise') {
+		textRotation = 'wpmozo-bna-text-rotation';
+	} else {
+		textRotation = 'wpmozo-bna-text-rotation-reverse';
+	}
+
+	let styles = `#block-${attributes.ID}{`;
 
 	styles += `
 		.wpmozo-bna-rotating-text-wrap{
 			background: ${attributes.wrapperBackground};
 			width: ${attributes.circleSize};
 			height: ${attributes.circleSize};
+			justify-self: ${attributes.rotatingAlign};
 			${convertedStyle.wrapper}
 		}
 		.wpmozo-bna-rotating-text-inner{
-			animation: wpmozo-bna-text-rotation ${attributes.circleAnimationSpeed}ms linear infinite !important;
+			animation: ${textRotation} ${attributes.circleAnimationSpeed}ms linear infinite !important;
 		}
 		.wpmozo-bna-rotating-text-inner span{
 			color: ${attributes.textColor};
@@ -39,7 +49,7 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 			}
 		`;
 	}
-	
+
 	styles += `}`;
 	return styles;
 };

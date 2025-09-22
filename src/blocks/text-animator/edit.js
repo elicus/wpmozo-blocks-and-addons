@@ -11,7 +11,7 @@ const Edit = (props) => {
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
-		if ( ! attributes.ID && clientId ) {
+		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
 		}
 	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
@@ -66,7 +66,7 @@ const Edit = (props) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
 			<div { ...useBlockProps() } id={`block-${attributes.ID}`}>
 				<div className={`animated_text_wrapper wpmozo-${attributes.selectAnimation}`}>

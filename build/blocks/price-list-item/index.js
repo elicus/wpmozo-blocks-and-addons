@@ -8,7 +8,7 @@
   \***********************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/price-list-item","version":"0.1.0","title":"Price List Item","category":"wpmozo","icon":"smiley","description":"Easily create and organized price lists with the Price List block","example":{},"parent":["wpmozo/price-list"],"supports":{"html":false,"anchor":false,"customClassName":false,"inserter":false},"attributes":{"parentAtts":{"type":"object"},"ID":{"type":"string"},"className":{"type":"string"},"itemName":{"type":"string","default":"Item Name"},"itemCurrency":{"type":"string","default":"$"},"itemPrice":{"type":"string","default":"10"},"pricePeriod":{"type":"string"},"itemThumbnailOption":{"type":"string","default":"use_image"},"icon":{"type":"string"},"itemThumbnail":{"type":"string"},"content":{"type":"string"},"itemBackground":{"type":"string"},"itemborder":{"type":"object"},"itemborderRadius":{"type":"string"},"iconColor":{"type":"string"},"iconShapBackground":{"type":"string","default":"#9E9E9E"},"styleIcon":{"type":"boolean","default":false},"iconShape":{"type":"string","default":"square"},"iconFontSize":{"type":"string"},"thumbnailborder":{"type":"object"},"thumbnailborderRadius":{"type":"string"},"nameHeadingLavel":{"type":"string","default":"h4"},"nameColor":{"type":"string"},"nameFontSize":{"type":"string"},"nameFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"nameLetterSpacing":{"type":"string"},"nameDecoration":{"type":"string"},"nameLetterCase":{"type":"string"},"nameLineHeight":{"type":"string"},"priceColor":{"type":"string"},"priceFontSize":{"type":"string"},"priceFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"priceLetterSpacing":{"type":"string"},"priceDecoration":{"type":"string"},"priceLetterCase":{"type":"string"},"priceLineHeight":{"type":"string"},"currencyColor":{"type":"string"},"currencyFontSize":{"type":"string"},"currencyFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"currencyLetterSpacing":{"type":"string"},"currencyDecoration":{"type":"string"},"currencyLetterCase":{"type":"string"},"currencyLineHeight":{"type":"string"},"descriptionColor":{"type":"string"},"descriptionFontSize":{"type":"string"},"descriptionFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"descriptionLetterSpacing":{"type":"string"},"descriptionDecoration":{"type":"string"},"descriptionLetterCase":{"type":"string"},"descriptionLineHeight":{"type":"string"},"periodColor":{"type":"string"},"periodFontSize":{"type":"string"},"periodFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"periodLetterSpacing":{"type":"string"},"periodDecoration":{"type":"string"},"periodLetterCase":{"type":"string"},"periodLineHeight":{"type":"string"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/price-list-item","version":"0.1.0","title":"Price List Item","category":"wpmozo","icon":"smiley","description":"Easily create and organized price lists with the Price List block","example":{},"parent":["wpmozo/price-list"],"supports":{"html":false,"anchor":false,"customClassName":false,"inserter":false},"attributes":{"parentAtts":{"type":"object"},"ID":{"type":"string"},"className":{"type":"string"},"itemName":{"type":"string","default":"Item Name"},"itemCurrency":{"type":"string","default":"$"},"itemPrice":{"type":"string","default":"10"},"pricePeriod":{"type":"string"},"itemThumbnailOption":{"type":"string","default":"use_image"},"icon":{"type":"string"},"itemThumbnail":{"type":"string"},"content":{"type":"string"},"itemBackground":{"type":"string"},"itemborder":{"type":"object"},"itemborderRadius":{"type":"string"},"iconColor":{"type":"string"},"iconShapBackground":{"type":"string"},"styleIcon":{"type":"boolean","default":false},"iconShape":{"type":"string","default":"square"},"iconFontSize":{"type":"string"},"thumbnailborder":{"type":"object"},"thumbnailborderRadius":{"type":"string"},"nameHeadingLavel":{"type":"string","default":"h4"},"nameColor":{"type":"string"},"nameFontSize":{"type":"string"},"nameFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"nameLetterSpacing":{"type":"string"},"nameDecoration":{"type":"string"},"nameLetterCase":{"type":"string"},"nameLineHeight":{"type":"string"},"priceColor":{"type":"string"},"priceFontSize":{"type":"string"},"priceFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"priceLetterSpacing":{"type":"string"},"priceDecoration":{"type":"string"},"priceLetterCase":{"type":"string"},"priceLineHeight":{"type":"string"},"currencyColor":{"type":"string"},"currencyFontSize":{"type":"string"},"currencyFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"currencyLetterSpacing":{"type":"string"},"currencyDecoration":{"type":"string"},"currencyLetterCase":{"type":"string"},"currencyLineHeight":{"type":"string"},"descriptionColor":{"type":"string"},"descriptionFontSize":{"type":"string"},"descriptionFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"descriptionLetterSpacing":{"type":"string"},"descriptionDecoration":{"type":"string"},"descriptionLetterCase":{"type":"string"},"descriptionLineHeight":{"type":"string"},"periodColor":{"type":"string"},"periodFontSize":{"type":"string"},"periodFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"periodLetterSpacing":{"type":"string"},"periodDecoration":{"type":"string"},"periodLetterCase":{"type":"string"},"periodLineHeight":{"type":"string"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js"}');
 
 /***/ }),
 
@@ -47,7 +47,8 @@ function WPMozoPriceListLayout({
     icon,
     content,
     parentAtts,
-    ID
+    ID,
+    styleIcon
   } = attributes;
   let thumbnail = null,
     price = null,
@@ -61,7 +62,8 @@ function WPMozoPriceListLayout({
   }) : null;
   let itmeHeadingTag = attributes.nameHeadingLavel,
     parentHeadingLavel = parentAtts.nameHeadingLavel,
-    HeadingTag = 'h4' !== itmeHeadingTag ? itmeHeadingTag : parentHeadingLavel;
+    HeadingTag = 'h4' !== itmeHeadingTag ? itmeHeadingTag : parentHeadingLavel,
+    iconShapeClass = styleIcon ? ' ' + iconShape : '';
   const title = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
     className: "wpmozo-bna-price-list-item-name",
     tagName: HeadingTag,
@@ -79,7 +81,7 @@ function WPMozoPriceListLayout({
   }
   if (iconElement && itemThumbnailOption === "use_icon") {
     thumbnail = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-      className: `wpmozo-bna-price-list-icon ${iconShape}`,
+      className: `wpmozo-bna-price-list-icon${iconShapeClass}`,
       children: iconElement
     });
   }
@@ -302,14 +304,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
 
 const Icon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+  className: "wpmozo-block-icon",
   xmlns: "http://www.w3.org/2000/svg",
   version: "1.1",
   width: "1024",
   height: "1024",
   viewBox: "0 0 1024 1024",
-  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("g", {
-    id: "icomoon-ignore"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
     fill: "#000",
     d: "M584.533 326.4c-6.4 10.667-12.8 17.067-23.467 25.6-10.667 6.4-23.467 10.667-38.4 12.8v27.733h-21.333v-27.733c-21.333-2.133-38.4-8.533-51.2-19.2s-19.2-25.6-19.2-44.8h40.533c0 8.533 4.267 14.933 8.533 21.333s12.8 8.533 21.333 10.667v-72.533c-14.933-4.267-27.733-8.533-36.267-10.667-8.533-4.267-17.067-10.667-23.467-19.2s-10.667-19.2-10.667-34.133c0-19.2 6.4-34.133 19.2-46.933s29.867-19.2 51.2-21.333v-27.733h21.333v27.733c19.2 2.133 36.267 8.533 46.933 19.2 12.8 10.667 19.2 25.6 19.2 42.667h-40.533c0-6.4-4.267-12.8-8.533-19.2s-10.667-8.533-19.2-10.667v72.533c14.933 4.267 27.733 6.4 36.267 10.667s17.067 10.667 23.467 19.2c6.4 8.533 10.667 19.2 10.667 34.133 2.133 10.667 0 21.333-6.4 29.867zM477.867 213.333c6.4 4.267 12.8 8.533 23.467 12.8v-68.267c-8.533 2.133-17.067 4.267-23.467 10.667-4.267 6.4-8.533 12.8-8.533 23.467 0 8.533 4.267 17.067 8.533 21.333zM546.133 320c6.4-6.4 8.533-14.933 8.533-23.467s-2.133-14.933-8.533-21.333c-6.4-4.267-12.8-8.533-23.467-12.8v68.267c10.667 0 17.067-4.267 23.467-10.667z"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
@@ -491,7 +492,8 @@ function WPMozoPriceListLayout({
     icon,
     content,
     parentAtts,
-    ID
+    ID,
+    styleIcon
   } = attributes;
   let thumbnail = null,
     price = null,
@@ -505,7 +507,8 @@ function WPMozoPriceListLayout({
   }) : null;
   let itmeHeadingTag = attributes.nameHeadingLavel,
     parentHeadingLavel = parentAtts.nameHeadingLavel,
-    HeadingTag = 'h4' !== itmeHeadingTag ? itmeHeadingTag : parentHeadingLavel;
+    HeadingTag = 'h4' !== itmeHeadingTag ? itmeHeadingTag : parentHeadingLavel,
+    iconShapeClass = styleIcon ? ' ' + iconShape : '';
   const title = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
     className: "wpmozo-bna-price-list-item-name",
     tagName: HeadingTag,
@@ -519,7 +522,7 @@ function WPMozoPriceListLayout({
   }
   if (iconElement && itemThumbnailOption === "use_icon") {
     thumbnail = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-      className: `wpmozo-bna-price-list-icon ${iconShape}`,
+      className: `wpmozo-bna-price-list-icon${iconShapeClass}`,
       children: iconElement
     });
   }
@@ -2421,7 +2424,7 @@ const WpmozoTypography = args => {
     })]
   }, `wpmozo-typography-panel-${TypographyKey}`);
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.compose)()(WpmozoTypography));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WpmozoTypography);
 
 /***/ }),
 
@@ -2524,7 +2527,7 @@ function convertInlineStyle(options = {}, atts = {}) {
       if (options.border.color) str += ` ${options.border.color}`;
       append('border', str);
     }
-    if (options.border.top) {
+    if (options.border.top || options.border.bottom || options.border.left || options.border.right) {
       for (const border in options.border) {
         for (const item in options.border[border]) {
           append(`border-${border}-${item}`, options.border[border][item]);
@@ -2861,7 +2864,7 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"blocks/price-list-item/index": 0,
-/******/ 			"blocks/bar-counter/style-index": 0
+/******/ 			"blocks/advanced-button/style-index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -2911,7 +2914,7 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/bar-counter/style-index"], () => (__webpack_require__("./src/blocks/price-list-item/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/advanced-button/style-index"], () => (__webpack_require__("./src/blocks/price-list-item/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

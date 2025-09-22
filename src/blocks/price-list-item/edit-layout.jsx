@@ -17,7 +17,8 @@ function WPMozoPriceListLayout({ props }) {
     icon,
     content,
     parentAtts,
-    ID
+    ID,
+    styleIcon
   } = attributes;
 
   let thumbnail = null,
@@ -33,7 +34,8 @@ function WPMozoPriceListLayout({ props }) {
 
   let itmeHeadingTag = attributes.nameHeadingLavel,
       parentHeadingLavel = parentAtts.nameHeadingLavel,
-      HeadingTag = ( 'h4' !== itmeHeadingTag ) ? itmeHeadingTag : parentHeadingLavel;
+      HeadingTag = ( 'h4' !== itmeHeadingTag ) ? itmeHeadingTag : parentHeadingLavel,
+      iconShapeClass = ( styleIcon ) ? ' '+iconShape : '';
 
   const title = (
     <RichText
@@ -51,7 +53,7 @@ function WPMozoPriceListLayout({ props }) {
 
   if (iconElement && itemThumbnailOption === "use_icon") {
     thumbnail = (
-      <span className={`wpmozo-bna-price-list-icon ${iconShape}`}>
+      <span className={`wpmozo-bna-price-list-icon${iconShapeClass}`}>
         {iconElement}
       </span>
     );

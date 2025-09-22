@@ -1,0 +1,28 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "wpmozo/advanced-button",
+    "version": "0.1.0",
+    "title": "Advanced Button",
+    "category": "wpmozo",
+    "icon": "smiley",
+    "description": "Create inline buttons without utilizing button custom CSS using the block.",
+    "example": {},
+	"supports": {
+		"html": false,
+		"anchor": false,
+		"customClassName": false
+	},
+    "attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+		"btnOrientation": {"type": "string","default": "horizontal"},
+		"buttonAlignment": { "type": "string","default":"left" },
+		"btnVerticalAlign": {"type":"string","default": "center"}
+	},
+    "textdomain": "wpmozo-blocks-and-addons",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+    "viewScript": "file:./view.js"
+}

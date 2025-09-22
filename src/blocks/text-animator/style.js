@@ -1,6 +1,6 @@
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ( { attributes, clientId } ) => {
+const generateDynamicStyle = ( { attributes } ) => {
 	const toConvertStyles = [
 		'global',
 		'prePost',
@@ -10,11 +10,22 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
+	let alignItems;
+	if ('left' === attributes.globalTextAlignment) {
+		alignItems = 'flex-start';
+	} else if ('right' === attributes.globalTextAlignment) {
+		alignItems = 'flex-end';
+	} else {
+		alignItems = 'center';
+	}
+
     let styles = `#block-${attributes.ID} {`;
 
 	// Display in stack.
 	if ( attributes?.displayInStack ) {
-		styles += `.pre_text_wrapper, .post_text_wrapper{ display: block; }`;
+		styles += `
+		.wpmozo-animated-text{display: flex;flex-direction: column;place-items: ${alignItems};}
+		.pre_text_wrapper, .post_text_wrapper{ vertical-align: -webkit-baseline-middle; }`;
 	}
 
 	// Animation duration.
@@ -30,6 +41,7 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 		${attributes.globalTextAlignment ? `text-align: ${attributes.globalTextAlignment};` : ''}
 		${convertedStyle.global}
 	}`;
+
 	// Pre/Post text.
 	styles += `.pre_text_wrapper, .post_text_wrapper{
 		${attributes.prePostTextColor ? `color: ${attributes.prePostTextColor};` : ''}

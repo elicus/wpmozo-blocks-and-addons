@@ -23,7 +23,9 @@ const Edit = ( props ) => {
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
-		setAttributes({ ID: clientId });
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
 	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	const imageUrl    = ( attributes.image ) ? attributes.image : '';
@@ -32,9 +34,9 @@ const Edit = ( props ) => {
 
 	// Track previous rateIcon to force reload even if "same" is chosen.
 	const prevRateIcon = useRef( null );
-	
+
 	// ratingOutOf (force 5 for smiley).
-	let ratingOutOf = attributes.ratingOutOf ?? 5;
+	let ratingOutOf = ( attributes.ratingOutOf && '' !== attributes.ratingOutOf ) ? attributes.ratingOutOf : 5;
 	if ( isSmiley( rateIcon ) && ratingOutOf !== 5 ) {
 		ratingOutOf = 5;
 	}
@@ -127,7 +129,7 @@ const Edit = ( props ) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
 			<div {...useBlockProps()} id={`block-${clientId}`}>
 				<div className="wpmozo_star_rating_wrapper">

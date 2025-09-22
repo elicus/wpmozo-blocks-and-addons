@@ -2,10 +2,10 @@ import { useBlockProps } from "@wordpress/block-editor";
 import generateDynamicStyle from './style';
 
 export default function save({attributes}) {
-	
-	const clientId = attributes.ID;
 
-	let image = ( attributes.image ) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,	
+	const { ID, className } = attributes;
+
+	let image = ( attributes.image ) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,
 		useImage = attributes.useImage,
 		text = attributes.rotatingText,
 		iconImage = null;
@@ -26,22 +26,28 @@ export default function save({attributes}) {
 		);
 	}
 
-	return ( <>
-		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+	// Only add ID attribute if it exists
+	const blockProps = useBlockProps.save( {
+		className: 'wpmozo-bna-rotating-text ' + ( className || '' ),
+		...( ID ? { id: `block-${ ID }` } : {} ),
+	} );
 
-		<div { ...useBlockProps.save( {className: 'wpmozo-bna-rotating-text ' + ( attributes.className || '' ) } ) }
-			id={`block-${clientId}`}
-		>
+	return ( <>
+		{/* Only output <style> if ID exists. */}
+		{ ( ID && '' !== ID ) && (
+			<style>{ generateDynamicStyle( { attributes } ) }</style>
+		) }
+		<div {...blockProps}>
 			<div className="wpmozo-bna-rotating-text-wrap">
-	            <div className="wpmozo-bna-rotating-text-inner">
-	                <p>{text}</p>
-	            </div>
-	            {iconImage && (
-	                <div className="wpmozo-bna-rotating-text-icon-wrapper">
-	                    {iconImage}
-	                </div>
-	            )}
-	        </div>
+				<div className="wpmozo-bna-rotating-text-inner">
+					<p>{text}</p>
+				</div>
+				{iconImage && (
+					<div className="wpmozo-bna-rotating-text-icon-wrapper">
+						{iconImage}
+					</div>
+				)}
+			</div>
 		</div>
-	</> );
+	</>);
 }

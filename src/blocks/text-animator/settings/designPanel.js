@@ -20,16 +20,16 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 
 	const [ textTypeTab, setTextTypeTab ] = useState( 'global' );
 	const [ textBGTab, setTextBGTab ]     = useState( 'prePost' );
-	
+
 	return ( <>
 		{/* Text Typography. */}
 		<PanelBody title={ __( 'Text Typography', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
 			<BaseControl className="wpmozo-button-tabs-wrap">
 				<ButtonGroup>
 					<Button className="wpmozo-button-tabs-btn"
-						isPressed={ ( 'global' === textTypeTab ) ? true : false }
-						onClick={ () => setTextTypeTab( 'global' ) }
-						label={ __( 'Global', 'wpmozo-blocks-and-addons' ) }
+							isPressed={ ( 'global' === textTypeTab ) ? true : false }
+							onClick={ () => setTextTypeTab( 'global' ) }
+							label={ __( 'Global', 'wpmozo-blocks-and-addons' ) }
 					>{ __( 'Global', 'wpmozo-blocks-and-addons' ) }</Button>
 					<Button className="wpmozo-button-tabs-btn"
 						isPressed={ ( 'prePost' === textTypeTab ) ? true : false }
@@ -44,19 +44,28 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				</ButtonGroup>
 			</BaseControl>
 			{ 'global' === textTypeTab && ( <>
-				<WpmozoColorPicker props={props}
-					ColorKey="globalText"
-					label={ __( 'Global Text', 'wpmozo-blocks-and-addons' ) }
-					ColorTypes={ [
-						{ key: 'Color', label: __( 'Global Text Color', 'wpmozo-blocks-and-addons' ) }
-					] }
+				<WpmozoColorPicker
+					props={props}
+				   	ColorKey="globalText"
+				   	label={ __( 'Global Text', 'wpmozo-blocks-and-addons' ) }
+				   	ColorTypes={ [
+					   { key: 'Color', label: __( 'Global Text Color', 'wpmozo-blocks-and-addons' ) }
+				   	] }
 				/>
 				<WpmozoAlignment
 					label={ __( 'Global Text Alignment', 'wpmozo-blocks-and-addons' ) }
 					onChange={ ( newValue ) => setAttributes( { globalTextAlignment: newValue } ) }
 					value={ attributes.globalTextAlignment }
 				/>
-				<WpmozoTypography props={props}
+				<WpmozoTypography
+					TypoTypes={{
+						'FontSize': true,
+						'LetterSpacing': true,
+						'FontAppearance': true,
+						'LetterCase': true,
+						'LineHeight': true,
+					}}
+					props={props}
 					TypographyKey="global"
 					label={ __( 'Global Typography', 'wpmozo-blocks-and-addons' ) }
 				/>

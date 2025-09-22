@@ -1,10 +1,11 @@
+
 import { useBlockProps } from "@wordpress/block-editor";
 import generateDynamicStyle from "./style";
 
 const Save = ( { attributes } ) => {
 
 	const clientId = attributes.ID;
-	
+
 	const Tag          = attributes.selectDisplayTag || 'p'; // fallback to "p" if not set.
 	const animation    = attributes.selectAnimation ?? 'fade';
 	const animatedText = attributes.animatedText ?? '';
@@ -41,7 +42,7 @@ const Save = ( { attributes } ) => {
 	}
 
 	return ( <>
-		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+		<style>{ generateDynamicStyle( { attributes } ) }</style>
 
 		<div id={`block-${clientId}`} { ...useBlockProps.save( { className: attributes.className } ) }>
 			<div className={`animated_text_wrapper wpmozo-${attributes.selectAnimation}`}>

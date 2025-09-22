@@ -16,15 +16,15 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 
 	styles += `
 		.wpmozo-bna-text-highlighter-wrapper{
-			color: ${attributes.globalTextColor};
-			text-align: ${attributes.globalTextAlignment};
+			${attributes.globalTextColor ? `color: ${attributes.globalTextColor};` : ''}
+			${attributes.globalTextAlignment ? `text-align: ${attributes.globalTextAlignment};` : ''}
 			${convertedStyle.global}
 		}
 		.wpmozo-bna-text-highlighter-pre-inner-wrapper{
 			color: ${attributes.preTextColor};
 			${convertedStyle.pre}
 		}
-		.wpmozo-bna-text-highlighter-inner-wrapper{
+		.wpmozo-bna-text-highlighted-content{
 			color: ${attributes.mainTextColor};
 			${convertedStyle.main}
 		}

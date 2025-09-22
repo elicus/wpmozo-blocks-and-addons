@@ -202,6 +202,10 @@ class Mozo_Bna_Blocks_And_Addons {
 
 		// Load all script.js file in footer.
 		add_action( 'wp_enqueue_scripts', array( $this->classes['astreg'], 'enqueue_block_script_in_footer' ), 20 );
+
+		// Use a higher priority to ensure our filter runs after others.
+		add_filter( 'upload_mimes', array( $this, 'wpmozo_custom_upload_mimes' ), 999 );
+		add_filter( 'wp_theme_json_data_theme', array( $this, 'wpmozo_override_theme_json' ), 20 );
 	}
 
 	/**
@@ -230,5 +234,63 @@ class Mozo_Bna_Blocks_And_Addons {
 			$this->load_admin_dependencies();
 			$this->add_admin_hooks();
 		}
+	}
+
+	/**
+	 * Add .json files as supported format in the uploader.
+	 *
+	 * @param array<string, string> $mimes Already supported mime types.
+	 * @return array<string, string>
+	 */
+	public function wpmozo_custom_upload_mimes( $mimes ){
+		// Remove any existing .json mime type to avoid conflicts.
+		foreach ( $mimes as $ext => $type ) {
+			if ( $ext === 'json' ) {
+				unset( $mimes[ $ext ] );
+			}
+		}
+		// Allow JSON files.
+		$mimes['json'] = 'application/json';
+		return $mimes;
+	}
+
+	/**
+	 * Override theme json file data
+	 *
+	 * @param WP_Theme_JSON_Data $theme_json The instance of theme json file.
+	 * @return WP_Theme_JSON_Data The instance with access to the modified data.
+	 */
+	public function wpmozo_override_theme_json( $theme_json ) {
+
+		$json_data = $theme_json->get_data( $theme_json );
+
+		if ( isset( $json_data['settings']['spacing']['defaultSpacingSizes'] ) ) {
+
+			$default_spacing_sizes = $json_data['settings']['spacing']['defaultSpacingSizes'];
+			if ( ! $default_spacing_sizes ) {
+
+				if ( 
+					! isset( $json_data['settings']['spacing']['spacingSizes'] ) ||
+					empty( $json_data['settings']['spacing']['spacingSizes'] )
+				) {
+
+					$data = array(
+						'version'  => 3,
+						'settings' => array(
+							'spacing' => array(
+								'defaultSpacingSizes' => true,
+							),
+						),
+					);
+
+					$theme_json->update_with( $data );
+
+				}
+
+			}
+
+		}
+
+		return $theme_json;
 	}
 }

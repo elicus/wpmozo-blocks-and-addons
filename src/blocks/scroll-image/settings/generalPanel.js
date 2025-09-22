@@ -11,9 +11,15 @@ import {
 	WpmozoAlignment,
 	WpmozoRangeSize
 } from '../../../common/components/index';
+import { wpmozo_is_empty } from '../../../common/utils.js';
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	let containerWidth = NaN;
+
+	if ( ! wpmozo_is_empty( attributes.containerWidth ) ) {
+		containerWidth = parseFloat(attributes.containerWidth.replace(attributes.containerWidthUnit, ''));
+	}
 
 	return ( <>
 		<PanelBody title={ __( 'Image', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
@@ -49,11 +55,13 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				label={ __( 'Image Container Width', 'wpmozo-blocks-and-addons') }
 				rangeSizeKey='containerWidth'
 			/>
-			<WpmozoAlignment
-				label={__( 'Image Alignment', 'wpmozo-blocks-and-addons')}
-				onChange={ ( newValue ) => setAttributes( { imageAlignment: newValue } ) }
-				value={ attributes.imageAlignment }
-			/>
+			{  containerWidth > 0 &&
+				<WpmozoAlignment
+					label={__( 'Image Alignment', 'wpmozo-blocks-and-addons')}
+					onChange={ ( newValue ) => setAttributes( { imageAlignment: newValue } ) }
+					value={ attributes.imageAlignment }
+				/>
+			}
 			<WpmozoRangeSize props={props}
 				label={ __( 'Image Container Height', 'wpmozo-blocks-and-addons') }
 				rangeSizeKey='containerHeight'

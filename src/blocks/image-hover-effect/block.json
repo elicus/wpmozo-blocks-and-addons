@@ -6,7 +6,7 @@
 	"title": "Image Hover Effect",
 	"category": "wpmozo",
 	"icon": "smiley",
-	"description": "Image Hover Effect description",
+	"description": "Transform static images into interactive visuals with stylish hover effects using the Block.",
 	"example": {},
 	"supports": {
 		"html": false,
@@ -15,7 +15,7 @@
 	"attributes": {
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
-		
+
 		"image": { "type": "string" },
 		"hoverEffect": { "type": "string", "default": "radial" },
 		"imageborder": { "type": "object" },

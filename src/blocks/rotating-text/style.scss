@@ -53,3 +53,6 @@
 @keyframes wpmozo-bna-text-rotation {
     to { transform: rotate(360deg); }
 }
+@keyframes wpmozo-bna-text-rotation-reverse {
+	to { transform: rotate(-360deg); }
+}

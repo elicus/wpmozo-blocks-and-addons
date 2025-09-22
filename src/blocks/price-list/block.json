@@ -33,7 +33,7 @@
         "dividerStyle": { "type": "string" },
 
         "iconColor": { "type": "string" },
-        "iconShapBackground": { "type": "string" },
+        "iconShapBackground": { "type": "string", "default": "#9E9E9E" },
 
         "iconFontSize": { "type": "string", "default": "100px" },
 

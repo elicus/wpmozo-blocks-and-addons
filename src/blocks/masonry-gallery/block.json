@@ -6,7 +6,7 @@
     "title": "Masonry Gallery",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "Design a customizable image gallery with a dynamic masonry layout for multiple photos.",
+    "description": "Design a customizable image gallery with a masonry layout for multiple photos.",
     "example": {},
 	"supports": {
 		"html": false,

@@ -132,3 +132,24 @@
 	border-top: 9px solid #3DDA85;
 	z-index: 99;
 } */
+
+/* Repeater field. */
+.wpmozo-repeater-row{
+	position: relative;
+	margin-bottom: 10px;
+	background: rgb(248, 249, 250);
+	padding: 15px 10px;
+	border-radius: 6px;
+	box-shadow: rgba(0, 0, 0, 0.03) 0px 1px 2px;
+}
+.wpmozo-repeator-title{
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+.wpmozo-repeator-trash{
+	display: block;
+	margin-right: auto;
+}
+.wpmozo-block-icon path{
+	fill: #5600b7;
+}

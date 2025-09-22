@@ -20,7 +20,8 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 			background-color: ${attributes.itemBackground};
 			${convertedStyle.item}
 		}
-		.wpmozo-bna-price-list-icon:not(.hexagon){
+		.wpmozo-bna-price-list-icon.circle .icon-wrapper,
+		.wpmozo-bna-price-list-icon.square .icon-wrapper{
 			background-color: ${attributes.iconShapBackground};
 		}
 		.wpmozo-bna-price-list-icon i{
@@ -55,6 +56,9 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 			border-top-color: ${attributes.dividerColor} !important;
 			border-top-style: ${attributes.dividerStyle} !important;
 			border-top-width: ${attributes.dividerWidth} !important;
+		}
+		.wpmozo-bna-price-list-icon.hexagon::before{
+			background-color: ${attributes.iconShapBackground};
 		}
 		`;
 	styles += `}`;

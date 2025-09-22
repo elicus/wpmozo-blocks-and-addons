@@ -4,7 +4,11 @@ import {
 	TextControl,
 	ToggleControl,
 	SelectControl,
+	ButtonGroup,
+	Button
 } from '@wordpress/components';
+
+import { headingLevelsList } from '../../../common/utils.js';
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 
@@ -76,6 +80,16 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					checked={attributes.wrapInHeadingTag}
 					onChange={(newValue) => setAttributes({wrapInHeadingTag: newValue})}
 				/>
+				{attributes.wrapInHeadingTag && (
+					<ButtonGroup>
+						{ headingLevelsList.map( (item, key) => (
+							<Button key={item.value}
+									isPressed={ ( item.value === attributes.headingLevel ) ? true : false }
+									onClick={(newValue) => setAttributes({headingLevel: item.value})}
+							>{item.label}</Button>
+						) ) }
+					</ButtonGroup>
+				)}
 			</PanelBody>
 		</>
 	);
