@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/facebook-like",
+	"version": "0.1.0",
+	"title": "Facebook Like",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "Add a Facebook Like button to any page, including layout, share button, and size options.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"customClassName": false
+	},
+	"attributes": {
+		"url": {
+			"type": "string",
+			"default": ""
+		},
+		"layout": {
+			"type": "string",
+			"default": "standard"
+		},
+		"size": {
+			"type": "string",
+			"default": "small"
+		},
+		"share": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}
