@@ -65,8 +65,10 @@
         "imageborder": { "type": "object" },
         "imageborderRadius": { "type": "string" },
         "imagepadding": { "type": "object" },
+        "imageSize": { "type": "string" },
 
         "contentWrapBackground": { "type": "string" },
+        "contentWrapMarginRight": { "type": "string" },
         "contentWrapBackgroundGradient": {
             "type": "string",
             "default": "linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)"
@@ -80,7 +82,7 @@
         "cardItemWidth": { "type": "string" },
         "cardItemborder": { "type": "object" },
         "cardItemborderRadius": { "type": "string" },
-        "cardItempadding": { "type": "object" },
+        "cardItempadding": { "type": "object" }
     },
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",

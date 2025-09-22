@@ -7,8 +7,7 @@ import {
 	Button,
 	ToggleControl,
 	__experimentalToggleGroupControl as ToggleGroupControl,
-    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
-    UnitControl
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption
 } from '@wordpress/components';
 import { __experimentalColorGradientControl as ColorGradientControl } from "@wordpress/block-editor"
 import { useState } from "@wordpress/element";
@@ -113,6 +112,13 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Image', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			{ 'vertical' === attributes.layout &&
+				<WpmozoRangeSize
+					label={ __( 'Image Size', 'wpmozo-blocks-and-addons') }
+					rangeSizeKey='imageSize'
+					props={props}
+				/>
+			}
 			<WpmozoDimensions props={props}
 				DimensionKey='image'
 				DimensionsTypes={ { padding: true } }
@@ -145,6 +151,13 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					attrKye="contentWrapBackgroundImage"
 				/>
 			</> }
+			{ 'vertical' === attributes.layout &&
+				<WpmozoRangeSize
+					label={ __( 'Content Wrap Margin Right', 'wpmozo-blocks-and-addons') }
+					rangeSizeKey='contentWrapMarginRight'
+					props={props}
+				/>
+			}
 			<WpmozoDimensions props={props}
 				DimensionKey='contentWrap'
 				DimensionsTypes={ { padding: true } }
@@ -154,11 +167,13 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Card Item', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			<UnitControl
-				label={ __( 'Card Item Width', 'wpmozo-blocks-and-addons' ) }
-				value={attributes.cardItemWidth}
-				onChange={ ( newValue ) => setAttributes( { cardItemWidth: newValue } ) }
-			/>
+			{ 'horizontal' === attributes.layout &&
+				<WpmozoRangeSize
+					label={ __( 'Card Item Width', 'wpmozo-blocks-and-addons') }
+					rangeSizeKey='cardItemWidth'
+					props={props}
+				/>
+			}
 			<WpmozoBorder props={props}
 				BorderKey="cardItem"
 			/>
