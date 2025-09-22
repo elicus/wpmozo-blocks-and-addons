@@ -1,4 +1,5 @@
-.wpmozo_bna_blog_timeline_wrapper {
+.wpmozo_bna_blog_timeline_wrapper{
+	position: relative;
 	display: flex;
 	flex-direction: column;
 }
@@ -65,10 +66,13 @@
 .wp-block-wpmozo-blog-timeline .wpmozo_bna_mobile_date{
 	display: none;
 }
-.wpmozo_bna_blog_timeline_post_icon{
-	display: block;
-	text-align: center;
+.wpmozo_bna_blog_timeline_stem_center .wpmozo_bna_blog_timeline_post_icon{
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	font-size: 22px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 .wp-block-wpmozo-blog-timeline .wpmozo_bna_stem_wrapper{
 	width: 2px;
@@ -110,7 +114,7 @@
 .wp-block-wpmozo-blog-timeline .layout1 .wpmozo_bna_blog_timeline_meta_date{
 	margin-bottom: 10px;
 }
-.wp-block-wpmozo-blog-timeline .layout2 .wpmozo_bna_timeline_outer_container {
+.wp-block-wpmozo-blog-timeline .layout2 .wpmozo_bna_blog_timeline_outer_container {
 	white-space: nowrap;
 }
 .wpmozo_bna_blog_timeline_left.layout2 .wpmozo_bna_blog_timeline_outer_container{
@@ -132,17 +136,17 @@
 	position: relative;
 	flex-grow: 1;
 }
-.wpmozo_bna_blog_timeline_alternate .wpmozo_bna_blog_timeline_post .wpmozo_bna_blog_timeline_content_wrapper{
+.wpmozo_bna_blog_timeline_alternate .wpmozo_bna_blog_timeline_content_wrapper{
 	padding: 20px;
 }
-.wpmozo_bna_blog_timeline_alternate .wpmozo_bna_blog_timeline_post .wpmozo_bna_blog_timeline_stem_center{
+.wpmozo_bna_blog_timeline_alternate .wpmozo_bna_blog_timeline_stem_center{
 	order: 1;
 	margin: 0 20px;
 }
 .wpmozo_bna_blog_timeline_alternate .wpmozo_bna_blog_timeline_outer_container{
 	order: 2;
 }
-.wpmozo_bna_blog_timeline_alternate .wpmozo_bna_blog_timeline_post .wpmozo_bna_blog_timeline_triangle{
+.wpmozo_bna_blog_timeline_alternate .wpmozo_bna_blog_timeline_triangle{
 	display: block;
 	height: 20px;
 	width: 20px;
@@ -248,7 +252,7 @@
 		display: block;
 		margin-bottom: 5px;
 	}
-	.wpmozo_bna_blog_timeline_alternate.layout2 .wpmozo_bna_mobile_date.wpmozo_bna_blog_timeline_meta_date{
+	.wpmozo_bna_blog_timeline_alternate.layout2 .wpmozo_bna_blog_timeline_post .wpmozo_bna_mobile_date.wpmozo_bna_blog_timeline_meta_date{
 		text-align: left;
 	}
 }

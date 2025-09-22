@@ -31,7 +31,7 @@ const Layout1 = ( { post, attributes } ) => {
 
 	// Post Excerpt.
 	let postExcerpt = '';
-	if ( post.excerpt.rendered ) {
+	if ( attributes.showExcerpt && post.excerpt.rendered ) {
 		postExcerpt = <div className="wpmozo_bna_blog_timeline_post_content_inner"
 			dangerouslySetInnerHTML={ {__html: post.excerpt.rendered } }
 		/>;

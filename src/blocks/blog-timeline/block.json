@@ -29,6 +29,7 @@
 		"layout": { "type": "string", "default": "layout1" },
 		"orientation": { "type": "string", "default": "alternate" },
 	
+		"showExcerpt": { "type": "boolean", "default": true },
 		"showThumbnail": { "type": "boolean", "default": true },
 		"featuredImageSize": { "type": "string", "default": "large" },
 		"showAuthor": { "type": "boolean", "default": true },

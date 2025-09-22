@@ -129,6 +129,11 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				/>
 			) }<hr />
 			<ToggleControl
+				label={ __( 'Show Excerpt', 'wpmozo-blocks-and-addons' ) }
+				checked={ attributes.showExcerpt }
+				onChange={ ( newValue ) => setAttributes( { showExcerpt: newValue } ) }
+			/><hr />
+			<ToggleControl
 				label={ __( 'Show Author', 'wpmozo-blocks-and-addons' ) }
 				checked={ attributes.showAuthor }
 				onChange={ ( newValue ) => setAttributes( { showAuthor: newValue } ) }

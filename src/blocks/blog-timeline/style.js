@@ -7,7 +7,9 @@ const generateDynamicStyle = ( { attributes } ) => {
 		'post',
 		'title',
 		'titleHover',
-		'excerpt'
+		'excerpt',
+		'date',
+		'meta'
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
@@ -18,13 +20,17 @@ const generateDynamicStyle = ( { attributes } ) => {
 	let iconWidth = attributes.timelineIconFontSize ?? 22;
 	if ( 'none' !== attributes.tlIconShape ) {
 		// Add default 10px padding on all side.
-		iconWidth = parseInt( iconWidth ) + 20;
+		iconWidth = parseInt( iconWidth ) + 25;
+
+		// If border on.
+		if ( attributes.tlIconShapeUseBorder && attributes.tlIconShapeBorderSize ) {
+			iconWidth = parseInt( iconWidth ) + ( 2 * parseInt( attributes.tlIconShapeBorderSize ) );
+		}
 	}
 
 	styles += `.wpmozo_bna_blog_timeline_post_icon{
 		width: ${ iconWidth }px;
 		height: ${ iconWidth }px;
-		line-height: ${ iconWidth }px;
 		${attributes.timelineIconColor ? `color:`+ attributes.timelineIconColor + `;` : ''}
 		${attributes.timelineIconFontSize ? `font-size:`+ attributes.timelineIconFontSize + `px;` : ''}
 
@@ -55,6 +61,16 @@ const generateDynamicStyle = ( { attributes } ) => {
 		${attributes.barSize ? `width:`+ attributes.barSize + `px;` : ''}
 		${attributes.barColor ? `background:`+ attributes.barColor + `;` : ''}
 	}`;
+	if ( 'right' === attributes.orientation && 'layout1' === attributes.layout ) {
+		styles += `.wpmozo_bna_blog_timeline_right .wpmozo_bna_stem_wrapper{
+			left: ${ iconWidth / 2 }px;
+		}`;
+	}
+	if ( 'left' === attributes.orientation && 'layout1' === attributes.layout ) {
+		styles += `.wpmozo_bna_blog_timeline_left .wpmozo_bna_stem_wrapper{
+			right: ${ iconWidth / 2 }px;
+		}`;
+	}
 	styles += `.wpmozo_bna_blog_stem{
 		${attributes.barFillColor ? `background:`+ attributes.barFillColor + `;` : ''}
 	}`;
@@ -104,13 +120,43 @@ const generateDynamicStyle = ( { attributes } ) => {
 	}`;
 
 	// Post excerpt.
-	styles += `.wpmozo_bna_blog_timeline_post_content_inner, .wpmozo_bna_blog_timeline_post_content_inner p{
-		${attributes.excerptAlign ? `text-align: ${attributes.excerptAlign};` : ''}
-		${attributes.excerptColor ? `color: ${attributes.excerptColor};` : ''}
-		${convertedStyle.excerpt}
-	}`;
+	if ( attributes.showExcerpt ) {
+		styles += `.wpmozo_bna_blog_timeline_post_content_inner, .wpmozo_bna_blog_timeline_post_content_inner p{
+			${attributes.excerptAlign ? `text-align: ${attributes.excerptAlign};` : ''}
+			${attributes.excerptColor ? `color: ${attributes.excerptColor};` : ''}
+			${convertedStyle.excerpt}
+		}`;
+	}
+
+	// Post date.
+	if ( attributes.showDate ) {
+		styles += `.wpmozo_bna_blog_timeline_meta_date .published{
+			${attributes.dateColor ? `color: ${attributes.dateColor};` : ''}
+			${convertedStyle.date}
+		}`;
+	}
+
+	// Post meta.
+	if ( attributes.showCategories || attributes.showAuthor || attributes.showComments ) {
+		styles += `.wpmozo_bna_blog_timeline_meta, .wpmozo_bna_blog_timeline_meta a,
+		.wpmozo_bna_blog_timeline_meta_icon, .wpmozo_bna_blog_timeline_meta span, .wpmozo_bna_blog_timeline_meta p{
+			${attributes.metaColor ? `color: ${attributes.metaColor};` : ''}
+			${convertedStyle.meta}
+		}`;
+	}
 
     styles += `}`;
+
+	// Responsive style.
+	styles += `@media only screen and (max-width: 767px) {
+		#block-${attributes.ID} {`;
+		if ( 'alternate' === attributes.orientation ) {
+			styles += `.wpmozo_bna_blog_timeline_alternate .wpmozo_bna_stem_wrapper{
+				left: ${ iconWidth / 2 }px;
+			}`;
+		}
+	styles += `} }`;
+
 	return styles;
 }
 
