@@ -1,4 +1,5 @@
 import $ from 'jquery';
+
 var wpmozo_init_rotating_text = function( $, element = null ) {
 
     if ( element.length > 0 ) {

@@ -1,11 +1,11 @@
 import {convertInlineStyleStr} from '../../common/utils.js';
 
 const generateDynamicStyle = ({attributes}) => {
-
 	const toConvertStyles = [
 		'image'
 	];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
+
     let image = ( attributes.image ) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,
     	hoverEffect = attributes.hoverEffect;
 
