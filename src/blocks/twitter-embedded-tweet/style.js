@@ -1,13 +1,13 @@
 
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ( { attributes, clientId } ) => {
+const generateDynamicStyle = ( { attributes } ) => {
 	const toConvertStyles = [
 		'tweet'
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
-	let styles = `#block-${clientId} {`;
+	let styles = `#block-${attributes.ID} {`;
 
 	styles += `.wpmozo_tweet{ display: inline-block; margin: 0; padding: 10px; }`;
 	styles += `.wpmozo_twitter_embedded_tweet_wrapper{

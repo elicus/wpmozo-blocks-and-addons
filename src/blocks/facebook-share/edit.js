@@ -17,7 +17,9 @@ const Edit = ( props ) => {
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
-		setAttributes( { ID: clientId } );
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
 	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	// Get attributes.
@@ -43,9 +45,9 @@ const Edit = ( props ) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-			<div {...useBlockProps()} id={`block-${clientId}`}>
+			<div {...useBlockProps()} id={`block-${attributes.ID}`}>
 				{ ( fbAppId && '' !== fbAppId ) && (
 					<div className="fb-share-button"
 						data-fb-app={ fbAppId }

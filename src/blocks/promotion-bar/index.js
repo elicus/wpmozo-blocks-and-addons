@@ -1,3 +1,4 @@
+import V1 from './deprecated/v1-version';
 import { registerBlockType } from '@wordpress/blocks';
 import metadata from './block.json';
 import Edit from './edit';
@@ -17,4 +18,5 @@ registerBlockType( metadata.name, {
 	edit: Edit,
 	icon: Icon,
 	save,
+	deprecated: [ V1 ]
 } );

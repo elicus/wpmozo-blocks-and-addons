@@ -1,6 +1,6 @@
-const generateDynamicStyle = ( { attributes, clientId } ) => {
+const generateDynamicStyle = ( { attributes } ) => {
 
-	let styles = `#block-${clientId} {`;
+	let styles = `#block-${attributes.ID} {`;
 
 	// Alignment.
 	if ( attributes.buttonAlign ) {
