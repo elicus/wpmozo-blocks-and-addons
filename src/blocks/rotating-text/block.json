@@ -22,8 +22,11 @@
 		"useImage": { "type": "boolean", "default": false },
 
 		"wrapperBackground": { "type": "string" },
+		"rotatingAlign": {"type": "string","default": "left"},
 		"circleSize": { "type": "string", "default": "150px" },
 		"circleAnimationSpeed": { "type": "number", "default": 8000 },
+		"textRotation": {"type": "string","default": "clockwise"},
+
 		"wrapperborder": { "type": "object" },
         "wrapperborderRadius": { "type": "string" },
 

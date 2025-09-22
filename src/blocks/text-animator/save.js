@@ -42,7 +42,7 @@ const Save = ( { attributes } ) => {
 	}
 
 	return ( <>
-		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+		<style>{ generateDynamicStyle( { attributes } ) }</style>
 
 		<div id={`block-${clientId}`} { ...useBlockProps.save( { className: attributes.className } ) }>
 			<div className={`animated_text_wrapper wpmozo-${attributes.selectAnimation}`}>

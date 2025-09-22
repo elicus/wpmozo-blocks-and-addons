@@ -21,5 +21,5 @@
  */
 
 /* eslint-disable no-console */
-console.log('Hello World! (from create-block-advanced-button block)');
+console.log( 'Hello World! (from create-block-advanced-button block)' );
 /* eslint-enable no-console */

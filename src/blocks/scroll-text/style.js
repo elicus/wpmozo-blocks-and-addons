@@ -1,8 +1,8 @@
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ( { attributes, clientId } ) => {
+const generateDynamicStyle = ( { attributes } ) => {
 	const toConvertStyles = [
-		'block'
+		'block','text','textHover'
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
@@ -29,6 +29,24 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 			skewY( ${attributes.skewEffectStart}deg );
 		}`;
 	}
+
+	styles +=`
+		.wpmozo-scroll-text-wrap{
+			text-align:${attributes.textAlign};
+			${convertedStyle.block}
+		}
+		.wpmozo-scroll-text-inner .wpmozo_st_word,
+		.wpmozo-scroll-text-inner .wpmozo_st_letter{
+			color:${attributes.textColor} !important;
+			${convertedStyle.text}
+		}
+
+		.wpmozo-scroll-text-inner:hover .wpmozo_st_word,
+		.wpmozo-scroll-text-inner:hover .wpmozo_st_letter{
+			color:${attributes.textHoverColor} !important;
+			${convertedStyle.textHover}
+		}
+	`;
 
     styles += `}`;
 	return styles;

@@ -1,174 +1,28 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 3,
-	"name": "wpmozo/advanced-button",
-	"version": "0.1.0",
-	"title": "Advanced Button",
-	"category": "wpmozo",
-	"icon": "smiley",
-	"description": "Design inline, interactive buttons with hover effects, marking text, and icon controls using the Block.",
-	"example": {},
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "wpmozo/advanced-button",
+    "version": "0.1.0",
+    "title": "Advanced Button",
+    "category": "wpmozo",
+    "icon": "smiley",
+    "description": "Create inline buttons without utilizing button custom CSS using the block.",
+    "example": {},
 	"supports": {
 		"html": false,
+		"anchor": false,
 		"customClassName": false
 	},
-	"attributes": {
-		"ID": {
-			"type": "string"
-		},
-		"className": {
-			"type": "string"
-		},
-		"buttonText": {
-			"type": "string",
-			"default": "WPMozo Title"
-		},
-		"buttonUrl": {
-			"type": "string",
-			"default": ""
-		},
-		"buttonLinkTarget": {
-			"type": "string",
-			"default": "same"
-		},
-		"buttonSecondaryText": {
-			"type": "string"
-		},
-		"secondaryTextColor": {
-			"type": "string"
-		},
-		"secondaryTextFontSize": {
-			"type": "string"
-		},
-		"secondaryTextLetterSpacing": {
-			"type": "string"
-		},
-		"secondaryTextDecoration": {
-			"type": "string",
-			"default": "none"
-		},
-		"secondaryTextLetterCase": {
-			"type": "string"
-		},
-		"secondaryTextLineHeight": {
-			"type": "string"
-		},
-		"secondaryTextFontAppearance": {
-			"type": "object",
-			"default": {
-				"fontStyle": "",
-				"fontWeight": ""
-			}
-		},
-		"buttonColor": {
-			"type": "string"
-		},
-		"buttonAlign": {
-			"type": "string"
-		},
-		"buttonFontSize": {
-			"type": "string"
-		},
-		"buttonLetterSpacing": {
-			"type": "string"
-		},
-		"buttonDecoration": {
-			"type": "string",
-			"default": "none"
-		},
-		"buttonLetterCase": {
-			"type": "string"
-		},
-		"buttonLineHeight": {
-			"type": "string"
-		},
-		"buttonFontAppearance": {
-			"type": "object",
-			"default": {
-				"fontStyle": "",
-				"fontWeight": ""
-			}
-		},
-		"buttonContainermargin": {
-			"type": "object"
-		},
-		"buttonContainerpadding": {
-			"type": "object"
-		},
-		"buttonContainerborder": {
-			"type": "object"
-		},
-		"buttonContainerborderRadius": {
-			"type": "string"
-		},
-		"iconButton": {
-			"type": "boolean",
-			"default": false
-		},
-		"icon": {
-			"type": "string"
-		},
-		"iconColor": {
-			"type": "string"
-		},
-		"buttonMediaPosition": {
-			"type": "string",
-			"default": "after"
-		},
-		"showMediaOnHover": {
-			"type": "boolean",
-			"default": false
-		},
-		"iconFontSize": {
-			"type": "number"
-		},
-		"iconmargin": {
-			"type": "object"
-		},
-		"iconpadding": {
-			"type": "object"
-		},
-		"filledBackgroundType": {
-			"type": "string"
-		},
-		"classicBackgroundColor": {
-			"type": "string"
-		},
-		"classicBackgroundImage": {
-			"type": "string"
-		},
-		"gradientBackgroundColor": {
-			"type": "string"
-		},
-		"backgroundFillStyle": {
-			"type": "string",
-			"default": "default_fill"
-		},
-		"filledBackgroundTypeHover": {
-			"type": "string"
-		},
-		"ButtonHoverColor": {
-			"type": "string"
-		},
-		"ButtonHoversecColor": {
-			"type": "string"
-		},
-		"ButtonHoverIconColor": {
-			"type": "string"
-		},
-		"classicBackgroundColorHover": {
-			"type": "string"
-		},
-		"classicBackgroundImageHover": {
-			"type": "string"
-		},
-		"gradientBackgroundColorHover": {
-			"type": "string"
-		}
+    "attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+		"btnOrientation": {"type": "string","default": "horizontal"},
+		"buttonAlignment": { "type": "string","default":"left" },
+		"btnVerticalAlign": {"type":"string","default": "center"}
 	},
-	"textdomain": "wpmozo-blocks-and-addons",
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+    "textdomain": "wpmozo-blocks-and-addons",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+    "viewScript": "file:./view.js"
 }

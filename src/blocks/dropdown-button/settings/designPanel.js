@@ -19,26 +19,31 @@ import {
 	WpmozoIconpicker,
 	WpmozoTypography,
 	WpmozoDimensions,
-	WpmozoColorPicker,
+	WpmozoColorPicker, WpmozoAlignment,
 } from '../../../common/components/index.js';
 
 export const DesignPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
-	
+
 	const [ linkTextType, setLinkTextType ] = useState( 'normal' );
 	const [ buttonType, setButtonType ]     = useState( 'normal' );
 
 	return ( <>
 		{/* Dropdown Button. */}
 		<PanelBody title={ __( 'Dropdown Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
-			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>   
+			<WpmozoAlignment
+				label={__('Button Alignment', 'wpmozo-blocks-and-addons')}
+				onChange={(newValue) => setAttributes({buttonAlign: newValue})}
+				value={attributes.buttonAlign}
+			/>
+			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>
 				<ButtonGroup>
 					<Button
 						className="wpmozo-button-tabs-btn"
 						isPressed={ ( 'normal' === buttonType ) ? true : false }
 						onClick={ () => setButtonType( 'normal' ) }
 					>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
-					<Button 
+					<Button
 						className="wpmozo-button-tabs-btn"
 						isPressed={ ( 'hover' === buttonType ) ? true : false }
 						onClick={ () => setButtonType( 'hover' ) }
@@ -155,14 +160,14 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		</PanelBody>
 		{/* Dropdown Link Text. */}
 		<PanelBody title={ __( 'Dropdown Link', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>    
+			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>
 				<ButtonGroup>
 					<Button
 						className="wpmozo-button-tabs-btn"
 						isPressed={ ( 'normal' === linkTextType ) ? true : false }
 						onClick={ () => setLinkTextType( 'normal' ) }
 					>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
-					<Button 
+					<Button
 						className="wpmozo-button-tabs-btn"
 						isPressed={ ( 'hover' === linkTextType ) ? true : false }
 						onClick={ () => setLinkTextType( 'hover' ) }

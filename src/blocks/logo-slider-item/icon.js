@@ -1,4 +1,4 @@
-const Icon = <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+const Icon = <svg className="wpmozo-block-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
 	<path fill="#000"
 		  d="M117.333 635.733l-96-96c-17.067-17.067-17.067-42.667 0-57.6l96-96c8.533-8.533 23.467-8.533 32 0v0c8.533 8.533 8.533 23.467 0 32l-87.467 93.867 89.6 89.6c8.533 8.533 8.533 23.467 0 32v0c-8.533 12.8-23.467 12.8-34.133 2.133z"></path>
 	<path fill="#000"
