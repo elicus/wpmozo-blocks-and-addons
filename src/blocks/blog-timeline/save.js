@@ -4,10 +4,9 @@ import { renderToString } from '@wordpress/element';
 
 import generateDynamicStyle from "./style";
 
-
 const Save = ( { attributes } ) => {
 
-    const { ID, className, postItemsDB } = attributes;
+    const { ID, className } = attributes;
 
 	// Get attrs.
 	const layout      = attributes.layout ?? 'layout1';
