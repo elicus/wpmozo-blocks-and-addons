@@ -6,7 +6,7 @@
 	"title": "Logo Slider",
 	"category": "wpmozo",
 	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Showcase client or partner logos in a stylish, interactive carousel with arrows, dots, and customization using the Block.",
 	"allowedBlocks": [ "wpmozo/logo-slider-item" ],
 	"example": {},
 	"supports": {

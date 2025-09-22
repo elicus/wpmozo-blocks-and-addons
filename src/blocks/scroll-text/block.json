@@ -1,0 +1,70 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "wpmozo/scroll-text",
+    "version": "0.1.0",
+    "title": "Scroll Text",
+    "category": "wpmozo",
+    "icon": "smiley",
+    "description": "It allows you to display paragraph text that animates smoothly into view as users scroll the page.",
+    "example": {},
+    "supports": {
+        "html": false,
+        "customClassName": false
+    },
+    "attributes": {
+        "ID": { "type": "string" },
+		"className": { "type": "string" },
+
+        "scrollText": { "type": "string", "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non augue eget est vestibulum ultrices eu in leo. Quisque sem diam, finibus ac condimentum eu, finibus id arcu." },
+        "textColor": { "type": "string" },
+		"textFontSize": { "type": "string", "default": "55px" },
+		"textLetterSpacing": { "type": "string" },
+		"textDecoration": { "type": "string" },
+		"textLetterCase": { "type": "string" },
+		"textLineHeight": { "type": "string" },
+		"textFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"textFontStyle": { "type": "string" },
+		"textFontWeight": { "type": "string" },
+
+        "textHoverColor": { "type": "string" },
+		"textHoverFontSize": { "type": "string" },
+		"textHoverLetterSpacing": { "type": "string" },
+		"textHoverDecoration": { "type": "string" },
+		"textHoverLetterCase": { "type": "string" },
+		"textHoverLineHeight": { "type": "string" },
+		"textHoverFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"textHoverFontStyle": { "type": "string" },
+		"textHoverFontWeight": { "type": "string" },
+
+        "scrollEffect": { "type": "string", "default": "fade" },
+        "splitBy": { "type": "string", "default": "word" },
+
+        "slideEffectStart": { "type": "number", "default": 40 },
+        "skewEffectStart": { "type": "number", "default": 35 },
+        "animationStartElementPos": { "type": "string", "default": "0%" },
+        "animationStartViewportPos": { "type": "string", "default": "80%" },
+        "animationEndElementPos": { "type": "string", "default": "0%" },
+        "animationEndViewportPos": { "type": "string", "default": "40%" },
+
+        "activeTextColor": { "type": "string", "default": "#543EC4" },
+        "textBlurLevel": { "type": "number", "default": 6 },
+
+        "blockpadding": { "type": "object" },
+		"blockmargin": { "type": "object" },
+        "blockborder": { "type": "object" },
+		"blockborderRadius": { "type": "string" },
+
+		"textAlign": {"type": "string","default": "left"}
+    },
+    "textdomain": "wpmozo-blocks-and-addons",
+    "editorScript": "file:./index.js",
+    "style": "file:./style-index.css",
+    "script": [ "file:./script.js", "wpmozo-blocks-and-addons-scroll-trigger-script", "wpmozo-blocks-and-addons-gsap-script" ]
+}

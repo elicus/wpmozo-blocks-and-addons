@@ -21,19 +21,19 @@
         "ID": { "type": "string" },
 		"className": { "type": "string" },
 
-        "itemName": { "type": "string", "default": "Item Name" }, 
-        "itemCurrency": { "type": "string", "default": "$" }, 
-        "itemPrice": { "type": "string", "default": "10" }, 
-        "pricePeriod": { "type": "string" }, 
-        "itemThumbnailOption": { "type": "string", "default": "use_image" }, 
-        "icon": { "type": "string" }, 
+        "itemName": { "type": "string", "default": "Item Name" },
+        "itemCurrency": { "type": "string", "default": "$" },
+        "itemPrice": { "type": "string", "default": "10" },
+        "pricePeriod": { "type": "string" },
+        "itemThumbnailOption": { "type": "string", "default": "use_image" },
+        "icon": { "type": "string" },
         "itemThumbnail": { "type": "string" },
-        "content": { "type": "string" }, 
+        "content": { "type": "string" },
 
         "itemBackground": { "type": "string" },
         "itemborder": { "type": "object" },
         "itemborderRadius": { "type": "string" },
-       
+
         "iconColor": { "type": "string" },
         "iconShapBackground": { "type": "string" },
         "styleIcon": { "type": "boolean", "default": false },
@@ -41,6 +41,7 @@
 
         "iconFontSize": { "type": "string" },
 
+		"thumbnailAlignment": {"type": "string","default": "center"},
         "thumbnailborder": { "type": "object" },
         "thumbnailborderRadius": { "type": "string" },
 

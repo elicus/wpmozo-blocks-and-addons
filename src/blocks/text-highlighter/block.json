@@ -6,7 +6,7 @@
     "title": "Text Highlighter",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "Example block scaffolded with Create Block tool.",
+    "description": "Highlight text with stylish animated underlines (zigzag, circle, curl & more) using the Block.",
     "example": {},
     "supports": {
         "html": false,

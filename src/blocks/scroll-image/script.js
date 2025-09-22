@@ -99,13 +99,9 @@ var wpmozo_init_scroll_image = function( $, element = null ) {
             });
         });
     }
-
 }
 
 jQuery(document).ready(function($) {
-
     jQuery.fn.wpmozo_init_scroll_image = wpmozo_init_scroll_image;
     jQuery.fn.wpmozo_init_scroll_image($);
-
-});
-
+} );

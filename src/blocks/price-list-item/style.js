@@ -15,8 +15,14 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
     	parentAtts = attributes.parentAtts,
     	iconFontSize = ( ! wpmozo_is_empty( attributes.iconFontSize ) ) ? attributes.iconFontSize : parentAtts.iconFontSize;
 
+	const imageAlign = attributes.thumbnailAlignment === 'left' ? 'flex-start' :
+		attributes.thumbnailAlignment === 'right' ? 'flex-end' : 'center';
+
 	let styles = `#block-${clientId}.wpmozo-bna-price-list-item{`;
 	styles += `
+		.wpmozo-bna-price-list-item-wrap {
+			align-items: ${imageAlign};
+		}
 		.wpmozo-bna-price-list-item-thumbnail img{
 			width: ${attributes.thumbnailWidth};
 			${convertedStyle.thumbnail}
@@ -41,6 +47,9 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 			color: ${attributes.periodColor};
 			${convertedStyle.period}
 		}
+		.wpmozo-bna-price-list-item-name-wrap h4.wpmozo-bna-price-list-item-name{
+			margin: 0;
+		}
 	`;
 
 	if ( 'use_icon' === attributes.itemThumbnailOption ) {
@@ -57,7 +66,7 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 			}`;
 		}
 
-		if ( 
+		if (
 			! attributes.styleIcon ||
 			( attributes.styleIcon && 'hexagon' !== attributes.iconShape )
 		) {
@@ -104,7 +113,7 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 			}`;
 		}
 	}
-	
+
 	styles += `}`;
 
 	if ( ! wpmozo_is_empty(attributes.textAlignment) ) {

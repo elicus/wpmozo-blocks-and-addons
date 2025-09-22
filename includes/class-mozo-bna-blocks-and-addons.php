@@ -205,6 +205,7 @@ class Mozo_Bna_Blocks_And_Addons {
 
 		// Use a higher priority to ensure our filter runs after others.
 		add_filter( 'upload_mimes', array( $this, 'wpmozo_custom_upload_mimes' ), 999 );
+		add_filter( 'wp_theme_json_data_theme', array( $this, 'wpmozo_override_theme_json' ), 20 );
 	}
 
 	/**
@@ -251,5 +252,45 @@ class Mozo_Bna_Blocks_And_Addons {
 		// Allow JSON files.
 		$mimes['json'] = 'application/json';
 		return $mimes;
+	}
+
+	/**
+	 * Override theme json file data
+	 *
+	 * @param WP_Theme_JSON_Data $theme_json The instance of theme json file.
+	 * @return WP_Theme_JSON_Data The instance with access to the modified data.
+	 */
+	public function wpmozo_override_theme_json( $theme_json ) {
+
+		$json_data = $theme_json->get_data( $theme_json );
+
+		if ( isset( $json_data['settings']['spacing']['defaultSpacingSizes'] ) ) {
+
+			$default_spacing_sizes = $json_data['settings']['spacing']['defaultSpacingSizes'];
+			if ( ! $default_spacing_sizes ) {
+
+				if ( 
+					! isset( $json_data['settings']['spacing']['spacingSizes'] ) ||
+					empty( $json_data['settings']['spacing']['spacingSizes'] )
+				) {
+
+					$data = array(
+						'version'  => 3,
+						'settings' => array(
+							'spacing' => array(
+								'defaultSpacingSizes' => true,
+							),
+						),
+					);
+
+					$theme_json->update_with( $data );
+
+				}
+
+			}
+
+		}
+
+		return $theme_json;
 	}
 }
