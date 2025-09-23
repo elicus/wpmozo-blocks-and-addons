@@ -174,9 +174,25 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			true
 		);
     
-    wp_register_script(
+    	wp_register_script(
 			$this->plugin_name . '-magnify-script',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/magnify.min.js',
+			array( 'jquery'),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
+		wp_register_script(
+			$this->plugin_name . '-scroll-trigger-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/ScrollTrigger.min.js',
+			array( 'jquery'),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
+		wp_register_script(
+			$this->plugin_name . '-gsap-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/gsap.min.js',
 			array( 'jquery'),
 			WPMOZO_BNA_VERSION,
 			true

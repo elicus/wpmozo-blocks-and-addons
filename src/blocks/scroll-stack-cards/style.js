@@ -1,6 +1,6 @@
 import {convertInlineStyleStr, wpmozo_is_empty} from '../../common/utils.js';
 
-const generateDynamicStyle = ({ attributes, ID }) => {
+const generateDynamicStyle = ({ attributes }) => {
 
 	const toConvertStyles = [
 		"title",
@@ -32,7 +32,7 @@ const generateDynamicStyle = ({ attributes, ID }) => {
     flexDirection = ( 'horizontal' === accordionOrientation ) ? 'row' : 'column',
     textColorStyle = ( 'dark' === textColor ) ? '#666' : '#fff';
 
-	let styles = `#block-${ID}.wp-block-wpmozo-scroll-stack-cards{`;
+	let styles = `#block-${attributes.ID}.wp-block-wpmozo-scroll-stack-cards{`;
 		styles += `
 		.wpmozo-bna-scroll-stack-cards-wrapper .block-editor-block-list__layout {
 			flex-direction: ${flexDirection};

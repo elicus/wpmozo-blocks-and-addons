@@ -1,6 +1,6 @@
 import {convertInlineStyleStr, wpmozo_is_empty} from '../../common/utils.js';
 
-const generateDynamicStyle = ({ attributes, ID }) => {
+const generateDynamicStyle = ({ attributes }) => {
 
 	const toConvertStyles = [
 		"title",
@@ -34,7 +34,7 @@ const generateDynamicStyle = ({ attributes, ID }) => {
     } = attributes;
 
 
-	let styles = `#block-${ID}.wp-block-wpmozo-scroll-stack-cards-item{`;
+	let styles = `#block-${attributes.ID}.wp-block-wpmozo-scroll-stack-cards-item{`;
 
 		if ( normalUseBackgroundImage && ! wpmozo_is_empty( normalBackgroundImage ) ) {
 			styles += `
@@ -97,7 +97,7 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 
 	if ( ! wpmozo_is_empty( textAlignment ) ) {
 		styles += `
-			#block-${ID}.wpmozo-bna-active-scroll-stack-cards-item {
+			#block-${attributes.ID}.wpmozo-bna-active-scroll-stack-cards-item {
 				text-align: ${textAlignment};
 			}
 		`;
@@ -105,14 +105,14 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 
 	if ( activeUseBackgroundImage && ! wpmozo_is_empty( activeBackgroundImage ) ) {
 		styles += `
-			#block-${ID}.wpmozo-bna-active-scroll-stack-cards-item {
+			#block-${attributes.ID}.wpmozo-bna-active-scroll-stack-cards-item {
 				background-image: url('${activeBackgroundImage}');
 			}
 		`;
 	}
 	if ( ! activeUseBackgroundImage && ! wpmozo_is_empty( activeAccordionBackground ) ) {
 		styles += `
-			#block-${ID}.wpmozo-bna-active-scroll-stack-cards-item {
+			#block-${attributes.ID}.wpmozo-bna-active-scroll-stack-cards-item {
 				background: ${activeAccordionBackground};
 			}
 		`;

@@ -57,7 +57,7 @@ export default function Edit(props) {
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
-                { generateDynamicStyle({ attributes, ID }) }
+                { generateDynamicStyle({ attributes }) }
             </style>  
             <div {...useBlockProps()}>
                 <div 
@@ -65,21 +65,23 @@ export default function Edit(props) {
                     data-trigger={attributes.accordionTrigger}
                     data-default-active={attributes.activeAccordion}
                 >
-                    <InnerBlocks 
-                        templateLock={false} 
-                        template={ TEMPLATE }
-                        renderAppender={() => (
-                            <button
-                                onClick={addChildBlock} 
-                                type="button" 
-                                className="components-button block-editor-button-block-appender" 
-                                title={ __('Add Scroll Stack Cards Item', 'wpmozo-blocks-and-addons') }>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
-                                    <path d="M11 12.5V17.5H12.5V12.5H17.5V11H12.5V6H11V11H6V12.5H11Z"></path>
-                                </svg>
-                            </button>
-                        )}
-                    />
+                    <div className="wpmozo-bna-scroll-stack-cards-items">
+                        <InnerBlocks 
+                            templateLock={false} 
+                            template={ TEMPLATE }
+                            renderAppender={() => (
+                                <button
+                                    onClick={addChildBlock} 
+                                    type="button" 
+                                    className="components-button block-editor-button-block-appender" 
+                                    title={ __('Add Scroll Stack Cards Item', 'wpmozo-blocks-and-addons') }>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+                                        <path d="M11 12.5V17.5H12.5V12.5H17.5V11H12.5V6H11V11H6V12.5H11Z"></path>
+                                    </svg>
+                                </button>
+                            )}
+                        />
+                    </div>
                 </div>
             </div>
         </Fragment>

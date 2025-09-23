@@ -87,5 +87,5 @@
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",
     "style": "file:./style-index.css",
-    "script": "file:./script.js"
+    "script": ["wpmozo-blocks-and-addons-scroll-trigger-script", "wpmozo-blocks-and-addons-gsap-script","file:./script.js"]
 }

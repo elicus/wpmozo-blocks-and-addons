@@ -154,7 +154,7 @@ export default function Edit(props) {
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
-                { generateDynamicStyle({ attributes, ID, parentAttributes }) }
+                { generateDynamicStyle({ attributes }) }
             </style>
             <div { ...blockProps }>
                 { 'vertical' === layout &&

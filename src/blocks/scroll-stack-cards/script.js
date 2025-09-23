@@ -1,14 +1,15 @@
 jQuery( document ).ready( function($) {
 
-    if ( $( '.wpmozo-bna-scroll-stack-cards' ).length > 0 ) {
-        $( document ).find('.wpmozo-bna-scroll-stack-cards').each( function() {
+    if ( $( '.wp-block-wpmozo-scroll-stack-cards' ).length > 0 ) {
+        $( document ).find('.wp-block-wpmozo-scroll-stack-cards').each( function() {
             let thisObj = $( this );
+            console.log( thisObj );
             let wrapObj = thisObj.find( '.wpmozo-bna-scroll-stack-cards-wrapper' );
             if ( 'horizontal' === wrapObj.data( 'layout' ) ) {
                 if ( wpmozoBnaIsLargeScreen() ) {
                     wpmozoBnaInitHorizontalScrollStackCards( thisObj );
                 } else {
-                    wrapObj.find( '.wpmozo-bna-scroll-stack-cards-item' ).css( {
+                    wrapObj.find( '.wp-block-wpmozo-scroll-stack-cards-item' ).css( {
                         width    : '100%',
                         position : 'relative',
                         left     : 'auto'
@@ -23,14 +24,14 @@ jQuery( document ).ready( function($) {
 
         // On windows resize.
         $( window ).on( 'resize', () => {
-            $( document ).find('.wpmozo-bna-scroll-stack-cards').each( function() {
+            $( document ).find('.wp-block-wpmozo-scroll-stack-cards').each( function() {
                 let thisObj = $( this );
                 let wrapObj = thisObj.find( '.wpmozo-bna-scroll-stack-cards-wrapper' );
                 if ( 'horizontal' === wrapObj.data( 'layout' ) ) {
                     if ( wpmozoBnaIsLargeScreen() ) {
                         wpmozoBnaInitHorizontalScrollStackCards( thisObj );
                     } else {
-                        wrapObj.find( '.wpmozo-bna-scroll-stack-cards-item' ).css( {
+                        wrapObj.find( '.wp-block-wpmozo-scroll-stack-cards-item' ).css( {
                             width    : '100%',
                             position : 'relative',
                             left     : 'auto'
@@ -65,7 +66,7 @@ function wpmozoBnaInitVerticalScrollStackCards( thisObj ) {
 
     let viewportHeight = window.innerHeight;
     let $wrapper    = thisObj.find( '.wpmozo-bna-scroll-stack-cards-wrapper' )
-    let items       = $wrapper.find( '.wpmozo-bna-scroll-stack-cards-item' );
+    let items       = $wrapper.find( '.wp-block-wpmozo-scroll-stack-cards-item' );
 
     // Kill if already init.
     ScrollTrigger.getAll().forEach( trigger => {
@@ -141,7 +142,7 @@ function wpmozoBnaInitVerticalScrollStackCards( thisObj ) {
 function wpmozoBnaInitHorizontalScrollStackCards( thisObj ) {
     let $wrapper        = thisObj.find( '.wpmozo-bna-scroll-stack-cards-wrapper' ),
         $cardsContainer = $wrapper.find( '.wpmozo-bna-scroll-stack-cards-items' ),
-        $panels         = $cardsContainer.find( '.wpmozo-bna-scroll-stack-cards-item' ),
+        $panels         = $cardsContainer.find( '.wp-block-wpmozo-scroll-stack-cards-item' ),
         totalPanels     = $panels.length,
         initialVisible  = 3,
         wrapperWidth    = $wrapper.outerWidth(),
