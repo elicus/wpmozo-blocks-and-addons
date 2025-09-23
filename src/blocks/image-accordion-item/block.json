@@ -44,7 +44,7 @@
         "iconShapBackground": { "type": "string", "default": "#9E9E9E" },
         "styleIcon": { "type": "boolean", "default": false },
         "iconShape": { "type": "string", "default": "square" },
-        "iconFontSize": { "type": "string", "default": "32px" },
+        "iconFontSize": { "type": "string" },
 
         "textColor": { "type": "string", "default": "dark" },  
         "textAlignment": { "type": "string" },
@@ -52,7 +52,7 @@
         "titleColor": { "type": "string" },  
         "titleAlign": { "type": "string" },
         "titleLavel": { "type": "string", "default": "h4" },
-        "titleFontSize": { "type": "string", "default": "18px" },
+        "titleFontSize": { "type": "string" },
         "titleFontAppearance": {
             "type": "object",
             "fontStyle": { "type": "string" },
@@ -70,7 +70,7 @@
         "descriptionColor": { "type": "string" },  
         "descriptionAlign": { "type": "string" },
         "descriptionLavel": { "type": "string", "default": "h4" },
-        "descriptionFontSize": { "type": "string", "default": "18px" },
+        "descriptionFontSize": { "type": "string" },
         "descriptionFontAppearance": {
             "type": "object",
             "fontStyle": { "type": "string" },

@@ -19,7 +19,9 @@ export default function Edit(props) {
 
     // Ensure ID is set once (no render-time mutation).
     useEffect( () => {
-        setAttributes( { ID: clientId } );
+        if ( attributes.ID !== clientId ) {
+            setAttributes( { ID: clientId } );
+        }
     }, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
     const childBlocks = useSelect((select) => {
@@ -57,9 +59,9 @@ export default function Edit(props) {
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
-                { generateDynamicStyle({ attributes, ID }) }
+                { generateDynamicStyle({ attributes }) }
             </style>  
-            <div {...useBlockProps()}>
+            <div {...useBlockProps()} id={`block-${attributes.ID}`}>
                 <div 
                     className={`wpmozo-bna-image-accordion-wrapper wpmozo-bna-image-accordion-content-${attributes.contentAlignment}`}
                     data-trigger={attributes.accordionTrigger}

@@ -7,6 +7,9 @@ import {
 	BaseControl,
 	RangeControl
 } from '@wordpress/components';
+import {
+	WpmozoRangeSize
+} from '../../../common/components/index';
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
@@ -105,6 +108,10 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	                />
 	            ))}
 	        </BaseControl>
+	        <WpmozoRangeSize props={props}
+				label={ __( 'Accordion Spacing', 'wpmozo-blocks-and-addons') }
+				rangeSizeKey='accordionSpacing'
+			/>
 	        <RangeControl
 				label={ __( 'Active Accordion Image Size', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.activeAccordionSize }

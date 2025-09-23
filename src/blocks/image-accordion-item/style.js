@@ -1,6 +1,6 @@
 import {convertInlineStyleStr, wpmozo_is_empty} from '../../common/utils.js';
 
-const generateDynamicStyle = ({ attributes, ID }) => {
+const generateDynamicStyle = ({ attributes }) => {
 
 	const toConvertStyles = [
 		"title",
@@ -34,7 +34,7 @@ const generateDynamicStyle = ({ attributes, ID }) => {
     } = attributes;
 
 
-	let styles = `#block-${ID}.wp-block-wpmozo-image-accordion-item{`;
+	let styles = `#block-${attributes.ID}.wp-block-wpmozo-image-accordion-item{`;
 
 		if ( normalUseBackgroundImage && ! wpmozo_is_empty( normalBackgroundImage ) ) {
 			styles += `
@@ -62,15 +62,15 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 				color: ${iconColor};
 				font-size: ${iconFontSize};
 			}
-			.wpmozo-bna-btn{
+			.wpmozo-bna-button{
 				color: ${buttonTextColor};
 				background-color: ${buttonBackgroundColor};
 				${convertedStyle.button}
 			}
-			.wpmozo-bna-image-accordion-item-btn-wrapper{
+			.wpmozo-bna-button-wrap{
 				text-align: ${buttonAlignment};
 			}
-			.wpmozo-bna-btn i{
+			.wpmozo-bna-button i{
 				color: ${buttonIconColor};
 			}
 		`;
@@ -97,7 +97,7 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 
 	if ( ! wpmozo_is_empty( textAlignment ) ) {
 		styles += `
-			#block-${ID}.wpmozo-bna-active-image-accordion-item {
+			#block-${attributes.ID}.wpmozo-bna-active-image-accordion-item {
 				text-align: ${textAlignment};
 			}
 		`;
@@ -105,14 +105,14 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 
 	if ( activeUseBackgroundImage && ! wpmozo_is_empty( activeBackgroundImage ) ) {
 		styles += `
-			#block-${ID}.wpmozo-bna-active-image-accordion-item {
+			#block-${attributes.ID}.wpmozo-bna-active-image-accordion-item {
 				background-image: url('${activeBackgroundImage}');
 			}
 		`;
 	}
 	if ( ! activeUseBackgroundImage && ! wpmozo_is_empty( activeAccordionBackground ) ) {
 		styles += `
-			#block-${ID}.wpmozo-bna-active-image-accordion-item {
+			#block-${attributes.ID}.wpmozo-bna-active-image-accordion-item {
 				background: ${activeAccordionBackground};
 			}
 		`;

@@ -1,6 +1,6 @@
 import {convertInlineStyleStr, wpmozo_is_empty} from '../../common/utils.js';
 
-const generateDynamicStyle = ({ attributes, ID }) => {
+const generateDynamicStyle = ({ attributes }) => {
 
 	const toConvertStyles = [
 		"title",
@@ -27,12 +27,13 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 		buttonAlignment,
 		buttonIconColor,
 		buttonIconHover,
-		buttonIconPlacement
+		buttonIconPlacement,
+		accordionSpacing
     } = attributes,
     flexDirection = ( 'horizontal' === accordionOrientation ) ? 'row' : 'column',
     textColorStyle = ( 'dark' === textColor ) ? '#666' : '#fff';
 
-	let styles = `#block-${ID}.wp-block-wpmozo-image-accordion{`;
+	let styles = `#block-${attributes.ID}.wp-block-wpmozo-image-accordion{`;
 		styles += `
 		.wpmozo-bna-image-accordion-wrapper .block-editor-block-list__layout {
 			flex-direction: ${flexDirection};
@@ -60,15 +61,15 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 			color: ${iconColor};
 			font-size: ${iconFontSize};
 		}
-		.wpmozo-bna-btn{
+		.wpmozo-bna-button{
 			color: ${buttonTextColor};
 			background-color: ${buttonBackgroundColor};
 			${convertedStyle.button}
 		}
-		.wpmozo-bna-image-accordion-item-btn-wrapper{
+		.wpmozo-bna-button-wrap{
 			text-align: ${buttonAlignment};
 		}
-		.wpmozo-bna-btn i{
+		.wpmozo-bna-button i{
 			color: ${buttonIconColor};
 		}
 		`; 
@@ -79,6 +80,30 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 			color: ${textColorStyle};
 		`;
 
+		if ( ! wpmozo_is_empty( accordionSpacing ) ) {
+			if ( 'horizontal' === accordionOrientation ) {
+				styles += `
+				.wp-block-wpmozo-image-accordion-item{
+					margin-right: ${accordionSpacing};
+				}
+				.wp-block-wpmozo-image-accordion-item:last-of-type, 
+				.block-editor-block-list__layout .wp-block-wpmozo-image-accordion-item:not(:has(~ .wp-block-wpmozo-image-accordion-item)){
+					margin-right: 0px !important;
+				}
+				`;
+			}else{
+				styles += `
+				.wp-block-wpmozo-image-accordion-item{
+					margin-bottom: ${accordionSpacing} !important;
+				}
+				.wp-block-wpmozo-image-accordion-item:last-of-type, 
+				.block-editor-block-list__layout .wp-block-wpmozo-image-accordion-item:not(:has(~ .wp-block-wpmozo-image-accordion-item)){
+					margin-bottom: 0px !important;
+				}
+				`;
+			}
+		}
+
 		if ( ! wpmozo_is_empty( inactiveState ) ) {
 			styles += `
 			.wpmozo-bna-image-accordion-item-content-wrapper {
@@ -88,11 +113,11 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 			.wp-block-wpmozo-image-accordion-item:not(.wpmozo-bna-active-image-accordion-item) .wpmozo-bna-image-accordion-item-icon, 
 			.wp-block-wpmozo-image-accordion-item:not(.wpmozo-bna-active-image-accordion-item) .wpmozo-bna-image-accordion-item-title, 
 			.wp-block-wpmozo-image-accordion-item .wpmozo-bna-image-accordion-item-desc, 
-			.wp-block-wpmozo-image-accordion-item .wpmozo-bna-image-accordion-item-btn-wrapper {
+			.wp-block-wpmozo-image-accordion-item .wpmozo-bna-button-wrap {
 				display: none;
 			}
 			.wpmozo-bna-active-image-accordion-item .wpmozo-bna-image-accordion-item-desc, 
-			.wpmozo-bna-active-image-accordion-item .wpmozo-bna-image-accordion-item-btn-wrapper {
+			.wpmozo-bna-active-image-accordion-item .wpmozo-bna-button-wrap {
 				display: block !important;
 			}
 			`;

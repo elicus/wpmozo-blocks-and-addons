@@ -21,6 +21,7 @@
         "accordionOrientation" : { "type": "string", "default": "horizontal" },
         "contentAlignment" : { "type": "string", "default": "center"  },
         "inactiveState": { "type": "array", "default": [] },
+        "accordionSpacing": { "type": "string" },
         "activeAccordionSize" : { "number": "string", "default": 4 },
         "activeAccordion" : { "type": "number" },
         "accordionTransitionDuration" : { "type": "number", "default": 500 },

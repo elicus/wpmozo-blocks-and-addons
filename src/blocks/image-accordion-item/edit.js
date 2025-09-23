@@ -16,18 +16,13 @@ import { wpmozo_is_empty } from '../../common/utils.js';
 export default function Edit(props) {
 
     const { attributes, setAttributes, clientId } = props;
-
-    let ID = clientId;
     
     // Ensure ID is set once (no render-time mutation).
     useEffect( () => {
-        setAttributes( { ID: clientId } );
+        if ( attributes.ID !== clientId ) {
+            setAttributes( { ID: clientId } );
+        }
     }, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
-
-    const blockProps = useBlockProps( {
-        className: attributes.className,
-        ...( ID ? { id: `block-${ ID }` } : {} ),
-    } );
 
     const parentAttributes = useSelect((select) => {
         const { getBlockRootClientId, getBlock } = select('core/block-editor');
@@ -86,13 +81,13 @@ export default function Edit(props) {
 
     if ( parentAttributes.useButtonIcon ) {
         btnIcon = '' === parentAttributes.buttonIcon ? '' : (
-            <i className={ parentAttributes.buttonIcon }></i>
+            <i className={`wpmozo-bna-icon ${parentAttributes.buttonIcon}`}></i>
         );
     }
 
     if ( useButtonIcon ) {
         btnIcon = '' === buttonIcon ? '' : (
-            <i className={ buttonIcon }></i>
+            <i className={`wpmozo-bna-icon ${buttonIcon}`}></i>
         );
     }
 
@@ -117,9 +112,9 @@ export default function Edit(props) {
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
-                { generateDynamicStyle({ attributes, ID, parentAttributes }) }
+                { generateDynamicStyle({ attributes }) }
             </style>
-            <div { ...blockProps }>
+            <div {...useBlockProps()} id={`block-${attributes.ID}`}>
                 <div className="wpmozo-bna-image-accordion-item-content-wrapper">
                     <div className={`wpmozo-bna-image-accordion-item-content-inner-wrap`}>
                         {renderedIcon}
