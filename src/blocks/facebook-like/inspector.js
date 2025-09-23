@@ -1,10 +1,11 @@
-// inspector.js
-import { __ } from "@wordpress/i18n";
-import { InspectorControls } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
+import {
+	InspectorControls
+} from '@wordpress/block-editor';
 import {
 	TabPanel,
 	PanelBody,
-	TextControl,
+	TextControl
 } from '@wordpress/components';
 
 import { inspectorPanelTabs } from '../../common/utils.js';
@@ -24,13 +25,13 @@ const Inspector = ( { attributes, setAttributes } ) => {
 				tabs={ inspectorPanelTabs() }
 			>
 				{ ( tab ) => ( <div className="wpmozo-settings-tab-panel-content">
-					{ tab.name === 'general' &&
+					{ tab.name === 'general' && 
 						<GeneralPanel attributes={attributes} setAttributes={setAttributes} />
 					}
-					{ tab.name === 'design' &&
+					{ tab.name === 'design' && 
 						<DesignPanel attributes={attributes} setAttributes={setAttributes} />
 					}
-					{ tab.name === 'advanced' &&
+					{ tab.name === 'advanced' && 
 						<PanelBody title={ __( 'Advanced', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
 							<TextControl
 								label={ __( 'Additional CSS Class(es)', 'wpmozo-blocks-and-addons' ) }

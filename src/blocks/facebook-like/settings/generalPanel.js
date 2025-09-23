@@ -1,77 +1,64 @@
-import {__} from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
+import { useSelect } from '@wordpress/data';
+
 import {
 	PanelBody,
 	TextControl,
-	SelectControl,
 	ToggleControl,
-	Notice
+	SelectControl,
 } from '@wordpress/components';
-import {useState} from '@wordpress/element';
 
+export const GeneralPanel = ( { attributes, setAttributes } ) => {
+	const props = { attributes, setAttributes, preAttributes: {} };
 
-export const GeneralPanel = ({attributes, setAttributes}) => {
-	const {url, layout, size, share} = attributes;
-	const [error, setError] = useState('');
-	const props = {attributes, setAttributes, preAttributes: {}};
+	const siteUrl = useSelect( ( select ) =>
+		select( 'core' ).getSite()?.url
+	, [] );
 
-	const layoutOptions = [
-		{value: 'standard', label: __('Standard', 'wpmozo-blocks-and-addons')},
-		{value: 'box_count', label: __('Box Count', 'wpmozo-blocks-and-addons')},
-		{value: 'button_count', label: __('Button Count', 'wpmozo-blocks-and-addons')},
-		{value: 'button', label: __('Button', 'wpmozo-blocks-and-addons')},
-	];
-	const sizeOptions = [
-		{value: 'small', label: __('Small', 'wpmozo-blocks-and-addons')},
-		{value: 'large', label: __('Large', 'wpmozo-blocks-and-addons')}
-	];
-
-	const onChangeUrl = (newUrl) => {
-		setAttributes({url: newUrl});
-		// Show error only if value is not empty and not valid
-		if (newUrl && !isValidFacebookUrl(newUrl)) {
-			setError(__(
-				'Please enter a valid Facebook page or content URL.',
-				'wpmozo-blocks-and-addons'
-			));
-		} else {
-			setError('');
-		}
-	};
-
-	return (<>
-		<PanelBody title={__('Configuration', 'wpmozo-blocks-and-addons')} initialOpen={true}>
+	return ( <>
+		{/* Configuration. */}
+		<PanelBody title={ __( 'Configuration', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
 			<TextControl
-				label={__('URL to Like', 'wpmozo-blocks-and-addons')}
-				value={url}
-				onChange={onChangeUrl}
-				placeholder="https://www.facebook.com/facebook"
-				help={__(
-					'Paste a Facebook page, post, or any public Facebook URL.',
-					'wpmozo-blocks-and-addons'
-				)}
+				label={ __( 'Facebook APP ID', 'wpmozo-blocks-and-addons' ) }
+				value={ attributes.fbAppId }
+				onChange={ ( newValue ) => setAttributes( { fbAppId: newValue } ) }
+				__next40pxDefaultSize={ true } __nextHasNoMarginBottom={ true }
 			/>
-			<SelectControl
-				label={__('Layout', 'wpmozo-blocks-and-addons')}
-				value={layout}
-				options={layoutOptions}
-				onChange={(layout) => setAttributes({layout})}
-			/>
-			<SelectControl
-				label={__('Button Size', 'wpmozo-blocks-and-addons')}
-				value={size}
-				options={sizeOptions}
-				onChange={(size) => setAttributes({size})}
-			/>
+			<TextControl
+				label={ __( 'Page URL', 'wpmozo-blocks-and-addons' ) }
+				value={ attributes.pageURL }
+				onChange={ ( newValue ) => setAttributes( { pageURL: newValue } ) }
+				__next40pxDefaultSize={ true } __nextHasNoMarginBottom={ true }
+				placeholder={ siteUrl }
+			/><hr />
 			<ToggleControl
-				label={__('Include Share Button', 'wpmozo-blocks-and-addons')}
-				checked={!!share}
-				onChange={() => setAttributes({share: !share})}
+				label={ __( 'Enable lazy loading', 'wpmozo-blocks-and-addons' ) }
+				checked={ attributes.lazyLoading }
+				onChange={ ( newValue ) => setAttributes( { lazyLoading: newValue } ) }
 			/>
-			{error && (
-				<Notice status="error" isDismissible={false}>
-					{error}
-				</Notice>
-			)}
 		</PanelBody>
-	</>);
+		{/* Display. */}
+		<PanelBody title={ __( 'Display', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+			<SelectControl
+				label={ __( 'Layout', 'wpmozo-blocks-and-addons' ) }
+				value={ attributes.buttonLayout }
+				options={ [
+					{ value: 'standard', label: __( 'Standard', 'wpmozo-blocks-and-addons' ) },
+					{ value: 'button', label: __( 'Button', 'wpmozo-blocks-and-addons' ) },
+					{ value: 'button_count', label: __( 'Button Count', 'wpmozo-blocks-and-addons' ) },
+					{ value: 'box_count', label: __( 'Box Count', 'wpmozo-blocks-and-addons' ) },
+				] }
+				onChange={ ( newValue ) => setAttributes( { buttonLayout: newValue } ) }
+			/>
+			<SelectControl
+				label={ __( 'Button Size', 'wpmozo-blocks-and-addons' ) }
+				value={ attributes.buttonSize }
+				options={ [
+					{ value: 'small', label: __( 'Small', 'wpmozo-blocks-and-addons' ) },
+					{ value: 'large', label: __( 'Large', 'wpmozo-blocks-and-addons' ) }
+				] }
+				onChange={ ( newValue ) => setAttributes( { buttonSize: newValue } ) }
+			/>
+		</PanelBody>
+	</> );
 };

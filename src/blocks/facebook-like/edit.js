@@ -1,83 +1,68 @@
-import {__} from '@wordpress/i18n';
-import {useBlockProps,} from '@wordpress/block-editor';
-import {Notice} from '@wordpress/components';
-import {useEffect, useRef, useState} from '@wordpress/element';
-import Inspector from "./inspector";
-
-function isValidFacebookUrl(url) {
-	return /^https?:\/\/(www\.)?facebook\.com\/.+/.test(url);
-}
+import { __ } from '@wordpress/i18n';
+import { Fragment, useEffect } from '@wordpress/element';
+import { useBlockProps } from '@wordpress/block-editor';
+import Inspector from './inspector';
 
 /**
- * Ensure Facebook SDK is loaded and ready.
- * Calls the callback once FB is loaded and available.
+ * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
+ * Those files can contain any CSS code that gets applied to the editor.
+ *
+ * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-function ensureFbSdk(callback) {
-	if (window.FB && window.FB.XFBML) return callback(window.FB);
-	if (window._wpFbLoader) return window._wpFbLoader.then(() => window.FB && window.FB.XFBML && callback(window.FB));
-	window._wpFbLoader = new Promise((resolve) => {
-		function done() {
-			if (window.FB && window.FB.XFBML) {
-				resolve(window.FB);
-				callback(window.FB);
-			}
-		}
+import generateDynamicStyle from "./style";
 
-		if (!jQuery('#facebook-jssdk').length) {
-			jQuery('body').append('<script id="facebook-jssdk" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0" async></script>');
-			jQuery('#facebook-jssdk').on('load', done);
-		}
-	});
-}
+const Edit = ( props ) => {
 
-export default function Edit({attributes, setAttributes}) {
-	const {url, layout, size, share} = attributes;
-	const [error, setError] = useState('');
-	const previewRef = useRef();
+	const { attributes, setAttributes, clientId } = props;
 
-	// Update FB Like button preview when props change
-	useEffect(() => {
-		if (url && isValidFacebookUrl(url) && previewRef.current) {
-			ensureFbSdk((FB) => {
-				// Parse only this container
-				FB.XFBML.parse(previewRef.current);
-			});
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
 		}
-		// If the url becomes invalid, clear children (to avoid stuck like button from previous valid entry)
-		if ((!url || !isValidFacebookUrl(url)) && previewRef.current) {
-			previewRef.current.innerHTML = '';
+	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+
+	// Get attributes.
+	const fbAppId      = attributes.fbAppId ?? '';
+	const buttonLayout = attributes.buttonLayout ?? '';
+	const pageURL      = attributes.pageURL ?? 'https://wpmozoblocks.com/';
+	const lazyLoading  = attributes.lazyLoading ?? '';
+	const buttonSize   = attributes.buttonSize ?? 'small';
+
+	// Props change event.
+	useEffect( () => {
+		const event = new CustomEvent( 'WPMozoFacebookLikePropsChanged', {
+			detail: { clientId: clientId }
+		} );
+		window.dispatchEvent( event );
+
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [url, layout, size, share]);
+	}, [ fbAppId, buttonLayout, pageURL, buttonSize ] );
 
 	return (
-		<>
-			<Inspector attributes={attributes} setAttributes={setAttributes}/>
-			<div {...useBlockProps()}>
-				{!url ? (
-					<p>
-						{__(
-							'Paste a public Facebook URL in the block settings to generate the Like button.',
-							'wpmozo-blocks-and-addons'
-						)}
-					</p>
-				) : error ? (
-					<Notice status="error" isDismissible={false}>
-						{error}
-					</Notice>
-				) : isValidFacebookUrl(url) ? (
-					<div ref={previewRef}>
-						<div
-							className="fb-like"
-							data-href={url}
-							data-layout={layout}
-							data-action="like"
-							data-size={size}
-							data-share={share ? 'true' : 'false'}
-						></div>
-					</div>
-				) : null}
+		<Fragment>
+			<Inspector attributes={attributes} setAttributes={setAttributes} />
+			<style>{ generateDynamicStyle( { attributes } ) }</style>
+
+			<div {...useBlockProps()} id={`block-${attributes.ID}`}>
+				{ ( fbAppId && '' !== fbAppId ) && (
+					<div className="fb-like"
+						data-fb-app={ fbAppId }
+						data-href={ pageURL }
+						data-layout={ buttonLayout }
+						data-size={ buttonSize }
+						data-lazy={ lazyLoading }
+					></div>
+				) }
+				{ ( ! fbAppId || '' === fbAppId ) && (
+					<small>(Builder Placeholder) Please enter facebook app id to preview the facebook share.</small>
+				) }
 			</div>
-		</>
+		</Fragment>
 	);
 }
+
+export default Edit;
