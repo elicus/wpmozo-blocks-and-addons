@@ -177,39 +177,3 @@
     z-index: 1;
     font-size: 1em;
 }
-
-/* Button. */
-.wpmozo-bna-button-wrap .wpmozo-bna-button{
-    display: inline-flex;
-    flex-flow: row wrap;
-    align-items: center;
-    text-decoration: none;
-    transition: all .3s ease-in-out;
-    white-space: nowrap;
-    column-gap: 7px;
-}
-.wpmozo-bna-button-wrap .wpmozo-bna-button.wpmozo-icon-at-before{
-    flex-direction: row-reverse;
-}
-.wpmozo-bna-button.wpmozo-icon-on-hover .wpmozo-bna-btn-text{
-    transition: all .3s ease-in-out;
-    transform: translateX(0.8em);
-}
-.wpmozo-bna-button.wpmozo-icon-on-hover.wpmozo-icon-at-before .wpmozo-bna-btn-text{
-    transform: translateX(-0.8em);
-}
-.wpmozo-bna-button.wpmozo-icon-on-hover .wpmozo-bna-icon{
-    opacity: 0;
-    transform: translateX(-1.6em);
-    transition: all .3s ease-in-out;
-}
-.wpmozo-bna-button.wpmozo-icon-on-hover.wpmozo-icon-at-before  .wpmozo-bna-icon{
-    transform: translateX(1.6em);
-}
-.wpmozo-bna-button.wpmozo-icon-on-hover:hover .wpmozo-bna-btn-text{
-    transform: translateX(0);
-}
-.wpmozo-bna-button.wpmozo-icon-on-hover:hover .wpmozo-bna-icon{
-    opacity: 1;
-    transform: translateX(0);
-}
