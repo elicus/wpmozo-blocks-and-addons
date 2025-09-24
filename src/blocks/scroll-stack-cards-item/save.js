@@ -35,11 +35,12 @@ export default function save({ attributes }) {
 
     let buttonText = itemButtonText || __( 'Read More', 'wpmozo-blocks-and-addons' ),
         urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
-        layout = ( ! wpmozo_is_empty( parentAtts ) ) ? parentAtts.layout : 'vertical';
+        layout = ( ! wpmozo_is_empty( parentAtts ) ) ? parentAtts.layout : 'vertical',
+        TitleTag = titleLavel;
 
     // Title
     const TitleEl = itemTitle ? (
-        <titleLavel className="wpmozo-bna-scroll-stack-cards-title">{ itemTitle }</titleLavel>
+        <TitleTag className="wpmozo-bna-scroll-stack-cards-title">{ itemTitle }</TitleTag>
     ) : null;
 
     // Icon
@@ -109,20 +110,22 @@ export default function save({ attributes }) {
         <div className="wpmozo-bna-scroll-stack-cards-item-inner wpmozo-bna-scroll-stack-cards-item-vertical">
             <div className="wpmozo-bna-scroll-stack-cards-content-wrapper">
                 { IconEl }
-                { TitleEl }
+                <div className="wpmozo-bna-scroll-stack-cards-title-wrap">
+                    { TitleEl }
+                </div>
                 { ContentEl }
-                { imageEl }
                 { ButtonEl }
             </div>
+            { imageEl }
         </div>
     );
 
     const LayoutHorizontal = (
         <div className="wpmozo-bna-scroll-stack-cards-item-inner wpmozo-bna-scroll-stack-cards-item-horizontal">
+            { imageEl }
             <div className="wpmozo-bna-scroll-stack-cards-content-wrapper">
                 { IconEl }
                 { TitleEl }
-                { imageEl }
                 { ContentEl }
                 { ButtonEl }
             </div>
