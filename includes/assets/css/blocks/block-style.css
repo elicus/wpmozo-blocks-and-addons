@@ -1,26 +1,12 @@
 /* before-after-slider style start */
 .twentytwenty-vertical .wpmozo-bna-before-after-image-wrapper .twentytwenty-before-label:before, 
-.twentytwenty-vertical .wpmozo-bna-before-after-image-wrapper .twentytwenty-after-label:before{
-	width: auto;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-left: 0px;
-}
-.wpmozo-bna-before-after-image-wrapper img{
-    width: 100%;
-    object-fit: cover;
-}
-/* before-after-slider style end */
-
-/* floating-image-item style start *//* before-after-slider style start */
-.twentytwenty-vertical .wpmozo-bna-before-after-image-wrapper .twentytwenty-before-label:before, 
-.twentytwenty-vertical .wpmozo-bna-before-after-image-wrapper .twentytwenty-after-label:before{
+.twentytwenty-vertical .wpmozo-bna-before-after-image-wrapper .twentytwenty-after-label:before {
     width: auto;
     left: 50%;
     transform: translateX(-50%);
     margin-left: 0px;
 }
-.wpmozo-bna-before-after-image-wrapper img{
+.wpmozo-bna-before-after-image-wrapper img {
     width: 100%;
     object-fit: cover;
 }
@@ -29,11 +15,6 @@
 /* floating-image-item style start */
 .floating-image-item {
     position: absolute !important;
-}
-.wpmozo-bna-floating-image-wrapper{
-    position: relative;
-}
-.floating-image-item {
     display: inline-block;
     line-height: 0;
     top: 0;
@@ -43,6 +24,9 @@
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s;
+}
+.wpmozo-bna-floating-image-wrapper {
+    position: relative;
 }
 @-webkit-keyframes wpmozo_float_up_down {
     from {
@@ -106,7 +90,7 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-.wpmozo-animation{
+.wpmozo-animation {
     opacity: 0;
     animation-duration: 1s;
     animation-fill-mode: forwards;
@@ -249,135 +233,39 @@
 .wpmozo-bna-swiper-pagination-wrap .swiper-pagination {
     width: auto !important;
 }
-.floating-image-item {
-    position: absolute !important;
-}
-.wpmozo-bna-floating-image-wrapper{
-    position: relative;
-}
-.floating-image-item {
-    display: inline-block;
-    line-height: 0;
-    top: 0;
-    left: 0;
-    margin: 0;
-    will-change: transform;
-    -webkit-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-}
-@-webkit-keyframes wpmozo_float_up_down {
-    from {
-        -webkit-transform: translateY(10px);
-        transform: translateY(10px);
-    }
-    to {
-        -webkit-transform: translateY(-10px);
-        transform: translateY(-10px);
-    }
-}
-@keyframes wpmozo_float_up_down {
-    from {
-        -webkit-transform: translateY(10px);
-        transform: translateY(10px);
-    }
-    to {
-        -webkit-transform: translateY(-10px);
-        transform: translateY(-10px);
-    }
-}
-@-webkit-keyframes wpmozo_float_left_right {
-    from {
-        -webkit-transform: translateX(10px);
-        transform: translateX(10px);
-    }
-    to {
-        -webkit-transform: translateX(-10px);
-        transform: translateX(-10px);
-    }
-}
-@keyframes wpmozo_float_left_right {
-    from {
-        -webkit-transform: translateX(10px);
-        transform: translateX(10px);
-    }
-    to {
-        -webkit-transform: translateX(-10px);
-        transform: translateX(-10px);
-    }
-}
-/* floating-image-item style end */
-
-@keyframes wpmozoTopToBottom {
-    from { opacity: 0; transform: translateY(-50px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes wpmozoLeftToRight {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes wpmozoRightToLeft {
-    from { opacity: 0; transform: translateX(50px); }
-    to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes wpmozoBottomToTop {
-    from { opacity: 0; transform: translateY(50px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.wpmozo-animation{
-    opacity: 0;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-}
-.wpmozo-animation.wpmozo-animation-top:hover { 
-    animation-name: wpmozoTopToBottom; 
-}
-.wpmozo-animation.wpmozo-animation-left:hover { 
-    animation-name: wpmozoLeftToRight; 
-}
-.wpmozo-animation.wpmozo-animation-right:hover { 
-    animation-name: wpmozoRightToLeft; 
-}
-.wpmozo-animation.wpmozo-animation-bottom:hover { 
-    animation-name: wpmozoBottomToTop; 
-}
 
 /* Button. */
-.wpmozo-bna-button-wrap .wpmozo-bna-button{
-	display: inline-flex;
+.wpmozo-bna-button-wrap .wpmozo-bna-button {
+    display: inline-flex;
     flex-flow: row wrap;
     align-items: center;
-	text-decoration: none;
-	transition: all .3s ease-in-out;
-	white-space: nowrap;
-	column-gap: 7px;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+    white-space: nowrap;
+    column-gap: 7px;
 }
-.wpmozo-bna-button-wrap .wpmozo-bna-button.wpmozo-icon-at-before{
-	flex-direction: row-reverse;
+.wpmozo-bna-button-wrap .wpmozo-bna-button.wpmozo-icon-at-before {
+    flex-direction: row-reverse;
 }
-.wpmozo-bna-button.wpmozo-icon-on-hover .wpmozo-bna-btn-text{
-	transition: all .3s ease-in-out;
-	transform: translateX(0.7em);
+.wpmozo-bna-button.wpmozo-icon-on-hover .wpmozo-bna-btn-text {
+    transition: all .3s ease-in-out;
+    transform: translateX(0.7em);
 }
-.wpmozo-bna-button.wpmozo-icon-on-hover.wpmozo-icon-at-before .wpmozo-bna-btn-text{
-	transform: translateX(-0.7em);
+.wpmozo-bna-button.wpmozo-icon-on-hover.wpmozo-icon-at-before .wpmozo-bna-btn-text {
+    transform: translateX(-0.7em);
 }
-.wpmozo-bna-button.wpmozo-icon-on-hover .wpmozo-bna-icon{
-	opacity: 0;
-	transform: translateX(-1.5em);
-	transition: all .3s ease-in-out;
+.wpmozo-bna-button.wpmozo-icon-on-hover .wpmozo-bna-icon {
+    opacity: 0;
+    transform: translateX(-1.5em);
+    transition: all .3s ease-in-out;
 }
-.wpmozo-bna-button.wpmozo-icon-on-hover.wpmozo-icon-at-before  .wpmozo-bna-icon{
-	transform: translateX(1.5em);
+.wpmozo-bna-button.wpmozo-icon-on-hover.wpmozo-icon-at-before .wpmozo-bna-icon {
+    transform: translateX(1.5em);
 }
-.wpmozo-bna-button.wpmozo-icon-on-hover:hover .wpmozo-bna-btn-text{
-	transform: translateX(0);
+.wpmozo-bna-button.wpmozo-icon-on-hover:hover .wpmozo-bna-btn-text {
+    transform: translateX(0);
 }
-.wpmozo-bna-button.wpmozo-icon-on-hover:hover .wpmozo-bna-icon{
-	opacity: 1;
-	transform: translateX(0);
+.wpmozo-bna-button.wpmozo-icon-on-hover:hover .wpmozo-bna-icon {
+    opacity: 1;
+    transform: translateX(0);
 }
