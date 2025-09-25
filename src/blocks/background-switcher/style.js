@@ -27,7 +27,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 		${convertedStyle.description}
 	}`
 
-	// Orientation.
+	// Item style.
 	styles += `.wp-block-wpmozo-background-switcher-item{
 		${attributes.itemHeight ? `min-height: ${attributes.itemHeight}px;` : ''}
 		${attributes.itemHeight ? `height: ${attributes.itemHeight}px;` : ''}

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { Fragment, useEffect } from '@wordpress/element';
+import { Fragment, useEffect, useState } from '@wordpress/element';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 
@@ -15,7 +15,7 @@ import generateDynamicStyle from "./style";
 
 const Edit = ( props ) => {
 
-	const { attributes, setAttributes, clientId, rootClientId } = props;
+	const { attributes, setAttributes, clientId } = props;
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
@@ -91,15 +91,19 @@ const Edit = ( props ) => {
 		return index === 0; // true if first block in parent
 	}, [ clientId ] );
 
+	const [ isActiveItem, setIsActiveItem ] = useState( null );
 	useEffect( () => {
 		if ( attributes.isFirstChild !== isFirstChild ) {
 			setAttributes( { isFirstChild } );
+		}
+		if ( attributes.isFirstChild ) {
+			setIsActiveItem( clientId );
 		}
 	}, [ isFirstChild ] );
 
 	const blockProps = useBlockProps( {
 		id: `block-${attributes.ID}`,
-		className: isFirstChild ? 'wpmozo-bna-bg-switcher-hover' : '' // first child active background.
+		className: isActiveItem === clientId ? 'wpmozo-bna-bg-switcher-hover' : ''
 	} );
 
 	return (
@@ -107,7 +111,17 @@ const Edit = ( props ) => {
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-			<div { ...blockProps }>
+			<div { ...blockProps }
+				onMouseEnter={ () => {
+					console.log('clientId: ', clientId);
+					setIsActiveItem( clientId )
+				} }
+    			onClick={ () => {
+					console.log('clientId: ', clientId);
+					
+					setIsActiveItem( clientId )
+				} }
+			>
 				<div className="wpmozo_bna_bg_switcher_item_wrap">
 					<div className="wpmozo_bna_bg_switcher_content">
 						{ $title }
