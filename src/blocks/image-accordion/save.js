@@ -19,7 +19,7 @@ export default function save({ attributes }) {
             ) }
             <div { ...blockProps }>
                 <div 
-                    className={`wpmozo-bna-image-accordion-wrapper wpmozo-bna-image-accordion-content-${attributes.contentAlignment}`}
+                    className={`wpmozo-bna-image-accordion-wrapper wpmozo-bna-image-accordion-content-${attributes.contentAlignment} ${attributes.accordionOrientation}`}
                     data-trigger={attributes.accordionTrigger}
                     data-default-active={attributes.activeAccordion}
                 >

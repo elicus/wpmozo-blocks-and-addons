@@ -5,6 +5,7 @@ const generateDynamicStyle = ({ attributes }) => {
 	const toConvertStyles = [
 		"title",
 		"description",
+		"icon",
 		"button"
 	];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes ),
@@ -37,15 +38,22 @@ const generateDynamicStyle = ({ attributes }) => {
 	let styles = `#block-${attributes.ID}.wp-block-wpmozo-image-accordion-item{`;
 
 		if ( normalUseBackgroundImage && ! wpmozo_is_empty( normalBackgroundImage ) ) {
+			let bgColor = ! wpmozo_is_empty( normalAccordionBackground ) ? ', ' + normalAccordionBackground : '';
 			styles += `
-				background-image: url('${normalBackgroundImage}');
+				background: url('${normalBackgroundImage}')${bgColor};
 			`;
 		}
 		if ( ! normalUseBackgroundImage && ! wpmozo_is_empty( normalAccordionBackground ) ) {
 			styles += `
-				background: ${normalAccordionBackground};
+				background-color: ${normalAccordionBackground};
 			`;
 		}
+
+		styles += `${attributes.normalItemBGImageSize ? `background-size: ${attributes.normalItemBGImageSize};` : '' }
+			${attributes.normalItemBGImagePosition ? `background-position: ${attributes.normalItemBGImagePosition.replace(/_/g, ' ')};` : '' }
+			${attributes.normalItemBGImageRepeat ? `background-repeat: ${attributes.normalItemBGImageRepeat};` : '' }
+			${attributes.normalItemBGImageBlend ? `background-blend-mode: ${attributes.normalItemBGImageBlend};` : '' }
+		`;
 
 		styles += `
 			.wpmozo-bna-image-accordion-item-title {
@@ -57,6 +65,9 @@ const generateDynamicStyle = ({ attributes }) => {
 				color: ${descriptionColor};
 				text-align: ${descriptionAlign};
 				${convertedStyle.description}
+			}
+			.wpmozo-bna-image-accordion-item-icon {
+				${convertedStyle.icon}
 			}
 			.wpmozo-bna-image-accordion-item-icon .icon-wrapper i{
 				color: ${iconColor};
@@ -104,19 +115,28 @@ const generateDynamicStyle = ({ attributes }) => {
 	}
 
 	if ( activeUseBackgroundImage && ! wpmozo_is_empty( activeBackgroundImage ) ) {
+		let bgColor = ! wpmozo_is_empty( activeAccordionBackground ) ? ', ' + activeAccordionBackground : '';
 		styles += `
 			#block-${attributes.ID}.wpmozo-bna-active-image-accordion-item {
-				background-image: url('${activeBackgroundImage}');
+				background: url('${activeBackgroundImage}')${bgColor};
 			}
 		`;
 	}
 	if ( ! activeUseBackgroundImage && ! wpmozo_is_empty( activeAccordionBackground ) ) {
 		styles += `
 			#block-${attributes.ID}.wpmozo-bna-active-image-accordion-item {
-				background: ${activeAccordionBackground};
+				background-color: ${activeAccordionBackground};
 			}
 		`;
 	}
+
+	styles += `#block-${attributes.ID}.wpmozo-bna-active-image-accordion-item {
+		${attributes.activeItemBGImageSize ? `background-size: ${attributes.activeItemBGImageSize};` : '' }
+		${attributes.activeItemBGImagePosition ? `background-position: ${attributes.activeItemBGImagePosition.replace(/_/g, ' ')};` : '' }
+		${attributes.activeItemBGImageRepeat ? `background-repeat: ${attributes.activeItemBGImageRepeat};` : '' }
+		${attributes.activeItemBGImageBlend ? `background-blend-mode: ${attributes.activeItemBGImageBlend};` : '' }
+		}
+	`;
 
 	return styles;
 };

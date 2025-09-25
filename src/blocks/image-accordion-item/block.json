@@ -29,24 +29,35 @@
         "itemButtonUrl": { "type": "string" },
         "itemButtonLinkTarget": { "type": "string", "default": "external" },
 
+        "contentAnimation": { "type": "string", "default": "off" },
         "normalAccordionBackground": { "type": "string" },
         "normalAccordionBackgroundGradient": {
             "type": "string",
             "default": "linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)"
         },
+        "normalItemBGImageSize": { "type": "string", "default": "cover" },
+        "normalItemBGImagePosition": { "type": "string", "default": "center" },
+        "normalItemBGImageRepeat": { "type": "string", "default": "no-repeat" },
+        "normalItemBGImageBlend": { "type": "string", "default": "normal" },
         "activeAccordionBackground": { "type": "string" },
         "activeAccordionBackgroundGradient": {
             "type": "string",
             "default": "linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)"
         },
+        "activeItemBGImageSize": { "type": "string", "default": "cover" },
+        "activeItemBGImagePosition": { "type": "string", "default": "center" },
+        "activeItemBGImageRepeat": { "type": "string", "default": "no-repeat" },
+        "activeItemBGImageBlend": { "type": "string", "default": "normal" },
 
         "iconColor": { "type": "string" },
         "iconShapBackground": { "type": "string", "default": "#9E9E9E" },
         "styleIcon": { "type": "boolean", "default": false },
         "iconShape": { "type": "string", "default": "square" },
         "iconFontSize": { "type": "string" },
+        "iconpadding": { "type": "object" },
+        "iconmargin": { "type": "object" },
 
-        "textColor": { "type": "string", "default": "dark" },  
+        "textColor": { "type": "string" },  
         "textAlignment": { "type": "string" },
 
         "titleColor": { "type": "string" },  
@@ -66,6 +77,8 @@
         "titleDecoration": { "type": "string" },
         "titleLetterCase": { "type": "string" },
         "titleLineHeight": { "type": "string" },
+        "titlepadding": { "type": "object" },
+        "titlemargin": { "type": "object" },
 
         "descriptionColor": { "type": "string" },  
         "descriptionAlign": { "type": "string" },
@@ -84,11 +97,13 @@
         "descriptionDecoration": { "type": "string" },
         "descriptionLetterCase": { "type": "string" },
         "descriptionLineHeight": { "type": "string" },
+        "descriptionpadding": { "type": "object" },
+        "descriptionmargin": { "type": "object" },
 
         "buttonTextColor": { "type": "string" },
         "buttonBackgroundColor": { "type": "string" },
         "buttonAlignment": { "type": "string" },
-        "buttonFontSize": { "type": "string", "default": "18px" },
+        "buttonFontSize": { "type": "string" },
         "buttonFontAppearance": {
             "type": "object",
             "fontStyle": { "type": "string" },

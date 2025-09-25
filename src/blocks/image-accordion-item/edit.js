@@ -45,13 +45,15 @@ export default function Edit(props) {
         itemDescription,
         buttonIconPlacement,
         useButtonIcon,
-        buttonIconHover
+        buttonIconHover,
+        contentAnimation
     } = attributes;
 
     let buttonText = itemButtonText || __( 'Read More', 'wpmozo-blocks-and-addons' ),
         urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
         resolvedIconShape = styleIcon ? iconShape : '',
-        titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttributes.titleLavel;
+        titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttributes.titleLavel,
+        animationClass = ( 'off' !== contentAnimation ) ? ` wpmozo-animation wpmozo-animation-${attributes.contentAnimation}` : '';
 
     let renderedIcon = null;
     if (itemIcon) {
@@ -115,7 +117,7 @@ export default function Edit(props) {
                 { generateDynamicStyle({ attributes }) }
             </style>
             <div {...useBlockProps()} id={`block-${attributes.ID}`}>
-                <div className="wpmozo-bna-image-accordion-item-content-wrapper">
+                <div className={`wpmozo-bna-image-accordion-item-content-wrapper ${animationClass}`}>
                     <div className={`wpmozo-bna-image-accordion-item-content-inner-wrap`}>
                         {renderedIcon}
                         <RichText
