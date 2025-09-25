@@ -16,7 +16,7 @@
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
 	
-		"switcherOrientation": { "type": "string", "default": "horizontal" },
+		"switcherOrientation": { "type": "string", "default": "row" },
 		"contentValign": { "type": "string", "default": "flex-end" },
 		"itemHeight": { "type": "number", "default": 350 },
 
@@ -54,5 +54,6 @@
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
+	"style": "file:./style-index.css",
+	"script": "file:./script.js"
 }

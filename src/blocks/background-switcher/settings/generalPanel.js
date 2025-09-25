@@ -16,8 +16,8 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				label={ __( 'Switcher Orientation', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.switcherOrientation }
 				options={ [
-					{ value: 'horizontal', label: __( 'Horizontal', 'wpmozo-blocks-and-addons' ) },
-					{ value: 'vertical', label: __( 'Vertical', 'wpmozo-blocks-and-addons' ) },
+					{ value: 'row', label: __( 'Horizontal', 'wpmozo-blocks-and-addons' ) },
+					{ value: 'column', label: __( 'Vertical', 'wpmozo-blocks-and-addons' ) },
 				] }
 				onChange={ (newValue) => setAttributes( { switcherOrientation: newValue } ) }
 				__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}

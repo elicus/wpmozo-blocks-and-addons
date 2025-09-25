@@ -5,11 +5,14 @@ import generateDynamicStyle from "./style";
 
 const Save = ( { attributes } ) => {
 
-	const { ID, className } = attributes;
+	const { ID, className, isFirstChild } = attributes;
 
 	// Only add ID attribute if it exists.
 	const blockProps = useBlockProps.save( {
-		className: className,
+		className: [
+			className,
+			isFirstChild ? 'wpmozo-bna-bg-switcher-hover' : '' // first child active background.
+		].filter( Boolean ).join( ' ' ),
 		...( ID ? { id: `block-${ ID }` } : {} ),
 	} );
 
@@ -33,7 +36,30 @@ const Save = ( { attributes } ) => {
 		/>;
 	}
 
+	// Button.
+	const showButton = attributes.showButton ?? false;
+	const buttonUrl  = attributes.buttonUrl ?? '';
+
 	let $button = '';
+	if ( showButton && '' !== buttonUrl ) {
+		let $buttonIcon = '';
+		if ( attributes.buttonUseIcon && attributes.buttonIcon ) {
+			$buttonIcon = <i className={ 'wpmozo-bna-icon ' + attributes.buttonIcon }></i>;
+		}
+		$button = <div className="wpmozo-bna-button-wrap wpmozo-bna-bg-switcher-btn-wrap">
+			<a href={ buttonUrl }
+				target={ ( 'external' === attributes.buttonLinkTarget ) ? '_blank' : false }
+				className={ [
+					'wpmozo-bna-button',
+					( attributes.buttonUseIcon && attributes.buttonIconOnHover ) ? 'wpmozo-icon-on-hover' : '',
+					( attributes.buttonUseIcon && 'before' === attributes.buttonIconPosition ) ? 'wpmozo-icon-at-before' : 'wpmozo-icon-at-after'
+				].join(" ") }
+			>
+				<span className='wpmozo-bna-btn-text'>{ attributes.buttonText && __( 'Read more', 'wpmozo-blocks-and-addons' ) }</span>
+				{ $buttonIcon }
+			</a>
+		</div>;
+	}
 
 	let $hoverContent = '';
 	if ( $description || $button ) {
@@ -58,6 +84,9 @@ const Save = ( { attributes } ) => {
 					{ $hoverContent }
 				</div>
 			</div>
+		</div>
+		<div className="wpmozo_bna_background_switcher_image">
+			<div className="wpmozo_bna_switcher_item_background"></div>
 		</div>
 	</> );
 }

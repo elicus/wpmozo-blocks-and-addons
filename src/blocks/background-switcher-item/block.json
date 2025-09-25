@@ -17,6 +17,7 @@
 	"attributes": {
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
+		"isFirstChild": { "type": "boolean", "default": false }, 
 
 		"title": { "type": "string", "default": "Your title goes here." },
 		"description": { "type": "string" },
