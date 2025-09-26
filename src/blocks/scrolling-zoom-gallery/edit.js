@@ -57,7 +57,7 @@ export default function Edit(props) {
 	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	useEffect(() => {
-		const event = new CustomEvent('WPMozoTextHighlighterPropsChanged');
+		const event = new CustomEvent('WPMozoScrollZoomGalleryPropsChanged');
 		window.dispatchEvent(event);
 		const iframe = document.querySelector('iframe[name="editor-canvas"]');
 		if (iframe?.contentWindow) {

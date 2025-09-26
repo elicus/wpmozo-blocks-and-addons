@@ -44,10 +44,10 @@ function initScrollZoomGallery($gallery) {
 			scrub: 1,
 			pin: true,
 			anticipatePin: 1,
-			onEnter: function() { $('html').addClass('dipl_hide_scrollbar'); },
-			onLeave: function() { $('html').removeClass('dipl_hide_scrollbar'); },
-			onEnterBack: function() { $('html').addClass('dipl_hide_scrollbar'); },
-			onLeaveBack: function() { $('html').removeClass('dipl_hide_scrollbar'); }
+			onEnter: function() { $('html').addClass('wpmozo_hide_scrollbar'); },
+			onLeave: function() { $('html').removeClass('wpmozo_hide_scrollbar'); },
+			onEnterBack: function() { $('html').addClass('wpmozo_hide_scrollbar'); },
+			onLeaveBack: function() { $('html').removeClass('wpmozo_hide_scrollbar'); }
 		}
 	});
 
