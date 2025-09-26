@@ -222,6 +222,10 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					</> }
 				</>}
 			</BaseControl>
+			<WpmozoDimensions props={props}
+				DimensionKey='contentWrapper'
+				DimensionsTypes={ { padding: true, margin: true } }
+			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Content Animation', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel"  initialOpen={false}>
 			<SelectControl

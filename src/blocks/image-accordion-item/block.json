@@ -30,6 +30,8 @@
         "itemButtonLinkTarget": { "type": "string", "default": "external" },
 
         "contentAnimation": { "type": "string", "default": "off" },
+        "contentWrapperpadding": { "type": "object" },
+        "contentWrappermargin": { "type": "object" },
         "normalUseBackgroundImage": { "type": "boolean", "default": false },
         "normalAccordionBackground": { "type": "string" },
         "normalBackgroundImage": { "type": "string" },

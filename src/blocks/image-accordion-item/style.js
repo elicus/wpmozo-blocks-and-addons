@@ -6,7 +6,8 @@ const generateDynamicStyle = ({ attributes }) => {
 		"title",
 		"description",
 		"icon",
-		"button"
+		"button",
+		"contentWrapper"
 	];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes ),
     	parentAtts = attributes.parentAtts;
@@ -56,6 +57,9 @@ const generateDynamicStyle = ({ attributes }) => {
 		`;
 
 		styles += `
+			.wpmozo-bna-image-accordion-item-content-wrapper {
+				${convertedStyle.contentWrapper}
+			}
 			.wpmozo-bna-image-accordion-item-title {
 				color: ${titleColor};
 				text-align: ${titleAlign};
