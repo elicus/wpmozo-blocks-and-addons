@@ -19,7 +19,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 
 	styles += `.wpmozo_twitter_embedded_tweet_button{
 		text-decoration: none;
-		border-style: solid;
+		border: 0 solid #000000;
 		${convertedStyle.button}
 	}`;
 
