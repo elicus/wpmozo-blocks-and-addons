@@ -14,7 +14,7 @@ import { compose } from '@wordpress/compose';
 import { createBlobURL } from '@wordpress/blob';
 import { createBlock } from '@wordpress/blocks';
 import { store as blockEditorStore, MediaPlaceholder, useBlockProps, useInnerBlocksProps, InnerBlocks } from '@wordpress/block-editor';
-import { withNotices } from '@wordpress/components';
+import {Notice} from '@wordpress/components';
 import { Platform, useEffect, useMemo } from '@wordpress/element';
 import { useDispatch, useSelect } from '@wordpress/data';
 
@@ -265,17 +265,16 @@ export default function Edit(props) {
 				<div className="wpmozo_scroll_zoom_gallery_scroller" data-start_opacity={attributes.onLoadVisibility}>
 					<div className="wpmozo_scroll_zoom_gallery_wrapper">
 						<div className="wpmozo_scroll_zoom_gallery_inner">
-							{attributes.images_data && attributes.images_data.length > 0 && (
-								attributes.images_data.map((image, idx) => (
-									<div className="wpmozo_scroll_zoom_gallery_item">
-										<img className={`wpmozo_scroll_zoom_gallery_image`} src={image.url}
-											 alt={image.alt || ''}/>
-									</div>
-								))
+							{attributes.images_data && (
+								<Notice status="warning" isDismissible={false}>
+									{ __( "The scroll zoom gallery should only be displayed on the frontend side, so please make sure it runs only there.", "wpmozo-blocks-and-addons" ) }
+								</Notice>
 							)}
 							{!attributes.images_data && (
 								<div className="wpmozo_scroll_zoom_gallery_no_item">
-									<h3>{attributes.noImagesText}</h3>
+									<Notice status="error" isDismissible={false}>
+										<h3>{attributes.noImagesText}</h3>
+									</Notice>
 								</div>
 							)}
 						</div>

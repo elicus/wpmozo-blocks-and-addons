@@ -33,7 +33,7 @@
 		},
 
 		"onLoadVisibility": {"type": "number","default": 0.1},
-		"noImagesText": {"type": "string","default":"No Images Found!"},
+		"noImagesText": {"type": "string","default":"No images found. Please try uploading again."},
 
 		"normalborder": {"type": "object"},
 		"normalborderRadius": {"type": "string"},
@@ -50,5 +50,5 @@
     "editorScript": "file:./index.js",
     "editorStyle": "file:./index.css",
     "style": "file:./style-index.css",
-	"script": [ "wpmozo-blocks-and-addons-scroll-trigger-script", "wpmozo-blocks-and-addons-gsap-script", "wpmozo-blocks-and-addons-lottie-script", "file:./script.js"]
+	"script": [ "wpmozo-blocks-and-addons-scroll-trigger-script", "wpmozo-blocks-and-addons-gsap-script", "file:./script.js"]
 }
