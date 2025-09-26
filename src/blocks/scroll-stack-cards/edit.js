@@ -51,7 +51,9 @@ export default function Edit(props) {
         }
     }, [props]);
 
-    let ID = clientId;
+    let dataCollapsedWidth = ( 'horizontal' === attributes.layout ) 
+        ? { 'data-collapsed_width': `${attributes.collapsedWidth}px` } 
+        : {};
 
     return (
         <Fragment>
@@ -61,9 +63,10 @@ export default function Edit(props) {
             </style>  
             <div {...useBlockProps()}>
                 <div 
-                    className={`wpmozo-bna-scroll-stack-cards-wrapper wpmozo-bna-scroll-stack-cards-content-${attributes.contentAlignment}`}
-                    data-trigger={attributes.accordionTrigger}
-                    data-default-active={attributes.activeAccordion}
+                    className={`wpmozo-bna-scroll-stack-cards-wrapper layout-${attributes.layout}`}
+                    data-layout={attributes.layout}
+                    data-animation_start_viewport_pos={`${attributes.animationStartViewportPos}%`}
+                    {...dataCollapsedWidth}
                 >
                     <div className="wpmozo-bna-scroll-stack-cards-items">
                         <InnerBlocks 

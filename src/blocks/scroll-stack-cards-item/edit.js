@@ -60,9 +60,15 @@ export default function Edit(props) {
         TitleTag = titleLavel;
 
     // Title
-    const TitleEl = itemTitle ? (
-        <TitleTag className="wpmozo-bna-scroll-stack-cards-title">{ itemTitle }</TitleTag>
-    ) : null;
+    const TitleEl = (
+        <RichText
+            tagName={TitleTag}
+            className="wpmozo-bna-scroll-stack-cards-title"
+            value={itemTitle}
+            onChange={(value) => setAttributes({ itemTitle: value })}
+            placeholder={ __( 'Title', 'wpmozo-blocks-and-addons' ) }
+        />
+    );
 
     // Icon
     const IconEl = itemIcon ? (
@@ -76,9 +82,15 @@ export default function Edit(props) {
     ) : null;
 
     // Content
-    const ContentEl = itemDescription ? (
-        <div className="wpmozo-bna-scroll-stack-cards-content">{ itemDescription }</div>
-    ) : null;
+    const ContentEl = (
+        <RichText
+            tagName="div"
+            className="wpmozo-bna-scroll-stack-cards-content"
+            value={itemDescription}
+            onChange={(value) => setAttributes({ itemDescription: value })}
+            placeholder={ __( 'Description', 'wpmozo-blocks-and-addons' ) }
+        />
+    );
 
     // Image
     const imageEl = image ? (

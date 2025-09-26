@@ -15,6 +15,10 @@ export default function save({ attributes }) {
         ...( ID ? { id: `block-${ ID }` } : {} ),
     } );
 
+    let dataCollapsedWidth = ( 'horizontal' === attributes.layout ) 
+        ? { 'data-collapsed_width': `${attributes.collapsedWidth}px` } 
+        : {};
+
     return (
         <>
             {/* Only output <style> if ID exists. */}
@@ -26,6 +30,7 @@ export default function save({ attributes }) {
                     className={`wpmozo-bna-scroll-stack-cards-wrapper layout-${layout}`}
                     data-layout={layout}
                     data-animation_start_viewport_pos={`${animationStartViewportPos}%`}
+                    {...dataCollapsedWidth}
                 >
                     <div className="wpmozo-bna-scroll-stack-cards-items">
                         <InnerBlocks.Content/>

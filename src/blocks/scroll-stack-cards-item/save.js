@@ -39,9 +39,13 @@ export default function save({ attributes }) {
         TitleTag = titleLavel;
 
     // Title
-    const TitleEl = itemTitle ? (
-        <TitleTag className="wpmozo-bna-scroll-stack-cards-title">{ itemTitle }</TitleTag>
-    ) : null;
+    const TitleEl = (
+        <RichText.Content
+            tagName={TitleTag}
+            className="wpmozo-bna-scroll-stack-cards-title"
+            value={itemTitle}
+        />
+    );
 
     // Icon
     const IconEl = itemIcon ? (
@@ -55,9 +59,13 @@ export default function save({ attributes }) {
     ) : null;
 
     // Content
-    const ContentEl = itemDescription ? (
-        <div className="wpmozo-bna-scroll-stack-cards-content">{ itemDescription }</div>
-    ) : null;
+    const ContentEl = (
+        <RichText.Content
+            tagName="div"
+            className="wpmozo-bna-scroll-stack-cards-content"
+            value={itemDescription}
+        />
+    );
 
     // Image
     const imageEl = image ? (
