@@ -16,7 +16,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 		{/* Content. */}
 		<PanelBody title={ __( 'Content', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
 			<TextareaControl
-				label={ __( 'Fancy Text', 'wpmozo-blocks-and-addons' ) }
+				label={ __( 'Text', 'wpmozo-blocks-and-addons' ) }
 				onChange={ ( newValue ) => setAttributes( { scrollText: newValue } ) }
 				value={ attributes.scrollText }
 			/>
