@@ -26,6 +26,9 @@ const generateDynamicStyle = ( { attributes } ) => {
 
 	// Button.
 	if ( attributes.showButton ) {
+		styles += `.wpmozo-bna-button-wrap{
+			${attributes.buttonAlign ? `text-align: ${attributes.buttonAlign};` : ''}
+		}`;
 		styles += `.wpmozo-bna-button-wrap .wpmozo-bna-button{
 			${attributes.buttonBGGradient ? `background:`+ attributes.buttonBGGradient + `;` : ''}
 			${attributes.buttonBackground ? `background:`+ attributes.buttonBackground + `;` : ''}

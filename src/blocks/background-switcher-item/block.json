@@ -64,6 +64,7 @@
 		"descriptionFontStyle": { "type": "string" },
 		"descriptionFontWeight": { "type": "string" },
 
+		"buttonAlign": { "type": "string" },
 		"buttonBackground": { "type": "string", "default": "" },
 		"buttonBGGradient": { "type": "string" },
 		"buttonUseIcon": { "type": "boolean", "default": false },

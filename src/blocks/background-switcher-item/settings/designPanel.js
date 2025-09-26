@@ -100,6 +100,11 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 							onColorChange={ (newValue) => setAttributes( { buttonBackground: newValue } ) }
 							onGradientChange={ (newValue) => setAttributes( { buttonBGGradient: newValue } ) }
 						/>
+						<WpmozoAlignment
+							label={ __( 'Button Alignment', 'wpmozo-blocks-and-addons' ) }
+							onChange={ ( newValue ) => setAttributes( { buttonAlign: newValue } ) }
+							value={ attributes.buttonAlign }
+						/>
 						<hr />
 						<ToggleControl
 							label={ __( 'Show Button Icon', 'wpmozo-blocks-and-addons' ) }

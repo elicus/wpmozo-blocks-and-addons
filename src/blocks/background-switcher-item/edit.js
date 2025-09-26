@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { Fragment, useEffect, useState } from '@wordpress/element';
+import { Fragment, useEffect } from '@wordpress/element';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 
@@ -57,8 +57,8 @@ const Edit = ( props ) => {
 			$buttonIcon = <i className={ 'wpmozo-bna-icon ' + attributes.buttonIcon }></i>;
 		}
 		$button = <div className="wpmozo-bna-button-wrap wpmozo-bna-bg-switcher-btn-wrap">
-			<a href="javascript:void(0)"
-				target={ ( 'external' === attributes.buttonLinkTarget ) ? '_blank' : false }
+			<a href="javascript:void(0);"
+				// target={ ( 'external' === attributes.buttonLinkTarget ) ? '_blank' : false }
 				className={ [
 					'wpmozo-bna-button',
 					( attributes.buttonUseIcon && attributes.buttonIconOnHover ) ? 'wpmozo-icon-on-hover' : '',
@@ -91,19 +91,15 @@ const Edit = ( props ) => {
 		return index === 0; // true if first block in parent
 	}, [ clientId ] );
 
-	const [ isActiveItem, setIsActiveItem ] = useState( null );
 	useEffect( () => {
 		if ( attributes.isFirstChild !== isFirstChild ) {
 			setAttributes( { isFirstChild } );
-		}
-		if ( attributes.isFirstChild ) {
-			setIsActiveItem( clientId );
 		}
 	}, [ isFirstChild ] );
 
 	const blockProps = useBlockProps( {
 		id: `block-${attributes.ID}`,
-		className: isActiveItem === clientId ? 'wpmozo-bna-bg-switcher-hover' : ''
+		className: isFirstChild ? 'wpmozo-bna-bg-switcher-hover' : ''
 	} );
 
 	return (
@@ -111,17 +107,7 @@ const Edit = ( props ) => {
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-			<div { ...blockProps }
-				onMouseEnter={ () => {
-					console.log('clientId: ', clientId);
-					setIsActiveItem( clientId )
-				} }
-    			onClick={ () => {
-					console.log('clientId: ', clientId);
-					
-					setIsActiveItem( clientId )
-				} }
-			>
+			<div { ...blockProps }>
 				<div className="wpmozo_bna_bg_switcher_item_wrap">
 					<div className="wpmozo_bna_bg_switcher_content">
 						{ $title }

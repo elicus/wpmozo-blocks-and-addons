@@ -43,6 +43,19 @@ const Edit = ( props ) => {
 		insertBlocks( newBlock, innerBlocks.length, clientId );
 	};
 
+	// Props change event.
+	useEffect( () => {
+		const event = new CustomEvent( 'WPMozoBackgroundSwitcherPropsChanged', {
+			detail: { clientId: attributes.ID }
+		} );
+		window.dispatchEvent( event );
+
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
+		}
+	}, [ props ] );
+
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
