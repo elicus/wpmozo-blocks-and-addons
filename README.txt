@@ -63,7 +63,7 @@ Display images with interactive overlays, hover effects, and call-to-action butt
 Design beautiful and customizable lists with icons, numbers, or symbols using the List block. With advanced styling options, it's perfect for feature lists, step-by-step guides, or comparisons that match your brandâ€™s design.
 24. [Logo Slider](https://wpmozoblocks.com/logo-slider/ "Logo Slider for Gutenberg")
 Showcase brand partners, clients, or sponsors with the responsive Logo Slider block. Smooth transitions, autoplay options, and full styling control make it a perfect addition to testimonial sections or partner pages.
-25. [Separator](https://wpmozoblocks.com/separator/ "Separator for Gutenberg")
+25. [Separator](https://wpmozoblocks.com/wordpress-separator-block/ "Separator for Gutenberg")
 Add elegant visual dividers between sections with the Separator block. Choose from lines, icons, or custom shapes to enhance layout clarity and create a professional design flow.
 26. [Tilt Image](https://wpmozoblocks.com/tilt-image/ "Tilt Image for Gutenberg")
 Add 3D tilt effects to your images for a subtle yet interactive user experience. The Tilt Image block enhances visual depth and engagement, making it great for modern design portfolios or creative websites.
