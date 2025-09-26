@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/hover-list",
+	"version": "0.1.0",
+	"title": "Hover List",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "Create interactive list sections with a title, subtitle, description, icon, and button. On hover, each row displays a background image.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"customClassName": false
+	},
+	"attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" }
+	
+		
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"script": "file:./script.js"
+}
