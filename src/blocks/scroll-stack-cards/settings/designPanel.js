@@ -120,7 +120,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				/>
 			}
 			<WpmozoDimensions props={props}
-				DimensionKey='image'
+				DimensionKey='imageWrap'
 				DimensionsTypes={ { padding: true } }
 			/>
 			<WpmozoBorder props={props}
@@ -128,18 +128,16 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Content Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			{ ! attributes.contentWrapUseBackgroundImage && <>
-				<WpmozoColorPicker props={props}
-				   	ColorKey="contentWrap"
-				   	ColorTypes={[
-					   	{
-					   		key: 'Background', 
-					   		label: __('Content Wrap Background', 'wpmozo-blocks-and-addons'), 
-					   		withGradient: true
-					   	}
-				   	]}
-				/>
-			</> }
+			<WpmozoColorPicker props={props}
+			   	ColorKey="contentWrap"
+			   	ColorTypes={[
+				   	{
+				   		key: 'Background', 
+				   		label: __('Content Wrap Background', 'wpmozo-blocks-and-addons'), 
+				   		withGradient: true
+				   	}
+			   	]}
+			/>
 			<ToggleControl
 				label={ __( 'Use Background Image', 'wpmozo-blocks-and-addons' ) }
 				checked={ attributes.contentWrapUseBackgroundImage }
@@ -150,6 +148,65 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					label={ __( 'Content Wrap Background Image', 'wpmozo-blocks-and-addons' ) }
 					attrKye="contentWrapBackgroundImage"
 				/>
+				{ attributes.contentWrapBackgroundImage && <>
+					<SelectControl
+						label={ __( 'Background Image Size', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.contentWrapItemBGImageSize }
+						options={ [
+							{ value: 'cover', label: __( 'Cover', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'contain', label: __( 'Fit', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'initial', label: __( 'Actual Size', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'stretch', label: __( 'Stretch to Fill', 'wpmozo-blocks-and-addons' ) },
+						] }
+						onChange={ ( newValue ) => setAttributes( { contentWrapItemBGImageSize: newValue } ) }
+						__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+					/>
+					<SelectControl
+						label={ __( 'Background Image Position', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.contentWrapItemBGImagePosition }
+						options={ [
+							{ value: 'top_left', label: __( 'Top Left', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'top_center', label: __( 'Top Center', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'top_right', label: __( 'Top Right', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'center_left', label: __( 'Center Left', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'center', label: __( 'Center', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'center_right', label: __( 'Center Right', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'bottom_left', label: __( 'Bottom Left', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'bottom_center', label: __( 'Bottom Center', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'bottom_right', label: __( 'Bottom Right', 'wpmozo-blocks-and-addons' ) },
+						] }
+						onChange={ ( newValue ) => setAttributes( { contentWrapItemBGImagePosition: newValue } ) }
+						__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+					/>
+					<SelectControl
+						label={ __( 'Background Image Repeat', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.contentWrapItemBGImageRepeat }
+						options={ [
+							{ value: 'repeat', label: __( 'Repeat', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'repeat-x', label: __( 'Repeat X (horizontal)', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'repeat-y', label: __( 'Repeat Y (vertical)', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'space', label: __( 'Repeat with space between', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'round', label: __( 'Repeat and Stretch', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'no-repeat', label: __( 'No Repeat', 'wpmozo-blocks-and-addons' ) },
+						] }
+						onChange={ ( newValue ) => setAttributes( { contentWrapItemBGImageRepeat: newValue } ) }
+						__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+					/>
+					<SelectControl
+						label={ __( 'Background Image Blend', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.contentWrapItemBGImageBlend }
+						options={ [
+							{ value: 'normal', label: __( 'Normal', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'multiply', label: __( 'Multiply', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'screen', label: __( 'Screen', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'overlay', label: __( 'Overlay', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'darken', label: __( 'Darken', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'lighten', label: __( 'Lighten', 'wpmozo-blocks-and-addons' ) },
+						] }
+						onChange={ ( newValue ) => setAttributes( { contentWrapItemBGImageBlend: newValue } ) }
+						__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+					/>
+				</> }
 			</> }
 			{ 'vertical' === attributes.layout &&
 				<WpmozoRangeSize

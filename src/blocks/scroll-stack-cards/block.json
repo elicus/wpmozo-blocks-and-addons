@@ -64,7 +64,7 @@
 
         "imageborder": { "type": "object" },
         "imageborderRadius": { "type": "string" },
-        "imagepadding": { "type": "object" },
+        "imageWrappadding": { "type": "object" },
         "imageSize": { "type": "string" },
 
         "contentWrapBackground": { "type": "string" },
@@ -78,6 +78,10 @@
         "contentWrapborder": { "type": "object" },
         "contentWrapborderRadius": { "type": "string" },
         "contentWrappadding": { "type": "object" },
+        "contentWrapItemBGImageSize": { "type": "string", "default": "cover" },
+        "contentWrapItemBGImagePosition": { "type": "string", "default": "center" },
+        "contentWrapItemBGImageRepeat": { "type": "string", "default": "no-repeat" },
+        "contentWrapItemBGImageBlend": { "type": "string", "default": "normal" },
 
         "cardItemWidth": { "type": "string" },
         "cardItemborder": { "type": "object" },
