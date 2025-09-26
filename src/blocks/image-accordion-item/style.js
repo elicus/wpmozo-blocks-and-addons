@@ -108,8 +108,17 @@ const generateDynamicStyle = ({ attributes }) => {
 
 	if ( ! wpmozo_is_empty( textAlignment ) ) {
 		styles += `
-			#block-${attributes.ID}.wpmozo-bna-active-image-accordion-item {
+			#block-${attributes.ID}.wp-block-wpmozo-image-accordion-item {
 				text-align: ${textAlignment};
+			}
+		`;
+	}
+
+	if ( 'global' != textColor ) {
+		let textColorStyle = ( 'dark' === textColor ) ? '#666' : '#fff';
+		styles += `
+			#block-${attributes.ID}.wp-block-wpmozo-image-accordion-item {
+				color: ${textColorStyle};
 			}
 		`;
 	}

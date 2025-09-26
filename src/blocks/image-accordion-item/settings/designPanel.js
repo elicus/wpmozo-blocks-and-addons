@@ -248,6 +248,10 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				value={ attributes.textColor }
 				options={[
 					{
+						value: 'global',
+						label: __( 'Global', 'wpmozo-blocks-and-addons' ),
+					},
+					{
 						value: 'light',
 						label: __( 'Light', 'wpmozo-blocks-and-addons' ),
 					},

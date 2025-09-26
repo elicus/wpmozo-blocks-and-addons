@@ -61,7 +61,7 @@
         "iconpadding": { "type": "object" },
         "iconmargin": { "type": "object" },
 
-        "textColor": { "type": "string" },  
+        "textColor": { "type": "string", "default": "global" },  
         "textAlignment": { "type": "string" },
 
         "titleColor": { "type": "string" },  
