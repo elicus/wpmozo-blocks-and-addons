@@ -112,6 +112,10 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				label={ __( 'Accordion Spacing', 'wpmozo-blocks-and-addons') }
 				rangeSizeKey='accordionSpacing'
 			/>
+			<WpmozoRangeSize props={props}
+				label={ __( 'Accordion Height', 'wpmozo-blocks-and-addons') }
+				rangeSizeKey='accordionHeight'
+			/>
 	        <RangeControl
 				label={ __( 'Active Accordion Image Size', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.activeAccordionSize }

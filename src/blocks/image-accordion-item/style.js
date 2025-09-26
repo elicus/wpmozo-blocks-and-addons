@@ -35,7 +35,7 @@ const generateDynamicStyle = ({ attributes }) => {
     } = attributes;
 
 
-	let styles = `#block-${attributes.ID}.wp-block-wpmozo-image-accordion-item{`;
+	let styles = `.wp-block-wpmozo-image-accordion #block-${attributes.ID}{`;
 
 		if ( normalUseBackgroundImage && ! wpmozo_is_empty( normalBackgroundImage ) ) {
 			let bgColor = ! wpmozo_is_empty( normalAccordionBackground ) ? ', ' + normalAccordionBackground : '';

@@ -25,6 +25,7 @@
         "activeAccordionSize" : { "number": "string", "default": 4 },
         "activeAccordion" : { "type": "number" },
         "accordionTransitionDuration" : { "type": "number", "default": 500 },
+        "accordionHeight": { "type": "string", "default": "350px" },
 
         "textColor": { "type": "string", "default": "dark" },  
         "textAlignment": { "type": "string" },

@@ -9,6 +9,7 @@ export default function save({ attributes }) {
     
     const { ID, parentAtts, className } = attributes;
 
+    // Only add ID attribute if it exists.
     const blockProps = useBlockProps.save( {
         className: className,
         ...( ID ? { id: `block-${ ID }` } : {} ),
@@ -31,7 +32,9 @@ export default function save({ attributes }) {
         buttonIconPlacement,
         useButtonIcon,
         buttonIconHover,
-        contentAnimation
+        contentAnimation,
+        normalBackgroundImage,
+        activeBackgroundImage
     } = attributes;
 
     let buttonText = itemButtonText || __( 'Read More', 'wpmozo-blocks-and-addons' ),
@@ -64,7 +67,8 @@ export default function save({ attributes }) {
     }
 
     let btnIcon = '',
-        buttonIconPlacementClass = '';
+        buttonIconPlacementClass = '',
+        buttonIconHoverClass = '';
 
     if ( ! wpmozo_is_empty( parentAtts ) ) {
         if ( parentAtts.useButtonIcon ) {
@@ -98,11 +102,21 @@ export default function save({ attributes }) {
         }
     }
 
+    if ( ! wpmozo_is_empty( parentAtts ) ) {
+        if ( parentAtts.useButtonIcon && parentAtts.buttonIcon && parentAtts.buttonIconHover ) {
+            buttonIconHoverClass = 'wpmozo-icon-on-hover';
+        }
+    }
+
+    if ( useButtonIcon && buttonIcon && buttonIconHover ) {
+        buttonIconHoverClass = 'wpmozo-icon-on-hover';
+    }
+
     return (
         <>
             {/* Only output <style> if ID exists. */}
             { ( ID && '' !== ID ) && (
-                <style>{ generateDynamicStyle( { attributes, ID } ) }</style>
+                <style>{ generateDynamicStyle( { attributes } ) }</style>
             ) }
             <div { ...blockProps }>
                 <div className={`wpmozo-bna-image-accordion-item-content-wrapper ${animationClass}`}>
@@ -125,7 +139,7 @@ export default function save({ attributes }) {
                                     target={urlNewWindow}
                                     className={ [
                                         'wpmozo-bna-button',
-                                        ( useButtonIcon && buttonIconHover ) ? 'wpmozo-icon-on-hover' : '',
+                                        buttonIconHoverClass,
                                         buttonIconPlacementClass
                                     ].join(" ") }
                                 >

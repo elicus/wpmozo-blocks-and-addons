@@ -30,7 +30,9 @@
         "itemButtonLinkTarget": { "type": "string", "default": "external" },
 
         "contentAnimation": { "type": "string", "default": "off" },
+        "normalUseBackgroundImage": { "type": "boolean", "default": false },
         "normalAccordionBackground": { "type": "string" },
+        "normalBackgroundImage": { "type": "string" },
         "normalAccordionBackgroundGradient": {
             "type": "string",
             "default": "linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)"
@@ -48,6 +50,8 @@
         "activeItemBGImagePosition": { "type": "string", "default": "center" },
         "activeItemBGImageRepeat": { "type": "string", "default": "no-repeat" },
         "activeItemBGImageBlend": { "type": "string", "default": "normal" },
+        "activeBackgroundImage": { "type": "string" },
+        "activeUseBackgroundImage": { "type": "boolean", "default": false },
 
         "iconColor": { "type": "string" },
         "iconShapBackground": { "type": "string", "default": "#9E9E9E" },
@@ -82,7 +86,6 @@
 
         "descriptionColor": { "type": "string" },  
         "descriptionAlign": { "type": "string" },
-        "descriptionLavel": { "type": "string", "default": "h4" },
         "descriptionFontSize": { "type": "string" },
         "descriptionFontAppearance": {
             "type": "object",

@@ -79,7 +79,8 @@ export default function Edit(props) {
     }
 
     let btnIcon = '',
-        buttonIconPlacementClass = '';
+        buttonIconPlacementClass = '',
+        buttonIconHoverClass = '';
 
     if ( parentAttributes.useButtonIcon ) {
         btnIcon = '' === parentAttributes.buttonIcon ? '' : (
@@ -109,6 +110,13 @@ export default function Edit(props) {
         }
     }
 
+    if ( parentAttributes.useButtonIcon && parentAttributes.buttonIcon && parentAttributes.buttonIconHover ) {
+        buttonIconHoverClass = 'wpmozo-icon-on-hover';
+    }
+
+    if ( useButtonIcon && buttonIcon && buttonIconHover ) {
+        buttonIconHoverClass = 'wpmozo-icon-on-hover';
+    }
 
     return (
         <Fragment>
@@ -141,7 +149,7 @@ export default function Edit(props) {
                                     target={urlNewWindow}
                                     className={ [
                                         'wpmozo-bna-button',
-                                        ( useButtonIcon && buttonIconHover ) ? 'wpmozo-icon-on-hover' : '',
+                                        buttonIconHoverClass,
                                         buttonIconPlacementClass
                                     ].join(" ") }
                                 >

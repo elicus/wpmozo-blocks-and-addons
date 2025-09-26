@@ -298,17 +298,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					{ key: 'Color', label: __( 'Description Color', 'wpmozo-blocks-and-addons' ) }
 				] }
 			/>
-			<BaseControl label={ __( 'Heading Lavel', 'wpmozo-blocks-and-addons' ) }>
-				<ButtonGroup>
-					{ headingLevelsList.map( ( item, index ) => (
-						<Button
-							key={`heading-level-${index}`}
-							isPressed={item.value === attributes.descriptionLavel}
-							onClick={() => setAttributes({descriptionLavel: item.value})}
-						>{item.label}</Button>
-					) ) }
-				</ButtonGroup>
-			</BaseControl>
 			<WpmozoAlignment
 				label={__('Description Alignment', 'wpmozo-blocks-and-addons')}
 				onChange={(newValue) => setAttributes({descriptionAlign: newValue})}

@@ -38,12 +38,16 @@ const generateDynamicStyle = ({ attributes }) => {
 		styles += `
 		.wpmozo-bna-image-accordion-wrapper .block-editor-block-list__layout {
 			flex-direction: ${flexDirection};
+			height: ${attributes.accordionHeight};
 		}
 		.wpmozo-bna-image-accordion-wrapper {
 			flex-direction: ${flexDirection};
 		}
 		.wpmozo-bna-image-accordion-wrapper .wpmozo-bna-active-image-accordion-item {
 			flex: ${activeAccordionSize} 0 auto !important;
+		}
+		.wpmozo-bna-image-accordion-wrapper {
+			height: ${attributes.accordionHeight};
 		}
 		.wp-block-wpmozo-image-accordion-item {
 			transition-duration: ${accordionTransitionDuration}ms !important;
@@ -88,7 +92,7 @@ const generateDynamicStyle = ({ attributes }) => {
 			if ( 'horizontal' === accordionOrientation ) {
 				styles += `
 				.wp-block-wpmozo-image-accordion-item{
-					margin-right: ${accordionSpacing};
+					margin-right: ${accordionSpacing} !important;
 				}
 				.wp-block-wpmozo-image-accordion-item:last-of-type, 
 				.block-editor-block-list__layout .wp-block-wpmozo-image-accordion-item:not(:has(~ .wp-block-wpmozo-image-accordion-item)){
