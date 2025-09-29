@@ -21,6 +21,8 @@ class Mozo_Bna_Post_Types {
 		// Register post types.
 		add_action( 'init', array( __class__, 'register_testimonial_post_type' ) );
 		add_action( 'init', array( __class__, 'register_testimonial_taxonomies' ) );
+		add_action( 'init', array( __class__, 'register_team_member_post_type' ) );
+		add_action( 'init', array( __class__, 'register_team_member_taxonomies' ) );
 
 		// Disabled block editor for custom post types.
 		add_filter( 'use_block_editor_for_post_type', array( __class__, 'manage_block_editor_for_post_type' ), 10, 2 );
@@ -68,7 +70,7 @@ class Mozo_Bna_Post_Types {
 			'label'                 => esc_html__( 'Mozo Testimonials', 'wpmozo-blocks-and-addons' ),
 			'description'           => esc_html__( 'WP Mozo Testimonials Custom Post', 'wpmozo-blocks-and-addons' ),
 			'labels'                => $labels,
-			'supports'              => array( 'title', 'editor', 'thumbnail', ),
+			'supports'              => array( 'title', 'editor', 'thumbnail' ),
 			'taxonomies'            => array( 'mozo-testimonial-category' ),
 			'hierarchical'          => false,
 			'public'                => true,
@@ -131,11 +133,111 @@ class Mozo_Bna_Post_Types {
 	}
 
 	/**
+	 * Register team member post types.
+	 * @since  1.6.0
+	 */
+	public static function register_team_member_post_type() {
+		$labels = array(
+			'name'                  => esc_html_x( 'Mozo Team Members', 'Post Type General Name', 'wpmozo-blocks-and-addons' ),
+			'singular_name'         => esc_html_x( 'Mozo Team Member', 'Post Type Singular Name', 'wpmozo-blocks-and-addons' ),
+			'menu_name'             => esc_html__( 'Team Members', 'wpmozo-blocks-and-addons' ),
+			'name_admin_bar'        => esc_html__( 'Mozo Team Member', 'wpmozo-blocks-and-addons' ),
+			'archives'              => esc_html__( 'Mozo Team Member Archives', 'wpmozo-blocks-and-addons' ),
+			'attributes'            => esc_html__( 'Mozo Team Member Attributes', 'wpmozo-blocks-and-addons' ),
+			'parent_item_colon'     => esc_html__( 'Parent Member:', 'wpmozo-blocks-and-addons' ),
+			'all_items'             => esc_html__( 'All Team Members', 'wpmozo-blocks-and-addons' ),
+			'add_new_item'          => esc_html__( 'Add New Member', 'wpmozo-blocks-and-addons' ),
+			'add_new'               => esc_html__( 'Add New', 'wpmozo-blocks-and-addons' ),
+			'new_item'              => esc_html__( 'New Member', 'wpmozo-blocks-and-addons' ),
+			'edit_item'             => esc_html__( 'Edit Member', 'wpmozo-blocks-and-addons' ),
+			'update_item'           => esc_html__( 'Update Member', 'wpmozo-blocks-and-addons' ),
+			'view_item'             => esc_html__( 'View Member', 'wpmozo-blocks-and-addons' ),
+			'view_items'            => esc_html__( 'View Member', 'wpmozo-blocks-and-addons' ),
+			'search_items'          => esc_html__( 'Search Members', 'wpmozo-blocks-and-addons' ),
+			'not_found'             => esc_html__( 'No member found', 'wpmozo-blocks-and-addons' ),
+			'not_found_in_trash'    => esc_html__( 'No members found in Trash', 'wpmozo-blocks-and-addons' ),
+			'featured_image'        => esc_html__( 'Team Member Image', 'wpmozo-blocks-and-addons' ),
+			'set_featured_image'    => esc_html__( 'Set team member image', 'wpmozo-blocks-and-addons' ),
+			'remove_featured_image' => esc_html__( 'Remove team member image', 'wpmozo-blocks-and-addons' ),
+			'use_featured_image'    => esc_html__( 'Use as team member image', 'wpmozo-blocks-and-addons' ),
+			'insert_into_item'      => esc_html__( 'Insert into item', 'wpmozo-blocks-and-addons' ),
+			'uploaded_to_this_item' => esc_html__( 'Uploaded to this item', 'wpmozo-blocks-and-addons' ),
+			'items_list'            => esc_html__( 'Team Members list', 'wpmozo-blocks-and-addons' ),
+			'items_list_navigation' => esc_html__( 'Team Members list navigation', 'wpmozo-blocks-and-addons' ),
+			'filter_items_list'     => esc_html__( 'Filter team member list', 'wpmozo-blocks-and-addons' ),
+		);
+		$args = array(
+			'label'                 => esc_html__( 'Mozo Team Members', 'wpmozo-blocks-and-addons' ),
+			'description'           => esc_html__( 'WP Mozo Team Members Custom Post', 'wpmozo-blocks-and-addons' ),
+			'labels'                => $labels,
+			'supports'              => array( 'title', 'editor', 'author', 'thumbnail' ),
+			'taxonomies'            => array( 'mozo-team-member-category' ),
+			'hierarchical'          => false,
+			'public'                => true,
+			'show_ui'               => true,
+			'show_in_menu'          => true,
+			'menu_position'         => 20,
+			'menu_icon'             => 'dashicons-businessman',
+			'show_in_admin_bar'     => true,
+			'show_in_nav_menus'     => true,
+			'can_export'            => true,
+			'has_archive'           => true,
+			'exclude_from_search'   => false,
+			'publicly_queryable'    => true,
+			'show_in_rest'          => true,
+			'capability_type'       => 'post',
+		);
+
+		register_post_type( 'mozo-team-member', $args );
+	}
+
+	/**
+	 * Register team taxonomies.
+	 * @since  1.6.0
+	 */
+	public static function register_team_member_taxonomies() {
+		$labels = array(
+			'name'                       => esc_html_x( 'Mozo Team Member Categories', 'Taxonomy General Name', 'wpmozo-blocks-and-addons' ),
+			'singular_name'              => esc_html_x( 'Mozo Team Member Category', 'Taxonomy Singular Name', 'wpmozo-blocks-and-addons' ),
+			'menu_name'                  => esc_html__( 'Team Member Categories', 'wpmozo-blocks-and-addons' ),
+			'all_items'                  => esc_html__( 'All Team Member Categories', 'wpmozo-blocks-and-addons' ),
+			'parent_item'                => esc_html__( 'Parent Team Member Category', 'wpmozo-blocks-and-addons' ),
+			'parent_item_colon'          => esc_html__( 'Parent Team Member Category:', 'wpmozo-blocks-and-addons' ),
+			'new_item_name'              => esc_html__( 'New Team Member Category Name', 'wpmozo-blocks-and-addons' ),
+			'add_new_item'               => esc_html__( 'Add New Team Member Category', 'wpmozo-blocks-and-addons' ),
+			'edit_item'                  => esc_html__( 'Edit Team Member Category', 'wpmozo-blocks-and-addons' ),
+			'update_item'                => esc_html__( 'Update Team Member Category', 'wpmozo-blocks-and-addons' ),
+			'view_item'                  => esc_html__( 'View Team Member Category', 'wpmozo-blocks-and-addons' ),
+			'separate_items_with_commas' => esc_html__( 'Separate categories with commas', 'wpmozo-blocks-and-addons' ),
+			'add_or_remove_items'        => esc_html__( 'Add or remove categories', 'wpmozo-blocks-and-addons' ),
+			'choose_from_most_used'      => esc_html__( 'Choose from the most used', 'wpmozo-blocks-and-addons' ),
+			'popular_items'              => esc_html__( 'Popular Team Member Categories', 'wpmozo-blocks-and-addons' ),
+			'search_items'               => esc_html__( 'Search Team Member Categories', 'wpmozo-blocks-and-addons' ),
+			'not_found'                  => esc_html__( 'Not Found', 'wpmozo-blocks-and-addons' ),
+			'no_terms'                   => esc_html__( 'No Team Member Categories', 'wpmozo-blocks-and-addons' ),
+			'items_list'                 => esc_html__( 'Team Member Categories list', 'wpmozo-blocks-and-addons' ),
+			'items_list_navigation'      => esc_html__( 'Team Member Categories list navigation', 'wpmozo-blocks-and-addons' ),
+		);
+		$args = array(
+			'labels'            => $labels,
+			'hierarchical'      => true,
+			'public'            => true,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'show_in_nav_menus' => true,
+			'show_in_rest'      => true,
+			'show_tagcloud'     => true,
+		);
+
+		register_taxonomy( 'mozo-team-member-category', array( 'mozo-team-member' ), $args );
+	}
+
+	/**
 	 * Enable/Disable block editor for custom post type.
 	 * @since 1.1.0
 	 */
 	public static function manage_block_editor_for_post_type( $use_block_editor, $post_type ) {
-		if ( $post_type === 'mozo-testimonial' ) {
+		if ( $post_type === 'mozo-testimonial' || $post_type === 'mozo-team-member' ) {
 			return false; // disable block editor for this post type
 		}
 		return $use_block_editor;

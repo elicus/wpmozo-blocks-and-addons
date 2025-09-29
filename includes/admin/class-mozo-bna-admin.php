@@ -32,12 +32,20 @@ class Mozo_Bna_Admin {
 	 */
 	public static function add_custom_metaboxes() {
 
-		// add Testimonial metaboxes.
+		// Add Testimonial metaboxes.
 		add_meta_box(
 			'mozo_testimonial_metabox',
 			esc_html__( 'Testimonial Meta Fields', 'divi-plus' ),
 			array( __class__, 'testimonial_metabox_callback' ),
 			'mozo-testimonial', 'normal', 'high'
+		);
+
+		// Add Team Member metaboxes.
+		add_meta_box(
+			'mozo_team_member_metabox',
+			esc_html__( 'Team Member Meta Fields', 'divi-plus' ),
+			array( __class__, 'team_member_metabox_callback' ),
+			'mozo-team-member', 'normal', 'high'
 		);
 	}
 
@@ -48,6 +56,15 @@ class Mozo_Bna_Admin {
 	 */
 	public static function testimonial_metabox_callback() {
 		require_once WPMOZO_BNA_INC_DIR_PATH . 'admin/metaboxes/mozo-bna-testimonial.php';
+	}
+
+	/**
+	 * Testimonial metaboxes form/fields.
+	 *
+	 * @since  1.6.0
+	 */
+	public static function team_member_metabox_callback() {
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'admin/metaboxes/mozo-bna-team-member.php';
 	}
 
 	/**
