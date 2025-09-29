@@ -17,7 +17,11 @@
 	"attributes": {
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
-		"isFirstChild": { "type": "boolean", "default": false },
+		"isLastChild": { "type": "boolean", "default": false },
+		"blockpadding": { "type": "object", "default": { "top": "15px", "bottom": "15px", "left": "15px", "right": "15px" } },
+		"blockmargin": { "type": "object" },
+		"blockBackground": { "type": "string", "default": "" },
+		"blockBGGradient": { "type": "string" },
 
 		"title": { "type": "string", "default": "List Item" },
 		"subtitle": { "type": "string", "default": "" },
@@ -26,7 +30,7 @@
 
 		"showIcon": { "type": "boolean", "default": false },
 		"listIcon": { "type": "string" },
-		"iconFontsize": { "type": "number", "default": 40 },
+		"iconFontsize": { "type": "number" },
 		"iconColor": { "type": "string" },
 		"iconHoverColor": { "type": "string" },
 

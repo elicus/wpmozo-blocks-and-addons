@@ -185,7 +185,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			</PanelBody>
 		</> ) }
 		{/* Button. */}
-		{ attributes.showIcon && ( <>
+		{ attributes.showButton && ( <>
 			<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 				<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>   
 					<ButtonGroup>
@@ -282,6 +282,21 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						/>
 					</> }
 				</BaseControl>
+			</PanelBody>
+			{/* Block. */}
+			<PanelBody title={ __( 'Block', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<ColorGradientControl colors={[]} gradients={[]}
+					label={ __( 'Background', 'wpmozo-blocks-and-addons' ) }
+					colorValue={ attributes.blockBackground }
+					gradientValue={ attributes.blockBGGradient }
+					onColorChange={ (newValue) => setAttributes( { blockBackground: newValue } ) }
+					onGradientChange={ (newValue) => setAttributes( { blockBGGradient: newValue } ) }
+				/>
+				<WpmozoDimensions props={ props }
+					label={ __( 'Dimensions', 'wpmozo-blocks-and-addons' ) }
+					DimensionKey='block'
+					DimensionsTypes={ { padding: true, margin: true } }
+				/>
 			</PanelBody>
 		</> ) }
 	</> );

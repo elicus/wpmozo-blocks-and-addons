@@ -24,6 +24,17 @@ const Edit = ( props ) => {
 		}
 	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
+	// Re-init the js.
+	useEffect( () => {
+		const event = new CustomEvent( 'WPMozoHoverListPropsChanged' );
+		window.dispatchEvent( event );
+
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
+		}
+	}, [props] );
+
 	// Get the title.
 	let $title = '';
 	if ( attributes.title ) {
@@ -91,24 +102,23 @@ const Edit = ( props ) => {
 	}
 
 	// Check if this is the first child.
-	const isFirstChild = useSelect( ( select ) => {
-		const { getBlockIndex, getBlockRootClientId } = select( 'core/block-editor' );
+	const isLastChild = useSelect( ( select ) => {
+		const { getBlockRootClientId, getBlockOrder } = select( 'core/block-editor' );
+		const parentId = getBlockRootClientId( clientId );
+		const siblings = getBlockOrder( parentId );
 
-		const rootId = getBlockRootClientId( clientId ); // null if top-level.
-		const index  = getBlockIndex( clientId, rootId );  // index within parent.
-
-		return index === 0; // true if first block in parent.
+		return siblings[ siblings.length - 1 ] === clientId;
 	}, [ clientId ] );
 
 	useEffect( () => {
-		if ( attributes.isFirstChild !== isFirstChild ) {
-			setAttributes( { isFirstChild } );
+		if ( attributes.isLastChild !== isLastChild ) {
+			setAttributes( { isLastChild } );
 		}
-	}, [ isFirstChild ] );
+	}, [ isLastChild ] );
 
 	const blockProps = useBlockProps( {
 		id: `block-${attributes.ID}`,
-		className: isFirstChild ? 'wpmozo-is-first-child' : ''
+		className: isLastChild ? 'wpmozo-is-last-child' : ''
 	} );
 
 	return (

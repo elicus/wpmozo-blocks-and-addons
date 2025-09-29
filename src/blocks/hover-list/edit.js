@@ -26,6 +26,17 @@ const Edit = ( props ) => {
 		}
 	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
+	// Re-init the js.
+	useEffect( () => {
+		const event = new CustomEvent( 'WPMozoHoverListPropsChanged' );
+		window.dispatchEvent( event );
+
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
+		}
+	}, [props] );
+
 	// Child blocks.
 	const childBlocks = useSelect( ( select ) => {
 		return select( 'core/block-editor' ).getBlocks( clientId );

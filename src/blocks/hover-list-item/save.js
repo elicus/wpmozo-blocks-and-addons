@@ -5,7 +5,7 @@ import generateDynamicStyle from "./style";
 
 const Save = ( { attributes } ) => {
 
-	const { ID, className } = attributes;
+	const { ID, className, isLastChild } = attributes;
 
 	// Get the title.
 	let $title = '';
@@ -72,7 +72,10 @@ const Save = ( { attributes } ) => {
 
 	// Only add ID attribute if it exists.
 	const blockProps = useBlockProps.save( {
-		className: className,
+		className: [
+			className,
+			isLastChild ? 'wpmozo-is-last-child' : '' // last child.
+		].filter( Boolean ).join( ' ' ),
 		...( ID ? { id: `block-${ ID }` } : {} ),
 	} );
 
