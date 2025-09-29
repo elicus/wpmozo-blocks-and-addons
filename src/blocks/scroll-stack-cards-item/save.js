@@ -83,7 +83,7 @@ export default function save({ attributes }) {
 
         if ( useButtonIcon ) {
             btnIcon = '' === buttonIcon ? '' : (
-                <i className={ buttonIcon }></i>
+                <i className={`wpmozo-bna-icon ${buttonIcon}`}></i>
             );
         }
 
@@ -96,7 +96,7 @@ export default function save({ attributes }) {
         }
 
         ButtonEl = (
-           <div className="wpmozo-bna-button-wrap wpmozo-bna-imsage-accordion-btn">
+           <div className="wpmozo-bna-button-wrap wpmozo-bna-scroll-stack-cards-item-btn">
                 <a
                     href={itemButtonUrl}
                     target={urlNewWindow}

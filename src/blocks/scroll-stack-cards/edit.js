@@ -44,7 +44,8 @@ export default function Edit(props) {
     };
 
     useEffect(() => {
-        const event = new CustomEvent('WPMozoImageAccorPropsChanged');
+        const event = new CustomEvent('WPMozoScrollStackCardsPropsChanged');
+        window.dispatchEvent(event);
         const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
         if ( iframe?.contentWindow ) {
             iframe.contentWindow.dispatchEvent( event );

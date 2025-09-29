@@ -5,7 +5,6 @@ const generateDynamicStyle = ({ attributes }) => {
 	const toConvertStyles = [
 		"title",
 		"description",
-		"button",
 		"image",
 		"imageWrap",
 		"contentWrap",

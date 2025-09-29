@@ -1,33 +1,13 @@
 jQuery( document ).ready( function($) {
 
-    if ( $( '.wp-block-wpmozo-scroll-stack-cards' ).length > 0 ) {
-        $( document ).find('.wp-block-wpmozo-scroll-stack-cards').each( function() {
-            let thisObj = $( this );
-            console.log( thisObj );
-            let wrapObj = thisObj.find( '.wpmozo-bna-scroll-stack-cards-wrapper' );
-            if ( 'horizontal' === wrapObj.data( 'layout' ) ) {
-                if ( wpmozoBnaIsLargeScreen() ) {
-                    wpmozoBnaInitHorizontalScrollStackCards( thisObj );
-                } else {
-                    wrapObj.find( '.wp-block-wpmozo-scroll-stack-cards-item' ).css( {
-                        width    : '100%',
-                        position : 'relative',
-                        left     : 'auto'
-                    } );
-                }
-            } else {
-                if ( wpmozoBnaIsLargeScreen() ) {
-                    wpmozoBnaInitVerticalScrollStackCards( thisObj );
-                }
-            }
-        } );
-
-        // On windows resize.
-        $( window ).on( 'resize', () => {
+    function wpmozo_init_scroll_stack_cards(){ 
+        console.log("sdfsdf");
+        if ( $( '.wp-block-wpmozo-scroll-stack-cards' ).length > 0 ) {
             $( document ).find('.wp-block-wpmozo-scroll-stack-cards').each( function() {
                 let thisObj = $( this );
+                console.log( thisObj );
                 let wrapObj = thisObj.find( '.wpmozo-bna-scroll-stack-cards-wrapper' );
-                if ( 'horizontal' === wrapObj.data( 'layout' ) ) {
+                if ( 'horizontal' === wrapObj.attr( 'data-layout' ) ) {
                     if ( wpmozoBnaIsLargeScreen() ) {
                         wpmozoBnaInitHorizontalScrollStackCards( thisObj );
                     } else {
@@ -40,25 +20,54 @@ jQuery( document ).ready( function($) {
                 } else {
                     if ( wpmozoBnaIsLargeScreen() ) {
                         wpmozoBnaInitVerticalScrollStackCards( thisObj );
-                    } else {
-                        // Kill if already init.
-                        ScrollTrigger.getAll().forEach( trigger => {
-                            if ( trigger.trigger === wrapObj[0] ) {
-                                trigger.kill();
-                            }
-                        } );
-                        wrapObj.css( {
-                            height: 'auto'
-                        } );
                     }
-                    ScrollTrigger.refresh();
                 }
             } );
-        } );
 
-        // Refresh after a while.
-        setTimeout( () => ScrollTrigger.refresh(), 300 );
+            // On windows resize.
+            $( window ).on( 'resize', () => {
+                $( document ).find('.wp-block-wpmozo-scroll-stack-cards').each( function() {
+                    let thisObj = $( this );
+                    let wrapObj = thisObj.find( '.wpmozo-bna-scroll-stack-cards-wrapper' );
+                    if ( 'horizontal' === wrapObj.attr( 'data-layout' ) ) {
+                        if ( wpmozoBnaIsLargeScreen() ) {
+                            wpmozoBnaInitHorizontalScrollStackCards( thisObj );
+                        } else {
+                            wrapObj.find( '.wp-block-wpmozo-scroll-stack-cards-item' ).css( {
+                                width    : '100%',
+                                position : 'relative',
+                                left     : 'auto'
+                            } );
+                        }
+                    } else {
+                        if ( wpmozoBnaIsLargeScreen() ) {
+                            wpmozoBnaInitVerticalScrollStackCards( thisObj );
+                        } else {
+                            // Kill if already init.
+                            ScrollTrigger.getAll().forEach( trigger => {
+                                if ( trigger.trigger === wrapObj[0] ) {
+                                    trigger.kill();
+                                }
+                            } );
+                            wrapObj.css( {
+                                height: 'auto'
+                            } );
+                        }
+                        ScrollTrigger.refresh();
+                    }
+                } );
+            } );
+
+            // Refresh after a while.
+            setTimeout( () => ScrollTrigger.refresh(), 300 );
+        }
     }
+
+    wpmozo_init_scroll_stack_cards();
+
+    window.addEventListener('WPMozoScrollStackCardsPropsChanged', () => {
+        wpmozo_init_scroll_stack_cards();
+    });
 } ); // Document ready over.
 
 // Init vertical scroll stack cards.
@@ -91,8 +100,8 @@ function wpmozoBnaInitVerticalScrollStackCards( thisObj ) {
     let sectionHeight = collapsedTotal + totalScroll + 250;
         $wrapper.css( 'height', `${sectionHeight}px` );
 
-    const startPosition    = $wrapper.data( 'animation_start_element_pos' ) || 'top';
-    const viewportPosition = $wrapper.data( 'animation_start_viewport_pos' ) || 'top';
+    const startPosition    = $wrapper.attr( 'data-animation_start_element_pos' ) || 'top';
+    const viewportPosition = $wrapper.attr( 'data-animation_start_viewport_pos' ) || 'top';
 
     let tl = gsap.timeline( {
         scrollTrigger: {
@@ -171,9 +180,9 @@ function wpmozoBnaInitHorizontalScrollStackCards( thisObj ) {
     } );    
     
     const scrollLength     = ( totalPanels - initialVisible + 1 ) * fullPanelWidth;
-    const startPosition    = $wrapper.data( 'animation_start_element_pos' ) || 'top';
-    const viewportPosition = $wrapper.data( 'animation_start_viewport_pos' ) || 'top';
-    const collapsedWidth   = parseInt( $wrapper.data( 'collapsed_width' ), 10 ) || 200;
+    const startPosition    = $wrapper.attr( 'data-animation_start_element_pos' ) || 'top';
+    const viewportPosition = $wrapper.attr( 'data-animation_start_viewport_pos' ) || 'top';
+    const collapsedWidth   = parseInt( $wrapper.attr( 'data-collapsed_width' ), 10 ) || 200;
 
     const tl = gsap.timeline( {
         ease: "none",
