@@ -1,0 +1,38 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "wpmozo/split-image",
+    "version": "0.1.0",
+    "title": "Split Image",
+    "category": "wpmozo",
+    "icon": "smiley",
+    "description": "Example block scaffolded with Create Block tool.",
+    "example": {},
+    "supports": {
+        "html": false,
+		"customClassName": false
+	},
+    "attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+
+		"splitImg": { "type": "string", "default": "/wp-content/plugins/wpmozo-blocks-and-addons/includes/assets/images/placeholder.webp" },
+		"rows": {"type": "number","default": 3},
+		"columns": {"type": "number","default": 3},
+		"gap": {"type": "number","default": 10},
+		"blockLink": {"type": "string"},
+		"blockLinkTarget": {"type": "string", "default": "external"},
+
+		"imageborder": { "type": "object" },
+		"imageborderRadius": { "type": "string" },
+		"imagepadding": { "type": "object" },
+		"imagemargin": { "type": "object" },
+		"imageContainermargin": {"type": "object"},
+		"imageContainerpadding": {"type": "object"}
+	},
+    "textdomain": "wpmozo-blocks-and-addons",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+	"script": "file:./script.js"
+}
