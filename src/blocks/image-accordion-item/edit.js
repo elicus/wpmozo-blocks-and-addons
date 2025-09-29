@@ -53,7 +53,8 @@ export default function Edit(props) {
         urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
         resolvedIconShape = styleIcon ? iconShape : '',
         titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttributes.titleLavel,
-        animationClass = ( 'off' !== contentAnimation ) ? ` wpmozo-animation wpmozo-animation-${attributes.contentAnimation}` : '';
+        animationClass = ( 'off' !== contentAnimation ) ? ` wpmozo-item-animation-${contentAnimation}` : '',
+        isEnabledAnimation = ( 'off' !== contentAnimation ) ? ' wpmozo-item-animation' : '' ;
 
     let renderedIcon = null;
     if (itemIcon) {
@@ -118,14 +119,19 @@ export default function Edit(props) {
         buttonIconHoverClass = 'wpmozo-icon-on-hover';
     }
 
+    const blockProps = useBlockProps( {
+        id: `block-${attributes.ID}`,
+        className: animationClass
+    } );
+
     return (
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
                 { generateDynamicStyle({ attributes }) }
             </style>
-            <div {...useBlockProps()} id={`block-${attributes.ID}`}>
-                <div className={`wpmozo-bna-image-accordion-item-content-wrapper ${animationClass}`}>
+            <div { ...blockProps }>
+                <div className={`wpmozo-bna-image-accordion-item-content-wrapper${isEnabledAnimation}`}>
                     <div className={`wpmozo-bna-image-accordion-item-content-inner-wrap`}>
                         {renderedIcon}
                         <RichText

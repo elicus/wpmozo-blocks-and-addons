@@ -7,7 +7,10 @@ import { __ } from '@wordpress/i18n';
 
 export default function save({ attributes }) {
     
-    const { ID, parentAtts, className } = attributes;
+    let { ID, parentAtts, className } = attributes;
+    let animationClass = ( 'off' !== attributes.contentAnimation ) ? ` wpmozo-item-animation-${attributes.contentAnimation}` : '';
+
+    className = className += animationClass;
 
     // Only add ID attribute if it exists.
     const blockProps = useBlockProps.save( {
@@ -40,8 +43,7 @@ export default function save({ attributes }) {
     let buttonText = itemButtonText || __( 'Read More', 'wpmozo-blocks-and-addons' ),
         urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
         resolvedIconShape = styleIcon ? iconShape : '',
-        titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttsTitleLavel,
-        animationClass = ( 'off' !== contentAnimation ) ? ` wpmozo-animation wpmozo-animation-${attributes.contentAnimation}` : '';
+        titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttsTitleLavel;
 
     let renderedIcon = null;
     if (itemIcon) {
@@ -119,7 +121,7 @@ export default function save({ attributes }) {
                 <style>{ generateDynamicStyle( { attributes } ) }</style>
             ) }
             <div { ...blockProps }>
-                <div className={`wpmozo-bna-image-accordion-item-content-wrapper ${animationClass}`}>
+                <div className={`wpmozo-bna-image-accordion-item-content-wrapper wpmozo-item-animation`}>
                     <div className={`wpmozo-bna-image-accordion-item-content-inner-wrap`}>
                         {renderedIcon}
                         <RichText.Content

@@ -46,7 +46,7 @@ const generateDynamicStyle = ({ attributes }) => {
 		}
 		if ( ! normalUseBackgroundImage && ! wpmozo_is_empty( normalAccordionBackground ) ) {
 			styles += `
-				background-color: ${normalAccordionBackground};
+				background: ${normalAccordionBackground};
 			`;
 		}
 
@@ -138,7 +138,7 @@ const generateDynamicStyle = ({ attributes }) => {
 	if ( ! activeUseBackgroundImage && ! wpmozo_is_empty( activeAccordionBackground ) ) {
 		styles += `
 			#block-${attributes.ID}.wpmozo-bna-active-image-accordion-item {
-				background-color: ${activeAccordionBackground};
+				background: ${activeAccordionBackground};
 			}
 		`;
 	}
