@@ -4,7 +4,7 @@ import Inspector from './inspector';
 import { useSelect, useDispatch  } from '@wordpress/data';
 import { Fragment, useEffect } from "@wordpress/element";
 import generateDynamicStyle from './style';
-import {getIdByClientid} from '../../common/utils.js';
+import {getMainEl} from '../../common/utils.js';
 import { createBlock } from '@wordpress/blocks';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -44,12 +44,26 @@ export default function Edit(props) {
     };
 
     useEffect(() => {
-        const event = new CustomEvent('WPMozoScrollStackCardsPropsChanged');
-        window.dispatchEvent(event);
-        const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
-        if ( iframe?.contentWindow ) {
-            iframe.contentWindow.dispatchEvent( event );
-        }
+        jQuery( document ).ready( function($) {
+            let main = getMainEl(clientId);
+            if ( jQuery( main ).find('.pin-spacer').length ) {
+                jQuery( main ).find('.pin-spacer').removeAttr("style");
+            }
+            if ( jQuery( main ).find('.wpmozo-bna-scroll-stack-cards-items').length ) {
+                jQuery( main ).find('.wpmozo-bna-scroll-stack-cards-items').removeAttr("style");
+            }
+            if ( jQuery( main ).find('.wp-block-wpmozo-scroll-stack-cards-item').length ) {
+                jQuery( main ).find('.wp-block-wpmozo-scroll-stack-cards-item').removeAttr("style");
+            }
+            setTimeout(() => {
+                const event = new CustomEvent('WPMozoScrollStackCardsPropsChanged');
+                window.dispatchEvent(event);
+                const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+                if ( iframe?.contentWindow ) {
+                    iframe.contentWindow.dispatchEvent( event );
+                }
+            }, 100);
+         });
     }, [props]);
 
     let dataCollapsedWidth = ( 'horizontal' === attributes.layout ) 
@@ -87,6 +101,7 @@ export default function Edit(props) {
                         />
                     </div>
                 </div>
+                <input className="wpmozo-bna-scroll-stack-cards-layout-input" type="hidden" value={attributes.layout} />
             </div>
         </Fragment>
     );
