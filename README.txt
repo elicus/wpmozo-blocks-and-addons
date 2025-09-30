@@ -2,7 +2,7 @@
 Contributors: elicus
 Tags: gutenberg, blocks, gutenberg blocks, gutenberg editor, wordpress blocks
 Tested up to: 6.8
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,6 +79,22 @@ Display hidden links or content in a compact and user-friendly way with the WPMo
 Add animated scrolling text to your WordPress site with the WPMozo Scroll Text block for perfect for highlighting important messages with smooth scroll effects.
 32. [Image Hover Effect](https://wpmozoblocks.com/image-hover-effect/ "Image Hover Effect for Gutenberg")
 Add stylish visual appeal to your website with interactive hover animations using the WPMozo Image Hover Effect block, ideal for highlighting images with elegant effects and smooth transitions.
+33. [Image Accordion](https://wpmozoblocks.com/image-accordion/ "Image Accordion for Gutenberg")
+Display content on your images with elegant accordion image sliders – vertical and horizontal ones. It enables you to turn simple images into stylish one and show content on them when users hover or click on them.
+34. [Facebook Embedded Video](https://wpmozoblocks.com/facebook-blocks/ "Facebook Embedded Video for Gutenberg")
+Embed Facebook videos directly into your website with customizable controls and responsive design using the Facebook Embedded Video Block.
+35. [Facebook Like](https://wpmozoblocks.com/facebook-blocks/ "Facebook Like for Gutenberg")
+Add a Facebook Like button to your website, allowing users to like your content directly from your page.
+36. [Facebook Share](https://wpmozoblocks.com/facebook-blocks/ "Facebook Share for Gutenberg")
+Integrate Facebook Comments into your website with the Facebook Comments Block enabling users to comment on your content using their Facebook accounts.
+37. [Facebook Comments](https://wpmozoblocks.com/facebook-blocks/ "Facebook Comments for Gutenberg")
+Integrate Facebook Comments into your website with the Facebook Comments block enabling users to comment on your content using their Facebook accounts.
+38. [Twitter Embedded Tweet](https://wpmozoblocks.com/twitter-blocks/ "Twitter Embedded Tweet for Gutenberg")
+Embed your Tweets an show than on your wibsite pages with a number of customization options with the Twitter Embedded Tweet Block.
+39. [Twitter Share Button](https://wpmozoblocks.com/twitter-blocks/ "Twitter Share Button for Gutenberg")
+Make users share post on their accounts containing your content right from your website page with the Twitter Share Button Block.
+40. [Twitter Follow Button](https://wpmozoblocks.com/twitter-blocks/ "Twitter Follow Button for Gutenberg")
+Use the Twitter Follow Button Block to make users follow you on your twitter account right from your website page.
 
 This plugin is fully compatible with Gutenberg and WordPress block editor, ensuring seamless integration with your website.
 
@@ -136,6 +152,16 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
+2025-10-01 - Version 1.4.0
+* New: Image Accordion Block.
+* New: Facebook Embedded Video Block.
+* New: Facebook Like Block.
+* New: Facebook Share Block.
+* New: Facebook Comments Block.
+* New: Twitter Embedded Tweet Block.
+* New: Twitter Share Button Block.
+* New: Twitter Follow Button Block.
+
 2025-09-19 - Version 1.3.0
 * New: Advanced Button Block.
 * New: Rotating Text Block.
