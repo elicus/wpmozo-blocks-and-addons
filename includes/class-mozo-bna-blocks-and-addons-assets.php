@@ -324,10 +324,19 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			WPMOZO_BNA_VERSION
 		);
 
+		// Register scripts.
+		wp_register_script(
+			$this->plugin_name . '-metaboxes',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/wpmozo-admin-metaboxes.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION
+		);
+
 		// Check if we're on post edit/add screen for a specific CPT
 		if ( isset( $screen->post_type ) && $screen->base === 'post' &&
 			( $screen->post_type === 'mozo-testimonial' || $screen->post_type === 'mozo-team-member' )
 		) {
+			wp_enqueue_script( $this->plugin_name . '-metaboxes' );
 			wp_enqueue_style( $this->plugin_name . '-metaboxes' );
 		}
 	}

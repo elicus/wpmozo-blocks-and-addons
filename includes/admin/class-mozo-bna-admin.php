@@ -23,6 +23,7 @@ class Mozo_Bna_Admin {
 
 		// Save metaboxes.
 		add_action( 'save_post', array( __class__, 'save_testimonial_meta_fields' ) );
+		add_action( 'save_post', array( __class__, 'save_team_member_meta_fields' ) );
 	}
 
 	/**
@@ -100,6 +101,69 @@ class Mozo_Bna_Admin {
 				${$field} = sanitize_text_field( wp_unslash( $_POST[ $field ] ) );
 				update_post_meta( $post_id, $field, ${$field} );
 			}
+		}
+	}
+
+	/**
+	 * Save team member metaboxes.
+	 * 
+	 * @since  1.6.0
+	 */
+	public static function save_team_member_meta_fields( $post_id ) {
+		// doing an auto save.
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+		// verify nonce.
+		if ( ! isset( $_POST['mozo_team_member_metabox_nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['mozo_team_member_metabox_nonce'] ) ), 'mozo_metaboxes_nonce' ) ) {
+			return;
+		}
+		// if current user can not edit the post.
+		if ( ! current_user_can( 'edit_posts', $post_id ) ) {
+			return;
+		}
+
+		$fields = array(
+			'_short_description',
+			'_designation',
+			'_email_address',
+			'_phone_number',
+			'_website',
+			'_facebook',
+			'_twitter',
+			'_linkedin',
+			'_instagram',
+			'_youtube',
+		);
+
+		foreach ( $fields as $field ) {
+			if ( isset( $_POST[ $field ] ) ) {
+				${$field} = sanitize_text_field( wp_unslash( $_POST[ $field ] ) );
+				update_post_meta( $post_id, $field, ${$field} );
+			}
+		}
+
+		// Skill value.
+		if ( ! empty( $_POST['_member_skills'] ) && is_array( $_POST['_member_skills'] ) ) {
+			$skills = array_map( function( $row ) {
+				return [
+					'title' => sanitize_text_field( $row['title'] ?? '' ),
+					'value' => sanitize_text_field( $row['value'] ?? '' ),
+				];
+			}, $_POST['_member_skills'] );
+
+			// Remove rows where both title and value are empty.
+			$skills = array_filter( $skills, function( $row ) {
+				return ! ( $row['title'] === '' && $row['value'] === '' );
+			} );
+
+			if ( ! empty( $skills ) ) {
+				update_post_meta( $post_id, '_member_skills', $skills );
+			} else {
+				delete_post_meta( $post_id, '_member_skills' );
+			}
+		} else {
+			delete_post_meta( $post_id, '_member_skills' );
 		}
 	}
 }
