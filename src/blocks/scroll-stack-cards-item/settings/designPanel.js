@@ -24,6 +24,22 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
 	return ( <>
+		<PanelBody title={ __( 'Card', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<WpmozoColorPicker props={props}
+			   	ColorKey="card"
+			   	ColorTypes={[
+				   	{
+				   		key: 'Background', 
+				   		label: __('Card Background', 'wpmozo-blocks-and-addons'), 
+				   		withGradient: true
+				   	}
+			   	]}
+			/>
+			<WpmozoDimensions props={props}
+				DimensionKey='card'
+				DimensionsTypes={ { padding: true } }
+			/>
+		</PanelBody>
 		<PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			<WpmozoColorPicker props={props}
 				ColorKey="title"
@@ -51,6 +67,10 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				TypographyKey="title"
 				props={props}
 			/>
+			<WpmozoDimensions props={props}
+				DimensionKey='title'
+				DimensionsTypes={ { padding: true, margin: true } }
+			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Description', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			<WpmozoColorPicker props={props}
@@ -68,6 +88,10 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				TypographyKey="description"
 				props={props}
 			/>
+			<WpmozoDimensions props={props}
+				DimensionKey='description'
+				DimensionsTypes={ { padding: true, margin: true } }
+			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			<WpmozoColorPicker props={props}
@@ -82,6 +106,10 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				TypoTypes={{
 					'FontSize': true
 				}}
+			/>
+			<WpmozoDimensions props={props}
+				DimensionKey='icon'
+				DimensionsTypes={ { padding: true, margin: true } }
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>

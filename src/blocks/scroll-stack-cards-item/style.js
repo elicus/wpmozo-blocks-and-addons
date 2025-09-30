@@ -5,13 +5,21 @@ const generateDynamicStyle = ({ attributes }) => {
 	const toConvertStyles = [
 		"title",
 		"description",
-		"button"
+		"button",
+		"icon",
+		"card"
 	];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes ),
     	parentAtts = attributes.parentAtts;
 
 
 	let styles = `.wp-block-wpmozo-scroll-stack-cards #block-${attributes.ID}{`;
+
+		// Card style
+		styles += `
+			background: ${attributes.cardBackground};
+			${convertedStyle.card}
+		`;
 
 		// Title style
 		styles += `
@@ -34,7 +42,11 @@ const generateDynamicStyle = ({ attributes }) => {
 		.wpmozo-bna-scroll-stack-cards-icon-wrapper .icon-wrapper i {
 			color: ${attributes.iconColor};
 			font-size: ${attributes.iconFontSize};
-		}`;
+		}
+		.wpmozo-bna-scroll-stack-cards-icon-wrapper{
+			${convertedStyle.icon}
+		}
+		`;
 
 		// Button style
 		styles += `

@@ -41,6 +41,8 @@
         "titleDecoration": { "type": "string" },
         "titleLetterCase": { "type": "string" },
         "titleLineHeight": { "type": "string" },
+        "titlepadding": { "type": "object" },
+        "titlemargin": { "type": "object" },
 
         "descriptionColor": { "type": "string" },  
         "descriptionAlign": { "type": "string" },
@@ -58,9 +60,13 @@
         "descriptionDecoration": { "type": "string" },
         "descriptionLetterCase": { "type": "string" },
         "descriptionLineHeight": { "type": "string" },
+        "descriptionpadding": { "type": "object" },
+        "descriptionmargin": { "type": "object" },
 
         "iconColor": { "type": "string" },
         "iconFontSize": { "type": "string", "default": "32px" },
+        "iconpadding": { "type": "object" },
+        "iconmargin": { "type": "object" },
 
         "imageborder": { "type": "object" },
         "imageborderRadius": { "type": "string" },

@@ -21,6 +21,13 @@
         "ID": { "type": "string" },
 		"className": { "type": "string" },
 
+        "cardBackground": { "type": "string" },
+        "cardBackgroundGradient": {
+            "type": "string",
+            "default": "linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)"
+        },
+        "cardpadding": { "type": "object" },
+
         "itemTitle": { "type": "string", "default": "Title" },
         "itemDescription": { "type": "string", "default": "Description" },
         "showIcon": { "type": "boolean", "default": false },
@@ -34,6 +41,8 @@
 
         "iconColor": { "type": "string" },
         "iconFontSize": { "type": "string" },
+        "iconpadding": { "type": "object" },
+        "iconmargin": { "type": "object" },
 
         "titleColor": { "type": "string" },  
         "titleAlign": { "type": "string" },
@@ -52,6 +61,8 @@
         "titleDecoration": { "type": "string" },
         "titleLetterCase": { "type": "string" },
         "titleLineHeight": { "type": "string" },
+        "titlepadding": { "type": "object" },
+        "titlemargin": { "type": "object" },
 
         "descriptionColor": { "type": "string" },  
         "descriptionAlign": { "type": "string" },
@@ -69,6 +80,8 @@
         "descriptionDecoration": { "type": "string" },
         "descriptionLetterCase": { "type": "string" },
         "descriptionLineHeight": { "type": "string" },
+        "descriptionpadding": { "type": "object" },
+        "descriptionmargin": { "type": "object" },
 
         "buttonTextColor": { "type": "string" },
         "buttonBackgroundColor": { "type": "string" },

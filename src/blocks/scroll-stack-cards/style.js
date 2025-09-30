@@ -9,7 +9,8 @@ const generateDynamicStyle = ({ attributes }) => {
 		"imageWrap",
 		"contentWrap",
 		"cardItem",
-		"button"
+		"button",
+		"icon"
 	];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes ),
     	textColorStyle = ( 'dark' === attributes.textColor ) ? '#666' : '#fff';;
@@ -43,7 +44,11 @@ const generateDynamicStyle = ({ attributes }) => {
 		.wpmozo-bna-scroll-stack-cards-icon-wrapper .icon-wrapper i {
 			color: ${attributes.iconColor};
 			font-size: ${attributes.iconFontSize};
-		}`;
+		}
+		.wpmozo-bna-scroll-stack-cards-icon-wrapper{
+			${convertedStyle.icon}
+		}
+		`;
 
 		//Image style
 		styles += `
