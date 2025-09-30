@@ -36,12 +36,12 @@ export default function save({ attributes }) {
     let buttonText = itemButtonText || __( 'Read More', 'wpmozo-blocks-and-addons' ),
         urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
         layout = ( ! wpmozo_is_empty( parentAtts ) ) ? parentAtts.layout : 'vertical',
-        TitleTag = titleLavel;
+       titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAtts.titleLavel;
 
     // Title
     const TitleEl = (
         <RichText.Content
-            tagName={TitleTag}
+            tagName={titleHeadingLavel}
             className="wpmozo-bna-scroll-stack-cards-title"
             value={itemTitle}
         />
@@ -79,12 +79,27 @@ export default function save({ attributes }) {
     if ( showButton && itemButtonUrl ) {
         
         let btnIcon = '',
-        buttonIconPlacementClass = '';
+            buttonIconPlacementClass = '',
+            buttonIconHoverClass = '';
+
+        if ( parentAtts.useButtonIcon ) {
+            btnIcon = '' === parentAtts.buttonIcon ? '' : (
+                <i className={`wpmozo-bna-icon ${parentAtts.buttonIcon}`}></i>
+            );
+        }
 
         if ( useButtonIcon ) {
             btnIcon = '' === buttonIcon ? '' : (
                 <i className={`wpmozo-bna-icon ${buttonIcon}`}></i>
             );
+        }
+
+        if ( parentAtts.buttonIcon ) {
+            if( 'after' === parentAtts.buttonIconPlacement ){
+                buttonIconPlacementClass = 'wpmozo-icon-at-after';
+            }else{
+                buttonIconPlacementClass = 'wpmozo-icon-at-before';
+            }
         }
 
         if ( useButtonIcon && buttonIcon && ! wpmozo_is_empty( buttonIconPlacement ) ) {
@@ -95,22 +110,32 @@ export default function save({ attributes }) {
             }
         }
 
-        ButtonEl = (
-           <div className="wpmozo-bna-button-wrap wpmozo-bna-scroll-stack-cards-item-btn">
-                <a
-                    href={itemButtonUrl}
-                    target={urlNewWindow}
-                    className={ [
-                        'wpmozo-bna-button',
-                        ( useButtonIcon && buttonIconHover ) ? 'wpmozo-icon-on-hover' : '',
-                        buttonIconPlacementClass
-                    ].join(" ") }
-                >
-                    <span className='wpmozo-bna-btn-text'>{ buttonText }</span>
-                    {btnIcon}
-                </a>
-            </div>
-        );
+        if ( parentAtts.useButtonIcon && parentAtts.buttonIcon && parentAtts.buttonIconHover ) {
+            buttonIconHoverClass = 'wpmozo-icon-on-hover';
+        }
+
+        if ( useButtonIcon && buttonIcon && buttonIconHover ) {
+            buttonIconHoverClass = 'wpmozo-icon-on-hover';
+        }
+
+        if( itemButtonUrl && itemButtonUrl !== '' && showButton ){
+            ButtonEl = (
+                <div className="wpmozo-bna-button-wrap wpmozo-bna-scroll-stack-cards-item-btn">
+                    <a
+                        href={itemButtonUrl}
+                        target={urlNewWindow}
+                        className={ [
+                            'wpmozo-bna-button',
+                            buttonIconHoverClass,
+                            buttonIconPlacementClass
+                        ].join(" ") }
+                    >
+                        <span className='wpmozo-bna-btn-text'>{ buttonText }</span>
+                        {btnIcon}
+                    </a>
+                </div>
+            )
+        }
     }
 
     // Layouts

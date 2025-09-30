@@ -18,7 +18,6 @@
 }
 .wpmozo-bna-scroll-stack-cards-title,
 .wpmozo-bna-scroll-stack-cards-content{
-	color: #000;
 	margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 10px;
@@ -113,6 +112,31 @@ html:not(.block-editor-iframe__html) .wpmozo-bna-scroll-stack-cards-wrapper.layo
 	white-space: normal;
 	overflow-wrap: break-word;
 	overflow-x: visible;
+}
+.wpmozo-bna-button-wrap .wpmozo-bna-button.wpmozo-icon-at-before{
+    flex-direction: row-reverse;
+}
+.wpmozo-bna-button.wpmozo-icon-on-hover .wpmozo-bna-btn-text{
+    transition: all .3s ease-in-out;
+    transform: translateX(0.8em);
+}
+.wpmozo-bna-button.wpmozo-icon-on-hover.wpmozo-icon-at-before .wpmozo-bna-btn-text{
+    transform: translateX(-0.8em);
+}
+.wpmozo-bna-button.wpmozo-icon-on-hover .wpmozo-bna-icon{
+    opacity: 0;
+    transform: translateX(-1.6em);
+    transition: all .3s ease-in-out;
+}
+.wpmozo-bna-button.wpmozo-icon-on-hover.wpmozo-icon-at-before  .wpmozo-bna-icon{
+    transform: translateX(1.6em);
+}
+.wpmozo-bna-button.wpmozo-icon-on-hover:hover .wpmozo-bna-btn-text{
+    transform: translateX(0);
+}
+.wpmozo-bna-button.wpmozo-icon-on-hover:hover .wpmozo-bna-icon{
+    opacity: 1;
+    transform: translateX(0);
 }
 
 

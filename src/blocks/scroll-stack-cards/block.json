@@ -86,7 +86,34 @@
         "cardItemWidth": { "type": "string" },
         "cardItemborder": { "type": "object" },
         "cardItemborderRadius": { "type": "string" },
-        "cardItempadding": { "type": "object" }
+        "cardItempadding": { "type": "object" },
+
+        "buttonTextColor": { "type": "string" },
+        "buttonBackgroundColor": { "type": "string" },
+        "buttonAlignment": { "type": "string" },
+        "buttonFontSize": { "type": "string" },
+        "buttonFontAppearance": {
+            "type": "object",
+            "fontStyle": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "default": {
+                "fontStyle": "",
+                "fontWeight": ""
+            }
+        },
+        "buttonLetterSpacing": { "type": "string" },
+        "buttonDecoration": { "type": "string" },
+        "buttonLetterCase": { "type": "string" },
+        "buttonLineHeight": { "type": "string" },
+        "useButtonIcon": { "type": "boolean", "default": false },
+        "buttonIconColor": { "type": "string" },
+        "buttonIcon": { "type": "string" },
+        "buttonIconPlacement": { "type": "string", "default": "after" },
+        "buttonIconHover": { "type": "boolean", "default": false },
+        "buttonborder": { "type": "object" },
+        "buttonborderRadius": { "type": "string" },
+        "buttonpadding": { "type": "object" },
+        "buttonmargin": { "type": "object" }
     },
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",

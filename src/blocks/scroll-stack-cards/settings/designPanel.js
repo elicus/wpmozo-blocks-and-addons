@@ -111,6 +111,63 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				}}
 			/>
 		</PanelBody>
+		<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<WpmozoColorPicker props={props}
+				ColorKey="button"
+				ColorTypes={[
+					{ key: 'TextColor', label: __( 'Text Color', 'wpmozo-blocks-and-addons' ) },
+					{ key: 'BackgroundColor', label: __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
+				] }
+			/>
+			<WpmozoAlignment
+				label={__( 'Button Alignment', 'wpmozo-blocks-and-addons')}
+				onChange={ ( newValue ) => setAttributes( { buttonAlignment: newValue } ) }
+				value={ attributes.buttonAlignment }
+			/>
+			<WpmozoTypography props={props}
+				TypographyKey="button"
+			/>
+			<ToggleControl
+				label={ __( 'Use Button Icon', 'wpmozo-blocks-and-addons' ) }
+				checked={ attributes.useButtonIcon }
+				onChange={ ( newValue ) => setAttributes( { useButtonIcon: newValue } ) }
+			/>
+			{ attributes.useButtonIcon && ( <>
+				<WpmozoColorPicker props={props}
+					ColorKey="button"
+					ColorTypes={[
+						{ key: 'IconColor', label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ) },
+					] }
+				/>
+				<WpmozoIconpicker
+					label={ __( 'Icon', 'wpmozo-blocks-and-addons' ) }
+					iconPickerKey='buttonIcon'
+					props={ props }
+					value={ attributes.buttonIcon }
+					onChange={ ( newValue ) => setAttributes( { buttonIcon: newValue } ) }
+				/>
+				<ToggleGroupControl
+					label={ __( 'Icon Position', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.buttonIconPlacement }
+					onChange={ ( newValue ) => setAttributes( { buttonIconPlacement: newValue } ) }
+				>
+					<ToggleGroupControlOption value="before" label="Before" />
+					<ToggleGroupControlOption value="after" label="After" />
+				</ToggleGroupControl>
+				<ToggleControl
+					label={ __( 'Show Button Icon On Hover', 'wpmozo-blocks-and-addons' ) }
+					checked={ attributes.buttonIconHover }
+					onChange={ ( newValue ) => setAttributes( { buttonIconHover: newValue } ) }
+				/>
+			</> ) }
+			<WpmozoBorder props={props}
+				BorderKey="button"
+			/>
+			<WpmozoDimensions props={props}
+				DimensionKey='button'
+				DimensionsTypes={ { padding: true, margin: true } }
+			/>
+		</PanelBody>
 		<PanelBody title={ __( 'Image', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			{ 'vertical' === attributes.layout &&
 				<WpmozoRangeSize

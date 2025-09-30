@@ -26,10 +26,13 @@ export default function Edit(props) {
         return select('core/block-editor').getBlocks(clientId);
     }, [clientId]);
 
-    const childAttributes = childBlocks.map(block => block.attributes);
+    const childAttributes = childBlocks.map(block => block.attributes),
+        placehoderImage = wpmozo_bna_editor_object.placeholderImg;
 
     const TEMPLATE = [
-        [ 'wpmozo/scroll-stack-cards-item', { text: childAttributes.text} ] // Prefills a child block when parent is inserted
+        [ 'wpmozo/scroll-stack-cards-item', { text: childAttributes.textn, image: placehoderImage} ],
+        [ 'wpmozo/scroll-stack-cards-item', { text: childAttributes.textn, image: placehoderImage} ],
+        [ 'wpmozo/scroll-stack-cards-item', { text: childAttributes.textn, image: placehoderImage} ]
     ];
 
     const innerBlocks = useSelect(

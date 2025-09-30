@@ -8,7 +8,8 @@ const generateDynamicStyle = ({ attributes }) => {
 		"image",
 		"imageWrap",
 		"contentWrap",
-		"cardItem"
+		"cardItem",
+		"button"
 	];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes ),
     	textColorStyle = ( 'dark' === attributes.textColor ) ? '#666' : '#fff';;
@@ -17,7 +18,7 @@ const generateDynamicStyle = ({ attributes }) => {
 
 		// Text style
 		styles += `
-			text-alignment: ${attributes.textAlignment};
+			text-align: ${attributes.textAlignment};
 			color: ${textColorStyle};
 		`;
 
@@ -101,6 +102,21 @@ const generateDynamicStyle = ({ attributes }) => {
 				width: ${attributes.cardItemWidth};
 			}`;
 		}
+
+		// Button style
+		styles += `
+		.wpmozo-bna-button{
+			color: ${attributes.buttonTextColor};
+			background-color: ${attributes.buttonBackgroundColor};
+			${convertedStyle.button}
+		}
+		.wpmozo-bna-button-wrap{
+			text-align: ${attributes.buttonAlignment};
+		}
+		.wpmozo-bna-button i{
+			color: ${attributes.buttonIconColor};
+		}
+		`;
 		
 
 	styles += `}`;

@@ -33,12 +33,12 @@
         "imageAlt": { "type": "string" },
 
         "iconColor": { "type": "string" },
-        "iconFontSize": { "type": "string", "default": "32px" },
+        "iconFontSize": { "type": "string" },
 
         "titleColor": { "type": "string" },  
         "titleAlign": { "type": "string" },
-        "titleLavel": { "type": "string", "default": "h4" },
-        "titleFontSize": { "type": "string", "default": "18px" },
+        "titleLavel": { "type": "string" },
+        "titleFontSize": { "type": "string" },
         "titleFontAppearance": {
             "type": "object",
             "fontStyle": { "type": "string" },
@@ -55,7 +55,7 @@
 
         "descriptionColor": { "type": "string" },  
         "descriptionAlign": { "type": "string" },
-        "descriptionFontSize": { "type": "string", "default": "18px" },
+        "descriptionFontSize": { "type": "string" },
         "descriptionFontAppearance": {
             "type": "object",
             "fontStyle": { "type": "string" },
@@ -73,7 +73,7 @@
         "buttonTextColor": { "type": "string" },
         "buttonBackgroundColor": { "type": "string" },
         "buttonAlignment": { "type": "string" },
-        "buttonFontSize": { "type": "string", "default": "18px" },
+        "buttonFontSize": { "type": "string" },
         "buttonFontAppearance": {
             "type": "object",
             "fontStyle": { "type": "string" },

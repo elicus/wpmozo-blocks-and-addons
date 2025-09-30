@@ -104,12 +104,27 @@ export default function Edit(props) {
     if ( showButton && itemButtonUrl ) {
         
         let btnIcon = '',
-        buttonIconPlacementClass = '';
+            buttonIconPlacementClass = '',
+            buttonIconHoverClass = '';
+
+        if ( parentAttributes.useButtonIcon ) {
+            btnIcon = '' === parentAttributes.buttonIcon ? '' : (
+                <i className={`wpmozo-bna-icon ${parentAttributes.buttonIcon}`}></i>
+            );
+        }
 
         if ( useButtonIcon ) {
             btnIcon = '' === buttonIcon ? '' : (
                 <i className={`wpmozo-bna-icon ${buttonIcon}`}></i>
             );
+        }
+
+        if ( parentAttributes.buttonIcon ) {
+            if( 'after' === parentAttributes.buttonIconPlacement ){
+                buttonIconPlacementClass = 'wpmozo-icon-at-after';
+            }else{
+                buttonIconPlacementClass = 'wpmozo-icon-at-before';
+            }
         }
 
         if ( useButtonIcon && buttonIcon && ! wpmozo_is_empty( buttonIconPlacement ) ) {
@@ -120,22 +135,32 @@ export default function Edit(props) {
             }
         }
 
-        ButtonEl = (
-           <div className="wpmozo-bna-button-wrap wpmozo-bna-scroll-stack-cards-item-btn">
-                <a
-                    href={itemButtonUrl}
-                    target={urlNewWindow}
-                    className={ [
-                        'wpmozo-bna-button',
-                        ( useButtonIcon && buttonIconHover ) ? 'wpmozo-icon-on-hover' : '',
-                        buttonIconPlacementClass
-                    ].join(" ") }
-                >
-                    <span className='wpmozo-bna-btn-text'>{ buttonText }</span>
-                    {btnIcon}
-                </a>
-            </div>
-        );
+        if ( parentAttributes.useButtonIcon && parentAttributes.buttonIcon && parentAttributes.buttonIconHover ) {
+            buttonIconHoverClass = 'wpmozo-icon-on-hover';
+        }
+
+        if ( useButtonIcon && buttonIcon && buttonIconHover ) {
+            buttonIconHoverClass = 'wpmozo-icon-on-hover';
+        }
+
+        if( itemButtonUrl && itemButtonUrl !== '' && showButton ){
+            ButtonEl = (
+                <div className="wpmozo-bna-button-wrap wpmozo-bna-scroll-stack-cards-item-btn">
+                    <a
+                        href={itemButtonUrl}
+                        target={urlNewWindow}
+                        className={ [
+                            'wpmozo-bna-button',
+                            buttonIconHoverClass,
+                            buttonIconPlacementClass
+                        ].join(" ") }
+                    >
+                        <span className='wpmozo-bna-btn-text'>{ buttonText }</span>
+                        {btnIcon}
+                    </a>
+                </div>
+            )
+        }
     }
 
     // Layouts

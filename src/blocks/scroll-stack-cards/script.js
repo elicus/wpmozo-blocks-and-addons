@@ -1,11 +1,9 @@
 jQuery( document ).ready( function($) {
 
     function wpmozo_init_scroll_stack_cards(){ 
-        console.log("sdfsdf");
         if ( $( '.wp-block-wpmozo-scroll-stack-cards' ).length > 0 ) {
             $( document ).find('.wp-block-wpmozo-scroll-stack-cards').each( function() {
                 let thisObj = $( this );
-                console.log( thisObj );
                 let wrapObj = thisObj.find( '.wpmozo-bna-scroll-stack-cards-wrapper' );
                 if ( 'horizontal' === wrapObj.attr( 'data-layout' ) ) {
                     if ( wpmozoBnaIsLargeScreen() ) {
