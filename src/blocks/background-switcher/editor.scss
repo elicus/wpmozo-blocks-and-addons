@@ -1,0 +1,12 @@
+.wpmozo_bna_background_switcher_inner{
+	margin-bottom: 45px;
+}
+.wpmozo_bna_background_switcher_inner > .block-editor-inner-blocks,
+.wpmozo_bna_background_switcher_inner > .block-editor-inner-blocks > .block-editor-block-list__layout{
+	display: flex;
+	width: 100%;
+	flex-direction: inherit;
+}
+.wpmozo_bna_background_switcher_inner > .block-editor-inner-blocks .block-list-appender.block-list-appender{
+	bottom: -45px;
+}
