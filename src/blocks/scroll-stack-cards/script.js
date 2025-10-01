@@ -69,24 +69,31 @@ jQuery( document ).ready( function($) {
 } ); // Document ready over.
 
 // Init vertical scroll stack cards.
-function wpmozoBnaInitVerticalScrollStackCards( thisObj ) {
-
+function wpmozoBnaInitVerticalScrollStackCards(thisObj) {
     let viewportHeight = window.innerHeight;
-    let $wrapper    = thisObj.find( '.wpmozo-bna-scroll-stack-cards-wrapper' )
-    let items       = $wrapper.find( '.wp-block-wpmozo-scroll-stack-cards-item' );
+    let $wrapper = thisObj.find('.wpmozo-bna-scroll-stack-cards-wrapper');
+    let items = $wrapper.find('.wp-block-wpmozo-scroll-stack-cards-item');
 
-    // Kill if already init.
-    ScrollTrigger.getAll().forEach( trigger => {
-        if ( trigger.trigger === $wrapper[0] ) {
-            trigger.kill();
+    ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.trigger === $wrapper[0]) {
+            trigger.kill(true);
         }
-    } );
+    });
 
-    gsap.registerPlugin( ScrollTrigger );
+    gsap.killTweensOf(items);
+    gsap.set(items, { clearProps: "height" });
+    gsap.set(items, { clearProps: "width" });
 
-    let fullHeights = items.map( (index, element ) => element.scrollHeight ).get();
+    gsap.registerPlugin(ScrollTrigger);
 
-    let collapsedHeights = fullHeights.map( ( h, i ) => i === items.length - 1 ? h : 60 );
+    $wrapper.css({
+        height: "auto",
+        width: "100%",
+        overflow: "hidden"
+    });
+
+    let fullHeights = items.map((index, element) => element.scrollHeight).get();
+    let collapsedHeights = fullHeights.map((h, i) => i === items.length - 1 ? h : 60);
 
     let collapsedTotal = collapsedHeights.reduce((acc, h) => acc + h, 0);
     let fullTotal = fullHeights.reduce((acc, h) => acc + h, 0);
@@ -96,54 +103,52 @@ function wpmozoBnaInitVerticalScrollStackCards( thisObj ) {
     }
 
     let sectionHeight = collapsedTotal + totalScroll + 250;
-        $wrapper.css( 'height', `${sectionHeight}px` );
+    $wrapper.css('height', `${sectionHeight}px`);
 
-    const startPosition    = $wrapper.attr( 'data-animation_start_element_pos' ) || 'top';
-    const viewportPosition = $wrapper.attr( 'data-animation_start_viewport_pos' ) || 'top';
+    const startPosition = $wrapper.attr('data-animation_start_element_pos') || 'top';
+    const viewportPosition = $wrapper.attr('data-animation_start_viewport_pos') || 'top';
 
-    let tl = gsap.timeline( {
+    let tl = gsap.timeline({
         scrollTrigger: {
-            trigger: $wrapper[0], // 🔧 Pass DOM element to GSAP
+            id: "scrollStack-" + $wrapper.index(), // unique ID
+            trigger: $wrapper[0],
             start: `${startPosition} ${viewportPosition}`,
             end: `+=${totalScroll}`,
             scrub: 1.1,
-            pin: $wrapper.find( '.wpmozo-bna-scroll-stack-cards-items' ),
+            pin: $wrapper.find('.wpmozo-bna-scroll-stack-cards-items'),
             pinSpacing: true,
         }
-    } );
+    });
 
-    items.each( ( i, item ) => {
-        if ( i !== items.length - 1 ) {
-            let icon           = item.querySelector( '.wpmozo-bna-scroll-stack-cards-icon-wrapper' );
-            let title          = item.querySelector( '.wpmozo-bna-scroll-stack-cards-title-wrap' );
-            let contentWrapper = item.querySelector( '.wpmozo-bna-scroll-stack-cards-content-wrapper' );
+    items.each((i, item) => {
+        if (i !== items.length - 1) {
+            let icon = item.querySelector('.wpmozo-bna-scroll-stack-cards-icon-wrapper');
+            let title = item.querySelector('.wpmozo-bna-scroll-stack-cards-title-wrap');
+            let contentWrapper = item.querySelector('.wpmozo-bna-scroll-stack-cards-content-wrapper');
 
             let targetHeight = 60;
-            if ( title ) {
-                let iconHeight        = ( icon ) ? icon.offsetHeight : 0;
-                let titleHeight       = ( title ) ? title.offsetHeight : 0;
-                let itemPaddingTop    = parseFloat( window.getComputedStyle( item ).paddingTop ) || 0;
+            if (title) {
+                let iconHeight = icon ? icon.offsetHeight : 0;
+                let titleHeight = title ? title.offsetHeight : 0;
+                let itemPaddingTop = parseFloat(window.getComputedStyle(item).paddingTop) || 0;
                 let contentPaddingTop = contentWrapper
-                    ? parseFloat( window.getComputedStyle( contentWrapper ).paddingTop ) || 0
-                : 0;
+                    ? parseFloat(window.getComputedStyle(contentWrapper).paddingTop) || 0
+                    : 0;
 
                 targetHeight = iconHeight + titleHeight + itemPaddingTop + contentPaddingTop;
             }
 
-            tl.fromTo( item,
+            tl.fromTo(item,
                 { height: fullHeights[i] },
                 { height: targetHeight, duration: 1.1 }
             );
-            // For smoothness in firefox.
-            // tl.set( item, { height: fullHeights[i] } );
-            // tl.to( item, {
-            //  height: targetHeight,
-            //  duration: 1.1,
-            //  ease: 'none'
-            // } );
         }
-    } );
+    });
+
+    ScrollTrigger.refresh();
+
 }
+
 
 // Init horizontal scroll stack cards.
 function wpmozoBnaInitHorizontalScrollStackCards( thisObj ) {
@@ -158,10 +163,11 @@ function wpmozoBnaInitHorizontalScrollStackCards( thisObj ) {
     // Kill if already init.
     ScrollTrigger.getAll().forEach( trigger => {
         if ( trigger.trigger === $wrapper[0] ) {
-            trigger.kill();
+            trigger.kill(true);
         }
     } );
 
+    gsap.killTweensOf($panels);
     gsap.registerPlugin( ScrollTrigger );
 
     $cardsContainer.css( {
@@ -169,6 +175,7 @@ function wpmozoBnaInitHorizontalScrollStackCards( thisObj ) {
         position : "relative",
         width    : "max-content"
     } );
+    $wrapper.css({ height: "auto", overflow: "hidden" });
 
     $panels.each( ( i, el ) => {
         gsap.set( el, {
@@ -228,6 +235,8 @@ function wpmozoBnaInitHorizontalScrollStackCards( thisObj ) {
             ease: "power2.out"
         }, "finalExpand" );
     } );
+
+    ScrollTrigger.refresh();
 }
 
 // Check is large screen.
