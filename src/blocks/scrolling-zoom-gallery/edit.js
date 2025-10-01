@@ -280,9 +280,11 @@ export default function Edit(props) {
 						</div>
 					</div>
 				</div>
-				<View className="gallery-media-placeholder-wrapper">
-					{mediaPlaceholder}
-				</View>
+				{ isSelected && (
+					<View className="gallery-media-placeholder-wrapper">
+						{mediaPlaceholder}
+					</View>
+				)}
 			</div>
 		</Fragment>
 	);

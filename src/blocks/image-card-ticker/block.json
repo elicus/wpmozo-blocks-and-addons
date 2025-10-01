@@ -34,7 +34,7 @@
 		"tickerLayout": {"type": "string","default": "marquee"},
 		"marqueeDirection": {"type": "string","default": "left"},
 		"imagesGap": {"type": "number","default": 30},
-		"tickerSpeed": {"type": "number","default": 5},
+		"tickerSpeed": {"type": "number","default": 15},
 
 		"marquee_wrap_height": {"type": "number","default": 500},
 		"circle3d_wrap_height": {"type": "number","default": 500},

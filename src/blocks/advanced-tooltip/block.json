@@ -16,7 +16,7 @@
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
 
-		"trigerAction": {"type": "string", "default": "hover"},
+		"trigerAction": {"type": "string", "default": "mouseenter"},
 		"trigerElement": {"type": "string", "default": "button"},
 
 		"triggerButtonText": {"type": "string","default": "Button"},

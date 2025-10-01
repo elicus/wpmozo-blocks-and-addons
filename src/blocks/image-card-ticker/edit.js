@@ -240,7 +240,6 @@ export default function Edit(props) {
 	} else {
 		dataClass = `layout-${attributes.tickerLayout}`;
 	}
-
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes}/>
@@ -268,20 +267,13 @@ export default function Edit(props) {
 					data-image_height={attributes.image_height}
 				>
 					<div className={`dipl_image_card_ticker_inner`}>
+
 						{attributes.images_data && attributes.images_data.length > 0 && (
-							'curve' === attributes.tickerLayout ? (
-								<div className="dipl_image_card_ticker_image_wrapper">
-									{attributes.images_data.map((image, idx) => (
-										<img key={idx} src={image.url} alt={image.alt || ''} />
-									))}
-								</div>
-							) : (
-								<>
-									{attributes.images_data.map((image, idx) => (
-										<img key={idx} src={image.url} alt={image.alt || ''} />
-									))}
-								</>
-							)
+							<>
+								{attributes.images_data.map((image, idx) => (
+									<img key={idx} src={image.url} alt={image.alt || ''} />
+								))}
+							</>
 						)}
 					</div>
 				</div>

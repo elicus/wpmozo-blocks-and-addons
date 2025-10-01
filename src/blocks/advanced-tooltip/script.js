@@ -32,6 +32,7 @@ function initAdvancedButton($galleryContainer) {
 		triggerEl = $wrap.data('trigger-element') || 'button',
 		triggerSelector = $wrap.data('trigger-selector') || '';
 
+
 	// 🔧 Fix: Look inside current tooltip instance only
 	let $tooltipContent = $this.find('.wpmozo_advanced_tooltip_content_wrap');
 	if (!$tooltipContent.length) return;
