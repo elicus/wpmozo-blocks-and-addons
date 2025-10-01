@@ -1,3 +1,4 @@
+import $ from 'jquery';
 jQuery( document ).ready( function($) {
 
 	// On change on props, update the slider again.
@@ -27,7 +28,7 @@ jQuery( document ).ready( function($) {
 	$( document ).on( {
 		mouseenter: function(e) {
 			e.preventDefault();
-			
+
 			$( this ).parent().find( '.wp-block-wpmozo-background-switcher-item' ).removeClass( 'wpmozo-bna-bg-switcher-hover' );
 			$( this ).addClass( 'wpmozo-bna-bg-switcher-hover' );
 			$( this ).find( '.wpmozo_bna_bg_switcher_hover_content' ).slideDown();

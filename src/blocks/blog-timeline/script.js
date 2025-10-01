@@ -1,3 +1,4 @@
+import $ from 'jquery';
 jQuery( document ).ready( function($) {
 
 	// On change on props, update the stem timeline.
@@ -83,7 +84,7 @@ jQuery( document ).ready( function($) {
 		var last_icon_offset     = $that.find( '.wpmozo_bna_blog_timeline_post .wpmozo_bna_blog_timeline_stem_center' ).last().offset().top;
 		var screen_height_center = screen.height / 2;
 		var stem_fill_height     = Math.min(screen_height_center - first_icon_offset, last_icon_offset - first_icon_offset - 10) + "px";
-		
+
 		if ( first_icon_offset < screen_height_center ) {
 			var stem_height_px = $this.find( '.wpmozo_bna_stem_wrapper' ).innerHeight();
 			$this.find( '.wpmozo_bna_blog_stem' ).css( 'height', stem_fill_height );
