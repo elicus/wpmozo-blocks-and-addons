@@ -1,11 +1,13 @@
 import {convertInlineStyleStr, wpmozo_is_empty} from '../../common/utils.js';
 
-const generateDynamicStyle = ({ attributes, ID }) => {
+const generateDynamicStyle = ({ attributes }) => {
 
 	const toConvertStyles = [
 		"title",
 		"description",
-		"button"
+		"icon",
+		"button",
+		"contentWrapper"
 	];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes ),
     	parentAtts = attributes.parentAtts;
@@ -34,11 +36,12 @@ const generateDynamicStyle = ({ attributes, ID }) => {
     } = attributes;
 
 
-	let styles = `#block-${ID}.wp-block-wpmozo-image-accordion-item{`;
+	let styles = `.wp-block-wpmozo-image-accordion #block-${attributes.ID}{`;
 
 		if ( normalUseBackgroundImage && ! wpmozo_is_empty( normalBackgroundImage ) ) {
+			let bgColor = ! wpmozo_is_empty( normalAccordionBackground ) ? ', ' + normalAccordionBackground : '';
 			styles += `
-				background-image: url('${normalBackgroundImage}');
+				background: url('${normalBackgroundImage}')${bgColor};
 			`;
 		}
 		if ( ! normalUseBackgroundImage && ! wpmozo_is_empty( normalAccordionBackground ) ) {
@@ -47,7 +50,16 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 			`;
 		}
 
+		styles += `${attributes.normalItemBGImageSize ? `background-size: ${attributes.normalItemBGImageSize};` : '' }
+			${attributes.normalItemBGImagePosition ? `background-position: ${attributes.normalItemBGImagePosition.replace(/_/g, ' ')};` : '' }
+			${attributes.normalItemBGImageRepeat ? `background-repeat: ${attributes.normalItemBGImageRepeat};` : '' }
+			${attributes.normalItemBGImageBlend ? `background-blend-mode: ${attributes.normalItemBGImageBlend};` : '' }
+		`;
+
 		styles += `
+			.wpmozo-bna-image-accordion-item-content-wrapper {
+				${convertedStyle.contentWrapper}
+			}
 			.wpmozo-bna-image-accordion-item-title {
 				color: ${titleColor};
 				text-align: ${titleAlign};
@@ -58,19 +70,22 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 				text-align: ${descriptionAlign};
 				${convertedStyle.description}
 			}
+			.wpmozo-bna-image-accordion-item-icon {
+				${convertedStyle.icon}
+			}
 			.wpmozo-bna-image-accordion-item-icon .icon-wrapper i{
 				color: ${iconColor};
 				font-size: ${iconFontSize};
 			}
-			.wpmozo-bna-btn{
+			.wpmozo-bna-button{
 				color: ${buttonTextColor};
 				background-color: ${buttonBackgroundColor};
 				${convertedStyle.button}
 			}
-			.wpmozo-bna-image-accordion-item-btn-wrapper{
+			.wpmozo-bna-button-wrap{
 				text-align: ${buttonAlignment};
 			}
-			.wpmozo-bna-btn i{
+			.wpmozo-bna-button i{
 				color: ${buttonIconColor};
 			}
 		`;
@@ -97,26 +112,44 @@ const generateDynamicStyle = ({ attributes, ID }) => {
 
 	if ( ! wpmozo_is_empty( textAlignment ) ) {
 		styles += `
-			#block-${ID}.wpmozo-bna-active-image-accordion-item {
+			#block-${attributes.ID}.wp-block-wpmozo-image-accordion-item {
 				text-align: ${textAlignment};
 			}
 		`;
 	}
 
-	if ( activeUseBackgroundImage && ! wpmozo_is_empty( activeBackgroundImage ) ) {
+	if ( 'global' != textColor ) {
+		let textColorStyle = ( 'dark' === textColor ) ? '#666' : '#fff';
 		styles += `
-			#block-${ID}.wpmozo-bna-active-image-accordion-item {
-				background-image: url('${activeBackgroundImage}');
+			#block-${attributes.ID}.wp-block-wpmozo-image-accordion-item {
+				color: ${textColorStyle};
+			}
+		`;
+	}
+
+	if ( activeUseBackgroundImage && ! wpmozo_is_empty( activeBackgroundImage ) ) {
+		let bgColor = ! wpmozo_is_empty( activeAccordionBackground ) ? ', ' + activeAccordionBackground : '';
+		styles += `
+			#block-${attributes.ID}.wpmozo-bna-active-image-accordion-item {
+				background: url('${activeBackgroundImage}')${bgColor};
 			}
 		`;
 	}
 	if ( ! activeUseBackgroundImage && ! wpmozo_is_empty( activeAccordionBackground ) ) {
 		styles += `
-			#block-${ID}.wpmozo-bna-active-image-accordion-item {
+			#block-${attributes.ID}.wpmozo-bna-active-image-accordion-item {
 				background: ${activeAccordionBackground};
 			}
 		`;
 	}
+
+	styles += `#block-${attributes.ID}.wpmozo-bna-active-image-accordion-item {
+		${attributes.activeItemBGImageSize ? `background-size: ${attributes.activeItemBGImageSize};` : '' }
+		${attributes.activeItemBGImagePosition ? `background-position: ${attributes.activeItemBGImagePosition.replace(/_/g, ' ')};` : '' }
+		${attributes.activeItemBGImageRepeat ? `background-repeat: ${attributes.activeItemBGImageRepeat};` : '' }
+		${attributes.activeItemBGImageBlend ? `background-blend-mode: ${attributes.activeItemBGImageBlend};` : '' }
+		}
+	`;
 
 	return styles;
 };

@@ -9,7 +9,6 @@ import {
 
 import { inspectorPanelTabs } from '../../common/utils.js';
 import { GeneralPanel } from './settings/generalPanel';
-import { DesignPanel } from './settings/designPanel';
 
 const Inspector = ( { attributes, setAttributes } ) => {
 
@@ -21,14 +20,11 @@ const Inspector = ( { attributes, setAttributes } ) => {
 			<TabPanel
 				className="wpmozo-settings-tab-panel"
 				activeClass="is-active"
-				tabs={ inspectorPanelTabs() }
+				tabs={inspectorPanelTabs({showDesign: false}) }
 			>
 				{ ( tab ) => ( <div className="wpmozo-settings-tab-panel-content">
 					{ tab.name === 'general' &&
 						<GeneralPanel attributes={attributes} setAttributes={setAttributes} />
-					}
-					{ tab.name === 'design' &&
-						<DesignPanel attributes={attributes} setAttributes={setAttributes} />
 					}
 					{ tab.name === 'advanced' &&
 						<PanelBody title={ __( 'Advanced', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>

@@ -58,18 +58,16 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					>{__('Active', 'wpmozo-blocks-and-addons')}</Button>
 				</ButtonGroup>
 				{'normal' === accordionType && <>
-					{ ! attributes.normalUseBackgroundImage && <>
-						<WpmozoColorPicker props={props}
-						   	ColorKey="normalAccordion"
-						   	ColorTypes={[
-							   	{
-							   		key: 'Background', 
-							   		label: __('Accordion Background', 'wpmozo-blocks-and-addons'), 
-							   		withGradient: true
-							   	}
-						   	]}
-						/>
-					</> }
+					<WpmozoColorPicker props={props}
+					   	ColorKey="normalAccordion"
+					   	ColorTypes={[
+						   	{
+						   		key: 'Background', 
+						   		label: __('Accordion Background', 'wpmozo-blocks-and-addons'), 
+						   		withGradient: true
+						   	}
+					   	]}
+					/>
 					<ToggleControl
 						label={ __( 'Use Background Image', 'wpmozo-blocks-and-addons' ) }
 						checked={ attributes.normalUseBackgroundImage }
@@ -80,21 +78,78 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 							label={ __( 'Background Image', 'wpmozo-blocks-and-addons' ) }
 							attrKye="normalBackgroundImage"
 						/>
+						{ attributes.normalBackgroundImage && <>
+							<SelectControl
+								label={ __( 'Background Image Size', 'wpmozo-blocks-and-addons' ) }
+								value={ attributes.normalItemBGImageSize }
+								options={ [
+									{ value: 'cover', label: __( 'Cover', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'contain', label: __( 'Fit', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'initial', label: __( 'Actual Size', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'stretch', label: __( 'Stretch to Fill', 'wpmozo-blocks-and-addons' ) },
+								] }
+								onChange={ ( newValue ) => setAttributes( { normalItemBGImageSize: newValue } ) }
+								__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+							/>
+							<SelectControl
+								label={ __( 'Background Image Position', 'wpmozo-blocks-and-addons' ) }
+								value={ attributes.normalItemBGImagePosition }
+								options={ [
+									{ value: 'top_left', label: __( 'Top Left', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'top_center', label: __( 'Top Center', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'top_right', label: __( 'Top Right', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'center_left', label: __( 'Center Left', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'center', label: __( 'Center', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'center_right', label: __( 'Center Right', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'bottom_left', label: __( 'Bottom Left', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'bottom_center', label: __( 'Bottom Center', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'bottom_right', label: __( 'Bottom Right', 'wpmozo-blocks-and-addons' ) },
+								] }
+								onChange={ ( newValue ) => setAttributes( { normalItemBGImagePosition: newValue } ) }
+								__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+							/>
+							<SelectControl
+								label={ __( 'Background Image Repeat', 'wpmozo-blocks-and-addons' ) }
+								value={ attributes.normalItemBGImageRepeat }
+								options={ [
+									{ value: 'repeat', label: __( 'Repeat', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'repeat-x', label: __( 'Repeat X (horizontal)', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'repeat-y', label: __( 'Repeat Y (vertical)', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'space', label: __( 'Repeat with space between', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'round', label: __( 'Repeat and Stretch', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'no-repeat', label: __( 'No Repeat', 'wpmozo-blocks-and-addons' ) },
+								] }
+								onChange={ ( newValue ) => setAttributes( { normalItemBGImageRepeat: newValue } ) }
+								__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+							/>
+							<SelectControl
+								label={ __( 'Background Image Blend', 'wpmozo-blocks-and-addons' ) }
+								value={ attributes.normalItemBGImageBlend }
+								options={ [
+									{ value: 'normal', label: __( 'Normal', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'multiply', label: __( 'Multiply', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'screen', label: __( 'Screen', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'overlay', label: __( 'Overlay', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'darken', label: __( 'Darken', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'lighten', label: __( 'Lighten', 'wpmozo-blocks-and-addons' ) },
+								] }
+								onChange={ ( newValue ) => setAttributes( { normalItemBGImageBlend: newValue } ) }
+								__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+							/>
+						</> }
 					</> }
 				</>}
 				{'active' === accordionType && <>
-					{ ! attributes.activeUseBackgroundImage && <>
-						<WpmozoColorPicker props={props}
-						   	ColorKey="activeAccordion"
-						   	ColorTypes={[
-							   	{
-							   		key: 'Background', 
-							   		label: __('Accordion Background', 'wpmozo-blocks-and-addons'), 
-							   		withGradient: true
-							   	}
-						   	]}
-						/>
-					</> }
+					<WpmozoColorPicker props={props}
+					   	ColorKey="activeAccordion"
+					   	ColorTypes={[
+						   	{
+						   		key: 'Background', 
+						   		label: __('Accordion Background', 'wpmozo-blocks-and-addons'), 
+						   		withGradient: true
+						   	}
+					   	]}
+					/>
 					<ToggleControl
 						label={ __( 'Use Background Image', 'wpmozo-blocks-and-addons' ) }
 						checked={ attributes.activeUseBackgroundImage }
@@ -105,9 +160,86 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 							label={ __( 'Background Image', 'wpmozo-blocks-and-addons' ) }
 							attrKye="activeBackgroundImage"
 						/>
+						{ attributes.activeBackgroundImage && <>
+							<SelectControl
+								label={ __( 'Background Image Size', 'wpmozo-blocks-and-addons' ) }
+								value={ attributes.activeItemBGImageSize }
+								options={ [
+									{ value: 'cover', label: __( 'Cover', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'contain', label: __( 'Fit', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'initial', label: __( 'Actual Size', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'stretch', label: __( 'Stretch to Fill', 'wpmozo-blocks-and-addons' ) },
+								] }
+								onChange={ ( newValue ) => setAttributes( { activeItemBGImageSize: newValue } ) }
+								__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+							/>
+							<SelectControl
+								label={ __( 'Background Image Position', 'wpmozo-blocks-and-addons' ) }
+								value={ attributes.activeItemBGImagePosition }
+								options={ [
+									{ value: 'top_left', label: __( 'Top Left', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'top_center', label: __( 'Top Center', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'top_right', label: __( 'Top Right', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'center_left', label: __( 'Center Left', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'center', label: __( 'Center', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'center_right', label: __( 'Center Right', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'bottom_left', label: __( 'Bottom Left', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'bottom_center', label: __( 'Bottom Center', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'bottom_right', label: __( 'Bottom Right', 'wpmozo-blocks-and-addons' ) },
+								] }
+								onChange={ ( newValue ) => setAttributes( { activeItemBGImagePosition: newValue } ) }
+								__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+							/>
+							<SelectControl
+								label={ __( 'Background Image Repeat', 'wpmozo-blocks-and-addons' ) }
+								value={ attributes.activeItemBGImageRepeat }
+								options={ [
+									{ value: 'repeat', label: __( 'Repeat', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'repeat-x', label: __( 'Repeat X (horizontal)', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'repeat-y', label: __( 'Repeat Y (vertical)', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'space', label: __( 'Repeat with space between', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'round', label: __( 'Repeat and Stretch', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'no-repeat', label: __( 'No Repeat', 'wpmozo-blocks-and-addons' ) },
+								] }
+								onChange={ ( newValue ) => setAttributes( { activeItemBGImageRepeat: newValue } ) }
+								__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+							/>
+							<SelectControl
+								label={ __( 'Background Image Blend', 'wpmozo-blocks-and-addons' ) }
+								value={ attributes.activeItemBGImageBlend }
+								options={ [
+									{ value: 'normal', label: __( 'Normal', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'multiply', label: __( 'Multiply', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'screen', label: __( 'Screen', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'overlay', label: __( 'Overlay', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'darken', label: __( 'Darken', 'wpmozo-blocks-and-addons' ) },
+									{ value: 'lighten', label: __( 'Lighten', 'wpmozo-blocks-and-addons' ) },
+								] }
+								onChange={ ( newValue ) => setAttributes( { activeItemBGImageBlend: newValue } ) }
+								__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+							/>
+						</> }
 					</> }
 				</>}
 			</BaseControl>
+			<WpmozoDimensions props={props}
+				DimensionKey='contentWrapper'
+				DimensionsTypes={ { padding: true, margin: true } }
+			/>
+		</PanelBody>
+		<PanelBody title={ __( 'Content Animation', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel"  initialOpen={false}>
+			<SelectControl
+				label={ __( 'Content Animation', 'wpmozo-blocks-and-addons' ) }
+				value={ attributes.contentAnimation }
+				options={ [
+					{ value: 'top', label: __( 'Top To Bottom', 'wpmozo-blocks-and-addons' ) },
+					{ value: 'left', label: __( 'Left To Right', 'wpmozo-blocks-and-addons' ) },
+					{ value: 'right', label: __( 'Right To Left', 'wpmozo-blocks-and-addons' ) },
+					{ value: 'bottom', label: __( 'Bottom To Top', 'wpmozo-blocks-and-addons' ) },
+					{ value: 'off', label: __( 'No Animation', 'wpmozo-blocks-and-addons' ) }
+				] }
+				onChange={ ( newValue ) => setAttributes( { contentAnimation: newValue } ) }
+			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel"  initialOpen={false}>
 			<WpmozoAlignment
@@ -119,6 +251,10 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				label={ __( 'Text Color', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.textColor }
 				options={[
+					{
+						value: 'global',
+						label: __( 'Global', 'wpmozo-blocks-and-addons' ),
+					},
 					{
 						value: 'light',
 						label: __( 'Light', 'wpmozo-blocks-and-addons' ),
@@ -158,6 +294,10 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				TypographyKey="title"
 				props={props}
 			/>
+			<WpmozoDimensions props={props}
+				DimensionKey='title'
+				DimensionsTypes={ { padding: true, margin: true } }
+			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Description', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			<WpmozoColorPicker props={props}
@@ -166,17 +306,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					{ key: 'Color', label: __( 'Description Color', 'wpmozo-blocks-and-addons' ) }
 				] }
 			/>
-			<BaseControl label={ __( 'Heading Lavel', 'wpmozo-blocks-and-addons' ) }>
-				<ButtonGroup>
-					{ headingLevelsList.map( ( item, index ) => (
-						<Button
-							key={`heading-level-${index}`}
-							isPressed={item.value === attributes.descriptionLavel}
-							onClick={() => setAttributes({descriptionLavel: item.value})}
-						>{item.label}</Button>
-					) ) }
-				</ButtonGroup>
-			</BaseControl>
 			<WpmozoAlignment
 				label={__('Description Alignment', 'wpmozo-blocks-and-addons')}
 				onChange={(newValue) => setAttributes({descriptionAlign: newValue})}
@@ -185,6 +314,10 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			<WpmozoTypography
 				TypographyKey="description"
 				props={props}
+			/>
+			<WpmozoDimensions props={props}
+				DimensionKey='description'
+				DimensionsTypes={ { padding: true, margin: true } }
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
@@ -219,6 +352,10 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
 				/>
 			</> ) }
+			<WpmozoDimensions props={props}
+				DimensionKey='icon'
+				DimensionsTypes={ { padding: true, margin: true } }
+			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			<WpmozoColorPicker props={props}

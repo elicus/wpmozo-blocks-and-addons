@@ -2,7 +2,7 @@ var wpmozo_init_image_accor = function( $, element = null ) {
 
     element.each(function(){
         let $this       = $(this),
-            $default    = parseInt( $this.find('.wpmozo-bna-image-accordion-wrapper').data('default-active') ),
+            $default    = parseInt( $this.find('.wpmozo-bna-image-accordion-wrapper').attr('data-default-active') ),
             $items      = $this.find('.wp-block-wpmozo-image-accordion-item');
 
         if ( $default > 0 ) {

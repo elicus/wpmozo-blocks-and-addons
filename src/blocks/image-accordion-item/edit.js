@@ -16,18 +16,13 @@ import { wpmozo_is_empty } from '../../common/utils.js';
 export default function Edit(props) {
 
     const { attributes, setAttributes, clientId } = props;
-
-    let ID = clientId;
     
     // Ensure ID is set once (no render-time mutation).
     useEffect( () => {
-        setAttributes( { ID: clientId } );
+        if ( attributes.ID !== clientId ) {
+            setAttributes( { ID: clientId } );
+        }
     }, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
-
-    const blockProps = useBlockProps( {
-        className: attributes.className,
-        ...( ID ? { id: `block-${ ID }` } : {} ),
-    } );
 
     const parentAttributes = useSelect((select) => {
         const { getBlockRootClientId, getBlock } = select('core/block-editor');
@@ -50,13 +45,16 @@ export default function Edit(props) {
         itemDescription,
         buttonIconPlacement,
         useButtonIcon,
-        buttonIconHover
+        buttonIconHover,
+        contentAnimation
     } = attributes;
 
     let buttonText = itemButtonText || __( 'Read More', 'wpmozo-blocks-and-addons' ),
         urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
         resolvedIconShape = styleIcon ? iconShape : '',
-        titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttributes.titleLavel;
+        titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttributes.titleLavel,
+        animationClass = ( 'off' !== contentAnimation ) ? ` wpmozo-item-animation-${contentAnimation}` : '',
+        isEnabledAnimation = ( 'off' !== contentAnimation ) ? ' wpmozo-item-animation' : '' ;
 
     let renderedIcon = null;
     if (itemIcon) {
@@ -82,17 +80,18 @@ export default function Edit(props) {
     }
 
     let btnIcon = '',
-        buttonIconPlacementClass = '';
+        buttonIconPlacementClass = '',
+        buttonIconHoverClass = '';
 
     if ( parentAttributes.useButtonIcon ) {
         btnIcon = '' === parentAttributes.buttonIcon ? '' : (
-            <i className={ parentAttributes.buttonIcon }></i>
+            <i className={`wpmozo-bna-icon ${parentAttributes.buttonIcon}`}></i>
         );
     }
 
     if ( useButtonIcon ) {
         btnIcon = '' === buttonIcon ? '' : (
-            <i className={ buttonIcon }></i>
+            <i className={`wpmozo-bna-icon ${buttonIcon}`}></i>
         );
     }
 
@@ -112,15 +111,27 @@ export default function Edit(props) {
         }
     }
 
+    if ( parentAttributes.useButtonIcon && parentAttributes.buttonIcon && parentAttributes.buttonIconHover ) {
+        buttonIconHoverClass = 'wpmozo-icon-on-hover';
+    }
+
+    if ( useButtonIcon && buttonIcon && buttonIconHover ) {
+        buttonIconHoverClass = 'wpmozo-icon-on-hover';
+    }
+
+    const blockProps = useBlockProps( {
+        id: `block-${attributes.ID}`,
+        className: animationClass
+    } );
 
     return (
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
-                { generateDynamicStyle({ attributes, ID, parentAttributes }) }
+                { generateDynamicStyle({ attributes }) }
             </style>
             <div { ...blockProps }>
-                <div className="wpmozo-bna-image-accordion-item-content-wrapper">
+                <div className={`wpmozo-bna-image-accordion-item-content-wrapper${isEnabledAnimation}`}>
                     <div className={`wpmozo-bna-image-accordion-item-content-inner-wrap`}>
                         {renderedIcon}
                         <RichText
@@ -144,7 +155,7 @@ export default function Edit(props) {
                                     target={urlNewWindow}
                                     className={ [
                                         'wpmozo-bna-button',
-                                        ( useButtonIcon && buttonIconHover ) ? 'wpmozo-icon-on-hover' : '',
+                                        buttonIconHoverClass,
                                         buttonIconPlacementClass
                                     ].join(" ") }
                                 >

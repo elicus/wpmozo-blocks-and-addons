@@ -7,11 +7,14 @@ import { __ } from '@wordpress/i18n';
 
 export default function save({ attributes }) {
     
-    const { ID, parentAtts } = attributes;
+    let { ID, parentAtts, className } = attributes;
+    let animationClass = ( 'off' !== attributes.contentAnimation ) ? ` wpmozo-item-animation-${attributes.contentAnimation}` : '';
 
-    // Only add ID attribute if it exists
+    className = className += animationClass;
+
+    // Only add ID attribute if it exists.
     const blockProps = useBlockProps.save( {
-        className: attributes.className,
+        className: className,
         ...( ID ? { id: `block-${ ID }` } : {} ),
     } );
 
@@ -30,10 +33,15 @@ export default function save({ attributes }) {
         titleLavel,
         itemDescription,
         buttonIconPlacement,
-        useButtonIcon
+        useButtonIcon,
+        buttonIconHover,
+        contentAnimation,
+        normalBackgroundImage,
+        activeBackgroundImage
     } = attributes;
 
-    let urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
+    let buttonText = itemButtonText || __( 'Read More', 'wpmozo-blocks-and-addons' ),
+        urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
         resolvedIconShape = styleIcon ? iconShape : '',
         titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttsTitleLavel;
 
@@ -61,25 +69,30 @@ export default function save({ attributes }) {
     }
 
     let btnIcon = '',
-        buttonIconPlacementClass = '';
+        buttonIconPlacementClass = '',
+        buttonIconHoverClass = '';
 
-    if ( parentAtts.useButtonIcon ) {
-        btnIcon = '' === parentAtts.buttonIcon ? '' : (
-            <i className={ parentAtts.buttonIcon }></i>
-        );
+    if ( ! wpmozo_is_empty( parentAtts ) ) {
+        if ( parentAtts.useButtonIcon ) {
+            btnIcon = '' === parentAtts.buttonIcon ? '' : (
+                <i className={`wpmozo-bna-icon ${parentAtts.buttonIcon}`}></i>
+            );
+        }
     }
-
+    
     if ( useButtonIcon ) {
         btnIcon = '' === buttonIcon ? '' : (
-            <i className={ buttonIcon }></i>
+            <i className={`wpmozo-bna-icon ${buttonIcon}`}></i>
         );
     }
 
-    if ( parentAtts.buttonIcon ) {
-        if( 'after' === parentAtts.buttonIconPlacement ){
-            buttonIconPlacementClass = 'wpmozo-icon-at-after';
-        }else{
-            buttonIconPlacementClass = 'wpmozo-icon-at-before';
+    if ( ! wpmozo_is_empty( parentAtts ) ) {
+        if ( parentAtts.buttonIcon ) {
+            if( 'after' === parentAtts.buttonIconPlacement ){
+                buttonIconPlacementClass = 'wpmozo-icon-at-after';
+            }else{
+                buttonIconPlacementClass = 'wpmozo-icon-at-before';
+            }
         }
     }
 
@@ -91,14 +104,24 @@ export default function save({ attributes }) {
         }
     }
 
+    if ( ! wpmozo_is_empty( parentAtts ) ) {
+        if ( parentAtts.useButtonIcon && parentAtts.buttonIcon && parentAtts.buttonIconHover ) {
+            buttonIconHoverClass = 'wpmozo-icon-on-hover';
+        }
+    }
+
+    if ( useButtonIcon && buttonIcon && buttonIconHover ) {
+        buttonIconHoverClass = 'wpmozo-icon-on-hover';
+    }
+
     return (
         <>
             {/* Only output <style> if ID exists. */}
             { ( ID && '' !== ID ) && (
-                <style>{ generateDynamicStyle( { attributes, ID } ) }</style>
+                <style>{ generateDynamicStyle( { attributes } ) }</style>
             ) }
             <div { ...blockProps }>
-                <div className="wpmozo-bna-image-accordion-item-content-wrapper">
+                <div className={`wpmozo-bna-image-accordion-item-content-wrapper wpmozo-item-animation`}>
                     <div className={`wpmozo-bna-image-accordion-item-content-inner-wrap`}>
                         {renderedIcon}
                         <RichText.Content
@@ -118,11 +141,11 @@ export default function save({ attributes }) {
                                     target={urlNewWindow}
                                     className={ [
                                         'wpmozo-bna-button',
-                                        ( useButtonIcon && buttonIconHover ) ? 'wpmozo-icon-on-hover' : '',
+                                        buttonIconHoverClass,
                                         buttonIconPlacementClass
                                     ].join(" ") }
                                 >
-                                    <span className='wpmozo-bna-btn-text'>{ itemButtonText && __( 'Read More', 'wpmozo-blocks-and-addons' ) }</span>
+                                    <span className='wpmozo-bna-btn-text'>{ buttonText }</span>
                                     {btnIcon}
                                 </a>
                             </div>
