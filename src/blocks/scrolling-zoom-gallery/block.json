@@ -1,0 +1,54 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "wpmozo/scrolling-zoom-gallery",
+    "version": "0.1.0",
+    "title": "Scrolling Zoom Gallery",
+    "category": "wpmozo",
+    "icon": "smiley",
+    "description": "Create engaging image galleries with a smooth zoom-in effect as users scroll.",
+    "example": {},
+    "supports": {
+		"html": false,
+		"customClassName": false
+    },
+    "attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+		"images": {
+			"type": "array",
+			"default": [],
+			"source": "query",
+			"selector": ".wpmozo-blocks-and-addons-gallery--item",
+			"query": {
+				"url": {
+					"source": "attribute",
+					"selector": "img",
+					"attribute": "src"
+				}
+			}
+		},
+		"images_data": {
+			"type": "array"
+		},
+
+		"onLoadVisibility": {"type": "number","default": 0.1},
+		"noImagesText": {"type": "string","default":"No images found. Please try uploading again."},
+
+		"normalborder": {"type": "object"},
+		"normalborderRadius": {"type": "string"},
+		"hoverborder": {"type": "object"},
+		"hoverborderRadius": {"type": "string"},
+
+		"filledBackgroundType": {"type": "string","default": "classic"},
+		"classicBackgroundColor": {"type": "string"},
+		"classicBackgroundImage": {"type": "string"},
+		"gradientBackgroundColor": {"type": "string"}
+
+	},
+    "textdomain": "wpmozo-blocks-and-addons",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+	"script": [ "wpmozo-blocks-and-addons-scroll-trigger-script", "wpmozo-blocks-and-addons-gsap-script", "file:./script.js"]
+}
