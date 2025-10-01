@@ -249,7 +249,7 @@ export default function Edit(props) {
 				{'curve' === attributes.tickerLayout && (
 					<svg width="0" height="0">
 						<defs>
-							<mask id="dipl_image_card_ticker_curve_mask" x="0" y="0" width="1" height="1"
+							<mask id="wpmozo_image_card_ticker_curve_mask" x="0" y="0" width="1" height="1"
 								  maskContentUnits="objectBoundingBox">
 								<rect x="0" y="0" width="1" height="1" fill="black"></rect>
 								<path d="M0,0 Q0.5,0.25 1,0 V1 Q0.5,0.75 0,1 Z" fill="white"></path>
@@ -258,7 +258,7 @@ export default function Edit(props) {
 					</svg>
 				)}
 				<div
-					className={`dipl_image_card_ticker_wrapper ${dataClass}`}
+					className={`wpmozo_image_card_ticker_wrapper ${dataClass}`}
 					data-layout={attributes.tickerLayout}
 					data-direction={attributes.marqueeDirection}
 					data-image_gap={attributes.imagesGap}
@@ -266,7 +266,7 @@ export default function Edit(props) {
 					data-image_width={attributes.image_width}
 					data-image_height={attributes.image_height}
 				>
-					<div className={`dipl_image_card_ticker_inner`}>
+					<div className={`wpmozo_image_card_ticker_inner`}>
 
 						{attributes.images_data && attributes.images_data.length > 0 && (
 							<>

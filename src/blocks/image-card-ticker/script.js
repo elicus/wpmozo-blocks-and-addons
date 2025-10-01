@@ -2,8 +2,8 @@ import $ from 'jquery';
 
 $(function () {
 	const blockSelector = '.wp-block-wpmozo-image-card-ticker';
-	const wrapperSelector = '.dipl_image_card_ticker_wrapper';
-	const innerWrapSelector = '.dipl_image_card_ticker_inner';
+	const wrapperSelector = '.wpmozo_image_card_ticker_wrapper';
+	const innerWrapSelector = '.wpmozo_image_card_ticker_inner';
 
 	// Helper to extract data attributes and build config object
 	function getDataObject($wrapper) {
@@ -26,19 +26,19 @@ $(function () {
 		}
 
 		// Destroy existing animations and reset
-		diplDestroyImageCardTicker($wrapper);
+		wpmozoDestroyImageCardTicker($wrapper);
 
 		// Init layout after images loaded
 		$wrapper.imagesLoaded(function () {
 			switch (dataObject.layout) {
 				case 'marquee':
-					diplInitImageCardTickerMarquee($wrapper, dataObject);
+					wpmozoInitImageCardTickerMarquee($wrapper, dataObject);
 					break;
 				case '3d_circular':
-					diplInitImageCardTicker3DCircle($wrapper, dataObject);
+					wpmozoInitImageCardTicker3DCircle($wrapper, dataObject);
 					break;
 				case 'curve':
-					diplInitImageCardTickerCurve($wrapper, dataObject);
+					wpmozoInitImageCardTickerCurve($wrapper, dataObject);
 					break;
 			}
 		});
@@ -64,10 +64,10 @@ $(function () {
 });
 
 // Init marquee effect.
-function diplInitImageCardTickerMarquee($wrapper, $wrappeerData) {
+function wpmozoInitImageCardTickerMarquee($wrapper, $wrappeerData) {
 	gsap.registerPlugin(ScrollTrigger);
 
-	const $innerWrap = $wrapper.find('.dipl_image_card_ticker_inner');
+	const $innerWrap = $wrapper.find('.wpmozo_image_card_ticker_inner');
 	const direction = $wrappeerData.direction || 'left';
 	const imgWidth = +$wrappeerData.image_width || 200;
 	const imgHeight = +$wrappeerData.image_height || 150;
@@ -94,7 +94,7 @@ function diplInitImageCardTickerMarquee($wrapper, $wrappeerData) {
 	const html = $innerWrap.html();
 	for (let i = 0; i < amount; i++) {
 		const $clones = $(html).map(function () {
-			return $(this).addClass('dipl-cloned-item')[0];
+			return $(this).addClass('wpmozo-cloned-item')[0];
 		});
 		$innerWrap.append($clones);
 	}
@@ -130,10 +130,10 @@ function diplInitImageCardTickerMarquee($wrapper, $wrappeerData) {
 }
 
 // Init 3d circle.
-function diplInitImageCardTicker3DCircle($wrapper, $wrappeerData) {
+function wpmozoInitImageCardTicker3DCircle($wrapper, $wrappeerData) {
 	gsap.registerPlugin(ScrollTrigger);
 
-	const $innerWrap = $wrapper.find('.dipl_image_card_ticker_inner');
+	const $innerWrap = $wrapper.find('.wpmozo_image_card_ticker_inner');
 	const imgWidth = +$wrappeerData.image_width || 200;
 	const imgHeight = +$wrappeerData.image_height || 150;
 	const imgGap = +$wrappeerData.image_gap || 30;
@@ -174,10 +174,10 @@ function diplInitImageCardTicker3DCircle($wrapper, $wrappeerData) {
 }
 
 // Init Curve.
-function diplInitImageCardTickerCurve($wrapper, $wrappeerData) {
+function wpmozoInitImageCardTickerCurve($wrapper, $wrappeerData) {
 	gsap.registerPlugin(ScrollTrigger);
 
-	const $innerWrap = $wrapper.find('.dipl_image_card_ticker_inner');
+	const $innerWrap = $wrapper.find('.wpmozo_image_card_ticker_inner');
 	const imgWidth = +$wrappeerData.image_width || 200;
 	const imgHeight = +$wrappeerData.image_height || 150;
 	const imgGap = +$wrappeerData.image_gap || 30;
@@ -192,7 +192,7 @@ function diplInitImageCardTickerCurve($wrapper, $wrappeerData) {
 	const html = $innerWrap.html();
 	for (let i = 0; i < amount; i++) {
 		const $clones = $(html).map(function () {
-			return $(this).addClass('dipl-cloned-item')[0];
+			return $(this).addClass('wpmozo-cloned-item')[0];
 		});
 		$innerWrap.append($clones);
 	}
@@ -221,8 +221,8 @@ function diplInitImageCardTickerCurve($wrapper, $wrappeerData) {
 }
 
 // Destroy and reset ticker
-function diplDestroyImageCardTicker($wrapper) {
-	const $innerWrap = $wrapper.find('.dipl_image_card_ticker_inner');
+function wpmozoDestroyImageCardTicker($wrapper) {
+	const $innerWrap = $wrapper.find('.wpmozo_image_card_ticker_inner');
 
 	// Kill all GSAP animations on the wrapper and inner elements
 	gsap.killTweensOf($wrapper);
@@ -238,7 +238,7 @@ function diplDestroyImageCardTicker($wrapper) {
 	gsap.set($innerWrap.children(), { clearProps: 'all' });
 
 	// Remove cloned items
-	$innerWrap.find('.dipl-cloned-item').remove();
+	$innerWrap.find('.wpmozo-cloned-item').remove();
 
 	// Remove layout classes
 	$wrapper.removeClass('marquee-inited circle-carousel curve-carousel');

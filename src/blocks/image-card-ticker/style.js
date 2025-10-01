@@ -8,7 +8,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 
 	styles +=`
 		${convertedStyle.container}
-		.dipl_image_card_ticker_inner img{
+		.wpmozo_image_card_ticker_inner img{
 			width:${attributes.image_width}px;
 			height:${attributes.image_height}px;
 		}
@@ -17,7 +17,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 	if('marquee'===attributes.tickerLayout){
 		if ( 'top' === attributes.marqueeDirection || 'bottom' === attributes.marqueeDirection ) {
 			styles +=`
-				.dipl_image_card_ticker_inner{
+				.wpmozo_image_card_ticker_inner{
 					height:${attributes.marquee_wrap_height}px;
 				}
 			`;
@@ -26,7 +26,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 
 	if('3d_circular'===attributes.tickerLayout){
 		styles +=`
-			.dipl_image_card_ticker_inner{
+			.wpmozo_image_card_ticker_inner{
 				height:${attributes.circle3d_wrap_height}px;
 			}
 		`;
