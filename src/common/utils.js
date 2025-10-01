@@ -1,5 +1,5 @@
 // src/utils.js
-import { __ } from '@wordpress/i18n';
+import {__} from '@wordpress/i18n';
 
 export function wpmozo_is_empty(value) {
 	return (
@@ -19,7 +19,7 @@ export function wpmozo_parse_style(property, style) {
 export function wpmozo_get_styleAtts(attributes, stylesKeys) {
 	const stylesTypes = {
 		FontSize: '',
-		FontAppearance: { fontStyle: '', fontWeight: '' },
+		FontAppearance: {fontStyle: '', fontWeight: ''},
 		LetterSpacing: '',
 		Decoration: '',
 		LetterCase: '',
@@ -45,7 +45,7 @@ export function wpmozo_get_styleAtts(attributes, stylesKeys) {
 }
 
 export function convertVarStyle(options = {}) {
-	const spacing = { ...options };
+	const spacing = {...options};
 	for (const type in spacing) {
 		const value = spacing[type];
 		if (typeof value !== 'undefined' && value !== '' && value.startsWith('var:')) {
@@ -85,7 +85,7 @@ export function convertInlineStyle(options = {}, atts = {}) {
 			append('border', str);
 		}
 
-		if ( options.border.top || options.border.bottom || options.border.left || options.border.right ) {
+		if (options.border.top || options.border.bottom || options.border.left || options.border.right) {
 			for (const border in options.border) {
 				for (const item in options.border[border]) {
 					append(`border-${border}-${item}`, options.border[border][item]);
@@ -143,7 +143,7 @@ export function convertInlineStyleStr(options, attributes) {
 }
 
 export function wpmozo_generate_style(styles) {
-	return styles.map(({ style: styleObject, selector, additional = '' }) => {
+	return styles.map(({style: styleObject, selector, additional = ''}) => {
 		let singleStyle = '';
 		for (const styleProp in styleObject) {
 			const styleValue = styleObject[styleProp];
@@ -208,11 +208,11 @@ export function getMainEl(clientId) {
 	return mainFromIfram.length > 0 ? mainFromIfram : mainFromBody;
 }
 
-export function WpmozoGetImageSizeAttributes( image, size ) {
-	const url = get( image, [ 'media_details', 'sizes', size, 'source_url' ] );
+export function WpmozoGetImageSizeAttributes(image, size) {
+	const url = get(image, ['media_details', 'sizes', size, 'source_url']);
 
-	if ( url ) {
-		return { height: undefined, sizeSlug: size, url, width: undefined };
+	if (url) {
+		return {height: undefined, sizeSlug: size, url, width: undefined};
 	}
 
 	return {};
@@ -220,47 +220,57 @@ export function WpmozoGetImageSizeAttributes( image, size ) {
 
 export const headingLevelsList = [
 	{
-		label: __( 'H1', 'wpmozo-blocks-and-addons' ),
+		label: __('H1', 'wpmozo-blocks-and-addons'),
 		value: 'h1'
 	},
 	{
-		label: __( 'H2', 'wpmozo-blocks-and-addons' ),
+		label: __('H2', 'wpmozo-blocks-and-addons'),
 		value: 'h2'
 	},
 	{
-		label: __( 'H3', 'wpmozo-blocks-and-addons' ),
+		label: __('H3', 'wpmozo-blocks-and-addons'),
 		value: 'h3'
 	},
 	{
-		label: __( 'H4', 'wpmozo-blocks-and-addons' ),
+		label: __('H4', 'wpmozo-blocks-and-addons'),
 		value: 'h4'
 	},
 	{
-		label: __( 'H5', 'wpmozo-blocks-and-addons' ),
+		label: __('H5', 'wpmozo-blocks-and-addons'),
 		value: 'h5'
 	},
 	{
-		label: __( 'H6', 'wpmozo-blocks-and-addons' ),
+		label: __('H6', 'wpmozo-blocks-and-addons'),
 		value: 'h6'
 	}
 ];
 
-export const inspectorPanelTabs = () => {
-	return [
-		{
+export const inspectorPanelTabs = ({showGeneral = true, showDesign = true, showAdvanced = true} = {}) => {
+	const tabs = [];
+
+	if (showGeneral) {
+		tabs.push({
 			name: 'general',
-			title: __( 'General', 'wpmozo-blocks-and-addons' ),
+			title: __('General', 'wpmozo-blocks-and-addons'),
 			className: 'wpmozo-inspector-tab-general',
-		},
-		{
+		});
+	}
+
+	if (showDesign) {
+		tabs.push({
 			name: 'design',
-			title: __( 'Design', 'wpmozo-blocks-and-addons' ),
+			title: __('Design', 'wpmozo-blocks-and-addons'),
 			className: 'wpmozo-inspector-tab-design',
-		},
-		{
+		});
+	}
+
+	if (showAdvanced) {
+		tabs.push({
 			name: 'advanced',
-			title: __( 'Advanced', 'wpmozo-blocks-and-addons' ),
+			title: __('Advanced', 'wpmozo-blocks-and-addons'),
 			className: 'wpmozo-inspector-tab-advanced',
-		}
-	];
+		});
+	}
+
+	return tabs;
 };

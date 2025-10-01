@@ -201,6 +201,6 @@
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
-	"style": "file:./style-index.css",
+	"style": [ "wpmozo-blocks-and-addons-blocks-style", "file:./style-index.css" ],
 	"script": "file:./script.js"
 }

@@ -2272,20 +2272,34 @@ const headingLevelsList = [{
   label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('H6', 'wpmozo-blocks-and-addons'),
   value: 'h6'
 }];
-const inspectorPanelTabs = () => {
-  return [{
-    name: 'general',
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('General', 'wpmozo-blocks-and-addons'),
-    className: 'wpmozo-inspector-tab-general'
-  }, {
-    name: 'design',
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Design', 'wpmozo-blocks-and-addons'),
-    className: 'wpmozo-inspector-tab-design'
-  }, {
-    name: 'advanced',
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Advanced', 'wpmozo-blocks-and-addons'),
-    className: 'wpmozo-inspector-tab-advanced'
-  }];
+const inspectorPanelTabs = ({
+  showGeneral = true,
+  showDesign = true,
+  showAdvanced = true
+} = {}) => {
+  const tabs = [];
+  if (showGeneral) {
+    tabs.push({
+      name: 'general',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('General', 'wpmozo-blocks-and-addons'),
+      className: 'wpmozo-inspector-tab-general'
+    });
+  }
+  if (showDesign) {
+    tabs.push({
+      name: 'design',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Design', 'wpmozo-blocks-and-addons'),
+      className: 'wpmozo-inspector-tab-design'
+    });
+  }
+  if (showAdvanced) {
+    tabs.push({
+      name: 'advanced',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Advanced', 'wpmozo-blocks-and-addons'),
+      className: 'wpmozo-inspector-tab-advanced'
+    });
+  }
+  return tabs;
 };
 
 /***/ }),
@@ -2481,7 +2495,7 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"blocks/price-list/index": 0,
-/******/ 			"blocks/advanced-button-child/style-index": 0,
+/******/ 			"blocks/advanced-button/style-index": 0,
 /******/ 			"blocks/price-list/style-index": 0
 /******/ 		};
 /******/ 		
@@ -2532,7 +2546,7 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/advanced-button-child/style-index","blocks/price-list/style-index"], () => (__webpack_require__("./src/blocks/price-list/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/advanced-button/style-index","blocks/price-list/style-index"], () => (__webpack_require__("./src/blocks/price-list/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

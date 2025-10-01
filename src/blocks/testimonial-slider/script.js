@@ -19,7 +19,7 @@ $( document ).ready( function(e) {
 		$( document ).find( '.wp-block-wpmozo-testimonial-slider' ).each( function() {
 			let $arrows = $(this).find('.wpmozo_swiper_navigation').data();
 			if ( $arrows ) {
-
+				let $winWidth = jQuery(window).width();
 				if ( $winWidth > 980 && typeof( $arrows['arrows_desktop'] ) !== 'undefined' ) {
 					wpmozo_remove_arrows_classes( $(this).find('.wpmozo_swiper_navigation') );
 					$(this).find('.wpmozo_swiper_navigation').addClass( 'wpmozo_arrows_' + $arrows['arrows_desktop'] );

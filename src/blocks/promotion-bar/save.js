@@ -4,7 +4,7 @@ import generateDynamicStyle from "./style";
 
 const Save = ( { attributes } ) => {
 
-	const clientId = attributes.ID;
+	const { ID, className } = attributes;
 
 	const layout       = attributes.layout ?? 'layout1';
 	const displayLabel = attributes.displayLabel ?? 'full';
@@ -40,19 +40,19 @@ const Save = ( { attributes } ) => {
 	if ( attributes.showButton && attributes.buttonUrl ) {
 		let $buttonIcon = '';
 		if ( attributes.buttonUseIcon && attributes.buttonIcon ) {
-			$buttonIcon = <i className={ 'wpmozo-icon ' + attributes.buttonIcon }></i>;
+			$buttonIcon = <i className={ 'wpmozo-bna-icon ' + attributes.buttonIcon }></i>;
 		}
-		$button = <div className="wpmozo-button-wrap">
+		$button = <div className="wpmozo-bna-button-wrap">
 			<a href={ attributes.buttonUrl }
 				target={ ( 'external' === attributes.buttonLinkTarget ) ? '_blank' : false }
 				className={ [
-					'wpmozo-button',
+					'wpmozo-bna-button',
 					'wpmozo_promotion_bar_button',
 					( attributes.buttonUseIcon && attributes.buttonIconOnHover ) ? 'wpmozo-icon-on-hover' : '',
 					( attributes.buttonUseIcon && 'before' === attributes.buttonIconPosition ) ? 'wpmozo-icon-at-before' : 'wpmozo-icon-at-after'
 				].join(" ") }
 			>
-				<span className='wpmozo-btn-text'>{ attributes.buttonText && __( 'Get the deal', 'wpmozo-blocks-and-addons' ) }</span>
+				<span className='wpmozo-bna-btn-text'>{ attributes.buttonText && __( 'Get the deal', 'wpmozo-blocks-and-addons' ) }</span>
 				{ $buttonIcon }
 			</a>
 		</div>;
@@ -71,10 +71,19 @@ const Save = ( { attributes } ) => {
 		seconds : { full: 'Seconds', short: 'Sec', single: 'S' }
 	};
 
-	return ( <>
-		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+	// Only add ID attribute if it exists.
+	const blockProps = useBlockProps.save( {
+		className: className,
+		...( ID ? { id: `block-${ ID }` } : {} ),
+	} );
 
-		<div id={`block-${clientId}`} { ...useBlockProps.save( { className: attributes.className } ) }>
+	return ( <>
+		{/* Only output <style> if ID exists. */}
+		{ ( ID && '' !== ID ) && (
+			<style>{ generateDynamicStyle( { attributes } ) }</style>
+		) }
+
+		<div { ...blockProps }>
 			<div className={"wpmozo-promotion-bar-wrap " + layout}
 				data-timestamp={ attributes.dateTimeTimestamp }
 			>

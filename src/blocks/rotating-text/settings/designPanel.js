@@ -11,7 +11,8 @@ import {
 	WpmozoTypography,
 	WpmozoDimensions,
 	WpmozoBorder,
-	WpmozoRangeSize, WpmozoAlignment
+	WpmozoRangeSize,
+  WpmozoAlignment
 } from '../../../common/components';
 
 export const DesignPanel = ({attributes, setAttributes}) => {
@@ -74,8 +75,8 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 				<WpmozoColorPicker props={props}
 					ColorKey="element"
 					ColorTypes={[
-						...(!attributes.useImage
-	      					? [{ key: 'Color', label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ) }]
+						...(!attributes.useImage 
+	      					? [{ key: 'Color', label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ) }] 
 	      					: []),
 						{key: 'Background', label: __('Image/Icon Background Color', 'wpmozo-blocks-and-addons')}
 					]}

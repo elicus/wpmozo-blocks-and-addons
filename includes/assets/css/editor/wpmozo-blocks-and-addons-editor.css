@@ -87,7 +87,8 @@
 .wpmozo-settings-tab-panel .wpmozo-inspector-tab-general,
 .wpmozo-settings-tab-panel .wpmozo-inspector-tab-design,
 .wpmozo-settings-tab-panel .wpmozo-inspector-tab-advanced{
-	width: 33.33%;
+	min-width: 33.33%;
+	width: 100%;
 	text-align: center;
 	justify-content: center;
 	background-color: #f4f4f4;
@@ -150,6 +151,15 @@
 	display: block;
 	margin-right: auto;
 }
+
 .wpmozo-block-icon path{
 	fill: #5600b7;
+}
+
+/* Custom field warning. */
+.wpmozo-field-warning.is-warning{
+	border: 1px solid #f0b849;
+}
+.wpmozo-field-warning .components-notice__content{
+	margin: 0;
 }

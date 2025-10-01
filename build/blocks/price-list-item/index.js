@@ -8,7 +8,7 @@
   \***********************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/price-list-item","version":"0.1.0","title":"Price List Item","category":"wpmozo","icon":"smiley","description":"Easily create and organized price lists with the Price List block","example":{},"parent":["wpmozo/price-list"],"supports":{"html":false,"anchor":false,"customClassName":false,"inserter":false},"attributes":{"parentAtts":{"type":"object"},"ID":{"type":"string"},"className":{"type":"string"},"itemName":{"type":"string","default":"Item Name"},"itemCurrency":{"type":"string","default":"$"},"itemPrice":{"type":"string","default":"10"},"pricePeriod":{"type":"string"},"itemThumbnailOption":{"type":"string","default":"use_image"},"icon":{"type":"string"},"itemThumbnail":{"type":"string"},"content":{"type":"string"},"itemBackground":{"type":"string"},"itemborder":{"type":"object"},"itemborderRadius":{"type":"string"},"iconColor":{"type":"string"},"iconShapBackground":{"type":"string"},"styleIcon":{"type":"boolean","default":false},"iconShape":{"type":"string","default":"square"},"iconFontSize":{"type":"string"},"thumbnailborder":{"type":"object"},"thumbnailborderRadius":{"type":"string"},"nameHeadingLavel":{"type":"string","default":"h4"},"nameColor":{"type":"string"},"nameFontSize":{"type":"string"},"nameFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"nameLetterSpacing":{"type":"string"},"nameDecoration":{"type":"string"},"nameLetterCase":{"type":"string"},"nameLineHeight":{"type":"string"},"priceColor":{"type":"string"},"priceFontSize":{"type":"string"},"priceFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"priceLetterSpacing":{"type":"string"},"priceDecoration":{"type":"string"},"priceLetterCase":{"type":"string"},"priceLineHeight":{"type":"string"},"currencyColor":{"type":"string"},"currencyFontSize":{"type":"string"},"currencyFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"currencyLetterSpacing":{"type":"string"},"currencyDecoration":{"type":"string"},"currencyLetterCase":{"type":"string"},"currencyLineHeight":{"type":"string"},"descriptionColor":{"type":"string"},"descriptionFontSize":{"type":"string"},"descriptionFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"descriptionLetterSpacing":{"type":"string"},"descriptionDecoration":{"type":"string"},"descriptionLetterCase":{"type":"string"},"descriptionLineHeight":{"type":"string"},"periodColor":{"type":"string"},"periodFontSize":{"type":"string"},"periodFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"periodLetterSpacing":{"type":"string"},"periodDecoration":{"type":"string"},"periodLetterCase":{"type":"string"},"periodLineHeight":{"type":"string"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpmozo/price-list-item","version":"0.1.0","title":"Price List Item","category":"wpmozo","icon":"smiley","description":"Easily create and organized price lists with the Price List block","example":{},"parent":["wpmozo/price-list"],"supports":{"html":false,"anchor":false,"customClassName":false,"inserter":false},"attributes":{"parentAtts":{"type":"object"},"ID":{"type":"string"},"className":{"type":"string"},"itemName":{"type":"string","default":"Item Name"},"itemCurrency":{"type":"string","default":"$"},"itemPrice":{"type":"string","default":"10"},"pricePeriod":{"type":"string"},"itemThumbnailOption":{"type":"string","default":"use_image"},"icon":{"type":"string"},"itemThumbnail":{"type":"string"},"content":{"type":"string"},"itemBackground":{"type":"string"},"itemborder":{"type":"object"},"itemborderRadius":{"type":"string"},"iconColor":{"type":"string"},"iconShapBackground":{"type":"string"},"styleIcon":{"type":"boolean","default":false},"iconShape":{"type":"string","default":"square"},"iconFontSize":{"type":"string"},"thumbnailAlignment":{"type":"string","default":"center"},"thumbnailborder":{"type":"object"},"thumbnailborderRadius":{"type":"string"},"nameHeadingLavel":{"type":"string","default":"h4"},"nameColor":{"type":"string"},"nameFontSize":{"type":"string"},"nameFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"nameLetterSpacing":{"type":"string"},"nameDecoration":{"type":"string"},"nameLetterCase":{"type":"string"},"nameLineHeight":{"type":"string"},"priceColor":{"type":"string"},"priceFontSize":{"type":"string"},"priceFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"priceLetterSpacing":{"type":"string"},"priceDecoration":{"type":"string"},"priceLetterCase":{"type":"string"},"priceLineHeight":{"type":"string"},"currencyColor":{"type":"string"},"currencyFontSize":{"type":"string"},"currencyFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"currencyLetterSpacing":{"type":"string"},"currencyDecoration":{"type":"string"},"currencyLetterCase":{"type":"string"},"currencyLineHeight":{"type":"string"},"descriptionColor":{"type":"string"},"descriptionFontSize":{"type":"string"},"descriptionFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"descriptionLetterSpacing":{"type":"string"},"descriptionDecoration":{"type":"string"},"descriptionLetterCase":{"type":"string"},"descriptionLineHeight":{"type":"string"},"periodColor":{"type":"string"},"periodFontSize":{"type":"string"},"periodFontAppearance":{"type":"object","fontStyle":{"type":"string"},"fontWeight":{"type":"string"},"default":{"fontStyle":"","fontWeight":""}},"periodLetterSpacing":{"type":"string"},"periodDecoration":{"type":"string"},"periodLetterCase":{"type":"string"},"periodLineHeight":{"type":"string"}},"textdomain":"wpmozo-blocks-and-addons","editorScript":"file:./index.js"}');
 
 /***/ }),
 
@@ -821,7 +821,13 @@ const DesignPanel = ({
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Thumbnail', 'wpmozo-blocks-and-addons'),
         className: "wpmozo-typography-panel",
         initialOpen: false,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoRangeSize, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoAlignment, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Thumbnail Alignment', 'wpmozo-blocks-and-addons'),
+          onChange: newValue => setAttributes({
+            thumbnailAlignment: newValue
+          }),
+          value: attributes.thumbnailAlignment
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_components_index__WEBPACK_IMPORTED_MODULE_4__.WpmozoRangeSize, {
           props: props,
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Thumbnail Width', 'wpmozo-blocks-and-addons'),
           rangeSizeKey: "thumbnailWidth"
@@ -1059,8 +1065,12 @@ const generateDynamicStyle = ({
   let convertedStyle = (0,_common_utils_js__WEBPACK_IMPORTED_MODULE_0__.convertInlineStyleStr)(toConvertStyles, attributes),
     parentAtts = attributes.parentAtts,
     iconFontSize = !(0,_common_utils_js__WEBPACK_IMPORTED_MODULE_0__.wpmozo_is_empty)(attributes.iconFontSize) ? attributes.iconFontSize : parentAtts.iconFontSize;
+  const imageAlign = attributes.thumbnailAlignment === 'left' ? 'flex-start' : attributes.thumbnailAlignment === 'right' ? 'flex-end' : 'center';
   let styles = `#block-${clientId}.wpmozo-bna-price-list-item{`;
   styles += `
+		.wpmozo-bna-price-list-item-wrap {
+			align-items: ${imageAlign};
+		}
 		.wpmozo-bna-price-list-item-thumbnail img{
 			width: ${attributes.thumbnailWidth};
 			${convertedStyle.thumbnail}
@@ -1084,6 +1094,9 @@ const generateDynamicStyle = ({
 		.wpmozo-bna-price-list-item-price-period{
 			color: ${attributes.periodColor};
 			${convertedStyle.period}
+		}
+		.wpmozo-bna-price-list-item-name-wrap h4.wpmozo-bna-price-list-item-name{
+			margin: 0;
 		}
 	`;
   if ('use_icon' === attributes.itemThumbnailOption) {
@@ -2655,20 +2668,34 @@ const headingLevelsList = [{
   label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('H6', 'wpmozo-blocks-and-addons'),
   value: 'h6'
 }];
-const inspectorPanelTabs = () => {
-  return [{
-    name: 'general',
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('General', 'wpmozo-blocks-and-addons'),
-    className: 'wpmozo-inspector-tab-general'
-  }, {
-    name: 'design',
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Design', 'wpmozo-blocks-and-addons'),
-    className: 'wpmozo-inspector-tab-design'
-  }, {
-    name: 'advanced',
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Advanced', 'wpmozo-blocks-and-addons'),
-    className: 'wpmozo-inspector-tab-advanced'
-  }];
+const inspectorPanelTabs = ({
+  showGeneral = true,
+  showDesign = true,
+  showAdvanced = true
+} = {}) => {
+  const tabs = [];
+  if (showGeneral) {
+    tabs.push({
+      name: 'general',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('General', 'wpmozo-blocks-and-addons'),
+      className: 'wpmozo-inspector-tab-general'
+    });
+  }
+  if (showDesign) {
+    tabs.push({
+      name: 'design',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Design', 'wpmozo-blocks-and-addons'),
+      className: 'wpmozo-inspector-tab-design'
+    });
+  }
+  if (showAdvanced) {
+    tabs.push({
+      name: 'advanced',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Advanced', 'wpmozo-blocks-and-addons'),
+      className: 'wpmozo-inspector-tab-advanced'
+    });
+  }
+  return tabs;
 };
 
 /***/ }),

@@ -17,7 +17,7 @@ export default function Edit( props ) {
 		}
 	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
-	let image = ( attributes.image ) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,
+	let image = ( attributes.image ) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,	
 		useImage = attributes.useImage,
 		text = attributes.rotatingText,
 		iconImage = null;
@@ -41,6 +41,7 @@ export default function Edit( props ) {
 	useEffect(() => {
 		const event = new CustomEvent('WPMozoRotatingTextPropsChanged');
 		window.dispatchEvent(event);
+
 		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
