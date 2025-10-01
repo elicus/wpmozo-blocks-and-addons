@@ -62,8 +62,8 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					   	ColorKey="normalAccordion"
 					   	ColorTypes={[
 						   	{
-						   		key: 'Background', 
-						   		label: __('Accordion Background', 'wpmozo-blocks-and-addons'), 
+						   		key: 'Background',
+						   		label: __('Accordion Background', 'wpmozo-blocks-and-addons'),
 						   		withGradient: true
 						   	}
 					   	]}
@@ -144,8 +144,8 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					   	ColorKey="activeAccordion"
 					   	ColorTypes={[
 						   	{
-						   		key: 'Background', 
-						   		label: __('Accordion Background', 'wpmozo-blocks-and-addons'), 
+						   		key: 'Background',
+						   		label: __('Accordion Background', 'wpmozo-blocks-and-addons'),
 						   		withGradient: true
 						   	}
 					   	]}
@@ -222,10 +222,15 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					</> }
 				</>}
 			</BaseControl>
+			<WpmozoBorder
+				props={props}
+				BorderKey="Container"
+			/>
 			<WpmozoDimensions props={props}
 				DimensionKey='contentWrapper'
 				DimensionsTypes={ { padding: true, margin: true } }
 			/>
+
 		</PanelBody>
 		<PanelBody title={ __( 'Content Animation', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel"  initialOpen={false}>
 			<SelectControl
@@ -325,8 +330,8 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				ColorKey="icon"
 				ColorTypes={ [
 					{ key: 'Color', label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ) },
-					...(attributes.styleIcon 
-      					? [{ key: 'ShapBackground', label: __( 'Shape Background', 'wpmozo-blocks-and-addons' ) }] 
+					...(attributes.styleIcon
+      					? [{ key: 'ShapBackground', label: __( 'Shape Background', 'wpmozo-blocks-and-addons' ) }]
       					: [])
 				] }
 			/>

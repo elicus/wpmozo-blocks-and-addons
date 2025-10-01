@@ -32,6 +32,8 @@
         "contentAnimation": { "type": "string", "default": "off" },
         "contentWrapperpadding": { "type": "object" },
         "contentWrappermargin": { "type": "object" },
+		"Containerborder": { "type": "object" },
+		"ContainerborderRadius": { "type": "string" },
         "normalUseBackgroundImage": { "type": "boolean", "default": false },
         "normalAccordionBackground": { "type": "string" },
         "normalBackgroundImage": { "type": "string" },
@@ -63,10 +65,10 @@
         "iconpadding": { "type": "object" },
         "iconmargin": { "type": "object" },
 
-        "textColor": { "type": "string", "default": "global" },  
+        "textColor": { "type": "string", "default": "global" },
         "textAlignment": { "type": "string" },
 
-        "titleColor": { "type": "string" },  
+        "titleColor": { "type": "string" },
         "titleAlign": { "type": "string" },
         "titleLavel": { "type": "string", "default": "h4" },
         "titleFontSize": { "type": "string" },
@@ -86,7 +88,7 @@
         "titlepadding": { "type": "object" },
         "titlemargin": { "type": "object" },
 
-        "descriptionColor": { "type": "string" },  
+        "descriptionColor": { "type": "string" },
         "descriptionAlign": { "type": "string" },
         "descriptionFontSize": { "type": "string" },
         "descriptionFontAppearance": {
