@@ -36,7 +36,11 @@ export default function save({ attributes }) {
     let buttonText = itemButtonText || __( 'Read More', 'wpmozo-blocks-and-addons' ),
         urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
         layout = ( ! wpmozo_is_empty( parentAtts ) ) ? parentAtts.layout : 'vertical',
-       titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAtts.titleLavel;
+        titleHeadingLavel = titleLavel;
+
+    if ( ! wpmozo_is_empty( parentAtts ) && wpmozo_is_empty( titleLavel )  ) {
+        titleHeadingLavel = parentAtts.titleLavel;
+    }
 
     // Title
     const TitleEl = (

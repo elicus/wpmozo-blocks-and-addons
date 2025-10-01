@@ -57,12 +57,12 @@ export default function Edit(props) {
     let buttonText = itemButtonText || __( 'Read More', 'wpmozo-blocks-and-addons' ),
         urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
         layout = ( ! wpmozo_is_empty( parentAttributes ) ) ? parentAttributes.layout : 'vertical',
-        TitleTag = titleLavel;
+        titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttributes.titleLavel;
 
     // Title
     const TitleEl = (
         <RichText
-            tagName={TitleTag}
+            tagName={titleHeadingLavel}
             className="wpmozo-bna-scroll-stack-cards-title"
             value={itemTitle}
             onChange={(value) => setAttributes({ itemTitle: value })}
