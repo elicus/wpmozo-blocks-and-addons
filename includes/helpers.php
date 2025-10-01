@@ -152,7 +152,7 @@ function wpmozo_ban_get_border_style( $pre, $props, $use_imp = false ) {
 	if( isset( $border['color'] ) ) {
 		$styles .= sprintf( 'border-color: %s%s;', $border['color'], $imp );
 	} else {
-		$styles .= sprintf( 'border-color: transparent%s;', $imp );
+		$styles .= sprintf( 'border-color: inherit%s;', $imp );
 	}
 
 	// Border Style

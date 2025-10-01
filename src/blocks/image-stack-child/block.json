@@ -10,8 +10,7 @@
 	"example": {},
 	"supports": {
 		"html": false,
-		"customClassName": false,
-		"inserter": false
+		"customClassName": false
 	},
 	"parent": [ "wpmozo/image-stack" ],
 	"attributes": {

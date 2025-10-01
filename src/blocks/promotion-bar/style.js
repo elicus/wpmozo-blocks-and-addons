@@ -1,7 +1,7 @@
 
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ( { attributes, clientId } ) => {
+const generateDynamicStyle = ( { attributes } ) => {
 	const toConvertStyles = [
 		'image',
 		'title',
@@ -106,13 +106,13 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 
 	// Sale Button.
 	if ( attributes.showButton ) {
-		styles += `.wpmozo-button-wrap .wpmozo-button{
+		styles += `.wpmozo-bna-button-wrap .wpmozo-bna-button{
 			${attributes.buttonBGGradient ? `background:`+ attributes.buttonBGGradient + `;` : ''}
 			${attributes.buttonBackground ? `background:`+ attributes.buttonBackground + `;` : ''}
 			${attributes.buttonColor ? `color: ${attributes.buttonColor};` : ''}
 			${convertedStyle.button}
 		}`;
-		styles += `.wpmozo-button-wrap .wpmozo-button:hover{
+		styles += `.wpmozo-bna-button-wrap .wpmozo-bna-button:hover{
 			${attributes.buttonHoverBGGradient ? `background:`+ attributes.buttonHoverBGGradient + `;` : ''}
 			${attributes.buttonHoverBackground ? `background:`+ attributes.buttonHoverBackground + `;` : ''}
 			${attributes.buttonHoverColor ? `color: ${attributes.buttonHoverColor};` : ''}

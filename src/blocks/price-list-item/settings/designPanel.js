@@ -64,8 +64,8 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					ColorKey="icon"
 					ColorTypes={ [
 						{ key: 'Color', label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ) },
-						...(attributes.styleIcon 
-	      					? [{ key: 'ShapBackground', label: __( 'Shape Background', 'wpmozo-blocks-and-addons' ) }] 
+						...(attributes.styleIcon
+	      					? [{ key: 'ShapBackground', label: __( 'Shape Background', 'wpmozo-blocks-and-addons' ) }]
 	      					: [])
 					] }
 				/>
@@ -95,6 +95,11 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		</> ) }
 		{ 'use_image' === attributes.itemThumbnailOption && ( <>
 			<PanelBody title={ __( 'Thumbnail', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<WpmozoAlignment
+					label={__( 'Thumbnail Alignment', 'wpmozo-blocks-and-addons')}
+					onChange={ ( newValue ) => setAttributes( { thumbnailAlignment: newValue } ) }
+					value={ attributes.thumbnailAlignment }
+				/>
 				<WpmozoRangeSize props={props}
 					label={ __( 'Thumbnail Width', 'wpmozo-blocks-and-addons') }
 					rangeSizeKey='thumbnailWidth'

@@ -35,7 +35,9 @@
 	border: 0 solid #000;
 }
 
-// Button.
+// Button, Replaced with global button.
+// Remove this on next version 1.5.0.
+// This change on version 1.4.0.
 .wpmozo-button-wrap .wpmozo-button{
 	display: inline-flex;
     flex-flow: row wrap;
@@ -83,8 +85,12 @@
 .wpmozo-promotion-bar-wrap.layout1 .wpmozo-promotion-bar-content{
 	margin-bottom: 20px;
 }
+
+// Remove top/first two in next version 1.5.0.
 .wpmozo-promotion-bar-wrap.layout1 .wpmozo-button-wrap,
-.wpmozo-promotion-bar-wrap.layout2 .wpmozo-button-wrap{
+.wpmozo-promotion-bar-wrap.layout2 .wpmozo-button-wrap,
+.wpmozo-promotion-bar-wrap.layout1 .wpmozo-bna-button-wrap,
+.wpmozo-promotion-bar-wrap.layout2 .wpmozo-bna-button-wrap{
 	margin-top: 10px;
 	width: 100%;
 }

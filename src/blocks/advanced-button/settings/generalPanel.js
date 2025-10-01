@@ -4,42 +4,37 @@ import {
 	PanelBody,
 	TextControl,
 	__experimentalToggleGroupControl as ToggleGroupControl,
+	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
 } from "@wordpress/components";
+import {WpmozoAlignment} from "../../../common/components";
 
 export const GeneralPanel = ({attributes, setAttributes}) => {
 	const props = {attributes, setAttributes, preAttributes: {}};
 
 	return (<>
 		<PanelBody title={__('Configuration', 'wpmozo-blocks-and-addons')} initialOpen={true}>
-			<TextControl
-				label={__('Button Text', 'wpmozo-blocks-and-addons')}
-				value={attributes.buttonText ?? ""}
-				onChange={(newValue) => setAttributes({buttonText: newValue})}
-				placeholder={__('WPMozo Title', 'wpmozo-blocks-and-addons')}
-				__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
-			/>
-			<TextControl
-				label={__('Button Secondary Text', 'wpmozo-blocks-and-addons')}
-				value={attributes.buttonSecondaryText ?? ""}
-				onChange={(newValue) => setAttributes({buttonSecondaryText: newValue})}
-				__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
-			/>
-			<TextControl
-				label={__('Button Url', 'wpmozo-blocks-and-addons')}
-				onChange={(newValue) => setAttributes({buttonUrl: newValue})}
-				value={attributes.buttonUrl}
-			/>
 			<ToggleGroupControl
-				label={__('Link Target', 'wpmozo-blocks-and-addons')}
-				value={attributes.buttonLinkTarget}
-				onChange={(newValue) => setAttributes({buttonLinkTarget: newValue})}
+				label={ __( 'Orientation', 'wpmozo-blocks-and-addons' ) }
+				value={ attributes.btnOrientation }
+				onChange={ ( newValue ) => setAttributes( { btnOrientation: newValue } ) }
 			>
-				<ToggleGroupControlOptionIcon value="external" icon="external"
-											  label={__('New Window', 'wpmozo-blocks-and-addons')}/>
-				<ToggleGroupControlOptionIcon value="same" icon="admin-links"
-											  label={__('Same Window', 'wpmozo-blocks-and-addons')}/>
+				<ToggleGroupControlOption value="horizontal" label="Horizontal" />
+				<ToggleGroupControlOption value="vertical" label="Vertical" />
 			</ToggleGroupControl>
+			<WpmozoAlignment
+				label={__( 'Button Alignment', 'wpmozo-blocks-and-addons')}
+				onChange={ ( newValue ) => setAttributes( { buttonAlignment: newValue } ) }
+				value={ attributes.buttonAlignment }
+			/>
+			{'horizontal' === attributes.btnOrientation && (
+				<WpmozoAlignment
+					type="vertical"
+					label={__( 'Vertical Alignment', 'wpmozo-blocks-and-addons')}
+					onChange={ ( newValue ) => setAttributes( { btnVerticalAlign: newValue } ) }
+					value={ attributes.btnVerticalAlign }
+				/>
+			)}
 		</PanelBody>
 	</>);
 };

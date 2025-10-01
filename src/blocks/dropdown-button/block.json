@@ -100,7 +100,9 @@
 			"default": { "fontStyle": "", "fontWeight": "" }
 		},
 		"linkTextHoverFontStyle": { "type": "string" },
-		"linkTextHoverFontWeight": { "type": "string" }
+		"linkTextHoverFontWeight": { "type": "string" },
+
+		"buttonAlign": {"type": "default","default": "left"}
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

@@ -12,13 +12,13 @@ import {
 	WpmozoBorder,
 	WpmozoTypography,
 	WpmozoDimensions,
-	WpmozoColorPicker,
+	WpmozoColorPicker, WpmozoAlignment,
 } from '../../../common/components/index.js';
 import { useState } from "@wordpress/element";
 
 export const DesignPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
-	
+
 	const [ textType, setTextType ] = useState( 'normal' );
 
 	return ( <>
@@ -46,6 +46,11 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		) }
 		{/* Text. */}
 		<PanelBody title={ __( 'Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
+			<WpmozoAlignment
+				label={__('Text Alignment', 'wpmozo-blocks-and-addons')}
+				onChange={(newValue) => setAttributes({textAlign: newValue})}
+				value={attributes.textAlign}
+			/>
 			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>
 				<ButtonGroup>
 					<Button className="wpmozo-button-tabs-btn"

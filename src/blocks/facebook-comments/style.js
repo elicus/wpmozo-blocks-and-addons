@@ -1,12 +1,12 @@
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ( { attributes, clientId } ) => {
+const generateDynamicStyle = ( { attributes } ) => {
 	const toConvertStyles = [
 		'block'
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
-	let styles = `#block-${clientId} {
+	let styles = `#block-${attributes.ID} {
 		${attributes.blockBGGradient ? `background:`+ attributes.blockBGGradient + `;` : ''}
 		${attributes.blockBackground ? `background:`+ attributes.blockBackground + `;` : ''}
 

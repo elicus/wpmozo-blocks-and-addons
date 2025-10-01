@@ -1,3 +1,4 @@
+import $ from 'jquery';
 jQuery( document ).ready( function($) {
 	if ( $( '.wp-block-wpmozo-dropdown-button' ).length > 0 ) {
 		// On change on props, update the slider again.
@@ -6,7 +7,7 @@ jQuery( document ).ready( function($) {
 				wpmozoInitDropdownButton( $( this ) );
 			} );
 		} );
-		
+
 		// On load.
 		$( '.wp-block-wpmozo-dropdown-button' ).each( function () {
 			wpmozoInitDropdownButton( $( this ) );

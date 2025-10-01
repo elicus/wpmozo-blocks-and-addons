@@ -6,34 +6,26 @@
 	"title": "Facebook Like",
 	"category": "wpmozo",
 	"icon": "smiley",
-	"description": "Add a Facebook Like button to any page, including layout, share button, and size options.",
+	"description": "Add a Facebook Like button to any page, including layout and size options.",
 	"example": {},
 	"supports": {
 		"html": false,
 		"customClassName": false
 	},
 	"attributes": {
-		"url": {
-			"type": "string",
-			"default": ""
-		},
-		"layout": {
-			"type": "string",
-			"default": "standard"
-		},
-		"size": {
-			"type": "string",
-			"default": "small"
-		},
-		"share": {
-			"type": "boolean",
-			"default": false
-		}
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+
+		"fbAppId": { "type": "string" },
+		"pageURL": { "type": "string", "default": "https://www.facebook.com/facebook/" },
+		"lazyLoading": { "type": "boolean", "default": false },
+
+		"buttonLayout": { "type": "string", "default": "button" },
+		"buttonSize": { "type": "string", "default": "small" },
+		"buttonAlign": { "type": "string" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js",
-	"render": "file:./render.php"
+	"script": [ "file:./script.js" ]
 }

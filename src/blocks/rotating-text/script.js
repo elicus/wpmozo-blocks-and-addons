@@ -1,8 +1,10 @@
+import $ from 'jquery';
+
 var wpmozo_init_rotating_text = function( $, element = null ) {
 
     if ( element.length > 0 ) {
         element.each( function () {
-            
+
             const $textEl = $(this).find( '.wpmozo-bna-rotating-text-inner' );
             let text    = $textEl.text().trim() + ' '; // Add space at end to show space.
 

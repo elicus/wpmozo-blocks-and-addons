@@ -3,114 +3,43 @@ import {convertInlineStyleStr} from '../../common/utils.js'
 const generateDynamicStyle = ({attributes}) => {
 	const toConvertStyles = [
 		'button',
-		'buttonContainer',
-		'icon',
-		'secondaryText'
 	];
 	let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
 
-	let buttonMediaPosition = attributes.buttonMediaPosition;
-
-	if ('before' === buttonMediaPosition) {
-		buttonMediaPosition = 'row-reverse';
-	} else if ('after' === buttonMediaPosition) {
-		buttonMediaPosition = 'row';
+	let frontVerticalAlign = attributes.btnVerticalAlign;
+	if ( 'top' === attributes.btnVerticalAlign ) {
+		frontVerticalAlign = 'flex-start';
+	}else if( 'bottom' === attributes.btnVerticalAlign ){
+		frontVerticalAlign = 'flex-end';
 	}
+
+	let alignment = ( attributes.buttonAlignment ) ?? 'center';
+	alignment = ( 'left' === alignment ) ? 'flex-start' : ( ( 'right' === alignment ) ? 'flex-end' : alignment );
 
 	let styles = `#block-${attributes.ID}{`;
-	styles += `
-		.wpmozo-button-wrapper{
-			text-align: ${attributes.buttonAlign};
-		}
-		.wpmozo-button-link{
-			${convertedStyle.buttonContainer}
-		}
-		.wpmozo-button-text{
-			color: ${attributes.buttonColor};
-			${convertedStyle.button}
-		}
-		.wpmozo-bna-button-icon{
-			color: ${attributes.iconColor};
-			font-size: ${attributes.iconFontSize}px;
-			${convertedStyle.icon}
-		}
-		.wpmozo-button-secondary-text{
-			color: ${attributes.secondaryTextColor};
-			${convertedStyle.secondaryText}
-		}
-		.wpmozo-primary-text-with-icon{
-			flex-direction:${buttonMediaPosition};
-		}
-		`;
 
-	//Button
-	if ('classic' === attributes.filledBackgroundType) {
-		styles += `
-		.wpmozo-button-link{
-			background-color:${attributes.classicBackgroundColor}
+	if('horizontal' === attributes.btnOrientation){
+		styles +=`
+		.wpmozo-advanced-button-child{
+			align-self:${frontVerticalAlign};
+		}
+		.block-editor-block-list__layout[data-is-drop-zone="true"] {
+			display: flex !important;
+			flex-wrap: wrap !important;
+			justify-content: ${alignment} !important;
+			gap: 0.5rem;
 		}`
 	} else {
-		styles += `
-		.wpmozo-button-link{
-			background-image:${attributes.gradientBackgroundColor}
+		styles +=`
+		.block-editor-block-list__layout[data-is-drop-zone="true"] {
+			display: flex !important;
+			flex-direction: column !important;
+  			align-items: ${alignment} !important;
+  			gap: 0.5rem;
 		}`
 	}
 
-	//button
-	if (attributes.classicBackgroundImage) {
-		styles += `
-		.wpmozo-button-link{
-			background-image:url(${attributes.classicBackgroundImage});
-		}`
-	}
-
-	//Background color
-	if ('classic' === attributes.filledBackgroundTypeHover) {
-		styles += `
-		.wpmozo-button-link:hover{
-			background-color:${attributes.classicBackgroundColorHover}
-		}`
-	} else {
-		styles += `
-		.wpmozo-button-link:hover{
-			background-image:${attributes.gradientBackgroundColorHover}
-		}`
-	}
-
-	//Background Image
-	if (attributes.classicBackgroundImageHover) {
-		styles += `
-		.wpmozo-button-link:hover{
-			background-image:url(${attributes.classicBackgroundImageHover});
-		}`
-	}
-
-	//primary text color
-	if (attributes.ButtonHoverColor) {
-		styles += `
-		.wpmozo-button-link:hover .wpmozo-button-text{
-			color:${attributes.ButtonHoverColor}
-		}`
-	}
-
-	//secondary text color
-	if (attributes.ButtonHoversecColor) {
-		styles += `
-		.wpmozo-button-link:hover .wpmozo-button-secondary-text{
-			color:${attributes.ButtonHoversecColor}
-		}`
-	}
-
-	//icon hover color
-	if (attributes.ButtonHoverIconColor) {
-		styles += `
-		.wpmozo-button-link:hover .wpmozo-bna-button-icon{
-			color:${attributes.ButtonHoverIconColor}
-		}`
-	}
-
-	styles += `}`;
-
+	styles += `}`
 	return styles;
 };
 

@@ -25,11 +25,6 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 	return (<>
 		<PanelBody title={__('Button', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel"
 				   initialOpen={true}>
-			<WpmozoAlignment
-				label={__('Button Alignment', 'wpmozo-blocks-and-addons')}
-				onChange={(newValue) => setAttributes({buttonAlign: newValue})}
-				value={attributes.buttonAlign}
-			/>
 			<BaseControl
 				label={__('Background Type', 'wpmozo-blocks-and-addons')}
 				className="wpmozo-button-tabs-wrap"
@@ -92,8 +87,13 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 				props={props}
 			/>
 		</PanelBody>
-		<PanelBody title={__('Button Primary', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel"
+		<PanelBody title={__('Primary Text', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel"
 				   initialOpen={false}>
+			<WpmozoAlignment
+				label={__('Text Alignment', 'wpmozo-blocks-and-addons')}
+				onChange={(newValue) => setAttributes({primaryAlign: newValue})}
+				value={attributes.primaryAlign}
+			/>
 			<WpmozoColorPicker props={props}
 							   ColorKey="button"
 							   ColorTypes={[
@@ -105,8 +105,13 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 				props={props}
 			/>
 		</PanelBody>
-		<PanelBody title={__('Button Secondary', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel"
+		<PanelBody title={__('Secondary Text', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel"
 				   initialOpen={false}>
+			<WpmozoAlignment
+				label={__('Text Alignment', 'wpmozo-blocks-and-addons')}
+				onChange={(newValue) => setAttributes({secAlign: newValue})}
+				value={attributes.secAlign}
+			/>
 			<WpmozoColorPicker
 				props={props}
 				ColorKey="secondaryText"
@@ -189,6 +194,10 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 					{
 						value: 'slide_up_fill',
 						label: __('Slide Up', 'wpmozo-blocks-and-addons'),
+					},
+					{
+						value: 'slide_down_fill',
+						label: __('Slide Down', 'wpmozo-blocks-and-addons'),
 					},
 					{
 						value: 'slide_left_fill',

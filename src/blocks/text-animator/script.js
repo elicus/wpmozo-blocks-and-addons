@@ -1,7 +1,6 @@
 import $ from 'jquery';
 
 jQuery( document ).ready( function($) {
-	if ( jQuery( document ).find( '.wp-block-wpmozo-text-animator' ).length > 0 ) {
 		$( document ).find( '.wp-block-wpmozo-text-animator' ).each( function() {
 			initWPMozoTextAnimator( $( this ) );
 		} );
@@ -15,7 +14,6 @@ jQuery( document ).ready( function($) {
 
 			}
 		} );
-	}
 } );
 
 // Init block, text animator.

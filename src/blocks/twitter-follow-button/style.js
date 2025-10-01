@@ -1,13 +1,13 @@
 
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ( { attributes, clientId } ) => {
+const generateDynamicStyle = ( { attributes } ) => {
 	const toConvertStyles = [
 		'fallbackText'
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
-	let styles = `#block-${clientId} {`;
+	let styles = `#block-${attributes.ID} {`;
 
 	// Alignment.
 	if ( attributes.buttonAlign ) {

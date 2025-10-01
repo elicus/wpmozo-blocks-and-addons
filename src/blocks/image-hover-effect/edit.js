@@ -1,5 +1,5 @@
 import { __ } from "@wordpress/i18n";
-import { Fragment } from "@wordpress/element";
+import { Fragment,useEffect } from "@wordpress/element";
 import { useBlockProps } from "@wordpress/block-editor";
 import Inspector from "./inspector";
 
@@ -9,10 +9,15 @@ export default function Edit( props ) {
 
 	const { attributes, setAttributes, clientId } = props;
 
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+
 	let image = ( attributes.image ) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,
 		hoverEffect = attributes.hoverEffect;
-
-	attributes.ID = clientId;
 
 	const effectClasses = {
 		radial: ["circle", "zoom"],
@@ -33,7 +38,7 @@ export default function Edit( props ) {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
 			<div id={`block-${clientId}`} { ...useBlockProps( { className: 'wpmozo-bna-image-hover-effect' } ) }>
 				<div className={`wpmozo-bna-image-hover-effect-wrapper wpmozo-bna-effect-${hoverEffect}`}>

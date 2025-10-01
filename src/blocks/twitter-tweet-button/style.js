@@ -1,14 +1,14 @@
 
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ( { attributes, clientId } ) => {
+const generateDynamicStyle = ( { attributes } ) => {
 	const toConvertStyles = [
 		'fallbackText',
 		'button',
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
-	let styles = `#block-${clientId} {`;
+	let styles = `#block-${attributes.ID} {`;
 
 	// Alignment.
 	if ( attributes.buttonAlign ) {
@@ -19,7 +19,7 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 
 	styles += `.wpmozo_twitter_embedded_tweet_button{
 		text-decoration: none;
-		border-style: solid;
+		border: 0 solid #000000;
 		${convertedStyle.button}
 	}`;
 

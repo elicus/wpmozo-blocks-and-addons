@@ -34,9 +34,9 @@ const Save = ( { attributes } ) => {
 			</div>
 		);
 	} );
-	
+
     return ( <>
-		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+		<style>{ generateDynamicStyle( { attributes } ) }</style>
 
 		<div id={`block-${clientId}`} { ...useBlockProps.save( { className: attributes.className } ) }>
 			<div className="wpmozo_dropdown_button_wrap"
