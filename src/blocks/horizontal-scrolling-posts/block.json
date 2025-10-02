@@ -1,0 +1,44 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "wpmozo/horizontal-scrolling-posts",
+    "version": "0.1.0",
+    "title": "Horizontal Scrolling Posts",
+    "category": "wpmozo",
+    "icon": "smiley",
+    "description": "Showcase your blog posts in a unique horizontal layout with the Horizontal Scrolling Posts block.",
+    "example": {},
+    "supports": {
+        "html": false,
+		"customClassName": false
+	},
+    "attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+
+		"layout": {"type": "string","default": "layout1"},
+		"postsToShow": {"type": "number","default": 5},
+		"postOrder": {"type": "string","default": "desc"},
+		"postOrderBy": {"type": "string","default": "date"},
+		"includesCategories": {"type": "string"},
+		"ignoreStickyPosts": {"type": "boolean","default": false},
+		"excludePasswordProtected": {"type": "boolean","default": false},
+		"noResultText": {"type": "string","default": "The posts you requested could not be found. Try changing your module settings or create some new posts."},
+
+		"showFeaturedImage": {"type": "boolean","default": true},
+		"showTtile": {"type": "boolean","default": true},
+		"showExcerpt": {"type": "boolean","default": true},
+		"excerptLength": {"type": "string","default": "150"},
+		"showCategories": {"type": "boolean","default": true},
+		"showAuthorName": {"type": "boolean","default": true},
+		"showDate": {"type": "boolean","default": true},
+		"showCommentCount": {"type": "boolean","default": true},
+		"showButton": {"type": "boolean","default": false},
+		"buttonText": {"type": "string","default": "Read More"}
+	},
+    "textdomain": "wpmozo-blocks-and-addons",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+	"render": "file:./render.php"
+}
