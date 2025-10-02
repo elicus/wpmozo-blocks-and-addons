@@ -1,10 +1,13 @@
 import { __ } from '@wordpress/i18n';
-import { Fragment, useEffect } from "@wordpress/element";
+import { Fragment, useEffect, renderToString } from "@wordpress/element";
 import { useBlockProps } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 
 import Inspector from './inspector';
 import generateDynamicStyle from "./style";
+
+import Layout1 from './layouts/layout1';
+import Layout2 from './layouts/layout2';
 
 const Edit = (props) => {
 	
@@ -36,21 +39,25 @@ const Edit = (props) => {
 
 	const layout = attributes.layout ?? 'layout1';
 
-	let $slides         = [],
+	let $postItems      = [],
 		$sliderArrows   = '',
 		$paginationDots = '';
 	if ( posts && posts.length > 0 ) {
 
-		posts.map( ( post ) => {
+		$postItems = posts.map( ( post ) => {
+			if ( 'layout2' === layout ) {
+				return renderToString( <Layout2 key={ post.id } post={ post } attributes={ attributes } /> );
+			}
+			// default to layout1
+			return renderToString( <Layout1 key={ post.id } post={ post } attributes={ attributes } /> );
+		} ).join('');
 
-
-			// Add to the slides.
-			$slides.push(
-				<div className="swiper-slide wpmozo_testimonial_slide">
-					{post.title.rendered}
-				</div>
-			);
-		} );
+		// // Add to the slides.
+		// $slides.push(
+		// 	<div className="swiper-slide wpmozo_testimonial_slide">
+		// 		{post.title.rendered}
+		// 	</div>
+		// );
 	}
 
 	return (
@@ -62,7 +69,7 @@ const Edit = (props) => {
 				<div className={"wpmozo_swiper_wrapper"}>
 					<div className={"wpmozo_bna_team_slider_container wpmozo_swiper_inner_wrap " + layout}>
 						<div className="swiper swiper-container">
-							<div className="swiper-wrapper">{ $slides }</div>
+							<div className="swiper-wrapper" dangerouslySetInnerHTML={ { __html: $postItems } } />
 						</div>
 						{ $sliderArrows }
 						{ $paginationDots }

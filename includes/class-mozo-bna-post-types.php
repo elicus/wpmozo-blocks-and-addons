@@ -27,9 +27,12 @@ class Mozo_Bna_Post_Types {
 		// Disabled block editor for custom post types.
 		add_filter( 'use_block_editor_for_post_type', array( __class__, 'manage_block_editor_for_post_type' ), 10, 2 );
 
-		// Update the rest andpoint return data.
+		// Update the rest endpoint return data.
 		add_filter( 'rest_mozo-testimonial_query', array( __class__, 'update_testimonial_rest_query' ), 10, 2 );
 		add_filter( 'rest_prepare_mozo-testimonial', array( __class__, 'update_testimonials_rest_endpoint_data' ), 10, 3 );
+
+		add_filter( 'rest_mozo-team-member_query', array( __class__, 'update_team_member_rest_query' ), 10, 2 );
+		add_filter( 'rest_prepare_mozo-team-member', array( __class__, 'update_team_member_rest_endpoint_data' ), 10, 3 );
 	}
 
 	/**
@@ -250,9 +253,9 @@ class Mozo_Bna_Post_Types {
 	 */
 	public static function update_testimonial_rest_query( $args, $request ) {
 
-		// Only modify for post type 'post'
+		// Only modify for post type 'post'.
 		if ( ! empty( $args['post_type'] ) && 'mozo-testimonial' !== $args['post_type'] ) {
-			return $response;
+			return $args;
 		}
 
 		// Check if categories are not empty.
@@ -262,7 +265,7 @@ class Mozo_Bna_Post_Types {
 				'taxonomy' => 'mozo-testimonial-category',
 				'field'    => 'term_id',
 				'terms'    => $term_ids,
-				'operator' => 'IN', // use 'AND' if you want all categories to match
+				'operator' => 'IN', // use 'AND' if you want all categories to match.
 			);
 		}
 
@@ -291,6 +294,63 @@ class Mozo_Bna_Post_Types {
 
 		// Email can't be display as public.
 		// $data['author_email']       = get_post_meta( $post->ID, '_author_email', true );
+
+		$response->set_data( $data );
+
+		return $response;
+	}
+
+	/**
+	 * Update posts data query in rest api endpoint.
+	 * /wp-json/wp/v2/posts
+	 * @since 1.6.0
+	 */
+	public static function update_team_member_rest_query( $args, $request ) {
+
+		// Only modify for post type 'post'.
+		if ( ! empty( $args['post_type'] ) && 'mozo-team-member' !== $args['post_type'] ) {
+			return $args;
+		}
+
+		// Check if categories are not empty.
+		if ( ! empty( $request['categories'] ) ) {
+			$term_ids = array_map( 'absint', explode( ',', $request['categories'] ) );
+			$args['tax_query'][] = array(
+				'taxonomy' => 'mozo-team-member-category',
+				'field'    => 'term_id',
+				'terms'    => $term_ids,
+				'operator' => 'IN', // use 'AND' if you want all categories to match.
+			);
+		}
+
+		return $args;
+	}
+
+	/**
+	 * Update posts data in rest api endpoint.
+	 * /wp-json/wp/v2/posts
+	 * @since 1.6.0
+	 */
+	public static function update_team_member_rest_endpoint_data( $response, $post, $request ) {
+		// Only modify for post type 'post'.
+		if ( 'mozo-team-member' !== $post->post_type  ) {
+			return $response;
+		}
+
+		// Proceed to add custom meta.
+		$data = $response->get_data();
+
+		$data['short_description'] = get_post_meta( $post->ID, '_short_description', true );
+		$data['designation']       = get_post_meta( $post->ID, '_designation', true );
+		$data['phone_number']      = get_post_meta( $post->ID, '_phone_number', true );
+		$data['email_address']     = get_post_meta( $post->ID, '_email_address', true );
+		$data['website']           = get_post_meta( $post->ID, '_website', true );
+		$data['facebook']          = get_post_meta( $post->ID, '_facebook', true );
+		$data['twitter']           = get_post_meta( $post->ID, '_twitter', true );
+		$data['linkedin']          = get_post_meta( $post->ID, '_linkedin', true );
+		$data['instagram']         = get_post_meta( $post->ID, '_instagram', true );
+		$data['youtube']           = get_post_meta( $post->ID, '_youtube', true );
+		$data['member_skills']     = get_post_meta( $post->ID, '_member_skills', true );
 
 		$response->set_data( $data );
 
