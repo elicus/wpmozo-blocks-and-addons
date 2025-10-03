@@ -1,6 +1,7 @@
 import { registerBlockType } from '@wordpress/blocks';
 import metadata from './block.json';
 import Edit from './edit';
+import save from './save';
 import Icon from './icon';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -14,5 +15,5 @@ import './style.scss';
 registerBlockType( metadata.name, {
     edit: Edit,
     icon: Icon,
-    save: () => null,
+    save,
 } );

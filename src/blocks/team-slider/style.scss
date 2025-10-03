@@ -1,6 +1,9 @@
 .wp-block-wpmozo-team-slider{
     position: relative;
 }
+.wp-block-wpmozo-team-slider *{
+	box-sizing: border-box;
+}
 .wpmozo_bna_team_link{
     cursor: pointer;
 }
@@ -15,7 +18,7 @@
     object-fit: cover;
 }
 .wpmozo_bna_team_member_social_icon{
-	border-style: solid;
+	border: 0 solid;
 	margin-right: 5px;
 	margin-bottom: 5px;
 	padding: 5px;
@@ -100,6 +103,9 @@
 	width: 100%;
 	line-height: 1;
 	margin-top: 20px;
+}
+.wpmozo_bna_team_social_wrapper a{
+	text-decoration: none;
 }
 .wpmozo_bna_abs_link{
     position: absolute;

@@ -38,8 +38,8 @@
 		"displayInPopup": { "type": "array", "default": [ "image", "designation", "social_icons", "content", "skills_bars" ] },
 
 		"slideEffect": { "type": "string", "default": "slide" },
-		"slidesPerView": { "type": "number", "default": 3 },
-		"slidesPerViewTablet": { "type": "number", "default": 2 },
+		"slidesPerView": { "type": "number", "default": 2 },
+		"slidesPerViewTablet": { "type": "number", "default": 1 },
 		"slidesPerViewMobile": { "type": "number", "default": 1 },
 		"slidesPerGroup": { "type": "number", "default": 1 },
 		"slidesPerGroupTablet": { "type": "number", "default": 1 },
@@ -62,8 +62,8 @@
 		"transDuration": { "type": "number", "default": 1000 },
 
 		"showArrows": { "type": "boolean", "default": false },
-		"prevArrowIcon": { "type": "string", "default": "" },
-		"nextArrowIcon": { "type": "string", "default": "" },
+		"prevArrowIcon": { "type": "string", "default": "fas fa-chevron-left" },
+		"nextArrowIcon": { "type": "string", "default": "fas fa-chevron-right" },
 		"showArrowOnHover": { "type": "boolean", "default": false },
 		"arrowsPosition": { "type": "string", "default": "inside" },
 		"showControlDot": { "type": "boolean", "default": false },
@@ -72,7 +72,7 @@
 		"controlDotColorActive": { "type": "string", "default": "#000000" },
 		"controlDotColorInactive": { "type": "string", "default": "#cccccc" },
 
-		"imageHeight": { "type": "number" },
+		"imageHeight": { "type": "number", "default": 350 },
 		"imageborder": { "type": "object" },
 		"imageborderRadius": { "type": "string" },
 
@@ -287,7 +287,7 @@
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
-	"style": [ "file:./style-index.css" ],
-	"script": [ "file:./script.js" ],
+	"style": [ "file:./style-index.css", "wpmozo-blocks-and-addons-swiper-style", "wpmozo-blocks-and-addons-swiper-wpmozo-style" ],
+	"script": [ "file:./script.js", "wpmozo-blocks-and-addons-swiper-script" ],
 	"render": "file:./render.php"
 }

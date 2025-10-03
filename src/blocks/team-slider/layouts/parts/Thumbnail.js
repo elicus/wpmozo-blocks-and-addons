@@ -12,8 +12,10 @@ const Thumbnail = ( { post, attributes } ) => {
 	}
 
 	return (
-		<div className="wpmozo_bna_team_member_image">
-            <img src={imageUrl} alt={altText} />
+		<div className="wpmozo_bna_team_image_wrapper">
+			<div className="wpmozo_bna_team_member_image">
+				<img src={imageUrl} alt={altText} />
+			</div>
 		</div>
 	);
 };

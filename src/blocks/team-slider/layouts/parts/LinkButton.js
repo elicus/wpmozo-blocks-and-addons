@@ -17,6 +17,8 @@ const LinkButton = ( { post, attributes } ) => {
 			<a href={ post.link }
 				className={ [
 					'wpmozo-bna-button',
+					'wpmozo-bna-team-item-link-btn',
+					( attributes.usePopup ) ? 'wpmozo_bna_team_popup' : '',
 					( attributes.buttonUseIcon && attributes.buttonIconOnHover ) ? 'wpmozo-icon-on-hover' : '',
 					( attributes.buttonUseIcon && 'before' === attributes.buttonIconPosition ) ? 'wpmozo-icon-at-before' : 'wpmozo-icon-at-after'
 				].join(" ") }
