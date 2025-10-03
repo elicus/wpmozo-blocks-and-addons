@@ -31,6 +31,8 @@ export default function Edit(props) {
     }, [clientId]);
     attributes.parentAtts = parentAttributes;
 
+    let inactiveState = parentAttributes.inactiveState;
+
     let {
         itemButtonText,
         itemButtonUrl,
@@ -54,7 +56,11 @@ export default function Edit(props) {
         resolvedIconShape = styleIcon ? iconShape : '',
         titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttributes.titleLavel,
         animationClass = ( 'off' !== contentAnimation ) ? ` wpmozo-item-animation-${contentAnimation}` : '',
-        isEnabledAnimation = ( 'off' !== contentAnimation ) ? ' wpmozo-item-animation' : '' ;
+        isEnabledAnimation = ( 'off' !== contentAnimation ) ? ' wpmozo-item-animation' : '',
+        titleExClass = ( ! wpmozo_is_empty( inactiveState ) && ! inactiveState.includes( 'title' ) && 'off' !== contentAnimation ) ? ' wpmozo-item-animation' : '',
+        iconExClass = ( ! wpmozo_is_empty( inactiveState ) && ! inactiveState.includes( 'icon' ) && 'off' !== contentAnimation ) ? ' wpmozo-item-animation' : '',
+        descExClass = ( ! wpmozo_is_empty( inactiveState ) && 'off' !== contentAnimation ) ? ' wpmozo-item-animation' : '',
+        btnExClass = ( ! wpmozo_is_empty( inactiveState ) && 'off' !== contentAnimation ) ? 'wpmozo-item-animation' : '';
 
     let renderedIcon = null;
     if (itemIcon) {
@@ -70,7 +76,7 @@ export default function Edit(props) {
             );
         }else{
             renderedIcon = (
-                <span className={`wpmozo-bna-image-accordion-item-icon ${resolvedIconShape}`}>
+                <span className={`wpmozo-bna-image-accordion-item-icon ${resolvedIconShape}${iconExClass}`}>
                     <div className="icon-wrapper">
                         <i className={`${itemIcon} wpmozo-bna-icon-shape-${resolvedIconShape}`}></i>
                     </div>
@@ -136,27 +142,28 @@ export default function Edit(props) {
                         {renderedIcon}
                         <RichText
                             tagName={titleHeadingLavel}
-                            className="wpmozo-bna-image-accordion-item-title"
+                            className={`wpmozo-bna-image-accordion-item-title${titleExClass}`}
                             value={itemTitle}
                             onChange={(value) => setAttributes({ itemTitle: value })}
                             placeholder={ __( 'Item Title', 'wpmozo-blocks-and-addons' ) }
                         />
                         <RichText
                             tagName="div"
-                            className="wpmozo-bna-image-accordion-item-desc"
+                            className={`wpmozo-bna-image-accordion-item-desc${descExClass}`}
                             value={itemDescription}
                             onChange={(value) => setAttributes({ itemDescription: value })}
                             placeholder={ __( 'Add content...', 'wpmozo-blocks-and-addons' ) }
                         />
                         {itemButtonUrl && itemButtonUrl !== '' && showButton && (
-                            <div className="wpmozo-bna-button-wrap wpmozo-bna-imsage-accordion-btn">
+                            <div className="wpmozo-bna-button-wrap wpmozo-bna-image-accordion-btn">
                                 <a
                                     href={itemButtonUrl}
                                     target={urlNewWindow}
                                     className={ [
                                         'wpmozo-bna-button',
                                         buttonIconHoverClass,
-                                        buttonIconPlacementClass
+                                        buttonIconPlacementClass,
+                                        btnExClass
                                     ].join(" ") }
                                 >
                                     <span className='wpmozo-bna-btn-text'>{ buttonText }</span>

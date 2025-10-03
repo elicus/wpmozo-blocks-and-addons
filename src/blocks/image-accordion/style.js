@@ -87,6 +87,10 @@ const generateDynamicStyle = ({ attributes }) => {
 		styles += `
 			color: ${textColorStyle};
 		`;
+		styles += `h1, h2, h3, h4, h5, h6, a {
+			color: ${textColorStyle};
+		}
+		`;
 
 		if ( ! wpmozo_is_empty( accordionSpacing ) ) {
 			if ( 'horizontal' === accordionOrientation ) {

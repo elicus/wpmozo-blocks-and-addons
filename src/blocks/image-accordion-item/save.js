@@ -18,7 +18,8 @@ export default function save({ attributes }) {
         ...( ID ? { id: `block-${ ID }` } : {} ),
     } );
 
-    let parentAttsTitleLavel = ( ! wpmozo_is_empty( parentAtts ) ) ? parentAtts.titleLavel : 'h4';
+    let parentAttsTitleLavel = ( ! wpmozo_is_empty( parentAtts ) ) ? parentAtts.titleLavel : 'h4',
+        inactiveState = ( ! wpmozo_is_empty( parentAtts ) ) ? parentAtts.inactiveState : '';
 
     const {
         itemButtonText,
@@ -35,15 +36,20 @@ export default function save({ attributes }) {
         buttonIconPlacement,
         useButtonIcon,
         buttonIconHover,
-        contentAnimation,
         normalBackgroundImage,
-        activeBackgroundImage
+        activeBackgroundImage,
+        contentAnimation
     } = attributes;
 
     let buttonText = itemButtonText || __( 'Read More', 'wpmozo-blocks-and-addons' ),
         urlNewWindow = itemButtonLinkTarget === 'external' ? '_blank' : '_self',
         resolvedIconShape = styleIcon ? iconShape : '',
-        titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttsTitleLavel;
+        titleHeadingLavel = ( ! wpmozo_is_empty( titleLavel ) && 'h4' !== titleLavel ) ? titleLavel : parentAttsTitleLavel,
+        isEnabledAnimation = ( 'off' !== contentAnimation ) ? ' wpmozo-item-animation' : '',
+        titleExClass = ( ! wpmozo_is_empty( inactiveState ) && ! inactiveState.includes( 'title' ) && 'off' !== contentAnimation ) ? ' wpmozo-item-animation' : '',
+        iconExClass = ( ! wpmozo_is_empty( inactiveState ) && ! inactiveState.includes( 'icon' ) && 'off' !== contentAnimation ) ? ' wpmozo-item-animation' : '',
+        descExClass = ( ! wpmozo_is_empty( inactiveState ) && 'off' !== contentAnimation ) ? ' wpmozo-item-animation' : '',
+        btnExClass = ( ! wpmozo_is_empty( inactiveState ) && 'off' !== contentAnimation ) ? 'wpmozo-item-animation' : '';
 
     let renderedIcon = null;
     if (itemIcon) {
@@ -59,7 +65,7 @@ export default function save({ attributes }) {
             );
         }else{
             renderedIcon = (
-                <span className={`wpmozo-bna-image-accordion-item-icon ${resolvedIconShape}`}>
+                <span className={`wpmozo-bna-image-accordion-item-icon ${resolvedIconShape}${iconExClass}`}>
                     <div className="icon-wrapper">
                         <i className={`${itemIcon} wpmozo-bna-icon-shape-${resolvedIconShape}`}></i>
                     </div>
@@ -121,28 +127,29 @@ export default function save({ attributes }) {
                 <style>{ generateDynamicStyle( { attributes } ) }</style>
             ) }
             <div { ...blockProps }>
-                <div className={`wpmozo-bna-image-accordion-item-content-wrapper wpmozo-item-animation`}>
+                <div className={`wpmozo-bna-image-accordion-item-content-wrapper${isEnabledAnimation}`}>
                     <div className={`wpmozo-bna-image-accordion-item-content-inner-wrap`}>
                         {renderedIcon}
                         <RichText.Content
                             tagName={titleHeadingLavel}
-                            className="wpmozo-bna-image-accordion-item-title"
+                            className={`wpmozo-bna-image-accordion-item-title${titleExClass}`}
                             value={itemTitle}
                         />
                         <RichText.Content
                             tagName="div"
-                            className="wpmozo-bna-image-accordion-item-desc"
+                            className={`wpmozo-bna-image-accordion-item-desc${descExClass}`}
                             value={itemDescription}
                         />
                         {itemButtonUrl && itemButtonUrl !== '' && showButton && (
-                            <div className="wpmozo-bna-button-wrap wpmozo-bna-imsage-accordion-btn">
+                            <div className="wpmozo-bna-button-wrap wpmozo-bna-image-accordion-btn">
                                 <a
                                     href={itemButtonUrl}
                                     target={urlNewWindow}
                                     className={ [
                                         'wpmozo-bna-button',
                                         buttonIconHoverClass,
-                                        buttonIconPlacementClass
+                                        buttonIconPlacementClass,
+                                        btnExClass
                                     ].join(" ") }
                                 >
                                     <span className='wpmozo-bna-btn-text'>{ buttonText }</span>
