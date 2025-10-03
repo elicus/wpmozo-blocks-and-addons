@@ -77,11 +77,6 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				checked={attributes.ignoreStickyPosts}
 				onChange={(newValue) => setAttributes({ignoreStickyPosts: newValue})}
 			/>
-			<ToggleControl
-				label={__('Exclude Password Protected', 'wpmozo-blocks-and-addons')}
-				checked={attributes.excludePasswordProtected}
-				onChange={(newValue) => setAttributes({excludePasswordProtected: newValue})}
-			/>
 			<TextControl
 				label={ __( 'No Result Text', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.noResultText }

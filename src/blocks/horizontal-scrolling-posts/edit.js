@@ -31,16 +31,24 @@ export default function Edit(props) {
 	const postsToShow        = parseInt( attributes.postsToShow ) ?? 5;
 	const postOrder          = attributes.postOrder ?? 'DESC';
 	const postOrderBy        = attributes.postOrderBy ?? 'date';
+	const sticky        = attributes.ignoreStickyPosts ?? false;
 
-	// Get the post types.
-	const posts = useSelect((select) =>
-		select('core').getEntityRecords('postType', 'post', {
-			per_page: postsToShow,
-			order: postOrder,
-			orderby: postOrderBy,
-			_embed: true
-		}),
-	[postsToShow, postOrder, postOrderBy]);
+	const queryArgs = {
+		per_page: postsToShow,
+		order: postOrder,
+		orderby: postOrderBy,
+		_embed: true
+	};
+
+	if(true === attributes.ignoreStickyPosts){
+		queryArgs.sticky = false;
+	}
+
+	const posts = useSelect(
+		(select) =>
+			select('core').getEntityRecords('postType', 'post', queryArgs),
+		[postsToShow, postOrder, postOrderBy, sticky]
+	);
 
 	// Get props.
 	const layout = attributes.layout ?? 'layout1';
