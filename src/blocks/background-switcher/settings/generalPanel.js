@@ -39,6 +39,14 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				onChange={ ( newValue ) => setAttributes( { itemHeight: newValue } ) }
 				min={1} max={1000} step={1}
 			/>
+			{'row' === attributes.switcherOrientation && (
+				<RangeControl
+					label={ __( 'Responsive Height (px)', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.responsiveHeight }
+					onChange={ ( newValue ) => setAttributes( { responsiveHeight: newValue } ) }
+					min={1} max={500} step={1}
+				/>
+			)}
 			<RangeControl
 				label={ __( 'Blur on Hover (px)', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.hoverBlurLevel }

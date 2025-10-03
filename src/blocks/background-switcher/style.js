@@ -6,6 +6,9 @@ const generateDynamicStyle = ( { attributes } ) => {
 		'description',
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
+	let alignment = ( attributes.contentValign ) ?? 'center';
+	alignment = ( 'left' === alignment ) ? 'flex-start' : ( ( 'right' === alignment ) ? 'flex-end' : alignment );
+
 
 	let styles = `#block-${attributes.ID} {`;
 
@@ -13,6 +16,26 @@ const generateDynamicStyle = ( { attributes } ) => {
 	styles += `.wpmozo_bna_background_switcher_inner{
 		${attributes.switcherOrientation ? `flex-direction: ${attributes.switcherOrientation};` : ''}
 	}`;
+
+	styles +=`
+	@media only screen and (max-width: 980px) {
+		.wpmozo_bna_background_switcher_inner {
+			flex-direction: column !important;
+		}
+		.wp-block-wpmozo-background-switcher-item{
+			min-height: ${attributes.responsiveHeight}px !important;
+			height: ${attributes.responsiveHeight}px !important;
+		}
+	}
+	`;
+
+	if('row' === attributes.switcherOrientation && alignment){
+		styles +=`
+		.wpmozo_bna_bg_switcher_item_wrap{
+			justify-content: ${alignment} !important;
+		}`
+	}
+
 
 	// Title.
 	styles += `.wpmozo-bna-bg-switcher-title{
