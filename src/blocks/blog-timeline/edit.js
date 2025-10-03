@@ -26,21 +26,27 @@ const Edit = (props) => {
 	const postOrder          = attributes.postOrder ?? 'DESC';
 	const postOrderBy        = attributes.postOrderBy ?? 'date';
 	const includesCategories = attributes.includesCategories ?? [];
-	const ignoreStickyPosts  = attributes.ignoreStickyPosts ?? false;
+	let ignoreStickyPosts  = attributes.ignoreStickyPosts ?? false;
+
+	const queryArgs = {
+		per_page: postsNumber,
+		offset: offsetNumber,
+		order: postOrder,
+		orderby: postOrderBy,
+		categories: includesCategories,
+		_embed: true
+	};
+
+	if(true === attributes.ignoreStickyPosts){
+		queryArgs.sticky = false;
+	}
 
 	// Get the posts.
-	const posts = useSelect( (select) =>
-		select( 'core' ).getEntityRecords( 'postType', 'post', {
-			per_page: postsNumber,
-			offset: offsetNumber,
-			order: postOrder,
-			orderby: postOrderBy,
-			categories: includesCategories,
-			ignore_sticky_posts: ignoreStickyPosts,
-			// author: 1,
-			_embed: true
-		} ),
-	[ postsNumber, offsetNumber, postOrder, postOrderBy, includesCategories, ignoreStickyPosts ] );
+	const posts = useSelect(
+		(select) =>
+			select('core').getEntityRecords('postType', 'post', queryArgs),
+		[postsNumber, offsetNumber, postOrder, postOrderBy, includesCategories, ignoreStickyPosts]
+	);
 
 	// Props change event.
 	useEffect( () => {
@@ -72,7 +78,7 @@ const Edit = (props) => {
 			} ).join('');
 
 			// Save items html to db.
-			setAttributes( { postItemsDB: postItems } );			
+			setAttributes( { postItemsDB: postItems } );
 		}
 	}, [ posts, props ] );
 

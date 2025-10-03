@@ -39,7 +39,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				label={ __( 'Post Offset Number', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.offsetNumber || 0 }
 				onChange={ ( newValue ) => setAttributes( { offsetNumber: newValue } ) }
-				min={2} max={50} step={1}
+				min={0} max={50} step={1}
 			/>
 			<SelectControl
 				label={ __( 'Order by', 'wpmozo-blocks-and-addons' ) }

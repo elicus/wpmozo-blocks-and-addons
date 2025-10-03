@@ -80,7 +80,7 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 									ColorTypes={[
 										{
 											key: 'BackgroundColor',
-											label: __('Button Background Color', 'wpmozo-blocks-and-addons'),
+											label: __('Background Color', 'wpmozo-blocks-and-addons'),
 										}
 									]}
 								/>
@@ -97,7 +97,7 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 								ColorTypes={[
 									{
 										key: 'BackgroundColor',
-										label: __('Button Background Color', 'wpmozo-blocks-and-addons'),
+										label: __('Background Color', 'wpmozo-blocks-and-addons'),
 										onlyGradient: true,
 									}
 								]}

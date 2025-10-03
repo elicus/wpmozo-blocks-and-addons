@@ -21,7 +21,7 @@ const ReadMoreButton = ( { post, attributes } ) => {
 					( attributes.buttonUseIcon && 'before' === attributes.buttonIconPosition ) ? 'wpmozo-icon-at-before' : 'wpmozo-icon-at-after'
 				].join(" ") }
 			>
-				<span className='wpmozo-bna-btn-text'>{ attributes.readMoreText && __( 'Read More', 'wpmozo-blocks-and-addons' ) }</span>
+				<span className='wpmozo-bna-btn-text'>{ attributes.readMoreText }</span>
 				{ $buttonIcon }
 			</a>
 		</div>
