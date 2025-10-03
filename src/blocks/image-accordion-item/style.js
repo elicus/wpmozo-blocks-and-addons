@@ -121,7 +121,8 @@ const generateDynamicStyle = ({ attributes }) => {
 	if ( 'global' != textColor ) {
 		let textColorStyle = ( 'dark' === textColor ) ? '#666' : '#fff';
 		styles += `
-			#block-${attributes.ID}.wp-block-wpmozo-image-accordion-item {
+			#block-${attributes.ID}.wp-block-wpmozo-image-accordion-item, 
+			#block-${attributes.ID}.wp-block-wpmozo-image-accordion-item h1, h2, h3, h4, h5, h6, a {
 				color: ${textColorStyle};
 			}
 		`;
