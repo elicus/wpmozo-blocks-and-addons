@@ -78,7 +78,7 @@ export default function Edit(props) {
 				fromSavedContent: Boolean( block.originalContent ),
 				id: block.attributes.id,
 				url: block.attributes.url,
-				caption: toHTMLString( { value: block.attributes.caption } )
+				caption: block.attributes.caption ? toHTMLString( { value: block.attributes.caption } ) : ''
 			} ) ),
 		[ innerBlockImages ]
 	);
@@ -266,15 +266,19 @@ export default function Edit(props) {
 					data-image_width={attributes.image_width}
 					data-image_height={attributes.image_height}
 				>
-					<div className={`wpmozo_image_card_ticker_inner`}>
-
-						{attributes.images_data && attributes.images_data.length > 0 && (
-							<>
-								{attributes.images_data.map((image, idx) => (
-									<img key={idx} src={image.url} alt={image.alt || ''} />
-								))}
-							</>
-						)}
+					<div className="wpmozo_image_card_ticker_inner">
+						{attributes.images_data && attributes.images_data.length > 0 && attributes.images_data.map((image, idx) => {
+							if (attributes.tickerLayout === '3d_circular') {
+								return (
+									<div key={idx} className="wpmozo_image_card_ticker_image_wrapper">
+										<img src={image.url} alt={image.alt || ''} />
+									</div>
+								);
+							}
+							return (
+								<img key={idx} src={image.url} alt={image.alt || ''} />
+							);
+						})}
 					</div>
 				</div>
 				{ isSelected && (

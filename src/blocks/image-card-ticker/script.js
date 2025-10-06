@@ -242,10 +242,4 @@ function wpmozoDestroyImageCardTicker($wrapper) {
 
 	// Remove layout classes
 	$wrapper.removeClass('marquee-inited circle-carousel curve-carousel');
-
-	// Reset HTML to original state (remove any cloned content)
-	const originalItems = $wrapper.data('original-html');
-	if (originalItems !== undefined) {
-		$innerWrap.html(originalItems);
-	}
 }
