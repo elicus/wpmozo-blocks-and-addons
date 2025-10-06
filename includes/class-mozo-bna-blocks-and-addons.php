@@ -161,6 +161,11 @@ class Mozo_Bna_Blocks_And_Addons {
 		 */
 		require_once WPMOZO_BNA_INC_DIR_PATH . 'class-mozo-bna-post-types.php';
 
+		/**
+		 * The class that manages plugin public side functionalities.
+		 */
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'class-mozo-bna-public.php';
+
 		$wpmozo_i18n   = new Mozo_Bna_Blocks_And_Addons_I18n();
 		$wpmozo_assets = new Mozo_Bna_Blocks_And_Addons_Assets();
 

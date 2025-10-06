@@ -105,7 +105,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		{/* Short Description Text. */}
 		{ ( attributes.showShortDesc ) && (
 			<PanelBody title={ __( 'Description Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-				<WpmozoAlignment
+				<WpmozoAlignment showJustify={ true }
 					label={ __( 'Description Alignment', 'wpmozo-blocks-and-addons' ) }
 					onChange={ ( newValue ) => setAttributes( { descriptionAlign: newValue } ) }
 					value={ attributes.descriptionAlign }
@@ -392,7 +392,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			) }
 			{/* Popup Social Icons. */}
 			{ ( ( attributes.displayInPopup ).includes( 'social_icons' ) ) && ( <>
-				<PanelBody title={ __( 'Social Icons', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<PanelBody title={ __( 'Popup Social Icons', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 					<WpmozoAlignment
 						label={ __( 'Popup Social Icon Alignment', 'wpmozo-blocks-and-addons' ) }
 						onChange={ ( newValue ) => setAttributes( { popupSocialIconAlign: newValue } ) }

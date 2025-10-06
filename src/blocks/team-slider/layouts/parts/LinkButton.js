@@ -15,6 +15,7 @@ const LinkButton = ( { post, attributes } ) => {
 	return (
 		<div className="wpmozo-bna-button-wrap wpmozo-bna-team-item-link-btn-wrap">
 			<a href={ post.link }
+				target={ 'external' === attributes.linkTarget ? '_blank' : false }
 				className={ [
 					'wpmozo-bna-button',
 					'wpmozo-bna-team-item-link-btn',

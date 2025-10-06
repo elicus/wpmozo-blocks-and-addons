@@ -16,7 +16,7 @@ const SkillBars = ( { post, attributes } ) => {
 				<div className="wpmozo_bna_skill_bar_wrapper_inner" key={index}>
 					<div className="wpmozo_bna_skill_name">{ skill.title }</div>
 					<div className="wpmozo_bna_empty_bar">
-						<div className="wpmozo_bna_filled_bar" data-skill={ skill.value } />
+						<div className="wpmozo_bna_filled_bar" data-skill={ skill.value + "%" } />
 					</div>
 				</div>
 			) ) }

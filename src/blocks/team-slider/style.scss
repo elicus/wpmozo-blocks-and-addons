@@ -205,12 +205,13 @@
 }
 .wpmozo_bna_team_member_lightbox .wpmozo_bna_team_member_name{
 	padding: 0;
-	font-size: 18px;
+	font-size: 24px;
 	line-height: 1.5;
+	margin: 0;
 }
 .wpmozo_bna_team_member_lightbox .wpmozo_bna_team_member_designation {
 	margin-top: 5px;
-	font-size: 12px;
+	font-size: 18px;
 	line-height: 1.5;
 }
 .wpmozo_bna_team_member_lightbox .wpmozo_bna_team_member_description + .wpmozo_bna_team_social_wrapper,
@@ -277,8 +278,9 @@
 	top: 50%;
 	left: 50%;
 	z-index: 999;
-	content: "\e02d";
-	font-family: ETMODULES;
+	content: "\f110";
+	font-family: "Font Awesome 6 Free";
+	font-weight: 900;
 	font-size: 36px;
 	color: #000;
 	transform: translate(-50%, -50%);
@@ -326,6 +328,7 @@
 	background: #ddd;
 	margin-right: 5px;
 	flex-grow: 1;
+	height: 10px;
 }
 .wpmozo_bna_team_member_lightbox .wpmozo_bna_bar_counter_filled_chunks:before{
 	position: absolute;

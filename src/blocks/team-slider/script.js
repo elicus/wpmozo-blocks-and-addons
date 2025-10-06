@@ -12,18 +12,107 @@ jQuery( document ).ready( function( $ ) {
 		initWPMozoTeamMemberSlider( $( this ) );
 	} );
 
-	if ( $( document ).find( '.wp-block-wpmozo-team-slider' ).length > 0 ) {
-		$( document ).find( '.wp-block-wpmozo-team--slider' ).each( function() {
-			let $arrows = $(this).find('.wpmozo_swiper_navigation').data();
-			if ( $arrows ) {
-				let $winWidth = jQuery(window).width();
-				if ( $winWidth > 980 && typeof( $arrows['arrows_desktop'] ) !== 'undefined' ) {
-					wpmozo_remove_arrows_classes( $(this).find('.wpmozo_swiper_navigation') );
-					$(this).find('.wpmozo_swiper_navigation').addClass( 'wpmozo_arrows_' + $arrows['arrows_desktop'] );
-				}
-			}
+	// Link click on team item.
+	$( document ).on( 'click', '.wpmozo_bna_team_link', function(e) {
+		if ( $(e.target).is( $(this).find( '.wpmozo_bna_team_member_social_icon' ) ) ) {
+			return;
+		}
+		e.preventDefault();
+		let link   = $(this).attr( 'data-link' ),
+			target = $(this).attr( 'data-link_target' );
+		window.open( link, target );
+	} );
+
+	$( document ).on( 'click', '.wpmozo_bna_team_popup', function(e) {
+		if ( $(e.target).is( $(this).find('.wpmozo_bna_team_member_social_icon') ) ) {
+			return;
+		}
+		e.preventDefault();
+
+		let $wrapObj = $( this );
+		if ( ! $wrapObj.hasClass( 'wpmozo_bna_team_member_card' ) ) {
+			$wrapObj = $wrapObj.parents( '.wpmozo_bna_team_member_card' );
+		}
+
+		// Main wrap.
+		let $mainWrap = $wrapObj.closest( '.wpmozo_swiper_wrapper' )
+
+		let $props    = $wrapObj.data();
+			$position = $wrapObj.data( 'close_icon_position' );
+
+		let $close_icon_position = 'inside' === $position ? true : false;
+
+		$wrapObj.addClass( 'wpmozo_bna_team_lightbox_loader' );
+		$.ajax( {
+			type: 'POST',  
+			url: WPMozoTeamSliderData.ajaxurl,
+			data: {
+				action: 'wpmozo_bna_get_team_detail',
+				_ajax_nonce: WPMozoTeamSliderData.ajaxnonce,
+				props: $props
+			},
+			success: function(response) {
+				$wrapObj.removeClass( 'wpmozo_bna_team_lightbox_loader' );
+
+				let $orderClass = 'block-' + $mainWrap.attr( 'data-clientid' ) + '_lightbox';
+
+				$.magnificPopup.open( {
+					preloader: true,
+					closeOnContentClick: false,
+					closeBtnInside: $close_icon_position,
+					mainClass: 'wpmozo_bna_team_member_lightbox ' + $orderClass,
+					items: {
+						src: $( response.data.html ),
+						type: 'inline'
+					},
+					callbacks: {
+						open: function() {
+							let $lightbox = $( '.wpmozo_bna_team_member_lightbox');
+							// Check for bars layout one.
+							if ( $lightbox.find( '.wpmozo_bna_filled_bar' ).length > 0 ) {
+								$lightbox.find( '.wpmozo_bna_filled_bar' ).each( function() {
+									let $this = $(this);
+									$this.waypoint( {
+										handler: function() {
+											let width = $this.attr( 'data-skill' );
+											$this.css( 'width', width );
+										},
+										context: $this
+									} );
+								} );
+							}
+							// Check for bars layout two.
+							if ( $lightbox.find( '.wpmozo_bna_bar_counter_chunks' ).length > 0 ) {
+								$lightbox.find( '.wpmozo_bna_bar_counter_filled_chunks' ).each( function() {
+									let $this = $(this);
+									$this.waypoint({
+										handler: function() {
+											$this.addClass( 'wpmozo_bna_animate_filled' );
+										},
+										context: $this
+									} );
+								} );
+							} // Over bars animation.
+						} // Over open callback.
+					}
+				} );
+			},
+			error: function(e) {
+			} // Ajax error.
 		} );
-	}
+	} );
+
+	// Init slider arrows.
+	$( document ).find( '.wp-block-wpmozo-team-slider' ).each( function() {
+		let $arrows = $(this).find('.wpmozo_swiper_navigation').data();
+		if ( $arrows ) {
+			let $winWidth = jQuery(window).width();
+			if ( $winWidth > 980 && typeof( $arrows['arrows_desktop'] ) !== 'undefined' ) {
+				wpmozo_remove_arrows_classes( $(this).find('.wpmozo_swiper_navigation') );
+				$(this).find('.wpmozo_swiper_navigation').addClass( 'wpmozo_arrows_' + $arrows['arrows_desktop'] );
+			}
+		}
+	} );
 
 	function wpmozo_get_arrows_classes() {
 		return [
@@ -44,11 +133,18 @@ let wpmozoTeamMemberSwipers = {};
 // init team member slider.
 function initWPMozoTeamMemberSlider( blockObj ) {
 
+	// skill bar animation.
+	blockObj.find( '.wpmozo_bna_team_member_card' ).each( function() {
+		blockObj.find( '.wpmozo_bna_filled_bar' ).each( function() {
+			jQuery( this ).animate( { width: jQuery( this ).attr( 'data-skill' ) }, 1000,'linear' );
+		} );
+	} );
+
 	const wrapObj  = blockObj.find( '.wpmozo_swiper_wrapper' );
 	const clientId = wrapObj.attr( 'data-clientId' );
 
 	// Destroy if already exists.
-	if ( wpmozoTeamMemberSwipers[clientId] && ! wpmozo_is_empty( wpmozoTeamMemberSwipers[clientId] ) ) {
+	if ( wpmozoTeamMemberSwipers[clientId] ) {
 		wpmozoTeamMemberSwipers[clientId].destroy( true, true );
 	}
 

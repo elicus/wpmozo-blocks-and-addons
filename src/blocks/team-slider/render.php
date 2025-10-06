@@ -150,14 +150,14 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 				// Member social icon.
 				$social_icons = '';
 				if ( true === $show_social_icon ) {
-					$social_icons .= wpmozo_get_member_social( 'website', $website, 'fas fa-globe' );
-					$social_icons .= wpmozo_get_member_social( 'facebook', $facebook, 'fab fa-facebook-f' );
-					$social_icons .= wpmozo_get_member_social( 'twitter', $twitter, 'fab fa-x-twitter' );
-					$social_icons .= wpmozo_get_member_social( 'linkedin', $linkedin, 'fab fa-linkedin-in' );
-					$social_icons .= wpmozo_get_member_social( 'instagram', $instagram, 'fab fa-instagram' );
-					$social_icons .= wpmozo_get_member_social( 'youtube', $youtube, 'fab fa-youtube' );
-					$social_icons .= wpmozo_get_member_social( 'email', $email_address, 'fas fa-envelope' );
-					$social_icons .= wpmozo_get_member_social( 'phone', $phone_number, 'fas fa-phone' );
+					$social_icons .= wpmozo_get_team_member_social( 'website', $website, 'fas fa-globe' );
+					$social_icons .= wpmozo_get_team_member_social( 'facebook', $facebook, 'fab fa-facebook-f' );
+					$social_icons .= wpmozo_get_team_member_social( 'twitter', $twitter, 'fab fa-x-twitter' );
+					$social_icons .= wpmozo_get_team_member_social( 'linkedin', $linkedin, 'fab fa-linkedin-in' );
+					$social_icons .= wpmozo_get_team_member_social( 'instagram', $instagram, 'fab fa-instagram' );
+					$social_icons .= wpmozo_get_team_member_social( 'youtube', $youtube, 'fab fa-youtube' );
+					$social_icons .= wpmozo_get_team_member_social( 'email', $email_address, 'fas fa-envelope' );
+					$social_icons .= wpmozo_get_team_member_social( 'phone', $phone_number, 'fas fa-phone' );
 				}
 
 				// Class list.
@@ -306,33 +306,6 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 		}
 
 		return $render_output;
-	}
-}
-
-/**
- * Get social icon.
- */
-if ( ! function_exists( 'wpmozo_get_member_social' ) ) {
-	function wpmozo_get_member_social( $type, $url, $icon, $target = true ) {
-
-		// If no url, return blank.
-		if ( empty( $url ) ) {
-			return '';
-		}
-
-		// Update email and phone urls.
-		$url = ( 'email' === $type ) ? 'mailto:' . $url : $url;
-		$url = ( 'phone' === $type ) ? 'tel:' . $url : $url;
-
-		return sprintf(
-			'<a href="%1$s" target="%2$s">
-				<span class="wpmozo_bna_team_member_social_icon wpmozo_bna_team_%3$s %4$s"></span>
-			</a>',
-			esc_attr( $url ),
-			( true === boolval( $target ) ) ? '_blank' : '_self',
-			esc_attr( $type ),
-			esc_attr( $icon )
-		);
 	}
 }
 

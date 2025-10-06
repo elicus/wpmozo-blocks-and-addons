@@ -79,7 +79,7 @@
 		"nameLevel": { "type": "string", "default": "h2" },
 		"nameAlign": { "type": "string" },
 		"nameColor": { "type": "string" },
-		"nameFontSize": { "type": "string", "default": "24px" },
+		"nameFontSize": { "type": "string", "default": "22px" },
 		"nameLetterSpacing": { "type": "string" },
 		"nameDecoration": { "type": "string" },
 		"nameLetterCase": { "type": "string" },
@@ -94,7 +94,7 @@
 		"designationLevel": { "type": "string", "default": "h4" },
 		"designationAlign": { "type": "string" },
 		"designationColor": { "type": "string" },
-		"designationFontSize": { "type": "string", "default": "20px" },
+		"designationFontSize": { "type": "string", "default": "18px" },
 		"designationLetterSpacing": { "type": "string" },
 		"designationDecoration": { "type": "string" },
 		"designationLetterCase": { "type": "string" },
@@ -108,7 +108,7 @@
 
 		"descriptionAlign": { "type": "string" },
 		"descriptionColor": { "type": "string" },
-		"descriptionFontSize": { "type": "string", "default": "20px" },
+		"descriptionFontSize": { "type": "string", "default": "16px" },
 		"descriptionLetterSpacing": { "type": "string" },
 		"descriptionDecoration": { "type": "string" },
 		"descriptionLetterCase": { "type": "string" },
@@ -143,7 +143,7 @@
 		"socialIconSize": { "type": "number", "default": 16 },
 		"socialIconColor": { "type": "string" },
 		"socialIconBgColor": { "type": "string" },
-		"socialIconAlign": { "type": "string", "default": "center" },
+		"socialIconAlign": { "type": "string", "default": "left" },
 		"socialIconborder": { "type": "object" },
 		"socialIconborderRadius": { "type": "string" },
 
@@ -190,7 +190,7 @@
 
 		"popupDesignationAlign": { "type": "string" },
 		"popupDesignationColor": { "type": "string" },
-		"popupDesignationFontSize": { "type": "string", "default": "20px" },
+		"popupDesignationFontSize": { "type": "string", "default": "18px" },
 		"popupDesignationLetterSpacing": { "type": "string" },
 		"popupDesignationDecoration": { "type": "string" },
 		"popupDesignationLetterCase": { "type": "string" },
@@ -204,7 +204,7 @@
 
 		"popupDescriptionAlign": { "type": "string" },
 		"popupDescriptionColor": { "type": "string" },
-		"popupDescriptionFontSize": { "type": "string", "default": "20px" },
+		"popupDescriptionFontSize": { "type": "string", "default": "16px" },
 		"popupDescriptionLetterSpacing": { "type": "string" },
 		"popupDescriptionDecoration": { "type": "string" },
 		"popupDescriptionLetterCase": { "type": "string" },
@@ -287,7 +287,7 @@
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
-	"style": [ "file:./style-index.css", "wpmozo-blocks-and-addons-swiper-style", "wpmozo-blocks-and-addons-swiper-wpmozo-style" ],
-	"script": [ "file:./script.js", "wpmozo-blocks-and-addons-swiper-script" ],
+	"style": [ "file:./style-index.css", "wpmozo-blocks-and-addons-magnificPopup-style", "wpmozo-blocks-and-addons-swiper-style", "wpmozo-blocks-and-addons-swiper-wpmozo-style" ],
+	"script": [ "file:./script.js", "wpmozo-blocks-and-addons-magnificPopup-script", "wpmozo-blocks-and-addons-swiper-script" ],
 	"render": "file:./render.php"
 }
