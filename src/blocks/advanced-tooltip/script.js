@@ -41,6 +41,12 @@ function initAdvancedButton($galleryContainer) {
 	// 🔧 Fix: Localize trigger selector - use jQuery object instead of string selector
 	let $triggerElement = $this.find('.wpmozo_tooltip_trigger_element');
 
+	// Check if tippy instance already exists on this trigger element
+	if ($triggerElement.length && $triggerElement[0]._tippy) {
+		// If tippy already initialized, do not add a new one
+		return;
+	}
+
 	// Initialize tippy.js
 	tippy($triggerElement[0], {
 		content: $tooltipContent.html(),

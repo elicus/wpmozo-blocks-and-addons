@@ -21,7 +21,7 @@
 
 		"triggerButtonText": {"type": "string","default": "Button"},
 		"triggerButtonUrl": {"type": "string"},
-		"image": {"type": "object"},
+		"image": {"type": "object", "default": { "url": "/wp-content/plugins/wpmozo-blocks-and-addons/includes/assets/images/placeholder.webp" }},
 		"icon": { "type": "string", "default": "far fa-star" },
 		"triggerText": {"type": "string","default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."},
 

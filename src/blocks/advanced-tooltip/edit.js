@@ -32,8 +32,10 @@ export default function Edit(props) {
 
 	const { attributes, setAttributes, clientId } = props;
 
-	let image = ( attributes.image ) ? attributes.image.url : '',
-		isSelected = props.isSelected;
+	let image = ( attributes.image ) ? attributes.image.url : attributes.image,
+		isSelected = props.isSelected,
+		tooltipVisible = (attributes.showTooltip) ? ' tooltip-visible' : '';
+	console.log(image);
 
 	const [showTooltip, setShowTooltip] = useState(false);
 
@@ -72,7 +74,7 @@ export default function Edit(props) {
 							data-interactive={attributes.makeInteractiveTooltip}
 							data-tooltip-width={attributes.tooltipWidth}
 							data-trigger-element={attributes.trigerElement}
-							onClick={() => setShowTooltip(!showTooltip)}
+							// onClick={() => setShowTooltip(!showTooltip)}
 						>
 							{'button' === attributes.trigerElement && attributes.triggerButtonText?.trim() && (
 								<div className={`wpmozo_readmore_button_wrapper`}>
@@ -93,81 +95,23 @@ export default function Edit(props) {
 								<span className={`wpmozo_tooltip_trigger_element wpmozo_tooltip_trigger_text`}>{attributes.triggerText}</span>
 							)}
 						</div>
-						{showTooltip && (
-							<div className="tooltip-content tooltip-visible">
-								<div className="tooltip-header">
-									<h4>{__('Tooltip Content', 'button-with-tooltip-block-wp')}</h4>
-									<button
-										ClassName="tooltip-close"
-										onClick={() => setShowTooltip(false)}
-									>
-										×
-									</button>
+						<div className={`wpmozo_advanced_tooltip_content_wrap${tooltipVisible ? ' ' + tooltipVisible : ''}`}>
+							{attributes.showTooltip && (
+								<div className="tooltip-content tooltip-visible">
+									<div className="tooltip-header">
+										<h4>{__('Tooltip Content', 'button-with-tooltip-block-wp')}</h4>
+									</div>
+									<div className="tooltip-inner-blocks">
+										<InnerBlocks
+											allowedBlocks={ALLOWED_BLOCKS}
+											placeholder={__('Add blocks to show in the tooltip...', 'button-with-tooltip-block-wp')}
+											templateLock={false}
+											renderAppender={InnerBlocks.DefaultBlockAppender}
+										/>
+									</div>
 								</div>
-								<div className="tooltip-inner-blocks">
-									<InnerBlocks
-										allowedBlocks={ALLOWED_BLOCKS}
-										placeholder={__('Add blocks to show in the tooltip...', 'button-with-tooltip-block-wp')}
-										templateLock={false}
-										renderAppender={InnerBlocks.DefaultBlockAppender}
-									/>
-								</div>
-							</div>
-						)}
-
-						{/* Always render InnerBlocks for saving, but hidden when tooltip preview is off */}
-						{!showTooltip && (
-							<div style={{ display: 'none' }}>
-								<InnerBlocks
-									allowedBlocks={ALLOWED_BLOCKS}
-									templateLock={false}
-								/>
-							</div>
-						)}
-						{/*<div className={`wpmozo_advanced_tooltip_content_wrap${tooltipVisible ? ' ' + tooltipVisible : ''}`}>*/}
-						{/*	{attributes.showTooltip && (*/}
-						{/*		<>*/}
-						{/*			<div className="tooltip-header">*/}
-						{/*				<h4>{__('Tooltip Content', 'button-with-tooltip-block-wp')}</h4>*/}
-						{/*				<button*/}
-						{/*					ClassName="tooltip-close"*/}
-						{/*					onClick={() => setShowTooltip(false)}*/}
-						{/*				>*/}
-						{/*					×*/}
-						{/*				</button>*/}
-						{/*			</div>*/}
-						{/*			<div className="tooltip-inner-blocks">*/}
-						{/*				<InnerBlocks*/}
-						{/*					allowedBlocks={ALLOWED_BLOCKS}*/}
-						{/*					placeholder={__('Add blocks to show in the tooltip...', 'button-with-tooltip-block-wp')}*/}
-						{/*					templateLock={false}*/}
-						{/*					renderAppender={InnerBlocks.DefaultBlockAppender}*/}
-						{/*				/>*/}
-						{/*			</div>*/}
-						{/*		</>*/}
-						{/*	)}>*/}
-						{/*	{!attributes.showTooltip && (*/}
-						{/*		<>*/}
-						{/*			<div className="tooltip-header">*/}
-						{/*				<h4>{__('Tooltip Content', 'button-with-tooltip-block-wp')}</h4>*/}
-						{/*				<button*/}
-						{/*					ClassName="tooltip-close"*/}
-						{/*					onClick={() => setShowTooltip(false)}*/}
-						{/*				>*/}
-						{/*					×*/}
-						{/*				</button>*/}
-						{/*			</div>*/}
-						{/*			<div className="tooltip-inner-blocks" style={{ display: 'none' }}>*/}
-						{/*				<InnerBlocks*/}
-						{/*					allowedBlocks={ALLOWED_BLOCKS}*/}
-						{/*					placeholder={__('Add blocks to show in the tooltip...', 'button-with-tooltip-block-wp')}*/}
-						{/*					templateLock={false}*/}
-						{/*					renderAppender={InnerBlocks.DefaultBlockAppender}*/}
-						{/*				/>*/}
-						{/*			</div>*/}
-						{/*		</>*/}
-						{/*	)}>*/}
-						{/*</div>*/}
+							)}
+						</div>
 					</div>
 				</div>
 			</Fragment>

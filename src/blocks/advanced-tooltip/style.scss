@@ -87,7 +87,9 @@
 
 .wp-block-wpmozo-advanced-tooltip .wpmozo_tooltip_trigger_icon,
 .wp-block-wpmozo-advanced-tooltip .wpmozo_tooltip_trigger_image {
-	cursor: pointer
+	cursor: pointer;
+	max-width: 100%;
+	height: auto;
 }
 
 .tippy-content .wpmozo_advanced_tooltip_content .wpmozo_tooltip_content_text{
@@ -223,8 +225,4 @@
 			transform: none;
 		}
 	}
-}
-
-.wpmozo_advanced_tooltip_content_wrap{
-	display: none;
 }

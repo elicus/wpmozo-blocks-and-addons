@@ -87,6 +87,12 @@ const generateDynamicStyle = ({attributes}) => {
 		`;
 	}
 
+	styles +=`
+			.tippy-box[data-theme='wpmozo-tippy-adt-block-${attributes.ID}']{
+				display:block !important;
+			}
+	`;
+
 
     styles += `}`;
 
