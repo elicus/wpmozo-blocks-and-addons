@@ -43,8 +43,8 @@
 		"containerborder": {"type": "object"},
 		"containerborderRadius": {"type": "string"},
 
-		"image_width": {"type": "number","default": 500},
-		"image_height": {"type": "number","default": 150}
+		"image_width": {"type": "number","default": 200},
+		"image_height": {"type": "number","default": 200}
 	},
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",
