@@ -21,6 +21,7 @@
 
 		"triggerButtonText": {"type": "string","default": "Button"},
 		"triggerButtonUrl": {"type": "string"},
+		"buttonLinkTarget": {"type": "string","default": "external"},
 		"image": {"type": "object", "default": { "url": "/wp-content/plugins/wpmozo-blocks-and-addons/includes/assets/images/placeholder.webp" }},
 		"icon": { "type": "string", "default": "far fa-star" },
 		"triggerText": {"type": "string","default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."},
@@ -28,9 +29,9 @@
 		"buttonAlign": {"type": "string"},
 		"customButtonStyle": {"type": "boolean", "default": false},
 		"buttonIconStyle": {"type": "boolean", "default": false},
-		"buttonIcon": {"type": "string"},
+		"buttonIcon": {"type": "string","default": "far fa-star"},
 		"buttonIconPosition": {"type": "string","default": "before"},
-		"buttonIconShow": {"type": "boolean", "default": false},
+		"buttonIconOnHover": {"type": "boolean", "default": false},
 		"buttonColor": {"type": "string"},
 		"buttonBackground": {"type": "string"},
 		"buttonHoverColor": {"type": "string"},
@@ -47,10 +48,10 @@
 				"fontWeight": ""
 			}
 		},
-		"buttonborder": { "type": "object" },
-		"buttonborderRadius": { "type": "string" },
-		"buttonpadding": { "type": "object" },
+		"buttonpadding": { "type": "object", "default": { "top": "10px", "right": "20px", "bottom": "10px", "left": "20px" } },
 		"buttonmargin": { "type": "object" },
+		"buttonborder": { "type": "object", "default": { "width": "2px", "style": "solid", "color": "#313131" } },
+		"buttonborderRadius": { "type": "string", "default": "3px" },
 
 		"triggerImageWidth": {"type": "number"},
 

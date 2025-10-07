@@ -4,6 +4,7 @@ const generateDynamicStyle = ({attributes}) => {
     const toConvertStyles = [
             'button',
 			'TriggerText',
+			'triggerTextHover',
 			'tooltip'
         ];
     let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
@@ -11,20 +12,20 @@ const generateDynamicStyle = ({attributes}) => {
     let styles = `#block-${attributes.ID}{`;
 
     styles += `
-		.wpmozo_readmore_button_wrapper {
+		.wpmozo-bna-button-wrap {
 			text-align : ${attributes.buttonAlign};
 		}
 	`;
 
 	//Button
-	if('button' === attributes.trigerElement && attributes.customButtonStyle){
+	if('button' === attributes.trigerElement){
 		styles +=`
-			.wpmozo_readmore_button{
+			.wpmozo-bna-button{
 				color:${attributes.buttonColor};
 				background-color:${attributes.buttonBackground};
 				${convertedStyle.button}
 			}
-			.wpmozo_readmore_button:hover{
+			.wpmozo-bna-button:hover{
 				color:${attributes.buttonHoverColor};
 				background-color:${attributes.buttonHoverBackground};
 			}
@@ -32,8 +33,8 @@ const generateDynamicStyle = ({attributes}) => {
 		`;
 	}
 
-	//Button
-	if('image' === attributes.trigerElement && attributes.customButtonStyle){
+	//Image
+	if('image' === attributes.trigerElement){
 		styles +=`
 			.wpmozo_tooltip_trigger_image{
 				cursor:pointer;
@@ -43,7 +44,7 @@ const generateDynamicStyle = ({attributes}) => {
 	}
 
 	//Icon
-	if('icon' === attributes.trigerElement && attributes.customButtonStyle){
+	if('icon' === attributes.trigerElement){
 		styles +=`
 			.trigger_type_icon{
 				text-align:${attributes.triggerIconAlign};
@@ -64,7 +65,7 @@ const generateDynamicStyle = ({attributes}) => {
 	}
 
 	//Text
-	if('text' === attributes.trigerElement && attributes.customButtonStyle){
+	if('text' === attributes.trigerElement){
 		styles +=`
 			.trigger_type_text{
 				text-align:${attributes.TriggerTextAlign};
@@ -73,6 +74,7 @@ const generateDynamicStyle = ({attributes}) => {
 			}
 			.trigger_type_text:hover{
 				color:${attributes.triggerTextHoverColor};
+				${convertedStyle.triggerTextHover}
 			}
 		`
 	}

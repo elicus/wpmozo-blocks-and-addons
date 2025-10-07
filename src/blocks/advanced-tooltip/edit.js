@@ -35,7 +35,6 @@ export default function Edit(props) {
 	let image = ( attributes.image ) ? attributes.image.url : attributes.image,
 		isSelected = props.isSelected,
 		tooltipVisible = (attributes.showTooltip) ? ' tooltip-visible' : '';
-	console.log(image);
 
 	const [showTooltip, setShowTooltip] = useState(false);
 
@@ -55,6 +54,24 @@ export default function Edit(props) {
 		}
 	}, [props]);
 
+	let $button = '';
+	let $buttonIcon = '';
+	if ( attributes.buttonIconStyle && attributes.buttonIcon ) {
+		$buttonIcon = <i className={ 'wpmozo-bna-icon ' + attributes.buttonIcon }></i>;
+	}
+	$button = <div className="wpmozo-bna-button-wrap">
+		<a href="javascript:void(0)"
+		   className={ [
+			   'wpmozo-bna-button',
+			   'wpmozo_promotion_bar_button',
+			   ( attributes.buttonIconStyle && attributes.buttonIconOnHover ) ? 'wpmozo-icon-on-hover' : '',
+			   ( attributes.buttonIconStyle && 'before' === attributes.buttonIconPosition ) ? 'wpmozo-icon-at-before' : 'wpmozo-icon-at-after'
+		   ].join(" ") }
+		>
+			<span className='wpmozo-bna-btn-text'>{ attributes.triggerButtonText}</span>
+			{ $buttonIcon }
+		</a>
+	</div>;
 
     return (
 		<>
@@ -77,14 +94,19 @@ export default function Edit(props) {
 							// onClick={() => setShowTooltip(!showTooltip)}
 						>
 							{'button' === attributes.trigerElement && attributes.triggerButtonText?.trim() && (
-								<div className={`wpmozo_readmore_button_wrapper`}>
-									<a className={`wpmozo_readmore_button wpmozo_tooltip_trigger_element wpmozo_tooltip_trigger_button`}>
-										<span className={`wpmozo_button_text`}>
-											{attributes.triggerButtonText}
-										</span>
-									</a>
-								</div>
+								// <div className={`wpmozo_readmore_button_wrapper`}>
+								// 	<a className={`wpmozo_readmore_button wpmozo_tooltip_trigger_element wpmozo_tooltip_trigger_button`}>
+								// 		<span className={`wpmozo_button_text`}>
+								// 			{attributes.triggerButtonText}
+								// 		</span>
+								// 	</a>
+								// </div>
+								<>
+									{ $button }
+								</>
+
 							)}
+
 							{'image' === attributes.trigerElement && attributes.image && (
 								<img className={`wpmozo_tooltip_trigger_element wpmozo_tooltip_trigger_image`} src={image} aria-expanded="false"/>
 							)}

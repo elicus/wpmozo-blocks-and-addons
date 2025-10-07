@@ -3,13 +3,11 @@ import { __ } from '@wordpress/i18n';
 import {
     PanelBody,
     TextControl,
-    RangeControl,
     ToggleControl,
 	TextareaControl,
     SelectControl,
-	BaseControl,
-	ButtonGroup,
-	Button
+	__experimentalToggleGroupControl as ToggleGroupControl,
+	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
 } from "@wordpress/components";
 import {
 	WpmozoColorPicker, WpmozoIconpicker, WpmozoMediaUploader,
@@ -57,11 +55,24 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 						value={ attributes.triggerButtonText }
 						onChange={ ( newValue ) => setAttributes( { triggerButtonText: newValue } ) }
 					/>
-					<TextControl
-						label={ __( 'Trigger Button Link Url', 'wpmozo-blocks-and-addons' ) }
-						value={ attributes.triggerButtonUrl }
-						onChange={ ( newValue ) => setAttributes( { triggerButtonUrl: newValue } ) }
-					/>
+					{'mouseenter' === attributes.trigerAction && (
+						<>
+							<TextControl
+								label={ __( 'Trigger Button Link Url', 'wpmozo-blocks-and-addons' ) }
+								value={ attributes.triggerButtonUrl }
+								onChange={ ( newValue ) => setAttributes( { triggerButtonUrl: newValue } ) }
+							/>
+							<ToggleGroupControl
+								label={ __( 'Link Target', 'wpmozo-blocks-and-addons' ) }
+								value={ attributes.buttonLinkTarget }
+								onChange={ ( newValue ) => setAttributes( { buttonLinkTarget: newValue } ) }
+							>
+								<ToggleGroupControlOptionIcon value="external" icon="external" label={ __( 'New Window', 'wpmozo-blocks-and-addons' ) } />
+								<ToggleGroupControlOptionIcon value="same" icon="admin-links" label={ __( 'Same Window', 'wpmozo-blocks-and-addons' ) } />
+							</ToggleGroupControl>
+						</>
+					)}
+
 				</>
 			)}
 			{'image' === attributes.trigerElement && (

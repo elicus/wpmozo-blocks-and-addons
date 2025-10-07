@@ -33,12 +33,49 @@ if ( isset( $attributes['image'] ) && is_array( $attributes['image'] ) && isset(
 			data-tooltip-width="<?php echo esc_attr( $tooltip_width ); ?>"
 			data-trigger-element="<?php echo esc_attr( $trigger_element ); ?>"
 		>
-			<?php if ( $trigger_element === 'button' && trim( $trigger_button_text ) ) : ?>
-				<div class="wpmozo_readmore_button_wrapper">
-					<a class="wpmozo_readmore_button wpmozo_tooltip_trigger_element wpmozo_tooltip_trigger_button">
-                        <span class="wpmozo_button_text">
-                            <?php echo esc_html( $trigger_button_text ); ?>
-                        </span>
+			<?php
+			if ( $trigger_element === 'button' && trim( $trigger_button_text ) ) :
+
+				// Prepare icon HTML if needed
+				$button_icon_html = '';
+				$has_icon = !empty( $attributes['buttonIconStyle'] ) && !empty( $attributes['buttonIcon'] );
+				if ( $has_icon ) {
+					$button_icon_html = sprintf(
+						'<i class="wpmozo-bna-icon %s"></i>',
+						esc_attr( $attributes['buttonIcon'] )
+					);
+				}
+
+				// Build button classes
+				$button_classes = [
+					'wpmozo-bna-button',
+					'wpmozo_tooltip_trigger_button',
+				];
+				if ( !empty( $attributes['buttonIconStyle'] ) && !empty( $attributes['buttonIconOnHover'] ) ) {
+					$button_classes[] = 'wpmozo-icon-on-hover';
+				}
+				$button_classes[] = (
+					!empty( $attributes['buttonIconStyle'] )
+					&& isset( $attributes['buttonIconPosition'] )
+					&& $attributes['buttonIconPosition'] === 'before'
+				) ? 'wpmozo-icon-at-before' : 'wpmozo-icon-at-after';
+
+				// Determine URL and target
+				$url = ( isset( $attributes['trigerAction'] ) && $attributes['trigerAction'] === 'mouseenter' && !empty( $attributes['triggerButtonUrl'] ) )
+					? $attributes['triggerButtonUrl']
+					: 'javascript:void(0)';
+				$target = ( isset( $attributes['trigerAction'], $attributes['buttonLinkTarget'] )
+					&& $attributes['trigerAction'] === 'mouseenter'
+					&& $attributes['buttonLinkTarget'] === 'external' )
+					? ' target="_blank"'
+					: '';
+
+				?>
+				<div class="wpmozo-bna-button-wrap">
+					<a href="<?php echo esc_url( $url ); ?>"<?php echo $target; ?>
+					   class="<?php echo esc_attr( implode( ' ', $button_classes ) ); ?>">
+						<span class="wpmozo-bna-btn-text"><?php echo esc_html( $trigger_button_text ); ?></span>
+						<?php echo $button_icon_html; ?>
 					</a>
 				</div>
 			<?php endif; ?>

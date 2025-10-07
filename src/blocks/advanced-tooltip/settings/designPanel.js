@@ -26,7 +26,7 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 
 	const [btnStyle, setBtnStyleType] = useState('normal');
 	const [iconColor, setIconColorType] = useState('normal');
-	const [txtStyle, setTxtStyleType] = useState('normal');
+	const [textStyle, setTextStyleType] = useState('normal');
 
 	const animationOptions = [
 		{value: 'fade', label: __('Fade', 'wpmozo-blocks-and-addons')},
@@ -86,8 +86,8 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 											</ToggleGroupControl>
 											<ToggleControl
 												label={__('Only Show Icon On Hover For Button', 'wpmozo-blocks-and-addons')}
-												checked={attributes.buttonIconShow}
-												onChange={(newValue) => setAttributes({buttonIconShow: newValue})}
+												checked={attributes.buttonIconOnHover}
+												onChange={(newValue) => setAttributes({buttonIconOnHover: newValue})}
 											/>
 										</>
 
@@ -223,16 +223,18 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 							<ButtonGroup>
 								<Button
 									className="wpmozo-button-tabs-btn"
-									isPressed={('normal' === txtStyle) ? true : false}
-									onClick={() => setBtnStyleType('normal')}
-								>{__('Normal', 'wpmozo-blocks-and-addons')}</Button>
+									isPressed={('normal' === textStyle) ? true : false}
+									onClick={() => setTextStyleType('normal')}
+								>{__('Normal', 'wpmozo-blocks-and-addons')}
+								</Button>
 								<Button
 									className="wpmozo-button-tabs-btn"
-									isPressed={('hover' === txtStyle) ? true : false}
-									onClick={() => setTxtStyleType('hover')}
-								>{__('Hover', 'wpmozo-blocks-and-addons')}</Button>
+									isPressed={('hover' === textStyle) ? true : false}
+									onClick={() => setTextStyleType('hover')}
+								>{__('Hover', 'wpmozo-blocks-and-addons')}
+								</Button>
 							</ButtonGroup>
-							{'normal' === txtStyle &&
+							{'normal' === textStyle &&
 								<>
 									<WpmozoColorPicker
 										props={props}
@@ -247,7 +249,7 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 									/>
 								</>
 							}
-							{'hover' === txtStyle &&
+							{'hover' === textStyle &&
 								<>
 									<WpmozoColorPicker
 										props={props}
