@@ -298,7 +298,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			{/* Popup Description Text. */}
 			{ ( ( attributes.displayInPopup ).includes( 'content' ) ) && (
 				<PanelBody title={ __( 'Popup Description Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-					<WpmozoAlignment
+					<WpmozoAlignment showJustify={ true }
 						label={ __( 'Description Alignment', 'wpmozo-blocks-and-addons' ) }
 						onChange={ ( newValue ) => setAttributes( { popupDescriptionAlign: newValue } ) }
 						value={ attributes.popupDescriptionAlign }

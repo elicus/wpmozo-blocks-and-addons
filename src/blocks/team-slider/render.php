@@ -102,24 +102,22 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 				$link_button = '';
 				if ( true === $enable_link && 'button' === $link_type ) {
 
-					$button_use_icon = boolval( $attributes['buttonUseIcon'] ) ?? false;
 					$button_icon     = $attributes['buttonIcon'] ?? 'fas fa-arrow-right';
 					$button_text     = $attributes['linkButtonText'] ?? esc_html__( 'Read More', 'wpmozo-blocks-and-addons' );
-					$icon_on_hover   = boolval( $attributes['buttonIconOnHover'] ) ?? false;
 					$icon_position   = $attributes['buttonIconPosition'] ?? 'after';
 
 					// Button Classes.
 					$btn_classes = array( 'wpmozo-bna-button', 'wpmozo-bna-team-item-link-btn' );
 
-					$button_icon = '';
-					if ( true === $button_use_icon && ! empty( $button_icon ) ) {
-						$button_icon = sprintf(
+					$button_icon_html = '';
+					if ( $attributes['buttonUseIcon'] && ! empty( $button_icon ) ) {
+						$button_icon_html = sprintf(
 							'<i class="wpmozo-bna-icon %1$s"></i>',
 							esc_attr( $button_icon )
 						);
 
 						// Icon hover class.
-						if ( true === $icon_on_hover ) {
+						if ( true === $attributes['buttonIconOnHover'] ) {
 							$btn_classes[] = 'wpmozo-icon-on-hover';
 						}
 						
@@ -142,7 +140,7 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 						</div>',
 						get_the_permalink(),
 						esc_html( $button_text ),
-						wpmozo_esc_previously( $button_icon ),
+						wpmozo_esc_previously( $button_icon_html ),
 						implode( ' ', $btn_classes )
 					);
 				}
@@ -238,6 +236,9 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 				);
 			}
 
+			// Data attrs.
+			$in_popup = $attrs['displayInPopup'] ?? [ "image", "designation", "social_icons", "content", "skills_bars" ];
+
 			$auto_height = ( $attributes['autoHeight'] ) ? 'true' : 'false';
 			$auto_height = ( true === $attributes['equalHeight'] ) ? 'false' : $auto_height;
 
@@ -268,6 +269,15 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 				'show_control_dot'            => $attributes['showControlDot'] ? 'true' : 'false',
 				'control_dot_style'           => $attributes['controlDotStyle'] ?? 'solid_dot',
 				'enable_dynamic_dots'         => $attributes['enableDynamicDots'] ? 'true' : 'false',
+
+				'show_designation'            => in_array( 'designation', $in_popup ) ? 'on' : 'off',
+				'show_content'                => in_array( 'content', $in_popup ) ? 'on' : 'off',
+				'show_skills_bars'            => in_array( 'skills_bars', $in_popup ) ? 'on' : 'off',
+				'show_social_icons'           => in_array( 'social_icons', $in_popup ) ? 'on' : 'off',
+				'show_image'                  => in_array( 'image', $in_popup ) ? 'on' : 'off',
+				'bar_layout'                  => $attributes['popupBarLayout'] ?? 'layout1',
+				'use_stripes'                 => $attributes['popupBarUseStripe'] ? 'on' : 'off',
+				'popup_name_level'            => $attributes['popupNameLevel'] ?? 'h2',
 			);
 			$data_attr_str = '';
 			foreach ( $data_attrs as $key => $val ) {
@@ -293,7 +303,7 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 							%7$s %8$s
 						</div>
 					</div>
-				</div>',
+				</div>%9$s',
 				esc_attr( $attributes['ID'] ),
 				wpmozo_esc_previously( $wrapper_attributes ),
 				esc_attr( $equal_height_class ),
@@ -301,7 +311,8 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 				esc_attr( $layout ),
 				wpmozo_esc_previously( $team_members ),
 				wpmozo_esc_previously( $slider_arrows ),
-				wpmozo_esc_previously( $pagination_dots )
+				wpmozo_esc_previously( $pagination_dots ),
+				wpmozo_bna_get_module_dynamic_style( 'team-slider', $attributes )
 			);
 		}
 

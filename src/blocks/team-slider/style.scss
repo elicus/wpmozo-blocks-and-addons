@@ -10,6 +10,7 @@
 .wpmozo_bna_team_member_card{
     overflow: hidden;
     background:#fff;
+	border: 0 solid #000;;
 }
 .wpmozo_bna_team_member_image{ line-height: 0; }
 .wpmozo_bna_team_member_image img{
@@ -170,8 +171,21 @@
 .wpmozo-bna-team-item-link-btn-wrap{
 	margin-top: 20px;
 }
-.wpmozo_bna_team_member_card .wpmozo-bna-button{
-	display: inline-block;
+
+// Equal slide height.
+.wpmozo_equal_team_member_height .wpmozo_bna_team_member_slide{
+	height: auto;
+}
+.wpmozo_equal_team_member_height .wpmozo_bna_team_member_card{
+	height: 100%;
+}
+.wpmozo_equal_team_member_height .wpmozo_bna_team_content_wrapper{
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+.wpmozo_equal_team_member_height .wpmozo_bna_team_content_footer{
+	margin-top: auto;
 }
 
 /* Popup. */
@@ -214,6 +228,10 @@
 	font-size: 18px;
 	line-height: 1.5;
 }
+.wpmozo_bna_team_member_description p{
+	margin: 0;
+	font-size: inherit;
+}
 .wpmozo_bna_team_member_lightbox .wpmozo_bna_team_member_description + .wpmozo_bna_team_social_wrapper,
 .wpmozo_bna_team_member_lightbox .wpmozo_bna_team_member_designation + .wpmozo_bna_team_social_wrapper,
 .wpmozo_bna_team_member_lightbox .wpmozo_bna_team_member_name + .wpmozo_bna_team_social_wrapper{
@@ -230,8 +248,7 @@
 	line-height: 1;
 }
 .wpmozo_bna_team_member_lightbox .wpmozo_bna_team_social_wrapper a{
-	margin-top: 10px;
-	margin-right: 10px;
+	margin-top: 5px;
 	font-size: 14px;
 }
 .wpmozo_bna_team_member_lightbox .wpmozo_bna_team_social_wrapper a:last-child{

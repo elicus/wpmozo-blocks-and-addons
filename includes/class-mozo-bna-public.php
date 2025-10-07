@@ -44,9 +44,9 @@ class Mozo_Bna_Public {
 			'show_social_icons'     => 'on',
 			'show_image'            => 'on',
 			'image_size'            => 'medium',
-			'bar_layout'            => 'layout2',
-			'use_stripes'           => '',
-			'use_animated_stripes'  => '',
+			'bar_layout'            => 'layout1',
+			'use_stripes'           => 'off',
+			'use_animated_stripes'  => 'on',
 			'popup_name_level'      => 'h2',
 		);
 
@@ -153,11 +153,12 @@ class Mozo_Bna_Public {
 						'<div class="wpmozo_bna_skill_bar_wrapper_inner">
 							<div class="wpmozo_bna_skill_name">%1$s</div>
 							<div class="wpmozo_bna_empty_bar">
-								<div class="wpmozo_bna_filled_bar" data-skill="%2$s"></div>
+								<div class="wpmozo_bna_filled_bar %3$s" data-skill="%2$s"></div>
 							</div>
 						</div>',
 						esc_html( $skill['title'] ),
-						intval( $skill['value'] ) . '%'
+						intval( $skill['value'] ) . '%',
+						'on' === $use_stripes ? ( 'on' === $use_animated_stripes ? 'wpmozo_bna_bar_counter_animated_striped_bar' : 'wpmozo_bna_bar_counter_striped_bar' ) : ''
 					);
 				}
 			}

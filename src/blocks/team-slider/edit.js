@@ -104,6 +104,9 @@ const Edit = (props) => {
 		}
 	}, [props] );
 
+	// Get attrs.
+	const displayInPopup   = attributes.displayInPopup ?? [ "image", "designation", "social_icons", "content", "skills_bars" ];
+
 	// Equal height testimonial class.
 	const equalHeightClass = ( attributes.equalHeight ) ? ' wpmozo_equal_team_member_height' : '';
 
@@ -142,6 +145,15 @@ const Edit = (props) => {
 					data-show_control_dot={ attributes.showControlDot || 'false' }
 					data-control_dot_style={ attributes.controlDotStyle || 'solid_dot' }
 					data-enable_dynamic_dots={ attributes.enableDynamicDots || 'false' }
+
+					data-show_designation={ displayInPopup.includes( 'designation' ) ? 'on' : 'off' }
+					data-show_content={ displayInPopup.includes( 'content' ) ? 'on' : 'off' }
+					data-show_skills_bars={ displayInPopup.includes( 'skills_bars' ) ? 'on' : 'off' }
+					data-show_social_icons={ displayInPopup.includes( 'social_icons' ) ? 'on' : 'off' }
+					data-show_image={ displayInPopup.includes( 'image' ) ? 'on' : 'off' }
+					data-bar_layout={ attributes.popupBarLayout ?? 'layout1' }
+					data-use_stripes={ attributes.popupBarUseStripe ? 'on' : 'off' }
+					data-popup_name_level={ attributes.popupNameLevel ?? 'h2' }
 				>
 					<div className={"wpmozo_bna_team_slider_container wpmozo_swiper_inner_wrap " + layout}>
 						<div className="swiper swiper-container">

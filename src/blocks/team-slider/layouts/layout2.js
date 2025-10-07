@@ -67,11 +67,13 @@ const Layout1 = ( { post, attributes } ) => {
 					{/* Skill Bars. */}
 					<SkillBars post={ post } attributes={ attributes } />
 
-					{/* Link Button. */}
-					<LinkButton post={ post } attributes={ attributes } />
+					<div className="wpmozo_bna_team_content_footer">
+						{/* Link Button. */}
+						<LinkButton post={ post } attributes={ attributes } />
 
-					{/* Social Icons. */}
-					<SocialIcons post={ post } attributes={ attributes } />
+						{/* Social Icons. */}
+						<SocialIcons post={ post } attributes={ attributes } />
+					</div>
 				</div>
 			</div>
 		</div>

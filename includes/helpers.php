@@ -148,6 +148,11 @@ function wpmozo_ban_get_border_style( $pre, $props, $use_imp = false ) {
 		}
 	}
 
+	// If not border width.
+	if ( empty( $styles ) ) {
+		return '';
+	}
+
 	// Border color.
 	if( isset( $border['color'] ) ) {
 		$styles .= sprintf( 'border-color: %s%s;', $border['color'], $imp );
@@ -217,6 +222,40 @@ function wpmozo_ban_get_padding_style( $pre, $props, $use_imp = false ) {
 		}
 
 		$styles .= sprintf( 'padding-%1$s: %2$s%3$s;', $key, $padding, $imp );
+	}
+
+	return $styles;
+}
+
+/**
+ * Get padding styles from props.
+ *
+ * @since 1.6.0
+ *
+ * @param string $pre     Prefix for the props.
+ * @param array  $props   All props or attributes.
+ * @param bool   $useImp  Whether to add !important.
+ *
+ * @return string CSS margin styles.
+ */
+function wpmozo_ban_get_margin_style( $pre, $props, $use_imp = false ) {
+	$imp = $use_imp ? ' !important' : '';
+
+	// Get if margin.
+	if ( empty( $props[ $pre . 'margin' ] ) ) {
+		return '';
+	}
+
+	$styles = '';
+
+	$marginArr = $props[ $pre . 'margin' ];
+	foreach ( $marginArr as $key => $margin ) {
+		// Replace preset value.
+		if ( false !== strpos( $margin, 'var' ) ) {
+			$margin = str_replace( '|', '--', str_replace( 'var:', 'var(--wp--', $margin ) ) . ')';
+		}
+
+		$styles .= sprintf( 'margin-%1$s: %2$s%3$s;', $key, $margin, $imp );
 	}
 
 	return $styles;

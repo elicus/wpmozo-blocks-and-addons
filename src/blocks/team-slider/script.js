@@ -36,10 +36,19 @@ jQuery( document ).ready( function( $ ) {
 
 		// Main wrap.
 		let $mainWrap = $wrapObj.closest( '.wpmozo_swiper_wrapper' )
-
-		let $props    = $wrapObj.data();
-			$position = $wrapObj.data( 'close_icon_position' );
-
+		let $props    = $.extend( {}, $wrapObj.data(), {
+			show_designation     : $mainWrap.attr( 'data-show_designation' ),
+			show_content         : $mainWrap.attr( 'data-show_content' ),
+			show_skills_bars     : $mainWrap.attr( 'data-show_skills_bars' ),
+			show_social_icons    : $mainWrap.attr( 'data-show_social_icons' ),
+			show_image           : $mainWrap.attr( 'data-show_image' ),
+			bar_layout           : $mainWrap.attr( 'data-bar_layout' ),
+			use_stripes          : $mainWrap.attr( 'data-use_stripes' ),
+			use_animated_stripes : $mainWrap.attr( 'data-use_animated_stripes' ),
+			popup_name_level     : $mainWrap.attr( 'data-popup_name_level' ),
+		} );
+		
+		let	$position            = $wrapObj.data( 'close_icon_position' );
 		let $close_icon_position = 'inside' === $position ? true : false;
 
 		$wrapObj.addClass( 'wpmozo_bna_team_lightbox_loader' );

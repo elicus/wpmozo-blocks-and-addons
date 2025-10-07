@@ -227,7 +227,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				/>
 			</> }
 			<ToggleControl
-				label={ __( 'Equalize Testimonials Height', 'wpmozo-blocks-and-addons' ) }
+				label={ __( 'Equalize Slide Height', 'wpmozo-blocks-and-addons' ) }
 				checked={ attributes.equalHeight }
 				onChange={ ( newValue ) => setAttributes( { equalHeight: newValue } ) }
 			/>

@@ -218,7 +218,7 @@
 
 		"popupSkillAlign": { "type": "string" },
 		"popupSkillColor": { "type": "string" },
-		"popupSkillFontSize": { "type": "string", "default": "20px" },
+		"popupSkillFontSize": { "type": "string", "default": "14px" },
 		"popupSkillLetterSpacing": { "type": "string" },
 		"popupSkillDecoration": { "type": "string" },
 		"popupSkillLetterCase": { "type": "string" },
@@ -288,6 +288,6 @@
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
 	"style": [ "file:./style-index.css", "wpmozo-blocks-and-addons-magnificPopup-style", "wpmozo-blocks-and-addons-swiper-style", "wpmozo-blocks-and-addons-swiper-wpmozo-style" ],
-	"script": [ "file:./script.js", "wpmozo-blocks-and-addons-magnificPopup-script", "wpmozo-blocks-and-addons-swiper-script" ],
+	"script": [ "file:./script.js", "wpmozo-blocks-and-addons-waypoints-script", "wpmozo-blocks-and-addons-magnificPopup-script", "wpmozo-blocks-and-addons-swiper-script" ],
 	"render": "file:./render.php"
 }

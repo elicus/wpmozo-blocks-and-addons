@@ -71,7 +71,10 @@ $team_members .= sprintf(
 	'<div id="wpmozo_bna_team_member_%1$s" class="%9$s" %10$s>
 		<div class="wpmozo_bna_team_image_wrapper">%2$s</div>
 		<div class="wpmozo_bna_team_content_wrapper">
-			%3$s %4$s %5$s %6$s %7$s %8$s
+			%3$s %4$s %5$s %6$s
+			<div class="wpmozo_bna_team_content_footer">
+				%7$s %8$s
+			</div>
 		</div>
 	</div>',
 	esc_attr( $post_id ),
