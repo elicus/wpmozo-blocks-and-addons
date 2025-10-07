@@ -42,7 +42,7 @@ export default function Edit(props) {
 
     const { insertBlocks } = useDispatch('core/block-editor');
     const addChildBlock = () => {
-        const newBlock = createBlock('wpmozo/scroll-stack-cards-item', { text: childAttributes.text});
+        const newBlock = createBlock('wpmozo/scroll-stack-cards-item', { text: childAttributes.text, image: placehoderImage});
         insertBlocks( newBlock, innerBlocks.length, clientId );
     };
 

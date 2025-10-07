@@ -224,7 +224,8 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			'placeholderImg' => WPMOZO_BNA_ASSETS_DIR_URL . 'images/placeholder.webp',
 			'icons'          => $icons,
 			'url'            => rest_url( 'wpmozo/v1/save-dynamic-style' ),
-			'assets_url'     => WPMOZO_BNA_ASSETS_DIR_URL
+			'assets_url'     => WPMOZO_BNA_ASSETS_DIR_URL,
+			'themeName' 	 => wp_get_theme()->get('Name'),
 		);
 
 		wp_localize_script( $this->plugin_name . '-editor-script', 'wpmozo_bna_editor_object', $all_options );
