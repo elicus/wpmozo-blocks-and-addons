@@ -88,6 +88,7 @@ export default function Edit(props) {
 							data-trigger-action={attributes.trigerAction}
 							data-animation={attributes.entranceAnimation}
 							data-duration={attributes.animationDuration}
+							data-speechBubble={attributes.showSpeechBubble}
 							data-interactive={attributes.makeInteractiveTooltip}
 							data-tooltip-width={attributes.tooltipWidth}
 							data-trigger-element={attributes.trigerElement}

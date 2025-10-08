@@ -95,6 +95,13 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			WPMOZO_BNA_VERSION
 		);
 
+		wp_register_style(
+			$this->plugin_name . '-tippy-animation-style',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/all-animation.css',
+			array( 'wp-edit-blocks' ),
+			WPMOZO_BNA_VERSION
+		);
+
 		wp_register_script(
 			$this->plugin_name . '-imagesloaded-script',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/imagesloaded.pkgd.js',

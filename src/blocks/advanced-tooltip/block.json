@@ -106,7 +106,7 @@
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",
     "editorStyle": "file:./index.css",
-    "style": "file:./style-index.css",
+	"style": ["wpmozo-blocks-and-addons-tippy-animation-style", "file:./style-index.css"],
 	"script": ["wpmozo-blocks-and-addons-tippy-script", "file:./script.js"],
 	"render": "file:./render.php"
 }

@@ -27,7 +27,8 @@ function initAdvancedButton($galleryContainer) {
 	let triggerType = $wrap.data('trigger-action') || 'mouseenter',
 		animationType = $wrap.data('animation') || 'fade',
 		duration = parseInt($wrap.data('duration')) || 350,
-		interactive = $wrap.data('interactive') === true || $wrap.data('interactive') === 'true',
+		speechBubble = $wrap.data('speechbubble') || false,
+		interactive = $wrap.data('interactive') || false,
 		width = $wrap.data('tooltip-width') || '350',
 		triggerEl = $wrap.data('trigger-element') || 'button',
 		triggerSelector = $wrap.data('trigger-selector') || '';
@@ -56,7 +57,7 @@ function initAdvancedButton($galleryContainer) {
 		duration: duration,
 		theme: 'wpmozo-tippy-adt-' + wrapID,
 		delay: [100, 100],
-		arrow: false,
+		arrow: speechBubble,
 		allowHTML: true,
 		interactive: interactive,
 		// appendTo: () => document.body,

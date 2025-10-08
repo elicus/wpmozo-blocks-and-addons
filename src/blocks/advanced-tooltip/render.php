@@ -6,9 +6,10 @@
 // Get attributes safely
 $trigger_element     = isset( $attributes['trigerElement'] ) ? $attributes['trigerElement'] : '';
 $trigger_action      = isset( $attributes['trigerAction'] ) ? $attributes['trigerAction'] : '';
-$entrance_animation  = isset( $attributes['entranceAnimation'] ) ? $attributes['entranceAnimation'] : '';
+$entrance_animation  = isset( $attributes['entranceAnimation'] ) ? $attributes['entranceAnimation'] : 'fade';
 $animation_duration  = isset( $attributes['animationDuration'] ) ? $attributes['animationDuration'] : '';
-$make_interactive    = isset( $attributes['makeInteractiveTooltip'] ) ? $attributes['makeInteractiveTooltip'] : '';
+$showSpeechBubble    = isset( $attributes['showSpeechBubble'] ) ? boolval($attributes['showSpeechBubble']) : false;
+$make_interactive    = isset( $attributes['makeInteractiveTooltip'] ) ? boolval($attributes['makeInteractiveTooltip']) : false;
 $tooltip_width       = isset( $attributes['tooltipWidth'] ) ? $attributes['tooltipWidth'] : '';
 $trigger_button_text = isset( $attributes['triggerButtonText'] ) ? $attributes['triggerButtonText'] : '';
 $trigger_text        = isset( $attributes['triggerText'] ) ? $attributes['triggerText'] : '';
@@ -18,6 +19,9 @@ if ( isset( $attributes['image'] ) && is_array( $attributes['image'] ) && isset(
 	$image = $attributes['image']['url'];
 } elseif ( isset( $attributes['image'] ) && is_string( $attributes['image'] ) ) {
 	$image = $attributes['image'];
+}
+if ( ! empty( $entrance_animation ) && 'fade' !== $entrance_animation ) {
+	wp_enqueue_style( 'dipl-tippy-animation-style', plugins_url( 'wpmozo-blocks-and-addons/includes/assets/css/tippy-animations/all-animation.css') );
 }
 
 ?>
@@ -29,7 +33,8 @@ if ( isset( $attributes['image'] ) && is_array( $attributes['image'] ) && isset(
 			data-trigger-action="<?php echo esc_attr( $trigger_action ); ?>"
 			data-animation="<?php echo esc_attr( $entrance_animation ); ?>"
 			data-duration="<?php echo esc_attr( $animation_duration ); ?>"
-			data-interactive="<?php echo esc_attr( $make_interactive ); ?>"
+			data-speechBubble="<?php if ($showSpeechBubble === true) {echo "true";} else { echo "false";} ?>"
+			data-interactive="<?php if ($make_interactive === true) {echo "true";} else { echo "false";} ?>"
 			data-tooltip-width="<?php echo esc_attr( $tooltip_width ); ?>"
 			data-trigger-element="<?php echo esc_attr( $trigger_element ); ?>"
 		>
@@ -65,8 +70,8 @@ if ( isset( $attributes['image'] ) && is_array( $attributes['image'] ) && isset(
 					? $attributes['triggerButtonUrl']
 					: 'javascript:void(0)';
 				$target = ( isset( $attributes['trigerAction'], $attributes['buttonLinkTarget'] )
-					&& $attributes['trigerAction'] === 'mouseenter'
-					&& $attributes['buttonLinkTarget'] === 'external' )
+							&& $attributes['trigerAction'] === 'mouseenter'
+							&& $attributes['buttonLinkTarget'] === 'external' )
 					? ' target="_blank"'
 					: '';
 

@@ -31,6 +31,7 @@ if ( ! function_exists( 'advanced_tooltip_generate_dynamic_style' ) ) {
 			$styles .= ( ! empty( $attrs['buttonBackground'] ) ? "background-color: {$attrs['buttonBackground']};" : '' );
 			$styles .= wpmozo_ban_get_font_style( 'button', $attrs );
 			$styles .= wpmozo_ban_get_padding_style( 'button', $attrs );
+			$styles .= wpmozo_ban_get_border_style( 'button', $attrs );
 			$styles .= "}";
 			$styles .= "{$mainSelector} .wpmozo-bna-button:hover{";
 			$styles .= ( ! empty( $attrs['buttonHoverColor'] ) ? "color: {$attrs['buttonHoverColor']};" : '' );
