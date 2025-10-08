@@ -76,7 +76,7 @@ if ( ! empty( $entrance_animation ) && 'fade' !== $entrance_animation ) {
 					: '';
 
 				?>
-				<div class="wpmozo_tooltip_trigger_element wpmozo-bna-button-wrap">
+				<div class="wpmozo_tooltip_trigger_element 	wpmozo-bna-button-wrap">
 					<a href="<?php echo esc_url( $url ); ?>"<?php echo $target; ?>
 					   class="<?php echo esc_attr( implode( ' ', $button_classes ) ); ?>">
 						<span class="wpmozo-bna-btn-text"><?php echo esc_html( $trigger_button_text ); ?></span>
