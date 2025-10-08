@@ -59,10 +59,11 @@ export default function Edit(props) {
 	if ( attributes.buttonIconStyle && attributes.buttonIcon ) {
 		$buttonIcon = <i className={ 'wpmozo-bna-icon ' + attributes.buttonIcon }></i>;
 	}
-	$button = <div className="wpmozo_tooltip_trigger_element wpmozo-bna-button-wrap">
+	$button = <div className="wpmozo-bna-button-wrap">
 		<a href="javascript:void(0)"
 		   className={ [
 			   'wpmozo-bna-button',
+			   'wpmozo_tooltip_trigger_element',
 			   'wpmozo_promotion_bar_button',
 			   ( attributes.buttonIconStyle && attributes.buttonIconOnHover ) ? 'wpmozo-icon-on-hover' : '',
 			   ( attributes.buttonIconStyle && 'before' === attributes.buttonIconPosition ) ? 'wpmozo-icon-at-before' : 'wpmozo-icon-at-after'
