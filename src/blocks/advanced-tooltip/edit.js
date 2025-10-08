@@ -59,7 +59,7 @@ export default function Edit(props) {
 	if ( attributes.buttonIconStyle && attributes.buttonIcon ) {
 		$buttonIcon = <i className={ 'wpmozo-bna-icon ' + attributes.buttonIcon }></i>;
 	}
-	$button = <div className="wpmozo-bna-button-wrap">
+	$button = <div className="wpmozo_tooltip_trigger_element wpmozo-bna-button-wrap">
 		<a href="javascript:void(0)"
 		   className={ [
 			   'wpmozo-bna-button',
@@ -95,13 +95,6 @@ export default function Edit(props) {
 							// onClick={() => setShowTooltip(!showTooltip)}
 						>
 							{'button' === attributes.trigerElement && attributes.triggerButtonText?.trim() && (
-								// <div className={`wpmozo_readmore_button_wrapper`}>
-								// 	<a className={`wpmozo_readmore_button wpmozo_tooltip_trigger_element wpmozo_tooltip_trigger_button`}>
-								// 		<span className={`wpmozo_button_text`}>
-								// 			{attributes.triggerButtonText}
-								// 		</span>
-								// 	</a>
-								// </div>
 								<>
 									{ $button }
 								</>
