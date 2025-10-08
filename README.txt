@@ -2,7 +2,7 @@
 Contributors: elicus
 Tags: gutenberg, blocks, gutenberg blocks, gutenberg editor, wordpress blocks
 Tested up to: 6.8
-Stable tag: 1.4.0
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,17 @@ Embed your Tweets an show than on your wibsite pages with a number of customizat
 Make users share post on their accounts containing your content right from your website page with the Twitter Share Button Block.
 40. [Twitter Follow Button](https://wpmozoblocks.com/twitter-blocks/ "Twitter Follow Button for Gutenberg")
 Use the Twitter Follow Button Block to make users follow you on your twitter account right from your website page.
+41. [Image Card Ticker](https://wpmozoblocks.com/image-card-ticker/ "Image Card Ticker for Gutenberg")
+The Image Card Ticker block is perfect for showcasing brand logos, event snapshots, or any image-based content in a continuous scrolling format.
+42. [Background Switcher](https://wpmozoblocks.com/background-switcher/ "Background Switcher for Gutenberg")
+Display content on your WordPress website with various background in a single block be it image, color or gradient using the WPMozo Background Switcher block.
+43. [Scrolling Zoom Gallery](https://wpmozoblocks.com/scrolling-zoom-gallery/ "Scrolling Zoom Gallery for Gutenberg")
+WPMozo Background Switcher Block adds an engaging way to showcase content by changing background images based on user interaction.
+44. [Blog Timeline](https://wpmozoblocks.com/blog-timeline/ "Blog Timeline for Gutenberg")
+Showcase your blogs in a stylish and user friendly timline and make your WordPress website stunning with the Blog Timeline Block.
+45. [Advanced Tooltip](https://wpmozoblocks.com/advanced-tooltip/ "Advanced Tooltip for Gutenberg")
+Enhance user interaction on your website with dynamic hover content using WPMozo Advanced Tooltip block for Gutenberg, perfect for showcasing extra information in a sleek and modern way.
+
 
 This plugin is fully compatible with Gutenberg and WordPress block editor, ensuring seamless integration with your website.
 
@@ -152,6 +163,13 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
+2025-10-10 - Version 1.5.0
+* New: Image Card Ticker Block.
+* New: Background Switcher Block.
+* New: Scrolling Zoom Gallery Block.
+* New: Blog Timeline Block.
+* New: Advanced Tooltip Block.
+
 2025-10-01 - Version 1.4.0
 * New: Image Accordion Block.
 * New: Facebook Embedded Video Block.
