@@ -163,3 +163,8 @@
 .wpmozo-field-warning .components-notice__content{
 	margin: 0;
 }
+
+/* Multi checkboxes. */
+.wpmozo-inpector-multi-checkboxes .components-base-control{
+	margin-bottom: 8px !important;
+}
