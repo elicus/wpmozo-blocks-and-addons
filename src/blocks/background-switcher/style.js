@@ -35,6 +35,13 @@ const generateDynamicStyle = ( { attributes } ) => {
 			justify-content: ${alignment} !important;
 		}`
 	}
+	if('column' === attributes.switcherOrientation && alignment){
+		styles +=`
+		.wpmozo_bna_bg_switcher_item_wrap{
+			justify-content: ${alignment} !important;
+		}`
+	}
+
 
 
 	// Title.
