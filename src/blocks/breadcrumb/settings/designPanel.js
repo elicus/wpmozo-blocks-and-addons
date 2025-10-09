@@ -4,15 +4,15 @@ import {
 	PanelBody,
 	SelectControl,
 	RangeControl,
-	BaseControl,
-	ButtonGroup,
-	Button,
+	ToggleControl,
+	TextControl
 } from "@wordpress/components";
 import {
-	WpmozoBorder,
 	WpmozoAlignment,
 	WpmozoColorPicker,
 	WpmozoTypography,
+	WpmozoIconpicker,
+	WpmozoDimensions
 } from '../../../common/components/index';
 
 import { useState } from "@wordpress/element";
@@ -24,116 +24,156 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 	const [ titleStyleType, setTitleStyleType ] = useState( 'normal' );
 
 	return ( <>
-		<PanelBody title={ __( 'Layout', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
-			<SelectControl
-				label={ __( 'Select Layout', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.layout }
-				options={ [
-					{ value: 'lily', label: __( 'Lily', 'wpmozo-blocks-and-addons' ) },
-					{ value: 'sadie', label: __( 'Sadie', 'wpmozo-blocks-and-addons' ) },
-					{ value: 'roxy', label: __( 'Roxy', 'wpmozo-blocks-and-addons' ) },
-					{ value: 'bubba', label: __( 'Bubba', 'wpmozo-blocks-and-addons' ) },
-					{ value: 'romeo', label: __( 'Romeo', 'wpmozo-blocks-and-addons' ) },
-					{ value: 'layla', label: __( 'Layla', 'wpmozo-blocks-and-addons' ) },
-					{ value: 'oscar', label: __( 'Oscar', 'wpmozo-blocks-and-addons' ) },
-					{ value: 'marley', label: __( 'Marley', 'wpmozo-blocks-and-addons' ) },
-					{ value: 'ruby', label: __( 'Ruby', 'wpmozo-blocks-and-addons' ) },
-					{ value: 'milo', label: __( 'Milo', 'wpmozo-blocks-and-addons' ) },
-				] }
-				onChange={ ( newValue ) => setAttributes( { layout: newValue } ) }
-			/>
-		</PanelBody>
-		<PanelBody title={ __( 'Layout Settings', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			{ 'romeo' !== attributes.layout && 'marley' !== attributes.layout &&
+		{ 'layout1' === attributes.breadcrumbLayout && <>
+			<PanelBody title={ __( 'Breadcrumbs Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
 				<WpmozoColorPicker props={props}
-					ColorKey="overlay"
+					ColorKey="breadcrumbs"
 					ColorTypes={ [
-						{ key: 'Color', label: __( 'Overlay Color', 'wpmozo-blocks-and-addons' ) },
+						{ key: 'NavBackground', label: __( 'Breadcrumbs Background Color', 'wpmozo-blocks-and-addons' ) },
+						...(attributes.enableDifferentBg
+	      					? [{ key: 'NavLastItemBackground', label: __( 'Last item Background Color', 'wpmozo-blocks-and-addons' ) }]
+	      					: [])
 					] }
 				/>
-			}
-			{ 'lily' !== attributes.layout && 'sadie' !== attributes.layout &&
-				<WpmozoBorder props={props}
-					BorderKey="layout"
-					BorderTypes={ { border: true } }
+				<ToggleControl
+					label={ __( 'Different Background for last item', 'wpmozo-blocks-and-addons' ) }
+					checked={ attributes.enableDifferentBg || false }
+					onChange={ ( newValue ) => setAttributes( { enableDifferentBg: newValue } ) }
+					__nextHasNoMarginBottom={ true }
 				/>
-			}
-			<RangeControl
-				label={ __( 'Image Opacity', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.imageOpacity }
-				onChange={ ( newValue ) => setAttributes( { imageOpacity: newValue } ) }
-				min={0} step={0.1} max={1}
+				<ToggleControl
+					label={ __( 'Enable Opacity', 'wpmozo-blocks-and-addons' ) }
+					checked={ attributes.enableFade || false }
+					onChange={ ( newValue ) => setAttributes( { enableFade: newValue } ) }
+					__nextHasNoMarginBottom={ true }
+				/>
+				{ attributes.enableFade &&
+					<RangeControl
+						label={ __( 'Decrease Opacity By', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.fadeRange }
+						onChange={ ( newValue ) => setAttributes( { fadeRange: newValue } ) }
+						min={0.01} step={0.01} max={0.90}
+					/>
+				}
+				<WpmozoDimensions
+					DimensionKey='breadcrumbItem'
+					DimensionsTypes={{
+						padding: true
+					}}
+					props={props}
+				/>
+			</PanelBody>
+		</> }
+		{ 'layout2' === attributes.breadcrumbLayout && <>
+			<PanelBody title={ __( 'Separator Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<WpmozoColorPicker props={props}
+					ColorKey="separator"
+					ColorTypes={ [
+						{ key: 'Color', label: __( 'Separator Color', 'wpmozo-blocks-and-addons' ) }
+					] }
+				/>
+				<SelectControl
+					label={ __( 'Separator Type', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.separatorType }
+					options={[
+						{
+							value: 'text_separator',
+							label: __( 'Text Separator', 'wpmozo-blocks-and-addons' ),
+						},
+						{
+							value: 'icon_separator',
+							label: __( 'Icon Separator', 'wpmozo-blocks-and-addons' ),
+						},
+					]}
+					onChange={ ( newValue ) => setAttributes( { separatorType: newValue } ) }
+				/>
+				{ 'text_separator' === attributes.separatorType &&
+					<TextControl
+						label={__('Separator Text', 'wpmozo-blocks-and-addons')}
+						value={attributes.separatorText ?? ""}
+						onChange={(newValue) => setAttributes({separatorText: newValue})}
+						placeholder={__('|', 'wpmozo-blocks-and-addons')}
+						__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+					/>
+				}
+				{ 'icon_separator' === attributes.separatorType &&
+					<WpmozoIconpicker
+						props={props}
+						label={__('Separator Icon', 'wpmozo-blocks-and-addons')}
+						iconPickerKey='separatorIcon'
+						value={attributes.separatorIcon}
+						onChange={(newValue) => setAttributes({separatorIcon: newValue})}
+					/>
+				}
+				<WpmozoTypography props={props}
+					TypographyKey="separatorSize"
+					TypoTypes={{
+						'FontSize': true
+					}}
+				/>
+			</PanelBody>
+		</> }
+		<PanelBody title={ __( 'Home Link Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<ToggleControl
+				label={ __( 'Custom Home Link Text', 'wpmozo-blocks-and-addons' ) }
+				checked={ attributes.useHomeLinkText || false }
+				onChange={ ( newValue ) => setAttributes( { useHomeLinkText: newValue } ) }
+				__nextHasNoMarginBottom={ true }
 			/>
-		</PanelBody>
-		<PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			<BaseControl label={ __( 'Title Heading Level', 'wpmozo-blocks-and-addons' ) }>
-				<ButtonGroup>
-					{ headingLevelsList.map( ( item, key ) => (
-						<Button key={ 'title-level-' + key }
-							isPressed={ ( item.value === attributes.titleLevel ) ? true : false }
-							onClick={ ( newValue ) => setAttributes( { titleLevel: newValue } ) }
-						>{item.label}</Button>
-					) ) }
-				</ButtonGroup>
-			</BaseControl>
-			<BaseControl className="wpmozo-button-tabs-wrap">
-				<ButtonGroup>
-					<Button className="wpmozo-button-tabs-btn"
-						isPressed={ ( 'normal' === titleStyleType ) ? true : false }
-						onClick={ () => setTitleStyleType( 'normal' ) }
-					>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
-					<Button className="wpmozo-button-tabs-btn"
-						isPressed={ ( 'hover' === titleStyleType ) ? true : false }
-						onClick={ () => setTitleStyleType( 'hover' ) }
-					>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
-				</ButtonGroup>
-				{ 'normal' === titleStyleType && <>
-					<WpmozoColorPicker props={props}
-						ColorKey="titleNormal"
-						ColorTypes={ [
-							{ key: 'Color', label: __( 'Title Color', 'wpmozo-blocks-and-addons' ) },
-						] }
-					/>
-					<WpmozoTypography props={props}
-						TypographyKey="titleNormal"
-					/>
-				</> }
-				{ 'hover' === titleStyleType && <>
-					<WpmozoColorPicker props={props}
-						ColorKey="titleHover"
-						ColorTypes={ [
-							{ key: 'Color', label: __( 'Title Color', 'wpmozo-blocks-and-addons' ) }
-						] }
-					/>
-					<WpmozoTypography props={props}
-						TypographyKey="titleHover"
-					/>
-				</> }
-			</BaseControl>
-			{ 'milo' !== attributes.layout &&
-				<WpmozoAlignment
-					label={ __( 'Title Alignment', 'wpmozo-blocks-and-addons' ) }
-					value={ attributes.titleAlign }
-					onChange={ ( newValue ) => setAttributes( { titleAlign: newValue } ) }
+			{ attributes.useHomeLinkText &&
+				<TextControl
+					label={__('Home Link Text', 'wpmozo-blocks-and-addons')}
+					value={attributes.homeLinkText ?? ""}
+					onChange={(newValue) => setAttributes({homeLinkText: newValue})}
+					placeholder={__('Home', 'wpmozo-blocks-and-addons')}
+					__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
 				/>
 			}
+			<ToggleControl
+				label={ __( 'Use Home Link Icon', 'wpmozo-blocks-and-addons' ) }
+				checked={ attributes.useHomeLinkIcon || false }
+				onChange={ ( newValue ) => setAttributes( { useHomeLinkIcon: newValue } ) }
+				__nextHasNoMarginBottom={ true }
+			/>
+			{ attributes.useHomeLinkIcon && 
+				<>
+					<ToggleControl
+						label={ __( 'Hide Home Text(Display Icon Only)', 'wpmozo-blocks-and-addons' ) }
+						checked={ attributes.hideHomeText || false }
+						onChange={ ( newValue ) => setAttributes( { hideHomeText: newValue } ) }
+						__nextHasNoMarginBottom={ true }
+					/>
+					<WpmozoIconpicker
+						props={props}
+						label={__('Separator Icon', 'wpmozo-blocks-and-addons')}
+						iconPickerKey='separatorIcon'
+						value={attributes.separatorIcon}
+						onChange={(newValue) => setAttributes({separatorIcon: newValue})}
+					/>
+					<WpmozoTypography props={props}
+						TypographyKey="homeLinkIconSize"
+						TypoTypes={{
+							'FontSize': true
+						}}
+					/>
+				</>
+			}
 		</PanelBody>
-		<PanelBody title={__('Content', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
-			<WpmozoColorPicker props={props}
-				ColorKey="content"
+		<PanelBody title={ __( 'Text Settings', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<WpmozoColorPicker props={ props }
+				label={ __( 'Text Color', 'wpmozo-blocks-and-addons' ) }
+				ColorKey="text"
 				ColorTypes={ [
-					{ key: 'Color', label: __( 'Text Color', 'wpmozo-blocks-and-addons' ) },
+					{ key: 'Color', label: __( 'Text Color', 'wpmozo-blocks-and-addons' ) }
 				] }
 			/>
-			{ 'milo' !== attributes.layout &&
-				<WpmozoAlignment
-					label={ __( 'Content Alignment', 'wpmozo-blocks-and-addons' ) }
-					value={ attributes.contentAlign }
-					onChange={ ( newValue ) => setAttributes( { contentAlign: newValue } ) }
-				/>
-			}
-			<WpmozoTypography props={props}
-				TypographyKey="content"
+			<WpmozoAlignment
+				label={__('Text Alignment', 'wpmozo-blocks-and-addons')}
+				onChange={(newValue) => setAttributes({textAlign: newValue})}
+				value={attributes.textAlign}
+			/>
+			<WpmozoTypography props={ props }
+				TypographyKey="text"
 			/>
 		</PanelBody>
 	</> );
