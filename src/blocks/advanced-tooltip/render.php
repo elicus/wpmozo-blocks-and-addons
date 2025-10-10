@@ -3,6 +3,8 @@
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
+use WPMOZO\BNA\Helpers\Mozo_Bna_Block_Helpers;
+$helpers = new Mozo_Bna_Block_Helpers();
 // Get attributes safely
 $trigger_element     = isset( $attributes['trigerElement'] ) ? $attributes['trigerElement'] : '';
 $trigger_action      = isset( $attributes['trigerAction'] ) ? $attributes['trigerAction'] : '';
@@ -25,7 +27,7 @@ if ( ! empty( $entrance_animation ) && 'fade' !== $entrance_animation ) {
 }
 
 ?>
-<?php echo wpmozo_bna_get_module_dynamic_style( 'advanced-tooltip', $attributes ) ?>
+<?php echo $helpers::get_block_dynamic_style( 'advanced-tooltip', $attributes ); ?>
 <div <?php echo get_block_wrapper_attributes(); ?> id="block-<?php echo $attributes['ID']; ?>">
 	<div class="wpmozo_advanced_tooltip icon_">
 		<div

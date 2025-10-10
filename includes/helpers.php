@@ -15,66 +15,6 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * Get sanitized value.
- *
- * @since 1.1.0
- * @param mixed $value The value to sanitize.
- * @return mixed The sanitized value.
- */
-function mozo_bna_sanitize_text_field( $value ) {
-
-	if ( ! empty( $value ) && is_array( $value ) ) {
-		$sanitize_arr = array();
-		foreach ( $value as $skey => $svalue ) {
-			$sanitize_arr[ $skey ] = mozo_bna_sanitize_text_field( $svalue );
-		}
-		$value = $sanitize_arr;
-
-	} else {
-		$value = wp_unslash( $value );
-		$value = sanitize_text_field( $value );
-	}
-
-	return $value;
-}
-
-/**
- * Pass thru semantical previously escaped acknowledgement.
- *
- * @since 1.1.0
- *
- * @param string value being passed through
- * @return string
- */
-if ( ! function_exists( 'wpmozo_esc_previously' ) ) :
-	function wpmozo_esc_previously( $passthru ) {
-		return $passthru;
-	}
-endif;
-
-/**
- * Get module dynamic style.
- *
- * @since 1.1.0
- *
- * @param string module name/slug/folder name.
- * @param array attributes of module.
- *
- * @return string style for the module
- */
-function wpmozo_bna_get_module_dynamic_style( $module, $attributes ) {
-	if ( file_exists( WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-' . esc_attr( $module ) . '/dynamic-style.php' ) ) {
-		include WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-' . esc_attr( $module ) . '/dynamic-style.php';
-
-		$callback_function = str_replace( '-', '_', $module ) . '_generate_dynamic_style';
-		if ( function_exists( $callback_function ) ) {
-			return $callback_function( $attributes );
-		}
-	}
-	return '';
-}
-
-/**
  * Get font styles from props.
  *
  * @since 1.1.0

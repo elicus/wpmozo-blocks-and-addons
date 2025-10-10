@@ -19,7 +19,7 @@ if ( ! defined( 'WPINC' ) ) {
 class Mozo_Bna_Block_Helpers{
 
 	/**
-	 * Get module dynamic style.
+	 * Get block dynamic style.
 	 *
 	 * @since 1.1.0
 	 *
@@ -28,7 +28,7 @@ class Mozo_Bna_Block_Helpers{
 	 *
 	 * @return string style for the module
 	 */
-	public static function module_dynamic_style( $module, $attributes ) {
+	public static function get_block_dynamic_style( $module, $attributes ) {
 		if ( file_exists( WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-' . esc_attr( $module ) . '/dynamic-style.php' ) ) {
 			include WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-' . esc_attr( $module ) . '/dynamic-style.php';
 
