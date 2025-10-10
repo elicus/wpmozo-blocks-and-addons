@@ -17,7 +17,7 @@
 		"className": { "type": "string" },
 
 		"postItemsDB": { "type": "string" },
-	
+
 		"postsNumber": { "type": "number", "default": 10 },
 		"offsetNumber": { "type": "number", "default": 0 },
 		"postOrder": { "type": "string", "default": "desc" },
@@ -28,8 +28,9 @@
 
 		"layout": { "type": "string", "default": "layout1" },
 		"orientation": { "type": "string", "default": "alternate" },
-	
+
 		"showExcerpt": { "type": "boolean", "default": true },
+		"excerptLength": {"type": "string","default": 50},
 		"showThumbnail": { "type": "boolean", "default": true },
 		"featuredImageSize": { "type": "string", "default": "large" },
 		"showAuthor": { "type": "boolean", "default": true },
