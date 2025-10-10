@@ -139,11 +139,6 @@ class Mozo_Bna_Blocks_And_Addons {
 	private function load_dependencies() {
 
 		/**
-		 * The core functions available on both the front-end and admin of the plugin.
-		 */
-		require_once WPMOZO_BNA_INC_DIR_PATH . 'helpers.php';
-
-		/**
 		 * The trait class that handle helper functions,
 		 * this can be use on multiple plugins.
 		 */
@@ -281,7 +276,7 @@ class Mozo_Bna_Blocks_And_Addons {
 			$default_spacing_sizes = $json_data['settings']['spacing']['defaultSpacingSizes'];
 			if ( ! $default_spacing_sizes ) {
 
-				if ( 
+				if (
 					! isset( $json_data['settings']['spacing']['spacingSizes'] ) ||
 					empty( $json_data['settings']['spacing']['spacingSizes'] )
 				) {
