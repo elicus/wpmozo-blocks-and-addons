@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+import {useState} from "@wordpress/element";
 import {
 	PanelBody,
 	BaseControl,
@@ -6,19 +7,16 @@ import {
 	Button,
 	RangeControl,
 	ToggleControl,
-	_experimentalToggleGroupControl as ToggleGroupControl,
+	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
-	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
 	Icon
 } from '@wordpress/components';
 import {
 	WpmozoAlignment,
 	WpmozoBorder,
 	WpmozoColorPicker, WpmozoDimensions, WpmozoIconpicker,
-	WpmozoSize,
 	WpmozoTypography
 } from '../../../common/components/index';
-import { useState } from "@wordpress/element";
 import { headingLevelsList } from '../../../common/utils.js';
 
 export const DesignPanel = ( { attributes, setAttributes } ) => {
@@ -26,10 +24,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 
 	let props = { attributes, setAttributes };
 	props = Object.assign({}, props, {preAttributes: {}});
-
-	const [ contentType, setContentType ] = useState('front');
-
-
 
 	return (
 		<>
@@ -219,10 +213,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 								{ key: 'Color', label: __( 'Button Text Color', 'wpmozo-blocks-and-addons' ) }
 							] }
 						/>
-						<WpmozoBorder
-							props={props}
-							BorderKey="button"
-						/>
 						<ToggleControl
 							label={ __( 'Show Button Icon', 'wpmozo-blocks-and-addons' ) }
 							checked={ attributes.showButtonIcon }
@@ -238,6 +228,14 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 									value={ attributes.icon }
 									onChange={ ( newValue ) => setAttributes( { icon: newValue } ) }
 								/>
+								<ToggleGroupControl
+									label={__('Icon Position', 'wpmozo-blocks-and-addons')}
+									value={attributes.buttonMediaPosition}
+									onChange={(newValue) => setAttributes({buttonMediaPosition: newValue})}
+								>
+									<ToggleGroupControlOption icon={<Icon icon="external"/>} value="before" label="Before"/>
+									<ToggleGroupControlOption value="after" label="After"/>
+								</ToggleGroupControl>
 								<WpmozoColorPicker
 									props={props}
 									ColorKey="buttonIcon"
@@ -245,7 +243,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 										{ key: 'Color', label: __( 'Button Icon Color', 'wpmozo-blocks-and-addons' ) }
 									] }
 								/>
-
 								<ToggleControl
 									label={ __( 'Only Show Icon On Hover for Button', 'wpmozo-blocks-and-addons' ) }
 									checked={ attributes.showOnHover }
@@ -254,6 +251,15 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 								/>
 							</>
 						)}
+						<WpmozoBorder
+							props={props}
+							BorderKey="button"
+						/>
+						<WpmozoDimensions
+							props={props}
+							DimensionKey='button'
+							DimensionsTypes={{padding: true, margin: true}}
+						/>
 					</>
 				)}
 			</PanelBody>

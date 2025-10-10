@@ -27,7 +27,7 @@
 		"showFeaturedImage": {"type": "boolean","default": true},
 		"showTtile": {"type": "boolean","default": true},
 		"showExcerpt": {"type": "boolean","default": true},
-		"excerptLength": {"type": "string","default": "150"},
+		"excerptLength": {"type": "string","default": "80"},
 		"showCategories": {"type": "boolean","default": true},
 		"showAuthorName": {"type": "boolean","default": true},
 		"showDate": {"type": "boolean","default": true},
@@ -36,7 +36,7 @@
 		"buttonText": {"type": "string","default": "Read More"},
 
 		"titleTextAlignment": {"type": "string","default": "left"},
-		"nameHeadingLevel": {"type":"string"},
+		"nameHeadingLevel": {"type":"string","default": "h2"},
 		"titleTextColor": {"type":"string"},
 		"titleTextFontSize": { "type": "string" },
 		"titleTextFontAppearance": {
@@ -137,9 +137,14 @@
 		"buttonborderRadius": { "type": "string" },
 		"showButtonIcon": {"type": "boolean","default": false},
 		"icon": {"type": "string","default": "fa fa-star"},
+		"buttonIconPosition": {"type": "string","default": "before"},
 		"buttonIconColor": {"type": "string"},
 		"buttonMediaPosition": { "type": "string", "default": "after" },
 		"showOnHover": {"type": "boolean","default": false},
+		"buttonpadding": { "type": "object", "default": { "top": "10px", "right": "20px", "bottom": "10px", "left": "20px" } },
+		"buttonmargin": { "type": "object" },
+		"buttonborder": { "type": "object", "default": { "width": "2px", "style": "solid", "color": "#313131" } },
+		"buttonborderRadius": { "type": "string", "default": "3px" },
 
 		"containerborder": { "type": "object" },
 		"containerborderRadius": { "type": "string" },
@@ -150,5 +155,6 @@
     "editorScript": "file:./index.js",
     "editorStyle": "file:./index.css",
     "style": "file:./style-index.css",
+	"script": [ "wpmozo-blocks-and-addons-scroll-trigger-script", "wpmozo-blocks-and-addons-gsap-script", "file:./script.js"],
 	"render": "file:./render.php"
 }

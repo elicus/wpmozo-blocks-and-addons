@@ -94,9 +94,9 @@ export default function Edit(props) {
 			}
 
 			if ( attributes.showFeaturedImage && imageUrl ) {
-				showFeaturedImage = <div className="dipl_horizontal_scrolling_post_image_wrapper">
+				showFeaturedImage = <div className="wpmozo_horizontal_scrolling_post_image_wrapper">
 					<a href={post.link}>
-						<img src={imageUrl} alt={altText} className="dipl_horizontal_scrolling_post_image"/>
+						<img src={imageUrl} alt={altText} className="wpmozo_horizontal_scrolling_post_image"/>
 					</a>
 				</div>;
 			}
@@ -106,10 +106,24 @@ export default function Edit(props) {
 			}
 
 			if(attributes.showButton) {
-				button = <div className="et_pb_button_wrapper">
-					<a className="et_pb_button" href={post.link}>{attributes.buttonText}</a>
+				let $buttonIcon = '';
+				if ( attributes.showButtonIcon && attributes.icon ) {
+					$buttonIcon = <i className={ 'wpmozo-bna-icon ' + attributes.icon }></i>;
+				}
+				button = <div className="wpmozo-bna-button-wrap">
+					<a href="javascript:void(0)"
+					   className={[
+						   'wpmozo-bna-button',
+						   (attributes.showButtonIcon && attributes.showOnHover) ? 'wpmozo-icon-on-hover' : '',
+						   (attributes.showButtonIcon && 'before' === attributes.buttonMediaPosition) ? 'wpmozo-icon-at-before' : 'wpmozo-icon-at-after'
+					   ].join(" ")}
+					>
+						<span className='wpmozo-bna-btn-text'>{attributes.buttonText}</span>
+						{$buttonIcon}
+					</a>
 				</div>;
 			}
+
 
 			let authorData = post._embedded?.author?.[0];
 			let authorName = authorData?.name || 'Unknown Author';
@@ -142,7 +156,7 @@ export default function Edit(props) {
 			}
 
 			// Add to the slides.
-			postData.push( <div className={`dipl_horizontal_scrolling_post_item item_${attributes.layout}`}>{ $thisSlide }</div> );
+			postData.push( <div className={`wpmozo_horizontal_scrolling_post_item item_${attributes.layout}`}>{ $thisSlide }</div> );
 		} );
 	}
 
@@ -152,9 +166,9 @@ export default function Edit(props) {
 			<style>{generateDynamicStyle({attributes})}</style>
 
 			<div {...useBlockProps()} id={`block-${attributes.ID}`}>
-				<div className={`dipl-sticky-posts-scroller`}>
-					<div className={`dipl-sticky-posts-wrapper ${attributes.layout}`}>
-						<div className={`dipl-sticky-posts-inner`}>
+				<div className={`wpmozo-sticky-posts-scroller`}>
+					<div className={`wpmozo-sticky-posts-wrapper ${attributes.layout}`}>
+						<div className={`wpmozo-sticky-posts-inner`}>
 							{postData}
 						</div>
 					</div>

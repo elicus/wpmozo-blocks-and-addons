@@ -4,21 +4,10 @@ export const renderTestimonialLayoutOne = ( {postTitle, postExcerpt,categoriesDa
 	const classLists = ( post.class_list ) ? ( post.class_list ).join( ' ' ) : '';
 	const link = post.link;
 
-
-
-	let authorData = '';
-	if ( '' !== authorName ) {
-		authorData = <div className="wpmozo_testimonial_author_details">
-			{ authorName }
-		</div>;
-	}
-
-	let $meta = '';
-
 	const catTag = (
-		<div className="dipl_horizontal_scrolling_post_tag_wrapper">
+		<div className="wpmozo_horizontal_scrolling_post_tag_wrapper">
 			{categoriesData && categoriesData.map((cat, i) => (
-				<span key={cat.id || i} className="dipl_horizontal_scrolling_post_tag">
+				<span key={cat.id || i} className="wpmozo_horizontal_scrolling_post_tag">
 					<a href={cat.link}>{cat.name}</a>
 					{i < categoriesData.length - 1 ? '' : ''}
 				</span>
@@ -27,35 +16,38 @@ export const renderTestimonialLayoutOne = ( {postTitle, postExcerpt,categoriesDa
 	);
 
 	return (
-		<div id={'womozo_single_testimonial_' + post.id}
-			 className={"dipl_horizontal_scrolling_post_wrapper " + classLists}>
+		<div id={'womozo_single_post_' + post.id}
+			 className={"wpmozo_horizontal_scrolling_post_wrapper " + classLists}>
 			{showFeaturedImage && (
 				<>
 					{catTag}
 					{showFeaturedImage}
 				</>
 			)}
-			<div className="dipl_horizontal_scrolling_post_content_wrapper">
+			<div className="wpmozo_horizontal_scrolling_post_content_wrapper">
 				{!showFeaturedImage && (
 					<>
 						{catTag}
 					</>
 				)}
 				{postTitle && (
-					<h2 className="dipl_horizontal_scrolling_post_title">
+					<h2 className="wpmozo_horizontal_scrolling_post_title">
 						<a href={link}>{postTitle}</a>
 					</h2>
 				)}
-				{postExcerpt}
+				<div className={"wpmozo_horizontal_scrolling_post_excerpt"}>
+					{postExcerpt}
+				</div>
+				{button}
 			</div>
-			<div className="dipl_horizontal_scrolling_post_meta_wrapper">
+			<div className="wpmozo_horizontal_scrolling_post_meta_wrapper">
 				{authorName && (
 					<>
 						<span className="author">
 							<span className="et-pb-icon"></span>
 							<a href={authorLink} rel="author">{authorName}</a>
 						</span>
-						<span className="dipl_post_meta_divider">|</span>
+						<span className="wpmozo_post_meta_divider">|</span>
 					</>
 				)}
 				{date && (
@@ -68,7 +60,7 @@ export const renderTestimonialLayoutOne = ( {postTitle, postExcerpt,categoriesDa
 								year: 'numeric'
 							})}
 						</span>
-						<span className="dipl_post_meta_divider">|</span>
+						<span className="wpmozo_post_meta_divider">|</span>
 
 					</>
 				)}
@@ -89,19 +81,10 @@ export const renderTestimonialLayoutTwo = ({postTitle, postExcerpt,categoriesDat
 	const classLists = ( post.class_list ) ? ( post.class_list ).join( ' ' ) : '';
 	const link = post.link;
 
-	let authorData = '';
-	if ( '' !== authorName ) {
-		authorData = <div className="wpmozo_testimonial_author_details">
-			{ authorName }
-		</div>;
-	}
-
-	let $meta = '';
-
 	const catTag = (
-		<div className="dipl_horizontal_scrolling_post_tag_wrapper">
+		<div className="wpmozo_horizontal_scrolling_post_tag_wrapper">
 			{categoriesData && categoriesData.map((cat, i) => (
-				<span key={cat.id || i} className="dipl_horizontal_scrolling_post_tag">
+				<span key={cat.id || i} className="wpmozo_horizontal_scrolling_post_tag">
 					<a href={cat.link}>{cat.name}</a>
 					{i < categoriesData.length - 1 ? '' : ''}
 				</span>
@@ -121,25 +104,28 @@ export const renderTestimonialLayoutTwo = ({postTitle, postExcerpt,categoriesDat
 	);
 
 	return (
-		<div id={'womozo_single_testimonial_' + post.id} className={"dipl_horizontal_scrolling_post_wrapper " + classLists}>
+		<div id={'womozo_single_post_' + post.id} className={"wpmozo_horizontal_scrolling_post_wrapper " + classLists}>
 			<div
-				className="dipl_horizontal_scrolling_post_inner"
+				className="wpmozo_horizontal_scrolling_post_inner"
 				style={{
 					backgroundImage: showFeaturedImage && showFeaturedImage.props.children.props.children.props.src
 						? `url("${showFeaturedImage.props.children.props.children.props.src}")`
 						: 'none'
 				}}
 			>
-				<div className="dipl_horizontal_scrolling_post_content_wrapper">
+				<div className="wpmozo_horizontal_scrolling_post_content_wrapper">
 					{catTag}
 					{postTitle && (
-						<h2 className="dipl_horizontal_scrolling_post_title">
+						<h2 className="wpmozo_horizontal_scrolling_post_title">
 							<a href={link}>{postTitle}</a>
 						</h2>
 					)}
-					{postExcerpt}
+					<div className={"wpmozo_horizontal_scrolling_post_excerpt"}>
+						{postExcerpt}
+					</div>
+
 					{button}
-					<div className="dipl_horizontal_scrolling_post_meta_wrapper">
+					<div className="wpmozo_horizontal_scrolling_post_meta_wrapper">
 						{authorName && (
 							<>
 								<span className="author">

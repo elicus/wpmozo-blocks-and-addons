@@ -15,17 +15,6 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	let props = { attributes, setAttributes };
 	props = Object.assign({}, props, {preAttributes: {}});
 
-	// Get the terms.
-	const terms = useSelect( (select) =>
-			select( coreStore ).getEntityRecords( 'taxonomy', 'mozo-testimonial-category', {
-				per_page: -1,
-			} ),
-		[] );
-	const options = terms?.map( ( term ) => ( {
-		label: term.name,
-		value: term.id,
-	} ) ) || [];
-
 	return ( <>
 		<PanelBody title={ __( 'Content', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
 			<SelectControl
@@ -64,13 +53,6 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					{ value: 'rand', label: __( 'Random', 'wpmozo-blocks-and-addons' ) }
 				] }
 				onChange={ ( newValue ) => setAttributes( { postOrderBy: newValue } ) }
-			/>
-			<SelectControl
-				multiple
-			   	label={ __( 'Includes Categories', 'wpmozo-blocks-and-addons' ) }
-			   	value={ attributes.includesCategories }
-			   	options={ options }
-			   	onChange={ ( newValue ) => setAttributes( { includesCategories: newValue } ) }
 			/>
 			<ToggleControl
 				label={__('Ignore Sticky Posts', 'wpmozo-blocks-and-addons')}
