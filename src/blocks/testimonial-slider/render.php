@@ -3,8 +3,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+use WPMOZO\BNA\Helpers\Mozo_Bna_Helpers;
+
 if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 	function testimonial_slider_render_callback( $attributes ) {
+
+		$helpers = new Mozo_Bna_Helpers();
 
 		$layout              = $attributes['layout'] ?? 'layout1';
 		$posts_to_show       = $attributes['postsToShow'] ?? 5;

@@ -12,9 +12,9 @@ $testimonial_author = '';
 if ( ! empty( $author_name ) || ! empty( $author_designation ) || ! empty( $author_company )  ) {
 	$testimonial_author = sprintf(
 		'<div class="wpmozo_testimonial_author_details">%1$s%2$s%3$s</div>',
-		! empty( $author_name ) ? wpmozo_esc_previously( $author_name ) : '',
-		! empty( $author_designation ) ? wpmozo_esc_previously( $author_designation ) : '',
-		! empty( $author_company ) ? wpmozo_esc_previously( $author_company ) : ''
+		! empty( $author_name ) ? $helpers::esc_previously( $author_name ) : '',
+		! empty( $author_designation ) ? $helpers::esc_previously( $author_designation ) : '',
+		! empty( $author_company ) ? $helpers::esc_previously( $author_company ) : ''
 	);
 }
 
@@ -22,8 +22,8 @@ $testimonial_meta = '';
 if ( ! empty( $author_image ) || ! empty( $testimonial_author ) ) {
 	$testimonial_meta = sprintf(
 		'<div class="wpmozo_testimonial_meta">%1$s%2$s</div>',
-		! empty( $author_image ) ? wpmozo_esc_previously( $author_image ) : '',
-		! empty( $testimonial_author ) ? wpmozo_esc_previously( $testimonial_author ) : ''
+		! empty( $author_image ) ? $helpers::esc_previously( $author_image ) : '',
+		! empty( $testimonial_author ) ? $helpers::esc_previously( $testimonial_author ) : ''
 	);
 }
 
@@ -34,9 +34,9 @@ $testimonials .= sprintf(
 		%6$s
 	</div>',
 	esc_attr( $post_id ),
-	wpmozo_esc_previously( $opening_quote ),
+	$helpers::esc_previously( $opening_quote ),
 	apply_filters( 'the_content', do_shortcode( get_the_content( null, false, $post_id ) ) ),
-	wpmozo_esc_previously( $closing_quote ),
-	! empty( $rating ) ? wpmozo_esc_previously( $rating ) : '',
-	isset( $testimonial_meta ) ? wpmozo_esc_previously( $testimonial_meta ) : ''
+	$helpers::esc_previously( $closing_quote ),
+	! empty( $rating ) ? $helpers::esc_previously( $rating ) : '',
+	isset( $testimonial_meta ) ? $helpers::esc_previously( $testimonial_meta ) : ''
 );
