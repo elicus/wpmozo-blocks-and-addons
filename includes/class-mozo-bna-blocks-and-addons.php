@@ -144,6 +144,18 @@ class Mozo_Bna_Blocks_And_Addons {
 		require_once WPMOZO_BNA_INC_DIR_PATH . 'helpers.php';
 
 		/**
+		 * The trait class that handle helper functions,
+		 * this can be use on multiple plugins.
+		 */
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'helpers/class-mozo-bna-helpers.php';
+
+		/**
+		 * The trait class that handle block helper functions,
+		 * this can be use on multiple plugins.
+		 */
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'helpers/class-mozo-bna-block-helpers.php';
+
+		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
