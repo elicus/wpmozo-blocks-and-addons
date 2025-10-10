@@ -104,15 +104,6 @@ export default function Edit(props) {
 		}
 	}, [images]);
 
-	useEffect(() => {
-		const event = new CustomEvent('WPMozoMasonryGalleryPropsChanged');
-		window.dispatchEvent(event);
-		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
-		if ( iframe?.contentWindow ) {
-			iframe.contentWindow.dispatchEvent( event );
-		}
-	}, [props]);
-
 	useEffect( () => {
 		const changedAttributes = {};
 		const blocks = [];
