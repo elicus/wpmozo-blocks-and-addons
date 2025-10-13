@@ -1,4 +1,4 @@
-#mozo_testimonial_metabox h2{
+#poststuff [id^="mozo_"][id$="_metabox"] h2{
 	position: relative;
 	font-family: "Open Sans", sans-serif;
 	font-size: 18px;
@@ -14,17 +14,17 @@
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 }
-#mozo_testimonial_metabox .postbox-header{
+#poststuff [id^="mozo_"][id$="_metabox"] .postbox-header{
 	align-items: stretch;
 }
-#mozo_testimonial_metabox .handle-actions{
+#poststuff [id^="mozo_"][id$="_metabox"] .handle-actions{
 	background-color: #4849ef;
 }
-#mozo_testimonial_metabox .handle-actions button,
-#mozo_testimonial_metabox .handlediv .toggle-indicator{
+#poststuff [id^="mozo_"][id$="_metabox"] .handle-actions button,
+#poststuff [id^="mozo_"][id$="_metabox"] .handlediv .toggle-indicator{
 	color: #fff;
 }
-#mozo_testimonial_metabox .handlediv{
+#poststuff [id^="mozo_"][id$="_metabox"] .handlediv{
 	z-index: 9;
 	position: relative;
 	color: #fff;
@@ -35,7 +35,7 @@
 	width: auto;
 	height: auto;
 }
-#mozo_testimonial_metabox .inside{
+#poststuff [id^="mozo_"][id$="_metabox"] .inside{
 	margin: 5px 25px 10px;
 }
 
@@ -70,9 +70,70 @@
 	color: #32373c;
 	min-width: 300px;
 }
+.wpmozo_meta_fields textarea{
+	min-height: 80px;
+}
 .wpmozo_meta_fields input:focus,
 .wpmozo_meta_fields select:focus,
 .wpmozo_meta_fields textarea:focus{
 	box-shadow: none;
 	border-color: #3d3eed;
+}
+
+.wpmozo_meta_fields .info {
+    display: block;
+    margin-left: 230px;
+    font-size: 12px;
+}
+
+/* Repeater Field. */
+.wpmozo_bna_repeator_meta_fields{
+	width: 50%;
+	float: left;
+}
+.wpmozo_bna_repeator_meta_field_row{
+	position: relative;
+	background: #fbfbfb;
+	border: 1px solid #f1f1f1;
+	padding: 10px;
+}
+.wpmozo_bna_repeator_meta_field_row:not( :last-child ) {
+	border-bottom: 2px solid #e9e9e9;
+}
+.wpmozo_bna_repeator_meta_field input:not( :last-child ),
+.wpmozo_bna_repeator_meta_field select:not( :last-child ),
+.wpmozo_bna_repeator_meta_field textarea:not( :last-child ) {
+	margin-bottom: 10px;
+}
+.wpmozo_bna_repeator_meta_field_add_row_control:not( :last-child ) {
+	margin-bottom: 10px;
+}
+.wpmozo_bna_repeator_meta_field input,
+.wpmozo_bna_repeator_meta_field select,
+.wpmozo_bna_repeator_meta_field textarea {
+    width: 100%;
+}
+.wpmozo_bna_repeator_meta_field_row_controls {
+	position: absolute;
+	top: 50%;
+	left: calc(100% + 10px);
+	margin: 0;
+	text-align: center;
+	transform: translateY(-50%);
+}
+.wpmozo_bna_repeator_meta_field_add_row_control{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: #f1f5f9;
+	width: 30px;
+	height: 30px;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.6;
+	cursor: pointer;
+}
+
+.wpmozo_bna_repeator_meta_field_row:not( :last-child ) .wpmozo_bna_repeator_meta_field_add_row{
+	display: none;
 }

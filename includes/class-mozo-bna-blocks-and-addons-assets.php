@@ -189,7 +189,7 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			true
 		);
 
-    wp_register_script(
+		wp_register_script(
 			$this->plugin_name . '-magnify-script',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/magnify.min.js',
 			array( 'jquery'),
@@ -250,6 +250,9 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 		wp_enqueue_script( $this->plugin_name . '-tilt-script' );
 		wp_enqueue_script( $this->plugin_name . '-popper-script' );
 		wp_enqueue_script( $this->plugin_name . '-tippy-script' );
+
+		// Load frontend localize variables.
+		$this->load_block_localize_variables();
 	}
 
 	/**
@@ -289,6 +292,21 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 	public function enqueue_block_assets() {
 		wp_enqueue_style( $this->plugin_name . '-fontawesome-style' );
 		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
+
+		// Load frontend localize variables.
+		$this->load_block_localize_variables();
+	}
+
+	/**
+	 * Enqueue block localize variables.
+	 * @since 1.6.0
+	 */
+	public function load_block_localize_variables() {
+		// Team Slider: localize vars.
+		wp_localize_script( 'wpmozo-team-slider-script', 'WPMozoTeamSliderData', array(
+			'ajaxurl'   => admin_url( 'admin-ajax.php' ),
+			'ajaxnonce' => wp_create_nonce( 'wpmozo-team-slider-nonce' ),
+		) );
 	}
 
 	/**
@@ -331,10 +349,19 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			WPMOZO_BNA_VERSION
 		);
 
+		// Register scripts.
+		wp_register_script(
+			$this->plugin_name . '-metaboxes',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/wpmozo-admin-metaboxes.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION
+		);
+
 		// Check if we're on post edit/add screen for a specific CPT
 		if ( isset( $screen->post_type ) && $screen->base === 'post' &&
-			$screen->post_type === 'mozo-testimonial'
+			( $screen->post_type === 'mozo-testimonial' || $screen->post_type === 'mozo-team-member' )
 		) {
+			wp_enqueue_script( $this->plugin_name . '-metaboxes' );
 			wp_enqueue_style( $this->plugin_name . '-metaboxes' );
 		}
 	}
