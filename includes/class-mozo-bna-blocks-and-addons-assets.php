@@ -95,6 +95,13 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			WPMOZO_BNA_VERSION
 		);
 
+		wp_register_style(
+			$this->plugin_name . '-tippy-animation-style',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/all-animation.css',
+			array( 'wp-edit-blocks' ),
+			WPMOZO_BNA_VERSION
+		);
+
 		wp_register_script(
 			$this->plugin_name . '-imagesloaded-script',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/imagesloaded.pkgd.js',
@@ -122,6 +129,14 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 		wp_register_script(
 			$this->plugin_name . '-tilt-script',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/tilt-jquery.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
+		wp_register_script(
+			$this->plugin_name . '-lottie-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/lottie.min.js',
 			array( 'jquery' ),
 			WPMOZO_BNA_VERSION,
 			true
@@ -173,26 +188,10 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			WPMOZO_BNA_VERSION,
 			true
 		);
-    
-    	wp_register_script(
+
+		wp_register_script(
 			$this->plugin_name . '-magnify-script',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/magnify.min.js',
-			array( 'jquery'),
-			WPMOZO_BNA_VERSION,
-			true
-		);
-
-		wp_register_script(
-			$this->plugin_name . '-scroll-trigger-script',
-			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/ScrollTrigger.min.js',
-			array( 'jquery'),
-			WPMOZO_BNA_VERSION,
-			true
-		);
-
-		wp_register_script(
-			$this->plugin_name . '-gsap-script',
-			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/gsap.min.js',
 			array( 'jquery'),
 			WPMOZO_BNA_VERSION,
 			true
@@ -211,6 +210,22 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			array(),
 			WPMOZO_BNA_VERSION
 		);
+
+		// Text scroll animation GSAP 3.12.2
+		wp_register_script(
+			$this->plugin_name . '-scroll-trigger-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . "js/vendors/ScrollTrigger.min.js",
+			array('jquery'),
+			'3.12.2',
+			true
+		);
+		wp_register_script(
+			$this->plugin_name . '-gsap-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/gsap.min.js',
+			array( $this->plugin_name . '-scroll-trigger-script' ),
+			'3.12.2',
+			true
+		);
 	}
 
 	/**
@@ -224,8 +239,7 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			'placeholderImg' => WPMOZO_BNA_ASSETS_DIR_URL . 'images/placeholder.webp',
 			'icons'          => $icons,
 			'url'            => rest_url( 'wpmozo/v1/save-dynamic-style' ),
-			'assets_url'     => WPMOZO_BNA_ASSETS_DIR_URL,
-			'themeName' 	 => wp_get_theme()->get('Name'),
+			'assets_url'     => WPMOZO_BNA_ASSETS_DIR_URL
 		);
 
 		wp_localize_script( $this->plugin_name . '-editor-script', 'wpmozo_bna_editor_object', $all_options );
@@ -236,6 +250,9 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 		wp_enqueue_script( $this->plugin_name . '-tilt-script' );
 		wp_enqueue_script( $this->plugin_name . '-popper-script' );
 		wp_enqueue_script( $this->plugin_name . '-tippy-script' );
+
+		// Load frontend localize variables.
+		$this->load_block_localize_variables();
 	}
 
 	/**
@@ -275,6 +292,21 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 	public function enqueue_block_assets() {
 		wp_enqueue_style( $this->plugin_name . '-fontawesome-style' );
 		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
+
+		// Load frontend localize variables.
+		$this->load_block_localize_variables();
+	}
+
+	/**
+	 * Enqueue block localize variables.
+	 * @since 1.6.0
+	 */
+	public function load_block_localize_variables() {
+		// Team Slider: localize vars.
+		wp_localize_script( 'wpmozo-team-slider-script', 'WPMozoTeamSliderData', array(
+			'ajaxurl'   => admin_url( 'admin-ajax.php' ),
+			'ajaxnonce' => wp_create_nonce( 'wpmozo-team-slider-nonce' ),
+		) );
 	}
 
 	/**
@@ -317,10 +349,19 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			WPMOZO_BNA_VERSION
 		);
 
+		// Register scripts.
+		wp_register_script(
+			$this->plugin_name . '-metaboxes',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/wpmozo-admin-metaboxes.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION
+		);
+
 		// Check if we're on post edit/add screen for a specific CPT
 		if ( isset( $screen->post_type ) && $screen->base === 'post' &&
-			$screen->post_type === 'mozo-testimonial'
+			( $screen->post_type === 'mozo-testimonial' || $screen->post_type === 'mozo-team-member' )
 		) {
+			wp_enqueue_script( $this->plugin_name . '-metaboxes' );
 			wp_enqueue_style( $this->plugin_name . '-metaboxes' );
 		}
 	}
