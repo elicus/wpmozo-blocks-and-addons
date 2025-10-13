@@ -3,8 +3,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+use WPMOZO\BNA\Helpers\Mozo_Bna_Helpers;
+use WPMOZO\BNA\Helpers\Mozo_Bna_Block_Helpers;
+
 if ( ! function_exists( 'team_slider_render_callback' ) ) {
 	function team_slider_render_callback( $attributes ) {
+
+		$helpers       = new Mozo_Bna_Helpers();
+		$block_helpers = new Mozo_Bna_Block_Helpers();
 
 		$layout              = $attributes['layout'] ?? 'layout1';
 		$posts_to_show       = $attributes['postsNumber'] ?? 10;
@@ -140,7 +146,7 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 						</div>',
 						get_the_permalink(),
 						esc_html( $button_text ),
-						wpmozo_esc_previously( $button_icon_html ),
+						$helpers::esc_previously( $button_icon_html ),
 						implode( ' ', $btn_classes )
 					);
 				}
@@ -148,14 +154,14 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 				// Member social icon.
 				$social_icons = '';
 				if ( true === $show_social_icon ) {
-					$social_icons .= wpmozo_get_team_member_social( 'website', $website, 'fas fa-globe' );
-					$social_icons .= wpmozo_get_team_member_social( 'facebook', $facebook, 'fab fa-facebook-f' );
-					$social_icons .= wpmozo_get_team_member_social( 'twitter', $twitter, 'fab fa-x-twitter' );
-					$social_icons .= wpmozo_get_team_member_social( 'linkedin', $linkedin, 'fab fa-linkedin-in' );
-					$social_icons .= wpmozo_get_team_member_social( 'instagram', $instagram, 'fab fa-instagram' );
-					$social_icons .= wpmozo_get_team_member_social( 'youtube', $youtube, 'fab fa-youtube' );
-					$social_icons .= wpmozo_get_team_member_social( 'email', $email_address, 'fas fa-envelope' );
-					$social_icons .= wpmozo_get_team_member_social( 'phone', $phone_number, 'fas fa-phone' );
+					$social_icons .= $helpers::get_team_member_social( 'website', $website, 'fas fa-globe' );
+					$social_icons .= $helpers::get_team_member_social( 'facebook', $facebook, 'fab fa-facebook-f' );
+					$social_icons .= $helpers::get_team_member_social( 'twitter', $twitter, 'fab fa-x-twitter' );
+					$social_icons .= $helpers::get_team_member_social( 'linkedin', $linkedin, 'fab fa-linkedin-in' );
+					$social_icons .= $helpers::get_team_member_social( 'instagram', $instagram, 'fab fa-instagram' );
+					$social_icons .= $helpers::get_team_member_social( 'youtube', $youtube, 'fab fa-youtube' );
+					$social_icons .= $helpers::get_team_member_social( 'email', $email_address, 'fas fa-envelope' );
+					$social_icons .= $helpers::get_team_member_social( 'phone', $phone_number, 'fas fa-phone' );
 				}
 
 				// Class list.
@@ -305,14 +311,14 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 					</div>
 				</div>%9$s',
 				esc_attr( $attributes['ID'] ),
-				wpmozo_esc_previously( $wrapper_attributes ),
+				$helpers::esc_previously( $wrapper_attributes ),
 				esc_attr( $equal_height_class ),
-				wpmozo_esc_previously( $data_attr_str ),
+				$helpers::esc_previously( $data_attr_str ),
 				esc_attr( $layout ),
-				wpmozo_esc_previously( $team_members ),
-				wpmozo_esc_previously( $slider_arrows ),
-				wpmozo_esc_previously( $pagination_dots ),
-				wpmozo_bna_get_module_dynamic_style( 'team-slider', $attributes )
+				$helpers::esc_previously( $team_members ),
+				$helpers::esc_previously( $slider_arrows ),
+				$helpers::esc_previously( $pagination_dots ),
+				$block_helpers::get_block_dynamic_style( 'team-slider', $attributes )
 			);
 		}
 
