@@ -101,4 +101,38 @@ class Mozo_Bna_Helpers{
 
 		return self::trim_characters( $content, $length, $count_type ) . esc_attr( $endwith );
 	}
+
+	/**
+	 * Get social icon for team member.
+	 * 
+	 * @since 1.6.0
+	 * 
+	 * @param string $type  Social icons slug/name to manage class.
+	 * @param string $url   Social profile URL.
+	 * @param string $icon  Icon class for social icon.
+	 * @param bool $target  Social link target to open in new window or in he same.
+	 * 
+	 * @return string Link "a" tag for social icon.
+	 */
+	public static function get_team_member_social( $type, $url, $icon, $target = true ) {
+
+		// If no url, return blank.
+		if ( empty( $url ) ) {
+			return '';
+		}
+
+		// Update email and phone urls.
+		$url = ( 'email' === $type ) ? 'mailto:' . $url : $url;
+		$url = ( 'phone' === $type ) ? 'tel:' . $url : $url;
+
+		return sprintf(
+			'<a href="%1$s" target="%2$s">
+				<span class="wpmozo_bna_team_member_social_icon wpmozo_bna_team_%3$s %4$s"></span>
+			</a>',
+			esc_attr( $url ),
+			( true === boolval( $target ) ) ? '_blank' : '_self',
+			esc_attr( $type ),
+			esc_attr( $icon )
+		);
+	}
 }
