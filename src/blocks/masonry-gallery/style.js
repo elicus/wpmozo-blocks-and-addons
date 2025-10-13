@@ -31,9 +31,9 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 		styles += `.wpmozo_masonry_gallery_wrapper figcaption.wp-element-caption {display:none}`;
 	}
 	if (true === attributes.enableOverlay ) {
-		styles += `.wpmozo_overlay.wpmozo_pb_inline_icon{background:${attributes.overlayBackgroundColor}!important;}`;
+		styles += `.wpmozo_overlay.wpmozo_pb_inline_icon{background:${attributes.overlayBackgroundColor}!important;color:${attributes.overlayIconColor}!important;}`;
 	} else {
-		styles += `.wpmozo_overlay.wpmozo_pb_inline_icon{background:transparent !important;}`;
+		styles += `.wpmozo_overlay.wpmozo_pb_inline_icon{background:transparent !important;color:transparent !important;}`;
 	}
 
 	styles+=`.wpmozo_overlay.wpmozo_pb_inline_icon{font-size:${attributes.overlayIconSize}px`;
