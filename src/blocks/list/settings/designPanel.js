@@ -219,7 +219,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				]}
 			/>
 			<ToggleControl
-				label={ __( 'Hide Last Divider?', 'wpmozo-blocks-and-addons' ) }
+				label={ __( 'Hide Last Divider', 'wpmozo-blocks-and-addons' ) }
 				checked={ attributes.lastDivider }
 				onChange={ ( newValue ) => setAttributes( { lastDivider: newValue } ) }
 			/>

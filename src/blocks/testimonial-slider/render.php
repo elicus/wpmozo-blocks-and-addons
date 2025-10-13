@@ -3,8 +3,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+use WPMOZO\BNA\Helpers\Mozo_Bna_Helpers;
+use WPMOZO\BNA\Helpers\Mozo_Bna_Block_Helpers;
+
 if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 	function testimonial_slider_render_callback( $attributes ) {
+
+		$helpers = new Mozo_Bna_Helpers();
+		$block_helpers = new Mozo_Bna_Block_Helpers();
 
 		$layout              = $attributes['layout'] ?? 'layout1';
 		$posts_to_show       = $attributes['postsToShow'] ?? 5;
@@ -53,14 +59,14 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 			if ( true === $attributes['showOpenQuoteIcon'] ) {
 				$opening_quote = sprintf(
 					'<span class="wpmozo_testimonial_quote_icon wpmozo_testimonial_opening_quote_icon">%1$s</span>',
-					wpmozo_esc_previously( $start_quote_svg )
+					$helpers::esc_previously( $start_quote_svg )
 				);
 			}
 			$closing_quote = '';
 			if ( true === $attributes['showCloseQuoteIcon'] ) {
 				$closing_quote = sprintf(
 					'<span class="wpmozo_testimonial_quote_icon wpmozo_testimonial_closing_quote_icon">%1$s</span>',
-					wpmozo_esc_previously( $start_quote_svg )
+					$helpers::esc_previously( $start_quote_svg )
 				);
 			}
 
@@ -101,8 +107,8 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 								%2$s
 							</span>
 						</div>',
-						wpmozo_esc_previously( $rating_num ),
-						wpmozo_esc_previously( $stars )
+						$helpers::esc_previously( $rating_num ),
+						$helpers::esc_previously( $stars )
 					);
 				}
 
@@ -119,7 +125,7 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 					}
 					$author_image = sprintf(
 						'<div class="wpmozo_testimonial_author_image">%1$s</div>',
-						wpmozo_esc_previously( $image, 'html' )
+						$helpers::esc_previously( $image, 'html' )
 					);
 				}
 
@@ -269,15 +275,15 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 						</div>
 					</div>
 				</div>%9$s',
-				wpmozo_esc_previously( $wrapper_attributes ),
+				$helpers::esc_previously( $wrapper_attributes ),
 				esc_attr( $layout ),
-				wpmozo_esc_previously( $testimonials ),
-				wpmozo_esc_previously( $data_attr_str ),
+				$helpers::esc_previously( $testimonials ),
+				$helpers::esc_previously( $data_attr_str ),
 				esc_attr( $attributes['ID'] ),
-				wpmozo_esc_previously( $slider_arrows ),
-				wpmozo_esc_previously( $pagination_dots ),
+				$helpers::esc_previously( $slider_arrows ),
+				$helpers::esc_previously( $pagination_dots ),
 				esc_attr( $equal_height_class ),
-				wpmozo_bna_get_module_dynamic_style( 'testimonial-slider', $attributes )
+				$block_helpers::get_block_dynamic_style( 'testimonial-slider', $attributes )
 			);
 		}
 

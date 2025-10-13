@@ -30,7 +30,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 							},
 							{
 								key: 'ExitIconColor',
-								label: __( 'Exit Icon Color', 'wpmozo-blocks-and-addons' ),
+								label: __( 'Close Icon Color', 'wpmozo-blocks-and-addons' ),
 							},
 							{
 								key: 'ArrowColor',

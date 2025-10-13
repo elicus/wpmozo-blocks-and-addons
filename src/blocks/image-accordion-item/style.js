@@ -7,12 +7,13 @@ const generateDynamicStyle = ({ attributes }) => {
 		"description",
 		"icon",
 		"button",
-		"contentWrapper"
+		"contentWrapper",
+		"Container"
 	];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes ),
     	parentAtts = attributes.parentAtts;
 
-    let { 
+    let {
     	normalAccordionBackground,
     	normalUseBackgroundImage,
     	normalBackgroundImage,
@@ -59,6 +60,7 @@ const generateDynamicStyle = ({ attributes }) => {
 		styles += `
 			.wpmozo-bna-image-accordion-item-content-wrapper {
 				${convertedStyle.contentWrapper}
+				${convertedStyle.Container}
 			}
 			.wpmozo-bna-image-accordion-item-title {
 				color: ${titleColor};
@@ -99,8 +101,8 @@ const generateDynamicStyle = ({ attributes }) => {
 
 			if ( attributes.styleIcon ){
 				styles += `
-				.wpmozo-bna-icon-shape-circle, 
-				.wpmozo-bna-icon-shape-square, 
+				.wpmozo-bna-icon-shape-circle,
+				.wpmozo-bna-icon-shape-square,
 				.wpmozo-bna-icon-hexagon {
 					background-color: ${attributes.iconShapBackground};
 				}`;
@@ -121,7 +123,8 @@ const generateDynamicStyle = ({ attributes }) => {
 	if ( 'global' != textColor ) {
 		let textColorStyle = ( 'dark' === textColor ) ? '#666' : '#fff';
 		styles += `
-			#block-${attributes.ID}.wp-block-wpmozo-image-accordion-item {
+			#block-${attributes.ID}.wp-block-wpmozo-image-accordion-item, 
+			#block-${attributes.ID}.wp-block-wpmozo-image-accordion-item h1, h2, h3, h4, h5, h6, a {
 				color: ${textColorStyle};
 			}
 		`;

@@ -3,11 +3,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+use WPMOZO\BNA\Helpers\Mozo_Bna_Block_Helpers;
+
 if ( ! function_exists( 'testimonial_slider_generate_dynamic_style' ) ) {
 	function testimonial_slider_generate_dynamic_style( $attrs ) {
 		if ( empty( $attrs['ID'] ) ) {
 			return '';
 		}
+
+		$block_helpers = new Mozo_Bna_Block_Helpers();
 
 		$mainSelector = '#block-' . esc_attr( $attrs['ID'] );
 
@@ -21,39 +25,39 @@ if ( ! function_exists( 'testimonial_slider_generate_dynamic_style' ) ) {
 		// Testimonial content body.
 		$styles .= "{$mainSelector} .wpmozo_testimonial_desc, {$mainSelector} .wpmozo_testimonial_desc p{";
 			$styles .= ( ! empty( $attrs['bodyColor'] ) ? "color: {$attrs['bodyColor']};" : '' );
-			$styles .= wpmozo_ban_get_font_style( 'body', $attrs );
+			$styles .= $block_helpers::get_font_style( 'body', $attrs );
 		$styles .= "}";
 		$styles .= "{$mainSelector} .wpmozo_testimonial_desc:hover, {$mainSelector} .wpmozo_testimonial_desc:hover p{";
 			$styles .= ( ! empty( $attrs['bodyHoverColor'] ) ? "color: {$attrs['bodyHoverColor']};" : '' );
-			$styles .= wpmozo_ban_get_font_style( 'bodyHover', $attrs );
+			$styles .= $block_helpers::get_font_style( 'bodyHover', $attrs );
 		$styles .= "}";
 
 		// Author Image.
 		if ( true === $attrs['showAuthorImage'] ) {
 			$styles .= "{$mainSelector} .wpmozo_testimonial_author_image img{";
-				$styles .= wpmozo_ban_get_border_style( 'authorImage', $attrs );
+				$styles .= $block_helpers::get_border_style( 'authorImage', $attrs );
 			$styles .= "}";
 		}
 
 		// Author Name.
 		$styles .= "{$mainSelector} .wpmozo_testimonial_author_name{";
 			$styles .= ( ! empty( $attrs['authorNameColor'] ) ? "color: {$attrs['authorNameColor']};" : '' );
-			$styles .= wpmozo_ban_get_font_style( 'authorName', $attrs );
+			$styles .= $block_helpers::get_font_style( 'authorName', $attrs );
 		$styles .= "}";
 		$styles .= "{$mainSelector} .wpmozo_testimonial_author_name:hover{";
 			$styles .= ( ! empty( $attrs['authorNameHoverColor'] ) ? "color: {$attrs['authorNameHoverColor']};" : '' );
-			$styles .= wpmozo_ban_get_font_style( 'authorNameHover', $attrs );
+			$styles .= $block_helpers::get_font_style( 'authorNameHover', $attrs );
 		$styles .= "}";
 
 		// Designation.
 		if ( true === $attrs['showDesignation'] ) {
 			$styles .= "{$mainSelector} .wpmozo_testimonial_author_designation{";
 				$styles .= ( ! empty( $attrs['designationColor'] ) ? "color: {$attrs['designationColor']};" : '' );
-				$styles .= wpmozo_ban_get_font_style( 'designation', $attrs );
+				$styles .= $block_helpers::get_font_style( 'designation', $attrs );
 			$styles .= "}";
 			$styles .= "{$mainSelector} .wpmozo_testimonial_author_designation:hover{";
 				$styles .= ( ! empty( $attrs['designationHoverColor'] ) ? "color: {$attrs['designationHoverColor']};" : '' );
-				$styles .= wpmozo_ban_get_font_style( 'designationHover', $attrs );
+				$styles .= $block_helpers::get_font_style( 'designationHover', $attrs );
 			$styles .= "}";
 		}
 
@@ -61,11 +65,11 @@ if ( ! function_exists( 'testimonial_slider_generate_dynamic_style' ) ) {
 		if ( true === $attrs['showCompany'] ) {
 			$styles .= "{$mainSelector} .wpmozo_testimonial_author_company, {$mainSelector} .wpmozo_testimonial_author_company a{";
 				$styles .= ( ! empty( $attrs['companyNameColor'] ) ? "color: {$attrs['companyNameColor']};" : '' );
-				$styles .= wpmozo_ban_get_font_style( 'companyName', $attrs );
+				$styles .= $block_helpers::get_font_style( 'companyName', $attrs );
 			$styles .= "}";
 			$styles .= "{$mainSelector} .wpmozo_testimonial_author_company:hover, {$mainSelector} .wpmozo_testimonial_author_company:hover a{";
 				$styles .= ( ! empty( $attrs['companyNameHoverColor'] ) ? "color: {$attrs['companyNameHoverColor']};" : '' );
-				$styles .= wpmozo_ban_get_font_style( 'companyNameHover', $attrs );
+				$styles .= $block_helpers::get_font_style( 'companyNameHover', $attrs );
 			$styles .= "}";
 		}
 
@@ -108,8 +112,8 @@ if ( ! function_exists( 'testimonial_slider_generate_dynamic_style' ) ) {
 		$styles .= "{$mainSelector} .wpmozo_testimonial_slide{";
 			$styles .= ( ! empty( $attrs['testimonialBGGradient'] ) ? "background: {$attrs['testimonialBGGradient']};" : '' );
 			$styles .= ( ! empty( $attrs['testimonialBackground'] ) ? "background-color: {$attrs['testimonialBackground']};" : '' );
-			$styles .= wpmozo_ban_get_border_style( 'testimonial', $attrs, true );
-			$styles .= wpmozo_ban_get_padding_style( 'testimonial', $attrs );
+			$styles .= $block_helpers::get_border_style( 'testimonial', $attrs, true );
+			$styles .= $block_helpers::get_padding_style( 'testimonial', $attrs );
 		$styles .= "}";
 
 		// Slider arrows.
@@ -119,8 +123,8 @@ if ( ! function_exists( 'testimonial_slider_generate_dynamic_style' ) ) {
 				$styles .= ( ! empty( $attrs['arrowBackground'] ) ? "background-color: {$attrs['arrowBackground']};" : '' );
 				$styles .= ( ! empty( $attrs['arrowColor'] ) ? "color: {$attrs['arrowColor']};" : '' );
 				// $styles .= ( ! empty( $attrs['arrowborderColor'] ) ? "border-color: {$attrs['arrowborderColor']} !important;" : '' );
-				$styles .= wpmozo_ban_get_border_style( 'arrow', $attrs );
-				$styles .= wpmozo_ban_get_padding_style( 'arrow', $attrs );
+				$styles .= $block_helpers::get_border_style( 'arrow', $attrs );
+				$styles .= $block_helpers::get_padding_style( 'arrow', $attrs );
 			$styles .= "}
 				.wpmozo_swiper_wrapper .swiper-button-next:after,
 				.wpmozo_swiper_wrapper .swiper-button-prev:after{
@@ -195,7 +199,7 @@ if ( ! function_exists( 'testimonial_slider_generate_dynamic_style' ) ) {
 
 		// Slider container.
 		$styles .= "{$mainSelector} .swiper-container{";
-			$styles .= wpmozo_ban_get_padding_style( 'testimonial', $attrs );
+			$styles .= $block_helpers::get_padding_style( 'testimonial', $attrs );
 		$styles .= "}";
 
 		// Linear transition.

@@ -1,0 +1,54 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "wpmozo/image-card-ticker",
+    "version": "0.1.0",
+    "title": "Image Card Ticker",
+    "category": "wpmozo",
+    "icon": "smiley",
+    "description": "The Image Card Ticker block is perfect for showcasing brand logos, event snapshots, or any image-based content in a continuous scrolling format.",
+    "example": {},
+    "supports": {
+		"html": false,
+		"customClassName": false
+    },
+    "attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+
+		"images": {
+			"type": "array",
+			"default": [],
+			"source": "query",
+			"selector": ".wpmozo-blocks-and-addons-gallery--item",
+			"query": {
+				"url": {
+					"source": "attribute",
+					"selector": "img",
+					"attribute": "src"
+				}
+			}
+		},
+		"images_data": {"type": "array"},
+
+		"tickerLayout": {"type": "string","default": "marquee"},
+		"marqueeDirection": {"type": "string","default": "left"},
+		"imagesGap": {"type": "number","default": 30},
+		"tickerSpeed": {"type": "number","default": 15},
+
+		"marquee_wrap_height": {"type": "number","default": 500},
+		"circle3d_wrap_height": {"type": "number","default": 500},
+		"containermargin": { "type": "object"},
+		"containerpadding": { "type": "object" },
+		"containerborder": {"type": "object"},
+		"containerborderRadius": {"type": "string"},
+
+		"image_width": {"type": "number","default": 200},
+		"image_height": {"type": "number","default": 200}
+	},
+    "textdomain": "wpmozo-blocks-and-addons",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+	"script": [ "wpmozo-blocks-and-addons-imagesloaded-script","wpmozo-blocks-and-addons-scroll-trigger-script", "wpmozo-blocks-and-addons-gsap-script", "file:./script.js"]
+}

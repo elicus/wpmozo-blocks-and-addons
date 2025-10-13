@@ -274,3 +274,13 @@ export const inspectorPanelTabs = ({showGeneral = true, showDesign = true, showA
 
 	return tabs;
 };
+
+// Export only selected functions for Pro plugin
+if ( typeof window !== 'undefined' ) {
+	window.WPMozoBNAUtils = window.WPMozoBNAUtils || {};
+	Object.assign( window.WPMozoBNAUtils, {
+		inspectorPanelTabs,
+		convertInlineStyleStr,
+		// Add more functions here if needed.
+	} );
+}

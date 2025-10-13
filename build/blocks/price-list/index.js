@@ -821,6 +821,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// Export them globally for pro plugin.
+if (typeof window !== 'undefined') {
+  window.WPMozoBNAComponents = window.WPMozoBNAComponents || {};
+  Object.assign(window.WPMozoBNAComponents, {
+    WpmozoTypography: _wpmozo_typography_wpmozo_typography__WEBPACK_IMPORTED_MODULE_0__["default"],
+    WpmozoColorPicker: _wpmozo_colorpicker_wpmozo_colorpicker__WEBPACK_IMPORTED_MODULE_1__["default"],
+    WpmozoDimensions: _wpmozo_dimensions_wpmozo_dimensions__WEBPACK_IMPORTED_MODULE_2__["default"],
+    WpmozoSize: _wpmozo_size_wpmozo_size__WEBPACK_IMPORTED_MODULE_3__["default"],
+    WpmozoBorder: _wpmozo_border_wpmozo_border__WEBPACK_IMPORTED_MODULE_4__["default"],
+    WpmozoMediaUploader: _wpmozo_media_uploader_wpmozo_media_uploader__WEBPACK_IMPORTED_MODULE_5__["default"],
+    WpmozoIconpicker: _wpmozo_iconpicker_wpmozo_iconpicker__WEBPACK_IMPORTED_MODULE_6__["default"],
+    WpmozoAlignment: _wpmozo_alignment_wpmozo_alignment__WEBPACK_IMPORTED_MODULE_7__["default"],
+    WpmozoColorCombo: _wpmozo_colorcombo_wpmozo_colorcombo__WEBPACK_IMPORTED_MODULE_8__["default"],
+    WpmozoRangeSize: _wpmozo_range_size_wpmozo_range_size__WEBPACK_IMPORTED_MODULE_9__["default"]
+  });
+}
+
 /***/ }),
 
 /***/ "./src/common/components/wpmozo-alignment/style.scss":
@@ -2301,6 +2318,16 @@ const inspectorPanelTabs = ({
   }
   return tabs;
 };
+
+// Export only selected functions for Pro plugin
+if (typeof window !== 'undefined') {
+  window.WPMozoBNAUtils = window.WPMozoBNAUtils || {};
+  Object.assign(window.WPMozoBNAUtils, {
+    inspectorPanelTabs,
+    convertInlineStyleStr
+    // Add more functions here if needed.
+  });
+}
 
 /***/ }),
 

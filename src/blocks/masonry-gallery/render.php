@@ -3,8 +3,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+use WPMOZO\BNA\Helpers\Mozo_Bna_Helpers;
+use WPMOZO\BNA\Helpers\Mozo_Bna_Block_Helpers;
+
 if ( ! function_exists( 'masonry_gallery_render_callback' ) ) {
 	function masonry_gallery_render_callback( $attributes ) {
+
+		$helpers = new Mozo_Bna_Helpers();
+		$block_helpers = new Mozo_Bna_Block_Helpers();
+
 		$render_output = '';
 		if ( ! empty( $attributes['images_data'] ) ) {
 			$extra_class = array();
@@ -58,10 +65,10 @@ if ( ! function_exists( 'masonry_gallery_render_callback' ) ) {
 						</div>
 					</div>
 				</div>%4$s',
-				wpmozo_esc_previously( $wrapper_attributes ),
+				$helpers::esc_previously( $wrapper_attributes ),
 				esc_attr( $attributes['ID'] ),
 				$gallery_images,
-				wpmozo_bna_get_module_dynamic_style( 'masonry-gallery', $attributes )
+				$block_helpers::get_block_dynamic_style( 'masonry-gallery', $attributes )
 			);
 		}
 
