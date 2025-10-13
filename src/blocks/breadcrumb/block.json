@@ -18,8 +18,8 @@
 
 		"breadcrumbLayout": { "type": "string", "default": "Image Card Title" },
 		"linkTarget": {"type": "boolean", "default": false},
-		"breadcrumbsNavBackground": { "type": "string" },
-		"breadcrumbsNavLastItemBackground": { "type": "string" },
+		"breadcrumbsNavBackground": { "type": "string", "default": "#7ebec5" },
+		"breadcrumbsNavLastItemBackground": { "type": "string", "default": "#cccccc" },
 		"enableDifferentBg": {"type": "boolean", "default": false},
 		"enableFade": {"type": "boolean", "default": false},
 		"fadeRange": {"type": "number", "default": 0.01},
