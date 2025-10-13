@@ -3,11 +3,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+use WPMOZO\BNA\Helpers\Mozo_Bna_Block_Helpers;
+
 if ( ! function_exists( 'team_slider_generate_dynamic_style' ) ) {
 	function team_slider_generate_dynamic_style( $attrs ) {
 		if ( empty( $attrs['ID'] ) ) {
 			return '';
 		}
+
+		$block_helpers = new Mozo_Bna_Block_Helpers();
 
 		$mainSelector = '#block-' . esc_attr( $attrs['ID'] );
 
@@ -16,21 +20,21 @@ if ( ! function_exists( 'team_slider_generate_dynamic_style' ) ) {
 		// Image.
 		$styles .= "{$mainSelector} .wpmozo_swiper_wrapper .wpmozo_bna_team_member_image img{";
 			$styles .= ( ! empty( $attrs['imageHeight'] ) ? "height: {$attrs['imageHeight']}px;" : '' );
-			$styles .= wpmozo_ban_get_border_style( 'image', $attrs );
+			$styles .= $block_helpers::get_border_style( 'image', $attrs );
 		$styles .= "}";
 
 		// Name.
 		$styles .= "{$mainSelector} .wpmozo_bna_team_member_name :is(h1, h2, h3, h4, h5, h6){";
 			$styles .= ( ! empty( $attrs['nameAlign'] ) ? "text-align: {$attrs['nameAlign']};" : '' );
 			$styles .= ( ! empty( $attrs['nameColor'] ) ? "color: {$attrs['nameColor']};" : '' );
-			$styles .= wpmozo_ban_get_font_style( 'name', $attrs );
+			$styles .= $block_helpers::get_font_style( 'name', $attrs );
 		$styles .= "}";
 		// Designation.
 		if ( true === $attrs['showDesignation'] ) {
 			$styles .= "{$mainSelector} .wpmozo_bna_team_member_designation :is(h1, h2, h3, h4, h5, h6){";
 				$styles .= ( ! empty( $attrs['designationAlign'] ) ? "text-align: {$attrs['designationAlign']};" : '' );
 				$styles .= ( ! empty( $attrs['designationColor'] ) ? "color: {$attrs['designationColor']};" : '' );
-				$styles .= wpmozo_ban_get_font_style( 'designation', $attrs );
+				$styles .= $block_helpers::get_font_style( 'designation', $attrs );
 			$styles .= "}";
 		}
 		// Description.
@@ -38,7 +42,7 @@ if ( ! function_exists( 'team_slider_generate_dynamic_style' ) ) {
 			$styles .= "{$mainSelector} .wpmozo_bna_team_member_short_desc, {$mainSelector} .wpmozo_bna_team_member_short_desc a{";
 				$styles .= ( ! empty( $attrs['descriptionAlign'] ) ? "text-align: {$attrs['descriptionAlign']};" : '' );
 				$styles .= ( ! empty( $attrs['descriptionColor'] ) ? "color: {$attrs['descriptionColor']};" : '' );
-				$styles .= wpmozo_ban_get_font_style( 'description', $attrs );
+				$styles .= $block_helpers::get_font_style( 'description', $attrs );
 			$styles .= "}";
 		}
 		// Skills.
@@ -47,7 +51,7 @@ if ( ! function_exists( 'team_slider_generate_dynamic_style' ) ) {
 			$styles .= "{$mainSelector} .wpmozo_bna_skill_bar_wrapper_inner .wpmozo_bna_skill_name{";
 				$styles .= ( ! empty( $attrs['skillAlign'] ) ? "text-align: {$attrs['skillAlign']};" : '' );
 				$styles .= ( ! empty( $attrs['skillColor'] ) ? "color: {$attrs['skillColor']};" : '' );
-				$styles .= wpmozo_ban_get_font_style( 'skill', $attrs );
+				$styles .= $block_helpers::get_font_style( 'skill', $attrs );
 			$styles .= "}";
 			// Skill bar.
 			$styles .= "{$mainSelector} .wpmozo_bna_skill_bar_wrapper .wpmozo_bna_empty_bar{";
@@ -63,7 +67,7 @@ if ( ! function_exists( 'team_slider_generate_dynamic_style' ) ) {
 		// Social icons.
 		if ( true === $attrs['showSocialIcon'] ) {
 			$styles .= "{$mainSelector} .layout1 .wpmozo_bna_team_social_wrapper{";
-				if ( 'layout1' === $attrs['layout'] ) { 
+				if ( 'layout1' === $attrs['layout'] ) {
 					$styles .= ( ! empty( $attrs['socialSeparatorSize'] ) ? "border-width: {$attrs['socialSeparatorSize']}px;" : '' );
 					$styles .= ( ! empty( $attrs['socialSeparatorColor'] ) ? "border-color: {$attrs['socialSeparatorColor']};" : '' );
 				}
@@ -84,7 +88,7 @@ if ( ! function_exists( 'team_slider_generate_dynamic_style' ) ) {
 				$styles .= ( ! empty( $attrs['socialIconSize'] ) ? "font-size: {$attrs['socialIconSize']}px;" : '' );
 				$styles .= ( ! empty( $attrs['socialIconColor'] ) ? "color: {$attrs['socialIconColor']};" : '' );
 				$styles .= ( ! empty( $attrs['socialIconBgColor'] ) ? "background-color: {$attrs['socialIconBgColor']};" : '' );
-				$styles .= wpmozo_ban_get_border_style( 'socialIcon', $attrs );
+				$styles .= $block_helpers::get_border_style( 'socialIcon', $attrs );
 			$styles .= "}";
 		}
 
@@ -94,17 +98,17 @@ if ( ! function_exists( 'team_slider_generate_dynamic_style' ) ) {
 				$styles .= ( ! empty( $attrs['buttonBGGradient'] ) ? "background: {$attrs['buttonBGGradient']};" : '' );
 				$styles .= ( ! empty( $attrs['buttonBackground'] ) ? "background: {$attrs['buttonBackground']};" : '' );
 				$styles .= ( ! empty( $attrs['buttonColor'] ) ? "color: {$attrs['buttonColor']};" : '' );
-				$styles .= wpmozo_ban_get_margin_style( 'button', $attrs );
-				$styles .= wpmozo_ban_get_padding_style( 'button', $attrs );
-				$styles .= wpmozo_ban_get_border_style( 'button', $attrs );
-				$styles .= wpmozo_ban_get_font_style( 'button', $attrs );
+				$styles .= $block_helpers::get_margin_style( 'button', $attrs );
+				$styles .= $block_helpers::get_padding_style( 'button', $attrs );
+				$styles .= $block_helpers::get_border_style( 'button', $attrs );
+				$styles .= $block_helpers::get_font_style( 'button', $attrs );
 			$styles .= "}";
 			$styles .= "{$mainSelector} .wpmozo-bna-button-wrap .wpmozo-bna-button:hover{";
 				$styles .= ( ! empty( $attrs['buttonHoverBGGradient'] ) ? "background: {$attrs['buttonHoverBGGradient']};" : '' );
 				$styles .= ( ! empty( $attrs['buttonHoverBackground'] ) ? "background: {$attrs['buttonHoverBackground']};" : '' );
 				$styles .= ( ! empty( $attrs['buttonHoverColor'] ) ? "color: {$attrs['buttonHoverColor']};" : '' );
-				$styles .= wpmozo_ban_get_border_style( 'buttonHover', $attrs );
-				$styles .= wpmozo_ban_get_font_style( 'buttonHover', $attrs );
+				$styles .= $block_helpers::get_border_style( 'buttonHover', $attrs );
+				$styles .= $block_helpers::get_font_style( 'buttonHover', $attrs );
 			$styles .= "}";
 		}
 
@@ -120,8 +124,8 @@ if ( ! function_exists( 'team_slider_generate_dynamic_style' ) ) {
 				$styles .= ( ! empty( $attrs['arrowBackground'] ) ? "background-color: {$attrs['arrowBackground']};" : '' );
 				$styles .= ( ! empty( $attrs['arrowColor'] ) ? "color: {$attrs['arrowColor']};" : '' );
 				// $styles .= ( ! empty( $attrs['arrowborderColor'] ) ? "border-color: {$attrs['arrowborderColor']} !important;" : '' );
-				$styles .= wpmozo_ban_get_border_style( 'arrow', $attrs );
-				$styles .= wpmozo_ban_get_padding_style( 'arrow', $attrs );
+				$styles .= $block_helpers::get_border_style( 'arrow', $attrs );
+				$styles .= $block_helpers::get_padding_style( 'arrow', $attrs );
 			$styles .= "}
 				.wpmozo_swiper_wrapper .swiper-button-next:after,
 				.wpmozo_swiper_wrapper .swiper-button-prev:after{
@@ -196,7 +200,7 @@ if ( ! function_exists( 'team_slider_generate_dynamic_style' ) ) {
 
 		// Slider container.
 		$styles .= "{$mainSelector} .swiper-container{";
-			$styles .= wpmozo_ban_get_padding_style( 'container', $attrs );
+			$styles .= $block_helpers::get_padding_style( 'container', $attrs );
 		$styles .= "}";
 
 		// Linear transition.
@@ -208,8 +212,8 @@ if ( ! function_exists( 'team_slider_generate_dynamic_style' ) ) {
 		$styles .= "{$mainSelector} .wpmozo_bna_team_member_card{";
 			$styles .= ( ! empty( $attrs['itemBGGradient'] ) ? "background: {$attrs['itemBGGradient']};" : '' );
 			$styles .= ( ! empty( $attrs['itemBackground'] ) ? "background: {$attrs['itemBackground']};" : '' );
-			$styles .= wpmozo_ban_get_padding_style( 'item', $attrs );
-			$styles .= wpmozo_ban_get_border_style( 'item', $attrs );
+			$styles .= $block_helpers::get_padding_style( 'item', $attrs );
+			$styles .= $block_helpers::get_border_style( 'item', $attrs );
 		$styles .= "}";
 
 		// Lightbox style.
@@ -230,22 +234,22 @@ if ( ! function_exists( 'team_slider_generate_dynamic_style' ) ) {
 			$styles .= "{$popupSelector}_lightbox .wpmozo_bna_team_member_wrapper_lightbox{";
 				$styles .= ( ! empty( $attrs['popupWidth'] ) ? "width: {$attrs['popupWidth']}%;" : '' );
 				$styles .= ( ! empty( $attrs['popupBackground'] ) ? "background-color: {$attrs['popupBackground']};" : '' );
-				$styles .= wpmozo_ban_get_padding_style( 'popup', $attrs );
-				$styles .= wpmozo_ban_get_border_style( 'popup', $attrs );
+				$styles .= $block_helpers::get_padding_style( 'popup', $attrs );
+				$styles .= $block_helpers::get_border_style( 'popup', $attrs );
 			$styles .= "}";
 
 			// Popup name.
 			$styles .= "{$popupSelector}_lightbox .wpmozo_bna_team_member_name{";
 				$styles .= ( ! empty( $attrs['popupNameColor'] ) ? "color: {$attrs['popupNameColor']};" : '' );
 				$styles .= ( ! empty( $attrs['popupNameAlign'] ) ? "text-align: {$attrs['popupNameAlign']};" : '' );
-				$styles .= wpmozo_ban_get_font_style( 'popupName', $attrs );
+				$styles .= $block_helpers::get_font_style( 'popupName', $attrs );
 			$styles .= "}";
 			// Popup designation.
 			if ( in_array( 'designation', $in_popup ) ) {
 				$styles .= "{$popupSelector}_lightbox .wpmozo_bna_team_member_designation{";
 					$styles .= ( ! empty( $attrs['popupDesignationColor'] ) ? "color: {$attrs['popupDesignationColor']};" : '' );
 					$styles .= ( ! empty( $attrs['popupDesignationAlign'] ) ? "text-align: {$attrs['popupDesignationAlign']};" : '' );
-					$styles .= wpmozo_ban_get_font_style( 'popupDesignation', $attrs );
+					$styles .= $block_helpers::get_font_style( 'popupDesignation', $attrs );
 				$styles .= "}";
 			}
 			// Popup description.
@@ -253,7 +257,7 @@ if ( ! function_exists( 'team_slider_generate_dynamic_style' ) ) {
 				$styles .= "{$popupSelector}_lightbox .wpmozo_bna_team_member_description{";
 					$styles .= ( ! empty( $attrs['popupDescriptionColor'] ) ? "color: {$attrs['popupDescriptionColor']};" : '' );
 					$styles .= ( ! empty( $attrs['popupDescriptionAlign'] ) ? "text-align: {$attrs['popupDescriptionAlign']};" : '' );
-					$styles .= wpmozo_ban_get_font_style( 'popupDescription', $attrs );
+					$styles .= $block_helpers::get_font_style( 'popupDescription', $attrs );
 				$styles .= "}";
 			}
 			// Popup skill bars.
@@ -262,7 +266,7 @@ if ( ! function_exists( 'team_slider_generate_dynamic_style' ) ) {
 				$styles .= "{$popupSelector}_lightbox .wpmozo_bna_bar_counter_wrapper_inner .wpmozo_bna_skill_name{";
 					$styles .= ( ! empty( $attrs['popupSkillColor'] ) ? "color: {$attrs['popupSkillColor']};" : '' );
 					$styles .= ( ! empty( $attrs['popupSkillAlign'] ) ? "text-align: {$attrs['popupSkillAlign']};" : '' );
-					$styles .= wpmozo_ban_get_font_style( 'popupSkill', $attrs );
+					$styles .= $block_helpers::get_font_style( 'popupSkill', $attrs );
 				$styles .= "}";
 
 				// Layout 2 skill bars.
@@ -337,7 +341,7 @@ if ( ! function_exists( 'team_slider_generate_dynamic_style' ) ) {
 					$styles .= ( ! empty( $attrs['popupSocialIconSize'] ) ? "font-size: {$attrs['popupSocialIconSize']}px;" : '' );
 					$styles .= ( ! empty( $attrs['popupSocialIconColor'] ) ? "color: {$attrs['popupSocialIconColor']};" : '' );
 					$styles .= ( ! empty( $attrs['popupSocialIconBgColor'] ) ? "background-color: {$attrs['popupSocialIconBgColor']};" : '' );
-					$styles .= wpmozo_ban_get_border_style( 'popupSocialIcon', $attrs );
+					$styles .= $block_helpers::get_border_style( 'popupSocialIcon', $attrs );
 				$styles .= "}";
 			}
 		}

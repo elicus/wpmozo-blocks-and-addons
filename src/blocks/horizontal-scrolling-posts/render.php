@@ -3,8 +3,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+use WPMOZO\BNA\Helpers\Mozo_Bna_Helpers;
+use WPMOZO\BNA\Helpers\Mozo_Bna_Block_Helpers;
+
 if ( ! function_exists( 'horizontal_scrolling_post_render_callback' ) ) {
 	function horizontal_scrolling_post_render_callback( $attributes ) {
+
+		$helpers = new Mozo_Bna_Helpers();
+		$block_helpers = new Mozo_Bna_Block_Helpers();
+
 		$layout              = $attributes['layout'] ?? 'layout1';
 		$posts_to_show       = $attributes['postsToShow'] ?? 5;
 		$ignore_sticky_post  = $attributes['ignoreStickyPosts'] ?? false;
@@ -83,11 +90,11 @@ if ( ! function_exists( 'horizontal_scrolling_post_render_callback' ) ) {
 						</div>
 					</div>
 				</div>%5$s',
-				wpmozo_esc_previously( $wrapper_attributes ),
+				$helpers::esc_previously( $wrapper_attributes ),
 				esc_attr( $layout ),
-				wpmozo_esc_previously( $testimonials ),
+				$helpers::esc_previously( $testimonials ),
 				esc_attr( $attributes['ID'] ),
-				wpmozo_bna_get_module_dynamic_style( 'horizontal-scrolling-posts', $attributes )
+				$block_helpers::get_block_dynamic_style( 'horizontal-scrolling-posts', $attributes )
 			);
 		}
 
