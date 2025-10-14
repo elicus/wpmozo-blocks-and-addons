@@ -2,7 +2,6 @@
 /**
  * The file that handles plugin's,
  * public side functionalities.
- *
  * @link       https://elicus.com
  * @since      1.6.0
  * @package    WPMozo_Blocks_And_Addons
@@ -14,18 +13,18 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+use WPMOZO\BNA\Helpers\Mozo_Bna_Helpers;
+
 class Mozo_Bna_Public {
 
 	// Construction.
 	public function __construct() {
-
 		add_action( 'wp_ajax_wpmozo_bna_get_team_detail', array( __class__, 'wpmozo_bna_get_team_detail' ) );
 		add_action( 'wp_ajax_nopriv_wpmozo_bna_get_team_detail', array( __class__, 'wpmozo_bna_get_team_detail' ) );
 	}
 
 	/**
 	 * Get team details.
-	 * 
 	 * @since  1.6.0
 	 */
 	public static function wpmozo_bna_get_team_detail() {
@@ -36,24 +35,26 @@ class Mozo_Bna_Public {
 			return;
 		}
 
+		$helpers = new Mozo_Bna_Helpers();
+
 		$defaults = array(
-			'id'                    => 0,
-			'show_designation'      => 'on',
-			'show_content'          => 'on',
-			'show_skills_bars'      => 'on',
-			'show_social_icons'     => 'on',
-			'show_image'            => 'on',
-			'image_size'            => 'medium',
-			'bar_layout'            => 'layout1',
-			'use_stripes'           => 'off',
-			'use_animated_stripes'  => 'on',
-			'popup_name_level'      => 'h2',
+			'id'                   => 0,
+			'show_designation'     => 'on',
+			'show_content'         => 'on',
+			'show_skills_bars'     => 'on',
+			'show_social_icons'    => 'on',
+			'show_image'           => 'on',
+			'image_size'           => 'medium',
+			'bar_layout'           => 'layout1',
+			'use_stripes'          => 'off',
+			'use_animated_stripes' => 'on',
+			'popup_name_level'     => 'h2',
 		);
 
 		foreach ( $defaults as $key => $default ) {
 			// phpcs:ignore ET.Sniffs.ValidatedSanitizedInput.InputNotSanitized
-			${$key} = isset( $_POST['props'][ $key ] ) 
-				? trim( sanitize_text_field( wp_unslash( $_POST['props'][ $key ] ) ) ) 
+			${$key} = isset( $_POST['props'][ $key ] )
+				? trim( sanitize_text_field( wp_unslash( $_POST['props'][ $key ] ) ) )
 				: $default;
 		}
 
@@ -85,7 +86,7 @@ class Mozo_Bna_Public {
 			'member_skills',
 		];
 		foreach ( $meta_keys as $key ) {
-			${$key} = isset( $values[ "_{$key}" ][0] ) ? $values[ "_{$key}" ][0] : '';
+			${$key} = isset( $values["_{$key}"][0] ) ? $values["_{$key}"][0] : '';
 		}
 
 		$thumbnail = '';
@@ -95,7 +96,7 @@ class Mozo_Bna_Public {
 			if ( ! empty( $thumbnail_image ) ) {
 				$thumbnail = sprintf(
 					'<div class="wpmozo_bna_team_member_image_wrapper">%1$s</div>',
-					wpmozo_esc_previously( $thumbnail_image )
+					$helpers::esc_previously( $thumbnail_image )
 				);
 			}
 		}
@@ -103,14 +104,14 @@ class Mozo_Bna_Public {
 		// Social Icons.
 		$social_icons = '';
 		if ( 'on' === $show_social_icons ) {
-			$social_icons .= wpmozo_get_team_member_social( 'website', $website, 'fas fa-globe' );
-			$social_icons .= wpmozo_get_team_member_social( 'facebook', $facebook, 'fab fa-facebook-f' );
-			$social_icons .= wpmozo_get_team_member_social( 'twitter', $twitter, 'fab fa-x-twitter' );
-			$social_icons .= wpmozo_get_team_member_social( 'linkedin', $linkedin, 'fab fa-linkedin-in' );
-			$social_icons .= wpmozo_get_team_member_social( 'instagram', $instagram, 'fab fa-instagram' );
-			$social_icons .= wpmozo_get_team_member_social( 'youtube', $youtube, 'fab fa-youtube' );
-			$social_icons .= wpmozo_get_team_member_social( 'email', $email_address, 'fas fa-envelope' );
-			$social_icons .= wpmozo_get_team_member_social( 'phone', $phone_number, 'fas fa-phone' );
+			$social_icons .= $helpers::get_team_member_social( 'website', $website, 'fas fa-globe' );
+			$social_icons .= $helpers::get_team_member_social( 'facebook', $facebook, 'fab fa-facebook-f' );
+			$social_icons .= $helpers::get_team_member_social( 'twitter', $twitter, 'fab fa-x-twitter' );
+			$social_icons .= $helpers::get_team_member_social( 'linkedin', $linkedin, 'fab fa-linkedin-in' );
+			$social_icons .= $helpers::get_team_member_social( 'instagram', $instagram, 'fab fa-instagram' );
+			$social_icons .= $helpers::get_team_member_social( 'youtube', $youtube, 'fab fa-youtube' );
+			$social_icons .= $helpers::get_team_member_social( 'email', $email_address, 'fas fa-envelope' );
+			$social_icons .= $helpers::get_team_member_social( 'phone', $phone_number, 'fas fa-phone' );
 		}
 
 		// Skill bars.
@@ -120,17 +121,17 @@ class Mozo_Bna_Public {
 			foreach ( $member_skills as $key => $skill ) {
 				if ( 'layout2' === $bar_layout ) {
 
-					$filled_chunks = absint( round( $skill['value']/10 ) );
+					$filled_chunks = absint( round( $skill['value'] / 10 ) );
 					$filled_chunks = $filled_chunks < 1 ? 1 : $filled_chunks;
 					$empty_chunks  = 10 - $filled_chunks;
 
 					$filled_chunks_output = '';
-					for ( $c = 1; $c <= $filled_chunks; $c++ ) {
+					for ( $c = 1; $c <= $filled_chunks; $c ++ ) {
 						$filled_chunks_output .= '<div class="wpmozo_bna_bar_counter_chunks wpmozo_bna_bar_counter_filled_chunks"></div>';
 					}
 					$empty_chunks_output = '';
 					if ( $empty_chunks > 0 ) {
-						for ( $ec=1; $ec <= $empty_chunks; $ec++ ) {
+						for ( $ec = 1; $ec <= $empty_chunks; $ec ++ ) {
 							$empty_chunks_output .= '<div class="wpmozo_bna_bar_counter_chunks wpmozo_bna_bar_counter_empty_chunks"></div>';
 						}
 					}
@@ -144,8 +145,8 @@ class Mozo_Bna_Public {
 							</div>
 						</div>',
 						esc_html( $skill['title'] ),
-						wpmozo_esc_previously( $filled_chunks_output ),
-						wpmozo_esc_previously( $empty_chunks_output ),
+						$helpers::esc_previously( $filled_chunks_output ),
+						$helpers::esc_previously( $empty_chunks_output ),
 						intval( $skill['value'] ) . '%'
 					);
 				} else {
@@ -164,10 +165,10 @@ class Mozo_Bna_Public {
 			}
 		}
 
-		$wrapper_classes  = 'wpmozo_bna_team_member_wrapper_lightbox';
+		$wrapper_classes = 'wpmozo_bna_team_member_wrapper_lightbox';
 		$wrapper_classes .= empty( $thumbnail ) ? ' wpmozo-bna-no-team-member' : '';
 
-		$member_output  = '<div id="wpmozo_bna_team_member_grid_' . esc_attr( $id ) . '" class="'. $wrapper_classes .'">';
+		$member_output = '<div id="wpmozo_bna_team_member_grid_' . esc_attr( $id ) . '" class="' . $wrapper_classes . '">';
 		if ( file_exists( WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-team-slider/team-popup.php' ) ) {
 			include WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-team-slider/team-popup.php';
 		}
