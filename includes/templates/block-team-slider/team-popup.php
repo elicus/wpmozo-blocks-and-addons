@@ -8,11 +8,15 @@
  * @version    1.6.0
  */
 
+use WPMOZO\BNA\Helpers\Mozo_Bna_Helpers;
+
+$helpers = new Mozo_Bna_Helpers();
+
 // Add image html.
-$member_output .= wpmozo_esc_previously( $thumbnail );
+$member_output .= $helpers::esc_previously( $thumbnail );
 
 $member_output .= '<div class="wpmozo_bna_team_member_content_wrapper">';
-	
+
 	// Member name.
 	$member_output .= sprintf(
 		'<%1$s class="wpmozo_bna_team_member_name">%2$s</%1$s>',
@@ -24,7 +28,7 @@ $member_output .= '<div class="wpmozo_bna_team_member_content_wrapper">';
 	if ( 'on' === $show_designation ) {
 		$member_output .= sprintf(
 			'<div class="wpmozo_bna_team_member_designation">%1$s</div>',
-			esc_html( $designation )	
+			esc_html( $designation )
 		);
 	}
 
@@ -32,7 +36,7 @@ $member_output .= '<div class="wpmozo_bna_team_member_content_wrapper">';
 	if ( 'on' === $show_social_icons && ! empty( $social_icons ) ) {
 		$member_output .= sprintf(
 			'<div class="wpmozo_bna_team_social_wrapper">%1$s</div>',
-			wpmozo_esc_previously( $social_icons )
+			$helpers::esc_previously( $social_icons )
 		);
 	}
 
@@ -48,7 +52,7 @@ $member_output .= '<div class="wpmozo_bna_team_member_content_wrapper">';
 	if ( 'on' === $show_skills_bars && ! empty( $skill_bars ) ) {
 		$member_output .= sprintf(
 			'<div class="wpmozo_bna_skill_bar_wrapper">%1$s</div>',
-			wpmozo_esc_previously( $skill_bars )
+			$helpers::esc_previously( $skill_bars )
 		);
 	}
 

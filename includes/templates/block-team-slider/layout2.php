@@ -8,6 +8,10 @@
  * @version    1.6.0
  */
 
+use WPMOZO\BNA\Helpers\Mozo_Bna_Helpers;
+
+$helpers = new Mozo_Bna_Helpers();
+
 // Attributes.
 $name_level        = $attributes['nameLevel'] ?? 'h2';
 $designation_level = $attributes['designationLevel'] ?? 'h4';
@@ -53,7 +57,7 @@ $member_skill_bars = '';
 if ( '' !== $skill_bars ) {
 	$member_skill_bars = sprintf(
 		'<div class="wpmozo_bna_skill_bar_wrapper">%1$s</div>',
-		wpmozo_esc_previously( $skill_bars )
+		$helpers::esc_previously( $skill_bars )
 	);
 }
 
@@ -62,7 +66,7 @@ $member_social_icons = '';
 if ( ! empty( $social_icons ) ) {
 	$member_social_icons = sprintf(
 		'<div class="wpmozo_bna_team_social_wrapper">%1$s</div>',
-		wpmozo_esc_previously( $social_icons )
+		$helpers::esc_previously( $social_icons )
 	);
 }
 
@@ -78,13 +82,13 @@ $team_members .= sprintf(
 		</div>
 	</div>',
 	esc_attr( $post_id ),
-	wpmozo_esc_previously( $member_image ),
-	wpmozo_esc_previously( $member_name ),
-	wpmozo_esc_previously( $member_designation ),
-	wpmozo_esc_previously( $member_description ),
-	wpmozo_esc_previously( $member_skill_bars ),
-	wpmozo_esc_previously( $link_button ),
-	wpmozo_esc_previously( $member_social_icons ),
+	$helpers::esc_previously( $member_image ),
+	$helpers::esc_previously( $member_name ),
+	$helpers::esc_previously( $member_designation ),
+	$helpers::esc_previously( $member_description ),
+	$helpers::esc_previously( $member_skill_bars ),
+	$helpers::esc_previously( $link_button ),
+	$helpers::esc_previously( $member_social_icons ),
 	implode( ' ', $class_list ),
-    wpmozo_esc_previously( $item_attr_str )
+    $helpers::esc_previously( $item_attr_str )
 );
