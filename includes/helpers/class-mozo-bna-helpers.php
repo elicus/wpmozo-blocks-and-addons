@@ -2,7 +2,7 @@
 namespace WPMOZO\BNA\Helpers;
 
 /**
- * Trait class, handles the helper functions.
+ * Handles the helper functions.
  *
  * @link       https://elicus.com
  * @since      1.5.0
