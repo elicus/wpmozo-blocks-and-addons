@@ -27,13 +27,20 @@ class Mozo_Bna_Block_Helpers {
 	 * @since 1.1.0
 	 */
 	public static function get_block_dynamic_style( $module, $attributes ) {
+
+		// Check in pro funtion first.
+		if ( defined( 'WPMOZO_BNA_PRO_PLUGIN_DIR' ) && file_exists( WPMOZO_BNA_PRO_PLUGIN_DIR . 'includes/templates/block-' . esc_attr( $module ) . '/dynamic-style.php' ) ) {
+			include WPMOZO_BNA_PRO_PLUGIN_DIR . 'includes/templates/block-' . esc_attr( $module ) . '/dynamic-style.php';
+		}
+		
+		// Check in lite version.
 		if ( file_exists( WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-' . esc_attr( $module ) . '/dynamic-style.php' ) ) {
 			include WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-' . esc_attr( $module ) . '/dynamic-style.php';
+		}
 
-			$callback_function = str_replace( '-', '_', $module ) . '_generate_dynamic_style';
-			if ( function_exists( $callback_function ) ) {
-				return $callback_function( $attributes );
-			}
+		$callback_function = str_replace( '-', '_', $module ) . '_generate_dynamic_style';
+		if ( function_exists( $callback_function ) ) {
+			return $callback_function( $attributes );
 		}
 
 		return '';
@@ -113,8 +120,6 @@ class Mozo_Bna_Block_Helpers {
 		// Border color.
 		if ( isset( $border['color'] ) ) {
 			$styles .= sprintf( 'border-color: %s%s;', $border['color'], $imp );
-		} else {
-			$styles .= sprintf( 'border-color: inherit%s;', $imp );
 		}
 
 		// Border Style
