@@ -279,6 +279,7 @@ export const inspectorPanelTabs = ({showGeneral = true, showDesign = true, showA
 if ( typeof window !== 'undefined' ) {
 	window.WPMozoBNAUtils = window.WPMozoBNAUtils || {};
 	Object.assign( window.WPMozoBNAUtils, {
+		headingLevelsList,
 		inspectorPanelTabs,
 		convertInlineStyleStr,
 		// Add more functions here if needed.
