@@ -240,7 +240,8 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			'icons'          => $icons,
 			'url'            => rest_url( 'wpmozo/v1/save-dynamic-style' ),
 			'assets_url'     => WPMOZO_BNA_ASSETS_DIR_URL,
-			'themeName' 	 => wp_get_theme()->get('Name')
+			'themeName' 	 => wp_get_theme()->get( 'Name' ),
+			'wordCountType'  => wp_get_word_count_type()
 		);
 
 		wp_localize_script( $this->plugin_name . '-editor-script', 'wpmozo_bna_editor_object', $all_options );
