@@ -275,6 +275,85 @@ export const inspectorPanelTabs = ({showGeneral = true, showDesign = true, showA
 	return tabs;
 };
 
+/**
+ * Strip all HTML tags from a string.
+ */
+function wpmozoStripTags( html ) {
+	return html.replace( /<[^>]*>/g, '' );
+}
+
+/**
+ * Count text based on type.
+ *
+ * @param {string} text
+ * @param {'words'|'characters_excluding_spaces'|'characters_including_spaces'} countType
+ * @returns {number}
+ */
+function countText( text, countType = 'words' ) {
+	switch (countType) {
+		case 'characters_excluding_spaces':
+			return text.replace(/\s+/g, '').length;
+		case 'characters_including_spaces':
+			return text.length;
+		case 'words':
+		default:
+			return wpmozoStripTags(text).trim().split(/\s+/).filter(Boolean).length;
+	}
+}
+
+/**
+ * Trim characters based on type.
+ *
+ * @param {string} text
+ * @param {number} maxLength
+ * @param {'characters_excluding_spaces'|'characters_including_spaces'|'words'} countType
+ * @returns {string}
+ */
+function trimCharacters( text, maxLength, countType = 'words' ) {
+	const pureText = wpmozoStripTags( text );
+
+	if ( countType === 'characters_including_spaces' ) {
+		return pureText.substring( 0, maxLength );
+	}
+
+	if ( countType === 'characters_excluding_spaces' ) {
+		let trimmed = '';
+		let count   = 0;
+		for ( const ch of pureText ) {
+			if ( ch !== ' ' ) count++;
+			if ( count > maxLength ) break;
+			trimmed += ch;
+		}
+		return trimmed;
+	}
+
+	// Default: trim by words
+	return pureText.split(/\s+/).slice( 0, maxLength ).join(' ');
+}
+
+/**
+ * Truncate content similar to PHP `truncate_content`.
+ *
+ * @param {string} content
+ * @param {number} length
+ * @param {string} endWith
+ * @param {'characters_excluding_spaces'|'characters_including_spaces'|'words'} countType
+ * @returns {string}
+ */
+function truncateContent( content, length = 100, endWith = '...', countType = '' ) {
+	countType = ( '' !== countType ) ? countType : wpmozo_bna_editor_object.wordCountType;
+	const wordCount = countText( content, countType );
+
+	if ( wordCount <= length ) {
+		return content;
+	}
+	if ( countType === 'words' ) {
+		return trimCharacters( content, length, 'words' ) + endWith;
+	}
+
+	return trimCharacters( content, length, countType ) + endWith;
+}
+
 // Export only selected functions for Pro plugin
 if ( typeof window !== 'undefined' ) {
 	window.WPMozoBNAUtils = window.WPMozoBNAUtils || {};
@@ -282,6 +361,7 @@ if ( typeof window !== 'undefined' ) {
 		headingLevelsList,
 		inspectorPanelTabs,
 		convertInlineStyleStr,
+		truncateContent,
 		// Add more functions here if needed.
 	} );
 }
