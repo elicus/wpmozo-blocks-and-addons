@@ -74,7 +74,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 	if ( attributes.showSocialIcon ) {
 		styles += `.layout1 .wpmozo_bna_team_social_wrapper{`;
 			// Separator.
-			if ( 'layout1' === attributes.layout ) { 
+			if ( 'layout1' === attributes.layout ) {
 				styles += `${attributes.socialSeparatorSize ? `border-width: ${attributes.socialSeparatorSize}px;` : ''}`;
 				styles += `${attributes.socialSeparatorColor ? `border-color: ${attributes.socialSeparatorColor};` : ''}`;
 			}

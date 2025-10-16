@@ -158,7 +158,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			/>
 			{ ( 'slide' === attributes.slideEffect || 'coverflow' === attributes.slideEffect ) && <>
 				<SelectControl
-					label={ __( 'Number of Testimonials Per View', 'wpmozo-blocks-and-addons' ) }
+					label={ __( 'Number of Team Member Per View', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.slidesPerView }
 					options={ [
 						{ value: 1, label: __( '1', 'wpmozo-blocks-and-addons' ) },
@@ -290,7 +290,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					</ButtonGroup>
 					{ 'tablet' === deviceType && <>
 						<SelectControl
-							label={ __( 'Number of Testimonials Per View', 'wpmozo-blocks-and-addons' ) }
+							label={ __( 'Number of Team Member Per View', 'wpmozo-blocks-and-addons' ) }
 							value={ attributes.slidesPerViewTablet }
 							options={ [
 								{ value: 1, label: __( '1', 'wpmozo-blocks-and-addons' ) },
@@ -332,7 +332,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					</> }
 					{ 'mobile' === deviceType && <>
 						<SelectControl
-							label={ __( 'Number of Testimonials Per View', 'wpmozo-blocks-and-addons' ) }
+							label={ __( 'Number of Team Member Per View', 'wpmozo-blocks-and-addons' ) }
 							value={ attributes.slidesPerViewMobile }
 							options={ [
 								{ value: 1, label: __( '1', 'wpmozo-blocks-and-addons' ) },
@@ -459,7 +459,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					] }
 					onChange={ ( newValue ) => setAttributes( { linkType: newValue } ) }
 				/>
-				{ ( 'button' === attributes.linkType ) && ( 
+				{ ( 'button' === attributes.linkType ) && (
 					<TextControl
 						label={ __( 'Link Button Text', 'wpmozo-blocks-and-addons' ) }
 						value={ attributes.linkButtonText }
@@ -471,7 +471,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					checked={ attributes.usePopup }
 					onChange={ ( newValue ) => setAttributes( { usePopup: newValue } ) }
 				/>
-				{ ( attributes.usePopup ) ? ( 
+				{ ( attributes.usePopup ) ? (
 					<div className="wpmozo-inpector-multi-checkboxes">
 						{ displayInPopupOpts.map( ( option ) => (
 							<CheckboxControl key={ option.value }

@@ -1,3 +1,6 @@
+import $ from 'jquery';
+import {wpmozo_is_empty} from "../../common/utils";
+
 jQuery( document ).ready( function( $ ) {
 
 	// On change on props, update the slider again.
@@ -47,13 +50,13 @@ jQuery( document ).ready( function( $ ) {
 			use_animated_stripes : $mainWrap.attr( 'data-use_animated_stripes' ),
 			popup_name_level     : $mainWrap.attr( 'data-popup_name_level' ),
 		} );
-		
+
 		let	$position            = $wrapObj.data( 'close_icon_position' );
 		let $close_icon_position = 'inside' === $position ? true : false;
 
 		$wrapObj.addClass( 'wpmozo_bna_team_lightbox_loader' );
 		$.ajax( {
-			type: 'POST',  
+			type: 'POST',
 			url: WPMozoTeamSliderData.ajaxurl,
 			data: {
 				action: 'wpmozo_bna_get_team_detail',
@@ -152,10 +155,11 @@ function initWPMozoTeamMemberSlider( blockObj ) {
 	const wrapObj  = blockObj.find( '.wpmozo_swiper_wrapper' );
 	const clientId = wrapObj.attr( 'data-clientId' );
 
-	// Destroy if already exists.
-	if ( wpmozoTeamMemberSwipers[clientId] ) {
-		wpmozoTeamMemberSwipers[clientId].destroy( true, true );
-	}
+
+	//Destroy if already exists.
+	// if ( wpmozoTeamMemberSwipers[clientId] ) {
+	// 	wpmozoTeamMemberSwipers[clientId].destroy( true, true );
+	// }
 
 	// Get the settings.
 	const settings  = {
@@ -321,12 +325,12 @@ function initWPMozoTeamMemberSlider( blockObj ) {
 	if ( 'true' === pause_on_hover && 'true' === settings?.autoplay ) {
 		jQuery( '#' + $orderId + ' .swiper-container' ).on( 'mouseleave', function(e) {
 			if ( typeof swipperSlider?.autoplay?.stop === "function" ) {
-				swipperSlider.autoplay.stop();
+				swipperSlider.autoplay.start();
 			}
 		} );
 		jQuery( '#' + $orderId + ' .swiper-container' ).on( 'mouseenter', function(e) {
 			if ( typeof swipperSlider?.autoplay?.start === "function" ) {
-				swipperSlider.autoplay.start();
+				swipperSlider.autoplay.stop();
 			}
 		} );
 	}

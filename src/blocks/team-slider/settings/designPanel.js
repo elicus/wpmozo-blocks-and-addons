@@ -59,7 +59,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				</ButtonGroup>
 			</BaseControl>
 			<WpmozoAlignment
-				label={ __( 'Name Alignment', 'wpmozo-blocks-and-addons' ) }
+				label={ __( 'Designation Alignment', 'wpmozo-blocks-and-addons' ) }
 				onChange={ ( newValue ) => setAttributes( { nameAlign: newValue } ) }
 				value={ attributes.nameAlign }
 			/>
@@ -418,7 +418,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						BorderTypes={ { border: true, radius: true } }
 					/>
 				</PanelBody>
-			</> ) }	
+			</> ) }
 		</> ) }
 		{/* Slider. */}
 		<PanelBody title={ __( 'Slider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
@@ -461,14 +461,14 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		{/* Button. */}
 		{ ( attributes.enableLink && 'button' === attributes.linkType ) && ( <>
 			<PanelBody title={ __( 'Link Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-				<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>   
+				<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>
 					<ButtonGroup>
 						<Button
 							className="wpmozo-button-tabs-btn"
 							isPressed={ ( 'normal' === buttonType ) ? true : false }
 							onClick={ () => setButtonType( 'normal' ) }
 						>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
-						<Button 
+						<Button
 							className="wpmozo-button-tabs-btn"
 							isPressed={ ( 'hover' === buttonType ) ? true : false }
 							onClick={ () => setButtonType( 'hover' ) }

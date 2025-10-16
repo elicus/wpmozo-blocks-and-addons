@@ -7,7 +7,7 @@ import SocialIcons from './parts/SocialIcons';
 const Layout1 = ( { post, attributes } ) => {
 
 	const postID     = post.id;
-	const postLink   = post.link ?? 'javascript:void(0)';
+	const postLink   = 'javascript:void(0)';
 	const classLists = new Set( post.class_list ?? [] );
 		classLists.add( 'wpmozo_bna_team_member_card' );
 
@@ -46,19 +46,19 @@ const Layout1 = ( { post, attributes } ) => {
 
 				<div className="wpmozo_bna_team_content_wrapper">
 					{/* Post title. */}
-					{ ( post.title.rendered ) && 
+					{ ( post.title.rendered ) &&
 						<div className="wpmozo_bna_team_member_name">
 							<NameLevel>{ post.title.rendered }</NameLevel>
 						</div>
 					}
 					{/* Designation. */}
-					{ ( attributes.showDesignation && post.designation ) && 
+					{ ( attributes.showDesignation && post.designation ) &&
 						<div className="wpmozo_bna_team_member_designation">
 							<DesignationLevel>{ post.designation }</DesignationLevel>
 						</div>
 					}
 					{/* Short Description. */}
-					{ ( attributes.showShortDesc && post.short_description ) && 
+					{ ( attributes.showShortDesc && post.short_description ) &&
 						<div className="wpmozo_bna_team_member_short_desc"
 							dangerouslySetInnerHTML={ { __html: post.short_description } }
 						/>

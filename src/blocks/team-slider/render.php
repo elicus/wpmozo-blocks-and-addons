@@ -126,7 +126,7 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 						if ( true === $attributes['buttonIconOnHover'] ) {
 							$btn_classes[] = 'wpmozo-icon-on-hover';
 						}
-						
+
 						// Icon position class.
 						$btn_classes[] = ( 'before' === $icon_position ) ? 'wpmozo-icon-at-before' : 'wpmozo-icon-at-after';
 					}
@@ -153,15 +153,16 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 
 				// Member social icon.
 				$social_icons = '';
+				$social_target = $attributes['socialIconTarget'] ?? 'same';
 				if ( true === $show_social_icon ) {
-					$social_icons .= $helpers::get_team_member_social( 'website', $website, 'fas fa-globe' );
-					$social_icons .= $helpers::get_team_member_social( 'facebook', $facebook, 'fab fa-facebook-f' );
-					$social_icons .= $helpers::get_team_member_social( 'twitter', $twitter, 'fab fa-x-twitter' );
-					$social_icons .= $helpers::get_team_member_social( 'linkedin', $linkedin, 'fab fa-linkedin-in' );
-					$social_icons .= $helpers::get_team_member_social( 'instagram', $instagram, 'fab fa-instagram' );
-					$social_icons .= $helpers::get_team_member_social( 'youtube', $youtube, 'fab fa-youtube' );
-					$social_icons .= $helpers::get_team_member_social( 'email', $email_address, 'fas fa-envelope' );
-					$social_icons .= $helpers::get_team_member_social( 'phone', $phone_number, 'fas fa-phone' );
+					$social_icons .= $helpers::get_team_member_social( 'website', $website, 'fas fa-globe', $social_target );
+					$social_icons .= $helpers::get_team_member_social( 'facebook', $facebook, 'fab fa-facebook-f', $social_target );
+					$social_icons .= $helpers::get_team_member_social( 'twitter', $twitter, 'fab fa-x-twitter', $social_target );
+					$social_icons .= $helpers::get_team_member_social( 'linkedin', $linkedin, 'fab fa-linkedin-in', $social_target );
+					$social_icons .= $helpers::get_team_member_social( 'instagram', $instagram, 'fab fa-instagram', $social_target );
+					$social_icons .= $helpers::get_team_member_social( 'youtube', $youtube, 'fab fa-youtube', $social_target );
+					$social_icons .= $helpers::get_team_member_social( 'email', $email_address, 'fas fa-envelope', $social_target );
+					$social_icons .= $helpers::get_team_member_social( 'phone', $phone_number, 'fas fa-phone', $social_target );
 				}
 
 				// Class list.
@@ -289,7 +290,7 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 			foreach ( $data_attrs as $key => $val ) {
 				$data_attr_str .= ' data-' . esc_attr( $key ) . '="' . esc_attr( $val ) . '"';
 			}
-	
+
 			// Get wrapper attributes.
 			$wrapper_attributes = get_block_wrapper_attributes( array(
 				'class' => ( $attributes['className'] ) ?? ''
