@@ -23,6 +23,7 @@
 		"blockLink": {"type": "string"},
 		"blockLinkTarget": {"type": "string", "default": "external"},
 
+		"imageAlignment": {"type": "string","default": "center"},
 		"imageborder": { "type": "object" },
 		"imageborderRadius": { "type": "string" },
 		"imagepadding": { "type": "object" },

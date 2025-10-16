@@ -23,18 +23,23 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 	return (
 		<>
 			<PanelBody title={ __( 'Split Portion', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
-					<WpmozoBorder
-						props={props}
-						BorderKey="image"
-					/>
-					<WpmozoDimensions
-						DimensionKey='imageContainer'
-						DimensionsTypes={{
-							padding: true,
-							margin: true
-						}}
-						props={props}
-					/>
+				<WpmozoAlignment
+					label={__( 'Alignment', 'wpmozo-blocks-and-addons')}
+					onChange={ ( newValue ) => setAttributes( { imageAlignment: newValue } ) }
+					value={ attributes.imageAlignment }
+				/>
+				<WpmozoBorder
+					props={props}
+					BorderKey="image"
+				/>
+				<WpmozoDimensions
+					DimensionKey='imageContainer'
+					DimensionsTypes={{
+						padding: true,
+						margin: true
+					}}
+					props={props}
+				/>
 			</PanelBody>
 		</>
 	);

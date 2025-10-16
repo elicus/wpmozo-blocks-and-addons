@@ -1,4 +1,4 @@
-
+import $ from 'jquery';
 jQuery(document).ready(function ($) {
 
 	// On change on props, update the slider again.
