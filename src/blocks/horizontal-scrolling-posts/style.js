@@ -20,7 +20,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 				color: ${attributes.excerptTextColor};
 				${convertedStyle.excerptText || ''}
 			}
-			wpmozo_horizontal_scrolling_post_inner{
+			.wpmozo_horizontal_scrolling_post_inner{
 				${convertedStyle.postItem};
 			}
 			.wpmozo_horizontal_scrolling_post_inner::before{
@@ -35,6 +35,10 @@ const generateDynamicStyle = ( { attributes } ) => {
 				background-color:${attributes.catBKColor};
 				${convertedStyle.catText};
 				${convertedStyle.cat};
+			}
+			.wpmozo_horizontal_scrolling_post_wrapper{
+				width:${attributes.postItemWidth}px;
+				min-width:${attributes.postItemWidth}px;
 			}
 			.wpmozo_horizontal_scrolling_post_wrapper .wpmozo_horizontal_scrolling_post_image{
 				height: ${attributes.imageHeight}px;
@@ -55,6 +59,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 			.wpmozo-bna-button {
 				font-size:${attributes.buttonTextSize}px;
 				color:${attributes.buttonTextColor};
+				background:${attributes.buttonTextBackground};
 				${convertedStyle.button};
 			}
 			.wpmozo-bna-icon{

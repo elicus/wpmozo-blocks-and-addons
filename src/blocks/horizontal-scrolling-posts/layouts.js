@@ -44,7 +44,7 @@ export const renderTestimonialLayoutOne = ( {postTitle, postExcerpt,categoriesDa
 				{authorName && (
 					<>
 						<span className="author">
-							<span className="et-pb-icon"></span>
+							<i className="fas fa-user"></i>
 							<a href={authorLink} rel="author">{authorName}</a>
 						</span>
 						<span className="wpmozo_post_meta_divider">|</span>
@@ -53,7 +53,7 @@ export const renderTestimonialLayoutOne = ( {postTitle, postExcerpt,categoriesDa
 				{date && (
 					<>
 						<span className="published">
-							<span className="et-pb-icon"></span>
+							<i className="fas fa-calendar"></i>
 							{(new Date(date)).toLocaleDateString('en-US', {
 								month: 'short',
 								day: 'numeric',
@@ -66,7 +66,7 @@ export const renderTestimonialLayoutOne = ( {postTitle, postExcerpt,categoriesDa
 				)}
 				{Array.isArray(commentCount) && (
 					<>
-						<span className="et-pb-icon"></span>
+						<i className="fas fa-comment"></i>
 						<span className="comments">{commentCount.length}</span>
 					</>
 				)}
@@ -129,7 +129,7 @@ export const renderTestimonialLayoutTwo = ({postTitle, postExcerpt,categoriesDat
 						{authorName && (
 							<>
 								<span className="author">
-									<span className="et-pb-icon"></span>
+									<i className="fas fa-user"></i>
 									<a href={authorLink} rel="author">{authorName}</a>
 								</span>
 							</>
@@ -138,7 +138,7 @@ export const renderTestimonialLayoutTwo = ({postTitle, postExcerpt,categoriesDat
 						{Array.isArray(commentCount) && (
 							<>
 								<span className="comments">
-									<span className="et-pb-icon"></span>
+									<i className="fas fa-comment"></i>
 									{commentCount.length}
 								</span>
 							</>

@@ -67,7 +67,7 @@ if ( ! empty( $author_name ) ) {
 
 if ( ! empty( $date ) ) {
 	$meta_parts[] = sprintf(
-		'<span class="published"><i class="fas fa-calendar"></i><span className="et-pb-icon"></span>%s</span>',
+		'<span class="published"><i class="fas fa-calendar"></i>%s</span>',
 		esc_html( $date )
 	);
 }

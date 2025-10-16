@@ -35,16 +35,23 @@ if ( ! function_exists( 'horizontal_scrolling_posts_generate_dynamic_style' ) ) 
 		//Post Item
 		$styles .= "{$mainSelector} .postContent{";
 		$styles .= $block_helpers::get_padding_style( 'postItem', $attrs );
+		$styles .= $block_helpers::get_margin_style( 'postItem', $attrs );
 		$styles .= $block_helpers::get_border_style( 'postItem', $attrs );
 		$styles .= "}";
 		$styles .= "{$mainSelector} .wpmozo_horizontal_scrolling_post_inner::before{";
 		$styles .= ( ! empty( $attrs['postItemColor'] ) ? "background-color: {$attrs['postItemColor']};" : '' );
 		$styles .= "}";
+		$styles .= "{$mainSelector} .wpmozo_horizontal_scrolling_post_wrapper{";
+		$styles .= ( ! empty( $attrs['postItemWidth'] ) ? "width: {$attrs['postItemWidth']}px;" : '' );
+		$styles .= ( ! empty( $attrs['postItemWidth'] ) ? "min-width: {$attrs['postItemWidth']}px;" : '' );
+		$styles .= "}";
+
 
 		//Post Content
 		$styles .= "{$mainSelector} .wpmozo_horizontal_scrolling_post_content_wrapper{";
 		$styles .= ( ! empty( $attrs['postContentColor'] ) ? "background-color: {$attrs['postContentColor']};" : '' );
 		$styles .= $block_helpers::get_padding_style( 'postContent', $attrs );
+		$styles .= $block_helpers::get_margin_style( 'postContent', $attrs );
 		$styles .= $block_helpers::get_border_style( 'postContent', $attrs );
 		$styles .= "}";
 
@@ -54,6 +61,7 @@ if ( ! function_exists( 'horizontal_scrolling_posts_generate_dynamic_style' ) ) 
 		$styles .= ( ! empty( $attrs['catBKColor'] ) ? "background-color: {$attrs['catBKColor']};" : '' );
 		$styles .= $block_helpers::get_font_style( 'catText', $attrs );
 		$styles .= $block_helpers::get_padding_style( 'cat', $attrs );
+		$styles .= $block_helpers::get_margin_style( 'cat', $attrs );
 		$styles .= $block_helpers::get_border_style( 'cat', $attrs );
 		$styles .= "}";
 
@@ -61,6 +69,7 @@ if ( ! function_exists( 'horizontal_scrolling_posts_generate_dynamic_style' ) ) 
 		$styles .= "{$mainSelector} .wpmozo_horizontal_scrolling_post_wrapper .wpmozo_horizontal_scrolling_post_image{";
 		$styles .= ( ! empty( $attrs['imageHeight'] ) ? "height: {$attrs['imageHeight']}px;" : '' );
 		$styles .= $block_helpers::get_padding_style( 'postImage', $attrs );
+		$styles .= $block_helpers::get_margin_style( 'postImage', $attrs );
 		$styles .= $block_helpers::get_border_style( 'postImage', $attrs );
 		$styles .= "}";
 
@@ -86,8 +95,10 @@ if ( ! function_exists( 'horizontal_scrolling_posts_generate_dynamic_style' ) ) 
 			$styles .= "{$mainSelector} .wpmozo-bna-button {";
 			$styles .= ( ! empty( $attrs['buttonTextSize'] ) ? "font-size: {$attrs['buttonTextSize']}px;" : '' );
 			$styles .= ( ! empty( $attrs['buttonTextColor'] ) ? "color: {$attrs['buttonTextColor']};" : '' );
+			$styles .= ( ! empty( $attrs['buttonTextBackground'] ) ? "background: {$attrs['buttonTextBackground']};" : '' );
 			$styles .= $block_helpers::get_font_style( 'button', $attrs );
 			$styles .= $block_helpers::get_padding_style( 'button', $attrs );
+			$styles .= $block_helpers::get_margin_style( 'button', $attrs );
 			$styles .= $block_helpers::get_border_style( 'button', $attrs );
 			$styles .= "}";
 		}
@@ -100,6 +111,7 @@ if ( ! function_exists( 'horizontal_scrolling_posts_generate_dynamic_style' ) ) 
 		//Spacing
 		$styles .= "{$mainSelector} .wpmozo-sticky-posts-scroller {";
 		$styles .= $block_helpers::get_padding_style( 'container', $attrs );
+		$styles .= $block_helpers::get_margin_style( 'container', $attrs );
 		$styles .= "}";
 
 		//Border

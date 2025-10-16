@@ -70,6 +70,7 @@
 		"excerptTextLetterCase": { "type": "string" },
 		"excerptTextLineHeight": { "type": "string" },
 
+		"postItemWidth": {"type": "number","default": 300},
 		"postItemColor": {"type": "string"},
 		"postItemborder": { "type": "object" },
 		"postItemborderRadius": { "type": "string" },
@@ -133,6 +134,7 @@
 		"customButton": {"type": "boolean","default": false},
 		"buttonTextSize": {"type": "number"},
 		"buttonTextColor": {"type": "string"},
+		"buttonTextBackground": {"type": "string"},
 		"buttonborder": { "type": "object" },
 		"buttonborderRadius": { "type": "string" },
 		"showButtonIcon": {"type": "boolean","default": false},

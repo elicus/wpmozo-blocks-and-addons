@@ -75,6 +75,12 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				/>
 			</PanelBody>
 			<PanelBody title={ __( 'Post Item', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<RangeControl
+					label={ __( 'Post Item Width', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.postItemWidth }
+					onChange={ ( newValue ) => setAttributes( { postItemWidth: newValue } ) }
+					min={100} step={10} max={1000}
+				/>
 				<WpmozoColorPicker
 					props={props}
 					ColorKey="postItem"
@@ -210,7 +216,8 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 							props={props}
 							ColorKey="buttonText"
 							ColorTypes={ [
-								{ key: 'Color', label: __( 'Button Text Color', 'wpmozo-blocks-and-addons' ) }
+								{ key: 'Color', label: __( 'Button Text Color', 'wpmozo-blocks-and-addons' ) },
+								{ key: 'Background', label: __( 'Button Background Color', 'wpmozo-blocks-and-addons' ) }
 							] }
 						/>
 						<ToggleControl
