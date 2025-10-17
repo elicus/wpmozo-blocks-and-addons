@@ -39,12 +39,13 @@
         "image": { "type": "string" },
         "imageAlt": { "type": "string" },
 
+       	"iconAlign": {"type":"string","default": "left"},
         "iconColor": { "type": "string" },
         "iconFontSize": { "type": "string" },
         "iconpadding": { "type": "object" },
         "iconmargin": { "type": "object" },
 
-        "titleColor": { "type": "string" },  
+        "titleColor": { "type": "string" },
         "titleAlign": { "type": "string" },
         "titleLavel": { "type": "string" },
         "titleFontSize": { "type": "string" },
@@ -64,7 +65,7 @@
         "titlepadding": { "type": "object" },
         "titlemargin": { "type": "object" },
 
-        "descriptionColor": { "type": "string" },  
+        "descriptionColor": { "type": "string" },
         "descriptionAlign": { "type": "string" },
         "descriptionFontSize": { "type": "string" },
         "descriptionFontAppearance": {

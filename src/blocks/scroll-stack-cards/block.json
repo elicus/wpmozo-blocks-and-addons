@@ -21,10 +21,10 @@
         "animationStartViewportPos": { "type": "number", "default": 0 },
         "collapsedWidth": { "type": "number", "default": 200 },
 
-        "textColor": { "type": "string", "default": "dark" },  
+        "textColor": { "type": "string", "default": "dark" },
         "textAlignment": { "type": "string" },
 
-        "titleColor": { "type": "string" },  
+        "titleColor": { "type": "string" },
         "titleAlign": { "type": "string" },
         "titleLavel": { "type": "string", "default": "h4" },
         "titleFontSize": { "type": "string", "default": "18px" },
@@ -44,7 +44,7 @@
         "titlepadding": { "type": "object" },
         "titlemargin": { "type": "object" },
 
-        "descriptionColor": { "type": "string" },  
+        "descriptionColor": { "type": "string" },
         "descriptionAlign": { "type": "string" },
         "descriptionFontSize": { "type": "string", "default": "18px" },
         "descriptionFontAppearance": {
@@ -89,7 +89,7 @@
         "contentWrapItemBGImageRepeat": { "type": "string", "default": "no-repeat" },
         "contentWrapItemBGImageBlend": { "type": "string", "default": "normal" },
 
-        "cardItemWidth": { "type": "string" },
+        "cardItemWidth": { "type": "number","default": 300 },
         "cardItemborder": { "type": "object" },
         "cardItemborderRadius": { "type": "string" },
         "cardItempadding": { "type": "object" },

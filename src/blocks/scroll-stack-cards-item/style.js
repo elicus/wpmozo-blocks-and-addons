@@ -44,6 +44,7 @@ const generateDynamicStyle = ({ attributes }) => {
 			font-size: ${attributes.iconFontSize};
 		}
 		.wpmozo-bna-scroll-stack-cards-icon-wrapper{
+			text-align:${attributes.iconAlign};
 			${convertedStyle.icon}
 		}
 		`;

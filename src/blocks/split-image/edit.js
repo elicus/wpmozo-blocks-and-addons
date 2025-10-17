@@ -50,9 +50,6 @@ export default function Edit(props) {
 			<div
 				{...useBlockProps()}
 				id={`block-${attributes.ID}`}
-				{...(url ? {
-					onClick: () => window.open(url, linkTarget)
-				} : {})}
 			>
 				<div className={`wpmozo_split_image_wrapper`} data-rows={`${attributes.rows}`}
 					 data-columns={`${attributes.columns}`}>

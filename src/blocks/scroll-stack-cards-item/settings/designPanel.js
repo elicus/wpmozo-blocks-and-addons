@@ -29,8 +29,8 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			   	ColorKey="card"
 			   	ColorTypes={[
 				   	{
-				   		key: 'Background', 
-				   		label: __('Card Background', 'wpmozo-blocks-and-addons'), 
+				   		key: 'Background',
+				   		label: __('Card Background', 'wpmozo-blocks-and-addons'),
 				   		withGradient: true
 				   	}
 			   	]}
@@ -94,6 +94,11 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<WpmozoAlignment
+				label={__('Icon Alignment', 'wpmozo-blocks-and-addons')}
+				onChange={(newValue) => setAttributes({iconAlign: newValue})}
+				value={attributes.iconAlign}
+			/>
 			<WpmozoColorPicker props={props}
 				ColorKey="icon"
 				ColorTypes={ [

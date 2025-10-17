@@ -20,21 +20,33 @@ export default function save({ attributes }) {
 	const target = attributes.blockLinkTarget || "";
 	const linkTarget = target === 'external' ? '_blank' : '_self';
 
-	return ( <>
-		{/* Only output <style> if ID exists. */}
-		{ ( ID && '' !== ID ) && (
-			<style>{ generateDynamicStyle( { attributes } ) }</style>
-		) }
+	return (
+		<>
+			{/* Only output <style> if ID exists. */}
+			{ ( ID && '' !== ID ) && (
+				<style>{ generateDynamicStyle( { attributes } ) }</style>
+			) }
 
-		<div {...blockProps}
-			 {...(url ? {
-				onClick: () => window.open(url, linkTarget)
-			 } : {})}
-		>
-			<div className={`wpmozo_split_image_wrapper`} data-rows={`${attributes.rows}`}
-				 data-columns={`${attributes.columns}`}>
-				{gridBoxes}
-			</div>
-		</div>
-	</>);
+			{url ? (
+				<a
+					{...blockProps}
+					href={url}
+					target={linkTarget}
+					rel={linkTarget === '_blank' ? 'noopener noreferrer' : undefined}
+				>
+					<div className="wpmozo_split_image_wrapper" data-rows={`${attributes.rows}`}
+						data-columns={`${attributes.columns}`}>
+						{gridBoxes}
+					</div>
+				</a>
+			) : (
+				<div {...blockProps}>
+					<div className="wpmozo_split_image_wrapper" data-rows={`${attributes.rows}`}
+						data-columns={`${attributes.columns}`}>
+						{gridBoxes}
+					</div>
+				</div>
+			)}
+		</>
+	);
 }

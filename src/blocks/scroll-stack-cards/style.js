@@ -104,7 +104,7 @@ const generateDynamicStyle = ({ attributes }) => {
 		if ( 'horizontal' === attributes.layout  ) {
 			styles += `
 			.wpmozo-bna-scroll-stack-cards-item-inner {
-				width: ${attributes.cardItemWidth};
+				width: ${attributes.cardItemWidth}px;
 			}`;
 		}
 
@@ -122,7 +122,7 @@ const generateDynamicStyle = ({ attributes }) => {
 			color: ${attributes.buttonIconColor};
 		}
 		`;
-		
+
 
 	styles += `}`;
 

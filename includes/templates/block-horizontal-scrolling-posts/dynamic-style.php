@@ -27,6 +27,7 @@ if ( ! function_exists( 'horizontal_scrolling_posts_generate_dynamic_style' ) ) 
 
 		//Excerpt Text
 		$styles .= "{$mainSelector} .wpmozo_horizontal_scrolling_post_excerpt{";
+		$styles .= "margin: 16px 0;";
 		$styles .= ( ! empty( $attrs['excerptTextAlignment'] ) ? "text-align: {$attrs['excerptTextAlignment']};" : '' );
 		$styles .= ( ! empty( $attrs['excerptTextColor'] ) ? "color: {$attrs['excerptTextColor']};" : '' );
 		$styles .= $block_helpers::get_font_style( 'excerptText', $attrs );
