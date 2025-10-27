@@ -81,6 +81,8 @@
 .wpmozo_bna_team_member_name,
 .wpmozo_bna_team_member_short_desc{
 	width: 100%;
+	overflow-wrap: break-word;
+	pointer-events: auto;
 }
 .wpmozo_bna_team_member_short_desc{
     color: #666666;
