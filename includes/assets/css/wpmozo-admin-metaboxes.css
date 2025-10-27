@@ -137,3 +137,21 @@
 .wpmozo_bna_repeator_meta_field_row:not( :last-child ) .wpmozo_bna_repeator_meta_field_add_row{
 	display: none;
 }
+
+/* Attachment field style. */
+.wpmozo_bna_attachment_metafield{
+	border: 1px solid #7e8993;
+	border-radius: 4px;
+	background: #fff;
+	margin-bottom: 20px;
+	padding: 10px;
+}
+.wpmozo_bna_attachment_metafield .categorychecklist{
+	margin: 0;
+}
+.wpmozo_bna_attachment_metafield .categorychecklist li {
+    margin-bottom: 4px;
+}
+.wpmozo_bna_attachment_metafield .categorychecklist input[type=checkbox]{
+	margin: 0 3px 0;
+}
