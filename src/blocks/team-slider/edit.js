@@ -132,6 +132,8 @@ const Edit = (props) => {
 					 data-space_between_slides={attributes.spaceBetweenSlides || '20'}
 					 data-space_between_slides_tablet={attributes.spaceBetweenSlidesTablet || '20'}
 					 data-space_between_slides_mobile={attributes.spaceBetweenSlidesMobile || '20'}
+					 data-coverflow_rotate={attributes.coverflowRotate || '40'}
+					 data-coverflow_depth={attributes.coverflowDepth || '100'}
 
 					 data-enable_coverflow_shadow={attributes.enableCoverflowShadow ?? 'false'}
 					 data-enable_loop={attributes.enableLoop || 'false'}
@@ -146,6 +148,7 @@ const Edit = (props) => {
 					 data-show_control_dot={attributes.showControlDot || 'false'}
 					 data-control_dot_style={attributes.controlDotStyle || 'solid_dot'}
 					 data-enable_dynamic_dots={attributes.enableDynamicDots || 'false'}
+					 data-social_icons_target={attributes.socialIconTarget || 'same'}
 
 					 data-show_designation={displayInPopup.includes('designation') ? 'on' : 'off'}
 					 data-show_content={displayInPopup.includes('content') ? 'on' : 'off'}

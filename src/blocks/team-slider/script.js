@@ -49,6 +49,7 @@ jQuery( document ).ready( function( $ ) {
 			use_stripes          : $mainWrap.attr( 'data-use_stripes' ),
 			use_animated_stripes : $mainWrap.attr( 'data-use_animated_stripes' ),
 			popup_name_level     : $mainWrap.attr( 'data-popup_name_level' ),
+			social_icons_target  : $mainWrap.attr( 'data-social_icons_target' ),
 		} );
 
 		let	$position            = $wrapObj.data( 'close_icon_position' );

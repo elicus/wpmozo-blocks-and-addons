@@ -24,15 +24,6 @@ const Layout1 = ( { post, attributes } ) => {
 			dataAttrs['data-link'] = postLink;
 			dataAttrs['data-link_target'] = linkTarget;
 		}
-
-		// Above one is in else, so keep it here simple.
-		if ( 'item' === attributes.linkType ) {
-			if ( attributes.usePopup ) {
-				classLists.add( 'wpmozo_bna_team_popup' );
-			} else {
-				classLists.add( 'wpmozo_bna_team_link' );
-			}
-		}
 	}
 
 	return (

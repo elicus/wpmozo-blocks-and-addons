@@ -49,6 +49,7 @@ class Mozo_Bna_Public {
 			'use_stripes'          => 'off',
 			'use_animated_stripes' => 'on',
 			'popup_name_level'     => 'h2',
+			'social_icons_target'  => 'same',
 		);
 
 		foreach ( $defaults as $key => $default ) {
@@ -103,15 +104,19 @@ class Mozo_Bna_Public {
 
 		// Social Icons.
 		$social_icons = '';
+		$linkTarget = '';
+		if(isset($_POST['props']['social_icons_target']) && !empty($_POST['props']['social_icons_target'])){
+			$linkTarget = $_POST['props']['social_icons_target'];
+		}
 		if ( 'on' === $show_social_icons ) {
-			$social_icons .= $helpers::get_team_member_social( 'website', $website, 'fas fa-globe' );
-			$social_icons .= $helpers::get_team_member_social( 'facebook', $facebook, 'fab fa-facebook-f' );
-			$social_icons .= $helpers::get_team_member_social( 'twitter', $twitter, 'fab fa-x-twitter' );
-			$social_icons .= $helpers::get_team_member_social( 'linkedin', $linkedin, 'fab fa-linkedin-in' );
-			$social_icons .= $helpers::get_team_member_social( 'instagram', $instagram, 'fab fa-instagram' );
-			$social_icons .= $helpers::get_team_member_social( 'youtube', $youtube, 'fab fa-youtube' );
-			$social_icons .= $helpers::get_team_member_social( 'email', $email_address, 'fas fa-envelope' );
-			$social_icons .= $helpers::get_team_member_social( 'phone', $phone_number, 'fas fa-phone' );
+			$social_icons .= $helpers::get_team_member_social( 'website', $website, 'fas fa-globe', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'facebook', $facebook, 'fab fa-facebook-f', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'twitter', $twitter, 'fab fa-x-twitter', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'linkedin', $linkedin, 'fab fa-linkedin-in', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'instagram', $instagram, 'fab fa-instagram', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'youtube', $youtube, 'fab fa-youtube', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'email', $email_address, 'fas fa-envelope', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'phone', $phone_number, 'fas fa-phone', $linkTarget );
 		}
 
 		// Skill bars.

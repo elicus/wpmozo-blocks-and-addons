@@ -18,6 +18,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 		'popupSocialIcon',
 		'container',
 		'item',
+		'arrow'
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
@@ -119,9 +120,10 @@ const generateDynamicStyle = ( { attributes } ) => {
 			${attributes.arrowColor ? `color: ${attributes.arrowColor};` : ''}
 			${convertedStyle.arrow}
 		}
-		.wpmozo_swiper_wrapper .swiper-button-next:after,
-		.wpmozo_swiper_wrapper .swiper-button-prev:after{
+		.wpmozo_swiper_wrapper .swiper-button-next:before,
+		.wpmozo_swiper_wrapper .swiper-button-prev:before{
 			${attributes.arrowIconSize ? `font-size: ${attributes.arrowIconSize}px;` : ''}
+
 		}`;
 		if ( attributes.showArrowOnHover ) {
 			styles += `.swiper-button-next, .swiper-button-prev{
