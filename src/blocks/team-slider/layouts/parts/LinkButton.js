@@ -24,7 +24,7 @@ const LinkButton = ( { post, attributes } ) => {
 					( attributes.buttonUseIcon && 'before' === attributes.buttonIconPosition ) ? 'wpmozo-icon-at-before' : 'wpmozo-icon-at-after'
 				].join(" ") }
 			>
-				<span className='wpmozo-bna-btn-text'>{ attributes.linkButtonText && __( 'Read More', 'wpmozo-blocks-and-addons' ) }</span>
+				<span className='wpmozo-bna-btn-text'>{ attributes.linkButtonText }</span>
 				{ $buttonIcon }
 			</a>
 		</div>

@@ -45,7 +45,7 @@ $post_title = sprintf(
 
 $post_excerpt = sprintf(
 	'<div class="wpmozo_horizontal_scrolling_post_excerpt">%s</div>',
-	wp_kses_post( substr( get_the_excerpt( $post_id ), 0, $attributes['excerptLength'] ) )
+	wp_kses_post( wp_trim_words( get_the_excerpt( $post_id ), $attributes['excerptLength'], $more = null ) )
 );
 
 $author_id       = get_post_field( 'post_author', $post_id );
