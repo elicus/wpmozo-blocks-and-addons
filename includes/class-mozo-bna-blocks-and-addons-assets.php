@@ -142,14 +142,6 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			true
 		);
 
-		/*wp_register_script(
-			$this->plugin_name . '-blocks-script',
-			WPMOZO_BNA_ASSETS_DIR_URL . 'js/frontend/frontend.js',
-			array( 'wp-i18n', 'jquery' ),
-			WPMOZO_BNA_VERSION,
-			true
-		);*/
-
 		wp_register_script(
 			$this->plugin_name . '-isotope-script',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/isotope.pkgd.js',
@@ -224,6 +216,15 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/gsap.min.js',
 			array( $this->plugin_name . '-scroll-trigger-script' ),
 			'3.12.2',
+			true
+		);
+
+		// Tws Pagination.
+		wp_register_script(
+			$this->plugin_name . 'twbs-pagination-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . "js/vendors/twbsPagination.min.js",
+			array('jquery'),
+			'1.4.2',
 			true
 		);
 	}
