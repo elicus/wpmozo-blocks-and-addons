@@ -16,14 +16,14 @@
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
 
-		"breadcrumbLayout": { "type": "string", "default": "Image Card Title" },
+		"breadcrumbLayout": { "type": "string", "default": "layout1" },
 		"linkTarget": {"type": "boolean", "default": false},
 		"breadcrumbsNavBackground": { "type": "string", "default": "#7ebec5" },
 		"breadcrumbsNavLastItemBackground": { "type": "string", "default": "#cccccc" },
 		"enableDifferentBg": {"type": "boolean", "default": false},
 		"enableFade": {"type": "boolean", "default": false},
 		"fadeRange": {"type": "number", "default": 0.01},
-		"breadcrumbItempadding": {"type": "object"},
+		"breadcrumbItempadding": {"type": "object", "default": { "right": "10px", "left": "10px" } },
 
 		"separatorColor": { "type": "string" },
 		"separatorType": { "type": "string", "default": "text_separator" },
