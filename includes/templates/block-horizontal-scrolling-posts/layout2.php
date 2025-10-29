@@ -13,6 +13,10 @@ $author_link     = get_author_posts_url( $author_id );
 $date            = get_the_date( 'M j, Y', $post_id );
 $comments_number = get_comments_number( $post_id );
 
+if ( ! $attributes['showDate'] ) {
+	$date = '';
+}
+
 $post_tag = '';
 if ( ! empty( $attributes['showCategories'] ) ) {
 	$categories = get_the_category( $post_id );
@@ -64,7 +68,7 @@ $post_excerpt = sprintf(
 
 $meta_parts = array();
 
-if ( ! empty( $author_name ) ) {
+if ( $attributes['showAuthorName'] ) {
 	$meta_parts[] = sprintf(
 		'<span class="author"><i class="fas fa-user"></i><a href="%1$s" rel="author">%2$s</a></span>',
 		esc_url( $author_link ),
@@ -72,7 +76,7 @@ if ( ! empty( $author_name ) ) {
 	);
 }
 
-if ( comments_open( $post_id ) ) {
+if ( $attributes['showCommentCount'] ) {
 	$meta_parts[] = sprintf(
 		'<i class="fas fa-comment"></i><span class="comments">%d</span>',
 		intval( $comments_number )

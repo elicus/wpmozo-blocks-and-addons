@@ -6,7 +6,6 @@
  * @copyright  2025 Elicus Technologies Private Limited
  * @version    1.1.0
  */
-
 $post_tag = '';
 if ( ! empty( $attributes['showCategories'] ) ) {
 	$categories = get_the_category( $post_id );
@@ -57,7 +56,7 @@ $comments_number = get_comments_number( $post_id );
 
 $meta_parts = array();
 
-if ( ! empty( $author_name ) ) {
+if ( $attributes['showAuthorName'] ) {
 	$meta_parts[] = sprintf(
 		'<span class="author"><i class="fas fa-user"></i><a href="%1$s" rel="author">%2$s</a></span>',
 		esc_url( $author_link ),
@@ -65,14 +64,14 @@ if ( ! empty( $author_name ) ) {
 	);
 }
 
-if ( ! empty( $date ) ) {
+if ( $attributes['showDate'] ) {
 	$meta_parts[] = sprintf(
 		'<span class="published"><i class="fas fa-calendar"></i>%s</span>',
 		esc_html( $date )
 	);
 }
 
-if ( comments_open( $post_id ) ) {
+if ( $attributes['showCommentCount'] ) {
 	$meta_parts[] = sprintf(
 		'<i class="fas fa-comment"></i><span class="comments">%d</span>',
 		intval( $comments_number )
