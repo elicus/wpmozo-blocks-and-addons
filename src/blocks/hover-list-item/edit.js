@@ -95,7 +95,7 @@ const Edit = ( props ) => {
 					( attributes.buttonUseIcon && 'before' === attributes.buttonIconPosition ) ? 'wpmozo-icon-at-before' : 'wpmozo-icon-at-after'
 				].join(" ") }
 			>
-				<span className='wpmozo-bna-btn-text'>{ attributes.buttonText && __( 'Read more', 'wpmozo-blocks-and-addons' ) }</span>
+				<span className='wpmozo-bna-btn-text'>{ attributes.buttonText}</span>
 				{ $buttonIcon }
 			</a>
 		</div>;
