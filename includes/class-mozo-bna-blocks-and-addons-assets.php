@@ -221,7 +221,7 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 
 		// Tws Pagination.
 		wp_register_script(
-			$this->plugin_name . 'twbs-pagination-script',
+			$this->plugin_name . '-twbs-pagination-script',
 			WPMOZO_BNA_ASSETS_DIR_URL . "js/vendors/twbsPagination.min.js",
 			array('jquery'),
 			'1.4.2',
