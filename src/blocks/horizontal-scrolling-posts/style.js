@@ -27,7 +27,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 				min-width:${attributes.postItemWidth}px;
 				${convertedStyle.postItem};
 			}
-			.item_layout1 .wpmozo_horizontal_scrolling_post_wrapper .wpmozo_horizontal_scrolling_post_content_wrapper{
+			.item_layout1 .wpmozo_horizontal_scrolling_post_content_wrapper{
 				background-color:${attributes.postContentColor};
 				${convertedStyle.postContent};
 			}
