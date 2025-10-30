@@ -81,9 +81,8 @@ const Edit = (props) => {
 			)) {
 				paginationClass = (attributes.enableDynamicDots) ? ' swiper-pagination-bullets-dynamic' : ' swiper-pagination-bullets';
 			}
-
 			$paginationDots = <div className="wpmozo-bna-testimonial-slider-pagination">
-				<div className={`swiper-pagination ${attributes.controlDotStyle}${paginationClass}`}></div>
+				<div className={`swiper-pagination ${attributes.controlDotStyle} ${paginationClass}`}></div>
 			</div>;
 		}
 	}

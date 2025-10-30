@@ -136,11 +136,6 @@
 	left: 20px;
 	z-index: 2;
 }
-.wp-block-wpmozo-horizontal-scrolling-posts .layout1 .wpmozo_horizontal_scrolling_post_meta_wrapper{
-	border-top: 1px solid #eaeaea;
-	padding: 5px 30px;
-	justify-content: space-between;
-}
 
 /* Layout 2 Specific. */
 .wp-block-wpmozo-horizontal-scrolling-posts .layout2 .wpmozo_horizontal_scrolling_post_wrapper{
@@ -178,9 +173,6 @@
 	margin-right:5px;
 	align-items:center;
 	display: flex;
-}
-.wpmozo_horizontal_scrolling_post_wrapper {
-	padding: 0 20px;
 }
 .wpmozo-sticky-posts-scroller *{
 	box-sizing: border-box;

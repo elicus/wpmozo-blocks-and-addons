@@ -41,7 +41,7 @@ if ( ! function_exists( 'horizontal_scrolling_posts_generate_dynamic_style' ) ) 
 		$styles .= "{$mainSelector} .wpmozo_horizontal_scrolling_post_inner::before{";
 		$styles .= ( ! empty( $attrs['postItemColor'] ) ? "background-color: {$attrs['postItemColor']};" : '' );
 		$styles .= "}";
-		$styles .= "{$mainSelector} .item_layout1 .wpmozo_horizontal_scrolling_post_wrapper{overflow:hidden;";
+		$styles .= "{$mainSelector} .item_layout1 .wpmozo_horizontal_scrolling_post_wrapper{";
 		$styles .= ( ! empty( $attrs['postItemColor'] ) ? "background-color: {$attrs['postItemColor']};" : '' );
 		$styles .= ( ! empty( $attrs['postItemWidth'] ) ? "width: {$attrs['postItemWidth']}px;" : '' );
 		$styles .= ( ! empty( $attrs['postItemWidth'] ) ? "min-width: {$attrs['postItemWidth']}px;" : '' );
