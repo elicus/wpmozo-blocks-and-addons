@@ -191,6 +191,11 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					TypographyKey="metaText"
 					props={props}
 				/>
+				<WpmozoDimensions
+					props={props}
+					DimensionKey='MetaText'
+					DimensionsTypes={{padding: true,margin: true}}
+				/>
 			</PanelBody>
 			<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 				<WpmozoAlignment

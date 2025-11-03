@@ -26,7 +26,36 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 	} else {
         styles += `${ (attributes.globalItemBackgroundColor) ? `.wpmozo-bna-list-item { background:`+ attributes.globalItemBackgroundColor + `; }` : '' }`;
 	}
-	
+
+	if('inline' === attributes.layout){
+		styles += `.wpmozo-bna-list-item{width:auto;}`;
+	} else {
+		styles +=`.list-item-wrap {align-items: center;width: 100%;}`;
+		if('right'=== attributes.listAlignment){
+			styles += `
+			.list-item-wrap {grid-template-columns: 1fr auto auto;}
+			.wpmozo-bna-list-icon.use-icon {justify-content: flex-end;}
+			.wpmozo-bna-list-item-text {justify-content: flex-end;}
+		`;
+		} else if('left' === attributes.listAlignment){
+			styles += `
+			.list-item-wrap {grid-template-columns: auto 1fr;}
+			.wpmozo-bna-list-icon.use-icon {align-items: center;justify-content: flex-start;}
+			.wpmozo-bna-list-item-text {align-items: center;justify-content: flex-start;}
+		`;
+		} else {
+			styles += `
+			.list-item-wrap {grid-template-columns: 1fr 1fr;}
+			.wpmozo-bna-list-icon.use-icon {align-items: center;justify-content: flex-end;}
+			.wpmozo-bna-list-item-text {align-items: center;justify-content: flex-start;}
+		`;
+		}
+	}
+
+
+
+	// styles += `${ (attributes.listAlignment) ? `.wpmozo-bna-list-item { justify-content:`+ attributes.listAlignment + `; }` : '' }`;
+
 	styles += `}`;
 
 	return styles;

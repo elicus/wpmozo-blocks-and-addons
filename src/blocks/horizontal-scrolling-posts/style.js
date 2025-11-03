@@ -2,7 +2,7 @@ import { convertInlineStyleStr } from '../../common/utils.js';
 
 const generateDynamicStyle = ( { attributes } ) => {
 	const toConvertStyles = [
-		'titleText','excerptText','postItem','postContent','catText','cat','postImage','metaText','container','button'
+		'titleText','excerptText','postItem','postContent','catText','cat','postImage','metaText','container','button','MetaText'
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
@@ -67,6 +67,9 @@ const generateDynamicStyle = ( { attributes } ) => {
 			}
 			.wpmozo-bna-button-wrap{
 				text-align:${attributes.buttonAlignment}
+			}
+			.item_layout1 .wpmozo_horizontal_scrolling_post_meta_wrapper{
+				${convertedStyle.MetaText};
 			}
 
 	`;

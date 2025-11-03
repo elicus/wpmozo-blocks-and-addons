@@ -129,6 +129,8 @@
 		"metaTextDecoration": { "type": "string" },
 		"metaTextLetterCase": { "type": "string" },
 		"metaTextLineHeight": { "type": "string" },
+		"MetaTextpadding": { "type": "object" },
+		"MetaTextmargin": { "type": "object" },
 
 		"buttonAlignment": {"type":"string","default": "left"},
 		"customButton": {"type": "boolean","default": false},
