@@ -141,6 +141,9 @@ const generateDynamicStyle = ( { attributes } ) => {
 			.wpmozo-bna-button-wrap{
 				text-align:${attributes.buttonAlignment}
 			}
+			.item_layout2 .wpmozo_horizontal_scrolling_post_meta_wrapper{
+				${convertedStyle.MetaText};
+			}
 
 	`;
 	}

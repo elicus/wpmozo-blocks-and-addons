@@ -99,6 +99,10 @@ if ( ! function_exists( 'horizontal_scrolling_posts_generate_dynamic_style' ) ) 
 		$styles .= ( ! empty( $attrs['metaTextColor'] ) ? "color: {$attrs['metaTextColor']};" : '' );
 		$styles .= $block_helpers::get_font_style( 'metaText', $attrs );
 		$styles .= "}";
+		$styles .= "{$mainSelector} .wpmozo_horizontal_scrolling_post_meta_wrapper {";
+		$styles .= $block_helpers::get_padding_style( 'MetaText', $attrs );
+		$styles .= $block_helpers::get_margin_style( 'MetaText', $attrs );
+		$styles .= "}";
 
 		//Button
 		if ( ! empty( $attrs['ID'] ) && ! empty( $attrs['buttonAlignment'] ) ) {
