@@ -19,8 +19,9 @@ if ( ! function_exists( 'horizontal_scrolling_posts_generate_dynamic_style' ) ) 
 
 		//General
 		$styles .= "{$mainSelector} .item_layout2 .wpmozo_horizontal_scrolling_post_tag_wrapper span {display: flex;}";
+		$styles .= "{$mainSelector} .wpmozo_horizontal_scrolling_post_tag_wrapper {top: 10px !important;}";
 
-
+		
 		//Title Text
 		$styles .= "{$mainSelector} .wpmozo_horizontal_scrolling_post_title, {$mainSelector} .wpmozo_horizontal_scrolling_post_title a{";
 		$styles .= ( ! empty( $attrs['titleTextAlignment'] ) ? "text-align: {$attrs['titleTextAlignment']};" : '' );
