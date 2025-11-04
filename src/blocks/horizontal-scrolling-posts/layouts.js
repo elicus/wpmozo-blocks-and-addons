@@ -132,6 +132,7 @@ export const renderTestimonialLayoutTwo = ({postTitle, postExcerpt,categoriesDat
 									<i className="fas fa-user"></i>
 									<a href={authorLink} rel="author">{authorName}</a>
 								</span>
+								<span className="wpmozo_post_meta_divider">|</span>
 							</>
 						)}
 

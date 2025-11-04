@@ -100,6 +100,7 @@ if ( ! function_exists( 'horizontal_scrolling_posts_generate_dynamic_style' ) ) 
 		$styles .= $block_helpers::get_font_style( 'metaText', $attrs );
 		$styles .= "}";
 		$styles .= "{$mainSelector} .wpmozo_horizontal_scrolling_post_meta_wrapper {";
+		$styles .= ( ! empty( $attrs['metaTextAlign'] ) ? "justify-content: {$attrs['metaTextAlign']};" : '' );
 		$styles .= $block_helpers::get_padding_style( 'MetaText', $attrs );
 		$styles .= $block_helpers::get_margin_style( 'MetaText', $attrs );
 		$styles .= "}";

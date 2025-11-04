@@ -103,6 +103,9 @@
 .wpmozo_horizontal_scrolling_post_meta_wrapper{
 	display: flex;
 	width: 100%;
+	align-items: center;
+	gap: 5px;
+	justify-content:space-between;
 }
 .wpmozo_horizontal_scrolling_post_meta_wrapper .author,
 .wpmozo_horizontal_scrolling_post_meta_wrapper .published,

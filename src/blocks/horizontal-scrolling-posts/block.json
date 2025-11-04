@@ -115,6 +115,7 @@
 		"metaIconColor": {"type": "string"},
 
 		"metaTextColor": {"type": "string"},
+		"metaTextAlign": {"type": "string"},
 		"metaTextFontSize": { "type": "string" },
 		"metaTextFontAppearance": {
 			"type": "object",
@@ -129,7 +130,7 @@
 		"metaTextDecoration": { "type": "string" },
 		"metaTextLetterCase": { "type": "string" },
 		"metaTextLineHeight": { "type": "string" },
-		"MetaTextpadding": { "type": "object" },
+		"MetaTextpadding": { "type": "object", "default": { "top": "20px", "right": "20px", "bottom": "20px", "left": "20px" } },
 		"MetaTextmargin": { "type": "object" },
 
 		"buttonAlignment": {"type":"string","default": "left"},

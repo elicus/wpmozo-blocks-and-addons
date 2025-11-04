@@ -187,6 +187,12 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						{ key: 'Color', label: __( 'Meta Text Color', 'wpmozo-blocks-and-addons' ) }
 					] }
 				/>
+				<WpmozoAlignment
+					showJustify
+					label={ __( 'Alignment', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( newValue ) => setAttributes( { metaTextAlign: newValue } ) }
+					value={ attributes.metaTextAlign }
+				/>
 				<WpmozoTypography
 					TypographyKey="metaText"
 					props={props}

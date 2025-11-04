@@ -69,6 +69,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 				text-align:${attributes.buttonAlignment}
 			}
 			.item_layout1 .wpmozo_horizontal_scrolling_post_meta_wrapper{
+				justify-content:${attributes.metaTextAlign};
 				${convertedStyle.MetaText};
 			}
 
@@ -142,6 +143,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 				text-align:${attributes.buttonAlignment}
 			}
 			.item_layout2 .wpmozo_horizontal_scrolling_post_meta_wrapper{
+				justify-content:${attributes.metaTextAlign};
 				${convertedStyle.MetaText};
 			}
 
