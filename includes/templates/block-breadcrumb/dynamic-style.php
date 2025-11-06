@@ -34,6 +34,9 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 			{$mainSelector} .layout2 li .breadcrumb-page{
 				background-color: transparent !important;
 			}
+			{$mainSelector} .wpmozo-bna-breadcrumb-wrapper{
+				justify-content: {$attrs['textAlign']};
+			}
 		";
 
 

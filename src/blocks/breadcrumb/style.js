@@ -30,6 +30,9 @@ const generateDynamicStyle = ( { attributes } ) => {
 		.layout2 li .breadcrumb-page{
 			background-color: transparent !important;
 		}
+		.wpmozo-bna-breadcrumb-wrapper{
+			justify-content: ${attributes.textAlign};
+		}
 		`;
 
 		let textFontSize = typeof attributes.textFontSize === 'string'
