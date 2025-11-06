@@ -1,0 +1,149 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "wpmozo/post-ticker",
+    "version": "0.1.0",
+    "title": "Post Ticker",
+    "category": "wpmozo",
+    "icon": "smiley",
+    "description": "Example block scaffolded with Create Block tool.",
+    "example": {},
+    "supports": {
+		"html": false,
+		"customClassName": false
+    },
+    "attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+
+		"postsToShow": {"type": "number","default": 5},
+		"allPostTypes": {"type": "array", "default": []},
+		"postType": {"type": "string","default": "post"},
+		"postOrderBy": {"type": "string","default": "date"},
+		"postOrder": {"type": "string","default": "desc"},
+		"ignoreStickyPosts": {"type": "boolean","default": false},
+		"noResultText": {"type": "string"},
+
+		"tickerLabel": {"type": "string","default": "Breaking News"},
+		"tickerEffect": {"type": "string","default": "scroll"},
+		"separatorType": {"type": "string","default": "custom"},
+		"customSeparator": {"type": "string","default": "|"},
+		"separatorIcon": {"type": "string","default": "fa fa-angle-right"},
+		"effectDelay": {"type": "string","default": "2500"},
+		"slideAlignment": {"type":"string","default":"horizontal"},
+		"transitionDuration": {"type":"string","default":"700"},
+		"scrollEffectSpeed": {"type":"string","default":"70"},
+		"showArrows": {"type": "boolean","default": false},
+		"previousArrow": {"type": "string","default": "fas fa-arrow-left"},
+		"nextArrow": {"type": "string","default": "fas fa-arrow-right"},
+
+		"tickerLabelColor": {"type": "string"},
+		"tickerLabelBackground": {"type": "string"},
+		"tickerLabelFontSize": { "type": "string" },
+		"tickerLabelFontAppearance": {
+			"type": "object",
+			"fontStyle": { "type": "string" },
+			"fontWeight": { "type": "string" },
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"tickerLabelLetterSpacing": { "type": "string" },
+		"tickerLabelDecoration": { "type": "string" },
+		"tickerLabelLetterCase": { "type": "string" },
+		"tickerLabelLineHeight": { "type": "string" },
+		"tickerLabelborder": { "type": "object" },
+		"tickerLabelborderRadius": { "type": "string" },
+		"tickerLabelpadding": { "type": "object" },
+		"tickerLabelmargin": { "type": "object" },
+
+		"tickerLabelHoverColor": {"type": "string"},
+		"tickerLabelHoverBackground": {"type": "string"},
+		"tickerLabelHoverFontSize": { "type": "string" },
+		"tickerLabelHoverFontAppearance": {
+			"type": "object",
+			"fontStyle": { "type": "string" },
+			"fontWeight": { "type": "string" },
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"tickerLabelHoverLetterSpacing": { "type": "string" },
+		"tickerLabelHoverDecoration": { "type": "string" },
+		"tickerLabelHoverLetterCase": { "type": "string" },
+		"tickerLabelHoverLineHeight": { "type": "string" },
+		"tickerLabelHoverborder": { "type": "object" },
+		"tickerLabelHoverborderRadius": { "type": "string" },
+		"tickerLabelHoverpadding": { "type": "object" },
+		"tickerLabelHovermargin": { "type": "object" },
+
+		"postItemsBackground": {"type": "string"},
+		"postItemsborder": { "type": "object" },
+		"postItemsborderRadius": { "type": "string" },
+		"postItemspadding": { "type": "object" },
+		"postItemsmargin": { "type": "object" },
+
+		"postItemsHoverBackground": {"type": "string"},
+		"postItemsHoverborder": { "type": "object" },
+		"postItemsHoverborderRadius": { "type": "string" },
+		"postItemsHoverpadding": { "type": "object" },
+		"postItemsHovermargin": { "type": "object" },
+
+		"postItemColor": {"type": "string"},
+		"postItemFontSize": { "type": "string" },
+		"postItemFontAppearance": {
+			"type": "object",
+			"fontStyle": { "type": "string" },
+			"fontWeight": { "type": "string" },
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"postItemLetterSpacing": { "type": "string" },
+		"postItemDecoration": { "type": "string" },
+		"postItemLetterCase": { "type": "string" },
+		"postItemLineHeight": { "type": "string" },
+		"postItempadding": { "type": "object" },
+		"postItemmargin": { "type": "object" },
+
+		"postItemHoverColor": {"type": "string"},
+		"postItemHoverFontSize": { "type": "string" },
+		"postItemHoverFontAppearance": {
+			"type": "object",
+			"fontStyle": { "type": "string" },
+			"fontWeight": { "type": "string" },
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"postItemHoverLetterSpacing": { "type": "string" },
+		"postItemHoverDecoration": { "type": "string" },
+		"postItemHoverLetterCase": { "type": "string" },
+		"postItemHoverLineHeight": { "type": "string" },
+		"postItemHoverpadding": { "type": "object" },
+		"postItemHovermargin": { "type": "object" },
+
+		"separatorFontSize": {"type": "number","default": 20},
+		"postSeparatorColor": {"type": "string"},
+		"postSeparatorpadding": { "type": "object" },
+		"postSeparatormargin": { "type": "object" },
+
+		"arrowFontSize": {"type": "number","default": 18},
+		"arrowColor": {"type": "string"},
+		"arrowBackground": {"type":"string"},
+		"arrowborder": { "type": "object" },
+		"arrowborderRadius": { "type": "string" },
+		"arrowpadding": { "type": "object" },
+		"arrowmargin": { "type": "object" }
+	},
+    "textdomain": "wpmozo-blocks-and-addons",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+	"style": [ "wpmozo-blocks-and-addons-swiper-style", "wpmozo-blocks-and-addons-swiper-wpmozo-style", "file:./style-index.css" ],
+	"script": [ "wpmozo-blocks-and-addons-swiper-script", "file:./script.js" ],
+	"render": "file:./render.php"
+}
