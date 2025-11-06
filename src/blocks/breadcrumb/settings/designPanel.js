@@ -25,7 +25,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 
 	return ( <>
 		{ 'layout1' === attributes.breadcrumbLayout && <>
-			<PanelBody title={ __( 'Breadcrumbs Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
+			<PanelBody title={ __( 'Breadcrumbs', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
 				<WpmozoColorPicker props={props}
 					ColorKey="breadcrumbs"
 					ColorTypes={ [
@@ -113,7 +113,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				/>
 			</PanelBody>
 		</> }
-		<PanelBody title={ __( 'Home Link Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Home Link', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			<ToggleControl
 				label={ __( 'Custom Home Link Text', 'wpmozo-blocks-and-addons' ) }
 				checked={ attributes.useHomeLinkText || false }
@@ -135,7 +135,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				onChange={ ( newValue ) => setAttributes( { useHomeLinkIcon: newValue } ) }
 				__nextHasNoMarginBottom={ true }
 			/>
-			{ attributes.useHomeLinkIcon && 
+			{ attributes.useHomeLinkIcon &&
 				<>
 					<ToggleControl
 						label={ __( 'Hide Home Text(Display Icon Only)', 'wpmozo-blocks-and-addons' ) }
