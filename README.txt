@@ -163,7 +163,7 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
-2025-10-10 - Version 1.5.0
+2025-10-13 - Version 1.5.0
 * New: Image Card Ticker Block.
 * New: Background Switcher Block.
 * New: Scrolling Zoom Gallery Block.

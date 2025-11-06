@@ -31,10 +31,22 @@ const Layout2 = ( { post, attributes } ) => {
 
 	// Post Excerpt.
 	let postExcerpt = '';
-	if ( attributes.showExcerpt && post.excerpt.rendered ) {
-		postExcerpt = <div className="wpmozo_bna_blog_timeline_post_content_inner"
-			dangerouslySetInnerHTML={ {__html: post.excerpt.rendered } }
-		/>;
+	if ( attributes.showExcerpt && attributes.excerptLength && post.excerpt.rendered ) {
+		// Process post.excerpt.rendered with excerptLength
+		let excerptContent = post.excerpt.rendered;
+		const tmpDiv = document.createElement('div');
+		tmpDiv.innerHTML = excerptContent;
+		const textContent = tmpDiv.textContent || tmpDiv.innerText || '';
+		const words = textContent.split(' ');
+		let trimmedExcerpt = words.slice(0, attributes.excerptLength).join(' ').trim();
+		if (words.length > attributes.excerptLength) {
+			trimmedExcerpt += '...';
+		}
+		postExcerpt = (
+			<div className="wpmozo_bna_blog_timeline_post_content_inner">
+				{ trimmedExcerpt }
+			</div>
+		);
 	}
 
 	return (
@@ -47,7 +59,7 @@ const Layout2 = ( { post, attributes } ) => {
 					<Thumbnail post={ post } attributes={ attributes } />
 
 					{/* Post title. */}
-					{ ( post.title.rendered ) && 
+					{ ( post.title.rendered ) &&
 						<TitleLevel className="wpmozo_bna_blog_timeline_post_title">
 							<a href={ postLink }>{ post.title.rendered }</a>
 						</TitleLevel>

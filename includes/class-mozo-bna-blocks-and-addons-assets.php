@@ -142,14 +142,6 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			true
 		);
 
-		/*wp_register_script(
-			$this->plugin_name . '-blocks-script',
-			WPMOZO_BNA_ASSETS_DIR_URL . 'js/frontend/frontend.js',
-			array( 'wp-i18n', 'jquery' ),
-			WPMOZO_BNA_VERSION,
-			true
-		);*/
-
 		wp_register_script(
 			$this->plugin_name . '-isotope-script',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/isotope.pkgd.js',
@@ -189,7 +181,7 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			true
 		);
 
-    wp_register_script(
+		wp_register_script(
 			$this->plugin_name . '-magnify-script',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'js/vendors/magnify.min.js',
 			array( 'jquery'),
@@ -226,6 +218,15 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			'3.12.2',
 			true
 		);
+
+		// Tws Pagination.
+		wp_register_script(
+			$this->plugin_name . '-twbs-pagination-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . "js/vendors/twbsPagination.min.js",
+			array('jquery'),
+			'1.4.2',
+			true
+		);
 	}
 
 	/**
@@ -239,7 +240,9 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			'placeholderImg' => WPMOZO_BNA_ASSETS_DIR_URL . 'images/placeholder.webp',
 			'icons'          => $icons,
 			'url'            => rest_url( 'wpmozo/v1/save-dynamic-style' ),
-			'assets_url'     => WPMOZO_BNA_ASSETS_DIR_URL
+			'assets_url'     => WPMOZO_BNA_ASSETS_DIR_URL,
+			'themeName' 	 => wp_get_theme()->get( 'Name' ),
+			'wordCountType'  => wp_get_word_count_type()
 		);
 
 		wp_localize_script( $this->plugin_name . '-editor-script', 'wpmozo_bna_editor_object', $all_options );
@@ -250,6 +253,9 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 		wp_enqueue_script( $this->plugin_name . '-tilt-script' );
 		wp_enqueue_script( $this->plugin_name . '-popper-script' );
 		wp_enqueue_script( $this->plugin_name . '-tippy-script' );
+
+		// Load frontend localize variables.
+		$this->load_block_localize_variables();
 	}
 
 	/**
@@ -289,6 +295,21 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 	public function enqueue_block_assets() {
 		wp_enqueue_style( $this->plugin_name . '-fontawesome-style' );
 		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
+
+		// Load frontend localize variables.
+		$this->load_block_localize_variables();
+	}
+
+	/**
+	 * Enqueue block localize variables.
+	 * @since 1.6.0
+	 */
+	public function load_block_localize_variables() {
+		// Team Slider: localize vars.
+		wp_localize_script( 'wpmozo-team-slider-script', 'WPMozoTeamSliderData', array(
+			'ajaxurl'   => admin_url( 'admin-ajax.php' ),
+			'ajaxnonce' => wp_create_nonce( 'wpmozo-team-slider-nonce' ),
+		) );
 	}
 
 	/**
@@ -331,10 +352,20 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			WPMOZO_BNA_VERSION
 		);
 
+		// Register scripts.
+		wp_register_script(
+			$this->plugin_name . '-metaboxes',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/wpmozo-admin-metaboxes.js',
+			array( 'jquery' ),
+			WPMOZO_BNA_VERSION
+		);
+
 		// Check if we're on post edit/add screen for a specific CPT
-		if ( isset( $screen->post_type ) && $screen->base === 'post' &&
-			$screen->post_type === 'mozo-testimonial'
+		if ( isset( $screen->post_type ) && ( $screen->base === 'post' || $screen->base === 'upload' ) &&
+			( $screen->post_type === 'mozo-testimonial' || $screen->post_type === 'mozo-team-member' || 
+			$screen->post_type === 'attachment' )
 		) {
+			wp_enqueue_script( $this->plugin_name . '-metaboxes' );
 			wp_enqueue_style( $this->plugin_name . '-metaboxes' );
 		}
 	}

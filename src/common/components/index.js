@@ -22,3 +22,20 @@ export {
 	WpmozoColorCombo,
 	WpmozoRangeSize,
 }
+
+// Export them globally for pro plugin.
+if ( typeof window !== 'undefined' ) {
+	window.WPMozoBNAComponents = window.WPMozoBNAComponents || {};
+	Object.assign( window.WPMozoBNAComponents, {
+		WpmozoTypography,
+		WpmozoColorPicker,
+		WpmozoDimensions,
+		WpmozoSize,
+		WpmozoBorder,
+		WpmozoMediaUploader,
+		WpmozoIconpicker,
+		WpmozoAlignment,
+		WpmozoColorCombo,
+		WpmozoRangeSize,
+	} );
+}

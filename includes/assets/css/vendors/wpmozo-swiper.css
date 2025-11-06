@@ -15,9 +15,9 @@
 .wpmozo_swiper_wrapper .swiper-button-next,
 .wpmozo_swiper_wrapper .swiper-button-prev{
 	background-image: none;
-	border-color: #333;
 	border-style: solid;
 	border-width: 0;
+	width: auto;
 	height: auto;
 	padding: 5px 10px;
 }

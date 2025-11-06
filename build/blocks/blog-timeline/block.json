@@ -1,0 +1,487 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpmozo/blog-timeline",
+  "version": "0.1.0",
+  "title": "Blog Timeline",
+  "category": "wpmozo",
+  "icon": "smiley",
+  "description": "Showcase your blogs in a stylish and user friendly timline and make your website stunning.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "customClassName": false
+  },
+  "attributes": {
+    "ID": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "postItemsDB": {
+      "type": "string"
+    },
+    "postsNumber": {
+      "type": "number",
+      "default": 10
+    },
+    "offsetNumber": {
+      "type": "number",
+      "default": 0
+    },
+    "postOrder": {
+      "type": "string",
+      "default": "desc"
+    },
+    "postOrderBy": {
+      "type": "string",
+      "default": "date"
+    },
+    "includesCategories": {
+      "type": "array",
+      "default": []
+    },
+    "ignoreStickyPosts": {
+      "type": "boolean",
+      "default": false
+    },
+    "noResultText": {
+      "type": "string",
+      "default": "The posts you requested could not be found. Try changing your module settings or create some new posts."
+    },
+    "layout": {
+      "type": "string",
+      "default": "layout1"
+    },
+    "orientation": {
+      "type": "string",
+      "default": "alternate"
+    },
+    "showExcerpt": {
+      "type": "boolean",
+      "default": true
+    },
+    "excerptLength": {
+      "type": "string",
+      "default": 50
+    },
+    "showThumbnail": {
+      "type": "boolean",
+      "default": true
+    },
+    "featuredImageSize": {
+      "type": "string",
+      "default": "large"
+    },
+    "showAuthor": {
+      "type": "boolean",
+      "default": true
+    },
+    "showDate": {
+      "type": "boolean",
+      "default": true
+    },
+    "dateFormat": {
+      "type": "string",
+      "default": "M j, Y"
+    },
+    "showCategories": {
+      "type": "boolean",
+      "default": true
+    },
+    "showComments": {
+      "type": "boolean",
+      "default": true
+    },
+    "showReadMore": {
+      "type": "boolean",
+      "default": true
+    },
+    "readMoreText": {
+      "type": "string",
+      "default": "Read More"
+    },
+    "timelineIcon": {
+      "type": "string",
+      "default": "fas fa-angles-down"
+    },
+    "timelineIconColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "timelineIconFillColor": {
+      "type": "string",
+      "default": "#cccccc"
+    },
+    "timelineIconFontSize": {
+      "type": "number",
+      "default": 22
+    },
+    "tlIconShape": {
+      "type": "string",
+      "default": "none"
+    },
+    "tlIconShapeColor": {
+      "type": "string",
+      "default": "#eeeeee"
+    },
+    "tlIconShapeFillColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "tlIconShapeUseBorder": {
+      "type": "boolean",
+      "default": false
+    },
+    "tlIconShapeBorderColor": {
+      "type": "string",
+      "default": "#eeeeee"
+    },
+    "tlIconShapeBorderFillColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "tlIconShapeBorderSize": {
+      "type": "number",
+      "default": 2
+    },
+    "barSize": {
+      "type": "number",
+      "default": 2
+    },
+    "barColor": {
+      "type": "string",
+      "default": "#eeeeee"
+    },
+    "barFillColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "thumbnailSize": {
+      "type": "number",
+      "default": 100
+    },
+    "thumbnailAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "postborder": {
+      "type": "object"
+    },
+    "postborderRadius": {
+      "type": "string"
+    },
+    "postpadding": {
+      "type": "object",
+      "default": {
+        "top": "20px",
+        "right": "20px",
+        "bottom": "20px",
+        "left": "20px"
+      }
+    },
+    "postBackground": {
+      "type": "string"
+    },
+    "postBGGradient": {
+      "type": "string"
+    },
+    "titleColor": {
+      "type": "string"
+    },
+    "titleAlign": {
+      "type": "string"
+    },
+    "titleLevel": {
+      "type": "string",
+      "default": "h3"
+    },
+    "titleFontSize": {
+      "type": "string"
+    },
+    "titleLetterSpacing": {
+      "type": "string"
+    },
+    "titleDecoration": {
+      "type": "string"
+    },
+    "titleLetterCase": {
+      "type": "string"
+    },
+    "titleLineHeight": {
+      "type": "string"
+    },
+    "titleFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "titleFontStyle": {
+      "type": "string"
+    },
+    "titleFontWeight": {
+      "type": "string"
+    },
+    "titleHoverColor": {
+      "type": "string"
+    },
+    "titleHoverFontSize": {
+      "type": "string"
+    },
+    "titleHoverLetterSpacing": {
+      "type": "string"
+    },
+    "titleHoverDecoration": {
+      "type": "string"
+    },
+    "titleHoverLetterCase": {
+      "type": "string"
+    },
+    "titleHoverLineHeight": {
+      "type": "string"
+    },
+    "titleHoverFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "titleHoverFontStyle": {
+      "type": "string"
+    },
+    "titleHoverFontWeight": {
+      "type": "string"
+    },
+    "excerptColor": {
+      "type": "string"
+    },
+    "excerptAlign": {
+      "type": "string"
+    },
+    "excerptFontSize": {
+      "type": "string"
+    },
+    "excerptLetterSpacing": {
+      "type": "string"
+    },
+    "excerptDecoration": {
+      "type": "string"
+    },
+    "excerptLetterCase": {
+      "type": "string"
+    },
+    "excerptLineHeight": {
+      "type": "string"
+    },
+    "excerptFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "excerptFontStyle": {
+      "type": "string"
+    },
+    "excerptFontWeight": {
+      "type": "string"
+    },
+    "dateColor": {
+      "type": "string"
+    },
+    "dateFontSize": {
+      "type": "string"
+    },
+    "dateLetterSpacing": {
+      "type": "string"
+    },
+    "dateDecoration": {
+      "type": "string"
+    },
+    "dateLetterCase": {
+      "type": "string"
+    },
+    "dateLineHeight": {
+      "type": "string"
+    },
+    "dateFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "dateFontStyle": {
+      "type": "string"
+    },
+    "dateFontWeight": {
+      "type": "string"
+    },
+    "metaColor": {
+      "type": "string"
+    },
+    "metaFontSize": {
+      "type": "string"
+    },
+    "metaLetterSpacing": {
+      "type": "string"
+    },
+    "metaDecoration": {
+      "type": "string"
+    },
+    "metaLetterCase": {
+      "type": "string"
+    },
+    "metaLineHeight": {
+      "type": "string"
+    },
+    "metaFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "metaFontStyle": {
+      "type": "string"
+    },
+    "metaFontWeight": {
+      "type": "string"
+    },
+    "buttonBackground": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonBGGradient": {
+      "type": "string"
+    },
+    "buttonUseIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "buttonIcon": {
+      "type": "string",
+      "default": "fas fa-arrow-right"
+    },
+    "buttonIconPosition": {
+      "type": "string",
+      "default": "after"
+    },
+    "buttonIconOnHover": {
+      "type": "boolean",
+      "default": false
+    },
+    "buttonpadding": {
+      "type": "object",
+      "default": {
+        "top": "10px",
+        "right": "20px",
+        "bottom": "10px",
+        "left": "20px"
+      }
+    },
+    "buttonmargin": {
+      "type": "object"
+    },
+    "buttonborder": {
+      "type": "object",
+      "default": {
+        "width": "2px",
+        "style": "solid",
+        "color": "#313131"
+      }
+    },
+    "buttonborderRadius": {
+      "type": "string",
+      "default": "3px"
+    },
+    "buttonColor": {
+      "type": "string"
+    },
+    "buttonFontSize": {
+      "type": "string"
+    },
+    "buttonLetterSpacing": {
+      "type": "string"
+    },
+    "buttonDecoration": {
+      "type": "string"
+    },
+    "buttonLetterCase": {
+      "type": "string"
+    },
+    "buttonLineHeight": {
+      "type": "string"
+    },
+    "buttonFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "buttonFontStyle": {
+      "type": "string"
+    },
+    "buttonFontWeight": {
+      "type": "string"
+    },
+    "buttonHoverBackground": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonHoverBGGradient": {
+      "type": "string"
+    },
+    "buttonHoverborder": {
+      "type": "object"
+    },
+    "buttonHoverborderRadius": {
+      "type": "string"
+    },
+    "buttonHoverColor": {
+      "type": "string"
+    },
+    "buttonHoverFontSize": {
+      "type": "string"
+    },
+    "buttonHoverLetterSpacing": {
+      "type": "string"
+    },
+    "buttonHoverDecoration": {
+      "type": "string"
+    },
+    "buttonHoverLetterCase": {
+      "type": "string"
+    },
+    "buttonHoverLineHeight": {
+      "type": "string"
+    },
+    "buttonHoverFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "buttonHoverFontStyle": {
+      "type": "string"
+    },
+    "buttonHoverFontWeight": {
+      "type": "string"
+    }
+  },
+  "textdomain": "wpmozo-blocks-and-addons",
+  "editorScript": "file:./index.js",
+  "style": [
+    "wpmozo-blocks-and-addons-blocks-style",
+    "file:./style-index.css"
+  ],
+  "script": [
+    "file:./script.js"
+  ]
+}
