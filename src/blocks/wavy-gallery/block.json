@@ -1,0 +1,65 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "wpmozo/wavy-gallery",
+    "version": "0.1.0",
+    "title": "Wavy Gallery",
+    "category": "wpmozo",
+    "icon": "smiley",
+    "description": "Adds a unique horizontal wave animation to your image gallery, perfect for showcasing portfolios, creative projects, and visual stories.",
+    "example": {},
+    "supports": {
+		"html": false,
+		"customClassName": false
+    },
+    "attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+		"images": {
+			"type": "array",
+			"default": [],
+			"source": "query",
+			"selector": ".wpmozo-blocks-and-addons-gallery--item",
+			"query": {
+				"url": {
+					"source": "attribute",
+					"selector": "img",
+					"attribute": "src"
+				}
+			}
+		},
+		"images_data": {
+			"type": "array"
+		},
+
+		"imagesWidth": {"type": "number","default": 60},
+		"imagesHeight": {"type": "number","default": 240},
+		"imagesGap": {"type": "number","default": 15},
+		"showOverlayTitle": {"type": "boolean","default": true},
+
+		"containermargin": {"type": "object"},
+		"containerpadding": {"type": "object"},
+		"containerborder": {"type": "object"},
+		"containerborderRadius": {"type": "string"},
+
+		"lightboxBackgroundColor": {"type": "string"},
+
+		"textAlign": {"type": "string","default": "left"},
+		"lightboxTitleColor": {"type": "string"},
+		"lightboxTitleFontSize": { "type": "string" },
+		"lightboxTitleFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"lightboxTitleLetterSpacing": { "type": "string" },
+		"lightboxTitleDecoration": { "type": "string" },
+		"lightboxTitleLetterCase": { "type": "string" },
+		"lightboxTitleLineHeight": { "type": "string" }
+
+	},
+    "textdomain": "wpmozo-blocks-and-addons",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+    "viewScript": [ "wpmozo-blocks-and-addons-scroll-trigger-script", "wpmozo-blocks-and-addons-gsap-script", "file:./script.js"]
+}
