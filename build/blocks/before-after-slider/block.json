@@ -1,0 +1,159 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpmozo/before-after-slider",
+  "version": "1.1.0",
+  "title": "Before After Slider",
+  "category": "wpmozo",
+  "icon": "smiley",
+  "description": "Create stunning before-and-after comparisons with a sleek, responsive slider.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "customClassName": false
+  },
+  "attributes": {
+    "ID": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "globalcolorHandle": {
+      "type": "string"
+    },
+    "handleOffset": {
+      "type": "number",
+      "default": 0.5
+    },
+    "moveHandleOnClick": {
+      "type": "boolean",
+      "default": false
+    },
+    "moveHandleOnHover": {
+      "type": "boolean",
+      "default": false
+    },
+    "sliderOrientation": {
+      "type": "string",
+      "default": "horizontal"
+    },
+    "overlayOnHover": {
+      "type": "boolean",
+      "default": false
+    },
+    "globalcolorOverlay": {
+      "type": "string"
+    },
+    "beforeImage": {
+      "type": "string"
+    },
+    "beforeHasLabel": {
+      "type": "boolean",
+      "default": false
+    },
+    "beforeLabelOnHover": {
+      "type": "boolean",
+      "default": false
+    },
+    "beforeLabel": {
+      "type": "string",
+      "default": "Before"
+    },
+    "beforeLabelbackground": {
+      "type": "string"
+    },
+    "beforeLabeltext": {
+      "type": "string"
+    },
+    "beforeLabelFontSize": {
+      "type": "string"
+    },
+    "beforeLabelFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "beforeLabelLetterSpacing": {
+      "type": "string"
+    },
+    "beforeLabelDecoration": {
+      "type": "string"
+    },
+    "beforeLabelLetterCase": {
+      "type": "string"
+    },
+    "beforeLabelLineHeight": {
+      "type": "string"
+    },
+    "afterImage": {
+      "type": "string"
+    },
+    "afterHasLabel": {
+      "type": "boolean",
+      "default": false
+    },
+    "afterLabelOnHover": {
+      "type": "boolean",
+      "default": false
+    },
+    "afterLabel": {
+      "type": "string",
+      "default": "After"
+    },
+    "afterLabelbackground": {
+      "type": "string"
+    },
+    "afterLabeltext": {
+      "type": "string"
+    },
+    "afterLabelFontSize": {
+      "type": "string"
+    },
+    "afterLabelFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "afterLabelLetterSpacing": {
+      "type": "string"
+    },
+    "afterLabelDecoration": {
+      "type": "string"
+    },
+    "afterLabelLetterCase": {
+      "type": "string"
+    },
+    "afterLabelLineHeight": {
+      "type": "string"
+    }
+  },
+  "textdomain": "wpmozo-blocks-and-addons",
+  "editorScript": "file:./index.js",
+  "style": [
+    "file:./style-index.css",
+    "wpmozo-blocks-and-addons-imagesloaded-style",
+    "wpmozo-blocks-and-addons-twentytwenty-style"
+  ],
+  "script": [
+    "wpmozo-blocks-and-addons-imagesloaded-script",
+    "wpmozo-blocks-and-addons-twentytwenty-script"
+  ],
+  "viewScript": "file:./view.js"
+}

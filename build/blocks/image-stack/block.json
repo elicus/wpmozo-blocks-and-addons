@@ -1,0 +1,83 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpmozo/image-stack",
+  "version": "0.1.0",
+  "title": "Image Stack",
+  "category": "wpmozo",
+  "icon": "smiley",
+  "description": "Image Stack lets you showcase images in an interactive stacked layout that expands on hover.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "customClassName": false
+  },
+  "attributes": {
+    "ID": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "alighment": {
+      "type": "string",
+      "default": "center"
+    },
+    "stackItemSize": {
+      "type": "number",
+      "default": 100
+    },
+    "stackItemShrink": {
+      "type": "number",
+      "default": 40
+    },
+    "stackItemSpacing": {
+      "type": "number",
+      "default": 10
+    },
+    "iconSize": {
+      "type": "number",
+      "default": 38
+    },
+    "iconColor": {
+      "type": "string"
+    },
+    "itempadding": {
+      "type": "object"
+    },
+    "itemBorderType": {
+      "type": "string",
+      "default": "none"
+    },
+    "itemBorderWidth": {
+      "type": "number"
+    },
+    "borderColor": {
+      "type": "string"
+    },
+    "itemBorderRadius": {
+      "type": "number",
+      "default": ""
+    },
+    "tooltipColor": {
+      "type": "string",
+      "default": ""
+    },
+    "tooltipBackgroundColor": {
+      "type": "string",
+      "default": ""
+    },
+    "showTooltip": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "textdomain": "wpmozo-blocks-and-addons",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "script": [
+    "wpmozo-blocks-and-addons-tippy-script",
+    "file:./script.js"
+  ]
+}
