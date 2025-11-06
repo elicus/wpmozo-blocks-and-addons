@@ -9,46 +9,46 @@ use WPMOZO\BNA\Helpers\Mozo_Bna_Block_Helpers;
 if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 	function breadcrumb_render_callback( $attributes ) {
 
-		$helpers = new Mozo_Bna_Helpers();
+		$helpers       = new Mozo_Bna_Helpers();
 		$block_helpers = new Mozo_Bna_Block_Helpers();
 
-		$breadcrumb_layout                     = esc_attr($attributes['breadcrumbLayout'] );
-		$link_target                           = ( 'on' === esc_attr($attributes['linkTarget'] ) ) ? 'target="_blank"' : '';
-		$enable_fade                           = esc_attr($attributes['enableFade'] );
-		$fade_range                            = esc_attr($attributes['fadeRange'] );
-		$separator_icon                        = ( 'layout2' === $breadcrumb_layout ) ? esc_attr($attributes['separatorIcon'] ) : '';
-		$home_link_text                        = ! empty($attributes['homeLinkText'] ) ? sprintf( esc_html__( '%s', 'wpmozo-blocks-and-addons' ),$attributes['homeLinkText'] ) : esc_html__( 'Home', 'wpmozo-blocks-and-addons' );
-		$use_home_link_icon                    = esc_attr($attributes['useHomeLinkIcon']);
-		$hide_home_text                        = esc_attr($attributes['hideHomeText'] );
-		$home_link_icon                        = ( $use_home_link_icon ) ? esc_attr($attributes['homeLinkIcon'] ) : '';
-		$breadcrumb_list                       = '';
-		$output                                = '';
-		$opacity                               = 1;
-		$opacity_style                         = '';
+		$breadcrumb_layout  = esc_attr( $attributes['breadcrumbLayout'] );
+		$link_target        = ( 'on' === esc_attr( $attributes['linkTarget'] ) ) ? 'target="_blank"' : '';
+		$enable_fade        = esc_attr( $attributes['enableFade'] );
+		$fade_range         = esc_attr( $attributes['fadeRange'] );
+		$separator_icon     = ( 'layout2' === $breadcrumb_layout && ! empty( $attributes['separatorIcon'] ) ) ? esc_attr( $attributes['separatorIcon'] ) : '';
+		$home_link_text     = ! empty( $attributes['homeLinkText'] ) ? sprintf( esc_html__( '%s', 'wpmozo-blocks-and-addons' ), $attributes['homeLinkText'] ) : esc_html__( 'Home', 'wpmozo-blocks-and-addons' );
+		$use_home_link_icon = esc_attr( $attributes['useHomeLinkIcon'] );
+		$hide_home_text     = esc_attr( $attributes['hideHomeText'] );
+		$home_link_icon     = ( $use_home_link_icon ) ? esc_attr( $attributes['homeLinkIcon'] ) : '';
+		$breadcrumb_list    = '';
+		$output             = '';
+		$opacity            = 1;
+		$opacity_style      = '';
 
-		$hide_home_text = empty($hide_home_text) ? 'off' : 'on';
-		$use_home_link_icon = empty($use_home_link_icon) ? 'off' : 'on';
-		$Seprator_Icon = ('icon_separator' === $attributes['separatorType']) ? '<span class="breadcrumb-home-icon"><i class="'.$attributes['separatorIcon'].'"></i></span>' : '';
+		$hide_home_text     = empty( $hide_home_text ) ? 'off' : 'on';
+		$use_home_link_icon = empty( $use_home_link_icon ) ? 'off' : 'on';
+		$Seprator_Icon      = ( 'icon_separator' === $attributes['separatorType'] ) ? '<span class="breadcrumb-home-icon"><i class="' . $attributes['separatorIcon'] . '"></i></span>' : '';
 
 		$breadcrumb = traverse_breadcrumbs( $attributes );
 
 		$breadcrumb_size = (int) esc_attr( count( $breadcrumb ) );
-			for ( $i = 0; $i < $breadcrumb_size; $i++ ) {
-				$breadcrumbs_keys = array_keys( $breadcrumb[ $i ] );
-				$title            = $breadcrumbs_keys[0];
-				$link             = $breadcrumb[ $i ][ $title ];
+		for ( $i = 0; $i < $breadcrumb_size; $i ++ ) {
+			$breadcrumbs_keys = array_keys( $breadcrumb[ $i ] );
+			$title            = $breadcrumbs_keys[0];
+			$link             = $breadcrumb[ $i ][ $title ];
 
-				if ( 'on' === $enable_fade && '' !== $fade_range ) {
-					$opacity_style = sprintf( 'style="opacity: %1$s;"', esc_attr( $opacity ) );
-				}
+			if ( 'on' === $enable_fade && '' !== $fade_range ) {
+				$opacity_style = sprintf( 'style="opacity: %1$s;"', esc_attr( $opacity ) );
+			}
 
-				//layout1
-				if ( 'layout1' === $breadcrumb_layout && '' !== $breadcrumb ) {
-					if ( 0 === $i ) {
-						$title = ( '' !== $title ) ? $title : $home_link_text;
-						if ( 'on' === $use_home_link_icon && 'off' === $hide_home_text ) {
-							$breadcrumb_list .= sprintf(
-								'<li property="itemListElement" typeof="ListItem" %1$s>
+			//layout1
+			if ( 'layout1' === $breadcrumb_layout && '' !== $breadcrumb ) {
+				if ( 0 === $i ) {
+					$title = ( '' !== $title ) ? $title : $home_link_text;
+					if ( 'on' === $use_home_link_icon && 'off' === $hide_home_text ) {
+						$breadcrumb_list .= sprintf(
+							'<li property="itemListElement" typeof="ListItem" %1$s>
 								<a class="breadcrumb-item wpmozo-bna-home-page" href="%2$s" property="item" typeof="WebPage" %6$s>
 									<span class="breadcrumb-page" property="name">
 										<span class="breadcrumb-home-icon">
@@ -61,16 +61,16 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 								</a>
 								<meta property="position" content="%5$s" />
 							</li>',
-								$opacity_style,
-								$link,
-								$home_link_icon,
-								$title,
-								( $i + 1 ),
-								$link_target
-							);
-						} elseif ( 'on' === $use_home_link_icon && 'on' === $hide_home_text ) {
-							$breadcrumb_list .= sprintf(
-								'<li property="itemListElement" typeof="ListItem" %1$s>
+							$opacity_style,
+							$link,
+							$home_link_icon,
+							$title,
+							( $i + 1 ),
+							$link_target
+						);
+					} elseif ( 'on' === $use_home_link_icon && 'on' === $hide_home_text ) {
+						$breadcrumb_list .= sprintf(
+							'<li property="itemListElement" typeof="ListItem" %1$s>
 								<a class="breadcrumb-item wpmozo-bna-home-page" href="%2$s" property="item" typeof="WebPage" %5$s>
 									<span class="breadcrumb-page" property="name">
 										<span class="breadcrumb-home-icon">
@@ -82,46 +82,21 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 								</a>
 								<meta property="position" content="%4$s" />
 							</li>',
-								$opacity_style,
-								$link,
-								$home_link_icon,
-								( $i + 1 ),
-								$link_target
-							);
+							$opacity_style,
+							$link,
+							$home_link_icon,
+							( $i + 1 ),
+							$link_target
+						);
 
-						} else {
-							$breadcrumb_list .= sprintf(
-								'<li property="itemListElement" typeof="ListItem" %1$s>
+					} else {
+						$breadcrumb_list .= sprintf(
+							'<li property="itemListElement" typeof="ListItem" %1$s>
 								<a class="breadcrumb-item wpmozo-bna-home-page" href="%2$s" property="item" typeof="WebPage" %5$s>
 									<span class="breadcrumb-page" property="name">%3$s</span>
 								</a>
 								<meta property="position" content="%4$s" />
 							</li>',
-								$opacity_style,
-								$link,
-								$title,
-								( $i + 1 ),
-								$link_target
-							);
-						}
-					} elseif ( ( $i + 1 ) === $breadcrumb_size ) {
-						$breadcrumb_list .= sprintf(
-							'<li property="itemListElement" typeof="ListItem" %1$s>
-							<span class="breadcrumb-page wpmozo-bna-last-page" property="name">%2$s</span>
-							<meta property="position" content="%3$s" />
-						</li>',
-							$opacity_style,
-							$title,
-							( $i + 1 )
-						);
-					} else {
-						$breadcrumb_list .= sprintf(
-							'<li property="itemListElement" typeof="ListItem" %1$s>
-							<a class="breadcrumb-item" href="%2$s" property="item" typeof="WebPage" %5$s>
-								<span class="breadcrumb-page" property="name">%3$s</span>
-							</a>
-							<meta property="position" content="%4$s" />
-						</li>',
 							$opacity_style,
 							$link,
 							$title,
@@ -129,32 +104,57 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 							$link_target
 						);
 					}
+				} elseif ( ( $i + 1 ) === $breadcrumb_size ) {
+					$breadcrumb_list .= sprintf(
+						'<li property="itemListElement" typeof="ListItem" %1$s>
+							<span class="breadcrumb-page wpmozo-bna-last-page" property="name">%2$s</span>
+							<meta property="position" content="%3$s" />
+						</li>',
+						$opacity_style,
+						$title,
+						( $i + 1 )
+					);
+				} else {
+					$breadcrumb_list .= sprintf(
+						'<li property="itemListElement" typeof="ListItem" %1$s>
+							<a class="breadcrumb-item" href="%2$s" property="item" typeof="WebPage" %5$s>
+								<span class="breadcrumb-page" property="name">%3$s</span>
+							</a>
+							<meta property="position" content="%4$s" />
+						</li>',
+						$opacity_style,
+						$link,
+						$title,
+						( $i + 1 ),
+						$link_target
+					);
 				}
+			}
 
-				//layout2
-				if ( 'layout2' === $breadcrumb_layout && '' !== $breadcrumb ) {
-					if ( 0 === $i ) {
-						$title = ( '' !== $title ) ? $title : $home_link_text;
-						if ( 'on' === $use_home_link_icon && 'off' === $hide_home_text ) {
-							$breadcrumb_list .= sprintf(
-								'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
+			//layout2
+			if ( 'layout2' === $breadcrumb_layout && '' !== $breadcrumb ) {
+				if ( 0 === $i ) {
+					$title = ( '' !== $title ) ? $title : $home_link_text;
+					if ( 'on' === $use_home_link_icon && 'off' === $hide_home_text ) {
+						$breadcrumb_list .= sprintf(
+							'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
 								<a class="breadcrumb-item dipl-home-page" href="%2$s" property="item" typeof="WebPage" %6$s>
 									<span class="breadcrumb-home-icon et-pb-icon"><i class="%3$s"></i></span>
 									<span class="breadcrumb-page" property="name">%4$s</span>
 								</a>
 								<meta property="position" content="%5$s" />
 							</li>',
-								$attributes['separatorIcon'],
-								$link,
-								$home_link_icon,
-								$title,
-								( $i + 1 ),
-								$link_target
-							);
+							isset( $attributes['separatorIcon'] ) ? $attributes['separatorIcon'] : '',
+							$link,
+							$home_link_icon,
+							$title,
+							( $i + 1 ),
+							$link_target
+						);
 
-						} elseif ( 'on' === $use_home_link_icon && 'on' === $hide_home_text ) {
-							$breadcrumb_list .= sprintf(
-								'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
+					} elseif ( 'on' === $use_home_link_icon && 'on' === $hide_home_text ) {
+						$breadcrumb_list .= sprintf(
+							'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
 								<a class="breadcrumb-item dipl-home-page" href="%2$s" property="item" typeof="WebPage" %5$s>
 									<span class="breadcrumb-page" property="name">
 										<span class="breadcrumb-home-icon et-pb-icon"><i class="%3$s"></i></span>
@@ -162,59 +162,59 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 								</a>
 								<meta property="position" content="%4$s" />
 							</li>',
-								$attributes['separatorIcon'],
-								$link,
-								$home_link_icon,
-								( $i + 1 ),
-								$link_target
-							);
+							isset( $attributes['separatorIcon'] ) ? $attributes['separatorIcon'] : '',
+							$link,
+							$home_link_icon,
+							( $i + 1 ),
+							$link_target
+						);
 
-						} else {
-							$breadcrumb_list .= sprintf(
-								'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
+					} else {
+						$breadcrumb_list .= sprintf(
+							'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
 								<span class="breadcrumb-home-icon et-pb-icon"><i class="%6$s"></i></span>
 								<a class="breadcrumb-item dipl-home-page" href="%2$s" property="item" typeof="WebPage" %5$s>
 									<span class="breadcrumb-page" property="name">%3$s</span>
 								</a>
 								<meta property="position" content="%4$s" />
 							</li>',
-								$attributes['separatorIcon'],
-								$link,
-								$title,
-								( $i + 1 ),
-								$link_target,
-								$home_link_icon
-							);
-						}
-					} elseif ( ( $i + 1 ) === $breadcrumb_size ) {
-						$breadcrumb_list .= sprintf(
-							'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
+							isset( $attributes['separatorIcon'] ) ? $attributes['separatorIcon'] : '',
+							$link,
+							$title,
+							( $i + 1 ),
+							$link_target,
+							$home_link_icon
+						);
+					}
+				} elseif ( ( $i + 1 ) === $breadcrumb_size ) {
+					$breadcrumb_list .= sprintf(
+						'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
 							%4$s
 							<span class="breadcrumb-page dipl-last-page" property="name">%2$s</span>
 							<meta property="position" content="%3$s" />
 						</li>',
-							$attributes['separatorIcon'],
-							$title,
-							( $i + 1 ),
-							$Seprator_Icon
-						);
-					} else {
-						$breadcrumb_list .= sprintf(
-							'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
+						isset( $attributes['separatorIcon'] ) ? $attributes['separatorIcon'] : '',
+						$title,
+						( $i + 1 ),
+						$Seprator_Icon
+					);
+				} else {
+					$breadcrumb_list .= sprintf(
+						'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
 							<a class="breadcrumb-item" href="%2$s" property="item" typeof="WebPage" %5$s>
 								<span class="breadcrumb-page" property="name">%3$s</span>
 							</a>
 							<meta property="position" content="%4$s" />
 						</li>',
-							$attributes['separatorIcon'],
-							$link,
-							$title,
-							( $i + 1 ),
-							$link_target
-						);
-					}
+						isset( $attributes['separatorIcon'] ) ? $attributes['separatorIcon'] : '',
+						$link,
+						$title,
+						( $i + 1 ),
+						$link_target
+					);
 				}
 			}
+		}
 
 		// Get wrapper attributes.
 		$wrapper_attributes = get_block_wrapper_attributes( array(
@@ -243,7 +243,7 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 }
 
 if ( ! function_exists( 'traverse_breadcrumbs' ) ) {
-function traverse_breadcrumbs( $args = array(), $conditional_tags = array(), $current_page = array() ) {
+	function traverse_breadcrumbs( $args = array(), $conditional_tags = array(), $current_page = array() ) {
 		global $paged, $wp_query;
 		$defaults = array(
 			'homeLinkText' => '',
@@ -286,7 +286,7 @@ function traverse_breadcrumbs( $args = array(), $conditional_tags = array(), $cu
 							$category_trail = array_reverse( $category_trail );
 						}
 						$category_trail_size = (int) count( $category_trail );
-						for ( $i = 0; $category_trail_size > $i; $i++ ) {
+						for ( $i = 0; $category_trail_size > $i; $i ++ ) {
 							array_push( $breadcrumb, $category_trail[ $i ] );
 						}
 
@@ -313,7 +313,7 @@ function traverse_breadcrumbs( $args = array(), $conditional_tags = array(), $cu
 					$post_trail      = array_reverse( $post_trail );
 					$post_trail_size = (int) count( $post_trail );
 
-					for ( $i = 0; $post_trail_size > $i; $i++ ) {
+					for ( $i = 0; $post_trail_size > $i; $i ++ ) {
 						array_push( $breadcrumb, $post_trail[ $i ] );
 					}
 				} else {
@@ -342,7 +342,7 @@ function traverse_breadcrumbs( $args = array(), $conditional_tags = array(), $cu
 						$terms_trail = array_reverse( $terms_trail );
 					}
 					$terms_trail_size = (int) count( $terms_trail );
-					for ( $i = 0; $terms_trail_size > $i; $i++ ) {
+					for ( $i = 0; $terms_trail_size > $i; $i ++ ) {
 						array_push( $breadcrumb, $terms_trail[ $i ] );
 					}
 				} elseif ( is_author() ) {
@@ -357,7 +357,7 @@ function traverse_breadcrumbs( $args = array(), $conditional_tags = array(), $cu
 
 				} elseif ( is_month() ) {
 					$breadcrumb[] = array( get_the_time( 'Y' ) . ' Archives' => get_year_link( get_the_time( 'Y' ) ) );
-					$breadcrumb[] = array( get_the_time(    'M' ) . ' Archives' => '#' );
+					$breadcrumb[] = array( get_the_time( 'M' ) . ' Archives' => '#' );
 
 				} elseif ( is_year() ) {
 					$breadcrumb[] = array( get_the_time( 'Y' ) . ' Archives' => '#' );
@@ -371,18 +371,19 @@ function traverse_breadcrumbs( $args = array(), $conditional_tags = array(), $cu
 			}
 
 			if ( is_paged() ) {
-					$current_page = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : get_query_var( 'page' );
-					$breadcrumb[] = array( 'Page ' . number_format_i18n( absint( $current_page ) ) => '#' );
+				$current_page = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : get_query_var( 'page' );
+				$breadcrumb[] = array( 'Page ' . number_format_i18n( absint( $current_page ) ) => '#' );
 			}
 			if ( is_search() ) {
-					$breadcrumb[] = array( 'Search results for: ' . get_search_query() => '#' );
+				$breadcrumb[] = array( 'Search results for: ' . get_search_query() => '#' );
 			}
 			if ( is_404() ) {
-					$breadcrumb[] = array( 'Error 404' => '#' );
+				$breadcrumb[] = array( 'Error 404' => '#' );
 			}
 		} else {
 			$breadcrumb = '';
 		}
+
 		return $breadcrumb;
 	}
 }
