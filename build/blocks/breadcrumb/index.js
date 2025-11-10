@@ -586,6 +586,9 @@ const generateDynamicStyle = ({
 		.layout2 li .breadcrumb-page{
 			background-color: transparent !important;
 		}
+		.wpmozo-bna-breadcrumb-wrapper{
+			justify-content: ${attributes.textAlign};
+		}
 		`;
   let textFontSize = typeof attributes.textFontSize === 'string' ? attributes.textFontSize.replace('px', '') : attributes.textFontSize;
   let parseToPx = val => {
