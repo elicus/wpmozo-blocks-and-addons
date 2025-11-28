@@ -20,17 +20,13 @@ class Mozo_Bna_Post_Types {
 	public function __construct() {
 		// Register post types.
 		// Check for "WPMozo Addons Lite for Elementor" plugin active and if post types already exist, don't re-register.
-		if (
-			is_plugin_active('wpmozo-addons-lite-for-elementor/wpmozo-addons-lite-for-elementor.php')
-			&& post_type_exists('mozo-testimonial')
-			&& post_type_exists('mozo-team-member')
-		) {
+		if ( post_type_exists('mozo-testimonial') && post_type_exists('mozo-team-member') ) {
 			return;
 		}
-		add_action( 'init', array( __class__, 'register_testimonial_post_type' ) );
-		add_action( 'init', array( __class__, 'register_testimonial_taxonomies' ) );
-		add_action( 'init', array( __class__, 'register_team_member_post_type' ) );
-		add_action( 'init', array( __class__, 'register_team_member_taxonomies' ) );
+		add_action( 'init', array( __class__, 'register_testimonial_post_type' ), 50 );
+		add_action( 'init', array( __class__, 'register_testimonial_taxonomies' ), 50 );
+		add_action( 'init', array( __class__, 'register_team_member_post_type' ), 50 );
+		add_action( 'init', array( __class__, 'register_team_member_taxonomies' ), 50 );
 
 		// Disabled block editor for custom post types.
 		add_filter( 'use_block_editor_for_post_type', array( __class__, 'manage_block_editor_for_post_type' ), 10, 2 );
