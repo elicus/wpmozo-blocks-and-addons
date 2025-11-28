@@ -19,6 +19,14 @@ class Mozo_Bna_Post_Types {
 	// Construction.
 	public function __construct() {
 		// Register post types.
+		// Check for "WPMozo Addons Lite for Elementor" plugin active and if post types already exist, don't re-register.
+		if (
+			is_plugin_active('wpmozo-addons-lite-for-elementor/wpmozo-addons-lite-for-elementor.php')
+			&& post_type_exists('mozo-testimonial')
+			&& post_type_exists('mozo-team-member')
+		) {
+			return;
+		}
 		add_action( 'init', array( __class__, 'register_testimonial_post_type' ) );
 		add_action( 'init', array( __class__, 'register_testimonial_taxonomies' ) );
 		add_action( 'init', array( __class__, 'register_team_member_post_type' ) );
