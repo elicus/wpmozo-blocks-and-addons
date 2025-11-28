@@ -28,7 +28,7 @@ class Mozo_Bna_Admin {
 
 	/**
 	 * Add custom metaboxes.
-	 * 
+	 *
 	 * @since  1.1.0
 	 */
 	public static function add_custom_metaboxes() {
@@ -38,7 +38,7 @@ class Mozo_Bna_Admin {
 			'mozo_testimonial_metabox',
 			esc_html__( 'Testimonial Meta Fields', 'divi-plus' ),
 			array( __class__, 'testimonial_metabox_callback' ),
-			'mozo-testimonial', 'normal', 'high'
+			'wpmozoae-testimonial', 'normal', 'high'
 		);
 
 		// Add Team Member metaboxes.
@@ -46,7 +46,7 @@ class Mozo_Bna_Admin {
 			'mozo_team_member_metabox',
 			esc_html__( 'Team Member Meta Fields', 'divi-plus' ),
 			array( __class__, 'team_member_metabox_callback' ),
-			'mozo-team-member', 'normal', 'high'
+			'wpmozoae-team-member', 'normal', 'high'
 		);
 	}
 
@@ -70,7 +70,7 @@ class Mozo_Bna_Admin {
 
 	/**
 	 * Save testimonial metaboxes.
-	 * 
+	 *
 	 * @since  1.1.0
 	 */
 	public static function save_testimonial_meta_fields( $post_id ) {
@@ -106,7 +106,7 @@ class Mozo_Bna_Admin {
 
 	/**
 	 * Save team member metaboxes.
-	 * 
+	 *
 	 * @since  1.6.0
 	 */
 	public static function save_team_member_meta_fields( $post_id ) {

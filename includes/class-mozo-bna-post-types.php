@@ -74,7 +74,7 @@ class Mozo_Bna_Post_Types {
 			'description'           => esc_html__( 'WP Mozo Testimonials Custom Post', 'wpmozo-blocks-and-addons' ),
 			'labels'                => $labels,
 			'supports'              => array( 'title', 'editor', 'thumbnail' ),
-			'taxonomies'            => array( 'mozo-testimonial-category' ),
+			'taxonomies'            => array( 'wpmozo-ae-testimonial-category' ),
 			'hierarchical'          => false,
 			'public'                => true,
 			'show_ui'               => true,
@@ -91,7 +91,7 @@ class Mozo_Bna_Post_Types {
 			'capability_type'       => 'post',
 		);
 
-		register_post_type( 'mozo-testimonial', $args );
+		register_post_type( 'wpmozoae-testimonial', $args );
 	}
 
 	/**
@@ -132,7 +132,7 @@ class Mozo_Bna_Post_Types {
 			'show_tagcloud'     => true,
 		);
 
-		register_taxonomy( 'mozo-testimonial-category', array( 'mozo-testimonial' ), $args );
+		register_taxonomy( 'wpmozo-ae-testimonial-category', array( 'wpmozoae-testimonial' ), $args );
 	}
 
 	/**
@@ -174,7 +174,7 @@ class Mozo_Bna_Post_Types {
 			'description'           => esc_html__( 'WP Mozo Team Members Custom Post', 'wpmozo-blocks-and-addons' ),
 			'labels'                => $labels,
 			'supports'              => array( 'title', 'editor', 'author', 'thumbnail' ),
-			'taxonomies'            => array( 'mozo-team-member-category' ),
+			'taxonomies'            => array( 'wpmozo-ae-team-member-category' ),
 			'hierarchical'          => false,
 			'public'                => true,
 			'show_ui'               => true,
@@ -191,7 +191,7 @@ class Mozo_Bna_Post_Types {
 			'capability_type'       => 'post',
 		);
 
-		register_post_type( 'mozo-team-member', $args );
+		register_post_type( 'wpmozoae-team-member', $args );
 	}
 
 	/**
@@ -232,7 +232,7 @@ class Mozo_Bna_Post_Types {
 			'show_tagcloud'     => true,
 		);
 
-		register_taxonomy( 'mozo-team-member-category', array( 'mozo-team-member' ), $args );
+		register_taxonomy( 'wpmozo-ae-team-member-category', array( 'wpmozoae-team-member' ), $args );
 	}
 
 	/**
@@ -240,7 +240,7 @@ class Mozo_Bna_Post_Types {
 	 * @since 1.1.0
 	 */
 	public static function manage_block_editor_for_post_type( $use_block_editor, $post_type ) {
-		if ( $post_type === 'mozo-testimonial' || $post_type === 'mozo-team-member' ) {
+		if ( $post_type === 'wpmozoae-testimonial' || $post_type === 'wpmozoae-team-member' ) {
 			return false; // disable block editor for this post type
 		}
 		return $use_block_editor;
@@ -254,7 +254,7 @@ class Mozo_Bna_Post_Types {
 	public static function update_testimonial_rest_query( $args, $request ) {
 
 		// Only modify for post type 'post'.
-		if ( ! empty( $args['post_type'] ) && 'mozo-testimonial' !== $args['post_type'] ) {
+		if ( ! empty( $args['post_type'] ) && 'wpmozoae-testimonial' !== $args['post_type'] ) {
 			return $args;
 		}
 
@@ -262,7 +262,7 @@ class Mozo_Bna_Post_Types {
 		if ( ! empty( $request['categories'] ) ) {
 			$term_ids = array_map( 'absint', explode( ',', $request['categories'] ) );
 			$args['tax_query'][] = array(
-				'taxonomy' => 'mozo-testimonial-category',
+				'taxonomy' => 'wpmozo-ae-testimonial-category',
 				'field'    => 'term_id',
 				'terms'    => $term_ids,
 				'operator' => 'IN', // use 'AND' if you want all categories to match.
@@ -279,7 +279,7 @@ class Mozo_Bna_Post_Types {
 	 */
 	public static function update_testimonials_rest_endpoint_data( $response, $post, $request ) {
 		// Only modify for post type 'post'
-		if ( 'mozo-testimonial' !== $post->post_type  ) {
+		if ( 'wpmozoae-testimonial' !== $post->post_type  ) {
 			return $response;
 		}
 
@@ -308,7 +308,7 @@ class Mozo_Bna_Post_Types {
 	public static function update_team_member_rest_query( $args, $request ) {
 
 		// Only modify for post type 'post'.
-		if ( ! empty( $args['post_type'] ) && 'mozo-team-member' !== $args['post_type'] ) {
+		if ( ! empty( $args['post_type'] ) && 'wpmozoae-team-member' !== $args['post_type'] ) {
 			return $args;
 		}
 
@@ -316,7 +316,7 @@ class Mozo_Bna_Post_Types {
 		if ( ! empty( $request['categories'] ) ) {
 			$term_ids = array_map( 'absint', explode( ',', $request['categories'] ) );
 			$args['tax_query'][] = array(
-				'taxonomy' => 'mozo-team-member-category',
+				'taxonomy' => 'wpmozo-ae-team-member-category',
 				'field'    => 'term_id',
 				'terms'    => $term_ids,
 				'operator' => 'IN', // use 'AND' if you want all categories to match.
@@ -333,7 +333,7 @@ class Mozo_Bna_Post_Types {
 	 */
 	public static function update_team_member_rest_endpoint_data( $response, $post, $request ) {
 		// Only modify for post type 'post'.
-		if ( 'mozo-team-member' !== $post->post_type  ) {
+		if ( 'wpmozoae-team-member' !== $post->post_type  ) {
 			return $response;
 		}
 

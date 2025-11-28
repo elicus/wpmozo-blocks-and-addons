@@ -28,7 +28,7 @@ const Edit = (props) => {
 
 	// Get the post types.
 	const posts = useSelect((select) =>
-			select('core').getEntityRecords('postType', 'mozo-team-member', {
+			select('core').getEntityRecords('postType', 'wpmozoae-team-member', {
 				per_page: postsNumber,
 				order: postOrder,
 				orderby: postOrderBy,
