@@ -19,14 +19,15 @@ class Mozo_Bna_Post_Types {
 	// Construction.
 	public function __construct() {
 		// Register post types.
-		// Check for "WPMozo Addons Lite for Elementor" plugin active and if post types already exist, don't re-register.
-		if ( post_type_exists('mozo-testimonial') && post_type_exists('mozo-team-member') ) {
-			return;
+		if(!self::check_custom_post_type('mozo-testimonial')){
+			add_action( 'init', array( __class__, 'register_testimonial_post_type' ), 50 );
+			add_action( 'init', array( __class__, 'register_testimonial_taxonomies' ), 50 );
 		}
-		add_action( 'init', array( __class__, 'register_testimonial_post_type' ), 50 );
-		add_action( 'init', array( __class__, 'register_testimonial_taxonomies' ), 50 );
-		add_action( 'init', array( __class__, 'register_team_member_post_type' ), 50 );
-		add_action( 'init', array( __class__, 'register_team_member_taxonomies' ), 50 );
+
+		if(!self::check_custom_post_type('mozo-team-member')){
+			add_action( 'init', array( __class__, 'register_team_member_post_type' ), 50 );
+			add_action( 'init', array( __class__, 'register_team_member_taxonomies' ), 50 );
+		}
 
 		// Disabled block editor for custom post types.
 		add_filter( 'use_block_editor_for_post_type', array( __class__, 'manage_block_editor_for_post_type' ), 10, 2 );
@@ -359,6 +360,23 @@ class Mozo_Bna_Post_Types {
 		$response->set_data( $data );
 
 		return $response;
+	}
+	/**
+	 * Register order type. Do not use before init.
+	 *
+	 * Wrapper for register post type, as well as a method of telling WC which.
+	 * post types are types of orders, and having them treated as such.
+	 *
+	 * @since  2.2
+	 * @see    register_post_type for $args used in that function
+	 * @param  string $type Post type. (max. 20 characters, can not contain capital letters or spaces).
+	 * @return bool Success or failure
+	 */
+	function check_custom_post_type( $type ) {
+		if ( post_type_exists( $type ) ) {
+			return false;
+		}
+		return true;
 	}
 }
 
