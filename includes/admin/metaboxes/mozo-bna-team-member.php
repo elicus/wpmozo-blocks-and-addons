@@ -27,6 +27,7 @@ $linkedin          = get_post_meta( $post->ID, 'wpmozo_ae_team_member_linkedin',
 $instagram         = get_post_meta( $post->ID, 'wpmozo_ae_team_member_instagram', true );
 $youtube           = get_post_meta( $post->ID, 'wpmozo_ae_team_member_youtube', true );
 $skills            = get_post_meta( $post->ID, 'wpmozo_ae_team_member_skills', true );
+$skills_value      = get_post_meta( $post->ID, 'wpmozo_ae_team_member_skills_value', true );
 
 wp_nonce_field( 'wpmozo_metaboxes_nonce', 'wpmozo_team_member_metabox_nonce' );
 ?>
@@ -97,14 +98,20 @@ wp_nonce_field( 'wpmozo_metaboxes_nonce', 'wpmozo_team_member_metabox_nonce' );
 <div class="wpmozo_meta_fields">
 	<label><?php esc_html_e( 'Skills', 'wpmozo-blocks-and-addons' ); ?></label>
 	<div class="wpmozo_bna_repeator_meta_fields">
+		<input type="hidden" id="wpmozo_ae_team_member_skills" name="wpmozo_ae_team_member_skills" value="<?php echo esc_attr( $skills ); ?>" required />
+		<input type="hidden" id="wpmozo_ae_team_member_skills_value" name="wpmozo_ae_team_member_skills_value" value="<?php echo esc_attr( $skills_value ); ?>" />
 		<?php
+		$skills       = explode( ',', $skills );
+		$skills_value = explode( ',', $skills_value );
 		$lastI = 0;
 		if ( is_array( $skills ) && ! empty( array_filter( $skills ) ) ) {
-			for ( $i=0; $i < count($skills); $i++ ) { ?>
+			for ( $i=0; $i < count($skills); $i++ ) {
+				$skill_value = array_key_exists( $i, $skills_value ) ? absint( $skills_value[ $i ] ) : 100;
+				?>
 				<div class="wpmozo_bna_repeator_meta_field_row">
 					<div class="wpmozo_bna_repeator_meta_field">
-						<input type="text" name="wpmozo_ae_team_member_skills[<?php echo $i; ?>][title]" value="<?php echo esc_attr( $skills[$i]['title'] ); ?>" placeholder="<?php esc_html_e( 'Skill', 'wpmozo-blocks-and-addons' ); ?>" />
-						<input type="number" name="wpmozo_ae_team_member_skills[<?php echo $i; ?>][value]" value="<?php echo esc_attr( $skills[$i]['value'] ); ?>" placeholder="<?php esc_html_e( 'Skill Value Between 0 to 100', 'wpmozo-blocks-and-addons' ); ?>" step="1" min="0" max="100" />
+						<input type="text" class="wpmozo_ae_team_member_skills" value="<?php echo esc_attr( $skills[ $i ] ); ?>" placeholder="Skill" required />
+						<input type="number" class="wpmozo_ae_team_member_skills_value" value="<?php echo esc_attr( $skill_value ); ?>" placeholder="Skill Value Between 0 to 100" step="1" min="0" max="100"/>
 					</div>
 					<p class="wpmozo_bna_repeator_meta_field_row_controls">
 						<span class="wpmozo_bna_repeator_meta_field_add_row_control wpmozo_bna_repeator_meta_field_remove_row">-</span>

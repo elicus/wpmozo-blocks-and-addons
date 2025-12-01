@@ -149,27 +149,55 @@ class Mozo_Bna_Admin {
 			}
 		}
 
+
 		// Skill value.
 		if ( ! empty( $_POST['wpmozo_ae_team_member_skills'] ) && is_array( $_POST['wpmozo_ae_team_member_skills'] ) ) {
-			$skills = array_map( function( $row ) {
-				return [
-					'title' => sanitize_text_field( $row['title'] ?? '' ),
-					'value' => sanitize_text_field( $row['value'] ?? '' ),
-				];
-			}, $_POST['wpmozo_ae_team_member_skills'] );
 
-			// Remove rows where both title and value are empty.
-			$skills = array_filter( $skills, function( $row ) {
-				return ! ( $row['title'] === '' && $row['value'] === '' );
-			} );
+			// Fetch existing skills from the database
+			$existing_titles = get_post_meta( $post_id, 'wpmozo_ae_team_member_skills', true );
+			$existing_values = get_post_meta( $post_id, 'wpmozo_ae_team_member_skills_value', true );
 
-			if ( ! empty( $skills ) ) {
-				update_post_meta( $post_id, 'wpmozo_ae_team_member_skills', $skills );
+			// Parse them into arrays, if possible
+			$existing_titles_array = !empty($existing_titles) ? array_map('trim', explode(',', $existing_titles)) : array();
+			$existing_values_array = !empty($existing_values) ? array_map('trim', explode(',', $existing_values)) : array();
+
+			// Prepare new arrays by appending $_POST values
+			$skills_input = isset($_POST['wpmozo_ae_team_member_skills']) && is_array($_POST['wpmozo_ae_team_member_skills']) ? $_POST['wpmozo_ae_team_member_skills'] : array();
+
+			$new_titles_array = array();
+			$new_values_array = array();
+
+			foreach ( $skills_input as $skill ) {
+				if ( isset($skill['title']) && $skill['title'] !== '' ) {
+					$new_titles_array[] = sanitize_text_field($skill['title']);
+				}
+				if ( isset($skill['value']) && $skill['value'] !== '' ) {
+					$new_values_array[] = sanitize_text_field($skill['value']);
+				}
+			}
+
+			// Merge existing with new (if you want to append; or you can replace entirely if that's the logic)
+			$merged_titles = array_merge($existing_titles_array, $new_titles_array);
+			$merged_values = array_merge($existing_values_array, $new_values_array);
+
+			// Clean empty items
+			$merged_titles = array_filter(array_map('trim', $merged_titles), function($val){ return $val !== ''; });
+			$merged_values = array_filter(array_map('trim', $merged_values), function($val){ return $val !== ''; });
+
+			if ( ! empty( $merged_titles ) ) {
+				update_post_meta( $post_id, 'wpmozo_ae_team_member_skills', implode( ', ', $merged_titles ) );
 			} else {
 				delete_post_meta( $post_id, 'wpmozo_ae_team_member_skills' );
 			}
+
+			if ( ! empty( $merged_values ) ) {
+				update_post_meta( $post_id, 'wpmozo_ae_team_member_skills_value', implode( ', ', $merged_values ) );
+			} else {
+				delete_post_meta( $post_id, 'wpmozo_ae_team_member_skills_value' );
+			}
 		} else {
 			delete_post_meta( $post_id, 'wpmozo_ae_team_member_skills' );
+			delete_post_meta( $post_id, 'wpmozo_ae_team_member_skills_value' );
 		}
 	}
 
