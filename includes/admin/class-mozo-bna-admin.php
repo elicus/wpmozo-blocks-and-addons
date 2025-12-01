@@ -36,7 +36,7 @@ class Mozo_Bna_Admin {
 		if ( ! self::meta_box_exists( 'wpmozo_ae_testimonial_metabox', 'wpmozoae-testimonial', 'normal' ) ) {
 			add_meta_box(
 				'wpmozo_ae_testimonial_metabox',
-				'<img class="wpmozo_ae_meta_image" src="https://wpmozoaddons.com/wp-content/uploads/2023/11/favicon-for-wpmozo-addons-for-elementor.png"/>Testimonial Meta Fields',
+				'<img class="wpmozo_ae_meta_image" src="'.WPMOZO_BNA_ASSETS_DIR_URL.'images/favicon-for-wpmozo-addons-for-blocks.png'.'"/>Testimonial Meta Fields',
 				array( __class__, 'testimonial_metabox_callback' ),
 				'wpmozoae-testimonial',
 				'normal',
@@ -47,7 +47,7 @@ class Mozo_Bna_Admin {
 		if ( ! self::meta_box_exists( 'wpmozo_ae_team_member_metabox', 'wpmozoae-team-member', 'normal' ) ) {
 			add_meta_box(
 				'wpmozo_ae_team_member_metabox',
-				'<img class="wpmozo_ae_meta_image" src="https://wpmozoaddons.com/wp-content/uploads/2023/11/favicon-for-wpmozo-addons-for-elementor.png" />Team Member Information',
+				'<img class="wpmozo_ae_meta_image" src="'.WPMOZO_BNA_ASSETS_DIR_URL.'images/favicon-for-wpmozo-addons-for-blocks.png'.'"/>Team Member Information',
 				array( __class__, 'team_member_metabox_callback' ),
 				'wpmozoae-team-member',
 				'normal',

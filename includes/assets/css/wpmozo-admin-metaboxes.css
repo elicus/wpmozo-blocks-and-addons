@@ -76,6 +76,60 @@
 	margin: 0 27px 15px
 }
 
+#side-sortables #wpmozo_ae_team_member_metabox h2,
+#side-sortables #wpmozo_ae_testimonial_metabox h2 {
+	padding: 10px;
+	font-size: 18px;
+	line-height: 1.2
+}
+
+#side-sortables #wpmozo_ae_team_member_metabox h2:before,
+#side-sortables #wpmozo_ae_testimonial_metabox h2:before {
+	width: 16px;
+	height: 16px;
+	margin-right: 10px;
+	font-size: 16px
+}
+
+#side-sortables #wpmozo_ae_team_member_metabox .handle-actions,
+#side-sortables #wpmozo_ae_testimonial_metabox .handle-actions {
+	display: flex;
+	align-items: stretch;
+	justify-content: flex-end;
+	background-color: #622aa9
+}
+
+#side-sortables #wpmozo_ae_team_member_metabox .postbox-header,
+#side-sortables #wpmozo_ae_testimonial_metabox .postbox-header {
+	display: block
+}
+
+#side-sortables #wpmozo_ae_team_member_metabox .handlediv,
+#side-sortables #wpmozo_ae_testimonial_metabox .handlediv {
+	padding: 0 10px;
+	font-size: 20px
+}
+
+#side-sortables #wpmozo_ae_team_member_metabox .inside,
+#side-sortables #wpmozo_ae_testimonial_metabox .inside {
+	margin: 0 15px 15px
+}
+
+#side-sortables .wpmozo_meta_fields label {
+	width: 100%;
+	margin-right: 0
+}
+
+#side-sortables .wpmozo_meta_fields input,
+#side-sortables .wpmozo_meta_fields select,
+#side-sortables .wpmozo_meta_fields textarea {
+	width: 100%
+}
+
+#side-sortables .wpmozo_repeator_meta_fields {
+	width: calc(100% - 40px)
+}
+
 #poststuff [id^="mozo_"][id$="_metabox"] h2{
 	position: relative;
 	font-family: "Open Sans", sans-serif;
