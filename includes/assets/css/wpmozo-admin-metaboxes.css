@@ -1,3 +1,81 @@
+#wpmozo_ae_team_member_metabox h2,
+#wpmozo_ae_testimonial_metabox h2 {
+	position: relative;
+	justify-content: flex-start;
+	width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	padding: 10px 70px 10px 40px;
+	margin: 0;
+	font-size: 22px;
+	font-weight: 400;
+	background-color: #fff;
+	color: #000
+}
+
+#wpmozo_ae_team_member_metabox .handle-actions,
+#wpmozo_ae_testimonial_metabox .handle-actions {
+	background-color: #fff
+}
+
+#wpmozo_ae_team_member_metabox .handle-actions button:hover,
+#wpmozo_ae_testimonial_metabox .handle-actions button:hover {
+	background: #eee
+}
+
+#wpmozo_ae_team_member_metabox .handle-actions button:focus,
+#wpmozo_ae_testimonial_metabox .handle-actions button:focus {
+	box-shadow: none;
+	outline: 0
+}
+
+#wpmozo_ae_team_member_metabox .handle-actions button,
+#wpmozo_ae_testimonial_metabox .handle-actions button {
+	color: #000
+}
+
+#wpmozo_ae_team_member_metabox .handlediv,
+#wpmozo_ae_testimonial_metabox .handlediv {
+	z-index: 9;
+	position: relative;
+	color: #000;
+	background: #fff;
+	padding: 15px 17px;
+	font-size: 20px;
+	margin: 0;
+	width: auto;
+	height: auto
+}
+
+.js #wpmozo_ae_team_member_metabox .handlediv:focus .toggle-indicator:before,
+.js #wpmozo_ae_testimonial_metabox .handlediv:focus .toggle-indicator:before {
+	box-shadow: none
+}
+
+.js #wpmozo_ae_team_member_metabox .wpmozo_ae_meta_image,
+.js #wpmozo_ae_testimonial_metabox .wpmozo_ae_meta_image,
+.js #wpmozo_ae_testimonial_metabox-hide+.wpmozo_ae_meta_image,
+.js #wpmozo_ae_team_member_metabox-hide+.wpmozo_ae_meta_image {
+	width: 65px;
+	margin-right: 20px
+}
+
+#wpmozo_ae_team_member_metabox .handlediv:hover,
+#wpmozo_ae_testimonial_metabox .handlediv:hover {
+	background: #57ba65
+}
+
+#wpmozo_ae_team_member_metabox .handlediv .toggle-indicator,
+#wpmozo_ae_testimonial_metabox .handlediv .toggle-indicator {
+	color: #000
+}
+
+#wpmozo_ae_team_member_metabox .inside,
+#wpmozo_ae_testimonial_metabox .inside {
+	margin: 0 27px 15px
+}
+
 #poststuff [id^="mozo_"][id$="_metabox"] h2{
 	position: relative;
 	font-family: "Open Sans", sans-serif;
@@ -155,3 +233,4 @@
 .wpmozo_bna_attachment_metafield .categorychecklist input[type=checkbox]{
 	margin: 0 3px 0;
 }
+

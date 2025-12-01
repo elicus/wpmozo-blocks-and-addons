@@ -19,7 +19,7 @@ class Mozo_Bna_Admin {
 	// Construction.
 	public function __construct() {
 		// Add custom metaboxes.
-		add_action( 'add_meta_boxes', array( __class__, 'add_custom_metaboxes' ) );
+		add_action( 'add_meta_boxes', array( __class__, 'add_custom_metaboxes' ), 50 );
 
 		// Save metaboxes.
 		add_action( 'save_post', array( __class__, 'save_testimonial_meta_fields' ) );
@@ -33,21 +33,27 @@ class Mozo_Bna_Admin {
 	 */
 	public static function add_custom_metaboxes() {
 
-		// Add Testimonial metaboxes.
-		add_meta_box(
-			'mozo_testimonial_metabox',
-			esc_html__( 'Testimonial Meta Fields', 'divi-plus' ),
-			array( __class__, 'testimonial_metabox_callback' ),
-			'wpmozoae-testimonial', 'normal', 'high'
-		);
+		if ( ! self::meta_box_exists( 'wpmozo_ae_testimonial_metabox', 'wpmozoae-testimonial', 'normal' ) ) {
+			add_meta_box(
+				'wpmozo_ae_testimonial_metabox',
+				'<img class="wpmozo_ae_meta_image" src="https://wpmozoaddons.com/wp-content/uploads/2023/11/favicon-for-wpmozo-addons-for-elementor.png"/>Testimonial Meta Fields',
+				array( __class__, 'testimonial_metabox_callback' ),
+				'wpmozoae-testimonial',
+				'normal',
+				'high'
+			);
+		}
 
-		// Add Team Member metaboxes.
-		add_meta_box(
-			'mozo_team_member_metabox',
-			esc_html__( 'Team Member Meta Fields', 'divi-plus' ),
-			array( __class__, 'team_member_metabox_callback' ),
-			'wpmozoae-team-member', 'normal', 'high'
-		);
+		if ( ! self::meta_box_exists( 'wpmozo_ae_team_member_metabox', 'wpmozoae-team-member', 'normal' ) ) {
+			add_meta_box(
+				'wpmozo_ae_team_member_metabox',
+				'<img class="wpmozo_ae_meta_image" src="https://wpmozoaddons.com/wp-content/uploads/2023/11/favicon-for-wpmozo-addons-for-elementor.png" />Team Member Information',
+				array( __class__, 'team_member_metabox_callback' ),
+				'wpmozoae-team-member',
+				'normal',
+				'high'
+			);
+		}
 	}
 
 	/**
@@ -79,7 +85,7 @@ class Mozo_Bna_Admin {
 			return;
 		}
 		// verify nonce.
-		if ( ! isset( $_POST['mozo_testimonial_metabox_nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['mozo_testimonial_metabox_nonce'] ) ), 'mozo_metaboxes_nonce' ) ) {
+		if ( ! isset( $_POST['wpmozo_testimonial_metabox_nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['wpmozo_testimonial_metabox_nonce'] ) ), 'wpmozo_metaboxes_nonce' ) ) {
 			return;
 		}
 		// if current user can not edit the post.
@@ -88,12 +94,12 @@ class Mozo_Bna_Admin {
 		}
 
 		$fields = array(
-			'_author_name',
-			'_author_email',
-			'_author_designation',
-			'_author_company',
-			'_author_company_url',
-			'_author_rating',
+			'wpmozo_ae_testimonial_author_name',
+			'wpmozo_ae_testimonial_author_email',
+			'wpmozo_ae_testimonial_author_designation',
+			'wpmozo_ae_testimonial_author_company',
+			'wpmozo_ae_testimonial_author_company_url',
+			'wpmozo_ae_testimonial_author_rating',
 		);
 
 		foreach ( $fields as $field ) {
@@ -115,7 +121,7 @@ class Mozo_Bna_Admin {
 			return;
 		}
 		// verify nonce.
-		if ( ! isset( $_POST['mozo_team_member_metabox_nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['mozo_team_member_metabox_nonce'] ) ), 'mozo_metaboxes_nonce' ) ) {
+		if ( ! isset( $_POST['wpmozo_team_member_metabox_nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['wpmozo_team_member_metabox_nonce'] ) ), 'wpmozo_metaboxes_nonce' ) ) {
 			return;
 		}
 		// if current user can not edit the post.
@@ -124,16 +130,16 @@ class Mozo_Bna_Admin {
 		}
 
 		$fields = array(
-			'_short_description',
-			'_designation',
-			'_email_address',
-			'_phone_number',
-			'_website',
-			'_facebook',
-			'_twitter',
-			'_linkedin',
-			'_instagram',
-			'_youtube',
+			'wpmozo_ae_team_member_short_desc',
+			'wpmozo_ae_team_member_designation',
+			'wpmozo_ae_team_member_email',
+			'wpmozo_ae_team_member_phone',
+			'wpmozo_ae_team_member_website',
+			'wpmozo_ae_team_member_facebook',
+			'wpmozo_ae_team_member_twitter',
+			'wpmozo_ae_team_member_linkedin',
+			'wpmozo_ae_team_member_instagram',
+			'wpmozo_ae_team_member_youtube',
 		);
 
 		foreach ( $fields as $field ) {
@@ -144,13 +150,13 @@ class Mozo_Bna_Admin {
 		}
 
 		// Skill value.
-		if ( ! empty( $_POST['_member_skills'] ) && is_array( $_POST['_member_skills'] ) ) {
+		if ( ! empty( $_POST['wpmozo_ae_team_member_skills'] ) && is_array( $_POST['wpmozo_ae_team_member_skills'] ) ) {
 			$skills = array_map( function( $row ) {
 				return [
 					'title' => sanitize_text_field( $row['title'] ?? '' ),
 					'value' => sanitize_text_field( $row['value'] ?? '' ),
 				];
-			}, $_POST['_member_skills'] );
+			}, $_POST['wpmozo_ae_team_member_skills'] );
 
 			// Remove rows where both title and value are empty.
 			$skills = array_filter( $skills, function( $row ) {
@@ -158,13 +164,31 @@ class Mozo_Bna_Admin {
 			} );
 
 			if ( ! empty( $skills ) ) {
-				update_post_meta( $post_id, '_member_skills', $skills );
+				update_post_meta( $post_id, 'wpmozo_ae_team_member_skills', $skills );
 			} else {
-				delete_post_meta( $post_id, '_member_skills' );
+				delete_post_meta( $post_id, 'wpmozo_ae_team_member_skills' );
 			}
 		} else {
-			delete_post_meta( $post_id, '_member_skills' );
+			delete_post_meta( $post_id, 'wpmozo_ae_team_member_skills' );
 		}
+	}
+
+	/**
+	 * Check metabox exists.
+	 *
+	 * @since  1.6.1
+	 */
+	public static function meta_box_exists( $id, $screen = null, $context = 'advanced' ) {
+		global $wp_meta_boxes;
+
+		if ( ! isset( $screen ) ) {
+			$screen = get_current_screen()->id;
+		}
+
+		return isset( $wp_meta_boxes[ $screen ][ $context ]['default'][ $id ] )
+		       || isset( $wp_meta_boxes[ $screen ][ $context ]['high'][ $id ] )
+		       || isset( $wp_meta_boxes[ $screen ][ $context ]['core'][ $id ] )
+		       || isset( $wp_meta_boxes[ $screen ][ $context ]['low'][ $id ] );
 	}
 }
 
