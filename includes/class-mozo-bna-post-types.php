@@ -29,11 +29,11 @@ class Mozo_Bna_Post_Types {
 		add_filter( 'use_block_editor_for_post_type', array( __class__, 'manage_block_editor_for_post_type' ), 10, 2 );
 
 		// Update the rest endpoint return data.
-		add_filter( 'rest_mozo-testimonial_query', array( __class__, 'update_testimonial_rest_query' ), 10, 2 );
-		add_filter( 'rest_prepare_mozo-testimonial', array( __class__, 'update_testimonials_rest_endpoint_data' ), 10, 3 );
+		add_filter( 'rest_wpmozoae-testimonial_query', array( __class__, 'update_testimonial_rest_query' ), 10, 2 );
+		add_filter( 'rest_prepare_wpmozoae-testimonial', array( __class__, 'update_testimonials_rest_endpoint_data' ), 10, 3 );
 
-		add_filter( 'rest_mozo-team-member_query', array( __class__, 'update_team_member_rest_query' ), 10, 2 );
-		add_filter( 'rest_prepare_mozo-team-member', array( __class__, 'update_team_member_rest_endpoint_data' ), 10, 3 );
+		add_filter( 'rest_wpmozoae-team-member_query', array( __class__, 'update_team_member_rest_query' ), 10, 2 );
+		add_filter( 'rest_prepare_wpmozoae-team-member', array( __class__, 'update_team_member_rest_endpoint_data' ), 10, 3 );
 	}
 
 	/**
