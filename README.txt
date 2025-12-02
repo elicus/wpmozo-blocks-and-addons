@@ -173,6 +173,10 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
+2025-12-02 - Version 1.6.1
+* Fixed: Conflict with third party plugin.
+
+== Changelog ==
 2025-11-11 - Version 1.6.0
 * New: Horizontal Scrolling Posts Block.
 * New: Team Slider Block.
