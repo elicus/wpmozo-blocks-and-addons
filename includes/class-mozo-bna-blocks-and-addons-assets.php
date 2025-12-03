@@ -362,7 +362,7 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 
 		// Check if we're on post edit/add screen for a specific CPT
 		if ( isset( $screen->post_type ) && ( $screen->base === 'post' || $screen->base === 'upload' ) &&
-			( $screen->post_type === 'mozo-testimonial' || $screen->post_type === 'mozo-team-member' || 
+			( $screen->post_type === 'wpmozoae-testimonial' || $screen->post_type === 'wpmozoae-team-member' ||
 			$screen->post_type === 'attachment' )
 		) {
 			wp_enqueue_script( $this->plugin_name . '-metaboxes' );

@@ -6,7 +6,7 @@
     "title": "Split Image",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "Example block scaffolded with Create Block tool.",
+	"description": "WPMozo Split Image block breaks an image into a customizable grid of square pieces, allowing unique and artistic presentations for your site.",
     "example": {},
     "supports": {
         "html": false,

@@ -26,7 +26,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 
 	// Get the terms.
 	const terms = useSelect( (select) =>
-		select( coreStore ).getEntityRecords( 'taxonomy', 'mozo-team-member-category', {
+		select( coreStore ).getEntityRecords( 'taxonomy', 'wpmozo-ae-team-member-category', {
 			per_page: -1,
 		} ),
 	[] );

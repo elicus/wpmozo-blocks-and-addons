@@ -1,8 +1,8 @@
 === WPMozo Blocks and Addons ===
 Contributors: elicus
 Tags: gutenberg, blocks, gutenberg blocks, gutenberg editor, wordpress blocks
-Tested up to: 6.8
-Stable tag: 1.5.0
+Tested up to: 6.9
+Stable tag: 1.6.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -105,6 +105,16 @@ WPMozo Background Switcher Block adds an engaging way to showcase content by cha
 Showcase your blogs in a stylish and user friendly timline and make your WordPress website stunning with the Blog Timeline Block.
 45. [Advanced Tooltip](https://wpmozoblocks.com/advanced-tooltip/ "Advanced Tooltip for Gutenberg")
 Enhance user interaction on your website with dynamic hover content using WPMozo Advanced Tooltip block for Gutenberg, perfect for showcasing extra information in a sleek and modern way.
+46. [Horizontal Scrolling Posts](https://wpmozoblocks.com/horizontal-scrolling-posts/ "Horizontal Scrolling Posts for Gutenberg")
+Showcase your blog posts in a unique horizontal layout using WPMozo Horizontal Scrolling Posts block for Gutenberg.
+47. [Team Slider](https://wpmozoblocks.com/team-slider/ "Team Slider for Gutenberg")
+Showcase team members or staff in an amazing slider using WPMozo Team Slider block for Gutenberg, Perfect for introducing your team or personnel on your website.
+48. [Scroll Stack Cards](https://wpmozoblocks.com/scroll-stack-cards/ "Scroll Stack Cards for Gutenberg")
+Add movement and storytelling to your website using WPMozo Scroll Stack Cards block for Gutenberg.
+49. [Hover List](https://wpmozoblocks.com/hover-list/ "Hover List for Gutenberg")
+Create interactive list sections with a title, subtitle, description, icon, and button. On hover, each row displays a background image using WPMozo Hover List block for Gutenberg.
+50. [Split Image](https://wpmozoblocks.com/split-image/ "Split Image for Gutenberg")
+WPMozo Split Image block breaks an image into a customizable grid of square pieces, allowing unique and artistic presentations for your site.
 
 
 This plugin is fully compatible with Gutenberg and WordPress block editor, ensuring seamless integration with your website.
@@ -161,6 +171,18 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 
 == Upgrade Notice ==
 * Initial release of the plugin.
+
+== Changelog ==
+2025-12-02 - Version 1.6.1
+* Fixed: Conflict with third party plugin.
+
+== Changelog ==
+2025-11-11 - Version 1.6.0
+* New: Horizontal Scrolling Posts Block.
+* New: Team Slider Block.
+* New: Scroll Stack Cards Block.
+* New: Hover List Block.
+* New: Split Image Block.
 
 == Changelog ==
 2025-10-13 - Version 1.5.0

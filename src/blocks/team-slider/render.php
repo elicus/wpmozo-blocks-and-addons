@@ -19,7 +19,7 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 		$includes_categories = $attributes['includesCategories'] ?? [];
 
 		$query_args = array(
-			'post_type'      => 'mozo-team-member',
+			'post_type'      => 'wpmozoae-team-member',
 			'posts_per_page' => $posts_to_show,
 			'post_status'    => 'publish',
 			'orderby'        => 'date',
@@ -30,7 +30,7 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 		}
 		if ( ! empty( $includes_categories ) ) {
 			$query_args['tax_query'] = array( array(
-				'taxonomy' => 'mozo-team-member-category',
+				'taxonomy' => 'wpmozo-ae-team-member-category',
 				'field'    => 'term_id',
 				'terms'    => array_map( 'intval', $includes_categories ),
 				'operator' => 'IN',

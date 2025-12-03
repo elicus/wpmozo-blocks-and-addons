@@ -19,7 +19,7 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 		$includes_categories = $attributes['includesCategories'] ?? [];
 
 		$query_args = array(
-			'post_type'      => 'mozo-testimonial',
+			'post_type'      => 'wpmozoae-testimonial',
 			'posts_per_page' => $posts_to_show,
 			'post_status'    => 'publish',
 			'orderby'        => 'date',
@@ -30,7 +30,7 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 		}
 		if ( ! empty( $includes_categories ) ) {
 			$query_args['tax_query'] = array( array(
-				'taxonomy' => 'mozo-testimonial-category',
+				'taxonomy' => 'wpmozo-ae-testimonial-category',
 				'field'    => 'term_id',
 				'terms'    => array_map( 'intval', $includes_categories ),
 				'operator' => 'IN',
