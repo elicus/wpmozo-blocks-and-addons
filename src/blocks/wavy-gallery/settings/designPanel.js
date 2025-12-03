@@ -20,11 +20,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				props={props}
 				BorderKey="container"
 			/>
-			<WpmozoDimensions
-				props={props}
-				DimensionKey='container'
-				DimensionsTypes={ { padding: true, margin:true } }
-			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Lightbox', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			<WpmozoColorPicker

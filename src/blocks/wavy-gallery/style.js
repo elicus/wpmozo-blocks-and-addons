@@ -2,7 +2,7 @@ import { convertInlineStyleStr } from '../../common/utils.js';
 
 const generateDynamicStyle = ( { attributes } ) => {
 	const toConvertStyles = [
-		'lightboxTitle',
+		'lightboxTitle','container'
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
@@ -15,6 +15,9 @@ const generateDynamicStyle = ( { attributes } ) => {
 		}
 		.wpmozo_wavy_gallery_items{
 			gap:${attributes.imagesGap}px;
+		}
+		.wpmozo_wavy_gallery_wrapper{
+			${convertedStyle.container};
 		}
 	`;
 

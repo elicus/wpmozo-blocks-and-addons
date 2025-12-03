@@ -213,9 +213,9 @@ function initWavyGallery( thisObj ) {
 			gsap.to( $overlayContent[0], {
 				duration: 1,
 				scrollLeft: this.offsetLeft - ( $overlayContent[0].offsetWidth / 2 ) + ( this.offsetWidth / 2 ),
-				// scrollTo: {
-				// 	x: this.offsetLeft - ( $overlayContent[0].offsetWidth / 2 ) + ( this.offsetWidth / 2 )
-				// },
+				scrollTo: {
+					x: this.offsetLeft - ( $overlayContent[0].offsetWidth / 2 ) + ( this.offsetWidth / 2 )
+				},
 				ease: "sine.out",
 				onUpdate: updateOverlayTitle
 			} );
