@@ -145,10 +145,17 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					/>
 					<WpmozoIconpicker
 						props={props}
-						label={__('Separator Icon', 'wpmozo-blocks-and-addons')}
+						label={__('Home Icon', 'wpmozo-blocks-and-addons')}
 						iconPickerKey='homeLinkIcon'
 						value={attributes.homeLinkIcon}
 						onChange={(newValue) => setAttributes({homeLinkIcon: newValue})}
+					/>
+					<WpmozoColorPicker
+						props={props}
+						ColorKey="homeIcon"
+						ColorTypes={ [
+							{ key: 'Color', label: __( 'Home Icon Color', 'wpmozo-blocks-and-addons' ) }
+						] }
 					/>
 					<WpmozoTypography props={props}
 						TypographyKey="homeLinkIconSize"

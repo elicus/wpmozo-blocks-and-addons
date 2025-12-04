@@ -35,17 +35,18 @@
 		"homeLinkText": {"type": "string", "default": "Home"},
 		"useHomeLinkIcon": {"type": "boolean", "default": false},
 		"hideHomeText": {"type": "boolean", "default": false},
+		"homeIconColor": {"type": "string"},
 		"homeLinkIcon": { "type": "string" },
 		"homeLinkIconSizeFontSize": { "type": "string" },
 
 		"textColor": { "type": "string", "default": "" },
-		"textFontSize": { "type": "string" },
+		"textFontSize": { "type": "string", "default": "1rem" },
 		"textFontAppearance": { "type": "object", "default": { "fontStyle": "", "fontWeight": "" } },
 		"textLetterSpacing": { "type": "string" },
 		"textDecoration": { "type": "string" },
 		"textLetterCase": { "type": "string" },
 		"textLineHeight": { "type": "string" },
-		"textAlign": { "type": "string" }
+		"textAlign": { "type": "string","default": "left" }
 
 	},
 	"textdomain": "wpmozo-blocks-and-addons",

@@ -37,6 +37,12 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 			{$mainSelector} .wpmozo-bna-breadcrumb-wrapper{
 				justify-content: {$attrs['textAlign']};
 			}
+			{$mainSelector} .dipl-home-page{
+				font-size: {$attrs['homeLinkIconSizeFontSize']};
+			}
+			{$mainSelector} .dipl-home-page .breadcrumb-home-icon i{
+				color:initial;
+			}
 		";
 
 
@@ -129,8 +135,7 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 			$separatorColor = !empty($attrs['separatorColor']) ? $attrs['separatorColor'] : 'inherit';
 
 			$styles .= "
-				{$mainSelector} .breadcrumb-home-icon,
-				{$mainSelector} .breadcrumb-home-icon i {
+				{$mainSelector} .breadcrumb-item .breadcrumb-home-icon i {
 					font-size: {$separatorFontSize};
 					color: {$separatorColor};
 				}";

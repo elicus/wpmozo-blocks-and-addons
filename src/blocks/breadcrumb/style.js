@@ -33,6 +33,12 @@ const generateDynamicStyle = ( { attributes } ) => {
 		.wpmozo-bna-breadcrumb-wrapper{
 			justify-content: ${attributes.textAlign};
 		}
+		.dipl-home-page{
+			font-size: ${attributes.homeLinkIconSizeFontSize};
+		}
+		.dipl-home-page .breadcrumb-home-icon i{
+			color:initial;
+		}
 		`;
 
 		let textFontSize = typeof attributes.textFontSize === 'string'
@@ -99,7 +105,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 				}`;
 		} else {
 			styles +=`
-				.breadcrumb-home-icon i{
+				.breadcrumb-item .breadcrumb-home-icon i{
 					font-size: ${attributes.separatorSizeFontSize};
 					color: ${attributes.separatorColor};
 				}

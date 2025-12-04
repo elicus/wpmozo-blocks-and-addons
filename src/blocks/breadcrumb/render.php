@@ -13,7 +13,7 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 		$block_helpers = new Mozo_Bna_Block_Helpers();
 
 		$breadcrumb_layout  = esc_attr( $attributes['breadcrumbLayout'] );
-		$link_target        = ( 'on' === esc_attr( $attributes['linkTarget'] ) ) ? 'target="_blank"' : '';
+		$link_target        = ( "1" === esc_attr( $attributes['linkTarget'] ) ) ? 'target="_blank"' : '';
 		$enable_fade        = esc_attr( $attributes['enableFade'] );
 		$fade_range         = esc_attr( $attributes['fadeRange'] );
 		$separator_icon     = ( 'layout2' === $breadcrumb_layout && ! empty( $attributes['separatorIcon'] ) ) ? esc_attr( $attributes['separatorIcon'] ) : '';
