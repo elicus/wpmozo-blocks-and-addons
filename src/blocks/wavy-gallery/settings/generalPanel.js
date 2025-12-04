@@ -40,7 +40,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					min={0} step={1} max={150}
 				/>
 				<ToggleControl
-					label={__('Show Title on Overlay', 'wpmozo-blocks-and-addons')}
+					label={__('Show Title on Lightbox', 'wpmozo-blocks-and-addons')}
 					checked={attributes.showOverlayTitle}
 					onChange={(newValue) => setAttributes({showOverlayTitle: newValue})}
 				/>
