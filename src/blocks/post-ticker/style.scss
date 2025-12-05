@@ -57,6 +57,7 @@
 }
 .wp-block-wpmozo-post-ticker .wpmozo_ticker_effect_scroll .wpmozo_post_ticker_post_title{
 	display: inline-block;
+	vertical-align:-webkit-baseline-middle;
 }
 .wp-block-wpmozo-post-ticker .wpmozo_ticker_effect_slide .wpmozo_post_ticker_bar{
 	height: 100%;
@@ -217,4 +218,12 @@
 .wpmozo_swiper_icon_prev,
 .wpmozo_swiper_icon_next{
 	cursor: pointer;
+}
+
+.wpmozo_post_ticker_item:last-child .wpmozo_ticker_icon_separator {
+	display: none !important;
+}
+
+.wpmozo_ticker_effect_scroll .wpmozo_post_ticker_item::after{
+	vertical-align: middle;
 }

@@ -102,7 +102,7 @@ export default function Edit(props) {
 											title ? (
 												<div className="wpmozo_post_ticker_item" key={idx}>
 													<a className="wpmozo_post_ticker_post_title" href="#">{title}</a>
-													{'scroll' === attributes.tickerEffect && 'icon' === attributes.separatorType && (
+													{'scroll' === attributes.tickerEffect && 'icon' === attributes.separatorType && idx !== postTitles.length - 1 && (
 														<span className="wpmozo_ticker_icon_separator">
 															<i className={`${attributes.separatorIcon}`}></i>
 														</span>
@@ -113,7 +113,7 @@ export default function Edit(props) {
 									) : null
 								) : (
 									<>
-										<div className="swiper-container">
+										<div className="swiper-container" data-type={`${attributes.tickerEffect}`}>
 											<div className="swiper-wrapper">
 												{postTitles && postTitles.length > 0 && postTitles.some(title => title) ? (
 													postTitles.map((title, idx) =>

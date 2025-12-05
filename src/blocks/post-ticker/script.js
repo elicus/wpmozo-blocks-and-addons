@@ -33,15 +33,14 @@ function initPostTicker($galleryContainer, attributes) {
 	}
 
 	// Fade effect, init swipper slider.
-	if ("fade" === tickerEffect || "slide" === tickerEffect) {
+	if ("fade" === tickerEffect || "slide" === tickerEffect) {x
 		let slideAlign = attributes.slide_align;
 		let autoplaySpeed = attributes.fade_effect_delay;
 		let transitionDuration = attributes.fade_effect_transition;
 		let showArrow = attributes.show_arrow;
 
-
 		let arrows = false;
-		if ("on" === showArrow) {
+		if (true === showArrow) {
 			arrows = {
 				nextEl: "." + $orderClass + " .swiper-button-next",
 				prevEl: "." + $orderClass + " .swiper-button-prev",
@@ -52,8 +51,6 @@ function initPostTicker($galleryContainer, attributes) {
 		if ("fade" === tickerEffect) {
 			fadeEffect = { crossFade: true };
 		}
-
-		console.log($orderClass);
 
 		var swipperSlider = new Swiper(
 			".swiper-container",
@@ -103,13 +100,17 @@ function initPostTicker($galleryContainer, attributes) {
  */
 function wpmozo_post_ticker_set_scroll_speed(wrapObj) {
 	let tickerListSize = wrapObj.find(".wpmozo_post_ticker_items").width(),
-		tickerBarSize = wrapObj.find(".wpmozo_post_ticker_bar").width(),
-		tickerSpeed = wrapObj.data("scroll_effect_delay");
+		tickerBarSize = wrapObj.find(".wpmozo_post_ticker_bar").width();
+
+	let dataAttr = {};
+	try { dataAttr = JSON.parse(wrapObj.attr('data-attr')); } catch {}
+	let tickerSpeed = dataAttr.scroll_effect_delay || 70;
 
 	let calcSpeed = (
 		(tickerListSize + tickerBarSize) /
 		tickerSpeed
 	).toFixed(2);
+
 	wrapObj
 		.find(".wpmozo_post_ticker_bar")
 		.css("animation-duration", calcSpeed + "s");
