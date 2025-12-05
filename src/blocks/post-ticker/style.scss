@@ -25,6 +25,8 @@
 	overflow: hidden;
 	flex-grow: 1;
 	border: 0 solid #000;
+	flex-shrink: 0;
+	white-space: nowrap;
 }
 .wp-block-wpmozo-post-ticker .wpmozo_post_ticker_bar{
 	display: flex;
