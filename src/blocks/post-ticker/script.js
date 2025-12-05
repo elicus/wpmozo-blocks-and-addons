@@ -22,7 +22,7 @@ function initPostTicker($galleryContainer, attributes) {
 	let thisObj = $($galleryContainer),
 		wrapObj = thisObj.find(".wpmozo_post_ticker_wrap");
 
-	const $orderClass = thisObj
+	const $orderClass = wrapObj
 		.prop("class")
 		.match('wpmozo_post_ticker');
 
@@ -33,7 +33,7 @@ function initPostTicker($galleryContainer, attributes) {
 	}
 
 	// Fade effect, init swipper slider.
-	if ("fade" === tickerEffect || "slide" === tickerEffect) {x
+	if ("fade" === tickerEffect || "slide" === tickerEffect) {
 		let slideAlign = attributes.slide_align;
 		let autoplaySpeed = attributes.fade_effect_delay;
 		let transitionDuration = attributes.fade_effect_transition;
