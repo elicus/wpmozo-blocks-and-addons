@@ -39,6 +39,10 @@ const generateDynamicStyle = ( { attributes } ) => {
 		.dipl-home-page .breadcrumb-home-icon i{
 			color:initial;
 		}
+		.dipl-home-page breadcrumb-home-icon i{
+			color: ${attributes.homeIconColor};
+			font-size:${attributes.homeLinkIconSizeFontSize};
+		}
 		`;
 
 		let textFontSize = typeof attributes.textFontSize === 'string'
@@ -82,9 +86,13 @@ const generateDynamicStyle = ( { attributes } ) => {
 		let paddingTop = parseToPx(breadcrumbItempadding['top']);
 		let paddingBottom = parseToPx(breadcrumbItempadding['bottom']);
 
-		let height = parseFloat(textFontSize) + parseFloat(paddingTop) + parseFloat(paddingBottom);
-		let height_f = Math.ceil(height / 2) + 'px';
-		let height_c = Math.ceil(height / 2) + 'px';
+		let height = parseFloat( parseToPx(attributes.textFontSize) ) +  parseFloat(paddingTop) + parseFloat(paddingBottom);
+		let height_f = Math.floor(height/2 ) + 'px';
+		let height_c = Math.ceil(height/2 ) + 'px';
+
+		console.log("height",height);
+		console.log("height_f",height_f);
+		console.log("height_c",height_c);
 
 		styles +=`
 			.wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page{
@@ -105,7 +113,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 				}`;
 		} else {
 			styles +=`
-				.breadcrumb-item .breadcrumb-home-icon i{
+				.breadcrumb-home-icon i{
 					font-size: ${attributes.separatorSizeFontSize};
 					color: ${attributes.separatorColor};
 				}

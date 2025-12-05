@@ -181,6 +181,15 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 			<WpmozoTypography props={ props }
 				TypographyKey="text"
+				props={props}
+				TypoTypes={{
+					'FontSize': true,
+					'FontAppearance': true,
+					'LetterSpacing': true,
+					'Decoration': true,
+					'LetterCase': true,
+				}}
+
 			/>
 		</PanelBody>
 	</> );

@@ -37,11 +37,12 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 			{$mainSelector} .wpmozo-bna-breadcrumb-wrapper{
 				justify-content: {$attrs['textAlign']};
 			}
-			{$mainSelector} .dipl-home-page{
-				font-size: {$attrs['homeLinkIconSizeFontSize']};
-			}
 			{$mainSelector} .dipl-home-page .breadcrumb-home-icon i{
 				color:initial;
+			}
+			{$mainSelector} .dipl-home-page .breadcrumb-home-icon i{
+				color:{$attrs['homeIconColor']};
+				font-size:{$attrs['homeLinkIconSizeFontSize']};
 			}
 		";
 
@@ -94,9 +95,9 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 		$paddingTop = $parseToPx($breadcrumbItempadding['top']);
 		$paddingBottom = $parseToPx($breadcrumbItempadding['bottom']);
 
-		$height = floatval($textFontSize) + floatval($paddingTop) + floatval($paddingBottom);
-		$height_f = ceil($height/2) . 'px';
-		$height_c = ceil($height/2) . 'px';
+		$height = floatval($paddingTop) + floatval($paddingBottom);
+		$height_f = floor(( $height/2) + 5 ) . 'px';
+		$height_c = ceil(( $height/2) + 5 ) . 'px';
 
 		$styles .= "
 			{$mainSelector} .wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page{
@@ -104,7 +105,7 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 			}
 			{$mainSelector} .wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page::before,
 			{$mainSelector} .wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page::after{
-				border-width: {$height_f} 10px {$height_c} 10px;
+				border-width: {$paddingTop} 10px {$paddingBottom} 10px;
 			}
 		";
 
@@ -135,7 +136,7 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 			$separatorColor = !empty($attrs['separatorColor']) ? $attrs['separatorColor'] : 'inherit';
 
 			$styles .= "
-				{$mainSelector} .breadcrumb-item .breadcrumb-home-icon i {
+				{$mainSelector} .breadcrumb-home-icon i {
 					font-size: {$separatorFontSize};
 					color: {$separatorColor};
 				}";

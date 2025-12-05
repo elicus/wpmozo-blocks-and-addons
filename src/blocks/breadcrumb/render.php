@@ -38,8 +38,10 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 			$title            = $breadcrumbs_keys[0];
 			$link             = $breadcrumb[ $i ][ $title ];
 
-			if ( 'on' === $enable_fade && '' !== $fade_range ) {
+
+			if ( "1" === $enable_fade && '' !== $fade_range ) {
 				$opacity_style = sprintf( 'style="opacity: %1$s;"', esc_attr( $opacity ) );
+				$opacity       = ( $opacity > $fade_range ) ? $opacity - floatval( $fade_range ) : $opacity;
 			}
 
 			//layout1
@@ -202,6 +204,7 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 					$breadcrumb_list .= sprintf(
 						'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
 							<a class="breadcrumb-item" href="%2$s" property="item" typeof="WebPage" %5$s>
+								%6$s
 								<span class="breadcrumb-page" property="name">%3$s</span>
 							</a>
 							<meta property="position" content="%4$s" />
@@ -210,7 +213,8 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 						$link,
 						$title,
 						( $i + 1 ),
-						$link_target
+						$link_target,
+						$Seprator_Icon
 					);
 				}
 			}
