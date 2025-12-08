@@ -176,7 +176,6 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 2025-12-02 - Version 1.6.1
 * Fixed: Conflict with third party plugin.
 
-== Changelog ==
 2025-11-11 - Version 1.6.0
 * New: Horizontal Scrolling Posts Block.
 * New: Team Slider Block.
@@ -184,7 +183,6 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * New: Hover List Block.
 * New: Split Image Block.
 
-== Changelog ==
 2025-10-13 - Version 1.5.0
 * New: Image Card Ticker Block.
 * New: Background Switcher Block.
