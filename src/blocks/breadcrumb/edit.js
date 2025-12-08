@@ -5,6 +5,7 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import Inspector from "./inspector";
 import generateDynamicStyle from "./style";
 import ServerSideRender from '@wordpress/server-side-render';
+import './editor.scss';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.

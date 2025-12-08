@@ -51,6 +51,7 @@
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
 	"script": "file:./script.js",
 	"render": "file:./render.php"

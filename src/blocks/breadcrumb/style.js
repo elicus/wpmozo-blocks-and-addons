@@ -33,13 +33,16 @@ const generateDynamicStyle = ( { attributes } ) => {
 		.wpmozo-bna-breadcrumb-wrapper{
 			justify-content: ${attributes.textAlign};
 		}
-		.dipl-home-page{
+		.dipl-home-page,
+		.wpmozo-bna-home-page{
 			font-size: ${attributes.homeLinkIconSizeFontSize};
 		}
-		.dipl-home-page .breadcrumb-home-icon i{
+		.dipl-home-page .breadcrumb-home-icon i,
+		.wpmozo-bna-home-page .breadcrumb-page .breadcrumb-home-icon .icon-wrapper i{
 			color:initial;
 		}
-		.dipl-home-page breadcrumb-home-icon i{
+		.dipl-home-page breadcrumb-home-icon i,
+		.wpmozo-bna-home-page .breadcrumb-page .breadcrumb-home-icon .icon-wrapper i{
 			color: ${attributes.homeIconColor};
 			font-size:${attributes.homeLinkIconSizeFontSize};
 		}

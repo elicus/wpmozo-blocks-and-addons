@@ -37,10 +37,16 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 			{$mainSelector} .wpmozo-bna-breadcrumb-wrapper{
 				justify-content: {$attrs['textAlign']};
 			}
-			{$mainSelector} .dipl-home-page .breadcrumb-home-icon i{
+			{$mainSelector} .dipl-home-page,
+			{$mainSelector} .wpmozo-bna-home-page{
+				font-size:  {$attrs['homeLinkIconSizeFontSize']};
+			}
+			{$mainSelector} .dipl-home-page .breadcrumb-home-icon i,
+			{$mainSelector} .wpmozo-bna-home-page .breadcrumb-page .breadcrumb-home-icon .icon-wrapper i{{
 				color:initial;
 			}
-			{$mainSelector} .dipl-home-page .breadcrumb-home-icon i{
+			{$mainSelector} .dipl-home-page .breadcrumb-home-icon i,
+			{$mainSelector} .wpmozo-bna-home-page .breadcrumb-page .breadcrumb-home-icon .icon-wrapper i{
 				color:" . ( isset( $attrs['homeIconColor'] ) ? $attrs['homeIconColor'] : 'inherit' ) . ";
 				font-size:" . ( isset( $attrs['homeLinkIconSizeFontSize'] ) ? $attrs['homeLinkIconSizeFontSize'] : 'inherit' ) . ";
 			}
