@@ -111,10 +111,10 @@ if ( ! function_exists( 'horizontal_scrolling_post_render_callback' ) ) {
 				}
 				if ( true === $attributes['showArrows'] ) {
 					$slider_end = '</div></div><div class="wpmozo_swiper_navigation wpmozo_arrows_position">
-						<span class="wpmozo_swiper_icon_prev">
+						<span class="swiper-button-prev wpmozo_swiper_icon_prev">
 							<i class="' . esc_attr( $attributes['previousArrow'] ) . '"></i>
 						</span>
-						<span class="wpmozo_swiper_icon_next">
+						<span class="swiper-button-next wpmozo_swiper_icon_next">
 							<i class="' . esc_attr( $attributes['nextArrow'] ) . '"></i>
 						</span>
 					</div>';

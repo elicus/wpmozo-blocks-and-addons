@@ -229,3 +229,8 @@
 .wpmozo_ticker_effect_scroll .wpmozo_post_ticker_item::after{
 	vertical-align: middle;
 }
+
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after,
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after{
+	content: none;
+}

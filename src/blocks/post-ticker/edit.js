@@ -134,10 +134,10 @@ export default function Edit(props) {
 										</div>
 										{attributes.showArrows && (
 											<div className="wpmozo_swiper_navigation wpmozo_arrows_position">
-												<span className="wpmozo_swiper_icon_prev">
+												<span className="swiper-button-prev wpmozo_swiper_icon_prev">
 													<i className={`${attributes.previousArrow}`}></i>
 												</span>
-												<span className="wpmozo_swiper_icon_next">
+												<span className="swiper-button-next wpmozo_swiper_icon_next">
 													<i className={`${attributes.nextArrow}`}></i>
 												</span>
 											</div>
