@@ -90,17 +90,9 @@ const generateDynamicStyle = ( { attributes } ) => {
 		let height_f = Math.floor(height/2 ) + 'px';
 		let height_c = Math.ceil(height/2 ) + 'px';
 
-		console.log("height",height);
-		console.log("height_f",height_f);
-		console.log("height_c",height_c);
-
 		styles +=`
 			.wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page{
 				height: ${height}px;
-			}
-			.wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page::before,
-			.wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page::after{
-				border-width: ${height_f} 10px ${height_c} 10px;
 			}
 		`;
 

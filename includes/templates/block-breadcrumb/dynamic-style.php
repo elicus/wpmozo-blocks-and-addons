@@ -41,8 +41,8 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 				color:initial;
 			}
 			{$mainSelector} .dipl-home-page .breadcrumb-home-icon i{
-				color:{$attrs['homeIconColor']};
-				font-size:{$attrs['homeLinkIconSizeFontSize']};
+				color:" . ( isset( $attrs['homeIconColor'] ) ? $attrs['homeIconColor'] : 'inherit' ) . ";
+				font-size:" . ( isset( $attrs['homeLinkIconSizeFontSize'] ) ? $attrs['homeLinkIconSizeFontSize'] : 'inherit' ) . ";
 			}
 		";
 
@@ -102,10 +102,6 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 		$styles .= "
 			{$mainSelector} .wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page{
 				height: {$height}px;
-			}
-			{$mainSelector} .wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page::before,
-			{$mainSelector} .wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page::after{
-				border-width: {$paddingTop} 10px {$paddingBottom} 10px;
 			}
 		";
 

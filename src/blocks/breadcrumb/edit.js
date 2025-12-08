@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { Fragment } from "@wordpress/element";
+import { Fragment, useEffect } from "@wordpress/element";
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 import Inspector from "./inspector";
@@ -19,6 +19,19 @@ export default function Edit(props) {
 	attributes.ID = clientId;
 
 	const backImage = (attributes.backImage) ? attributes.backImage : wpmozo_bna_editor_object.placeholderImg;
+
+	// Props change event.
+	useEffect( () => {
+		const event = new CustomEvent( 'WPMozoBreadcrumbPropsChanged', {
+			detail: { clientId: attributes.ID }
+		} );
+		window.dispatchEvent( event );
+
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
+		}
+	}, [ props ] );
 
 	return (
 		<Fragment>
