@@ -30,7 +30,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			   	] }
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Lightbox Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Lightbox Caption', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			<WpmozoAlignment
 				label={ __( 'Text Alignment', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.textAlign }
@@ -40,7 +40,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				props={props}
 				ColorKey="lightbox"
 				ColorTypes={ [
-					{ key: 'TitleColor', label: __( 'Lightbox Title Text Color', 'wpmozo-blocks-and-addons' ) }
+					{ key: 'TitleColor', label: __( 'Lightbox Caption Text Color', 'wpmozo-blocks-and-addons' ) }
 				] }
 			/>
 			<WpmozoTypography
