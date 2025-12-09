@@ -48,57 +48,6 @@ const generateDynamicStyle = ( { attributes } ) => {
 		}
 		`;
 
-		let textFontSize = typeof attributes.textFontSize === 'string'
-			? attributes.textFontSize
-				.replace('px', '')
-			: attributes.textFontSize;
-		let parseToPx = (val) => {
-			if (typeof val === 'string') {
-				// Remove any CSS var preset prefix.
-				let cleanVal = val.replace('var:preset|spacing|', '').trim();
-				if (cleanVal.endsWith('px')) {
-					return parseFloat(cleanVal.replace('px', ''));
-				} else if (cleanVal.endsWith('em')) {
-					return parseFloat(cleanVal.replace('em', '')) * 16;
-				} else if (cleanVal.endsWith('rem')) {
-					return parseFloat(cleanVal.replace('rem', '')) * 16;
-				} else {
-					return parseFloat(cleanVal.replace(/[^0-9.]/g, '')) || 0;
-				}
-			}
-			return val;
-		};
-		// If attributes.breadcrumbItempadding is empty or not present, set to default values
-		const defaultPadding = {
-			top: 20,
-			right: 10,
-			bottom: 20,
-			left: 10
-		};
-
-		let breadcrumbItempadding = attributes.breadcrumbItempadding;
-		if (
-			typeof attributes.breadcrumbItempadding['top'] === 'undefined' ||
-			typeof attributes.breadcrumbItempadding['right'] === 'undefined' ||
-			typeof attributes.breadcrumbItempadding['bottom'] === 'undefined' ||
-			typeof attributes.breadcrumbItempadding['left'] === 'undefined'
-		) {
-			breadcrumbItempadding = defaultPadding;
-		}
-
-		let paddingTop = parseToPx(breadcrumbItempadding['top']);
-		let paddingBottom = parseToPx(breadcrumbItempadding['bottom']);
-
-		let height = parseFloat( parseToPx(attributes.textFontSize) ) +  parseFloat(paddingTop) + parseFloat(paddingBottom);
-		let height_f = Math.floor(height/2 ) + 'px';
-		let height_c = Math.ceil(height/2 ) + 'px';
-
-		styles +=`
-			.wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page{
-				height: ${height}px;
-			}
-		`;
-
 		if('text_separator' === attributes.separatorType){
 			styles +=`
 				.layout2 li:after {

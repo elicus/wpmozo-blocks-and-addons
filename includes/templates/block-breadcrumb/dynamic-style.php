@@ -42,7 +42,7 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 				font-size:  {$attrs['homeLinkIconSizeFontSize']};
 			}
 			{$mainSelector} .dipl-home-page .breadcrumb-home-icon i,
-			{$mainSelector} .wpmozo-bna-home-page .breadcrumb-page .breadcrumb-home-icon .icon-wrapper i{{
+			{$mainSelector} .wpmozo-bna-home-page .breadcrumb-page .breadcrumb-home-icon .icon-wrapper i{
 				color:initial;
 			}
 			{$mainSelector} .dipl-home-page .breadcrumb-home-icon i,
@@ -102,8 +102,8 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 		$paddingBottom = $parseToPx($breadcrumbItempadding['bottom']);
 
 		$height = floatval($paddingTop) + floatval($paddingBottom);
-		$height_f = floor(( $height/2) + 5 ) . 'px';
-		$height_c = ceil(( $height/2) + 5 ) . 'px';
+		$height_f = floor($height/2) . 'px';
+		$height_c = ceil($height/2)  . 'px';
 
 		$styles .= "
 			{$mainSelector} .wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page{

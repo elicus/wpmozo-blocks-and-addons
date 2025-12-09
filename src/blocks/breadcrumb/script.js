@@ -14,12 +14,14 @@ jQuery( document ).ready( function($) {
 
 	// Utility function to update the breadcrumb style dynamically
 	function updateBreadcrumbBorder() {
-		const $homeItem = $('.breadcrumb-item.wpmozo-bna-home-page');
-		const height = $homeItem.outerHeight();
+		const height = $('.breadcrumb-item.wpmozo-bna-home-page').outerHeight();
 		if (typeof height === "number" && !isNaN(height) && height > 0) {
 			const height_f = Math.floor(height / 2) + 'px';
 			const height_c = Math.ceil(height / 2) + 'px';
 			const style = `
+				.wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page{
+					height: ${height}px;
+				}
 				.wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page::before,
 				.wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page::after {
 					border-width: ${height_f} 10px ${height_c} 10px;
