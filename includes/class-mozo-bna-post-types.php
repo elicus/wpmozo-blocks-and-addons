@@ -305,14 +305,14 @@ class Mozo_Bna_Post_Types {
 		// Proceed to add custom meta
 		$data = $response->get_data();
 
-		$data['author_name']        = get_post_meta( $post->ID, '_author_name', true );
-		$data['author_designation'] = get_post_meta( $post->ID, '_author_designation', true );
-		$data['author_company']     = get_post_meta( $post->ID, '_author_company', true );
-		$data['author_company_url'] = get_post_meta( $post->ID, '_author_company_url', true );
-		$data['author_rating']      = get_post_meta( $post->ID, '_author_rating', true );
+		$data['author_name']        = get_post_meta( $post->ID, 'wpmozo_ae_testimonial_author_name', true );
+		$data['author_designation'] = get_post_meta( $post->ID, 'wpmozo_ae_testimonial_author_designation', true );
+		$data['author_company']     = get_post_meta( $post->ID, 'wpmozo_ae_testimonial_author_company', true );
+		$data['author_company_url'] = get_post_meta( $post->ID, 'wpmozo_ae_testimonial_author_company_url', true );
+		$data['author_rating']      = get_post_meta( $post->ID, 'wpmozo_ae_testimonial_author_rating', true );
 
 		// Email can't be display as public.
-		// $data['author_email']       = get_post_meta( $post->ID, '_author_email', true );
+		// $data['author_email']       = get_post_meta( $post->ID, 'wpmozo_ae_testimonial_author_email', true );
 
 		$response->set_data( $data );
 
@@ -359,17 +359,17 @@ class Mozo_Bna_Post_Types {
 		// Proceed to add custom meta.
 		$data = $response->get_data();
 
-		$data['short_description'] = get_post_meta( $post->ID, '_short_description', true );
-		$data['designation']       = get_post_meta( $post->ID, '_designation', true );
-		$data['phone_number']      = get_post_meta( $post->ID, '_phone_number', true );
-		$data['email_address']     = get_post_meta( $post->ID, '_email_address', true );
-		$data['website']           = get_post_meta( $post->ID, '_website', true );
-		$data['facebook']          = get_post_meta( $post->ID, '_facebook', true );
-		$data['twitter']           = get_post_meta( $post->ID, '_twitter', true );
-		$data['linkedin']          = get_post_meta( $post->ID, '_linkedin', true );
-		$data['instagram']         = get_post_meta( $post->ID, '_instagram', true );
-		$data['youtube']           = get_post_meta( $post->ID, '_youtube', true );
-		$data['member_skills']     = get_post_meta( $post->ID, '_member_skills', true );
+		$data['short_description'] = get_post_meta( $post->ID, 'wpmozo_ae_team_member_short_desc', true );
+		$data['designation']       = get_post_meta( $post->ID, 'wpmozo_ae_team_member_designation', true );
+		$data['phone_number']      = get_post_meta( $post->ID, 'wpmozo_ae_team_member_phone_number', true );
+		$data['email_address']     = get_post_meta( $post->ID, 'wpmozo_ae_team_member_email_address', true );
+		$data['website']           = get_post_meta( $post->ID, 'wpmozo_ae_team_member_website', true );
+		$data['facebook']          = get_post_meta( $post->ID, 'wpmozo_ae_team_member_facebook', true );
+		$data['twitter']           = get_post_meta( $post->ID, 'wpmozo_ae_team_member_twitter', true );
+		$data['linkedin']          = get_post_meta( $post->ID, 'wpmozo_ae_team_member_linkedin', true );
+		$data['instagram']         = get_post_meta( $post->ID, 'wpmozo_ae_team_member_instagram', true );
+		$data['youtube']           = get_post_meta( $post->ID, 'wpmozo_ae_team_member_youtube', true );
+		$data['member_skills']     = get_post_meta( $post->ID, 'wpmozo_ae_team_member_member_skills', true );
 
 		$response->set_data( $data );
 

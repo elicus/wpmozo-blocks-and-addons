@@ -54,7 +54,7 @@
 		"tickerLabelLetterCase": { "type": "string" },
 		"tickerLabelLineHeight": { "type": "string" },
 		"tickerLabelborder": { "type": "object" },
-		"tickerLabelborderRadius": { "type": "string" },
+		"tickerLabelborderRadius": { "type": "object" },
 		"tickerLabelpadding": { "type": "object" },
 		"tickerLabelmargin": { "type": "object" },
 
@@ -75,19 +75,19 @@
 		"tickerLabelHoverLetterCase": { "type": "string" },
 		"tickerLabelHoverLineHeight": { "type": "string" },
 		"tickerLabelHoverborder": { "type": "object" },
-		"tickerLabelHoverborderRadius": { "type": "string" },
+		"tickerLabelHoverborderRadius": { "type": "object" },
 		"tickerLabelHoverpadding": { "type": "object" },
 		"tickerLabelHovermargin": { "type": "object" },
 
 		"postItemsBackground": {"type": "string"},
 		"postItemsborder": { "type": "object" },
-		"postItemsborderRadius": { "type": "string" },
+		"postItemsborderRadius": { "type": "object" },
 		"postItemspadding": { "type": "object" },
 		"postItemsmargin": { "type": "object" },
 
 		"postItemsHoverBackground": {"type": "string"},
 		"postItemsHoverborder": { "type": "object" },
-		"postItemsHoverborderRadius": { "type": "string" },
+		"postItemsHoverborderRadius": { "type": "object" },
 		"postItemsHoverpadding": { "type": "object" },
 		"postItemsHovermargin": { "type": "object" },
 
@@ -136,7 +136,7 @@
 		"arrowColor": {"type": "string"},
 		"arrowBackground": {"type":"string"},
 		"arrowborder": { "type": "object" },
-		"arrowborderRadius": { "type": "string" },
+		"arrowborderRadius": { "type": "object" },
 		"arrowpadding": { "type": "object" },
 		"arrowmargin": { "type": "object" }
 	},

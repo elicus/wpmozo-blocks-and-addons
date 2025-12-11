@@ -68,15 +68,15 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 				$post_id          = esc_attr( get_the_ID() );
 				$has_member_image = has_post_thumbnail( $post_id );
 
-				$skills           = get_post_meta( $post_id, '_member_skills', true );
-				$email_address    = get_post_meta( $post_id, '_email_address', true );
-				$phone_number     = get_post_meta( $post_id, '_phone_number', true );
-				$website          = get_post_meta( $post_id, '_website', true );
-				$facebook         = get_post_meta( $post_id, '_facebook', true );
-				$twitter          = get_post_meta( $post_id, '_twitter', true );
-				$linkedin         = get_post_meta( $post_id, '_linkedin', true );
-				$instagram        = get_post_meta( $post_id, '_instagram', true );
-				$youtube          = get_post_meta( $post_id, '_youtube', true );
+				$skills           = get_post_meta( $post_id, 'wpmozo_ae_team_member_skills', true );
+				$email_address    = get_post_meta( $post_id, 'wpmozo_ae_team_member_email', true );
+				$phone_number     = get_post_meta( $post_id, 'wpmozo_ae_team_member_phone', true );
+				$website          = get_post_meta( $post_id, 'wpmozo_ae_team_member_website', true );
+				$facebook         = get_post_meta( $post_id, 'wpmozo_ae_team_member_facebook', true );
+				$twitter          = get_post_meta( $post_id, 'wpmozo_ae_team_member_twitter', true );
+				$linkedin         = get_post_meta( $post_id, 'wpmozo_ae_team_member_linkedin', true );
+				$instagram        = get_post_meta( $post_id, 'wpmozo_ae_team_member_instagram', true );
+				$youtube          = get_post_meta( $post_id, 'wpmozo_ae_team_member_youtube', true );
 
 				// Member base image.
 				$member_image = '';
@@ -90,7 +90,11 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 				// Member skills.
 				$skill_bars = '';
 				if ( true === $show_skills && ! empty( $skills ) ) {
-					foreach ( $skills as $key => $skill ) {
+					$skills = explode( ',', $skills );
+					$skills_value = get_post_meta( $post_id, 'wpmozo_ae_team_member_skills_value', true );
+					$skills_value = explode( ',', $skills_value );
+					foreach ( $skills as $key => $skill_title ) {
+						$skill_value = array_key_exists( $key, $skills_value ) ? intval( $skills_value[ $key ] ) : 100;
 						$skill_bars .= sprintf(
 							'<div class="wpmozo_bna_skill_bar_wrapper_inner">
 								<div class="wpmozo_bna_skill_name">%1$s</div>
@@ -98,8 +102,8 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 									<div class="wpmozo_bna_filled_bar" data-skill="%2$s"></div>
 								</div>
 							</div>',
-							esc_html( $skill['title'] ),
-							intval( $skill['value'] ) . '%'
+							esc_html( $skill_title ),
+							$skill_value . '%'
 						);
 					}
 				}
@@ -227,10 +231,10 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 			if ( true === $attributes['showControlDot'] ) {
 				$pagination_class = '';
 				if ( true === $attributes['enableDynamicDots'] && (
-					'solid_dot' === $attributes['controlDotStyle'] ||
-					'transparent_dot' === $attributes['controlDotStyle'] ||
-					'square_dot' === $attributes['controlDotStyle']
-				) ) {
+						'solid_dot' === $attributes['controlDotStyle'] ||
+						'transparent_dot' === $attributes['controlDotStyle'] ||
+						'square_dot' === $attributes['controlDotStyle']
+					) ) {
 					$pagination_class = 'swiper-pagination-bullets-dynamic';
 				}
 
