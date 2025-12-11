@@ -3,10 +3,10 @@
     "apiVersion": 3,
     "name": "wpmozo/post-ticker",
     "version": "0.1.0",
-    "title": "Post Ticker",
+    "title": "Posts Ticker",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "The WPMozo Post Ticker block displays dynamic post titles in a fully customizable ticker bar, making it ideal for highlighting the latest news, updates, or featured blog posts.",
+    "description": "The WPMozo Posts Ticker block displays dynamic post titles in a fully customizable ticker bar, making it ideal for highlighting the latest news, updates, or featured blog posts.",
     "example": {},
     "supports": {
 		"html": false,

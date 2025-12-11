@@ -117,8 +117,8 @@ Create interactive list sections with a title, subtitle, description, icon, and 
 WPMozo Split Image block breaks an image into a customizable grid of square pieces, allowing unique and artistic presentations for your site.
 51. [Breadcrumbs](https://wpmozoblocks.com/breadcrumbs/ "Breadcrumbs for Gutenberg")
 WPMozo Breadcrumbs block enables both users and search crawlers to easily explore different pages of the site.
-52. [Post Ticker](https://wpmozoblocks.com/post-ticker/ "Post Ticker for Gutenberg")
-WPMozo Post Ticker block displays dynamic post titles in a fully customizable ticker bar, making it ideal for highlighting the latest news, updates, or featured blog posts.
+52. [Posts Ticker](https://wpmozoblocks.com/post-ticker/ "Post Ticker for Gutenberg")
+WPMozo Posts Ticker block displays dynamic post titles in a fully customizable ticker bar, making it ideal for highlighting the latest news, updates, or featured blog posts.
 53. [Wavy Gallery](https://wpmozoblocks.com/wavy-gallery/ "Wavy Gallery for Gutenberg")
 WPMozo Wavy Gallery block adds a unique horizontal wave animation to your image gallery, perfect for showcasing portfolios, creative projects, and visual stories.
 
@@ -179,7 +179,7 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
-2025-12-02 - Version 1.7.0
+2025-12-29 - Version 1.7.0
 * New: Breadcrumbs Block.
 * New: Post Ticker Block.
 * New: Wavy Gallery Block.
