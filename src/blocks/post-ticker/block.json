@@ -6,7 +6,7 @@
     "title": "Post Ticker",
     "category": "wpmozo",
     "icon": "smiley",
-    "description": "Example block scaffolded with Create Block tool.",
+    "description": "The WPMozo Post Ticker block displays dynamic post titles in a fully customizable ticker bar, making it ideal for highlighting the latest news, updates, or featured blog posts.",
     "example": {},
     "supports": {
 		"html": false,
