@@ -20,7 +20,8 @@ $(document).ready(function (e) {
 
 function initPostTicker($galleryContainer, attributes) {
 	let thisObj = $($galleryContainer),
-		wrapObj = thisObj.find(".wpmozo_post_ticker_wrap");
+		wrapObj = thisObj.find(".wpmozo_post_ticker_wrap"),
+		$orderId   = thisObj.attr('id');
 
 	const $orderClass = wrapObj
 		.prop("class")
@@ -52,9 +53,7 @@ function initPostTicker($galleryContainer, attributes) {
 			fadeEffect = { crossFade: true };
 		}
 
-		var swipperSlider = new Swiper(
-			".swiper-container",
-			{
+		var swipperSlider = new Swiper( '#' + $orderId + ' .swiper-container', {
 				direction: "slide" === tickerEffect ? slideAlign : "horizontal",
 				slidesPerView: 1,
 				slidesPerGroup: 1,
@@ -76,22 +75,16 @@ function initPostTicker($galleryContainer, attributes) {
 				observeParents: true,
 			}
 		);
-		jQuery("." + $orderClass + " .swiper-container").on(
-			"mouseleave",
-			function (e) {
-				if (typeof swipperSlider.autoplay.start === "function") {
-					swipperSlider.autoplay.start();
-				}
+		jQuery( '#' + $orderId + ' .swiper-container' ).on( 'mouseleave', function(e) {
+			if ( typeof swipperSlider?.autoplay?.stop === "function" ) {
+				swipperSlider.autoplay.start();
 			}
-		);
-		jQuery("." + $orderClass + " .swiper-container").on(
-			"mouseenter",
-			function (e) {
-				if (typeof swipperSlider.autoplay.stop === "function") {
-					swipperSlider.autoplay.stop();
-				}
+		} );
+		jQuery( '#' + $orderId + ' .swiper-container' ).on( 'mouseenter', function(e) {
+			if ( typeof swipperSlider?.autoplay?.start === "function" ) {
+				swipperSlider.autoplay.stop();
 			}
-		);
+		} );
 	}
 }
 

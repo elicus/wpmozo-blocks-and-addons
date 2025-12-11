@@ -92,7 +92,7 @@ export default function Edit(props) {
 			<div {...useBlockProps()} id={`block-${attributes.ID}`}>
 				<div className='wpmozo_post_ticker'>
 					<div
-						className={`wpmozo_post_ticker_wrap wpmozo_ticker_effect_${Effect}`}
+						className={`wpmozo_post_ticker_wrap wpmozo_ticker_effect_${attributes.tickerEffect}`}
 						data-attr={JSON.stringify(dataAttr)}
 					>
 						<div className="wpmozo_post_ticker_label">{attributes.tickerLabel}</div>

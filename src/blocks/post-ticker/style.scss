@@ -234,3 +234,15 @@
 .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after{
 	content: none;
 }
+.wpmozo_post_ticker_wrap .swiper-button-next,
+.wpmozo_post_ticker_wrap .swiper-button-prev,
+.wpmozo_post_ticker_wrap .swiper-button-next:focus,
+.wpmozo_post_ticker_wrap .swiper-button-prev:focus,
+.wpmozo_post_ticker_wrap .swiper-button-next:active,
+.wpmozo_post_ticker_wrap .swiper-button-prev:active {
+	outline: none !important;
+	box-shadow: none !important;
+}
+.wpmozo_post_ticker_items{
+	padding: 0;
+}
