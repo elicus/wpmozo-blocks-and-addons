@@ -2,7 +2,7 @@
 Contributors: elicus
 Tags: gutenberg, blocks, gutenberg blocks, gutenberg editor, wordpress blocks
 Tested up to: 6.9
-Stable tag: 1.6.1
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -179,12 +179,12 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
-2025-12-29 - Version 1.7.0
+2025-12-15 - Version 1.7.0
 * New: Breadcrumbs Block.
 * New: Post Ticker Block.
 * New: Wavy Gallery Block.
 
-2025-12-02 - Version 1.6.1
+2025-12-05 - Version 1.6.1
 * Fixed: Conflict with third party plugin.
 
 2025-11-11 - Version 1.6.0
