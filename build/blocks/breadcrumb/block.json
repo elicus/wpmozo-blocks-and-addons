@@ -87,6 +87,9 @@
       "type": "boolean",
       "default": false
     },
+    "homeIconColor": {
+      "type": "string"
+    },
     "homeLinkIcon": {
       "type": "string"
     },
@@ -98,7 +101,8 @@
       "default": ""
     },
     "textFontSize": {
-      "type": "string"
+      "type": "string",
+      "default": "1rem"
     },
     "textFontAppearance": {
       "type": "object",
@@ -120,11 +124,14 @@
       "type": "string"
     },
     "textAlign": {
-      "type": "string"
+      "type": "string",
+      "default": "left"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",
   "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
+  "script": "file:./script.js",
   "render": "file:./render.php"
 }

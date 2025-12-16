@@ -179,7 +179,7 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
-2025-12-15 - Version 1.7.0
+2025-12-17 - Version 1.7.0
 * New: Breadcrumbs Block.
 * New: Post Ticker Block.
 * New: Wavy Gallery Block.
