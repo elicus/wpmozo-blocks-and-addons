@@ -1,11 +1,13 @@
-.wpmozo-same-as-carousel{
+.wpmozo-same-as-carousel {
 	margin-top: 10px;
 }
-.wpmozo-button-tabs-wrap .components-button-group{
+
+.wpmozo-button-tabs-wrap .components-button-group {
 	display: flex;
 	margin-bottom: 10px;
 }
-.wpmozo-button-tabs-wrap button.wpmozo-button-tabs-btn{
+
+.wpmozo-button-tabs-wrap button.wpmozo-button-tabs-btn {
 	align-items: center;
 	display: flex;
 	flex: 1;
@@ -15,18 +17,21 @@
 	text-align: center;
 	white-space: nowrap;
 }
-.wpmozo-active-sub-block{
+
+.wpmozo-active-sub-block {
 	border-radius: 1px;
 	box-shadow: 0 0 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color);
 }
-.wpmozo-background-img-selction-wrap{
+
+.wpmozo-background-img-selction-wrap {
 	position: relative;
 	width: 100%;
 	height: 100%;
 	box-shadow: inset 0 0 0 1px #ddd;
 	padding: 8px 8px;
 }
-.wpmozo-background-img-selction-overlay{
+
+.wpmozo-background-img-selction-overlay {
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -40,45 +45,55 @@
 	font-weight: 600;
 	font-size: 16px;
 }
-.wpmozo-background-img-selction-wrap:hover .wpmozo-background-img-selction-overlay{
+
+.wpmozo-background-img-selction-wrap:hover .wpmozo-background-img-selction-overlay {
 	display: flex;
 }
-.wpmozo-background-img-selction-wrap img{
+
+.wpmozo-background-img-selction-wrap img {
 	width: 100%;
 	height: 140px !important;
 	object-fit: cover;
 	border-radius: 2px;
 }
-.wpmozo-bna-flip-box-wrap a{
+
+.wpmozo-bna-flip-box-wrap a {
 	pointer-events: none;
 }
-.wpmozo-bna-flip-box-edit-control{
+
+.wpmozo-bna-flip-box-edit-control {
 	margin-bottom: 0px !important;
 }
-.wpmozo-bna-flip-box-wrap.edit-front .wpmozo-bna-flip-box-back{
+
+.wpmozo-bna-flip-box-wrap.edit-front .wpmozo-bna-flip-box-back {
 	visibility: hidden;
 }
-.wpmozo-bna-flip-box-wrap.edit-front .wpmozo-bna-flip-box-front{
+
+.wpmozo-bna-flip-box-wrap.edit-front .wpmozo-bna-flip-box-front {
 	-webkit-transform: none !important;
 	-moz-transform: none !important;
 	-ms-transform: none !important;
 	transform: none !important;
 }
-.wpmozo-bna-flip-box-wrap.edit-back .wpmozo-bna-flip-box-front{
+
+.wpmozo-bna-flip-box-wrap.edit-back .wpmozo-bna-flip-box-front {
 	visibility: hidden;
 }
-.wpmozo-bna-flip-box-wrap.edit-back .wpmozo-bna-flip-box-back{
+
+.wpmozo-bna-flip-box-wrap.edit-back .wpmozo-bna-flip-box-back {
 	-webkit-transform: none !important;
 	-moz-transform: none !important;
 	-ms-transform: none !important;
 	transform: none !important;
 }
-.is-selected.wpmozo-bna-flip-box-main .wpmozo-bna-flip-box-wrap{
+
+.is-selected.wpmozo-bna-flip-box-main .wpmozo-bna-flip-box-wrap {
 	-webkit-transform: none !important;
 	-moz-transform: none !important;
 	-ms-transform: none !important;
 	transform: none !important;
 }
+
 .wpmozo-bna-fancy-text-inner.clipping {
 	color: transparent !important;
 }
@@ -86,7 +101,7 @@
 /* Settings tabs. */
 .wpmozo-settings-tab-panel .wpmozo-inspector-tab-general,
 .wpmozo-settings-tab-panel .wpmozo-inspector-tab-design,
-.wpmozo-settings-tab-panel .wpmozo-inspector-tab-advanced{
+.wpmozo-settings-tab-panel .wpmozo-inspector-tab-advanced {
 	min-width: 33.33%;
 	width: 100%;
 	text-align: center;
@@ -97,24 +112,27 @@
 	letter-spacing: 0.5px;
 	height: 42px !important;
 }
+
 .wpmozo-settings-tab-panel .wpmozo-inspector-tab-general:hover,
 .wpmozo-settings-tab-panel .wpmozo-inspector-tab-design:hover,
-.wpmozo-settings-tab-panel .wpmozo-inspector-tab-advanced:hover{
+.wpmozo-settings-tab-panel .wpmozo-inspector-tab-advanced:hover {
 	color: #111111;
 }
+
 .wpmozo-settings-tab-panel button.is-active,
-.wpmozo-settings-tab-panel button.is-active:hover{
+.wpmozo-settings-tab-panel button.is-active:hover {
 	background-color: #5600b7;
 	color: #ffffff;
 }
+
 .wpmozo-settings-tab-panel button::before,
-.wpmozo-settings-tab-panel button::after{
+.wpmozo-settings-tab-panel button::after {
 	display: none;
 }
 
 .wpmozo-settings-tab-panel .components-datetime__time-field-hours-input,
 .wpmozo-settings-tab-panel .components-datetime__time-field,
-.wpmozo-settings-tab-panel .components-datetime__date h3{
+.wpmozo-settings-tab-panel .components-datetime__date h3 {
 	margin-bottom: 0 !important;
 }
 
@@ -135,7 +153,7 @@
 } */
 
 /* Repeater field. */
-.wpmozo-repeater-row{
+.wpmozo-repeater-row {
 	position: relative;
 	margin-bottom: 10px;
 	background: rgb(248, 249, 250);
@@ -143,34 +161,41 @@
 	border-radius: 6px;
 	box-shadow: rgba(0, 0, 0, 0.03) 0px 1px 2px;
 }
-.wpmozo-repeator-title{
+
+.wpmozo-repeator-title {
 	margin-top: 0;
 	margin-bottom: 10px;
 }
-.wpmozo-repeator-trash{
+
+.wpmozo-repeator-trash {
 	display: block;
 	margin-right: auto;
 }
 
-.wpmozo-block-icon path{
+.wpmozo-block-icon path {
 	fill: #5600b7;
 }
 
 /* Custom field warning. */
-.wpmozo-field-warning.is-warning{
+.wpmozo-field-warning.is-warning {
 	border: 1px solid #f0b849;
 }
-.wpmozo-field-warning .components-notice__content{
+
+.wpmozo-field-warning .components-notice__content {
 	margin: 0;
 }
 
 /* Multi checkboxes. */
-.wpmozo-inpector-multi-checkboxes .components-base-control{
+.wpmozo-inpector-multi-checkboxes .components-base-control {
 	margin-bottom: 8px !important;
 }
 
 /* Hide the time picker, in date time picker. */
 /* Used date time picker as have a date changes inputs. */
-.wpmozo-hide-time-picker-control fieldset:first-child{
+.wpmozo-hide-time-picker-control fieldset:first-child {
 	display: none !important;
+}
+
+a {
+	pointer-events: none !important;
 }
