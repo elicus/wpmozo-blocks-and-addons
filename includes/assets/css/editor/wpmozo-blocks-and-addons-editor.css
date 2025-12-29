@@ -196,6 +196,6 @@
 	display: none !important;
 }
 
-a {
+[class*="wp-block-wpmozo-"] a {
 	pointer-events: none !important;
 }
