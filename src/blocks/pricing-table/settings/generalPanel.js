@@ -38,7 +38,6 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 		{ value: '₩', label: __( '₩ Won', 'wpmozo-blocks-and-addons' ) },
 		{ value: 'custom', label: __( 'Custom', 'wpmozo-blocks-and-addons' ) },
 	];
-	console.log(attributes.features);
 
 	return ( <>
 		<PanelBody title={ __( 'Header', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
