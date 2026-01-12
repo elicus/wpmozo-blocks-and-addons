@@ -183,7 +183,7 @@
 		"arrowColor": { "type": "string", "default": "" },
 		"arrowBackground": { "type": "string", "default": "" },
 		"arrowborder": { "type": "object" },
-        "arrowborderRadius": { "type": "string" },
+        "arrowborderRadius": { "type": "object" },
 
 		"metaSeparatorColor": { "type": "string", "default": "#dddddd" },
 		"containerpadding": { "type": "object" },
@@ -191,10 +191,10 @@
 		"testimonialBackground": { "type": "string" },
 		"testimonialBGGradient": { "type": "string" },
 		"testimonialborder": { "type": "object" },
-        "testimonialborderRadius": { "type": "string" },
+        "testimonialborderRadius": { "type": "object" },
 
 		"authorImageborder": { "type": "object" },
-		"authorImageborderRadius": { "type": "string" }
+		"authorImageborderRadius": { "type": "object" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
