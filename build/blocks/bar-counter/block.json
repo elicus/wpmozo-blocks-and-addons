@@ -1,0 +1,170 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpmozo/bar-counter",
+  "version": "0.1.0",
+  "title": "Bar Counter",
+  "category": "wpmozo",
+  "icon": "smiley",
+  "description": "Bar counter to showcase progress or skill levels visually.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "customClassName": false
+  },
+  "attributes": {
+    "ID": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "layoutType": {
+      "type": "string",
+      "default": "layout1"
+    },
+    "title": {
+      "type": "string",
+      "default": "WPMozo Title"
+    },
+    "titleLavel": {
+      "type": "string",
+      "default": "h2"
+    },
+    "percentage": {
+      "type": "number",
+      "default": 50
+    },
+    "displayEmptyBar": {
+      "type": "boolean",
+      "default": false
+    },
+    "useStripes": {
+      "type": "boolean",
+      "default": false
+    },
+    "stripeAnimation": {
+      "type": "boolean",
+      "default": false
+    },
+    "stripeAnimationSpeed": {
+      "type": "number"
+    },
+    "titleColor": {
+      "type": "string"
+    },
+    "titleAlign": {
+      "type": "string"
+    },
+    "titleFontSize": {
+      "type": "string"
+    },
+    "titleFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "titleLetterSpacing": {
+      "type": "string"
+    },
+    "titleDecoration": {
+      "type": "string"
+    },
+    "titleLetterCase": {
+      "type": "string"
+    },
+    "titleLineHeight": {
+      "type": "string"
+    },
+    "percentageColor": {
+      "type": "string"
+    },
+    "percentageAlign": {
+      "type": "string"
+    },
+    "percentageFontSize": {
+      "type": "string"
+    },
+    "percentageFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "percentageLetterSpacing": {
+      "type": "string"
+    },
+    "percentageDecoration": {
+      "type": "string"
+    },
+    "percentageLetterCase": {
+      "type": "string"
+    },
+    "percentageLineHeight": {
+      "type": "string"
+    },
+    "filledBackgroundType": {
+      "type": "string",
+      "default": "classic"
+    },
+    "filledBackgroundColor": {
+      "type": "string"
+    },
+    "filledBackgroundGradient": {
+      "type": "string",
+      "default": "linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)"
+    },
+    "backgroundType": {
+      "type": "string",
+      "default": "classic"
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "backgroundGradient": {
+      "type": "string",
+      "default": "linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)"
+    },
+    "barborder": {
+      "type": "object"
+    },
+    "barborderRadius": {
+      "type": "string"
+    },
+    "useCustomChunksSize": {
+      "type": "boolean",
+      "default": false
+    },
+    "useChunksWidth": {
+      "type": "string"
+    },
+    "useChunksWidthUnit": {
+      "type": "string"
+    },
+    "useChunksHeight": {
+      "type": "string"
+    },
+    "useChunksHeightUnit": {
+      "type": "string"
+    }
+  },
+  "textdomain": "wpmozo-blocks-and-addons",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

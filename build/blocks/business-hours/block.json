@@ -1,0 +1,211 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpmozo/business-hours",
+  "version": "0.1.0",
+  "title": "Business Hours",
+  "category": "wpmozo",
+  "icon": "smiley",
+  "description": "Create business hours with date, weekdays name, and other customizations for complete engagement.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "customClassName": false
+  },
+  "attributes": {
+    "ID": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "hours": {
+      "type": "array",
+      "default": [
+        {
+          "day": "Weekdays",
+          "time": "9am - 6pm"
+        },
+        {
+          "day": "Saturday",
+          "time": "9am - 2pm"
+        },
+        {
+          "day": "Sunday",
+          "time": "Closed"
+        }
+      ]
+    },
+    "dayColor": {
+      "type": "string"
+    },
+    "dayFontSize": {
+      "type": "string"
+    },
+    "dayLetterSpacing": {
+      "type": "string"
+    },
+    "dayDecoration": {
+      "type": "string"
+    },
+    "dayLetterCase": {
+      "type": "string"
+    },
+    "dayLineHeight": {
+      "type": "string"
+    },
+    "dayFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "dayFontStyle": {
+      "type": "string"
+    },
+    "dayFontWeight": {
+      "type": "string"
+    },
+    "dayHoverColor": {
+      "type": "string"
+    },
+    "dayHoverFontSize": {
+      "type": "string"
+    },
+    "dayHoverLetterSpacing": {
+      "type": "string"
+    },
+    "dayHoverDecoration": {
+      "type": "string"
+    },
+    "dayHoverLetterCase": {
+      "type": "string"
+    },
+    "dayHoverLineHeight": {
+      "type": "string"
+    },
+    "dayHoverFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "dayHoverFontStyle": {
+      "type": "string"
+    },
+    "dayHoverFontWeight": {
+      "type": "string"
+    },
+    "timeColor": {
+      "type": "string"
+    },
+    "timeFontSize": {
+      "type": "string"
+    },
+    "timeLetterSpacing": {
+      "type": "string"
+    },
+    "timeDecoration": {
+      "type": "string"
+    },
+    "timeLetterCase": {
+      "type": "string"
+    },
+    "timeLineHeight": {
+      "type": "string"
+    },
+    "timeFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "timeFontStyle": {
+      "type": "string"
+    },
+    "timeFontWeight": {
+      "type": "string"
+    },
+    "timeHoverColor": {
+      "type": "string"
+    },
+    "timeHoverFontSize": {
+      "type": "string"
+    },
+    "timeHoverLetterSpacing": {
+      "type": "string"
+    },
+    "timeHoverDecoration": {
+      "type": "string"
+    },
+    "timeHoverLetterCase": {
+      "type": "string"
+    },
+    "timeHoverLineHeight": {
+      "type": "string"
+    },
+    "timeHoverFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "timeHoverFontStyle": {
+      "type": "string"
+    },
+    "timeHoverFontWeight": {
+      "type": "string"
+    },
+    "hourItemBackground": {
+      "type": "string"
+    },
+    "hourItemBackgroundEven": {
+      "type": "string"
+    },
+    "hourItemBackgroundOdd": {
+      "type": "string"
+    },
+    "hourItempadding": {
+      "type": "object",
+      "default": {
+        "top": "5px",
+        "bottom": "5px"
+      }
+    },
+    "hourItemmargin": {
+      "type": "object"
+    },
+    "hourItemborder": {
+      "type": "object"
+    },
+    "hourItemborderRadius": {
+      "type": "string"
+    },
+    "blockBackground": {
+      "type": "string"
+    },
+    "blockBGGradient": {
+      "type": "string"
+    },
+    "blockpadding": {
+      "type": "object"
+    },
+    "blockmargin": {
+      "type": "object"
+    },
+    "blockborder": {
+      "type": "object"
+    },
+    "blockborderRadius": {
+      "type": "string"
+    }
+  },
+  "textdomain": "wpmozo-blocks-and-addons",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

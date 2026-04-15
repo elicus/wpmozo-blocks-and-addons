@@ -1,0 +1,67 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpmozo/facebook-comments",
+  "version": "0.1.0",
+  "title": "Facebook Comments",
+  "category": "wpmozo",
+  "icon": "smiley",
+  "description": "Integrate Facebook Comments into your website page with the Facebook Comments.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "customClassName": false
+  },
+  "attributes": {
+    "ID": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "fbAppId": {
+      "type": "string"
+    },
+    "pageURL": {
+      "type": "string",
+      "default": "https://wpmozoblocks.com/"
+    },
+    "numPosts": {
+      "type": "number",
+      "default": 10
+    },
+    "orderBy": {
+      "type": "string",
+      "default": "social"
+    },
+    "lazyLoading": {
+      "type": "boolean",
+      "default": false
+    },
+    "blockBackground": {
+      "type": "string"
+    },
+    "blockBGGradient": {
+      "type": "string"
+    },
+    "blockpadding": {
+      "type": "object"
+    },
+    "blockmargin": {
+      "type": "object"
+    },
+    "blockborder": {
+      "type": "object"
+    },
+    "blockborderRadius": {
+      "type": "string"
+    }
+  },
+  "textdomain": "wpmozo-blocks-and-addons",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "script": [
+    "file:./script.js"
+  ]
+}

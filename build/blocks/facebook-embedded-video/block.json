@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpmozo/facebook-embedded-video",
+  "version": "0.1.0",
+  "title": "Facebook Embedded Video",
+  "category": "wpmozo",
+  "icon": "smiley",
+  "description": "Embed Facebook videos directly into your website with customizable controls.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "customClassName": false
+  },
+  "attributes": {
+    "ID": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "fbAppId": {
+      "type": "string"
+    },
+    "videoURL": {
+      "type": "string"
+    },
+    "frameWidth": {
+      "type": "number",
+      "default": 450
+    },
+    "lazyLoading": {
+      "type": "boolean",
+      "default": false
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    },
+    "allowFullScreen": {
+      "type": "boolean",
+      "default": false
+    },
+    "displayText": {
+      "type": "boolean",
+      "default": false
+    },
+    "displayCaption": {
+      "type": "boolean",
+      "default": false
+    },
+    "videoAlign": {
+      "type": "string"
+    },
+    "videoborder": {
+      "type": "object"
+    },
+    "videoborderRadius": {
+      "type": "string"
+    }
+  },
+  "textdomain": "wpmozo-blocks-and-addons",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "script": [
+    "file:./script.js"
+  ]
+}
