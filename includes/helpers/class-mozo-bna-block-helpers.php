@@ -27,13 +27,20 @@ class Mozo_Bna_Block_Helpers {
 	 * @since 1.1.0
 	 */
 	public static function get_block_dynamic_style( $module, $attributes ) {
+
+		// Check in pro funtion first.
+		if ( defined( 'WPMOZO_BNA_PRO_PLUGIN_DIR' ) && file_exists( WPMOZO_BNA_PRO_PLUGIN_DIR . 'includes/templates/block-' . esc_attr( $module ) . '/dynamic-style.php' ) ) {
+			include WPMOZO_BNA_PRO_PLUGIN_DIR . 'includes/templates/block-' . esc_attr( $module ) . '/dynamic-style.php';
+		}
+		
+		// Check in lite version.
 		if ( file_exists( WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-' . esc_attr( $module ) . '/dynamic-style.php' ) ) {
 			include WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-' . esc_attr( $module ) . '/dynamic-style.php';
+		}
 
-			$callback_function = str_replace( '-', '_', $module ) . '_generate_dynamic_style';
-			if ( function_exists( $callback_function ) ) {
-				return $callback_function( $attributes );
-			}
+		$callback_function = str_replace( '-', '_', $module ) . '_generate_dynamic_style';
+		if ( function_exists( $callback_function ) ) {
+			return $callback_function( $attributes );
 		}
 
 		return '';
@@ -113,8 +120,6 @@ class Mozo_Bna_Block_Helpers {
 		// Border color.
 		if ( isset( $border['color'] ) ) {
 			$styles .= sprintf( 'border-color: %s%s;', $border['color'], $imp );
-		} else {
-			$styles .= sprintf( 'border-color: inherit%s;', $imp );
 		}
 
 		// Border Style
@@ -177,6 +182,40 @@ class Mozo_Bna_Block_Helpers {
 			}
 
 			$styles .= sprintf( 'padding-%1$s: %2$s%3$s;', $key, $padding, $imp );
+		}
+
+		return $styles;
+	}
+
+	/**
+	 * Get padding styles from props.
+	 *
+	 * @since 1.6.0
+	 *
+	 * @param string $pre     Prefix for the props.
+	 * @param array  $props   All props or attributes.
+	 * @param bool   $useImp  Whether to add !important.
+	 *
+	 * @return string CSS margin styles.
+	 */
+	public static function get_margin_style( $pre, $props, $use_imp = false ) {
+		$imp = $use_imp ? ' !important' : '';
+
+		// Get if margin.
+		if ( empty( $props[ $pre . 'margin' ] ) ) {
+			return '';
+		}
+
+		$styles = '';
+
+		$marginArr = $props[ $pre . 'margin' ];
+		foreach ( $marginArr as $key => $margin ) {
+			// Replace preset value.
+			if ( false !== strpos( $margin, 'var' ) ) {
+				$margin = str_replace( '|', '--', str_replace( 'var:', 'var(--wp--', $margin ) ) . ')';
+			}
+
+			$styles .= sprintf( 'margin-%1$s: %2$s%3$s;', $key, $margin, $imp );
 		}
 
 		return $styles;

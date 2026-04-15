@@ -1,4 +1,136 @@
-#mozo_testimonial_metabox h2{
+#wpmozo_ae_team_member_metabox h2,
+#wpmozo_ae_testimonial_metabox h2 {
+	position: relative;
+	justify-content: flex-start;
+	width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	padding: 10px 70px 10px 40px;
+	margin: 0;
+	font-size: 22px;
+	font-weight: 400;
+	background-color: #fff;
+	color: #000
+}
+
+#wpmozo_ae_team_member_metabox .handle-actions,
+#wpmozo_ae_testimonial_metabox .handle-actions {
+	background-color: #fff
+}
+
+#wpmozo_ae_team_member_metabox .handle-actions button:hover,
+#wpmozo_ae_testimonial_metabox .handle-actions button:hover {
+	background: #eee
+}
+
+#wpmozo_ae_team_member_metabox .handle-actions button:focus,
+#wpmozo_ae_testimonial_metabox .handle-actions button:focus {
+	box-shadow: none;
+	outline: 0
+}
+
+#wpmozo_ae_team_member_metabox .handle-actions button,
+#wpmozo_ae_testimonial_metabox .handle-actions button {
+	color: #000
+}
+
+#wpmozo_ae_team_member_metabox .handlediv,
+#wpmozo_ae_testimonial_metabox .handlediv {
+	z-index: 9;
+	position: relative;
+	color: #000;
+	background: #fff;
+	padding: 15px 17px;
+	font-size: 20px;
+	margin: 0;
+	width: auto;
+	height: auto
+}
+
+.js #wpmozo_ae_team_member_metabox .handlediv:focus .toggle-indicator:before,
+.js #wpmozo_ae_testimonial_metabox .handlediv:focus .toggle-indicator:before {
+	box-shadow: none
+}
+
+.js #wpmozo_ae_team_member_metabox .wpmozo_ae_meta_image,
+.js #wpmozo_ae_testimonial_metabox .wpmozo_ae_meta_image,
+.js #wpmozo_ae_testimonial_metabox-hide+.wpmozo_ae_meta_image,
+.js #wpmozo_ae_team_member_metabox-hide+.wpmozo_ae_meta_image {
+	width: 65px;
+	margin-right: 20px
+}
+
+#wpmozo_ae_team_member_metabox .handlediv:hover,
+#wpmozo_ae_testimonial_metabox .handlediv:hover {
+	background: #57ba65
+}
+
+#wpmozo_ae_team_member_metabox .handlediv .toggle-indicator,
+#wpmozo_ae_testimonial_metabox .handlediv .toggle-indicator {
+	color: #000
+}
+
+#wpmozo_ae_team_member_metabox .inside,
+#wpmozo_ae_testimonial_metabox .inside {
+	margin: 0 27px 15px
+}
+
+#side-sortables #wpmozo_ae_team_member_metabox h2,
+#side-sortables #wpmozo_ae_testimonial_metabox h2 {
+	padding: 10px;
+	font-size: 18px;
+	line-height: 1.2
+}
+
+#side-sortables #wpmozo_ae_team_member_metabox h2:before,
+#side-sortables #wpmozo_ae_testimonial_metabox h2:before {
+	width: 16px;
+	height: 16px;
+	margin-right: 10px;
+	font-size: 16px
+}
+
+#side-sortables #wpmozo_ae_team_member_metabox .handle-actions,
+#side-sortables #wpmozo_ae_testimonial_metabox .handle-actions {
+	display: flex;
+	align-items: stretch;
+	justify-content: flex-end;
+	background-color: #622aa9
+}
+
+#side-sortables #wpmozo_ae_team_member_metabox .postbox-header,
+#side-sortables #wpmozo_ae_testimonial_metabox .postbox-header {
+	display: block
+}
+
+#side-sortables #wpmozo_ae_team_member_metabox .handlediv,
+#side-sortables #wpmozo_ae_testimonial_metabox .handlediv {
+	padding: 0 10px;
+	font-size: 20px
+}
+
+#side-sortables #wpmozo_ae_team_member_metabox .inside,
+#side-sortables #wpmozo_ae_testimonial_metabox .inside {
+	margin: 0 15px 15px
+}
+
+#side-sortables .wpmozo_meta_fields label {
+	width: 100%;
+	margin-right: 0
+}
+
+#side-sortables .wpmozo_meta_fields input,
+#side-sortables .wpmozo_meta_fields select,
+#side-sortables .wpmozo_meta_fields textarea {
+	width: 100%
+}
+
+#side-sortables .wpmozo_repeator_meta_fields {
+	width: calc(100% - 40px)
+}
+
+#poststuff [id^="mozo_"][id$="_metabox"] h2{
 	position: relative;
 	font-family: "Open Sans", sans-serif;
 	font-size: 18px;
@@ -14,17 +146,17 @@
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 }
-#mozo_testimonial_metabox .postbox-header{
+#poststuff [id^="mozo_"][id$="_metabox"] .postbox-header{
 	align-items: stretch;
 }
-#mozo_testimonial_metabox .handle-actions{
+#poststuff [id^="mozo_"][id$="_metabox"] .handle-actions{
 	background-color: #4849ef;
 }
-#mozo_testimonial_metabox .handle-actions button,
-#mozo_testimonial_metabox .handlediv .toggle-indicator{
+#poststuff [id^="mozo_"][id$="_metabox"] .handle-actions button,
+#poststuff [id^="mozo_"][id$="_metabox"] .handlediv .toggle-indicator{
 	color: #fff;
 }
-#mozo_testimonial_metabox .handlediv{
+#poststuff [id^="mozo_"][id$="_metabox"] .handlediv{
 	z-index: 9;
 	position: relative;
 	color: #fff;
@@ -35,7 +167,7 @@
 	width: auto;
 	height: auto;
 }
-#mozo_testimonial_metabox .inside{
+#poststuff [id^="mozo_"][id$="_metabox"] .inside{
 	margin: 5px 25px 10px;
 }
 
@@ -70,9 +202,89 @@
 	color: #32373c;
 	min-width: 300px;
 }
+.wpmozo_meta_fields textarea{
+	min-height: 80px;
+}
 .wpmozo_meta_fields input:focus,
 .wpmozo_meta_fields select:focus,
 .wpmozo_meta_fields textarea:focus{
 	box-shadow: none;
 	border-color: #3d3eed;
 }
+
+.wpmozo_meta_fields .info {
+    display: block;
+    margin-left: 230px;
+    font-size: 12px;
+}
+
+/* Repeater Field. */
+.wpmozo_bna_repeator_meta_fields{
+	width: 50%;
+	float: left;
+}
+.wpmozo_bna_repeator_meta_field_row{
+	position: relative;
+	background: #fbfbfb;
+	border: 1px solid #f1f1f1;
+	padding: 10px;
+}
+.wpmozo_bna_repeator_meta_field_row:not( :last-child ) {
+	border-bottom: 2px solid #e9e9e9;
+}
+.wpmozo_bna_repeator_meta_field input:not( :last-child ),
+.wpmozo_bna_repeator_meta_field select:not( :last-child ),
+.wpmozo_bna_repeator_meta_field textarea:not( :last-child ) {
+	margin-bottom: 10px;
+}
+.wpmozo_bna_repeator_meta_field_add_row_control:not( :last-child ) {
+	margin-bottom: 10px;
+}
+.wpmozo_bna_repeator_meta_field input,
+.wpmozo_bna_repeator_meta_field select,
+.wpmozo_bna_repeator_meta_field textarea {
+    width: 100%;
+}
+.wpmozo_bna_repeator_meta_field_row_controls {
+	position: absolute;
+	top: 50%;
+	left: calc(100% + 10px);
+	margin: 0;
+	text-align: center;
+	transform: translateY(-50%);
+}
+.wpmozo_bna_repeator_meta_field_add_row_control{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: #f1f5f9;
+	width: 30px;
+	height: 30px;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.6;
+	cursor: pointer;
+}
+
+.wpmozo_bna_repeator_meta_field_row:not( :last-child ) .wpmozo_bna_repeator_meta_field_add_row{
+	display: none;
+}
+
+/* Attachment field style. */
+.wpmozo_bna_attachment_metafield{
+	border: 1px solid #7e8993;
+	border-radius: 4px;
+	background: #fff;
+	margin-bottom: 20px;
+	padding: 10px;
+}
+.wpmozo_bna_attachment_metafield .categorychecklist{
+	margin: 0;
+}
+.wpmozo_bna_attachment_metafield .categorychecklist li {
+    margin-bottom: 4px;
+}
+.wpmozo_bna_attachment_metafield .categorychecklist input[type=checkbox]{
+	margin: 0 3px 0;
+}
+

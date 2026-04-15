@@ -28,7 +28,7 @@ const Edit = (props) => {
 
 	// Get the post types.
 	const posts = useSelect( (select) =>
-		select( 'core' ).getEntityRecords( 'postType', 'mozo-testimonial', {
+		select( 'core' ).getEntityRecords( 'postType', 'wpmozoae-testimonial', {
 			per_page: postsToShow,
 			order: postOrder,
 			orderby: postOrderBy,
@@ -64,14 +64,14 @@ const Edit = (props) => {
 			const rawContent      = post.content?.rendered || '';
 			const modifiedContent = openingQuote + rawContent + closingQuote;
 			const rateNumber      = parseFloat( post.author_rating ) ?? 5;
-			
+
 			let postExcerpt = '';
 			if ( post.content.rendered ) {
 				postExcerpt = <div className="wpmozo_testimonial_desc"
 					dangerouslySetInnerHTML={ {__html: modifiedContent } }
 				/>;
 			}
-			
+
 			let authorImage = '';
 			let imageUrl = '';
 			let altText = '';
@@ -91,7 +91,7 @@ const Edit = (props) => {
 					<img src={ imageUrl } alt={ altText } />
 				</div>;
 			}
-			
+
 
 			let rating = '';
 			if ( attributes.showRating && rateNumber > 0 ) {
@@ -165,7 +165,7 @@ const Edit = (props) => {
 				buttonPrevClass = ( ! wpmozo_is_empty( attributes.prevArrowIcon ) )
 					? `custom-swiper-button-prev swiper-button-prev ${attributes.prevArrowIcon}`
 					: 'swiper-button-prev';
-				
+
 			$sliderArrows = <div
 				className={`wpmozo_swiper_navigation wpmozo_arrows_${attributes.arrowsPosition}`}
 				data-arrows_desktop={ attributes.arrowsPosition }

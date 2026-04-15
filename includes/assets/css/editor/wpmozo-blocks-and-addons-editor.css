@@ -168,3 +168,9 @@
 .wpmozo-inpector-multi-checkboxes .components-base-control{
 	margin-bottom: 8px !important;
 }
+
+/* Hide the time picker, in date time picker. */
+/* Used date time picker as have a date changes inputs. */
+.wpmozo-hide-time-picker-control fieldset:first-child{
+	display: none !important;
+}

@@ -216,6 +216,23 @@ function wpmozoInitImageCardTickerCurve($wrapper, $wrappeerData) {
 		onRepeat: () => gsap.set($innerWrap, { x: 0 })
 	});
 
+	// Animate using GSAP
+	let wrapWidth   = $wrapper.width(),
+		wrapHalf    = wrapWidth / 2,
+		wrapHeight  = $wrapper.height(),
+		wrapHQart   = wrapHeight / 4,
+		wrapH3Quart = wrapHQart * 3;
+	let svgHtmlMac  = '<svg width="0" height="0" style="position:absolute"> <defs> <mask id="wpmozo_image_card_ticker_curve_mask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse"> <rect width="100%" height="100%" fill="black" /> <path d="M0,0 Q'+wrapHalf+','+wrapHQart+' '+wrapWidth+',0 V'+wrapHeight+' Q'+wrapHalf+','+wrapH3Quart+' 0,'+wrapHeight+' Z" fill="white" /> </mask> </defs> </svg>';
+	let svgHtmlChr  = '<svg width="0" height="0" style="position:absolute"> <defs> <mask id="wpmozo_image_card_ticker_curve_mask" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox"> <rect width="100%" height="100%" fill="black" /> <path d="M0,0 Q0.5,0.25 1,0 V1 Q0.5,0.75 0,1 Z" fill="white" /> </mask> </defs> </svg>';
+
+	if (/^((?!chrome|android).)*safari/i.test( navigator.userAgent) ) {
+		$wrapper.find( 'svg' ).remove();
+		$wrapper.append( svgHtmlMac );
+	} else{
+		$wrapper.find( 'svg' ).remove();
+		$wrapper.append( svgHtmlChr );
+	}
+
 	$innerWrap.on('mouseenter', 'img', () => tween.pause());
 	$innerWrap.on('mouseleave', 'img', () => tween.resume());
 }

@@ -68,3 +68,35 @@
 	opacity: 1;
 	transform: translateX(0);
 }
+
+/* Overlay. */
+.wpmozo-bna-overlay{
+	z-index: -1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.8);
+	opacity: 0;
+	pointer-events: none;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-font-smoothing: antialiased;
+}
+.wpmozo-bna-overlay .wpmozo-bna-overlay-icon {
+	color: #5600b7;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 32px;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	-webkit-transition: all .4s;
+	transition: all .4s;
+}

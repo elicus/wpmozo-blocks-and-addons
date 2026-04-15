@@ -2,7 +2,7 @@
 namespace WPMOZO\BNA\Helpers;
 
 /**
- * Trait class, handles the helper functions.
+ * Handles the helper functions.
  *
  * @link       https://elicus.com
  * @since      1.5.0
@@ -36,7 +36,7 @@ class Mozo_Bna_Helpers{
 	 *
 	 * @param string $text       Text to count.
 	 * @param string $count_type Count type: 'words', 'characters_excluding_spaces', or 'characters_including_spaces'.
-	 * 
+	 *
 	 * @return int Count of specified type.
 	 */
 	public static function count_text( $text, $count_type ) {
@@ -58,7 +58,7 @@ class Mozo_Bna_Helpers{
 	 * @param int    $max_length Maximum length of the text.
 	 * @param string $count_type Locale-specific word count type. Possible values are `characters_excluding_spaces`,
 	 *           `characters_including_spaces`, or `words`. Defaults to `words`.
-	 * 
+	 *
 	 * @return string Trimmed text.
 	 */
 	public static function trim_characters( $text, $max_length, $count_type ) {
@@ -71,7 +71,7 @@ class Mozo_Bna_Helpers{
 
 		preg_match_all( '/([\s]+)/', $trimmed, $spaces );
 		$space_count = ! empty( $spaces[0] ) ? count( $spaces[0] ) : 0;
-		
+
 		return mb_substr( $pure_text, 0, $max_length + $space_count );
 	}
 
@@ -83,7 +83,7 @@ class Mozo_Bna_Helpers{
 	 * @param string $endwith string that end with.
 	 * @param string $count_type Locale-specific word count type. Possible values are `characters_excluding_spaces`,
 	 *           `characters_including_spaces`, or `words`. Defaults to `words`.
-	 * 
+	 *
 	 * @return string truncate content.
 	 */
 	public static function truncate_content( $content, $length = 100, $endwith = '', $count_type = '' ) {
@@ -100,5 +100,39 @@ class Mozo_Bna_Helpers{
 		}
 
 		return self::trim_characters( $content, $length, $count_type ) . esc_attr( $endwith );
+	}
+
+	/**
+	 * Get social icon for team member.
+	 *
+	 * @since 1.6.0
+	 *
+	 * @param string $type  Social icons slug/name to manage class.
+	 * @param string $url   Social profile URL.
+	 * @param string $icon  Icon class for social icon.
+	 * @param bool $target  Social link target to open in new window or in he same.
+	 *
+	 * @return string Link "a" tag for social icon.
+	 */
+	public static function get_team_member_social( $type, $url, $icon, $target ) {
+
+		// If no url, return blank.
+		if ( empty( $url ) ) {
+			return '';
+		}
+
+		// Update email and phone urls.
+		$url = ( 'email' === $type ) ? 'mailto:' . $url : $url;
+		$url = ( 'phone' === $type ) ? 'tel:' . $url : $url;
+
+		return sprintf(
+			'<a href="%1$s" target="%2$s">
+				<span class="wpmozo_bna_team_member_social_icon wpmozo_bna_team_%3$s %4$s"></span>
+			</a>',
+			esc_attr( $url ),
+			( 'same' === $target ) ? '_self' : '_blank',
+			esc_attr( $type ),
+			esc_attr( $icon )
+		);
 	}
 }
