@@ -88,5 +88,5 @@ if( ! function_exists( "wpmozo_bna_run_init_class" ) ){
 		$wpmozo_bna = Mozo_Bna_Blocks_And_Addons::instance();
 		$wpmozo_bna->run();
 	}
-	add_action( 'plugins_loaded', 'wpmozo_bna_run_init_class' );
+	add_action( 'plugins_loaded', 'wpmozo_bna_run_init_class', 20 );
 }

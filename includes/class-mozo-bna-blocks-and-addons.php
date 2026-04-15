@@ -199,6 +199,8 @@ class Mozo_Bna_Blocks_And_Addons {
 		 */
 		require_once WPMOZO_BNA_INC_DIR_PATH . 'admin/class-mozo-bna-admin.php';
 
+		// Manage plugin admin settings panel.
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'admin/panel/class-mozo-bna-panel.php';
 	}
 
 	/**
