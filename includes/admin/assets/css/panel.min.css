@@ -304,10 +304,10 @@
 	letter-spacing: -11px;
 }
 .success .wpmozo_bna_panel_save_text:after {
-    display: inline-block;
-    -webkit-animation: 0.5s 1s forwards addIconSuccess;
-    -moz-animation: 0.5s 1s forwards addIconSuccess;
-    animation: 0.5s 1s forwards addIconSuccess;
+	display: inline-block;
+	-webkit-animation: 0.5s 1s forwards addIconSuccess;
+	-moz-animation: 0.5s 1s forwards addIconSuccess;
+	animation: 0.5s 1s forwards addIconSuccess;
 }
 .error .wpmozo_bna_panel_save_text:after {
 	color: #d63638;
@@ -328,16 +328,16 @@
 	z-index: 999999;
 }
 .wpmozo_bna_panel_loader .wpmozo_bna_panel_processor{
-    width: 12px;
-    height: 12px;
+	width: 12px;
+	height: 12px;
 }
 .wpmozo_bna_panel_ajax_processor .wpmozo_bna_panel_processor{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 999999;
-    text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 999999;
+	text-align: center;
 }
 .wpmozo_bna_panel_ajax_processor.wpmozo_bna_panel_loader:after{
 	content: "";
@@ -356,14 +356,14 @@
 }
 
 @keyframes addIconSuccess {
-    0%   { content: ""; opacity: 0; transform: scale(0); }
-    50%  { content: "\f147"; opacity: .5; transform: scale(1.5); }
-    100% { content: "\f147"; opacity: 1; transform: scale(1); }
+	0%   { content: ""; opacity: 0; transform: scale(0); }
+	50%  { content: "\f147"; opacity: .5; transform: scale(1.5); }
+	100% { content: "\f147"; opacity: 1; transform: scale(1); }
 }
 @keyframes addIconError {
-    0%   { content: ""; opacity: 0; transform: scale(0); }
-    50%  { content: "\f158"; opacity: .5; transform: scale(1.5); }
-    100% { content: "\f158"; opacity: 1; transform: scale(1); }
+	0%   { content: ""; opacity: 0; transform: scale(0); }
+	50%  { content: "\f158"; opacity: .5; transform: scale(1.5); }
+	100% { content: "\f158"; opacity: 1; transform: scale(1); }
 }
 @keyframes loadingT {
 	0%,50% { transform: rotate(0); }
@@ -381,7 +381,7 @@
 	.wpmozo_bna_panel_select_deselect, .wpmozo_bna_panel_multiple_checkboxes {
 		justify-content: center;
 		flex-wrap: wrap;
-    }
+	}
 	.wpmozo_bna_panel_settings_info {
 		text-align: center;
 		width: 100%;
