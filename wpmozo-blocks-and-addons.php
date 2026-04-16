@@ -24,15 +24,15 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-define( 'WPMOZO_BNA_VERSION', '1.7.0' );// Current plugin version.
-define( 'WPMOZO_BNA_FILE', __FILE__ );// Plugin main file.
-define( 'WPMOZO_BNA_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );// Plugin dir path.
-define( 'WPMOZO_BNA_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );// Plugin dir url.
-define( 'WPMOZO_BNA_INC_DIR_PATH', WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/' );// Includes dir path.
-define( 'WPMOZO_BNA_INC_DIR_URL', WPMOZO_BNA_PLUGIN_DIR_URL . 'includes/' );// Includes dir url.
-define( 'WPMOZO_BNA_ASSETS_DIR_PATH', WPMOZO_BNA_INC_DIR_PATH . 'assets/' );// Assets dir path.
-define( 'WPMOZO_BNA_ASSETS_DIR_URL', WPMOZO_BNA_INC_DIR_URL . 'assets/' );// Assets dir url.
-define( 'WPMOZO_BNA_OPTION', 'wpmozo-blocks-and-addons-option' );// Option name.
+define( 'WPMOZO_BNA_VERSION', '1.7.0' ); // Current plugin version.
+define( 'WPMOZO_BNA_FILE', __FILE__ ); // Plugin main file.
+define( 'WPMOZO_BNA_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) ); // Plugin dir path.
+define( 'WPMOZO_BNA_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) ); // Plugin dir url.
+define( 'WPMOZO_BNA_INC_DIR_PATH', WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/' ); // Includes dir path.
+define( 'WPMOZO_BNA_INC_DIR_URL', WPMOZO_BNA_PLUGIN_DIR_URL . 'includes/' ); // Includes dir url.
+define( 'WPMOZO_BNA_ASSETS_DIR_PATH', WPMOZO_BNA_INC_DIR_PATH . 'assets/' ); // Assets dir path.
+define( 'WPMOZO_BNA_ASSETS_DIR_URL', WPMOZO_BNA_INC_DIR_URL . 'assets/' ); // Assets dir url.
+define( 'WPMOZO_BNA_OPTION', 'wpmozo-blocks-and-addons-option' ); // Option name.
 
 require_once WPMOZO_BNA_INC_DIR_PATH . 'class-mozo-bna-blocks-and-addons.php';
 
