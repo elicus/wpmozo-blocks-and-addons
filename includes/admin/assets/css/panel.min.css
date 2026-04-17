@@ -1,173 +1,24 @@
+/* ============================================================
+   Base
+   ============================================================ */
 .wpmozo_bna_panel_wrapper,
 .wpmozo_bna_panel_wrapper * {
 	box-sizing: border-box;
 }
+
 .wpmozo_bna_panel_wrapper {
-	background: #ffffff;
+	background: #fff;
 	border-radius: 6px;
 	width: calc(100% - 70px);
 	float: left;
 	margin: 30px 40px 0 30px;
 	color: #545454;
 }
+
 .wpmozo_bna_panel_wrapper a {
 	text-decoration: none;
 }
 
-/* Panel Header. */
-.wpmozo_bna_panel_header {
-	display: flex;
-	align-items: center;
-	width: 100%;
-	padding: 20px 30px;
-	-webkit-box-shadow: 0 4px 12px 0 rgb(0 0 0 / .05);
-	-moz-box-shadow: 0 4px 12px 0 rgb(0 0 0 / .05);
-	box-shadow: 0 4px 12px 0 rgb(0 0 0 / .05);
-}
-.wpmozo_bna_panel_logo {
-	width: 250px;
-	padding-right: 10px;
-	line-height: 0;
-}
-.wpmozo_bna_panel_logo img {
-	max-width: 100%;
-}
-.wpmozo_bna_panel_menu {
-	flex: 1;
-	margin: 0;
-	text-align: right;
-}
-.wpmozo_bna_panel_wrapper ol, .wpmozo_nma_panel_wrapper ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-.wpmozo_bna_panel_wrapper .wpmozo_bna_upgrade_to_pro{
-	display: inline-block;
-	vertical-align: middle;
-}
-
-/* Buttons. */
-.wpmozo_bna_panel_wrapper .wpmozo_bna_panel_button,
-.wpmozo_bna_panel_select_deselect input.wpmozo_bna_panel_deselect_all,
-.wpmozo_bna_panel_select_deselect input.wpmozo_bna_panel_select_all,
-.wpmozo_bna_panel_wrapper .wpmozo_bna_upgrade_to_pro a {
-	display: inline-block;
-	background: #5e1f9e;
-	border-width: 0;
-	border-radius: 30px;
-	min-width: 120px;
-	padding: 12px 20px;
-	line-height: 1;
-	font-weight: 400;
-	text-align: center;
-	color: #ffffff;
-	vertical-align: middle;
-	-webkit-transition: 0.3s;
-	-moz-transition: 0.3s;
-	-ms-transition: 0.3s;
-	transition: 0.3s;
-	font-size: 14px;
-	letter-spacing: 1px;
-	cursor: pointer;
-	-webkit-box-shadow: 0 8px 20px rgb(0 0 0 / .2);
-	-moz-box-shadow: 0 8px 20px rgb(0 0 0 / .2);
-	-ms-box-shadow: 0 8px 20px rgb(0 0 0 / .2);
-	box-shadow: 0 8px 20px rgb(0 0 0 / .2);
-}
-
-.wpmozo_bna_panel_menu li {
-	margin-left: 20px;
-	display: inline-block;
-	font-size: 16px;
-	color: #bdbdbd;
-	cursor: pointer;
-}
-.wpmozo_bna_panel_menu li.wpmozo_bna_panel_active_menu_item {
-	color: #545454;
-	cursor: default;
-}
-.wpmozo_bna_panel_wrapper:not(.proactive) .wpmozo_bna_panel_menu .wpmozo_bna_panel_menu_item[data-href="#wpmozo_bna_panel_general_section"] {
-	display: none;
-}
-
-/* Panel body. */
-.wpmozo_bna_banner img {
-	max-width: 100%;
-}
-.wpmozo_bna_panel_section_wrapper {
-	position: relative;
-	width: 100%;
-	float: left;
-	padding: 30px 30px;
-}
-.wpmozo_bna_panel_section {
-	display: none;
-	position: relative;
-	width: 100%;
-	float: left;
-	z-index: 1;
-}
-.wpmozo_bna_panel_section.wpmozo_bna_panel_active_section {
-	display: block;
-}
-
-.wpmozo_bna_panel_select_deselect {
-	padding: 15px 0;
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: start;
-	align-items: center;
-	gap: 20px;
-}
-.wpmozo_bna_panel_settings_info {
-	display: block;
-	font-size: 14px;
-	font-style: italic;
-	color: #919191;
-	margin: 0;
-}
-
-/* Blocks list. */
-.wpmozo_bna_panel_multiple_checkboxes {
-	margin-top: 20px;
-	display: grid;
-	grid-template-columns: repeat(auto-fill, 200px);
-	justify-content: space-between;
-	gap: 20px;
-}
-.wpmozo_bna_panel_multiple_checkboxes span.wpmozo_bna_checkbox_wrapper,
-.wpmozo_bna_panel_single_checkboxes span.wpmozo_bna_checkbox_wrapper {
-	display: flex;
-	flex-flow: row nowrap;
-	width: 200px;
-	height: 70px;
-	gap: 10px;
-	box-shadow: 0 0 5px 1px #6563631c;
-	align-items: center;
-	justify-content: start;
-	border-radius: 3px;
-	position: relative;
-	transition: all 300ms;
-	padding: 15px;
-}
-.wpmozo_bna_panel_multiple_checkboxes label {
-	font-size: 14px;
-	margin: 5px 0;
-	line-height: 1.2;
-	color: #000000;
-}
-
-/* Switch. */
-.wpmozo_bna_panel_wrapper:not(.proactive) .wpmozo_pro .wpmozo_bna_panel_checkbox:hover,
-.wpmozo_bna_panel_wrapper:not(.proactive) .wpmozo_pro,
-.wpmozo_bna_panel_wrapper:not(.proactive) .wpmozo_pro .wpmozo_toggle_slider,
-.wpmozo_bna_panel_wrapper:not(.proactive) .wpmozo_pro .wpmozo_toggle_slider:hover{
-	cursor: not-allowed;
-}
-#wpmozo_bna_panel_general_section .wpmozo_bna_panel_multiple_checkboxes span[class*="wpmozo-bna-icon-"] {
-	font-size: 22px;
-}
 .wpmozo_bna_panel_wrapper a,
 .wpmozo_bna_panel_wrapper a:focus,
 .wpmozo_bna_panel_wrapper input,
@@ -175,11 +26,12 @@
 .wpmozo_bna_panel_wrapper input[type="checkbox"],
 .wpmozo_bna_panel_wrapper input[type="checkbox"]:focus,
 .wpmozo_bna_panel_wrapper input[type="radio"],
-.wpmozo_bna_panel_wrapper input[type="radio"]:focus{
+.wpmozo_bna_panel_wrapper input[type="radio"]:focus {
 	box-shadow: none;
 	margin: 0;
 	outline: 0;
 }
+
 .wpmozo_bna_panel_wrapper input,
 .wpmozo_bna_panel_wrapper input[type="checkbox"],
 .wpmozo_bna_panel_wrapper input[type="radio"],
@@ -188,150 +40,358 @@
 	background: #fafafa;
 	color: #545454;
 }
+
+.wpmozo_bna_panel_wrapper ol,
+.wpmozo_bna_panel_wrapper ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* ============================================================
+   Shared button styles
+   ============================================================ */
+.wpmozo_bna_panel_wrapper .wpmozo_bna_panel_button,
+.wpmozo_bna_panel_select_deselect input.wpmozo_bna_panel_select_all,
+.wpmozo_bna_panel_select_deselect input.wpmozo_bna_panel_deselect_all,
+.wpmozo_bna_panel_wrapper .wpmozo_bna_upgrade_to_pro a {
+	display: inline-block;
+	background: #5e1f9e;
+	border: 0;
+	border-radius: 30px;
+	min-width: 120px;
+	padding: 12px 20px;
+	line-height: 1;
+	font-size: 14px;
+	font-weight: 400;
+	letter-spacing: 1px;
+	text-align: center;
+	color: #fff;
+	vertical-align: middle;
+	cursor: pointer;
+	box-shadow: 0 8px 20px rgb(0 0 0 / .2);
+	transition: 0.3s;
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+.wpmozo_bna_panel_header {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	padding: 20px 30px;
+	box-shadow: 0 4px 12px 0 rgb(0 0 0 / .05);
+}
+
+.wpmozo_bna_panel_logo {
+	width: 250px;
+	padding-right: 10px;
+	line-height: 0;
+}
+
+.wpmozo_bna_panel_logo img {
+	max-width: 100%;
+}
+
+/* ============================================================
+   Navigation menu
+   ============================================================ */
+.wpmozo_bna_panel_menu {
+	flex: 1;
+	margin: 0;
+	text-align: right;
+}
+
+.wpmozo_bna_panel_menu li {
+	display: inline-block;
+	margin-left: 20px;
+	font-size: 16px;
+	color: #bdbdbd;
+	cursor: pointer;
+}
+
+.wpmozo_bna_panel_menu li.wpmozo_bna_panel_active_menu_item {
+	color: #545454;
+	cursor: default;
+}
+
+.wpmozo_bna_panel_wrapper .wpmozo_bna_upgrade_to_pro {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.wpmozo_bna_panel_wrapper:not(.proactive) .wpmozo_bna_panel_menu .wpmozo_bna_panel_menu_item[data-href="#wpmozo_bna_panel_general_section"] {
+	display: none;
+}
+
+/* ============================================================
+   Panel body
+   ============================================================ */
+.wpmozo_bna_banner img {
+	max-width: 100%;
+}
+
+.wpmozo_bna_panel_section_wrapper {
+	position: relative;
+	width: 100%;
+	float: left;
+	padding: 30px;
+}
+
+.wpmozo_bna_panel_section {
+	display: none;
+	position: relative;
+	width: 100%;
+	float: left;
+	z-index: 1;
+}
+
+.wpmozo_bna_panel_section.wpmozo_bna_panel_active_section {
+	display: block;
+}
+
+/* ============================================================
+   Select / Deselect toolbar
+   ============================================================ */
+.wpmozo_bna_panel_select_deselect {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: start;
+	gap: 20px;
+	padding: 15px 0;
+}
+
+.wpmozo_bna_panel_settings_info {
+	display: block;
+	font-size: 14px;
+	font-style: italic;
+	color: #919191;
+	margin: 0;
+}
+
+/* ============================================================
+   Blocks grid
+   ============================================================ */
+.wpmozo_bna_panel_multiple_checkboxes {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 200px);
+	justify-content: space-between;
+	gap: 20px;
+	margin-top: 20px;
+}
+
+/* Block item card */
+.wpmozo_bna_panel_multiple_checkboxes span.wpmozo_bna_checkbox_wrapper,
+.wpmozo_bna_panel_single_checkboxes span.wpmozo_bna_checkbox_wrapper {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: start;
+	position: relative;
+	width: 200px;
+	height: 70px;
+	gap: 10px;
+	padding: 15px;
+	border-radius: 3px;
+	box-shadow: 0 0 5px 1px #6563631c;
+	transition: all 300ms;
+}
+
+.wpmozo_bna_panel_multiple_checkboxes span:has(input[type="checkbox"]:checked) {
+	box-shadow: 0 0 5px 0 #ccc;
+	outline: 1px solid #ccc;
+}
+
+.wpmozo_bna_panel_multiple_checkboxes label {
+	font-size: 14px;
+	line-height: 1.2;
+	color: #000;
+	margin: 5px 0;
+}
+
+#wpmozo_bna_panel_general_section .wpmozo_bna_panel_multiple_checkboxes span[class*="wpmozo-bna-icon-"] {
+	font-size: 22px;
+}
+
+/* ============================================================
+   Checkbox input
+   ============================================================ */
 .wpmozo_bna_panel_multiple_checkboxes input[type="checkbox"] {
 	min-width: 15px;
 	width: 20px;
 	height: 20px;
-	background: #fff0;
+	background: transparent;
 	border: 0;
 	transition: all 300ms;
 }
-.wpmozo_bna_panel_multiple_checkboxes span:has(input[type="checkbox"]:checked) {
-	box-shadow: 0 0 5px 0 #cccccc;
-	outline: 1px solid #cccccc;
-}
-#wpbody-content:has(.wpmozo_bna_panel_wrapper.proactive) .wpmozo_bna_panel_wrapper:not(.proactive),
-.wpmozo_bna_panel_multiple_checkboxes input.wpmozo_bna_panel_checkbox[type="checkbox"]:checked:before {
-	display: none;
-}
-.wpmozo_bna_panel_multiple_checkboxes input[type="checkbox"]:after{
-	position: absolute;
+
+.wpmozo_bna_panel_multiple_checkboxes input[type="checkbox"]:after {
 	content: "";
-	width: 100%;
-	height: 100%;
-	background: #fff0;
-	border: 0;
-	transition: all 300ms;
+	position: absolute;
 	top: 0;
 	left: 0;
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border: 0;
+	transition: all 300ms;
 }
+
+.wpmozo_bna_panel_multiple_checkboxes input.wpmozo_bna_panel_checkbox[type="checkbox"]:checked:before,
+#wpbody-content:has(.wpmozo_bna_panel_wrapper.proactive) .wpmozo_bna_panel_wrapper:not(.proactive) {
+	display: none;
+}
+
+/* ============================================================
+   Toggle slider
+   ============================================================ */
 .wpmozo_bna_panel_multiple_checkboxes .wpmozo_bna_checkbox_wrapper span.wpmozo_toggle_slider {
 	display: inline-block;
 	position: absolute;
 	right: 10px;
+	width: 30px;
+	height: 15px;
+	border: 1px solid #aab1c0;
+	border-radius: 10px;
+	background: transparent;
 	cursor: pointer;
 	flex-shrink: 0;
-	border: 1px solid #aab1c0;
-	background: #fff0;
 	user-select: none;
-	height: 15px;
-	width: 30px;
-	border-radius: 10px;
 }
+
 .wpmozo_bna_panel_multiple_checkboxes .wpmozo_bna_checkbox_wrapper .wpmozo_toggle_slider .wpmozo_toggle_dot {
 	position: absolute;
-	background: #aab1c0;
-	width: 10px;
-	height: 10px;
-	border-radius: 40px;
 	top: 50%;
 	left: 7px;
+	width: 10px;
+	height: 10px;
+	background: #aab1c0;
+	border-radius: 40px;
 	transform: translateY(-50%) translateX(-50%);
 	transition: all 100ms ease;
 }
+
+/* Checked state */
+.wpmozo_bna_checkbox_wrapper input[type="checkbox"]:checked + .wpmozo_toggle_slider {
+	background: #5e1f9e;
+	border-color: #5e1f9e;
+}
+
+.wpmozo_bna_checkbox_wrapper input[type="checkbox"]:checked + .wpmozo_toggle_slider .wpmozo_toggle_dot {
+	left: calc(50% + 7px);
+	background: #fff;
+	transition: all 100ms ease;
+}
+
+/* ============================================================
+   PRO badge & disabled states
+   ============================================================ */
+.wpmozo_bna_panel_wrapper:not(.proactive) .wpmozo_pro .wpmozo_bna_panel_checkbox:hover,
+.wpmozo_bna_panel_wrapper:not(.proactive) .wpmozo_pro,
+.wpmozo_bna_panel_wrapper:not(.proactive) .wpmozo_pro .wpmozo_toggle_slider,
+.wpmozo_bna_panel_wrapper:not(.proactive) .wpmozo_pro .wpmozo_toggle_slider:hover {
+	cursor: not-allowed;
+}
+
 .wpmozo_bna_panel_wrapper:not(.proactive) .wpmozo_bna_panel_multiple_checkboxes .wpmozo_pro:after {
 	content: "PRO";
 	position: absolute;
-	width: 15%;
-	height: 15%;
 	top: 0;
-	text-align: center;
-	display: flex;
 	right: 0;
-	font-size: .5rem;
+	display: flex;
 	align-items: center;
 	justify-content: center;
-	border-radius: 3px;
-	background: #53006C1C;
-	color: #5e1f9e;
+	width: 15%;
+	height: 15%;
 	margin: 3px;
+	font-size: .5rem;
+	text-align: center;
+	border-radius: 3px;
+	background: #53006c1c;
+	color: #5e1f9e;
 	transition: all 300ms;
 }
 
-/* Save button. */
+/* ============================================================
+   Save button
+   ============================================================ */
 .wpmozo_bna_panel_save_button {
 	display: inline-block;
-	cursor: pointer;
-	text-align: right;
-	z-index: 9999;
-	transition: 0.3s;
 	position: sticky;
-	left: 100%;
 	bottom: 35px;
+	left: 100%;
+	z-index: 9999;
+	text-align: right;
+	cursor: pointer;
+	transition: 0.3s;
 }
+
 .wpmozo_bna_panel_save_options {
 	display: inline-block;
 	position: relative;
 	vertical-align: middle;
+	padding: 12px 35px;
 	background: #5e1f9e;
 	border-radius: 35px;
-	padding: 12px 35px 12px 35px;
-	letter-spacing: 1px;
 	font-size: 16px;
 	font-weight: 500;
+	letter-spacing: 1px;
 	color: #fff;
 	transition: all 0.3s;
 }
+
 .wpmozo_bna_panel_save_options:hover,
-.wpmozo_bna_panel_save_options:focus{
-	color: #ffffff;
-	-webkit-box-shadow: 0 8px 20px rgb(84 84 84 / .4);
-	-moz-box-shadow: 0 8px 20px rgb(84 84 84 / .4);
-	-ms-box-shadow: 0 8px 20px rgb(84 84 84 / .4);
+.wpmozo_bna_panel_save_options:focus {
+	color: #fff;
 	box-shadow: 0 8px 20px rgb(84 84 84 / .4);
 }
 
-/* Save button icon. */
+/* Save icon (dashicons via ::after) */
 .wpmozo_bna_panel_save_text:after {
+	display: none;
 	font-family: dashicons;
 	font-size: 24px;
-	color: #65db87;
 	content: "";
 	vertical-align: middle;
-	display: none;
-	background: #fff0;
-	transition: all 0.3s;
+	background: transparent;
 	letter-spacing: -11px;
-}
-.success .wpmozo_bna_panel_save_text:after {
-	display: inline-block;
-	-webkit-animation: 0.5s 1s forwards addIconSuccess;
-	-moz-animation: 0.5s 1s forwards addIconSuccess;
-	animation: 0.5s 1s forwards addIconSuccess;
-}
-.error .wpmozo_bna_panel_save_text:after {
-	color: #d63638;
-	display: inline-block;
-	-webkit-animation: 0.5s 1.2s forwards addIconError;
-	-moz-animation: 0.5s 1.2s forwards addIconError;
-	animation: 0.5s 1.2s forwards addIconError;
+	transition: all 0.3s;
 }
 
+.success .wpmozo_bna_panel_save_text:after {
+	display: inline-block;
+	color: #65db87;
+	animation: addIconSuccess 0.5s 1s forwards;
+}
+
+.error .wpmozo_bna_panel_save_text:after {
+	display: inline-block;
+	color: #d63638;
+	animation: addIconError 0.5s 1.2s forwards;
+}
+
+/* ============================================================
+   Loader / Ajax processor
+   ============================================================ */
 .wpmozo_bna_panel_ajax_processor {
 	display: none;
 	position: fixed;
 	top: 32px;
 	left: 160px;
-	background: rgb(255 255 255 / .4);
 	width: calc(100% - 160px);
 	height: 100%;
+	background: rgb(255 255 255 / .4);
 	z-index: 999999;
 }
-.wpmozo_bna_panel_loader .wpmozo_bna_panel_processor{
+
+.wpmozo_bna_panel_loader .wpmozo_bna_panel_processor {
 	width: 12px;
 	height: 12px;
 }
-.wpmozo_bna_panel_ajax_processor .wpmozo_bna_panel_processor{
+
+.wpmozo_bna_panel_ajax_processor .wpmozo_bna_panel_processor {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -339,37 +399,45 @@
 	z-index: 999999;
 	text-align: center;
 }
-.wpmozo_bna_panel_ajax_processor.wpmozo_bna_panel_loader:after{
+
+.wpmozo_bna_panel_ajax_processor.wpmozo_bna_panel_loader:after {
 	content: "";
 	position: absolute;
 	top: 50%;
-	border-top-color: #fff0;
-	border: 5px solid;
 	left: calc(50% - 35px);
-	border-radius: 50%;
-	border-color: #5e1f9e;
 	width: 26px;
 	height: 26px;
+	border: 5px solid #5e1f9e;
+	border-top-color: transparent;
+	border-radius: 50%;
 	transform: translate(-50%, -50%);
-	animation: 1.5s cubic-bezier(.17, .37, .43, .67) infinite loadingT;
+	animation: loadingT 1.5s cubic-bezier(.17, .37, .43, .67) infinite;
 	transition: background-color 0.3s;
 }
 
+/* ============================================================
+   Animations
+   ============================================================ */
 @keyframes addIconSuccess {
 	0%   { content: ""; opacity: 0; transform: scale(0); }
 	50%  { content: "\f147"; opacity: .5; transform: scale(1.5); }
 	100% { content: "\f147"; opacity: 1; transform: scale(1); }
 }
+
 @keyframes addIconError {
 	0%   { content: ""; opacity: 0; transform: scale(0); }
 	50%  { content: "\f158"; opacity: .5; transform: scale(1.5); }
 	100% { content: "\f158"; opacity: 1; transform: scale(1); }
 }
+
 @keyframes loadingT {
-	0%,50% { transform: rotate(0); }
-	100% { transform: rotate(360deg); }
+	0%, 50% { transform: rotate(0); }
+	100%    { transform: rotate(360deg); }
 }
 
+/* ============================================================
+   Responsive
+   ============================================================ */
 @media screen and (min-width: 768px) {
 	.wpmozo_bna_panel_settings_info {
 		width: 100%;
@@ -378,19 +446,23 @@
 }
 
 @media screen and (max-width: 1023px) {
-	.wpmozo_bna_panel_select_deselect, .wpmozo_bna_panel_multiple_checkboxes {
+	.wpmozo_bna_panel_select_deselect,
+	.wpmozo_bna_panel_multiple_checkboxes {
 		justify-content: center;
 		flex-wrap: wrap;
 	}
+
 	.wpmozo_bna_panel_settings_info {
-		text-align: center;
 		width: 100%;
+		text-align: center;
 	}
 }
+
 @media screen and (max-width: 767px) {
 	.wpmozo_bna_panel_header {
 		flex-direction: column;
 	}
+
 	.wpmozo_bna_panel_wrapper .wpmozo_bna_panel_menu {
 		width: 100%;
 		margin-top: 20px;
