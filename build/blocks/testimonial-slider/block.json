@@ -494,7 +494,7 @@
       "type": "object"
     },
     "arrowborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "metaSeparatorColor": {
       "type": "string",
@@ -516,13 +516,13 @@
       "type": "object"
     },
     "testimonialborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "authorImageborder": {
       "type": "object"
     },
     "authorImageborderRadius": {
-      "type": "string"
+      "type": "object"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",

@@ -62,9 +62,21 @@ function create_block_wpmozo_blocks_and_addons_block_init() {
 	/**
 	 * Registers the block type(s) in the `blocks-manifest.php` file.
 	 */
-	$manifest_data = require __DIR__ . '/build/blocks-manifest.php';
+	$manifest_data   = require __DIR__ . '/build/blocks-manifest.php';
+	$disabled_blocks = Mozo_Bna_Blocks_And_Addons::get_deactivate_blocks();
 	foreach ( array_keys( $manifest_data ) as $block_type ) {
 		register_block_type( __DIR__ . "/build/{$block_type}" );
+	}
+}
+
+/**
+ * Unregister blocks which are disabled in panel.
+ */
+function unregister_block_wpmozo_blocks_and_addons_block_init() {
+	// Get the disabled blocks.
+	$disabled_blocks = array_filter( Mozo_Bna_Blocks_And_Addons::get_deactivate_blocks() );
+	foreach ( $disabled_blocks as $block ) {
+		unregister_block_type( "wpmozo/{$block}" );
 	}
 }
 
@@ -78,6 +90,7 @@ function wpmozo_add_block_category($categories) {
 }
 add_filter( 'block_categories_all', 'wpmozo_add_block_category');
 add_action( 'init', 'create_block_wpmozo_blocks_and_addons_block_init' );
+add_action( 'init', 'unregister_block_wpmozo_blocks_and_addons_block_init', 50 );
 
 /**
  * Runs init class which loads all the necessory resources

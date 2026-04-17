@@ -32,23 +32,7 @@ if ( is_array( $blocks ) && ! empty( $blocks ) ) {
 	}
 
 	// Pro blocks list.
-	$pro_blocks = array(
-		'advanced-tabs'           => 'Advanced Tabs',
-		'ajax-search'             => 'AJAX Search',
-		'blog-slider'             => 'Blog Slider',
-		'dynamic-gallery'         => 'Product Carousel',
-		'image-hotspot'           => 'Image Hotspot',
-		'instagram-feed'          => 'Instagram Feed',
-		'instagram-feed-caroudel' => 'Instagram Feed Carousel',
-		'modal-popup'             => 'Modal Popup',
-		'team-grid'               => 'Team Grid',
-		'timeline'                => 'Timeline',
-		'woo-product-carousel'    => 'Woo Product Carousel',
-		'woo-product-categories'  => 'Woo Product Categories',
-		'woo-product-gallery'     => 'Woo Product Gallery',
-		'woo-product-grid'        => 'Woo Product Grid',
-		'woo-product-accordion'   => 'Woo Product Accordion',
-	);
+	$pro_blocks = include WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/data/pro-blocks.php';
 
 	$pro_blocks  = apply_filters( 'wpmozo_bna_add_pro_blocks_to_panel', $pro_blocks );
 	$blocks_list = array_merge( $blocks_list, array_unique( $pro_blocks )  ) ;
