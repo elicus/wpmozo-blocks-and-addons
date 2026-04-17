@@ -257,6 +257,15 @@
 	margin: 3px;
 	transition: all 300ms;
 }
+input[type="checkbox"]:checked+.wpmozo_toggle_slider {
+	border-color: #5e1f9e;
+	background: #5e1f9e;
+}
+input[type="checkbox"]:checked+.wpmozo_toggle_slider .wpmozo_toggle_dot {
+	background: #fff;
+	transition: all 100ms ease;
+	left: calc(50% + 7px);
+}
 
 /* Save button. */
 .wpmozo_bna_panel_save_button {
