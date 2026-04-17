@@ -31,30 +31,26 @@ if ( is_array( $blocks ) && ! empty( $blocks ) ) {
 		$blocks_list[ $key ] = esc_html( str_replace( '-', ' ', $mod ) );
 	}
 
-//	// Pro blocks list.
-//	$pro_blocks = array(
-//		'advanced-tabs'           => 'Advanced Tabs',
-//		'ajax-search'             => 'AJAX Search',
-//		'blog-slider'             => 'Blog Slider',
-//		'dynamic-gallery'         => 'Product Carousel',
-//		'image-hotspot'           => 'Image Hotspot',
-//		'instagram-feed'          => 'Instagram Feed',
-//		'instagram-feed-caroudel' => 'Instagram Feed Carousel',
-//		'modal-popup'             => 'Modal Popup',
-//		'team-grid'               => 'Team Grid',
-//		'timeline'                => 'Timeline',
-//		'woo-product-carousel'    => 'Woo Product Carousel',
-//		'woo-product-categories'  => 'Woo Product Categories',
-//		'woo-product-gallery'     => 'Woo Product Gallery',
-//		'woo-product-grid'        => 'Woo Product Grid',
-//		'woo-product-accordion'   => 'Woo Product Accordion',
-//	);
+	// Pro blocks list.
+	$pro_blocks = array(
+		'advanced-tabs'           => 'Advanced Tabs',
+		'ajax-search'             => 'AJAX Search',
+		'blog-slider'             => 'Blog Slider',
+		'dynamic-gallery'         => 'Product Carousel',
+		'image-hotspot'           => 'Image Hotspot',
+		'instagram-feed'          => 'Instagram Feed',
+		'instagram-feed-caroudel' => 'Instagram Feed Carousel',
+		'modal-popup'             => 'Modal Popup',
+		'team-grid'               => 'Team Grid',
+		'timeline'                => 'Timeline',
+		'woo-product-carousel'    => 'Woo Product Carousel',
+		'woo-product-categories'  => 'Woo Product Categories',
+		'woo-product-gallery'     => 'Woo Product Gallery',
+		'woo-product-grid'        => 'Woo Product Grid',
+		'woo-product-accordion'   => 'Woo Product Accordion',
+	);
 
-	$pro_blocks = array();
-
-	// Apply filter so pro plugin can add its blocks
-	$pro_blocks = apply_filters( 'wpmozo_bna_add_pro_blocks_to_panel', $pro_blocks );
-
+	$pro_blocks  = apply_filters( 'wpmozo_bna_add_pro_blocks_to_panel', $pro_blocks );
 	$blocks_list = array_merge( $blocks_list, array_unique( $pro_blocks )  ) ;
 	ksort( $blocks_list );
 
