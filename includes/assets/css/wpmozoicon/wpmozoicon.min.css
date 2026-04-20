@@ -20,6 +20,10 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+
+.wpmozo-bna-icon-call-to-action:before {
+	content: "\e971";
+}
 .wpmozo-bna-icon-tile-scroll:before {
 	content: "\e95e";
 }
@@ -119,10 +123,10 @@
 .wpmozo-bna-icon-image-carousel:before {
 	content: "\e930";
 }
-.wpmozo-bna-icon-product-gallery:before {
+.wpmozo-bna-icon-woo-product-gallery:before {
 	content: "\e933";
 }
-.wpmozo-bna-icon-product-accordion:before {
+.wpmozo-bna-icon-woo-product-accordion:before {
 	content: "\e93b";
 }
 .wpmozo-bna-icon-image-accordion:before {
@@ -173,7 +177,7 @@
 .wpmozo-bna-icon-lottie:before {
 	content: "\e92f";
 }
-.wpmozo-bna-icon-product-categories:before {
+.wpmozo-bna-icon-woo-product-categories:before {
 	content: "\e92d";
 }
 .wpmozo-bna-icon-list:before {
@@ -185,7 +189,7 @@
 .wpmozo-bna-icon-image-mask:before {
 	content: "\e927";
 }
-.wpmozo-bna-icon-advanced-blog-slider:before {
+.wpmozo-bna-icon-blog-slider:before {
 	content: "\e91c";
 }
 .wpmozo-bna-icon-instagram-feed-carousel:before {
@@ -266,10 +270,10 @@
 .wpmozo-bna-icon-advanced-blog:before {
 	content: "\e902";
 }
-.wpmozo-bna-icon-product-carousel:before {
+.wpmozo-bna-icon-woo-product-carousel:before {
 	content: "\e905";
 }
-.wpmozo-bna-icon-product-grid:before {
+.wpmozo-bna-icon-woo-product-grid:before {
 	content: "\e922";
 }
 .wpmozo-bna-icon-timeline:before {

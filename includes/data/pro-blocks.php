@@ -30,5 +30,4 @@ return array(
 	'facebook-embedded-post'    => esc_html__( 'Facebook Embedded Post', 'wpmozo-blocks-and-addons' ),
 	'facebook-page'             => esc_html__( 'Facebook Page', 'wpmozo-blocks-and-addons' ),
 	'image-card-carousel'       => esc_html__( 'Image Card Carousel', 'wpmozo-blocks-and-addons' ),
-
 );

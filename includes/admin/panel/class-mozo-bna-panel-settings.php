@@ -83,7 +83,7 @@ class Mozo_Bna_Panel_Settings{
 					$list   .= '
 					<span class="wpmozo_bna_checkbox_wrapper wpmozo-bna-icon-'.$key.' wpmozo_pro">
 						<label for="' . esc_attr( $key ) . '">' . ucwords( esc_html( $option ) ) . '</label>
-						<input type="checkbox" class="wpmozo_bna_panel_checkbox" id="' . esc_attr( $key ) . '" value="' . esc_attr( $key ) . '" ' . (defined('WPMOZO_BNA_PRO_VERSION') ? esc_attr( $checked ) : '') . ' disabled>
+						<input type="checkbox" class="wpmozo_bna_panel_checkbox" id="' . esc_attr( $key ) . '" value="' . esc_attr( $key ) . '" ' . (defined('WPMOZO_BNA_PRO_VERSION') ? esc_attr( $checked ) : 'disabled') . '>
 						<span class="wpmozo_toggle_slider">
 							<span class="wpmozo_toggle_dot"></span>
 						</span>

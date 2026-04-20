@@ -1,0 +1,109 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/call-to-action",
+	"version": "0.1.0",
+	"title": "Call To Action",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "Create Call To Action with custom title, description and button.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"customClassName": false
+	},
+	"attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+        "blockVerticleAlign": { "type": "object", "default": "center" },
+        "blockpadding": { "type": "object" },
+		"blockmargin": { "type": "object" },
+		"blockBackground": { "type": "string" },
+		"blockBGGradient": { "type": "string" },
+        "blockborder": { "type": "object" },
+		"blockborderRadius": { "type": "object" },
+
+        "title": { "type": "string", "default": "Call To Action Title" },
+        "description": { "type": "string", "default": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever." },
+
+        "titleLevel": { "type": "string", "default": "h3" },
+		"titleAlign": { "type": "string" },
+		"titleColor": { "type": "string" },
+		"titleFontSize": { "type": "string" },
+		"titleLetterSpacing": { "type": "string" },
+		"titleDecoration": { "type": "string" },
+		"titleLetterCase": { "type": "string" },
+		"titleLineHeight": { "type": "string" },
+		"titleFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"titleFontStyle": { "type": "string" },
+		"titleFontWeight": { "type": "string" },
+
+        "descriptionAlign": { "type": "string" },
+		"descriptionColor": { "type": "string" },
+		"descriptionFontSize": { "type": "string" },
+		"descriptionLetterSpacing": { "type": "string" },
+		"descriptionDecoration": { "type": "string" },
+		"descriptionLetterCase": { "type": "string" },
+		"descriptionLineHeight": { "type": "string" },
+		"descriptionFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"descriptionFontStyle": { "type": "string" },
+		"descriptionFontWeight": { "type": "string" },
+
+        "showButton": { "type": "boolean", "default": true },
+		"buttonText": { "type": "string", "default": "Lean more" },
+		"buttonUrl": { "type": "string", "default": "#" },
+		"buttonLinkTarget": { "type": "string", "default": "same" },
+
+        "buttonContainerSize": { "type": "number", "default": 25 },
+        "buttonStackOn": { "type": "string", "default": "none" },
+        "buttonAlign": { "type": "string" },
+		"buttonBackground": { "type": "string", "default": "" },
+		"buttonBGGradient": { "type": "string" },
+		"buttonUseIcon": { "type": "boolean", "default": false },
+		"buttonIcon": { "type": "string", "default": "fas fa-arrow-right" },
+		"buttonIconPosition": { "type": "string", "default": "after" },
+		"buttonIconOnHover": { "type": "boolean", "default": false },
+		"buttonpadding": { "type": "object", "default": { "top": "10px", "right": "20px", "bottom": "10px", "left": "20px" } },
+		"buttonmargin": { "type": "object" },
+		"buttonborder": { "type": "object", "default": { "width": "2px", "style": "solid", "color": "#313131" } },
+		"buttonborderRadius": { "type": "string", "default": "3px" },
+		"buttonColor": { "type": "string" },
+		"buttonFontSize": { "type": "string" },
+		"buttonLetterSpacing": { "type": "string" },
+		"buttonDecoration": { "type": "string" },
+		"buttonLetterCase": { "type": "string" },
+		"buttonLineHeight": { "type": "string" },
+		"buttonFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"buttonFontStyle": { "type": "string" },
+		"buttonFontWeight": { "type": "string" },
+
+		"buttonHoverBackground": { "type": "string", "default": "" },
+		"buttonHoverBGGradient": { "type": "string" },
+		"buttonHoverborder": { "type": "object" },
+		"buttonHoverborderRadius": { "type": "string" },
+		"buttonHoverColor": { "type": "string" },
+		"buttonHoverFontSize": { "type": "string" },
+		"buttonHoverLetterSpacing": { "type": "string" },
+		"buttonHoverDecoration": { "type": "string" },
+		"buttonHoverLetterCase": { "type": "string" },
+		"buttonHoverLineHeight": { "type": "string" },
+		"buttonHoverFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"buttonHoverFontStyle": { "type": "string" },
+		"buttonHoverFontWeight": { "type": "string" }
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css"
+}
