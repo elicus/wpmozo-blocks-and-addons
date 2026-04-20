@@ -2,7 +2,7 @@
 Contributors: elicus
 Tags: gutenberg, blocks, gutenberg blocks, gutenberg editor, wordpress blocks
 Tested up to: 6.9
-Stable tag: 1.7.0
+Stable tag: 1.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -179,6 +179,9 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
+2026-04-20 - Version 1.8.0
+* Added panel to manage blocks enable or disable.
+
 2025-12-17 - Version 1.7.0
 * New: Breadcrumbs Block.
 * New: Post Ticker Block.
