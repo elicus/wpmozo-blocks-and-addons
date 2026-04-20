@@ -75,8 +75,11 @@ function create_block_wpmozo_blocks_and_addons_block_init() {
 function unregister_block_wpmozo_blocks_and_addons_block_init() {
 	// Get the disabled blocks.
 	$disabled_blocks = array_filter( Mozo_Bna_Blocks_And_Addons::get_deactivate_blocks() );
+	$registry = WP_Block_Type_Registry::get_instance();
 	foreach ( $disabled_blocks as $block ) {
-		unregister_block_type( "wpmozo/{$block}" );
+		if ( $registry->is_registered( "wpmozo/{$block}" ) ) {
+			unregister_block_type( "wpmozo/{$block}" );
+		}
 	}
 }
 
