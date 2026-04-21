@@ -23,7 +23,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 	styles += `.wpmozo-bna-cta-inner{
 		${attributes.blockVerticleAlign ? `align-items:`+ attributes.blockVerticleAlign + `;` : ''}
 	}`;
-		
+
 	// Title.
 	styles += `.wpmozo-bna-cta-title{
 		${attributes.titleAlign ? `text-align: ${attributes.titleAlign};` : ''}
@@ -40,7 +40,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 	// Button.
 	if ( attributes.showButton ) {
 		styles += `.wpmozo-bna-button-wrap{
-			${attributes.buttonAlign ? `text-align: ${attributes.buttonAlign};` : ''}
+			${attributes.buttonAlign ? `text-align: ${attributes.buttonAlign}!important;` : ''}
 			${attributes.buttonContainerSize ? `width: ${attributes.buttonContainerSize}%;` : ''}
 		}`;
 		styles += `.wpmozo-bna-button-wrap .wpmozo-bna-button{
