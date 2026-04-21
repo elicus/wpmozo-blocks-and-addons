@@ -121,7 +121,7 @@ WPMozo Breadcrumbs block enables both users and search crawlers to easily explor
 WPMozo Posts Ticker block displays dynamic post titles in a fully customizable ticker bar, making it ideal for highlighting the latest news, updates, or featured blog posts.
 53. [Wavy Gallery](https://wpmozoblocks.com/wavy-gallery/ "Wavy Gallery for Gutenberg")
 WPMozo Wavy Gallery block adds a unique horizontal wave animation to your image gallery, perfect for showcasing portfolios, creative projects, and visual stories.
-54. [Call To Action](https://wpmozoblocks.com/wavy-gallery/ "Call To Action for Gutenberg")
+54. [Call To Action](https://wpmozoblocks.com/call-to-action/ "Call To Action for Gutenberg")
 WPMozo Call To Action block adds a custom title, description and button..
 
 
