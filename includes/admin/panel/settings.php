@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php if (!defined('WPMOZO_BNA_PRO_VERSION')){ ?>
 			<span class="wpmozo_bna_upgrade_to_pro"><a href="https://wpmozoblocks.com/pricing/" target="_blank">Upgrade to Pro</a></span>
 
-			<?php }
+			<?php } else{
 			?>
 			<li class="wpmozo_bna_panel_menu_item wpmozo_bna_panel_active_menu_item" data-href="#wpmozo_bna_panel_general_section">
 				<?php echo esc_html__( 'General', 'wpmozo-blocks-and-addons' ); ?>
@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php echo esc_html__( 'License', 'wpmozo-blocks-and-addons' ); ?>
 
 			</li>
-			<?php
+			<?php }
 			/**
 			 * Allow pro version to add more tabs to the menu.
 			 *
