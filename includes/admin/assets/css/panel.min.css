@@ -259,7 +259,7 @@
 	margin: 3px;
 	transition: all 300ms;
 }
-input[type="checkbox"]:checked+.wpmozo_toggle_slider {
+.wpmozo_bna_blocks input[type="checkbox"]:checked+.wpmozo_toggle_slider {
 	border-color: #3d3eed;
 	background: #3d3eed;
 }

@@ -108,7 +108,7 @@ class Mozo_Bna_Panel_Settings{
 						<span><input type="button" class="wpmozo_bna_panel_deselect_all" value="Deselect All"></span>
 						<span class="wpmozo_bna_panel_settings_info">%4$s</span>
 					</div>
-					<div class="wpmozo_bna_panel_multiple_checkboxes">
+					<div class="wpmozo_bna_panel_multiple_checkboxes wpmozo_bna_blocks">
 						%1$s
 						<input id="%2$s" type="hidden" value="%3$s" class="wpmozo_bna_panel_hiddenfield wpmozo_inactive_checkboxes_value wpmozo_panel_value" name="%2$s" />
 					</div>
