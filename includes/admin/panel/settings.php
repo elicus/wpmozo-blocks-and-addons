@@ -1,7 +1,7 @@
 <?php
 /**
  * Settings main file.
- * 
+ *
  * @link       https://elicus.com
  * @since      1.8.0
  * @package    WPMozo_Blocks_And_Addons
@@ -27,7 +27,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			?>
 			<li class="wpmozo_bna_panel_menu_item wpmozo_bna_panel_active_menu_item" data-href="#wpmozo_bna_panel_general_section">
 				<?php echo esc_html__( 'General', 'wpmozo-blocks-and-addons' ); ?>
-					
+
+			</li>
+			<li class="wpmozo_bna_panel_menu_item" data-href="#wpmozo_bna_panel_license_section">
+				<?php echo esc_html__( 'License', 'wpmozo-blocks-and-addons' ); ?>
+
 			</li>
 			<?php
 			/**
@@ -47,10 +51,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div> -->
 	<?php // } ?>
 	<div class="wpmozo_bna_panel_section_wrapper" >
-		
+
 		<!-- Generatl tab. -->
 		<div id="wpmozo_bna_panel_general_section" class="wpmozo_bna_panel_section wpmozo_bna_panel_active_section">
 			<?php require_once plugin_dir_path( __FILE__ ) . 'partials/general.php'; ?>
+		</div>
+
+		<!-- License tab. -->
+		<div id="wpmozo_bna_panel_license_section" class="wpmozo_bna_panel_section wpmozo_bna_panel_active_section">
+			<?php require_once plugin_dir_path( __FILE__ ) . 'partials/license.php'; ?>
 		</div>
 
 		<?php

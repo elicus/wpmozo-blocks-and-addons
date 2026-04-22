@@ -409,3 +409,56 @@ input[type="checkbox"]:checked+.wpmozo_toggle_slider .wpmozo_toggle_dot {
 		text-align: center;
 	}
 }
+
+/*License*/
+.wpmozo_bna_panel_wrapper .wpmozo_bna_panel_licensefield .wpmozo_bna_panel_textfield {
+	display: block;
+	margin-bottom: 25px;
+	padding: 12px 20px;
+	width: 100%;
+	max-width: 400px;
+	border-radius: 30px;
+}
+.wpmozo_bna_panel_licensefield .wpmozo_bna_panel_textfield:focus {
+	margin-bottom: 25px;
+}
+.wpmozo_bna_panel_licensefield .wpmozo_bna_panel_button,
+.wpmozo_bna_panel_select_deselect input.wpmozo_bna_panel_deselect_all,
+.wpmozo_bna_panel_select_deselect input.wpmozo_bna_panel_select_all {
+	-webkit-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+	-ms-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+	min-width: 150px;
+	padding: 12px 30px;
+	font-size: 14px;
+	letter-spacing: 1px;
+}
+.wpmozo_bna_panel_licensefield .wpmozo_bna_panel_field_control .wpmozo_bna_panel_button.wpmozo_bna_panel_button_deactivate {
+	background: #545454;
+	margin-right: 20px;
+}
+.wpmozo_bna_panel_licensefield .wpmozo_bna_panel_button_activate:not(.disabled):hover,
+.wpmozo_bna_panel_licensefield .wpmozo_bna_panel_button_deactivate:not(.disabled):hover {
+	-webkit-box-shadow: 0 8px 20px rgba(84, 84, 84, 0.4);
+	-moz-box-shadow: 0 8px 20px rgba(84, 84, 84, 0.4);
+	-ms-box-shadow: 0 8px 20px rgba(84, 84, 84, 0.4);
+	box-shadow: 0 8px 20px rgba(84, 84, 84, 0.4);
+}
+.wpmozo_bna_panel_licensefield .wpmozo_bna_panel_button.disabled {
+	opacity: 0.2;
+	cursor: not-allowed;
+}
+#wpmozo_bna_panel_license_section .wpmozo_bna_panel_licensefield .wpmozo_bna_panel_label_control{
+	width: 25%;
+	float: left;
+}
+#wpmozo_bna_panel_license_section .wpmozo_bna_panel_licensefield .wpmozo_bna_panel_field_control{
+	width: 75%;
+	padding: 0 0 5px 30px;
+	float: right;
+}
+.wpmozo_ae_panel_licensefield .wpmozo_ae_panel_label_control{
+	font-size: 16px;
+	font-weight: 500;
+}
