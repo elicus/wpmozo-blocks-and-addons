@@ -29,17 +29,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php echo esc_html__( 'General', 'wpmozo-blocks-and-addons' ); ?>
 
 			</li>
-			<li class="wpmozo_bna_panel_menu_item" data-href="#wpmozo_bna_panel_license_section">
-				<?php echo esc_html__( 'License', 'wpmozo-blocks-and-addons' ); ?>
-
-			</li>
 			<?php }
 			/**
 			 * Allow pro version to add more tabs to the menu.
 			 *
 			 * @since 1.8.0
 			 */
-			echo apply_filters( 'wpmozo_bna_settings_tabs', '' );
+			do_action( 'wpmozo_bna_settings_tabs' )
 			?>
 		</ul>
 	</div>
@@ -55,11 +51,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- Generatl tab. -->
 		<div id="wpmozo_bna_panel_general_section" class="wpmozo_bna_panel_section wpmozo_bna_panel_active_section">
 			<?php require_once plugin_dir_path( __FILE__ ) . 'partials/general.php'; ?>
-		</div>
-
-		<!-- License tab. -->
-		<div id="wpmozo_bna_panel_license_section" class="wpmozo_bna_panel_section wpmozo_bna_panel_active_section">
-			<?php require_once plugin_dir_path( __FILE__ ) . 'partials/license.php'; ?>
 		</div>
 
 		<?php
