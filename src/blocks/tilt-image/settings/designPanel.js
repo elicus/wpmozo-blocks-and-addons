@@ -8,6 +8,7 @@ import {
 	ButtonGroup,
 	Button,
 	ToggleControl,
+	HeightControl
 } from "@wordpress/components";
 import {
 	WpmozoDimensions,
