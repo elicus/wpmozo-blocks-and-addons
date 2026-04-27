@@ -28,6 +28,9 @@
     "imageTitle": {
       "type": "string"
     },
+    "imageAlt": {
+      "type": "string"
+    },
     "scrollDirection": {
       "type": "string",
       "default": "top"

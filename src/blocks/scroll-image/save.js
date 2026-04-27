@@ -3,7 +3,7 @@ import generateDynamicStyle from './style';
 
 export default function save({attributes}) {
 	const ID = attributes.ID;
-	
+
 	let image = (attributes.image) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,
 		title = attributes.imageTitle;
 
@@ -15,7 +15,7 @@ export default function save({attributes}) {
 		>
 			<div className="wpmozo-bna-scroll-image-wrapper">
 				<div className="wpmozo-bna-scroll-image-inner-wrap" data-direction={`${attributes.scrollDirection}`}>
-					<img className="wpmozo-bna-scroll-image-img" title={title} src={image} />
+					<img className="wpmozo-bna-scroll-image-img" title={title} src={image} alt={attributes.imageAlt} />
 				</div>
 			</div>
 		</div>
