@@ -24,6 +24,11 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			<WpmozoMediaUploader props={props}
 				attrKye="image"
 			/>
+			<TextControl
+				label={ __( 'Image Alt', 'wpmozo-blocks-and-addons' ) }
+				value={ attributes.imageAlt }
+				onChange={ ( newValue ) => setAttributes( { imageAlt: newValue } ) }
+			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Content', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
 			<TextControl

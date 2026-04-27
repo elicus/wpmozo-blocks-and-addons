@@ -77,7 +77,7 @@ export default function Edit( props ) {
 			<div id={`block-${attributes.ID}`} { ...useBlockProps( { className: 'wpmozo-bna-tilt-image' } ) }>
 				<div className={`wpmozo-bna-tilt-image-wrapper wpmozo-editor wpmozo-bna-tilt-align-${contentAlignment}`}>
 					<div className="wpmozo-bna-tilt-image-inner-wrapper">
-						<img className="wpmozo-bna-tilt-image-image" src={image} />
+						<img className="wpmozo-bna-tilt-image-image" src={image}  alt={attributes.imageAlt}/>
 						<div className={`wpmozo-bna-tilt-content-wrapper${animationClass}`}>
 							{ attributes.useIcon && icon }
 							{ ! wpmozo_is_empty( attributes.title ) &&
