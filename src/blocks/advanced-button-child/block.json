@@ -42,7 +42,7 @@
 		"buttonContainermargin": {"type": "object"},
 		"buttonContainerpadding": {"type": "object"},
 		"buttonContainerborder": {"type": "object"},
-		"buttonContainerborderRadius": {"type": "string"},
+		"buttonContainerborderRadius": {"type": "object"},
 		"iconButton": {"type": "boolean", "default": false},
 		"icon": {"type": "string"},
 		"iconColor": {"type": "string"},
