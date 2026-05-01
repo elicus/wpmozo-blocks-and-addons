@@ -23,20 +23,20 @@
 
 		"iconSize": { "type": "number", "default": 38 },
 		"iconColor": { "type": "string" },
-		
+
 		"itempadding": { "type": "object" },
 		"itemBorderType": { "type": "string", "default": "none" },
 		"itemBorderWidth": { "type": "number" },
 		"borderColor": { "type": "string" },
 		"itemBorderRadius": { "type": "number", "default": "" },
-		
+
 		"tooltipColor": { "type": "string","default": "" },
 		"tooltipBackgroundColor": { "type": "string", "default": "" },
 		"showTooltip": { "type": "boolean", "default": false }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"script": [ "wpmozo-blocks-and-addons-tippy-script", "file:./script.js" ]
+	"script": [ "wpmozo-blocks-and-addons-tippy-script", "file:./script.js" ],
+	"editorStyle": ["wpmozo-blocks-and-addons-fontawesome-style","file:./index.css"],
+	"style": ["wpmozo-blocks-and-addons-fontawesome-style","file:./style-index.css"]
 }

@@ -293,7 +293,6 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 	 * @since 1.0.0
 	 */
 	public function enqueue_block_assets() {
-		wp_enqueue_style( $this->plugin_name . '-fontawesome-style' );
 		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
 
 		// Load frontend localize variables.

@@ -105,5 +105,6 @@
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
-	"style": "file:./style-index.css"
+	"editorStyle": ["wpmozo-blocks-and-addons-fontawesome-style","file:./index.css"],
+	"style": ["wpmozo-blocks-and-addons-fontawesome-style","file:./style-index.css"]
 }
