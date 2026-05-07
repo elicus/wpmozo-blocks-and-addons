@@ -78,6 +78,9 @@ class Mozo_Bna_Panel_Settings{
 			$list  = '';
 			$value = array_map( 'sanitize_text_field', $value );
 			foreach ( $options as $key => $option ) {
+				if('content-wraper' === $key){
+					continue;
+				}
 				if ( in_array( $option, $pros ) ){
 					$checked = in_array( $key, explode( ',', $inactive_value ), true ) ? '' : checked( 1, 1, false );
 					$list   .= '
