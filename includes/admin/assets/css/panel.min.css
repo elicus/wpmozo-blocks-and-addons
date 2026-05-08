@@ -458,7 +458,19 @@ input[type="checkbox"]:checked+.wpmozo_toggle_slider .wpmozo_toggle_dot {
 	padding: 0 0 5px 30px;
 	float: right;
 }
-.wpmozo_ae_panel_licensefield .wpmozo_ae_panel_label_control{
+.wpmozo_bna_panel_licensefield .wpmozo_bna_panel_label_control{
 	font-size: 16px;
 	font-weight: 500;
+}
+.wpmozo_bna_panel_license_response {
+	display: block;
+	margin-top: 10px;
+	font-size: 14px;
+	font-style: italic;
+}
+.wpmozo_bna_panel_license_response.success {
+	color: #047f27;
+}
+.wpmozo_bna_panel_license_response.error {
+	color: #7d0000;
 }
