@@ -83,7 +83,7 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 				$post_id = esc_attr( get_the_ID() );
 
 				// Get Star Rating.
-				$rating_num = floatval( get_post_meta( $post_id, '_author_rating', true ) );
+				$rating_num = floatval( get_post_meta( $post_id, 'wpmozo_ae_testimonial_author_rating', true ) );
 				$rating     = '';
 				if ( true === $show_rating && $rating_num > 0 ) {
 					$stars = '';
@@ -129,7 +129,7 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 					);
 				}
 
-				$author_name = get_post_meta( $post_id, '_author_name', true );
+				$author_name = get_post_meta( $post_id, 'wpmozo_ae_testimonial_author_name', true );
 				if ( ! empty( $author_name ) ) {
 					$author_name = sprintf(
 						'<div class="wpmozo_testimonial_author_name">%1$s</div>',
@@ -139,7 +139,7 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 
 				$author_designation = '';
 				if ( true === $show_designation ) {
-					$desgination = get_post_meta( $post_id, '_author_designation', true );
+					$desgination = get_post_meta( $post_id, 'wpmozo_ae_testimonial_author_designation', true );
 					if ( ! empty( $desgination ) ) {
 						$author_designation = sprintf(
 							'<div class="wpmozo_testimonial_author_designation">%1$s</div>',
@@ -150,8 +150,8 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 
 				$author_company = '';
 				if ( true === $show_company ) {
-					$company_name = get_post_meta( $post_id, '_author_company', true );
-					$company_url  = get_post_meta( $post_id, '_author_company_url', true );
+					$company_name = get_post_meta( $post_id, 'wpmozo_ae_testimonial_author_company', true );
+					$company_url  = get_post_meta( $post_id, 'wpmozo_ae_testimonial_author_company_url', true );
 					if ( ! empty( $company_url ) && ! empty( $company_name )  ) {
 						$author_company = sprintf(
 							'<div class="wpmozo_testimonial_author_company">

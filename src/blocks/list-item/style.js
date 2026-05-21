@@ -3,7 +3,6 @@ import {convertInlineStyleStr} from '../../common/utils.js';
 const generateDynamicStyle = ({ attributes, clientId }) => {
 
      // Re-run when clientId changes
-	/*console.log(parentAttributes);*/
 	const toConvertStyles = [
     	'textNormal',
         'textHover',
@@ -40,8 +39,8 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 				}
 			}
 			styles += `${ (attributes.shapeBackground) ? `.wpmozo-bna-list-icon i { background-color:`+attributes.shapeBackground+`;}` : '' }`;
-		} 
-	} 	
+		}
+	}
 	styles += `}`;
 
 	return styles;

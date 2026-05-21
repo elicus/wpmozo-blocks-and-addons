@@ -20,8 +20,8 @@ $show_short_desc   = boolval( $attributes['showShortDesc'] ) ?? true;
 
 // Post data.
 $post_title        = get_the_title( $post_id );
-$designation       = get_post_meta( $post_id, '_designation', true );
-$short_description = get_post_meta( $post_id, '_short_description', true );
+$designation       = get_post_meta( $post_id, 'wpmozo_ae_team_member_designation', true );
+$short_description = get_post_meta( $post_id, 'wpmozo_ae_team_member_short_desc', true );
 
 // Member name.
 $member_name = '';

@@ -2,7 +2,7 @@
 Contributors: elicus
 Tags: gutenberg, blocks, gutenberg blocks, gutenberg editor, wordpress blocks
 Tested up to: 6.9
-Stable tag: 1.6.1
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -115,6 +115,12 @@ Add movement and storytelling to your website using WPMozo Scroll Stack Cards bl
 Create interactive list sections with a title, subtitle, description, icon, and button. On hover, each row displays a background image using WPMozo Hover List block for Gutenberg.
 50. [Split Image](https://wpmozoblocks.com/split-image/ "Split Image for Gutenberg")
 WPMozo Split Image block breaks an image into a customizable grid of square pieces, allowing unique and artistic presentations for your site.
+51. [Breadcrumbs](https://wpmozoblocks.com/breadcrumbs/ "Breadcrumbs for Gutenberg")
+WPMozo Breadcrumbs block enables both users and search crawlers to easily explore different pages of the site.
+52. [Posts Ticker](https://wpmozoblocks.com/post-ticker/ "Post Ticker for Gutenberg")
+WPMozo Posts Ticker block displays dynamic post titles in a fully customizable ticker bar, making it ideal for highlighting the latest news, updates, or featured blog posts.
+53. [Wavy Gallery](https://wpmozoblocks.com/wavy-gallery/ "Wavy Gallery for Gutenberg")
+WPMozo Wavy Gallery block adds a unique horizontal wave animation to your image gallery, perfect for showcasing portfolios, creative projects, and visual stories.
 
 
 This plugin is fully compatible with Gutenberg and WordPress block editor, ensuring seamless integration with your website.
@@ -173,10 +179,14 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
-2025-12-02 - Version 1.6.1
+2025-12-17 - Version 1.7.0
+* New: Breadcrumbs Block.
+* New: Post Ticker Block.
+* New: Wavy Gallery Block.
+
+2025-12-05 - Version 1.6.1
 * Fixed: Conflict with third party plugin.
 
-== Changelog ==
 2025-11-11 - Version 1.6.0
 * New: Horizontal Scrolling Posts Block.
 * New: Team Slider Block.
@@ -184,7 +194,6 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * New: Hover List Block.
 * New: Split Image Block.
 
-== Changelog ==
 2025-10-13 - Version 1.5.0
 * New: Image Card Ticker Block.
 * New: Background Switcher Block.

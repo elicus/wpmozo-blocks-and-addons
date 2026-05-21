@@ -1,0 +1,77 @@
+.wpmozo-bna-breadcrumb-wrapper {
+    display: flex;
+}
+.wpmozo-bna-breadcrumb-wrapper ol {
+    display: inline-block;
+    list-style: none !important;
+    padding: 0;
+}
+.wpmozo-bna-breadcrumb-wrapper .wpmozo-bna-last-page {
+    pointer-events: none;
+}
+.wpmozo-bna-breadcrumb-wrapper.layout1 li {
+    float: left;
+    margin: 0;
+}
+.wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0 10px 0 10px;
+    text-align: center;
+    margin-right: 23px;
+}
+.wpmozo-bna-breadcrumb-wrapper.layout1 li:first-child .breadcrumb-page {
+    border-radius: 2px 0 0 2px;
+}
+.wpmozo-bna-breadcrumb-wrapper.layout1 li:last-child .breadcrumb-page {
+    border-radius: 0 2px 2px 0;
+    margin-right: 0;
+}
+.wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page::after,
+.wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    border: 0 solid;
+    width: 0;
+    height: 0;
+}
+.wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page::before {
+    left: -20px;
+}
+.wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page::after {
+    left: 100%;
+}
+.wpmozo-bna-breadcrumb-wrapper.layout1 li:first-child .breadcrumb-page::before {
+    border: none;
+}
+.wpmozo-bna-breadcrumb-wrapper.layout1 li:last-child .breadcrumb-page::after {
+    border: none;
+}
+.wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-home-icon {
+    font-size: 20px;
+    padding-right: 8px;
+}
+.wpmozo-bna-breadcrumb-wrapper.layout2 ol {
+    display: flex;
+}
+.wpmozo-bna-breadcrumb-wrapper.layout2 li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.wpmozo-bna-home-page .breadcrumb-page {
+    display: flex;
+    align-items: center;
+}
+.wpmozo-bna-breadcrumb-wrapper.layout2 li .breadcrumb-home-icon {
+    margin-right: 5px;
+}
+.wpmozo-bna-breadcrumb-wrapper.layout2 li:after {
+    margin: 0 5px;
+    line-height: 1;
+}
+.wpmozo-bna-breadcrumb-wrapper.layout2 li:last-child:after {
+    content: "" !important;
+}

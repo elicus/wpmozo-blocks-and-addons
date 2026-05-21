@@ -64,8 +64,6 @@ export default function Edit(props) {
 	let postData = [];
 	if ( posts && posts.length > 0 ) {
 		posts.map( ( post ) => {
-			// console.log(post);
-
 			const rawContent      = post.content?.rendered || '';
 			let postTitle      = post.title?.rendered || '';
 			let date = post.date;

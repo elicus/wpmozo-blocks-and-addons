@@ -125,3 +125,8 @@
 .wp-block-wpmozo-testimonial-slider .layout2 .wpmozo_testimonial_meta{
 	margin-top: 15px;
 }
+
+.wpmozo_swiper_wrapper .swiper-button-next:after,
+.wpmozo_swiper_wrapper .swiper-button-prev:after{
+	display:contents;
+}
