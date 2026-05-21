@@ -1,0 +1,159 @@
+.wpmozo_swiper_inner_wrap{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	position: relative;
+}
+.wpmozo_swiper_inner_wrap .swiper-container{
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	width: 100%;
+}
+
+/* Arrows. */
+.wpmozo_swiper_wrapper .swiper-button-next,
+.wpmozo_swiper_wrapper .swiper-button-prev{
+	background-image: none;
+	border-style: solid;
+	border-width: 0;
+	width: auto;
+	height: auto;
+	padding: 5px 10px;
+}
+.wpmozo_swiper_wrapper .swiper-button-next:after,
+.wpmozo_swiper_wrapper .swiper-button-prev:after{
+	color: inherit;
+	font-size: 18px;
+	transform: translateY(-50%);
+}
+.wpmozo_swiper_wrapper .swiper-button-next{
+	right: 0;
+}
+.wpmozo_swiper_wrapper .swiper-button-prev{
+	left: 0;
+}
+
+.wpmozo_swiper_navigation{
+	display: flex;
+	flex-wrap: wrap;
+}
+.wpmozo_arrows_outside .swiper-button-next{
+    -webkit-transform: translateX(calc(100% + 10px)) translateY(-50%);
+    -moz-transform: translateX(calc(100% + 10px)) translateY(-50%);
+    transform: translateX(calc(100% + 10px)) translateY(-50%)
+}
+.wpmozo_arrows_outside .swiper-button-prev{
+    -webkit-transform: translateX(calc(-100% - 10px)) translateY(-50%);
+    -moz-transform: translateX(calc(-100% - 10px)) translateY(-50%);
+    transform: translateX(calc(-100% - 10px)) translateY(-50%)
+}
+
+.wpmozo_swiper_wrapper  .wpmozo_arrows_bottom_center,
+.wpmozo_swiper_wrapper  .wpmozo_arrows_bottom_left,
+.wpmozo_swiper_wrapper  .wpmozo_arrows_bottom_right,
+.wpmozo_swiper_wrapper  .wpmozo_arrows_top_center,
+.wpmozo_swiper_wrapper  .wpmozo_arrows_top_left,
+.wpmozo_swiper_wrapper  .wpmozo_arrows_top_right{
+	flex-direction: row-reverse;
+}
+.wpmozo_swiper_wrapper  .wpmozo_arrows_top_center,
+.wpmozo_swiper_wrapper  .wpmozo_arrows_top_left,
+.wpmozo_swiper_wrapper  .wpmozo_arrows_top_right{
+    order: -1;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.wpmozo_swiper_wrapper  .wpmozo_arrows_bottom_center,
+.wpmozo_swiper_wrapper  .wpmozo_arrows_bottom_left,
+.wpmozo_swiper_wrapper  .wpmozo_arrows_bottom_right{
+    margin-top: 35px;
+}
+.wpmozo_swiper_wrapper  .wpmozo_arrows_bottom_left,
+.wpmozo_swiper_wrapper  .wpmozo_arrows_top_left{
+    justify-content: flex-end;
+}
+.wpmozo_swiper_wrapper  .wpmozo_arrows_bottom_center,
+.wpmozo_swiper_wrapper  .wpmozo_arrows_top_center{
+    justify-content: center;
+}
+
+ .wpmozo_arrows_bottom_center .swiper-button-next,
+ .wpmozo_arrows_bottom_center .swiper-button-prev,
+ .wpmozo_arrows_bottom_left .swiper-button-next,
+ .wpmozo_arrows_bottom_left .swiper-button-prev,
+ .wpmozo_arrows_bottom_right .swiper-button-next,
+ .wpmozo_arrows_bottom_right .swiper-button-prev,
+ .wpmozo_arrows_top_center .swiper-button-next,
+ .wpmozo_arrows_top_center .swiper-button-prev,
+ .wpmozo_arrows_top_left .swiper-button-next,
+ .wpmozo_arrows_top_left .swiper-button-prev,
+ .wpmozo_arrows_top_right .swiper-button-next,
+ .wpmozo_arrows_top_right .swiper-button-prev{
+	position: relative;
+	top: auto;
+	transform: none;
+}
+ .wpmozo_arrows_bottom_center .swiper-button-next,
+ .wpmozo_arrows_bottom_left .swiper-button-next,
+ .wpmozo_arrows_bottom_right .swiper-button-next,
+ .wpmozo_arrows_top_center .swiper-button-next,
+ .wpmozo_arrows_top_left .swiper-button-next,
+ .wpmozo_arrows_top_right .swiper-button-next{
+	margin-left: 15px;
+}
+.custom-swiper-button-next:after,
+.custom-swiper-button-prev:after{
+	display: none !important;
+}
+
+/* Bullets. */
+.wpmozo_swiper_wrapper .swiper-pagination{
+	margin-top: 15px;
+	position: relative;
+	text-align: center;
+}
+.wpmozo_swiper_wrapper .swiper-pagination-bullet{
+	height: 10px;
+	margin: 0 4px;
+	opacity: 1;
+	transition: all 0.3s ease;
+	width: 10px;
+	outline: 0;
+}
+
+/* Control Dots. */
+.wpmozo_swiper_pagination .transparent_dot .swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
+	border-width: 2px;
+	border-style: solid;
+	background: 0 0
+}
+.wpmozo_swiper_pagination .transparent_dot .swiper-pagination-bullet-active {
+	border: none
+}
+.wpmozo_swiper_pagination .stretched_dot .swiper-pagination-bullet {
+	border-radius: 6px
+}
+
+.wpmozo_swiper_pagination .stretched_dot .swiper-pagination-bullet-active {
+	width: 30px
+}
+.wpmozo_swiper_pagination .line .swiper-pagination-bullet,
+.wpmozo_swiper_pagination .line .swiper-pagination-bullet-active {
+	border-radius: 0;
+	width: 30px;
+	height: 3px;
+	vertical-align: middle
+}
+.wpmozo_swiper_pagination .rounded_line .swiper-pagination-bullet,
+.wpmozo_swiper_pagination .rounded_line .swiper-pagination-bullet-active {
+	border-radius: 30px;
+	width: 30px;
+	height: 6px;
+	vertical-align: middle
+}
+.wpmozo_swiper_pagination .square_dot .swiper-pagination-bullet,
+.wpmozo_swiper_pagination .square_dot .swiper-pagination-bullet-active {
+	border-radius: 0;
+	vertical-align: middle
+}

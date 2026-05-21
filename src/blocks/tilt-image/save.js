@@ -1,0 +1,67 @@
+import { useBlockProps, RichText } from "@wordpress/block-editor";
+import { wpmozo_is_empty } from '../../common/utils';
+import generateDynamicStyle from './style';
+
+export default function save({attributes}) {
+	const ID = attributes.ID;
+	let image = (attributes.image) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,
+		contentAlignment = attributes.contentAlignment,
+		linkTarget = ('external' === attributes.buttonLinkTarget) ? '_blank' : '_self',
+		animationDirection = attributes.contentAnimationDirection,
+		animationClass = (attributes.contentOnHover && 'off' !== animationDirection) ? ` wpmozo-animation wpmozo-animation-${attributes.contentAnimationDirection}` : '',
+		axis = (attributes.useDisableAxis) ? attributes.tiltDisableAxis : null;
+
+	const icon = (
+		<span className="wpmozo-bna-tilt-icon">
+			<i className={`${attributes.icon}`}></i>
+		</span>
+	);
+	const button = (
+		<div className="wpmozo-bna-tilt-image-button-wrapper">
+			<a href={attributes.buttonUrl}
+			   className="wpmozo-bna-tilt-image-button wp-block-button__link wp-element-button" target={linkTarget}>
+				<RichText.Content
+					value={attributes.buttonText}
+				/>
+			</a>
+		</div>
+	);
+
+	return ( <>
+		<style>{ generateDynamicStyle( { attributes } ) }</style>
+
+		<div { ...useBlockProps.save( {className: 'wpmozo-bna-tilt-image ' + ( attributes.className || '' ) } ) }
+			id={`block-${ID}`}
+			data-max-tilt={attributes.tiltMax}
+			data-perspective={attributes.tiltPerspective}
+			data-scale={attributes.tiltScale}
+			data-speed={attributes.tiltSpeed}
+			data-disable-axis={axis}
+			data-glare={attributes.useGlare}
+			data-max-alare={attributes.tiltMaxGlare}
+			data-disable-mobile={attributes.tiltMobile}
+		>
+			<div className={`wpmozo-bna-tilt-image-wrapper wpmozo-editor wpmozo-bna-tilt-align-${contentAlignment}`}>
+				<div className="wpmozo-bna-tilt-image-inner-wrapper">
+					<img className="wpmozo-bna-tilt-image-image" src={image}/>
+					<div className={`wpmozo-bna-tilt-content-wrapper${animationClass}`}>
+						{ attributes.useIcon && icon }
+						<RichText.Content
+							className="wpmozo-bna-tilt-title"
+							tagName={attributes.titleLevel}
+							value={attributes.title}
+						/>
+						<RichText.Content
+							tagName="div"
+							className="wpmozo-bna-tilt-desc"
+							value={ attributes.content }
+						/>
+						{ attributes.showButton && !wpmozo_is_empty(attributes.buttonText) &&
+							button
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</> );
+}

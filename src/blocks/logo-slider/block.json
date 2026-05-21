@@ -1,0 +1,65 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/logo-slider",
+	"version": "0.1.0",
+	"title": "Logo Slider",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "Showcase client or partner logos in a stylish, interactive carousel with arrows, dots, and customization using the Block.",
+	"allowedBlocks": [ "wpmozo/logo-slider-item" ],
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": false,
+		"customClassName": false
+	},
+	"attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+		"images": { "type": "array" },
+
+		"logoPerSlide": { "type": "string", "default": "4" },
+		"slidesPerGroup": { "type": "string", "default": "1" },
+		"spaceBetweenSlides": { "type": "number", "default": 20 },
+		"sliderLoop": { "type": "boolean", "default": false },
+		"autoplay": { "type": "boolean", "default": true },
+		"enableLinearTransition": { "type": "boolean", "default": false },
+		"autoplaySpeed": { "type": "string", "default": 3000 },
+		"pauseOnHover": { "type": "boolean", "default": true },
+		"transitionDuration": { "type": "string", "default": 1000 },
+		"showArrow": { "type": "boolean", "default": true },
+		"previousSlideArrow": { "type": "string", "default": "" },
+		"nextSlideArrow": { "type": "string", "default": "" },
+		"showArrowOnHover": { "type": "boolean", "default": false },
+		"arrowsPosition": { "type": "string", "default": "inside" },
+		"showControlDot": { "type": "boolean", "default": true },
+		"controlDotStyle": { "type": "string", "default": "solid_dot" },
+		"enableDynamicDots": { "type": "boolean", "default": false },
+
+		"containerbackground": { "type": "string" },
+		"containerpadding": { "type": "object" },
+
+		"sliderArrowColor": { "type": "string" },
+		"sliderArrowBackground": { "type": "string" },
+		"sliderActiveDoteColor": { "type": "string" },
+		"sliderInactiveDoteColor": { "type": "string" },
+		"arrowFontSize": { "type": "string" },
+		"arrowpadding": { "type": "object" },
+
+		"logoWidth": { "type": "number", "default": 150 },
+		"logoHeight": { "type": "number", "default": 150 },
+
+		"tabletLogoPerSlide": { "type": "string", "default": "3" },
+		"tabletSlidesPerGroup": { "type": "string", "default": "1" },
+		"tabletSpaceBetweenSlides": { "type": "number", "default": 20 },
+
+		"mobileLogoPerSlide": { "type": "string", "default": "1" },
+		"mobileSlidesPerGroup": { "type": "string", "default": "1" },
+		"mobileSpaceBetweenSlides": { "type": "number", "default": 20 }
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"style": ["file:./style-index.css", "wpmozo-blocks-and-addons-swiper-style"],
+	"script": ["wpmozo-blocks-and-addons-swiper-script", "file:./script.js"]
+}

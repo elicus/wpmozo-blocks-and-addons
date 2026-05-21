@@ -1,0 +1,108 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "wpmozo/text-highlighter",
+    "version": "0.1.0",
+    "title": "Text Highlighter",
+    "category": "wpmozo",
+    "icon": "smiley",
+    "description": "Highlight text with stylish animated underlines (zigzag, circle, curl & more) using the Block.",
+    "example": {},
+    "supports": {
+        "html": false,
+		"customClassName": false
+    },
+    "attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+
+		"pre": { "type": "string", "default": "WPMozo" },
+		"main": { "type": "string", "default": "Text Highlighter" },
+		"post": { "type": "string", "default": "Addon For Blocks" },
+
+		"textHighlighterShape": { "type": "string", "default": "zig_zag" },
+		"highlighterColor": { "type": "string" },
+		"stockWidth": { "type": "number", "default": 2 },
+		"stockPaintAnimationDelay": { "type": "number", "default": 2 },
+		"customPositionForHighlighter": { "type": "boolean", "default": false },
+		"customVerticalPosition": { "type": "number" },
+		"customHorizontalPosition": { "type": "number" },
+
+		"displayInStack": { "type": "boolean", "default": false },
+		"wrapInHeadingTag": { "type": "boolean", "default": false },
+		"headingLevel": { "type": "string", "default": "h2" },
+
+		"typeTextSettings": { "type": "string", "default": "global" },
+		"globalTextColor": { "type": "string" },
+		"globalTextAlignment": { "type": "string" },
+		"globalFontSize": { "type": "string" },
+		"globalFontAppearance": {
+			"type": "object",
+			"fontStyle": { "type": "string" },
+			"fontWeight": { "type": "string" },
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"globalLetterSpacing": { "type": "string" },
+		"globalLetterCase": { "type": "string" },
+		"globalLineHeight": { "type": "string" },
+
+		"preTextColor": { "type": "string" },
+		"preTextAlignment": { "type": "string" },
+		"preFontSize": { "type": "string" },
+		"preFontAppearance": {
+			"type": "object",
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"preLetterSpacing": { "type": "string" },
+		"preDecoration": { "type": "string" },
+		"preLetterCase": { "type": "string" },
+		"preLineHeight": { "type": "string" },
+		"premargin": {"type": "object"},
+		"prepadding": {"type": "object"},
+
+		"mainTextColor": { "type": "string" },
+		"mainTextAlignment": { "type": "string" },
+		"mainFontSize": { "type": "string" },
+		"mainFontAppearance": {
+			"type": "object",
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"mainLetterSpacing": { "type": "string" },
+		"mainDecoration": { "type": "string" },
+		"mainLetterCase": { "type": "string" },
+		"mainLineHeight": { "type": "string" },
+		"mainmargin": {"type": "object"},
+		"mainpadding": {"type": "object"},
+
+		"postTextColor": { "type": "string" },
+		"postTextAlignment": { "type": "string" },
+		"postFontSize": { "type": "string" },
+		"postFontAppearance": {
+			"type": "object",
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"postLetterSpacing": { "type": "string" },
+		"postDecoration": { "type": "string" },
+		"postLetterCase": { "type": "string" },
+		"postLineHeight": { "type": "string" },
+		"postmargin": {"type": "object"},
+		"postpadding": {"type": "object"}
+	},
+    "textdomain": "wpmozo-blocks-and-addons",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+    "script": [ "file:./script.js", "wpmozo-blocks-and-addons-waypoints-script" ]
+}

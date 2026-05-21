@@ -1,0 +1,21 @@
+.wpmozo-icon-picker{
+	position: relative;
+	margin-bottom: 24px;
+}
+.wpmozo-icon-picker > div{
+	width: 85%;
+}
+.wpmozo-icon-picker .wpmozo-icon-wraper{
+	width: 15%;
+	position: absolute;
+	top: 23px;
+	right: 0;
+	border: solid 1px;
+	border-radius: 2px;
+	padding: 9px;
+	text-align: center;
+	font-size: 18px;
+}
+.wpmozo-icon-picker .components-combobox-control__suggestions-container{
+	padding: 4px;
+}

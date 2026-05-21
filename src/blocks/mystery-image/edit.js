@@ -1,0 +1,250 @@
+/**
+ * External dependencies
+ */
+import classnames from 'classnames';
+import { concat, find } from 'lodash';
+import {Fragment} from "@wordpress/element";
+/**
+ * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
+ * Those files can contain any CSS code that gets applied to the editor.
+ *
+ * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
+ */
+import './editor.scss';
+
+
+/**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
+import { compose } from '@wordpress/compose';
+import { createBlobURL } from '@wordpress/blob';
+import { createBlock } from '@wordpress/blocks';
+import { store as blockEditorStore, MediaPlaceholder, useBlockProps } from '@wordpress/block-editor';
+import { withNotices } from '@wordpress/components';
+import { Platform, useEffect, useMemo } from '@wordpress/element';
+import { useDispatch, useSelect } from '@wordpress/data';
+import { View } from '@wordpress/primitives';
+
+/**
+ * Internal dependencies
+ */
+import Inspector from './inspector';
+import { pickRelevantMediaFiles } from '../../common/components/wpmozo-block-gallery/shared-helpers';
+import generateDynamicStyle from "./style";
+
+
+const ALLOWED_MEDIA_TYPES = [ 'image' ];
+
+const PLACEHOLDER_TEXT = Platform.isNative
+	? __( 'ADD MEDIA', 'wpmozo-blocks-and-addons' )
+	: __( 'Drag images, upload new ones or select files from your library.', 'wpmozo-blocks-and-addons' );
+
+const isFileList = ( data ) => {
+	return Object.prototype.toString.call( data ) === '[object FileList]';
+};
+
+const normalizeImages = ( selectedImages ) => {
+	const imageArray = isFileList( selectedImages )
+		? Array.from( selectedImages )
+		: selectedImages;
+
+	return imageArray.map( ( file ) => {
+		if ( ! file.url ) {
+			return pickRelevantMediaFiles( {
+				...file,
+				url: createBlobURL( file ),
+			} );
+		}
+		return pickRelevantMediaFiles( file );
+	} );
+};
+
+const createImageCaptionMap = ( selectedImages ) => {
+	return new Map(
+		selectedImages.map( ( image ) => [ image.id, image.caption ] )
+	);
+};
+
+const updateImageCaptions = ( existingImageBlocks, captionMap ) => {
+	existingImageBlocks.forEach( ( block ) => {
+		const newCaption = captionMap.get( block.attributes.id );
+		if (
+			newCaption !== undefined &&
+			block.attributes.caption !== newCaption
+		) {
+			block.attributes.caption = newCaption;
+		}
+	} );
+};
+
+function Edit( props ) {
+	const {
+		setAttributes,
+		attributes,
+		className,
+		clientId,
+		noticeOperations,
+		isSelected,
+	} = props;
+
+	const {
+		replaceInnerBlocks,
+	} = useDispatch( blockEditorStore );
+
+	attributes.ID = clientId;
+
+
+	const innerBlockImages = useSelect(
+		( select ) => {
+			return select( blockEditorStore ).getBlock( clientId )?.innerBlocks;
+		},
+		[ clientId ]
+	);
+
+	const images = useMemo(
+		() =>
+			innerBlockImages?.map( ( block ) => ( {
+				attributes: block.attributes,
+				clientId: block.clientId,
+				fromSavedContent: Boolean( block.originalContent ),
+				id: block.attributes.id,
+				url: block.attributes.url,
+			} ) ),
+		[ innerBlockImages ]
+	);
+
+	const blockProps = useBlockProps( {
+		className: classnames( className)} );
+
+	const hasImages = !! images.length;
+	const hasImageIds = hasImages && images.some( ( image ) => !! image.id );
+	const imagesUploading = images.some(
+		( img ) => ! img.id && img.url?.indexOf( 'blob:' ) === 0
+	);
+
+	function onUploadError( message ) {
+		noticeOperations.removeAllNotices();
+		noticeOperations.createErrorNotice( message );
+	}
+
+	function updateImages( selectedImages ) {
+		const normalizedImages = normalizeImages( selectedImages );
+
+		if ( isFileList( selectedImages ) && ! normalizedImages.every( isValidFileType ) ) {
+			noticeOperations.removeAllNotices();
+			noticeOperations.createErrorNotice(
+				__( 'All files must be of a valid image format.', 'wpmozo-blocks-and-addons' ),
+				{ id: 'gallery-upload-invalid-file' }
+			);
+			return;
+		}
+
+		const newOrderMap = new Map(
+			normalizedImages.map( ( image, index ) => [ image.id, index ] )
+		);
+
+		const existingImageIds = new Set(
+			innerBlockImages.map( ( block ) => block.attributes.id )
+		);
+
+		const newImageBlocks = normalizedImages
+			.filter( ( image ) => ! existingImageIds.has( image.id ) )
+			.map( ( image ) =>
+				createBlock( 'core/image', {
+					alt: image.alt,
+					caption: image.caption,
+					id: image.id,
+					url: image.url,
+				} )
+			);
+
+		const captionMap = createImageCaptionMap( normalizedImages );
+		updateImageCaptions( innerBlockImages, captionMap );
+
+		const mergedBlocks = concat( innerBlockImages, newImageBlocks ).sort(
+			( a, b ) =>
+				newOrderMap.get( a.attributes.id ) -
+				newOrderMap.get( b.attributes.id )
+		);
+
+		replaceInnerBlocks( clientId, mergedBlocks );
+	}
+
+	// When the media gallery is updated, set the images_data attribute to the current images array
+	useEffect(() => {
+		if (Array.isArray(images)) {
+			setAttributes({ images_data: images });
+			attributes.images_data = images
+		}
+	}, [images]);
+
+	const mediaPlaceholder = (
+		<MediaPlaceholder
+			accept="image/*"
+			addToGallery={ hasImageIds }
+			allowedTypes={ ALLOWED_MEDIA_TYPES }
+			disableMediaButtons={
+				( hasImages && ! isSelected ) || imagesUploading
+			}
+			handleUpload={ true }
+			isAppender={ hasImages }
+			labels={ {
+				instructions: ! hasImages && PLACEHOLDER_TEXT,
+				title: ! hasImages && __( 'Mystery Image', 'wpmozo-blocks-and-addons' ),
+			} }
+			multiple
+			onError={ onUploadError }
+			onSelect={ updateImages }
+			value={ hasImageIds ? images : {} }
+		/>
+	);
+
+	return (
+		<>
+			{isSelected && (
+				<>
+					<Inspector {...props} />
+				</>
+			)}
+			<style>
+				{generateDynamicStyle({attributes, clientId})}
+			</style>
+			<div {...useBlockProps({ id: `block-${clientId}` })}>
+			{images && Array.isArray(images) && images.length > 0 && (() => {
+				const randomIndex = Math.floor(Math.random() * images.length);
+				const randomImage = images[randomIndex];
+				return (
+					<figure className="wp-block-image mystery-show">
+						<a href="#" className="wpmozo-mystery-image-anchor">
+							<img
+								src={randomImage.url}
+								alt={randomImage.alt || ''}
+								className="wpmozo-mystery-image-img"
+								loading="lazy"
+							/>
+							{true === attributes.enableOverlay && (
+								<>
+									<span className="wpmozo-overlay-icon">
+										<i className={attributes.overlayIcon}></i>
+									</span>
+								</>
+
+							)}
+						</a>
+					</figure>
+				);
+
+			})()}
+
+				<View className="gallery-media-placeholder-wrapper">
+					{ mediaPlaceholder }
+				</View>
+			</div>
+		</>
+	);
+}
+
+export default compose([
+	withNotices,
+])(Edit);

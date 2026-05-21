@@ -1,0 +1,17 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+// Import styles for rendering the static content of deprecated gallery versions.
+
+.wpmozo_masonry_gallery_wrapper {position: relative;}
+.wpmozo_masonry_gallery_item {position: relative;display: inline-block;}
+.wpmozo_masonry_gallery_image_wrapper {position: relative;overflow: hidden;width: 100%;height: 100%;}
+.wpmozo_masonry_gallery_image_wrapper img {display: block;width: 100%;height: auto;border-radius: 0;}
+.wpmozo_overlay.wpmozo_pb_inline_icon {position: absolute;left: 0; right: 0; bottom: 0; top: 0;display: block;pointer-events: none;background: rgba(0,0,0,0.2);opacity: 0;transition: opacity 0.2s;}
+.wpmozo_masonry_gallery_image_wrapper:hover .wpmozo_overlay.wpmozo_pb_inline_icon {opacity: 1;}
+.wp-element-caption {display: block;text-align: center;font-size: 0.95em;color: #666;margin: 0.5em 0 1.5em 0;}
+.wpmozo_overlay i{top: 50%;left: 50%;margin: 0;transform: translate(-50%, -50%);position: absolute;}

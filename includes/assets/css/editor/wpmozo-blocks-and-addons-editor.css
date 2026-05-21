@@ -1,0 +1,176 @@
+.wpmozo-same-as-carousel{
+	margin-top: 10px;
+}
+.wpmozo-button-tabs-wrap .components-button-group{
+	display: flex;
+	margin-bottom: 10px;
+}
+.wpmozo-button-tabs-wrap button.wpmozo-button-tabs-btn{
+	align-items: center;
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	padding-bottom: 6px;
+	padding-top: 6px;
+	text-align: center;
+	white-space: nowrap;
+}
+.wpmozo-active-sub-block{
+	border-radius: 1px;
+	box-shadow: 0 0 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color);
+}
+.wpmozo-background-img-selction-wrap{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	box-shadow: inset 0 0 0 1px #ddd;
+	padding: 8px 8px;
+}
+.wpmozo-background-img-selction-overlay{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgb(0 0 0 / 69%);
+	display: none;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	left: 0;
+	border-radius: 2px;
+	font-weight: 600;
+	font-size: 16px;
+}
+.wpmozo-background-img-selction-wrap:hover .wpmozo-background-img-selction-overlay{
+	display: flex;
+}
+.wpmozo-background-img-selction-wrap img{
+	width: 100%;
+	height: 140px !important;
+	object-fit: cover;
+	border-radius: 2px;
+}
+.wpmozo-bna-flip-box-wrap a{
+	pointer-events: none;
+}
+.wpmozo-bna-flip-box-edit-control{
+	margin-bottom: 0px !important;
+}
+.wpmozo-bna-flip-box-wrap.edit-front .wpmozo-bna-flip-box-back{
+	visibility: hidden;
+}
+.wpmozo-bna-flip-box-wrap.edit-front .wpmozo-bna-flip-box-front{
+	-webkit-transform: none !important;
+	-moz-transform: none !important;
+	-ms-transform: none !important;
+	transform: none !important;
+}
+.wpmozo-bna-flip-box-wrap.edit-back .wpmozo-bna-flip-box-front{
+	visibility: hidden;
+}
+.wpmozo-bna-flip-box-wrap.edit-back .wpmozo-bna-flip-box-back{
+	-webkit-transform: none !important;
+	-moz-transform: none !important;
+	-ms-transform: none !important;
+	transform: none !important;
+}
+.is-selected.wpmozo-bna-flip-box-main .wpmozo-bna-flip-box-wrap{
+	-webkit-transform: none !important;
+	-moz-transform: none !important;
+	-ms-transform: none !important;
+	transform: none !important;
+}
+.wpmozo-bna-fancy-text-inner.clipping {
+	color: transparent !important;
+}
+
+/* Settings tabs. */
+.wpmozo-settings-tab-panel .wpmozo-inspector-tab-general,
+.wpmozo-settings-tab-panel .wpmozo-inspector-tab-design,
+.wpmozo-settings-tab-panel .wpmozo-inspector-tab-advanced{
+	min-width: 33.33%;
+	width: 100%;
+	text-align: center;
+	justify-content: center;
+	background-color: #f4f4f4;
+	color: #666666;
+	font-size: 14px;
+	letter-spacing: 0.5px;
+	height: 42px !important;
+}
+.wpmozo-settings-tab-panel .wpmozo-inspector-tab-general:hover,
+.wpmozo-settings-tab-panel .wpmozo-inspector-tab-design:hover,
+.wpmozo-settings-tab-panel .wpmozo-inspector-tab-advanced:hover{
+	color: #111111;
+}
+.wpmozo-settings-tab-panel button.is-active,
+.wpmozo-settings-tab-panel button.is-active:hover{
+	background-color: #5600b7;
+	color: #ffffff;
+}
+.wpmozo-settings-tab-panel button::before,
+.wpmozo-settings-tab-panel button::after{
+	display: none;
+}
+
+.wpmozo-settings-tab-panel .components-datetime__time-field-hours-input,
+.wpmozo-settings-tab-panel .components-datetime__time-field,
+.wpmozo-settings-tab-panel .components-datetime__date h3{
+	margin-bottom: 0 !important;
+}
+
+/* Arrow. */
+/* .wpmozo-settings-tab-panel button.is-active::after{
+	content: "";
+	position: absolute;
+	bottom: -9px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 0;
+	background-color: #fff;
+	border-left: 9px solid transparent;
+	border-right: 9px solid transparent;
+	border-top: 9px solid #3DDA85;
+	z-index: 99;
+} */
+
+/* Repeater field. */
+.wpmozo-repeater-row{
+	position: relative;
+	margin-bottom: 10px;
+	background: rgb(248, 249, 250);
+	padding: 15px 10px;
+	border-radius: 6px;
+	box-shadow: rgba(0, 0, 0, 0.03) 0px 1px 2px;
+}
+.wpmozo-repeator-title{
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+.wpmozo-repeator-trash{
+	display: block;
+	margin-right: auto;
+}
+
+.wpmozo-block-icon path{
+	fill: #5600b7;
+}
+
+/* Custom field warning. */
+.wpmozo-field-warning.is-warning{
+	border: 1px solid #f0b849;
+}
+.wpmozo-field-warning .components-notice__content{
+	margin: 0;
+}
+
+/* Multi checkboxes. */
+.wpmozo-inpector-multi-checkboxes .components-base-control{
+	margin-bottom: 8px !important;
+}
+
+/* Hide the time picker, in date time picker. */
+/* Used date time picker as have a date changes inputs. */
+.wpmozo-hide-time-picker-control fieldset:first-child{
+	display: none !important;
+}

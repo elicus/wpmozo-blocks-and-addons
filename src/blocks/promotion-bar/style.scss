@@ -1,0 +1,131 @@
+.wpmozo-promotion-bar-inner{
+	display: flex;
+	align-items: center;
+}
+.wpmozo-promotion-bar-timer{
+    display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+    flex-grow: 1;
+}
+.wpmozo-pb-timer-box{
+	border: 0 solid #000;
+}
+.wpmozo-pb-timer-box .wpmozo-pb-number{
+	display: block;
+	font-size: 28px;
+	border: 0 solid #000;
+}
+.wpmozo-pb-timer-box .wpmozo-pb-label{
+	display: block;
+	font-size: 16px;
+	border: 0 solid #000;
+}
+.wpmozo-promotion-bar-timer .wpmozo-pb-separator{
+	font-size: 40px;
+	align-self: center;
+	line-height: 1;
+	margin-bottom: 10px;
+}
+.wpmozo-promotion-bar-wrap .wpmozo-pb-timer-box{
+	text-align: center;
+	min-width: 90px;
+}
+.wpmozo-promotion-bar-content .wpmozo-promotion-bar-image{
+	border: 0 solid #000;
+}
+
+// Button, Replaced with global button.
+// Remove this on next version 1.5.0.
+// This change on version 1.4.0.
+.wpmozo-button-wrap .wpmozo-button{
+	display: inline-flex;
+    flex-flow: row wrap;
+    align-items: center;
+	text-decoration: none;
+	transition: all .3s ease-in-out;
+	white-space: nowrap;
+	column-gap: 7px;
+}
+.wpmozo-button-wrap .wpmozo-button.wpmozo-icon-at-before{
+	flex-direction: row-reverse;
+}
+.wpmozo-button.wpmozo-icon-on-hover .wpmozo-btn-text{
+	transition: all .3s ease-in-out;
+	transform: translateX(0.8em);
+}
+.wpmozo-button.wpmozo-icon-on-hover.wpmozo-icon-at-before .wpmozo-btn-text{
+	transform: translateX(-0.8em);
+}
+.wpmozo-button.wpmozo-icon-on-hover .wpmozo-icon{
+	opacity: 0;
+	transform: translateX(-1.6em);
+	transition: all .3s ease-in-out;
+}
+.wpmozo-button.wpmozo-icon-on-hover.wpmozo-icon-at-before  .wpmozo-icon{
+	transform: translateX(1.6em);
+}
+.wpmozo-button.wpmozo-icon-on-hover:hover .wpmozo-btn-text{
+	transform: translateX(0);
+}
+.wpmozo-button.wpmozo-icon-on-hover:hover .wpmozo-icon{
+	opacity: 1;
+	transform: translateX(0);
+}
+
+/* Layout 1. */
+.wpmozo-promotion-bar-wrap.layout1 .wpmozo-promotion-bar-inner{
+	flex-direction: column;
+	text-align: center;
+}
+.wpmozo-promotion-bar-wrap.layout1 .wpmozo-promotion-bar-content,
+.wpmozo-promotion-bar-wrap.layout1 .wpmozo-promotion-bar-timer{
+	width: 100%;
+}
+.wpmozo-promotion-bar-wrap.layout1 .wpmozo-promotion-bar-content{
+	margin-bottom: 20px;
+}
+
+// Remove top/first two in next version 1.5.0.
+.wpmozo-promotion-bar-wrap.layout1 .wpmozo-button-wrap,
+.wpmozo-promotion-bar-wrap.layout2 .wpmozo-button-wrap,
+.wpmozo-promotion-bar-wrap.layout1 .wpmozo-bna-button-wrap,
+.wpmozo-promotion-bar-wrap.layout2 .wpmozo-bna-button-wrap{
+	margin-top: 10px;
+	width: 100%;
+}
+
+/* Layout 2. */
+.wpmozo-promotion-bar-wrap.layout2 .wpmozo-promotion-bar-content,
+.wpmozo-promotion-bar-wrap.layout3 .wpmozo-promotion-bar-content{
+	width: 50%;
+}
+
+/* Layout 3. */
+.wpmozo-promotion-bar-wrap.layout3 .wpmozo-promotion-bar-content{
+	display: flex;
+	align-items: center;
+}
+.wpmozo-promotion-bar-wrap.layout3 .wpmozo-promotion-bar-content-inner{
+	flex-grow: 1;
+}
+.wpmozo-promotion-bar-wrap.layout3 .wpmozo-image-wrap{
+	margin-right: 15px;
+}
+
+@media screen and (max-width: 768px) {
+	.wpmozo-promotion-bar-inner{ flex-wrap: wrap; }
+	.wpmozo-promotion-bar-wrap.layout2 .wpmozo-promotion-bar-content{
+		width: 100%;
+	}
+	.wpmozo-promotion-bar-wrap.layout3 .wpmozo-promotion-bar-inner,
+	.wpmozo-promotion-bar-wrap.layout3 .wpmozo-promotion-bar-content{
+		flex-direction: column;
+	}
+	.wpmozo-promotion-bar-wrap.layout3 .wpmozo-image-wrap{
+		margin-right: 0;
+	}
+	.wpmozo-promotion-bar-wrap.layout3 .wpmozo-button-wrap{
+		width: 100%;
+	}
+}

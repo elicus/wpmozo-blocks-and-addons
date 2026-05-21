@@ -1,0 +1,102 @@
+/* Animations. */
+.wpmozo-animation {
+	opacity: 0;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+.wpmozo-animation.wpmozo-animation-top:hover {
+	animation-name: wpmozoTopToBottom;
+}
+.wpmozo-animation.wpmozo-animation-left:hover {
+	animation-name: wpmozoLeftToRight;
+}
+.wpmozo-animation.wpmozo-animation-right:hover {
+	animation-name: wpmozoRightToLeft;
+}
+.wpmozo-animation.wpmozo-animation-bottom:hover {
+	animation-name: wpmozoBottomToTop;
+}
+@keyframes wpmozoTopToBottom {
+	from { opacity: 0; transform: translateY(-50px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+@keyframes wpmozoLeftToRight {
+	from { opacity: 0; transform: translateX(-50px); }
+	to { opacity: 1; transform: translateX(0); }
+}
+@keyframes wpmozoRightToLeft {
+	from { opacity: 0; transform: translateX(50px); }
+	to { opacity: 1; transform: translateX(0); }
+}
+@keyframes wpmozoBottomToTop {
+	from { opacity: 0; transform: translateY(50px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+/* Button. */
+.wpmozo-bna-button-wrap .wpmozo-bna-button {
+	display: inline-flex;
+	flex-flow: row wrap;
+	align-items: center;
+	text-decoration: none;
+	transition: all .3s ease-in-out;
+	white-space: nowrap;
+	column-gap: 7px;
+}
+.wpmozo-bna-button-wrap .wpmozo-bna-button.wpmozo-icon-at-before {
+	flex-direction: row-reverse;
+}
+.wpmozo-bna-button.wpmozo-icon-on-hover .wpmozo-bna-btn-text {
+	transition: all .3s ease-in-out;
+	transform: translateX(0.7em);
+}
+.wpmozo-bna-button.wpmozo-icon-on-hover.wpmozo-icon-at-before .wpmozo-bna-btn-text {
+	transform: translateX(-0.7em);
+}
+.wpmozo-bna-button.wpmozo-icon-on-hover .wpmozo-bna-icon {
+	opacity: 0;
+	transform: translateX(-1.5em);
+	transition: all .3s ease-in-out;
+}
+.wpmozo-bna-button.wpmozo-icon-on-hover.wpmozo-icon-at-before .wpmozo-bna-icon {
+	transform: translateX(1.5em);
+}
+.wpmozo-bna-button.wpmozo-icon-on-hover:hover .wpmozo-bna-btn-text {
+	transform: translateX(0);
+}
+.wpmozo-bna-button.wpmozo-icon-on-hover:hover .wpmozo-bna-icon {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+/* Overlay. */
+.wpmozo-bna-overlay{
+	z-index: -1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.8);
+	opacity: 0;
+	pointer-events: none;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-font-smoothing: antialiased;
+}
+.wpmozo-bna-overlay .wpmozo-bna-overlay-icon {
+	color: #5600b7;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 32px;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	-webkit-transition: all .4s;
+	transition: all .4s;
+}
