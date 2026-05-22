@@ -181,7 +181,7 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
-2026-05-08 - Version 1.8.0
+2026-05-22 - Version 1.8.0
 * New: Call To Action Block.
 * New: Admin Panel to manage blocks enable or disable.
 * Fixed: Alignment issue in post ticker.
