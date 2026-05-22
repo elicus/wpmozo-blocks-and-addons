@@ -12,7 +12,7 @@
  * It provides a variety of blocks to help you create stunning and interactive content in WordPress effortlessly.
  * Version:           1.8.0
  * Requires at least: 5.0
- * Requires PHP:      5.6
+ * Requires PHP:      7.3
  * Author:            Elicus
  * Author URI:        https://elicus.com
  * License:           GPL-2.0-or-later
