@@ -1,7 +1,7 @@
 === WPMozo Blocks and Addons ===
 Contributors: elicus
 Tags: gutenberg, blocks, gutenberg blocks, gutenberg editor, wordpress blocks
-Tested up to: 6.9
+Tested up to: 7.0
 Stable tag: 1.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
