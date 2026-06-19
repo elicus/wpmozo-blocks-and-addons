@@ -4,4 +4,5 @@
 .wpmozo-icon-picker{margin-bottom:24px;position:relative}.wpmozo-icon-picker>div{width:85%}.wpmozo-icon-picker .wpmozo-icon-wraper{border:1px solid;border-radius:2px;font-size:18px;padding:9px;position:absolute;right:0;text-align:center;top:23px;width:15%}.wpmozo-icon-picker .components-combobox-control__suggestions-container{padding:4px}
 .wpmozo-alignment-compo{justify-content:space-between}.wpmozo-alignment-compo>div{flex:unset!important}
 .wpmozo-range-size-basecontrol-inner{align-items:center;-moz-column-gap:10px;column-gap:10px;display:flex}.wpmozo-range-size-basecontrol-inner .components-range-control{margin-bottom:0;margin-top:0;width:50%}.wpmozo-range-size-basecontrol-inner .components-range-control .components-base-control__field{margin-bottom:0;margin-top:0}.wpmozo-range-size-basecontrol-inner .components-button,.wpmozo-range-size-basecontrol-inner .components-unit-control{margin-bottom:0;margin-top:0;width:25%}
-
+.wpmozo-video-uploader-wrap{background:#fafafa;border:1px solid #ddd;padding:10px}.wpmozo-video-placeholder{border:1px dashed #ccc;color:#777;margin-bottom:10px;padding:40px;text-align:center}
+.wp-block-wpmozo-advanced-button{line-height:0}

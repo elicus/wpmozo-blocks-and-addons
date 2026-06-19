@@ -4,7 +4,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import Inspector from './inspector';
 
-import { wpmozo_is_empty } from "../../common/utils";
+import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils';
 import generateDynamicStyle from "./style";
 
 import {
@@ -16,10 +16,35 @@ const Edit = (props) => {
 
 	const attributes    = props.attributes;
 	const setAttributes = props.setAttributes;
-	const clientId      = props.clientId;
+	const clientId      = props.clientId,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-testimonial-slider${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
 
-	attributes.ID = clientId;
-	setAttributes( { ID: clientId } );
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	const postsToShow        = parseInt( attributes.postsToShow ) ?? 5;
 	const postOrder          = attributes.postOrder ?? 'DESC';
@@ -221,7 +246,7 @@ const Edit = (props) => {
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
-			<div {...useBlockProps()} onClick={selectBlock}>
+			<div {...blockProps} onClick={selectBlock}>
 				<div className={"wpmozo_swiper_wrapper" + equalHeightClass}
 					data-clientId={ clientId }
 					data-slide_effect={ attributes.slideEffect || 'slide' }

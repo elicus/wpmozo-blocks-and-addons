@@ -1,10 +1,17 @@
 import { useBlockProps, useInnerBlocksProps,InnerBlocks } from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function save( { attributes } ) {
 
 	const ID = attributes.ID,
-		blockProps = useBlockProps.save();
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-advanced-button' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	const innerBlocksProps = useInnerBlocksProps.save( blockProps, {
 		allowedBlocks: [ 'wpmozo/image-stack-child' ]

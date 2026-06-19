@@ -72,9 +72,9 @@ if ( ! function_exists( 'horizontal_scrolling_post_render_callback' ) ) {
 			}
 
 			// Get wrapper attributes.
-			$wrapper_attributes = get_block_wrapper_attributes( array(
-				'class' => ( $attributes['className'] ) ?? ''
-			) );
+			$wrapper_attributes = get_block_wrapper_attributes(array(
+				'class'=>'wpmozo-wrap-'.$attributes['ID'] . ' ' . 'wpmozo-advanced-tooltip' . ' ' .$attributes['wrapCustomClass']. ' ' .$attributes['className']
+			));
 
 			// Get data attrs.
 			$data_attrs    = array(

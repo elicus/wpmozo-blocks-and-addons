@@ -107,7 +107,7 @@
       "type": "object"
     },
     "buttonContainerborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "iconButton": {
       "type": "boolean",
@@ -182,6 +182,12 @@
   },
   "textdomain": "wpmozo-blocks-and-addons",
   "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css"
+  "editorStyle": [
+    "wpmozo-blocks-and-addons-fontawesome-style",
+    "file:./index.css"
+  ],
+  "style": [
+    "wpmozo-blocks-and-addons-fontawesome-style",
+    "file:./style-index.css"
+  ]
 }

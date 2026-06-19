@@ -220,9 +220,9 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 			}
 
 			// Get wrapper attributes.
-			$wrapper_attributes = get_block_wrapper_attributes( array(
-				'class' => ( $attributes['className'] ) ?? ''
-			) );
+			$wrapper_attributes = get_block_wrapper_attributes(array(
+				'class'=>'wpmozo-wrap-'.$attributes['ID'] . ' ' . 'wpmozo-testimonial-slider' . ' ' .$attributes['wrapCustomClass']. ' ' .$attributes['className']
+			));
 
 			$auto_height = ( $attributes['autoHeight'] ) ? 'true' : 'false';
 			$auto_height = ( true === $attributes['equalHeight'] ) ? 'false' : $auto_height;

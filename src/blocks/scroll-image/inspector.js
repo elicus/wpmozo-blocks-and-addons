@@ -3,13 +3,12 @@ import {
 	InspectorControls
 } from '@wordpress/block-editor';
 import {
-	TabPanel,
-	PanelBody,
-	TextControl
+	TabPanel
 } from '@wordpress/components';
 
 import { inspectorPanelTabs } from '../../common/utils.js';
 import { GeneralPanel } from './settings/generalPanel';
+import { AdvancedPanel } from '../../common/components/advanced-panel/advanced-panel';
 
 const Inspector = ( { attributes, setAttributes } ) => {
 
@@ -31,15 +30,8 @@ const Inspector = ( { attributes, setAttributes } ) => {
 					{ tab.name === 'general' && 
 						<GeneralPanel attributes={attributes} setAttributes={setAttributes} />
 					}
-					{ tab.name === 'advanced' && 
-						<PanelBody title={ __( 'Advanced', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
-							<TextControl
-								label={ __( 'Additional CSS Class(es)', 'wpmozo-blocks-and-addons' ) }
-								value={ attributes.className || '' }
-								onChange={ ( value ) => setAttributes( { className: value } ) }
-								help={ __( 'Separate multiple classes with spaces.', 'wpmozo-blocks-and-addons' ) }
-							/>
-						</PanelBody>
+					{ tab.name === 'advanced' &&
+						<AdvancedPanel attributes={attributes} setAttributes={setAttributes} />
 					}
 				</div> ) }
 			</TabPanel>

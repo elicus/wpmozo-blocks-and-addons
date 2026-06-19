@@ -1,5 +1,5 @@
 import {__} from "@wordpress/i18n";
-import { Fragment } from "@wordpress/element";
+import { Fragment, useEffect } from "@wordpress/element";
 import { useBlockProps, RichText } from "@wordpress/block-editor";
 import Inspector from './inspector';
 
@@ -11,6 +11,7 @@ import Inspector from './inspector';
  */
 import './editor.scss';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Edit = ( props ) => {
 
@@ -20,16 +21,42 @@ const Edit = ( props ) => {
 		clientId = props.clientId,
 		linkTarget = ( 'external' === attributes.buttonLinkTarget ) ? '_blank' : '_self',
 		showIconOnHover = ( attributes.showIconOnHover ) ? ' show-on-hover' : '',
-		buttonIconPosition = ( attributes.buttonIconPosition ) ? attributes.buttonIconPosition : ' icon-after';
+		buttonIconPosition = ( attributes.buttonIconPosition ) ? attributes.buttonIconPosition : ' icon-after',
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-pricing-table${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
 
-	attributes.ID = clientId;
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-			<div { ...useBlockProps() } id={`block-${attributes.ID}`}>
+			<div { ...blockProps} id={`block-${attributes.ID}`}>
 				<div className="wpmozo-bna-pricing-table">
 					<div className="wpmozo-bna-pricing-table-wrapper">
 						<div className="wpmozo-bna-pricing-table-header-graphic">

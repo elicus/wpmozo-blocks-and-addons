@@ -203,3 +203,68 @@
 .block-editor-inserter__panel-title, .block-editor-inserter__panel-title button{
     text-transform: capitalize;
 }
+.block-editor-block-types-list__list-item:has( .wpmozo-block-icon) .components-button.block-editor-block-types-list__item:not(:disabled,[aria-disabled=true]):hover .block-editor-block-types-list__item-title span{
+    color: #3D3EED;
+}
+.block-editor-block-types-list__list-item:has( .wpmozo-block-icon) .components-button.block-editor-block-types-list__item:not(:disabled,[aria-disabled=true]):hover:after{
+	background:#3D3EED;
+}
+/* Pattern C — Opt-in swap toggle (editor sidebar only) */
+
+.mozostates-prop-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.mozostates-prop-label {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e1e1e;
+}
+
+.mozostates-state-suffix {
+    margin-left: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #757575;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Pill chip — off state: outlined accent, on state: dark filled */
+.mozostates-hover-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.2;
+    padding: 3px 8px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: transparent;
+    color: var(--wp-admin-theme-color, #007cba);
+    cursor: pointer;
+    transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+    white-space: nowrap;
+
+    &:hover:not(.is-on) {
+        border-color: var(--wp-admin-theme-color, #007cba);
+    }
+
+    &.is-on {
+        background: #1e1e1e;
+        border-color: #1e1e1e;
+        color: #fff;
+    }
+}
+.mozostates-prop-divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 16px 0;
+}

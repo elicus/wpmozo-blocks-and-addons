@@ -4,7 +4,7 @@ import { useEffect, Fragment } from "@wordpress/element";
 import Inspector from './inspector';
 
 import generateDynamicStyle from './style';
-import { wpmozo_is_empty } from '../../common/utils.js';
+import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils.js';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -14,9 +14,36 @@ import { wpmozo_is_empty } from '../../common/utils.js';
  */
 export default function Edit(props) {
 
-	const { attributes, setAttributes, clientId } = props;
+	const { attributes, setAttributes, clientId } = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-bna-before-after-main${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 	
-	attributes.ID = clientId;
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	let init = false,
 		beforeImage, afterImage;
@@ -65,7 +92,7 @@ export default function Edit(props) {
 			if ( main.find('.twentytwenty-wrapper').length > 0 ) {
 				wpmozo_before_init( main );
 			}
-
+			
 			if( main.find('.wpmozo-bna-before-after-image-wrapper').length > 0 ) {
 				jQuery('.wpmozo-bna-before-after-image-wrapper').imagesLoaded( function() {
 					main.find('.wpmozo-bna-before-after-image-wrapper').twentytwenty( {
@@ -80,14 +107,14 @@ export default function Edit(props) {
 				} );
 			}
 		}
-	} );
-
+	}, []);
+	
 	useEffect( () => {
 		let editorIfram   = jQuery('body').find( '[name="editor-canvas"]' ).contents(),
-			mainFromIfram = editorIfram.find('body').find( '#block-' + clientId ),
-			mainFromBody  = jQuery('body').find( '#block-' + clientId ),
-			main          = ( mainFromIfram.length > 0 ) ? mainFromIfram : mainFromBody;
-
+		mainFromIfram = editorIfram.find('body').find( '#block-' + clientId ),
+		mainFromBody  = jQuery('body').find( '#block-' + clientId ),
+		main          = ( mainFromIfram.length > 0 ) ? mainFromIfram : mainFromBody;
+		
 		if ( ! init ) {
 			if ( main.find('.twentytwenty-wrapper').length > 0 ) {
 				wpmozo_before_init( main );
@@ -126,7 +153,7 @@ export default function Edit(props) {
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
-			<div { ...useBlockProps( { className: 'wpmozo-bna-before-after-main' } ) }>
+			<div { ...blockProps }>
 				<div className="wpmozo-bna-before-after-image-wrapper">
 					<img src={beforeImage} />
 					<img src={afterImage} />

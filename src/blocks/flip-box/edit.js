@@ -8,7 +8,7 @@ import {
     ToggleControl,
     ToolbarButton,
 } from "@wordpress/components";
-import {wpmozo_is_empty} from '../../common/utils.js';
+import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils.js';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -24,11 +24,36 @@ export default function Edit(props) {
         isSelected = props.isSelected,
         setAttributes = props.setAttributes,
         layoutType = ( 'flip' === attributes.animationType ) ? ' layout1' : ' layout2',
-        blockProps = useBlockProps({ className: 'wpmozo-bna-flip-box-main' }),
         [ editMode, setEditMode ] = useState(false),
-        editModeLabel = ( ! editMode ) ? __( 'Front', 'wpmozo-blocks-and-addons' ) : __( 'Back', 'wpmozo-blocks-and-addons' );
+        editModeLabel = ( ! editMode ) ? __( 'Front', 'wpmozo-blocks-and-addons' ) : __( 'Back', 'wpmozo-blocks-and-addons' ),
+        wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-bna-flip-box-main${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
-    attributes.ID = ID;
+    useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] );
 
     let editModeSide = ( ! editMode ) ? ' edit-front' : ' edit-back';
     if ( ! isSelected ){

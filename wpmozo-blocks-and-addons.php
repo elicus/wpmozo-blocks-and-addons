@@ -8,9 +8,9 @@
  * @wordpress-plugin
  * Plugin Name:       WPMozo Blocks and Addons
  * Plugin URI:        https://wpmozo.com/product/wpmozo-blocks-and-addons
- * Description:       WPMozo Blocks and Addons is a plugin designed to extend the functionality of the Gutenberg editor.
+ * Description:       WPMozo Blocks and Addons is a plugin designed to extend the functionality of the Block editor.
  * It provides a variety of blocks to help you create stunning and interactive content in WordPress effortlessly.
- * Version:           1.8.0
+ * Version:           1.9.0
  * Requires at least: 5.0
  * Requires PHP:      7.3
  * Author:            Elicus
@@ -24,7 +24,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-define( 'WPMOZO_BNA_VERSION', '1.8.0' ); // Current plugin version.
+define( 'WPMOZO_BNA_VERSION', '1.9.0' ); // Current plugin version.
 define( 'WPMOZO_BNA_FILE', __FILE__ ); // Plugin main file.
 define( 'WPMOZO_BNA_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) ); // Plugin dir path.
 define( 'WPMOZO_BNA_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) ); // Plugin dir url.
@@ -33,6 +33,7 @@ define( 'WPMOZO_BNA_INC_DIR_URL', WPMOZO_BNA_PLUGIN_DIR_URL . 'includes/' ); // 
 define( 'WPMOZO_BNA_ASSETS_DIR_PATH', WPMOZO_BNA_INC_DIR_PATH . 'assets/' ); // Assets dir path.
 define( 'WPMOZO_BNA_ASSETS_DIR_URL', WPMOZO_BNA_INC_DIR_URL . 'assets/' ); // Assets dir url.
 define( 'WPMOZO_BNA_OPTION', 'wpmozo-blocks-and-addons-option' ); // Option name.
+define( 'WPMOZO_BNA_BASENAME', plugin_basename( __FILE__ ) ); // Plugin basename.
 
 require_once WPMOZO_BNA_INC_DIR_PATH . 'class-mozo-bna-blocks-and-addons.php';
 

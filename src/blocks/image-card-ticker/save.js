@@ -1,14 +1,16 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 export default function save({ attributes }) {
 
-	const { ID, className } = attributes;
-
-	// Only add ID attribute if it exists.
-	const blockProps = useBlockProps.save( {
-		className: className,
-		...( ID ? { id: `block-${ ID }` } : {} ),
-	} );
+	const { ID, className } = attributes,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-image-card-ticker' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	let dataClass = '';
 	if('marquee' === attributes.tickerLayout){
@@ -25,7 +27,7 @@ export default function save({ attributes }) {
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 		) }
 
-		<div {...blockProps}>
+		<div {...blockProps} id={`block-${clientId}`}>
 			{'curve' === attributes.tickerLayout && (
 				<svg width="0" height="0">
 					<defs>

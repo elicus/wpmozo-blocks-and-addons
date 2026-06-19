@@ -1,5 +1,5 @@
 import {__} from "@wordpress/i18n";
-import {Fragment} from "@wordpress/element";
+import {Fragment,useEffect } from "@wordpress/element";
 import {useBlockProps, RichText} from "@wordpress/block-editor";
 import Inspector from './inspector';
 /**
@@ -10,13 +10,20 @@ import Inspector from './inspector';
  */
 import './editor.scss';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Edit = (props) => {
 
     let attributes = props.attributes,
         clientId = props.clientId,
         setAttributes = props.setAttributes,
-        blockProps = useBlockProps({className: 'wpmozo-bna-bar-counter-main'});
+        wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-bna-bar-coutner-main${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
     let emptyBarEnabled = '';
 
@@ -24,7 +31,27 @@ const Edit = (props) => {
         emptyBarEnabled = 'empty-bar-enabled';
     }
 
-    attributes.ID = clientId;
+    // Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
     return (
         <Fragment>

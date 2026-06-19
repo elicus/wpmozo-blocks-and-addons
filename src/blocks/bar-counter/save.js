@@ -1,5 +1,6 @@
 import {RichText, useBlockProps} from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ({ attributes }) => {
 
@@ -9,12 +10,19 @@ const Save = ({ attributes }) => {
     if (attributes.displayEmptyBar) {
         emptyBarEnabled = 'empty-bar-enabled';
     }
+    const wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-advanced-button' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
     return (
         <>
             <style>{ generateDynamicStyle({attributes }) }</style>
 
-            <div {...useBlockProps.save( { className: attributes.className } ) } id={`block-${ID}`}>
+            <div {...blockProps} id={`block-${ID}`}>
                 <div className={`wpmozo-bna-bar-counter ${emptyBarEnabled}`}>
                     <div className={`wpmozo-ban-bar-counter-wrapper ${attributes.layoutType}`}>
 						{attributes.title && (

@@ -1,10 +1,18 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ( { attributes } ) => {
 
-	const { ID, className } = attributes;
+	const { ID, className } = attributes,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: className ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	// Get attributes.
 	const fbAppId      = attributes.fbAppId ?? '';
@@ -13,19 +21,13 @@ const Save = ( { attributes } ) => {
 	const lazyLoading  = attributes.lazyLoading ?? '';
 	const buttonSize   = attributes.buttonSize ?? 'small';
 
-	// Only add ID attribute if it exists.
-	const blockProps = useBlockProps.save( {
-		className: className,
-		...( ID ? { id: `block-${ ID }` } : {} ),
-	} );
-
 	return ( <>
 		{/* Only output <style> if ID exists. */}
 		{ ( ID && '' !== ID ) && (
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 		) }
 
-		<div { ...blockProps }>
+		<div { ...blockProps } id={`block-${ID}`}>
 			{ ( fbAppId && '' !== fbAppId ) && (
 				<div className="fb-like"
 					data-fb-app={ fbAppId }

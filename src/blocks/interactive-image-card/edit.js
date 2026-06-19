@@ -1,9 +1,10 @@
 import { __ } from '@wordpress/i18n';
-import { Fragment } from "@wordpress/element";
+import { Fragment, useEffect } from "@wordpress/element";
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 import Inspector from "./inspector";
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -13,9 +14,36 @@ import generateDynamicStyle from "./style";
  */
 export default function Edit(props) {
 
-	const { attributes, setAttributes, clientId } = props;
+	const { attributes, setAttributes, clientId } = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-bna-interactive-image-card-main${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
-	attributes.ID = clientId;
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	const backImage = (attributes.backImage) ? attributes.backImage : wpmozo_bna_editor_object.placeholderImg;
 
@@ -24,7 +52,7 @@ export default function Edit(props) {
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
-			<div id={`block-${attributes.ID}`} { ...useBlockProps( { className: 'wpmozo-bna-interactive-image-card-main' } ) } >
+			<div id={`block-${attributes.ID}`} { ...blockProps} >
 				<div className="wpmozo-bna-interactive-image-card-wrap wpmozo-editor">
 					<figure className={`effect-${attributes.layout}`}>
 						<img className="wpmozo-bna-interactive-image-card-image" src={backImage}/>

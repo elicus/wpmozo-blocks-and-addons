@@ -7,7 +7,7 @@ import {
 } from '@wordpress/block-editor';
 import Inspector from './inspector';
 import generateDynamicStyle from "./style";
-import {wpmozo_is_empty} from "../../common/utils";
+import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -21,7 +21,13 @@ export default function Edit(props) {
 		setAttributes = props.setAttributes,
 		clientId = props.clientId,
 		ID = clientId,
-		blockProps = useBlockProps({ className: 'wpmozo-bna-logo-slider-main' }),
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-bna-logo-slider-main${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle,
 		buttonNextClass = ( !wpmozo_is_empty( attributes.nextSlideArrow ) )
 			? `custom-swiper-button-next swiper-button-next ${attributes.nextSlideArrow}`
 			: 'swiper-button-next',
@@ -29,7 +35,27 @@ export default function Edit(props) {
 			? `custom-swiper-button-prev swiper-button-prev ${attributes.previousSlideArrow}`
 			: 'swiper-button-prev';
 
-	attributes.ID = ID;
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 	useEffect(() => {
 		const event = new CustomEvent('propsChanged');
 		window.dispatchEvent(event);

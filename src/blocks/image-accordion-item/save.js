@@ -1,7 +1,7 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from './style';
 import { RichText } from '@wordpress/block-editor';
-import {wpmozo_is_empty} from '../../common/utils.js';
+import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils.js';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
@@ -9,14 +9,15 @@ export default function save({ attributes }) {
     
     let { ID, parentAtts, className } = attributes;
     let animationClass = ( 'off' !== attributes.contentAnimation ) ? ` wpmozo-item-animation-${attributes.contentAnimation}` : '';
+    const wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-image-accordion-item ${animationClass}` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
     className = className += animationClass;
-
-    // Only add ID attribute if it exists.
-    const blockProps = useBlockProps.save( {
-        className: className,
-        ...( ID ? { id: `block-${ ID }` } : {} ),
-    } );
 
     let parentAttsTitleLavel = ( ! wpmozo_is_empty( parentAtts ) ) ? parentAtts.titleLavel : 'h4',
         inactiveState = ( ! wpmozo_is_empty( parentAtts ) ) ? parentAtts.inactiveState : '';
@@ -126,7 +127,7 @@ export default function save({ attributes }) {
             { ( ID && '' !== ID ) && (
                 <style>{ generateDynamicStyle( { attributes } ) }</style>
             ) }
-            <div { ...blockProps }>
+            <div { ...blockProps } id={`block-${ID}`}>
                 <div className={`wpmozo-bna-image-accordion-item-content-wrapper${isEnabledAnimation}`}>
                     <div className={`wpmozo-bna-image-accordion-item-content-inner-wrap`}>
                         {renderedIcon}

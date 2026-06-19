@@ -1,5 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks';
 import metadata from './block.json';
+import advancedAttributes from '../../common/components/advanced-panel/advancedAttributes';
 import Edit from './edit';
 import save from './save';
 import Icon from './icon';
@@ -12,7 +13,13 @@ import Icon from './icon';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 
+const mergedAttributes = {
+	...metadata.attributes,
+	...advancedAttributes,
+};
+
 registerBlockType( metadata.name, {
+	attributes: mergedAttributes,
 	edit: Edit,
 	icon: Icon,
 	save,

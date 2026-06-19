@@ -1,9 +1,17 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ( { attributes } ) => {
 
-	const { ID, className } = attributes;
+	const { ID, className } = attributes,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-twitter-embedded-tweet' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	// Get attributes.
 	const tweetId      = attributes.tweetId ?? '';
@@ -13,19 +21,13 @@ const Save = ( { attributes } ) => {
 	const theme        = attributes.theme ?? 'light';
 	const maxWidth     = attributes.maxWidth ?? 350;
 
-	// Only add ID attribute if it exists.
-	const blockProps = useBlockProps.save( {
-		className: className,
-		...( ID ? { id: `block-${ ID }` } : {} ),
-	} );
-
 	return ( <>
 		{/* Only output <style> if ID exists. */}
 		{ ( ID && '' !== ID ) && (
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 		) }
 
-		<div { ...blockProps }>
+		<div { ...blockProps } id={`block-${ ID }`}>
 			{ ( attributes.tweetId && '' !== attributes.tweetId ) && (
 				<div className="wpmozo_twitter_embedded_tweet_wrapper">
 					<blockquote className="wpmozo_tweet"

@@ -2,9 +2,9 @@ import { __ } from '@wordpress/i18n';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import Inspector from './inspector';
 import { useSelect } from '@wordpress/data';
-import { Fragment } from "@wordpress/element";
+import { Fragment, useEffect } from "@wordpress/element";
 import generateDynamicStyle from './style';
-import {getIdByClientid} from '../../common/utils.js';
+import { getIdByClientid, mergeWrapperProps } from '../../common/utils.js';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -15,7 +15,14 @@ import {getIdByClientid} from '../../common/utils.js';
 
 export default function Edit(props) {
 
-    const { attributes, setAttributes, clientId } = props;
+    const { attributes, setAttributes, clientId } = props,
+        wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-bna-list${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
     const childBlocks = useSelect( (select) => {
         return select('core/block-editor').getBlocks(clientId);
@@ -26,7 +33,27 @@ export default function Edit(props) {
         [ 'wpmozo/list-item', { text: childAttributes.text} ] // Prefills a child block when parent is inserted.
     ];
 
-    attributes.ID = clientId;
+    // Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
     const hideDivider = true === attributes.lastDivider ? "wpmozo-bna-hide-last-divider" : "";
 
     return (
@@ -34,7 +61,7 @@ export default function Edit(props) {
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>{ generateDynamicStyle({ attributes, clientId }) }</style>
 
-            <div { ...useBlockProps( { className: 'wpmozo-bna-list' } ) }>
+            <div { ...blockProps}>
                 <div>
                     <div className="wpmozo-bna-list-wrapper">
                         <div className={"wpmozo-bna-list-layout wpmozo-bna-list-" + attributes.layout + " " + hideDivider}>

@@ -9,17 +9,39 @@ import generateDynamicStyle from "./style";
 
 import Layout1 from './layouts/layout1';
 import Layout2 from './layouts/layout2';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Edit = (props) => {
 
-	const {attributes, setAttributes, clientId} = props;
-
+	const {attributes, setAttributes, clientId} = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-team-slider${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 	// Ensure ID is set once (no render-time mutation).
-	useEffect(() => {
-		if (attributes.ID !== clientId) {
-			setAttributes({ID: clientId});
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
 		}
-	}, [clientId]); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	const postsNumber = parseInt(attributes.postsNumber) ?? 10;
 	const postOrder = attributes.postOrder ?? 'desc';
@@ -118,7 +140,7 @@ const Edit = (props) => {
 			<Inspector attributes={attributes} setAttributes={setAttributes}/>
 			<style>{generateDynamicStyle({attributes, clientId})}</style>
 
-			<div {...useBlockProps()} id={`block-${attributes.ID}`} onClick={selectBlock}>
+			<div {...blockProps} id={`block-${attributes.ID}`} onClick={selectBlock}>
 				<div className={`wpmozo_swiper_wrapper ${equalHeightClass}`}
 					 data-clientId={clientId}
 					 data-slide_effect={attributes.slideEffect || 'slide'}

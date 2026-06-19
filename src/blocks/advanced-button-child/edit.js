@@ -4,6 +4,7 @@ import Inspector from './inspector';
 import {Fragment, useEffect} from "@wordpress/element";
 import generateDynamicStyle from './style';
 import {useSelect} from '@wordpress/data';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -20,21 +21,43 @@ export default function Edit(props) {
 		showOnHover = (attributes.showMediaOnHover) ? ' show-on-hover' : '',
 		bkStyle = attributes.backgroundFillStyle ? ` wpmozo_button_${attributes.backgroundFillStyle}` : '';
 
+	const wrapArgs = attributes?.ID && mergeWrapperProps( {
+			className: `wpmozo-advanced-button-child${ attributes?.wrapIsHover ? ' is_hover' : '' }`, 
+			id: `block-${clientId}`
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
+		
 	// Ensure ID is set once (no render-time mutation).
-	useEffect(() => {
-		if (attributes.ID !== clientId) {
-			setAttributes({ID: clientId});
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
 		}
-	}, [clientId]); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
 
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes}/>
 			<style>
-				{generateDynamicStyle({attributes})}
+				{`${ generateDynamicStyle({ attributes }) }`}
 			</style>
 			{/*Wrapper div with block props (applies block ID and classes */}
-			<div {...useBlockProps({className: 'wpmozo-advanced-button-child', id: `block-${clientId}`})}>
+			<div {...blockProps}>
 
 				{/* Button container */}
 				<div className="wpmozo-button-container">

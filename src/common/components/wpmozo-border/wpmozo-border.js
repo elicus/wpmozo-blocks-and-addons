@@ -65,6 +65,7 @@ const WpmozoBorder = (args) => {
 					onDeselect={() => borderSetValue('border')}
 				>
 					<__experimentalBorderBoxControl
+						__next40pxDefaultSize
 						label="Border"
 						value={props.attributes[BorderKey + 'border']}
 						onChange={(NewBorder) => onChange('border', NewBorder)}

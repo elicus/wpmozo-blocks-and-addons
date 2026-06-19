@@ -222,8 +222,8 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 
 		// Get wrapper attributes.
 		$wrapper_attributes = get_block_wrapper_attributes( array(
-			'class' => ( $attributes['className'] ) ?? ''
-		) );
+			'class'=>'wpmozo-wrap-'.$attributes['ID'] . ' ' . 'wpmozo-breadcrumb'. ' ' .(isset($attributes['wrapCustomClass']) ? $attributes['wrapCustomClass'] : '' )
+		));
 
 
 		// Render final output.

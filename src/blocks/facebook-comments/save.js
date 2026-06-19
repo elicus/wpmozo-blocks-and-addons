@@ -1,10 +1,18 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ( { attributes } ) => {
 
-	const { ID, className } = attributes;
+	const { ID, className } = attributes,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-facebook-comments' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	// Get attributes.
 	const fbAppId     = attributes.fbAppId ?? '';
@@ -12,12 +20,6 @@ const Save = ( { attributes } ) => {
 	const numPosts    = attributes.numPosts ?? 10;
 	const orderBy     = attributes.orderBy ?? 'social';
 	const lazyLoading = attributes.lazyLoading ?? false;
-
-	// Only add ID attribute if it exists.
-	const blockProps = useBlockProps.save( {
-		className: className,
-		...( ID ? { id: `block-${ ID }` } : {} ),
-	} );
 
 	return ( <>
 		{/* Only output <style> if ID exists. */}

@@ -11,6 +11,7 @@ import generateDynamicStyle from './style';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const ALLOWED_BLOCKS = [
 	'core/paragraph',
@@ -30,7 +31,14 @@ const ALLOWED_BLOCKS = [
 
 export default function Edit(props) {
 
-	const { attributes, setAttributes, clientId } = props;
+	const { attributes, setAttributes, clientId } = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-advanced-tooltip${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	let image = ( attributes.image ) ? attributes.image.url : attributes.image,
 		isSelected = props.isSelected,
@@ -43,7 +51,22 @@ export default function Edit(props) {
 		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
 		}
-	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	useEffect(() => {
 		const event = new CustomEvent('WPMozoButtonPropsChanged');
@@ -81,7 +104,7 @@ export default function Edit(props) {
 				<style>
 					{generateDynamicStyle({attributes})}
 				</style>
-				<div {...useBlockProps()} id={`block-${clientId}`}>
+				<div {...blockProps} id={`block-${clientId}`}>
 					<div className={`wpmozo_advanced_tooltip icon_`}>
 						<div
 							className={`wpmozo_tooltip_trigger_element_wrap trigger_type_${attributes.trigerElement}`}

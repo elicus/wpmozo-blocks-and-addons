@@ -106,6 +106,7 @@ const WpmozoAlignment = (args) => {
 
     return (
         <__experimentalToggleGroupControl
+            __next40pxDefaultSize
             key={`wpmozo-alignment-${type}-${alignmentKey}`}
             className={className}
             onChange={onChange}

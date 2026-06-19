@@ -4,7 +4,7 @@ import Inspector from './inspector';
 import { Fragment, useEffect } from "@wordpress/element";
 import generateDynamicStyle from './style';
 import { useSelect } from '@wordpress/data';
-import { wpmozo_is_empty } from '../../common/utils.js';
+import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils.js';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -15,19 +15,35 @@ import { wpmozo_is_empty } from '../../common/utils.js';
 
 export default function Edit(props) {
 
-    const { attributes, setAttributes, clientId } = props;
-
-    let ID = clientId;
-    
+    const { attributes, setAttributes, clientId } = props,
+        wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-scroll-stack-cards-item${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
     // Ensure ID is set once (no render-time mutation).
-    useEffect( () => {
-        setAttributes( { ID: clientId } );
-    }, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
 
-    const blockProps = useBlockProps( {
-        className: attributes.className,
-        ...( ID ? { id: `block-${ ID }` } : {} ),
-    } );
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
     const parentAttributes = useSelect((select) => {
         const { getBlockRootClientId, getBlock } = select('core/block-editor');
@@ -196,7 +212,7 @@ export default function Edit(props) {
             <style>
                 { generateDynamicStyle({ attributes }) }
             </style>
-            <div { ...blockProps }>
+            <div { ...blockProps } id={`block-${ clientId }`}>
                 { 'vertical' === layout &&
                     LayoutVertical
                 }

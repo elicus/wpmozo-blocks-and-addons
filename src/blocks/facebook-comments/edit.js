@@ -11,17 +11,40 @@ import Inspector from './inspector';
  */
 import './editor.scss';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Edit = ( props ) => {
 
-	const { attributes, setAttributes, clientId } = props;
+	const { attributes, setAttributes, clientId } = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-facebook-comments${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
 		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
 		}
-	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	// Get attributes.
 	const fbAppId     = attributes.fbAppId ?? '';
@@ -48,7 +71,7 @@ const Edit = ( props ) => {
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-			<div {...useBlockProps()} id={`block-${attributes.ID}`}>
+			<div {...blockProps} id={`block-${attributes.ID}`}>
 				{ ( fbAppId && '' !== fbAppId && pageURL && '' !== pageURL ) && (
 					<div className="wpmozo_fb_comments_wrapper">
 						<div className="fb-comments"

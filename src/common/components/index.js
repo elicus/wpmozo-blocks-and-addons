@@ -10,6 +10,7 @@ import WpmozoAlignment from './wpmozo-alignment/wpmozo-alignment';
 import WpmozoColorCombo from './wpmozo-colorcombo/wpmozo-colorcombo';
 import WpmozoRangeSize from './wpmozo-range-size/wpmozo-range-size';
 import WpmozoVideoUploader from './wpmozo-video-uploader/wpmozo-video-uploader';
+import MozoStates from './mozo-states/mozo-states';
 
 export {
 	WpmozoTypography,
@@ -23,6 +24,7 @@ export {
 	WpmozoColorCombo,
 	WpmozoRangeSize,
 	WpmozoVideoUploader,
+	MozoStates
 }
 
 // Export them globally for pro plugin.
@@ -40,5 +42,6 @@ if ( typeof window !== 'undefined' ) {
 		WpmozoColorCombo,
 		WpmozoRangeSize,
 		WpmozoVideoUploader,
+		MozoStates
 	} );
 }

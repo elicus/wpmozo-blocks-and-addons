@@ -4,18 +4,39 @@ import { useBlockProps } from "@wordpress/block-editor";
 import Inspector from "./inspector";
 
 import generateDynamicStyle from "./style";
-import { getMainEl } from '../../common/utils';
+import { getMainEl, mergeWrapperProps } from '../../common/utils';
 
 export default function Edit( props ) {
 
-	const { attributes, setAttributes, clientId } = props;
-
+	const { attributes, setAttributes, clientId } = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-bna-rotating-text${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
 		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
 		}
-	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	let image = ( attributes.image ) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,	
 		useImage = attributes.useImage,
@@ -53,7 +74,7 @@ export default function Edit( props ) {
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-			<div id={`block-${attributes.ID}`} { ...useBlockProps( { className: 'wpmozo-bna-rotating-text' } ) }>
+			<div id={`block-${attributes.ID}`} { ...blockProps}>
 				<div className="wpmozo-bna-rotating-text-wrap">
 		            <div className="wpmozo-bna-rotating-text-inner">
 		                <p>{text}</p>

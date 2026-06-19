@@ -12,17 +12,39 @@ import generateDynamicStyle from "./style";
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function Edit(props) {
 
-	const {attributes, setAttributes, clientId} = props;
-
+	const {attributes, setAttributes, clientId} = props,
+	wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-advanced-button${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 	// Ensure ID is set once (no render-time mutation).
-	useEffect(() => {
-		if (attributes.ID !== clientId) {
-			setAttributes({ID: clientId});
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
 		}
-	}, [clientId]); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	useEffect(() => {
 		const event = new CustomEvent('WPMozoPostTickerPropsChanged');
@@ -89,7 +111,7 @@ export default function Edit(props) {
 			<Inspector attributes={attributes} setAttributes={setAttributes}/>
 			<style>{generateDynamicStyle({attributes})}</style>
 
-			<div {...useBlockProps()} id={`block-${attributes.ID}`}>
+			<div {...blockProps} id={`block-${attributes.ID}`}>
 				<div className='wpmozo_post_ticker'>
 					<div
 						className={`wpmozo_post_ticker_wrap wpmozo_ticker_effect_${attributes.tickerEffect}`}

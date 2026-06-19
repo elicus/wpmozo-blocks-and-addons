@@ -1,6 +1,7 @@
 // src/utils.js
 import {__} from '@wordpress/i18n';
-
+import { useEffect } from '@wordpress/element';
+import { useSelect } from '@wordpress/data';
 export function wpmozo_is_empty(value) {
 	return (
 		value === '' ||
@@ -354,6 +355,168 @@ function truncateContent( content, length = 100, endWith = '...', countType = ''
 	return trimCharacters( content, length, countType ) + endWith;
 }
 
+const STYLE_TAG_ID = 'wpmozo-dynamic-styles';
+
+export function addDynamicCSS(id, css, blockId) {
+    if (typeof document === 'undefined') return;
+    let mainEl = getMainEl(blockId);
+    if (!mainEl || !mainEl.length) return;
+    let mainDoc = mainEl[0].ownerDocument;
+    let styleTag = mainDoc.getElementById(STYLE_TAG_ID);
+
+    if (!styleTag) {
+        styleTag = mainDoc.createElement('style');
+        styleTag.id = STYLE_TAG_ID;
+        mainDoc.head.appendChild(styleTag);
+    }
+
+    const existing = styleTag.innerHTML;
+    const escapedId = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+    // Normal block regex: "body .wpmozo-wrap-XXX#block-XXX { ... }"
+    const normalRegex = new RegExp(
+        `body\\s+\\.${escapedId}#block-[^\\s:{]+\\s*\\{[^}]*\\}`,
+        'g'
+    );
+
+    // Hover block regex: "body .wpmozo-wrap-XXX#block-XXX:hover, body ...is_hover { ... }"
+    const hoverRegex = new RegExp(
+        `body\\s+\\.${escapedId}#block-[^\\s:{]+:hover[\\s\\S]*?\\}`,
+        'g'
+    );
+
+    const newNormalMatch = css.match(
+        new RegExp(`body\\s+\\.${escapedId}#block-[^\\s:{]+\\s*\\{[^}]*\\}`)
+    );
+    const newHoverMatch = css.match(
+        new RegExp(`body\\s+\\.${escapedId}#block-[^\\s:{]+:hover[\\s\\S]*?\\}`)
+    );
+
+    let updated = existing;
+
+    if (normalRegex.test(updated)) {
+        updated = updated.replace(normalRegex, newNormalMatch ? newNormalMatch[0] : '');
+    } else if (newNormalMatch) {
+        updated += newNormalMatch[0];
+    }
+
+    hoverRegex.lastIndex = 0;
+    if (hoverRegex.test(updated)) {
+        updated = updated.replace(hoverRegex, newHoverMatch ? newHoverMatch[0] : '');
+    } else if (newHoverMatch) {
+        updated += newHoverMatch[0];
+    }
+
+    styleTag.innerHTML = updated;
+}
+
+/**
+ * Build wrapper-level className + inline style from shared advanced attributes.
+ * Empty strings collapse to `undefined` so block-specific CSS is not overridden.
+ *
+ * Returns `{ className, style }` ready to spread/merge into a block's
+ * outer element (`useBlockProps` / `useBlockProps.save`).
+ */
+export function getWrapperProps( attributes = {} ) {
+	const {
+		ID,
+		wrapBackground,
+		wrapBackgroundHover,
+		wrappadding,
+		wrapborderRadius,
+		wrapHoverborderRadius,
+		wrapborder,
+		wrapHoverborder,
+		wrapTransform,
+		wrapCustomClass,
+		wrapTranslate,
+		wrapTranslateHover,
+		wrapScale,
+		wrapScaleHover,
+		wrapRotate,
+		wrapRotateHover,
+		wrapSkew,
+		wrapSkewHover,
+		wrapTransformOrigin,
+		wrapTransformOriginHover
+	} = attributes;
+	const toConvertStyles = [
+		'wrap',
+		'wrapHover'
+	];
+	const convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
+	const uniqueClass = `wpmozo-wrap-${ ID }`;
+	const isObj = (val) => val !== null && typeof val === "object";
+	const buildTransform = (scale, rotate, translate, skew) => {
+		const parts = [
+			scale?.X     ? `scaleX(${scale.X})`       : '',
+			scale?.Y     ? `scaleY(${scale.Y})`        : '',
+			rotate?.X    ? `rotateX(${rotate.X})`      : '',
+			rotate?.Y    ? `rotateY(${rotate.Y})`      : '',
+			rotate?.Z    ? `rotateZ(${rotate.Z})`      : '',
+			translate?.X ? `translateX(${translate.X})`: '',
+			translate?.Y ? `translateY(${translate.Y})`: '',
+			skew?.X      ? `skewX(${skew.X})`          : '',
+			skew?.Y      ? `skewY(${skew.Y})`          : '',
+		].filter(Boolean);
+
+		return parts.length ? `transform:${parts.join(' ')};` : '';
+	};
+	const hoverTransform = buildTransform(wrapScaleHover, wrapRotateHover, wrapTranslateHover, wrapSkewHover);
+	const hoverOrigin = (wrapTransformOriginHover?.X || wrapTransformOriginHover?.Y)
+		? `transform-origin:${wrapTransformOriginHover?.X || 'center'} ${wrapTransformOriginHover?.Y || 'center'};`
+		: '';
+	const hoverBg = wrapBackgroundHover ? `background:${wrapBackgroundHover};` : '';
+	const hoverConvertedStyle = convertedStyle.wrapHover ? `${convertedStyle.wrapHover};` : '';
+
+	const hoverContent = [hoverBg, hoverConvertedStyle, hoverTransform, hoverOrigin]
+		.filter(Boolean).join('\n');
+
+	const normalTransform = buildTransform(wrapScale, wrapRotate, wrapTranslate, wrapSkew);
+	const normalOrigin = (wrapTransformOrigin?.X || wrapTransformOrigin?.Y)
+		? `transform-origin:${wrapTransformOrigin?.X || 'center'} ${wrapTransformOrigin?.Y || 'center'};`
+		: '';
+	const normalBg = wrapBackground ? `background:${wrapBackground};` : '';
+	const normalConvertedStyle = convertedStyle.wrap ? `${convertedStyle.wrap};` : '';
+
+	const normalContent = [ normalBg, normalConvertedStyle, normalTransform, normalOrigin]
+		.filter(Boolean).join('\n');
+	let	style = normalContent ?  `body .${uniqueClass}#block-${ID} { ${normalContent} transition:all 300ms;}` : `body .${uniqueClass}#block-${ID} {transition:all 300ms;}`;
+	if (hoverContent) {
+		style += `body .${uniqueClass}#block-${ID}:hover,body .${uniqueClass}#block-${ID}.is_hover {${hoverContent}}`;
+	}
+	if ( typeof addDynamicCSS === 'function' ) {
+		addDynamicCSS( uniqueClass, style, ID );
+	}
+
+	return {
+		domProps: {
+			className: `${wrapCustomClass || ''} ${uniqueClass}`,
+			style: undefined,
+		},
+		wrapStyle: style
+	};
+}
+
+/**
+ * Merge base `useBlockProps`/`useBlockProps.save` options with the
+ * shared wrapper attributes. Preserves the block's existing className
+ * and style while layering wrapper background/spacing/border/transform
+ * and the custom class on top.
+ */
+export function mergeWrapperProps( baseOptions = {}, attributes = {} ) {
+    const wrap = getWrapperProps( attributes );
+    return {
+        wrapprops: {
+            ...baseOptions,
+            className: [ baseOptions.className, wrap.domProps.className ]
+                .filter( Boolean ).join( ' ' ),
+            style: { ...( baseOptions.style || {} ), ...wrap.domProps.style }
+        },
+        wrapStyle: wrap.wrapStyle
+    };
+}
+
 // Export only selected functions for Pro plugin
 if ( typeof window !== 'undefined' ) {
 	window.WPMozoBNAUtils = window.WPMozoBNAUtils || {};
@@ -362,6 +525,8 @@ if ( typeof window !== 'undefined' ) {
 		inspectorPanelTabs,
 		convertInlineStyleStr,
 		truncateContent,
+		getWrapperProps,
+		mergeWrapperProps,
 		// Add more functions here if needed.
 	} );
 }

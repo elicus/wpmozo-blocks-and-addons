@@ -1,13 +1,21 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from './style';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function save( { attributes } ) {
 
 	const ID = attributes.ID;
-	const clientId = ID;
+	const clientId = ID,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-bna-before-after-main' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
-	const beforeImage = ( attributes.beforeImage ) ? attributes.beforeImage : wpmozo_bna_editor_object.placeholderImg;
-	const afterImage  = ( attributes.afterImage ) ? attributes.afterImage : wpmozo_bna_editor_object.placeholderImg;
+	const beforeImage = ( attributes.beforeImage ) ? attributes.beforeImage : wpmozo_bna_editor_object?.placeholderImg;
+	const afterImage  = ( attributes.afterImage ) ? attributes.afterImage : wpmozo_bna_editor_object?.placeholderImg;
 
 	let beforeLabel = ( attributes.beforeHasLabel ) ? attributes.beforeLabel : '',
 		afterLabel  = ( attributes.afterHasLabel ) ? attributes.afterLabel : '';
@@ -15,7 +23,7 @@ export default function save( { attributes } ) {
 	return ( <>
 		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
-		<div id={`block-${ID}`} { ...useBlockProps.save( { className: 'wpmozo-bna-before-after-main ' + attributes.className } ) }>
+		<div id={`block-${clientId}`} {...blockProps}>
 			<div className="wpmozo-bna-before-after-image-wrapper"
 				data-before-label={beforeLabel}
 				data-after-label={afterLabel}
