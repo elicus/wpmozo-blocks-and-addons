@@ -26,7 +26,7 @@ const Save = ( { attributes } ) => {
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 		) }
 
-		<div { ...blockProps } id={`block-${clientId}`}>
+		<div { ...blockProps } id={`block-${ID}`}>
 			<div className={`wpmozo_bna_blog_timeline_wrapper ${layout} wpmozo_bna_blog_timeline_${orientation}`}
 				dangerouslySetInnerHTML={ {
 					__html: ( attributes.postItemsDB || '' ) +

@@ -1,139 +1,9 @@
+// deprecated/version-1.js
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import {wpmozo_is_empty} from "../../../common/utils";
 
-const deprecatedSave = ({ attributes }) => {
-    const ID = attributes.ID,
-        layoutType = ( 'flip' === attributes.animationType ) ? ' layout1' : ' layout2';
-
-    let backBtnIcon = (
-        <i className={ attributes.backBtnIcon }></i>
-    ),
-    backBtnOnHover = ( attributes.backBtnIconOnHover ) ? ' show-on-hover' : '',
-    frontHexagonIcon = (
-        <div className="wpmozo-bna-hexagon-wrap">
-            <div className="wpmozo-bna-hexagon-shape">
-                <i className={ attributes.frontElIcon }></i>
-            </div>
-        </div>
-    ),
-    backHexagonIcon = (
-        <div className="wpmozo-bna-hexagon-wrap">
-            <div className="wpmozo-bna-hexagon-shape">
-                <i className={ attributes.backElIcon }></i>
-            </div>
-        </div>
-    );
-
-    return (
-        <div {...useBlockProps.save({ className: 'wpmozo-bna-flip-box-main' })} id={`block-${ID}`}>
-            <div className={`wpmozo-bna-flip-box-wrap${layoutType}`} flip-direction={ attributes.flipDirection }>
-                <div className="wpmozo-bna-flip-box-side wpmozo-bna-flip-box-front">
-                    <div className="wpmozo-bna-flip-box-inner">
-                        { 'none' !== attributes.frontElType && (
-                            <div className={ 'icon' === attributes.frontElType ? "wpmozo-bna-flip-box-icon-wrap" : "wpmozo-bna-flip-box-image-wrap"}>
-                                { 'icon' === attributes.frontElType && ( 
-                                    <>
-                                        { "hexagon" !== attributes.frontIconShape && (
-                                            <i className={ attributes.frontElIcon }></i>
-                                        )}
-                                        { "hexagon" === attributes.frontIconShape && 
-                                            frontHexagonIcon
-                                        }
-                                    </>
-                                )}
-                                { 'image' === attributes.frontElType && (
-                                    <img src={ attributes.frontElImage } />
-                                )}
-                            </div>
-                        )}
-                        <div className="wpmozo-bna-flip-box-content-wrap">
-                            { !wpmozo_is_empty( attributes.frontTitle ) && 
-                                <div className="wpmozo-bna-flip-box-heading-wrap">
-                                    <RichText.Content
-                                        className="wpmozo-bna-flip-box-title"
-                                        tagName={ attributes.frontHeadingLavel }
-                                        value={ attributes.frontTitle }
-                                    />
-                                </div>
-                            }
-                            { !wpmozo_is_empty( attributes.frontContnet ) && 
-                                <div className="wpmozo-bna-flip-box-description">
-                                    <RichText.Content
-                                        value={ attributes.frontContnet }
-                                    />
-                                </div>
-                            }
-                        </div>
-                    </div>
-                </div>
-                <div className="wpmozo-bna-flip-box-side wpmozo-bna-flip-box-back">
-                    <div className="wpmozo-bna-flip-box-inner">
-                        { 'none' !== attributes.backElType && (
-                            <div className={ 'icon' === attributes.backElType ? "wpmozo-bna-flip-box-icon-wrap" : "wpmozo-bna-flip-box-image-wrap"}>
-                                { 'icon' === attributes.backElType && ( 
-                                    <>
-                                        { "hexagon" !== attributes.backIconShape && (
-                                            <i className={ attributes.backElIcon }></i>
-                                        )}
-                                        { "hexagon" === attributes.backIconShape && 
-                                            backHexagonIcon
-                                        }
-                                    </>
-                                )}
-                                { 'image' === attributes.backElType && (
-                                    <img src={ attributes.backElImage } />
-                                )}
-                            </div>
-                        )}
-                        <div className="wpmozo-bna-flip-box-content-wrap">
-                            { !wpmozo_is_empty( attributes.backTitle ) && 
-                                <div className="wpmozo-bna-flip-box-heading-wrap">
-                                    <RichText.Content
-                                        className="wpmozo-bna-flip-box-title"
-                                        tagName={ attributes.backHeadingLavel }
-                                        value={ attributes.backTitle }
-                                    />
-                                </div>
-                            }
-                            { !wpmozo_is_empty( attributes.backContnet ) && 
-                                <div className="wpmozo-bna-flip-box-description">
-                                    <RichText.Content
-                                        value={ attributes.backContnet }
-                                    />
-                                </div>
-                            }
-                        </div>
-                        { 
-                            attributes.backHasButton &&
-                            !wpmozo_is_empty( attributes.backBtnText ) && 
-                            !wpmozo_is_empty( attributes.backBtnUrl ) &&
-                            <div className="wpmozo-bna-flip-box-button-wrap">
-                                <div className="wpmozo-bna-flip-box-button-wrap-inner">
-                                    <a 
-                                        className={`wpmozo-bna-flip-box-button${backBtnOnHover}`}
-                                        target="_blank"
-                                        href={ attributes.backBtnUrl }
-                                    >
-                                        { !wpmozo_is_empty( backBtnIcon ) && 'before' === attributes.backBtnIconPosition &&
-                                            backBtnIcon
-                                        }
-                                        { attributes.backBtnText }
-                                        { !wpmozo_is_empty( backBtnIcon ) && 'after' === attributes.backBtnIconPosition &&
-                                            backBtnIcon
-                                        }
-                                    </a>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-export default {
+const V1 = {
     attributes: {
         // Same as old v1.0.0 attributes
         ID: { type: "string", },
@@ -266,5 +136,136 @@ export default {
         frontDimensionspadding: { type: "object", default: { "top": '10px', "right": '10px', "bottom": '10px', "left": '10px', } },
         backDimensionspadding: { type: "object", default: { "top": '10px', "right": '10px', "bottom": '10px', "left": '10px', } }
     },
-    save: deprecatedSave,
+    save( { attributes } ) {
+        const ID = attributes.ID,
+            layoutType = ( 'flip' === attributes.animationType ) ? ' layout1' : ' layout2';
+
+        let backBtnIcon = (
+            <i className={ attributes.backBtnIcon }></i>
+        ),
+        backBtnOnHover = ( attributes.backBtnIconOnHover ) ? ' show-on-hover' : '',
+        frontHexagonIcon = (
+            <div className="wpmozo-bna-hexagon-wrap">
+                <div className="wpmozo-bna-hexagon-shape">
+                    <i className={ attributes.frontElIcon }></i>
+                </div>
+            </div>
+        ),
+        backHexagonIcon = (
+            <div className="wpmozo-bna-hexagon-wrap">
+                <div className="wpmozo-bna-hexagon-shape">
+                    <i className={ attributes.backElIcon }></i>
+                </div>
+            </div>
+        );
+
+        return (
+            <div {...useBlockProps.save({ className: 'wpmozo-bna-flip-box-main' })} id={`block-${ID}`}>
+                <div className={`wpmozo-bna-flip-box-wrap${layoutType}`} flip-direction={ attributes.flipDirection }>
+                    <div className="wpmozo-bna-flip-box-side wpmozo-bna-flip-box-front">
+                        <div className="wpmozo-bna-flip-box-inner">
+                            { 'none' !== attributes.frontElType && (
+                                <div className={ 'icon' === attributes.frontElType ? "wpmozo-bna-flip-box-icon-wrap" : "wpmozo-bna-flip-box-image-wrap"}>
+                                    { 'icon' === attributes.frontElType && ( 
+                                        <>
+                                            { "hexagon" !== attributes.frontIconShape && (
+                                                <i className={ attributes.frontElIcon }></i>
+                                            )}
+                                            { "hexagon" === attributes.frontIconShape && 
+                                                frontHexagonIcon
+                                            }
+                                        </>
+                                    )}
+                                    { 'image' === attributes.frontElType && (
+                                        <img src={ attributes.frontElImage } />
+                                    )}
+                                </div>
+                            )}
+                            <div className="wpmozo-bna-flip-box-content-wrap">
+                                { !wpmozo_is_empty( attributes.frontTitle ) && 
+                                    <div className="wpmozo-bna-flip-box-heading-wrap">
+                                        <RichText.Content
+                                            className="wpmozo-bna-flip-box-title"
+                                            tagName={ attributes.frontHeadingLavel }
+                                            value={ attributes.frontTitle }
+                                        />
+                                    </div>
+                                }
+                                { !wpmozo_is_empty( attributes.frontContnet ) && 
+                                    <div className="wpmozo-bna-flip-box-description">
+                                        <RichText.Content
+                                            value={ attributes.frontContnet }
+                                        />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div className="wpmozo-bna-flip-box-side wpmozo-bna-flip-box-back">
+                        <div className="wpmozo-bna-flip-box-inner">
+                            { 'none' !== attributes.backElType && (
+                                <div className={ 'icon' === attributes.backElType ? "wpmozo-bna-flip-box-icon-wrap" : "wpmozo-bna-flip-box-image-wrap"}>
+                                    { 'icon' === attributes.backElType && ( 
+                                        <>
+                                            { "hexagon" !== attributes.backIconShape && (
+                                                <i className={ attributes.backElIcon }></i>
+                                            )}
+                                            { "hexagon" === attributes.backIconShape && 
+                                                backHexagonIcon
+                                            }
+                                        </>
+                                    )}
+                                    { 'image' === attributes.backElType && (
+                                        <img src={ attributes.backElImage } />
+                                    )}
+                                </div>
+                            )}
+                            <div className="wpmozo-bna-flip-box-content-wrap">
+                                { !wpmozo_is_empty( attributes.backTitle ) && 
+                                    <div className="wpmozo-bna-flip-box-heading-wrap">
+                                        <RichText.Content
+                                            className="wpmozo-bna-flip-box-title"
+                                            tagName={ attributes.backHeadingLavel }
+                                            value={ attributes.backTitle }
+                                        />
+                                    </div>
+                                }
+                                { !wpmozo_is_empty( attributes.backContnet ) && 
+                                    <div className="wpmozo-bna-flip-box-description">
+                                        <RichText.Content
+                                            value={ attributes.backContnet }
+                                        />
+                                    </div>
+                                }
+                            </div>
+                            { 
+                                attributes.backHasButton &&
+                                !wpmozo_is_empty( attributes.backBtnText ) && 
+                                !wpmozo_is_empty( attributes.backBtnUrl ) &&
+                                <div className="wpmozo-bna-flip-box-button-wrap">
+                                    <div className="wpmozo-bna-flip-box-button-wrap-inner">
+                                        <a 
+                                            className={`wpmozo-bna-flip-box-button${backBtnOnHover}`}
+                                            target="_blank"
+                                            href={ attributes.backBtnUrl }
+                                        >
+                                            { !wpmozo_is_empty( backBtnIcon ) && 'before' === attributes.backBtnIconPosition &&
+                                                backBtnIcon
+                                            }
+                                            { attributes.backBtnText }
+                                            { !wpmozo_is_empty( backBtnIcon ) && 'after' === attributes.backBtnIconPosition &&
+                                                backBtnIcon
+                                            }
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    },
 };
+
+export default V1;

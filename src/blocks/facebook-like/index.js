@@ -4,6 +4,7 @@ import advancedAttributes from '../../common/components/advanced-panel/advancedA
 import Edit from './edit';
 import save from './save';
 import Icon from './icon';
+import deprecated from './deprecated';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -23,4 +24,5 @@ registerBlockType( metadata.name, {
     edit: Edit,
     icon: Icon,
     save,
+    deprecated
 } );

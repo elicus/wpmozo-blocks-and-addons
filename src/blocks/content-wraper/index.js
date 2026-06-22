@@ -3,6 +3,7 @@ import metadata from './block.json';
 import advancedAttributes from '../../common/components/advanced-panel/advancedAttributes';
 import Edit from './edit';
 import save from './save';
+import deprecated from './deprecated';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * All files containing  keyword are bundled together. The code used
@@ -20,4 +21,5 @@ registerBlockType(metadata.name, {
 	attributes: mergedAttributes,
     edit: Edit,
     save,
+	deprecated
 });

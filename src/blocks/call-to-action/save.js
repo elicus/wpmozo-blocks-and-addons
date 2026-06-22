@@ -3,14 +3,15 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 import generateDynamicStyle from "./style";
 import { mergeWrapperProps } from '../../common/utils.js';
+import ReactDOMServer from 'react-dom/server';
 
 const Save = ( { attributes } ) => {
 
     const clientId = attributes.ID
 
-	const { ID, className, isFirstChild } = attributes,
+	const { ID, className } = attributes,
 		wrapArgs = attributes?.ID && mergeWrapperProps( { 
-			className: className ,
+			className: `wpmozo-call-to-action`,
 			style: {}
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,

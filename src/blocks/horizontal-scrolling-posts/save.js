@@ -19,7 +19,7 @@ export default function save({ attributes }) {
 			{(ID && '' !== ID) && (
 				<style>{generateDynamicStyle({attributes})}</style>
 			)}
-			<div {...blockProps} id={`block-${clientId}`}>
+			<div {...blockProps} id={`block-${ID}`}>
 				<InnerBlocks.Content/>
 			</div>
 		</>

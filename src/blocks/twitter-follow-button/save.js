@@ -5,7 +5,7 @@ import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ( { attributes } ) => {
 
-	const { ID, className } = attributes
+	const { ID, className } = attributes,
 		wrapArgs = attributes?.ID && mergeWrapperProps( { 
 			className: 'wpmozo-twitter-follow-button' ,
 			style: {}

@@ -1,4 +1,4 @@
-import { useBlockProps, useInnerBlocksProps,InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, useInnerBlocksProps, InnerBlocks } from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
 import { mergeWrapperProps } from '../../common/utils.js';
 

@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import generateDynamicStyle from "./style";
 import { mergeWrapperProps } from '../../common/utils.js';
+import {useBlockProps} from "@wordpress/block-editor";
 
 export default function save(props) {
 

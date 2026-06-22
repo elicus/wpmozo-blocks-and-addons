@@ -31,7 +31,7 @@ const Save = ( { attributes } ) => {
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 		) }
 
-		<div { ...blockProps } id={`block-${clientId}`}>
+		<div { ...blockProps } id={`block-${ID}`}>
 			{ ( fbAppId && '' !== fbAppId && videoURL && '' !== videoURL ) && (
 				<div className="wpmozo_fb_embedded_video_wrapper">
 					<div className="fb-video"

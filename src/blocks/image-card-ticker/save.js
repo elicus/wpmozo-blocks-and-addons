@@ -27,7 +27,7 @@ export default function save({ attributes }) {
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 		) }
 
-		<div {...blockProps} id={`block-${clientId}`}>
+		<div {...blockProps} id={`block-${ID}`}>
 			{'curve' === attributes.tickerLayout && (
 				<svg width="0" height="0">
 					<defs>

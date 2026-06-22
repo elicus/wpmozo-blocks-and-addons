@@ -19,7 +19,7 @@ export default function save({ attributes }) {
             { ( ID && '' !== ID ) && (
                 <style>{ generateDynamicStyle( { attributes } ) }</style>
             ) }
-            <div { ...blockProps } id={`block-${clientId}`}>
+            <div { ...blockProps } id={`block-${ID}`}>
                 <div 
                     className={`wpmozo-bna-image-accordion-wrapper wpmozo-bna-image-accordion-content-${attributes.contentAlignment} ${attributes.accordionOrientation}`}
                     data-trigger={attributes.accordionTrigger}
