@@ -365,3 +365,37 @@ if ( typeof window !== 'undefined' ) {
 		// Add more functions here if needed.
 	} );
 }
+
+
+export function wpmozo_get_text_shadow(attributes, key) {
+	const x = attributes[key + 'X'] || '0px';
+	const y = attributes[key + 'Y'] || '0px';
+	const blur = attributes[key + 'Blur'] || '0px';
+	const color = attributes[key + 'Color'] || '';
+
+	if (wpmozo_is_empty(color)) {
+		return '';
+	}
+
+	const opacity =
+		typeof attributes[key + 'Opacity'] !== 'undefined' &&
+		attributes[key + 'Opacity'] !== ''
+			? attributes[key + 'Opacity']
+			: 1;
+
+	// Hex color support (#RRGGBB)
+	if (
+		typeof color === 'string' &&
+		color.startsWith('#') &&
+		color.length === 7
+	) {
+		const r = parseInt(color.slice(1, 3), 16);
+		const g = parseInt(color.slice(3, 5), 16);
+		const b = parseInt(color.slice(5, 7), 16);
+
+		return `${x} ${y} ${blur} rgba(${r}, ${g}, ${b}, ${opacity})`;
+	}
+
+	// rgba(), rgb(), var(), gradient etc.
+	return `${x} ${y} ${blur} ${color}`;
+}
