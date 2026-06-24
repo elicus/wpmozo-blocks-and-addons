@@ -19,7 +19,7 @@ import {
 } from '../../../common/components/index';
 import { headingLevelsList } from '../../../common/utils.js';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const WPMozoEditorObj = wpmozo_bna_editor_object;
 
 	let props = { attributes, setAttributes };

@@ -19,7 +19,7 @@ import {
 } from '../../../common/components/index';
 import { useState } from "@wordpress/element";
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
 	const [ textStyleType, setTextStyleType ] = useState( 'normal' );

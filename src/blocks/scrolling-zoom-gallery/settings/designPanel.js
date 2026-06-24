@@ -15,7 +15,7 @@ import {
 	WpmozoColorPicker, WpmozoIconpicker, WpmozoDimensions, WpmozoMediaUploader
 } from "../../../common/components";
 
-export const DesignPanel = ({attributes, setAttributes}) => {
+export const DesignPanel = ({ attributes, setAttributes, hoverState, setHoverState }) => {
 	const props = {attributes, setAttributes, preAttributes: {}};
 
 	const [buttonType, setButtonType] = useState('normal');

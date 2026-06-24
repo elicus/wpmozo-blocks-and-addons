@@ -1,7 +1,14 @@
 .wpmozo-media-uploader{
 	width: 100%;
 	display: block;
-	margin-bottom: 7px;
 	max-height: 100px;
 	object-fit: cover;
+}
+.components-button.wpmozo-media-uploader-button:focus:not(:active) {
+    box-shadow: none;
+}
+.components-button.wpmozo-media-uploader-button {
+    height: auto;
+	width: 100%;
+	padding:0;
 }

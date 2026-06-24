@@ -22,7 +22,7 @@ import {
 	WpmozoColorPicker, WpmozoAlignment,
 } from '../../../common/components/index.js';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
 	const [ linkTextType, setLinkTextType ] = useState( 'normal' );

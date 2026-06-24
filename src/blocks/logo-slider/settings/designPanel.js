@@ -11,7 +11,7 @@ import {
 } from '../../../common/components/index';
 
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	let props = { attributes, setAttributes };
 	props = Object.assign({}, props, {preAttributes: {}});
 

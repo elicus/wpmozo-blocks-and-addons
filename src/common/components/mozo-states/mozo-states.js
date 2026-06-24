@@ -20,23 +20,25 @@ export default function MozoStates( { title, control, value, onChange } ) {
 
 	return (
 		<>
-			<div className="mozostates-prop-header">
-				<span className="mozostates-prop-label">
-					{ title }
-					{ isHover && (
-						<span className="mozostates-state-suffix">· Hover</span>
-					) }
-				</span>
-				<button
-					className={ `mozostates-hover-chip${ isHover ? ' is-on' : '' }` }
-					aria-pressed={ isHover }
-					onClick={ toggleHover }
-				>
-					{ isHover ? '− Hover' : '+ Hover' }
-				</button>
-			</div>
+			<div className="mozostates-prop-wrap">
+				<div className="mozostates-prop-header">
+					<span className="mozostates-prop-label">
+						{ title }
+						{ isHover && (
+							<span className="mozostates-state-suffix">· Hover</span>
+						) }
+					</span>
+					<button
+						className={ `mozostates-hover-chip${ isHover ? ' is-on' : '' }` }
+						aria-pressed={ isHover }
+						onClick={ toggleHover }
+					>
+						{ isHover ? '− Hover' : '+ Hover' }
+					</button>
+				</div>
 
-			{ typeof control === 'function' ? control( isHover ) : control }
+				{ typeof control === 'function' ? control( isHover ) : control }
+			</div>
 		</>
 	);
 }

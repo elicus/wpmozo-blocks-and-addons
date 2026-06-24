@@ -21,7 +21,7 @@ import {
 	WpmozoColorPicker,
 } from '../../../common/components';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
 	const [ quoteIconTab, setQuoteIconTab ] = useState( 'opening' );

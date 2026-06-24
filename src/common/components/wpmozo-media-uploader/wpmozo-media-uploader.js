@@ -49,11 +49,17 @@ const WpmozoMediaUploader = ( {
                         <BaseControl label={ label }>
                         <div className="components-base-control wpmozo-media-uploader-wrap">
                             {imageSrc && (
-                                <img
-                                    className="wpmozo-media-uploader"
-                                    src={imageSrc}
-                                    alt={__("Selected image", "wpmozo-blocks-and-addons")}
-                                />
+                                <Button onClick={(event) => {
+                                    event.stopPropagation();
+                                    open();
+                                }} className={'wpmozo-media-uploader-button'}>
+                                    <img
+                                        className="wpmozo-media-uploader"
+                                        src={imageSrc}
+                                        alt={__("Selected image", "wpmozo-blocks-and-addons")}
+                                        
+                                    />
+                                </Button>
                             )}
                             <Button
                                 isPrimary

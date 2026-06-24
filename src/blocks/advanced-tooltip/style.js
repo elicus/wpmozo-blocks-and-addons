@@ -3,6 +3,7 @@ const generateDynamicStyle = ({attributes}) => {
 
     const toConvertStyles = [
             'button',
+			'buttonHover',
 			'TriggerText',
 			'triggerTextHover',
 			'tooltip'
@@ -25,8 +26,9 @@ const generateDynamicStyle = ({attributes}) => {
 				background-color:${attributes.buttonBackground};
 				${convertedStyle.button}
 			}
-			.wpmozo-bna-button:hover{
+			.wpmozo-bna-button:hover, &.is_hover .wpmozo-bna-button{
 				color:${attributes.buttonHoverColor};
+				${convertedStyle.buttonHover}
 				background-color:${attributes.buttonHoverBackground};
 			}
 
@@ -55,11 +57,10 @@ const generateDynamicStyle = ({attributes}) => {
 				font-size:${attributes.triggerIconSize}px;
 				transition:all 300ms;
 			}
-			.wpmozo_tooltip_trigger_icon:hover{
+			.wpmozo_tooltip_trigger_icon:hover, &.is_hover .wpmozo_tooltip_trigger_icon{
 				cursor:pointer;
 				color:${attributes.triggerIconHoverColor};
 				font-size:${attributes.triggerIconSizeHover}px;
-				transition:all 300ms;
 			}
 		`
 	}
@@ -70,21 +71,22 @@ const generateDynamicStyle = ({attributes}) => {
 			.trigger_type_text{
 				text-align:${attributes.TriggerTextAlign};
 				color:${attributes.TriggerTextColor};
+				transition:all 300ms;
 				${convertedStyle.TriggerText}
 			}
-			.trigger_type_text:hover{
+			.trigger_type_text:hover, &.is_hover .trigger_type_text{
 				color:${attributes.triggerTextHoverColor};
 				${convertedStyle.triggerTextHover}
 			}
 		`
 	}
+	styles += `}`;
 
 	//Tooltip
 	if(attributes.tooltipBackgroundColor){
 		styles += `
-			.tooltip-inner-blocks{
+			.tippy-box[data-theme='wpmozo-tippy-adt-block-${attributes.ID}']{
 				background-color:${attributes.tooltipBackgroundColor};
-				${convertedStyle.tooltip}
 			}
 		`;
 	}
@@ -92,11 +94,16 @@ const generateDynamicStyle = ({attributes}) => {
 	styles +=`
 			.tippy-box[data-theme='wpmozo-tippy-adt-block-${attributes.ID}']{
 				display:block !important;
+				${convertedStyle.tooltip}
+			}
+	`;
+	styles +=`
+			.wpmozo_advanced_tooltip_content_wrap{
+				display:none;
 			}
 	`;
 
 
-    styles += `}`;
 
     return styles;
 };

@@ -12,7 +12,7 @@ import { useState } from "@wordpress/element";
 import {WpmozoDimensions, WpmozoColorPicker, WpmozoTypography} from '../../../common/components/index';
 
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 	const [ contentType, setContentType ] = useState('front');
 	const [ textType, setTextType ] = useState('normal');

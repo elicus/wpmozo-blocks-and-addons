@@ -35,7 +35,7 @@ echo $helpers::get_block_dynamic_style( 'advanced-tooltip', $attributes ); ?>
 			data-trigger-action="<?php echo esc_attr( $trigger_action ); ?>"
 			data-animation="<?php echo esc_attr( $entrance_animation ); ?>"
 			data-duration="<?php echo esc_attr( $animation_duration ); ?>"
-			data-speechBubble="<?php if ( $showSpeechBubble === true ) {
+			data-speech-bubble="<?php if ( $showSpeechBubble === true ) {
 				echo "true";
 			} else {
 				echo "false";

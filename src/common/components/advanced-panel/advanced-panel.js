@@ -21,7 +21,7 @@ import {skew, translate, scale, rotate, origin} from './icon';
 import { useState, useEffect } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 
-export const AdvancedPanel = ( { attributes, setAttributes, exclude = {} } ) => {
+export const AdvancedPanel = ( { attributes, setAttributes, exclude = {}, hoverState, setHoverState } ) => {
 	const {
 		wrapBackground,
 		wrapBackgroundHover,
@@ -46,18 +46,23 @@ export const AdvancedPanel = ( { attributes, setAttributes, exclude = {} } ) => 
 		wrapIsHover
 	} = attributes;
 	const props = {attributes, setAttributes, preAttributes: {}};
-	const [ hoverState, setHoverState ] = useState( false );
+	// const [ hoverState, setHoverState ] = useState( false );
 	const isSaving = useSelect(select =>
 		select('core/editor').isSavingPost()
 	);
-	useEffect(() => {
-			setHoverState(false);
-	}, [isSaving]);
+	// Track which panel is open — null matlab koi nahi
+    const [openPanel, setOpenPanel] = useState('panel1');
+
+    // Toggle helper: same panel dobara click karo to band ho
+    const handleToggle = (panelId) => {
+        setOpenPanel(prev => prev === panelId ? null : panelId);
+    };
 
 	return ( <>
 		{ !exclude?.background && <PanelBody
 			title={ __( 'Background', 'wpmozo-blocks-and-addons' ) }
-			initialOpen={ true }
+			opened={openPanel === 'panel1'}
+            onToggle={() => handleToggle('panel1')}
 		>
 			<MozoStates
 				value = {hoverState}
@@ -83,7 +88,8 @@ export const AdvancedPanel = ( { attributes, setAttributes, exclude = {} } ) => 
 
 		{ !exclude?.spacing && <PanelBody
 			title={ __( 'Spacing', 'wpmozo-blocks-and-addons' ) }
-			initialOpen={ false }
+			opened={openPanel === 'panel2'}
+            onToggle={() => handleToggle('panel2')}
 		>
 			<MozoStates
 				value = {hoverState}
@@ -109,7 +115,8 @@ export const AdvancedPanel = ( { attributes, setAttributes, exclude = {} } ) => 
 
 		{ !exclude?.border && <PanelBody
 			title={ __( 'Border', 'wpmozo-blocks-and-addons' ) }
-			initialOpen={ false }
+			opened={openPanel === 'panel3'}
+            onToggle={() => handleToggle('panel3')}
 		>
 			<MozoStates
 				value = {hoverState}
@@ -122,6 +129,7 @@ export const AdvancedPanel = ( { attributes, setAttributes, exclude = {} } ) => 
 				title={ __( 'Border', 'wpmozo-blocks-and-addons' ) }
 				control={ ( isHover ) => (
 					<WpmozoBorder
+						label= " "
 						props={props}
 						BorderKey={ isHover ? 'wrapHover' : 'wrap' }
 					/>
@@ -131,7 +139,8 @@ export const AdvancedPanel = ( { attributes, setAttributes, exclude = {} } ) => 
 
 		{ !exclude?.transform && <PanelBody
 			title={ __( 'Transform', 'wpmozo-blocks-and-addons' ) }
-			initialOpen={ false }
+			opened={openPanel === 'panel4'}
+            onToggle={() => handleToggle('panel4')}
 		>
 			<ToggleGroupControl
 				__next40pxDefaultSize
@@ -392,7 +401,8 @@ export const AdvancedPanel = ( { attributes, setAttributes, exclude = {} } ) => 
 		</PanelBody>}
 		{ !exclude?.additionalClass && <PanelBody 
 			title={ __( 'Additional Class(es)', 'wpmozo-blocks-and-addons' ) }
-			initialOpen={ false }
+			opened={openPanel === 'panel5'}
+            onToggle={() => handleToggle('panel5')}
 		>
 			<TextControl
 				label={ __( 'Additional CSS Class(es)', 'wpmozo-blocks-and-addons' ) }

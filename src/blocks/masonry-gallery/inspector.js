@@ -31,6 +31,15 @@ export default function Inspector( props ) {
 	} = props;
 
 	props = Object.assign({}, props, {preAttributes: {}});
+	const [ hoverState, setHoverState ] = useState( false );
+	const isSaving = useSelect(select =>
+		select('core/editor').isSavingPost()
+	);
+
+	useEffect(() => {
+			setHoverState(false);
+			setAttributes({wrapIsHover: false})
+	}, [isSaving]);
 
 	return (
 		<>

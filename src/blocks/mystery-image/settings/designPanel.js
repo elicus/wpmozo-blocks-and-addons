@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { PanelBody, ToggleControl, RangeControl } from '@wordpress/components';
 import { WpmozoColorPicker, WpmozoIconpicker } from "../../../common/components";
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
 	return ( <>

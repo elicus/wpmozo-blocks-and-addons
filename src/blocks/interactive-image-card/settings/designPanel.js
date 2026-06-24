@@ -18,7 +18,7 @@ import {
 import { useState } from "@wordpress/element";
 import { headingLevelsList } from '../../../common/utils.js';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
 	const [ titleStyleType, setTitleStyleType ] = useState( 'normal' );

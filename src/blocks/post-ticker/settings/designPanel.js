@@ -15,7 +15,7 @@ import {
 } from "../../../common/components";
 import { headingLevelsList } from '../../../common/utils.js';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 	const [btnStyle, setBtnStyleType] = useState('normal');
 	const [btnPostItemsStyle, setBtnPostItemsType] = useState('normal');

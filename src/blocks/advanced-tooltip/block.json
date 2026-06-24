@@ -48,10 +48,21 @@
 				"fontWeight": ""
 			}
 		},
+		"buttonHoverFontSize": { "type": "string" },
+		"buttonHoverLetterSpacing": { "type": "string" },
+		"buttonHoverDecoration": { "type": "string" },
+		"buttonHoverLetterCase": { "type": "string" },
+		"buttonHoverLineHeight": { "type": "string" },
+		"buttonHoverFontAppearance": {
+			"type": "object"
+		},
 		"buttonpadding": { "type": "object", "default": { "top": "10px", "right": "20px", "bottom": "10px", "left": "20px" } },
+		"buttonHoverpadding": { "type": "object" },
 		"buttonmargin": { "type": "object" },
 		"buttonborder": { "type": "object", "default": { "width": "2px", "style": "solid", "color": "#313131" } },
 		"buttonborderRadius": { "type": "string", "default": "3px" },
+		"buttonHoverborder": { "type": "object" },
+		"buttonHoverborderRadius": { "type": "string" },
 
 		"triggerImageWidth": {"type": "number"},
 

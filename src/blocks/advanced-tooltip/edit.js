@@ -1,9 +1,10 @@
 import {__} from "@wordpress/i18n";
 import {Fragment,useState, useEffect} from "@wordpress/element";
-import { useBlockProps, InnerBlocks, BlockControls } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks, BlockControls, BlockListBlock } from '@wordpress/block-editor';
 import {ToolbarGroup, ToggleControl, ToolbarButton} from "@wordpress/components";
 import Inspector from './inspector';
 import generateDynamicStyle from './style';
+import { useSelect } from '@wordpress/data';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -39,6 +40,10 @@ export default function Edit(props) {
 		wrapProps = wrapArgs?.wrapprops,
 		blockProps = useBlockProps(wrapProps),
 		wrapStyle = wrapArgs?.wrapStyle;
+	const innerBlocksHTML = useSelect((select) => {
+		const blocks = select('core/block-editor').getBlocks(clientId);
+		return wp.blocks.serialize(blocks);
+	}, [clientId]);
 
 	let image = ( attributes.image ) ? attributes.image.url : attributes.image,
 		isSelected = props.isSelected,
@@ -75,7 +80,7 @@ export default function Edit(props) {
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [props]);
+	}, [props, attributes]);
 
 	let $button = '';
 	let $buttonIcon = '';
@@ -112,7 +117,7 @@ export default function Edit(props) {
 							data-trigger-action={attributes.trigerAction}
 							data-animation={attributes.entranceAnimation}
 							data-duration={attributes.animationDuration}
-							data-speechBubble={attributes.showSpeechBubble}
+							data-speech-bubble={attributes.showSpeechBubble}
 							data-interactive={attributes.makeInteractiveTooltip}
 							data-tooltip-width={attributes.tooltipWidth}
 							data-trigger-element={attributes.trigerElement}
@@ -135,23 +140,28 @@ export default function Edit(props) {
 								<span className={`wpmozo_tooltip_trigger_element wpmozo_tooltip_trigger_text`}>{attributes.triggerText}</span>
 							)}
 						</div>
-						<div className={`wpmozo_advanced_tooltip_content_wrap${tooltipVisible ? ' ' + tooltipVisible : ''}`}>
-							{attributes.showTooltip && (
-								<div className="tooltip-content tooltip-visible">
-									<div className="tooltip-header">
-										<h4>{__('Tooltip Content', 'button-with-tooltip-block-wp')}</h4>
-									</div>
-									<div className="tooltip-inner-blocks">
-										<InnerBlocks
-											allowedBlocks={ALLOWED_BLOCKS}
-											placeholder={__('Add blocks to show in the tooltip...', 'button-with-tooltip-block-wp')}
-											templateLock={false}
-											renderAppender={InnerBlocks.DefaultBlockAppender}
-										/>
-									</div>
+						
+						{attributes.showTooltip && (
+							<>
+								<div className="tooltip-header">
+									<h4>{__('Tooltip Content', 'button-with-tooltip-block-wp')}</h4>
 								</div>
-							)}
+								<InnerBlocks
+								allowedBlocks={ALLOWED_BLOCKS}
+								placeholder={__('Add blocks to show in the tooltip...', 'button-with-tooltip-block-wp')}
+								templateLock={false}
+								renderAppender={InnerBlocks.DefaultBlockAppender}
+								/>
+							</>
+						)}	
+						
+						<div className={`wpmozo_advanced_tooltip_content_wrap tooltip-content`}>
+								<div
+									className="tooltip-inner-blocks"
+									dangerouslySetInnerHTML={{ __html: innerBlocksHTML }}
+								/>
 						</div>
+									
 					</div>
 				</div>
 			</Fragment>

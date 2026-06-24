@@ -8,7 +8,7 @@ import {
 import { WpmozoBorder, WpmozoSize } from '../../../common/components/index';
 import { useState } from "@wordpress/element";
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const WPMozoEditorObj = wpmozo_bna_editor_object;
 
 	let props = { attributes, setAttributes };

@@ -17,7 +17,7 @@ import {
 	WpmozoColorPicker,
 } from '../../../common/components/index.js';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 	
 	const [ dayType, setDayType ]   = useState( 'normal' );
