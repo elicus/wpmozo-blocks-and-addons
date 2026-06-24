@@ -1,0 +1,115 @@
+// style.scss
+
+.wpmozo-bna-alert-box-wrap {
+	position: relative;
+	background-color: #f7f7f7;
+	padding: 15px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	width: 100%;
+	box-sizing: border-box;
+
+	.wpmozo-bna-alert-box-inner {
+		display: flex;
+		gap: 15px;
+		align-items: center;
+		width: 100%;
+	}
+
+	.wpmozo-bna-alert-box-image-wrap {
+		flex-shrink: 0;
+		border: 0 solid #000000;
+		line-height: 1;
+
+		img {
+			display: block;
+			max-width: 100%;
+			height: auto;
+		}
+
+		.wpmozo-bna-icon {
+			display: block;
+			line-height: 1;
+		}
+	}
+
+	.wpmozo-bna-alert-box-content {
+		flex: 1 1;
+	}
+
+	.wpmozo-bna-alert-box-title {
+		margin: 0;
+		padding: 0;
+		line-height: 1.2;
+	}
+
+	.wpmozo-bna-alert-box-title + .wpmozo-bna-alert-box-desc {
+		margin-top: 8px;
+	}
+
+	.wpmozo-bna-alert-box-desc {
+		margin: 0;
+		padding: 0;
+		line-height: 1.5;
+	}
+
+	.wpmozo-bna-button-wrap {
+		flex-shrink: 0;
+		
+		.wpmozo-bna-button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none;
+			line-height: 1.2;
+			gap: 8px;
+			transition: all 0.3s ease;
+
+			&.wpmozo-icon-at-before {
+				flex-direction: row-reverse;
+			}
+		}
+	}
+
+	.wpmozo-bna-alert-box-close-btn {
+		cursor: pointer;
+		text-decoration: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		flex-shrink: 0;
+		margin-left: 10px;
+		transition: opacity 0.2s ease;
+
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+
+	/* Layout 2: Button stacks on bottom */
+	&.layout2 {
+		.wpmozo-bna-alert-box-inner {
+			flex-wrap: wrap;
+			gap: 15px;
+		}
+
+		.wpmozo-bna-alert-box-content {
+			width: 100%;
+			flex: 1 1 100%;
+		}
+
+		.wpmozo-bna-button-wrap {
+			margin-top: 10px;
+			width: 100%;
+			flex: 1 1 100%;
+		}
+	}
+
+	/* Responsive Breakpoint */
+	@media (max-width: 900px) {
+		.wpmozo-bna-alert-box-inner {
+			flex-wrap: wrap;
+		}
+	}
+}
