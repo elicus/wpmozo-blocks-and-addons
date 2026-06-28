@@ -16,15 +16,28 @@
 		"ID": { "type": "string"  },
 		"className": { "type": "string" },
 
-		"layoutType": { "type": "string", "default": "layout1" },
-		"title": { "type": "string", "default": "WPMozo Title" },
+		"layout": { "type": "string", "default": "bar" },
+		"barDirection": { "type": "string", "default": "horizontal" },
+		"showStriped": { "type": "boolean", "default": false },
+		"showNumber": { "type": "boolean", "default": true },
+		
+		"title": { "type": "string", "default": "WPMozo Progress Bar" },
 		"titleLavel": { "type": "string", "default": "h2" },
 		"percentage": { "type": "number", "default": 50 },
-		"displayEmptyBar": { "type": "boolean", "default": false },
-		"useStripes": { "type": "boolean", "default": false },
 
-		"stripeAnimation": { "type": "boolean", "default": false },
-		"stripeAnimationSpeed": { "type": "number" },
+		"barSize": { "type": "number", "default": 30 },
+		"barHeight": { "type": "number", "default": 500 },
+		
+		"circleSize": { "type": "number", "default": 150 },
+		"circleFillColor": { "type": "string", "default": "#131313" },
+		
+		"barEmptyColor": { "type": "string", "default": "#eeeeee" },
+		"barFilledColor": { "type": "string", "default": "#007bff" },
+		"percentAlign": { "type": "string", "default": "center" },
+
+		"barEmptyHoverColor": { "type": "string" },
+		"barFilledHoverColor": { "type": "string" },
+		"circleFillHoverColor": { "type": "string" },
 
 		"titleColor": { "type": "string" },
 		"titleAlign": { "type": "string" },
@@ -43,8 +56,13 @@
 		"titleLetterCase": { "type": "string" },
 		"titleLineHeight": { "type": "string" },
 
+		"titleTextShadowX": { "type": "string" },
+		"titleTextShadowY": { "type": "string" },
+		"titleTextShadowBlur": { "type": "string" },
+		"titleTextShadowColor": { "type": "string" },
+		"titleTextShadowOpacity": { "type": "number" },
+
 		"percentageColor": { "type": "string" },
-		"percentageAlign": { "type": "string" },
 		"percentageFontSize": { "type": "string" },
 		"percentageFontAppearance": {
 			"type": "object",
@@ -60,29 +78,18 @@
 		"percentageLetterCase": { "type": "string" },
 		"percentageLineHeight": { "type": "string" },
 
-		"filledBackgroundType": { "type": "string", "default": "classic" },
-		"filledBackgroundColor": { "type": "string" },
-		"filledBackgroundGradient": {
-			"type": "string",
-			"default": "linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)"
-		},
-		"backgroundType": { "type": "string", "default": "classic" },
-		"backgroundColor": { "type": "string" },
-		"backgroundGradient": {
-			"type": "string",
-			"default": "linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)"
-		},
+		"percentageTextShadowX": { "type": "string" },
+		"percentageTextShadowY": { "type": "string" },
+		"percentageTextShadowBlur": { "type": "string" },
+		"percentageTextShadowColor": { "type": "string" },
+		"percentageTextShadowOpacity": { "type": "number" },
+		
 		"barborder": { "type": "object" },
-		"barborderRadius": { "type": "string" },
-
-		"useCustomChunksSize": { "type": "boolean", "default": false },
-		"useChunksWidth": { "type": "string" },
-		"useChunksWidthUnit": { "type": "string" },
-		"useChunksHeight": { "type": "string" },
-		"useChunksHeightUnit": { "type": "string" }
+		"barborderRadius": { "type": "string" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
 }

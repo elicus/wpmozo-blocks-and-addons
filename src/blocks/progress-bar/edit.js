@@ -6,108 +6,97 @@ import './editor.scss';
 import generateDynamicStyle from "./style";
 
 const Edit = (props) => {
-
-    let attributes = props.attributes,
-        clientId = props.clientId,
-        setAttributes = props.setAttributes,
-        blockProps = useBlockProps({className: 'wpmozo-bna-progress-bar-main'});
-
-    let emptyBarEnabled = '';
-
-    if (attributes.displayEmptyBar) {
-        emptyBarEnabled = 'empty-bar-enabled';
-    }
-
+    const { attributes, clientId, setAttributes } = props;
+    const blockProps = useBlockProps({ className: 'wpmozo-bna-progress-bar-main' });
     attributes.ID = clientId;
+
+    // SVG length offset for static preview inside editor
+    const strokeOffset = 282.74 - (attributes.percentage / 100) * 282.74;
+
+    const renderLayoutShape = () => {
+        if ('circle' === attributes.layout) {
+            return (
+                <svg className="wpmozo-bna-progress-bar-circle" viewBox="0 0 100 100">
+                    <circle className="wpmozo-bna-fill-progress-bar-bg" cx="50" cy="50" r="45" />
+                    <circle className="wpmozo-bna-circle-bg" cx="50" cy="50" r="45" />
+                    <circle 
+                        className="wpmozo-bna-circle-fg" 
+                        cx="50" 
+                        cy="50" 
+                        r="45" 
+                        style={{ strokeDashoffset: strokeOffset }}
+                    />
+                </svg>
+            );
+        } else if ('half_circle' === attributes.layout) {
+            return (
+                <svg className="wpmozo-bna-half-circle" viewBox="0 0 200 100">
+                    <path className="wpmozo-bna-circle-bg" d="M 10 100 A 90 90 0 0 1 190 100" />
+                    <path 
+                        className="wpmozo-bna-circle-fg" 
+                        d="M 10 100 A 90 90 0 0 1 190 100" 
+                        style={{ strokeDashoffset: strokeOffset }}
+                    />
+                </svg>
+            );
+        }
+        return null;
+    };
+
+    const renderInnerContent = () => {
+        if ('bar' === attributes.layout) {
+            const barStyle = {};
+            if ('vertical' === attributes.barDirection) {
+                barStyle.height = `${attributes.percentage}%`;
+                barStyle.width = '100%';
+            } else {
+                barStyle.width = `${attributes.percentage}%`;
+                barStyle.height = '100%';
+            }
+
+            return (
+                <div className="wpmozo-bna-progress-bar-inner" style={barStyle}>
+                    {attributes.showNumber && (
+                        <span className="wpmozo-bna-progress-bar-percent">{attributes.percentage}%</span>
+                    )}
+                </div>
+            );
+        } else {
+            return (
+                <div className="wpmozo-bna-progress-bar-inner">
+                    {renderLayoutShape()}
+                    {attributes.showNumber && (
+                        <span className="wpmozo-bna-progress-bar-percent">{attributes.percentage}%</span>
+                    )}
+                </div>
+            );
+        }
+    };
 
     return (
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
-                {generateDynamicStyle({attributes, clientId})}
+                {generateDynamicStyle({ attributes, clientId })}
             </style>
             <div {...blockProps} id={`block-${attributes.ID}`}>
-                <div className={`wpmozo-bna-progress-bar ${emptyBarEnabled}`}>
-                    <div className={`wpmozo-bna-progress-bar-wrapper ${attributes.layoutType}`}>
-						{attributes.title && (
-							<RichText
-								className="wpmozo-bna-progress-bar-title"
-								tagName={attributes.titleLavel}
-								value={attributes.title}
-								onChange={(newValue) => setAttributes({title: newValue})}
-							/>
-						)}
-                        <div className="wpmozo-bna-progress-bar-bar-wrapper">
-                            {/* Layout 1 */}
-                            {attributes.layoutType === 'layout1' && (
-                                <>
-                                    {attributes.displayEmptyBar && (
-                                        <div className="wpmozo-bna-progress-bar-bar">
-                                            <div
-                                                className="wpmozo-bna-progress-bar-filled-bar-wrapper"
-                                                data-percent={`${attributes.percentage}%`}
-                                                style={{width: `${attributes.percentage}%`}}
-                                            >
-                                                {attributes.useStripes ? (
-                                                    <div
-                                                        className="wpmozo-bna-progress-bar-filled-bar wpmozo-bna-progress-bar-animated-striped-bar"></div>
-                                                ) : (
-                                                    <div className="wpmozo-bna-progress-bar-filled-bar"></div>
-                                                )}
-                                                <span
-                                                    className="wpmozo-bna-progress-bar-percent">{attributes.percentage}%</span>
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    {!attributes.displayEmptyBar && (
-                                        <div
-                                            className="wpmozo-bna-progress-bar-filled-bar-wrapper"
-                                            data-percent={`${attributes.percentage}%`}
-                                            style={{width: `${attributes.percentage}%`}}
-                                        >
-                                            {attributes.useStripes ? (
-                                                <div
-                                                    className="wpmozo-bna-progress-bar-filled-bar wpmozo-bna-progress-bar-animated-striped-bar"></div>
-                                            ) : (
-                                                <div className="wpmozo-bna-progress-bar-filled-bar"></div>
-                                            )}
-                                            <span
-                                                className="wpmozo-bna-progress-bar-percent">{attributes.percentage}%</span>
-                                        </div>
-                                    )}
-                                </>
-                            )}
-
-                            {/* Layout 2 */}
-                            {attributes.layoutType === 'layout2' && (
-                                <div className="wpmozo-bna-progress-bar-filled-bar-wrapper"
-                                     data-percent={`${attributes.percentage}%`}>
-                                    {Array.from({length: 10}, (_, i) => {
-                                        const index = i + 1;
-                                        if (index <= (attributes.percentage / 10)) {
-                                            return (
-                                                <div key={index}
-                                                     className="wpmozo-bna-progress-bar-chunks wpmozo-bna-progress-bar-filled-chunks wpmozo-animate-filled"></div>
-                                            );
-                                        } else if (attributes.displayEmptyBar) {
-                                            return (
-                                                <div key={index}
-                                                     className="wpmozo-bna-progress-bar-chunks wpmozo-bna-progress-bar-empty-chunks"></div>
-                                            );
-                                        }
-                                        return null;
-                                    })}
-
-                                    <span className="wpmozo-bna-progress-bar-percent">{attributes.percentage}%</span>
-                                </div>
-                            )}
-                        </div>
-                    </div>
+                {attributes.title && (
+                    <RichText
+                        className="wpmozo-bna-progress-bar-title"
+                        tagName={attributes.titleLavel}
+                        value={attributes.title}
+                        onChange={(newValue) => setAttributes({ title: newValue })}
+                    />
+                )}
+                <div 
+                    className={`wpmozo-bna-progress-bar-wrapper wpmozo-bna-progress-bar-layout-${attributes.layout} ${attributes.showStriped ? 'wpmozo-bna-progress-bar-striped' : ''}`}
+                    data-bar_direction={attributes.barDirection}
+                >
+                    {renderInnerContent()}
                 </div>
             </div>
         </Fragment>
     );
-}
+};
 
 export default Edit;
