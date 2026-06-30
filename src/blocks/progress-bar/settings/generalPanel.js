@@ -47,13 +47,6 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				onChange={ (newValue) => setAttributes( { showNumber: newValue } ) }
 				__nextHasNoMarginBottom={true}
 			/>
-			<TextControl
-				label={ __( 'Title', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.title ?? "" }
-				onChange={ (newValue) => setAttributes( { title: newValue } ) }
-				placeholder={ __( 'WPMozo Progress Bar', 'wpmozo-blocks-and-addons' ) }
-				__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
-			/>
 			<RangeControl
 				label={ __( 'Percentage (Preview in Editor)', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.percentage }

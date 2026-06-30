@@ -1,5 +1,5 @@
 import {__} from "@wordpress/i18n";
-import {Fragment} from "@wordpress/element";
+import {Fragment, useEffect, useState} from "@wordpress/element";
 import {useBlockProps, RichText} from "@wordpress/block-editor";
 import Inspector from './inspector';
 import './editor.scss';
@@ -8,10 +8,111 @@ import generateDynamicStyle from "./style";
 const Edit = (props) => {
     const { attributes, clientId, setAttributes } = props;
     const blockProps = useBlockProps({ className: 'wpmozo-bna-progress-bar-main' });
-    attributes.ID = clientId;
+    const [scrollPercent, setScrollPercent] = useState(attributes.percentage);
+    useEffect(() => {
+
+        const updateProgress = () => {
+    
+            const iframe = document.querySelector('.editor-visual-editor iframe');
+    
+            // WordPress 7+
+            if (iframe && iframe.contentDocument && iframe.contentWindow) {
+    
+                const doc = iframe.contentDocument;
+                const win = iframe.contentWindow;
+    
+                const scrollTop =
+                    win.scrollY ||
+                    doc.documentElement.scrollTop;
+    
+                const scrollHeight =
+                    doc.documentElement.scrollHeight -
+                    win.innerHeight;
+    
+                const percent =
+                    scrollHeight > 0
+                        ? (scrollTop / scrollHeight) * 100
+                        : 0;
+    
+                setScrollPercent(percent);
+    
+                return;
+            }
+    
+            // Older editors
+            const scrollTop =
+                window.scrollY ||
+                document.documentElement.scrollTop;
+    
+            const scrollHeight =
+                document.documentElement.scrollHeight -
+                window.innerHeight;
+    
+            const percent =
+                scrollHeight > 0
+                    ? (scrollTop / scrollHeight) * 100
+                    : 0;
+    
+            setScrollPercent(percent);
+        };
+    
+        updateProgress();
+    
+        window.addEventListener('scroll', updateProgress);
+    
+        const iframe = document.querySelector('.editor-visual-editor iframe');
+    
+        if (iframe) {
+    
+            iframe.addEventListener('load', () => {
+    
+                iframe.contentWindow?.addEventListener(
+                    'scroll',
+                    updateProgress
+                );
+    
+                updateProgress();
+            });
+    
+            if (iframe.contentWindow) {
+                iframe.contentWindow.addEventListener(
+                    'scroll',
+                    updateProgress
+                );
+            }
+        }
+    
+        return () => {
+    
+            window.removeEventListener(
+                'scroll',
+                updateProgress
+            );
+    
+            if (iframe?.contentWindow) {
+    
+                iframe.contentWindow.removeEventListener(
+                    'scroll',
+                    updateProgress
+                );
+            }
+        };
+    
+    }, []);
+    useEffect(() => {
+        if (attributes.ID !== clientId) {
+            setAttributes({
+                ID: clientId,
+            });
+        }
+    }, [clientId, attributes.ID]);
 
     // SVG length offset for static preview inside editor
-    const strokeOffset = 282.74 - (attributes.percentage / 100) * 282.74;
+    const displayPercent = scrollPercent;
+
+    const strokeOffset =
+        282.74 -
+        (displayPercent / 100) * 282.74;
 
     const renderLayoutShape = () => {
         if ('circle' === attributes.layout) {
@@ -47,17 +148,17 @@ const Edit = (props) => {
         if ('bar' === attributes.layout) {
             const barStyle = {};
             if ('vertical' === attributes.barDirection) {
-                barStyle.height = `${attributes.percentage}%`;
+                barStyle.height = `${displayPercent}%`;
                 barStyle.width = '100%';
             } else {
-                barStyle.width = `${attributes.percentage}%`;
+                barStyle.width = `${displayPercent}%`;
                 barStyle.height = '100%';
             }
 
             return (
                 <div className="wpmozo-bna-progress-bar-inner" style={barStyle}>
                     {attributes.showNumber && (
-                        <span className="wpmozo-bna-progress-bar-percent">{attributes.percentage}%</span>
+                        <span className="wpmozo-bna-progress-bar-percent">{Math.round(displayPercent)}%</span>
                     )}
                 </div>
             );
@@ -66,7 +167,7 @@ const Edit = (props) => {
                 <div className="wpmozo-bna-progress-bar-inner">
                     {renderLayoutShape()}
                     {attributes.showNumber && (
-                        <span className="wpmozo-bna-progress-bar-percent">{attributes.percentage}%</span>
+                        <span className="wpmozo-bna-progress-bar-percent">{Math.round(displayPercent)}%</span>
                     )}
                 </div>
             );
@@ -80,14 +181,6 @@ const Edit = (props) => {
                 {generateDynamicStyle({ attributes, clientId })}
             </style>
             <div {...blockProps} id={`block-${attributes.ID}`}>
-                {attributes.title && (
-                    <RichText
-                        className="wpmozo-bna-progress-bar-title"
-                        tagName={attributes.titleLavel}
-                        value={attributes.title}
-                        onChange={(newValue) => setAttributes({ title: newValue })}
-                    />
-                )}
                 <div 
                     className={`wpmozo-bna-progress-bar-wrapper wpmozo-bna-progress-bar-layout-${attributes.layout} ${attributes.showStriped ? 'wpmozo-bna-progress-bar-striped' : ''}`}
                     data-bar_direction={attributes.barDirection}

@@ -50,13 +50,6 @@ const Save = ({ attributes }) => {
             <style>{ generateDynamicStyle({ attributes }) }</style>
 
             <div {...useBlockProps.save({ className: attributes.className })} id={`block-${ID}`}>
-                {attributes.title && (
-                    <RichText.Content
-                        className="wpmozo-bna-progress-bar-title"
-                        tagName={attributes.titleLavel}
-                        value={attributes.title}
-                    />
-                )}
                 <div 
                     className={`wpmozo-bna-progress-bar-wrapper wpmozo-bna-progress-bar-layout-${attributes.layout} ${attributes.showStriped ? 'wpmozo-bna-progress-bar-striped' : ''}`}
                     data-bar_direction={attributes.barDirection}

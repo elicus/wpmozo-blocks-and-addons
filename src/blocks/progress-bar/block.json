@@ -21,15 +21,13 @@
 		"showStriped": { "type": "boolean", "default": false },
 		"showNumber": { "type": "boolean", "default": true },
 		
-		"title": { "type": "string", "default": "WPMozo Progress Bar" },
-		"titleLavel": { "type": "string", "default": "h2" },
 		"percentage": { "type": "number", "default": 50 },
 
 		"barSize": { "type": "number", "default": 30 },
 		"barHeight": { "type": "number", "default": 500 },
 		
 		"circleSize": { "type": "number", "default": 150 },
-		"circleFillColor": { "type": "string", "default": "#131313" },
+		"circleFillColor": { "type": "string", "default": "#a5a5a5" },
 		
 		"barEmptyColor": { "type": "string", "default": "#eeeeee" },
 		"barFilledColor": { "type": "string", "default": "#007bff" },
@@ -38,29 +36,7 @@
 		"barEmptyHoverColor": { "type": "string" },
 		"barFilledHoverColor": { "type": "string" },
 		"circleFillHoverColor": { "type": "string" },
-
-		"titleColor": { "type": "string" },
-		"titleAlign": { "type": "string" },
-		"titleFontSize": { "type": "string" },
-		"titleFontAppearance": {
-			"type": "object",
-			"fontStyle": { "type": "string" },
-			"fontWeight": { "type": "string" },
-			"default": {
-				"fontStyle": "",
-				"fontWeight": ""
-			}
-		},
-		"titleLetterSpacing": { "type": "string" },
-		"titleDecoration": { "type": "string" },
-		"titleLetterCase": { "type": "string" },
-		"titleLineHeight": { "type": "string" },
-
-		"titleTextShadowX": { "type": "string" },
-		"titleTextShadowY": { "type": "string" },
-		"titleTextShadowBlur": { "type": "string" },
-		"titleTextShadowColor": { "type": "string" },
-		"titleTextShadowOpacity": { "type": "number" },
+		"percentageHoverColor": { "type": "string" },
 
 		"percentageColor": { "type": "string" },
 		"percentageFontSize": { "type": "string" },

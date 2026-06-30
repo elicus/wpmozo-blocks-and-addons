@@ -19,68 +19,68 @@ import { headingLevelsList } from '../../../common/utils.js';
 export const DesignPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 	const [ colorTab, setColorTab ] = useState( 'normal' );
+	const [ percentTab, setPercentTab ] = useState( 'normal' );
 
 	return ( <>
-		<PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
-			<WpmozoColorPicker props={props}
-				ColorKey="title"
-				ColorTypes={ [
-					{ key: 'Color', label: __( 'Title Color', 'wpmozo-blocks-and-addons' ) }
-				] }
-			/>
-			<BaseControl label={ __( 'Heading Level', 'wpmozo-blocks-and-addons' ) }>
+
+	{ attributes.showNumber && (
+		<PanelBody title={__('Percentage Text', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
+			
+			{/* Button Tabs wrapper */}
+			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>
 				<ButtonGroup>
-					{ headingLevelsList.map( ( item, index ) => (
-						<Button
-							key={`heading-level-${index}`}
-							isPressed={item.value === attributes.titleLavel}
-							onClick={() => setAttributes({titleLavel: item.value})}
-						>{item.label}</Button>
-					) ) }
+					<Button
+						className="wpmozo-button-tabs-btn"
+						isPressed={ ( 'normal' === percentTab ) ? true : false }
+						onClick={ () => setPercentTab( 'normal' ) }
+					>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
+					<Button
+						className="wpmozo-button-tabs-btn"
+						isPressed={ ( 'hover' === percentTab ) ? true : false }
+						onClick={ () => setPercentTab( 'hover' ) }
+					>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
 				</ButtonGroup>
+
+				{/* Normal Tab Content */}
+				{ 'normal' === percentTab && ( <>
+					<WpmozoColorPicker props={props}
+						ColorKey="percentage"
+						ColorTypes={ [
+							{ key: 'Color', label: __( 'Percentage Color', 'wpmozo-blocks-and-addons' ) }
+						] }
+					/>
+				</> ) }
+
+				{/* Hover Tab Content */}
+				{ 'hover' === percentTab && ( <>
+					<WpmozoColorPicker props={props}
+						ColorKey="percentageHover"
+						ColorTypes={ [
+							{ key: 'Color', label: __( 'Percentage Hover Color', 'wpmozo-blocks-and-addons' ) }
+						] }
+					/>
+				</> ) }
 			</BaseControl>
-			<WpmozoAlignment
-				label={__('Title Alignment', 'wpmozo-blocks-and-addons')}
-				onChange={(newValue) => setAttributes({titleAlign: newValue})}
-				value={attributes.titleAlign}
-			/>
+
+			{ 'bar' === attributes.layout && (
+				<WpmozoAlignment
+					label={ __( 'Percentage Alignment', 'wpmozo-blocks-and-addons' ) }
+					onChange={ (newValue) => setAttributes({percentAlign: newValue } ) }
+					value={ attributes.percentAlign }
+				/>
+			) }
 			<WpmozoTypography
-				TypographyKey="title"
+				TypographyKey="percentage"
 				props={props}
 			/>
 			<WpmozoTextShadow
-				TextShadowKey="titleTextShadow"
+				TextShadowKey="percentageTextShadow"
 				props={props}
-				label={ __( 'Title Text Shadow', 'wpmozo-blocks-and-addons' ) }
+				label={ __( 'Percentage Text Shadow', 'wpmozo-blocks-and-addons' ) }
 			/>
 		</PanelBody>
+	) }
 
-		{ attributes.showNumber && (
-			<PanelBody title={__('Percentage Text', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
-				<WpmozoColorPicker props={props}
-					ColorKey="percentage"
-					ColorTypes={ [
-						{ key: 'Color', label: __( 'Percentage Color', 'wpmozo-blocks-and-addons' ) }
-					] }
-				/>
-				{ 'bar' === attributes.layout && (
-					<WpmozoAlignment
-						label={ __( 'Percentage Alignment', 'wpmozo-blocks-and-addons' ) }
-						onChange={ (newValue) => setAttributes({percentAlign: newValue } ) }
-						value={ attributes.percentAlign }
-					/>
-				) }
-				<WpmozoTypography
-					TypographyKey="percentage"
-					props={props}
-				/>
-				<WpmozoTextShadow
-					TextShadowKey="percentageTextShadow"
-					props={props}
-					label={ __( 'Percentage Text Shadow', 'wpmozo-blocks-and-addons' ) }
-				/>
-			</PanelBody>
-		) }
 
 		<PanelBody title={ __( 'Bar Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			{ 'bar' === attributes.layout && (
