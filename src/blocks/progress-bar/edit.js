@@ -183,7 +183,7 @@ const Edit = (props) => {
             <div {...blockProps} id={`block-${attributes.ID}`}>
                 <div 
                     className={`wpmozo-bna-progress-bar-wrapper wpmozo-bna-progress-bar-layout-${attributes.layout} ${attributes.showStriped ? 'wpmozo-bna-progress-bar-striped' : ''}`}
-                    data-bar_direction={attributes.barDirection}
+                    data-bar_direction={'bar' === attributes.layout ? attributes.barDirection : undefined}
                 >
                     {renderInnerContent()}
                 </div>

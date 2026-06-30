@@ -52,7 +52,7 @@ const Save = ({ attributes }) => {
             <div {...useBlockProps.save({ className: attributes.className })} id={`block-${ID}`}>
                 <div 
                     className={`wpmozo-bna-progress-bar-wrapper wpmozo-bna-progress-bar-layout-${attributes.layout} ${attributes.showStriped ? 'wpmozo-bna-progress-bar-striped' : ''}`}
-                    data-bar_direction={attributes.barDirection}
+                    data-bar_direction={'bar' === attributes.layout ? attributes.barDirection : undefined}
                 >
                     {renderInnerContent()}
                 </div>
