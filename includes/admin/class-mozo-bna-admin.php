@@ -24,6 +24,7 @@ class Mozo_Bna_Admin {
 		// Save metaboxes.
 		add_action( 'save_post', array( __class__, 'save_testimonial_meta_fields' ) );
 		add_action( 'save_post', array( __class__, 'save_team_member_meta_fields' ) );
+		add_action( 'save_post', array( __class__, 'save_portfolio_meta_fields' ) );
 	}
 
 	/**
@@ -54,6 +55,17 @@ class Mozo_Bna_Admin {
 				'high'
 			);
 		}
+
+		if ( ! self::meta_box_exists( 'wpmozo_ae_portfolio_metabox', 'wpmozoae-portfolio', 'normal' ) ) {
+			add_meta_box(
+				'wpmozo_ae_portfolio_metabox',
+				'<img class="wpmozo_ae_meta_image" src="'.WPMOZO_BNA_ASSETS_DIR_URL.'images/favicon-for-wpmozo-addons-for-blocks.png'.'"/>Portfolio Details',
+				array( __class__, 'portfolio_metabox_callback' ),
+				'wpmozoae-portfolio',
+				'normal',
+				'high'
+			);
+		}
 	}
 
 	/**
@@ -72,6 +84,15 @@ class Mozo_Bna_Admin {
 	 */
 	public static function team_member_metabox_callback() {
 		require_once WPMOZO_BNA_INC_DIR_PATH . 'admin/metaboxes/mozo-bna-team-member.php';
+	}
+
+	/**
+	 * Portfolio metaboxes form/fields.
+	 *
+	 * @since  1.8.0
+	 */
+	public static function portfolio_metabox_callback() {
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'admin/metaboxes/mozo-bna-portfolio.php';
 	}
 
 	/**
@@ -107,6 +128,31 @@ class Mozo_Bna_Admin {
 				${$field} = sanitize_text_field( wp_unslash( $_POST[ $field ] ) );
 				update_post_meta( $post_id, $field, ${$field} );
 			}
+		}
+	}
+
+	/**
+	 * Save portfolio metaboxes.
+	 *
+	 * @since  1.8.0
+	 */
+	public static function save_portfolio_meta_fields( $post_id ) {
+		// doing an auto save.
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+		// verify nonce.
+		if ( ! isset( $_POST['wpmozo_portfolio_metabox_nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['wpmozo_portfolio_metabox_nonce'] ) ), 'wpmozo_metaboxes_nonce' ) ) {
+			return;
+		}
+		// if current user can not edit the post.
+		if ( ! current_user_can( 'edit_posts', $post_id ) ) {
+			return;
+		}
+
+		if ( isset( $_POST['wpmozo_ae_portfolio_project_url'] ) ) {
+			$project_url = esc_url_raw( wp_unslash( $_POST['wpmozo_ae_portfolio_project_url'] ) );
+			update_post_meta( $post_id, 'wpmozo_ae_portfolio_project_url', $project_url );
 		}
 	}
 

@@ -25,6 +25,9 @@ class Mozo_Bna_Post_Types {
 		add_action( 'init', array( __class__, 'register_team_member_post_type' ), 50 );
 		add_action( 'init', array( __class__, 'register_team_member_taxonomies' ), 50 );
 
+		add_action( 'init', array( __class__, 'register_portfolio_post_type' ), 50 );
+		add_action( 'init', array( __class__, 'register_portfolio_taxonomies' ), 50 );
+
 		// Disabled block editor for custom post types.
 		add_filter( 'use_block_editor_for_post_type', array( __class__, 'manage_block_editor_for_post_type' ), 10, 2 );
 
@@ -34,6 +37,9 @@ class Mozo_Bna_Post_Types {
 
 		add_filter( 'rest_wpmozoae-team-member_query', array( __class__, 'update_team_member_rest_query' ), 10, 2 );
 		add_filter( 'rest_prepare_wpmozoae-team-member', array( __class__, 'update_team_member_rest_endpoint_data' ), 10, 3 );
+
+		add_filter( 'rest_wpmozoae-portfolio_query', array( __class__, 'update_portfolio_rest_query' ), 10, 2 );
+		add_filter( 'rest_prepare_wpmozoae-portfolio', array( __class__, 'update_portfolio_rest_endpoint_data' ), 10, 3 );
 	}
 
 	/**
@@ -259,7 +265,7 @@ class Mozo_Bna_Post_Types {
 	 * @since 1.1.0
 	 */
 	public static function manage_block_editor_for_post_type( $use_block_editor, $post_type ) {
-		if ( $post_type === 'wpmozoae-testimonial' || $post_type === 'wpmozoae-team-member' ) {
+		if ( $post_type === 'wpmozoae-testimonial' || $post_type === 'wpmozoae-team-member' || $post_type === 'wpmozoae-portfolio' ) {
 			return false; // disable block editor for this post type
 		}
 		return $use_block_editor;
@@ -370,6 +376,159 @@ class Mozo_Bna_Post_Types {
 		$data['instagram']         = get_post_meta( $post->ID, 'wpmozo_ae_team_member_instagram', true );
 		$data['youtube']           = get_post_meta( $post->ID, 'wpmozo_ae_team_member_youtube', true );
 		$data['member_skills']     = get_post_meta( $post->ID, 'wpmozo_ae_team_member_member_skills', true );
+
+		$response->set_data( $data );
+
+		return $response;
+	}
+
+	/**
+	 * Register portfolio post types.
+	 * @since  1.8.0
+	 */
+	public static function register_portfolio_post_type() {
+		//check post type exists.
+		if( post_type_exists('wpmozoae-portfolio') ){
+			return;
+		}
+		$labels = array(
+			'name'                  => esc_html__( 'WPMozo Portfolios', 'wpmozo-blocks-and-addons' ),
+			'singular_name'         => esc_html__( 'WPMozo Portfolio', 'wpmozo-blocks-and-addons' ),
+			'menu_name'             => esc_html__( 'WPMozo Portfolios', 'wpmozo-blocks-and-addons' ),
+			'add_new'               => esc_html__( 'Add New', 'wpmozo-blocks-and-addons' ),
+			'add_new_item'          => esc_html__( 'Add New Portfolio', 'wpmozo-blocks-and-addons' ),
+			'edit_item'             => esc_html__( 'Edit Portfolio', 'wpmozo-blocks-and-addons' ),
+			'new_item'              => esc_html__( 'New Portfolio', 'wpmozo-blocks-and-addons' ),
+			'view_item'             => esc_html__( 'View Portfolio', 'wpmozo-blocks-and-addons' ),
+			'all_items'             => esc_html__( 'All Portfolios', 'wpmozo-blocks-and-addons' ),
+			'search_items'          => esc_html__( 'Search Portfolios', 'wpmozo-blocks-and-addons' ),
+			'not_found'             => esc_html__( 'No portfolio found', 'wpmozo-blocks-and-addons' ),
+			'not_found_in_trash'    => esc_html__( 'No portfolio found in Trash', 'wpmozo-blocks-and-addons' ),
+			'featured_image'        => esc_html__( 'Portfolio Image', 'wpmozo-blocks-and-addons' ),
+			'set_featured_image'    => esc_html__( 'Set portfolio image', 'wpmozo-blocks-and-addons' ),
+			'remove_featured_image' => esc_html__( 'Remove portfolio image', 'wpmozo-blocks-and-addons' ),
+			'use_featured_image'    => esc_html__( 'Use as portfolio image', 'wpmozo-blocks-and-addons' ),
+			'parent_item_colon'     => esc_html__( 'Parent Portfolio:', 'wpmozo-blocks-and-addons' ),
+			'name_admin_bar'        => esc_html__( 'Mozo Portfolio', 'wpmozo-blocks-and-addons' ),
+			'archives'              => esc_html__( 'Mozo Portfolio Archives', 'wpmozo-blocks-and-addons' ),
+			'attributes'            => esc_html__( 'Mozo Portfolio Attributes', 'wpmozo-blocks-and-addons' ),
+			'update_item'           => esc_html__( 'Update Portfolio', 'wpmozo-blocks-and-addons' ),
+			'view_items'            => esc_html__( 'View Portfolio', 'wpmozo-blocks-and-addons' ),
+			'insert_into_item'      => esc_html__( 'Insert into item', 'wpmozo-blocks-and-addons' ),
+			'uploaded_to_this_item' => esc_html__( 'Uploaded to this item', 'wpmozo-blocks-and-addons' ),
+			'items_list'            => esc_html__( 'Portfolios list', 'wpmozo-blocks-and-addons' ),
+			'items_list_navigation' => esc_html__( 'Portfolios list navigation', 'wpmozo-blocks-and-addons' ),
+			'filter_items_list'     => esc_html__( 'Filter portfolio list', 'wpmozo-blocks-and-addons' ),
+		);
+		$args = array(
+			'labels'              => $labels,
+			'description'         => esc_html__( 'WPMozo Portfolio Custom Post', 'wpmozo-blocks-and-addons' ),
+			'label'               => esc_html__( 'Mozo Portfolios', 'wpmozo-blocks-and-addons' ),
+			'taxonomies'          => array( 'wpmozo-ae-portfolio-category' ),
+			'public'              => true,
+			'supports'            => array( 'title', 'editor', 'author', 'thumbnail', 'revisions', 'excerpt' ),
+			'hierarchical'        => false,
+			'menu_position'       => 20,
+			'menu_icon'           => 'data:image/svg+xml;base64,' . base64_encode( file_get_contents( WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/admin/assets/images/portfolio-icon.svg' ) ),
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'show_in_nav_menus'   => true,
+			'has_archive'         => true,
+			'query_var'           => true,
+			'capability_type'     => 'post',
+			'show_in_admin_bar'   => true,
+			'can_export'          => true,
+			'exclude_from_search' => false,
+			'publicly_queryable'  => true,
+			'show_in_rest'        => true,
+		);
+
+		register_post_type( 'wpmozoae-portfolio', $args );
+	}
+
+	/**
+	 * Register portfolio taxonomies.
+	 * @since  1.8.0
+	 */
+	public static function register_portfolio_taxonomies() {
+		//check taxonomy exists.
+		if ( taxonomy_exists( 'wpmozo-ae-portfolio-category' ) ) {
+			return;
+		}
+		$labels = array(
+			'name'                       => esc_html_x( 'Categories', 'Taxonomy General Name', 'wpmozo-blocks-and-addons' ),
+			'singular_name'              => esc_html_x( 'Category', 'Taxonomy Singular Name', 'wpmozo-blocks-and-addons' ),
+			'menu_name'                  => esc_html__( 'Categories', 'wpmozo-blocks-and-addons' ),
+			'all_items'                  => esc_html__( 'All Portfolio Categories', 'wpmozo-blocks-and-addons' ),
+			'parent_item'                => esc_html__( 'Parent Portfolio Category', 'wpmozo-blocks-and-addons' ),
+			'parent_item_colon'          => esc_html__( 'Parent Portfolio Category:', 'wpmozo-blocks-and-addons' ),
+			'new_item_name'              => esc_html__( 'New Portfolio Category Name', 'wpmozo-blocks-and-addons' ),
+			'add_new_item'               => esc_html__( 'Add New Portfolio Category', 'wpmozo-blocks-and-addons' ),
+			'edit_item'                  => esc_html__( 'Edit Portfolio Category', 'wpmozo-blocks-and-addons' ),
+			'update_item'                => esc_html__( 'Update Portfolio Category', 'wpmozo-blocks-and-addons' ),
+			'view_item'                  => esc_html__( 'View Portfolio Category', 'wpmozo-blocks-and-addons' ),
+			'separate_items_with_commas' => esc_html__( 'Separate categories with commas', 'wpmozo-blocks-and-addons' ),
+			'add_or_remove_items'        => esc_html__( 'Add or remove categories', 'wpmozo-blocks-and-addons' ),
+			'choose_from_most_used'      => esc_html__( 'Choose from the most used', 'wpmozo-blocks-and-addons' ),
+			'popular_items'              => esc_html__( 'Popular Portfolio Categories', 'wpmozo-blocks-and-addons' ),
+			'search_items'               => esc_html__( 'Search Portfolio Categories', 'wpmozo-blocks-and-addons' ),
+			'not_found'                  => esc_html__( 'Not Found', 'wpmozo-blocks-and-addons' ),
+			'no_terms'                   => esc_html__( 'No Portfolio Categories', 'wpmozo-blocks-and-addons' ),
+			'items_list'                 => esc_html__( 'Portfolio Categories list', 'wpmozo-blocks-and-addons' ),
+			'items_list_navigation'      => esc_html__( 'Portfolio Categories list navigation', 'wpmozo-blocks-and-addons' ),
+		);
+		$args = array(
+			'labels'            => $labels,
+			'hierarchical'      => true,
+			'public'            => true,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'show_in_nav_menus' => true,
+			'show_in_rest'      => true,
+			'show_tagcloud'     => true,
+		);
+		register_taxonomy( 'wpmozo-ae-portfolio-category', array( 'wpmozoae-portfolio' ), $args );
+	}
+
+	/**
+	 * Update posts data query in rest api endpoint.
+	 * @since 1.8.0
+	 */
+	public static function update_portfolio_rest_query( $args, $request ) {
+
+		// Only modify for post type 'wpmozoae-portfolio'.
+		if ( ! empty( $args['post_type'] ) && 'wpmozoae-portfolio' !== $args['post_type'] ) {
+			return $args;
+		}
+
+		// Check if categories are not empty.
+		if ( ! empty( $request['categories'] ) ) {
+			$term_ids = array_map( 'absint', explode( ',', $request['categories'] ) );
+			$args['tax_query'][] = array(
+				'taxonomy' => 'wpmozo-ae-portfolio-category',
+				'field'    => 'term_id',
+				'terms'    => $term_ids,
+				'operator' => 'IN',
+			);
+		}
+
+		return $args;
+	}
+
+	/**
+	 * Update posts data in rest api endpoint.
+	 * @since 1.8.0
+	 */
+	public static function update_portfolio_rest_endpoint_data( $response, $post, $request ) {
+		// Only modify for post type 'wpmozoae-portfolio'.
+		if ( 'wpmozoae-portfolio' !== $post->post_type  ) {
+			return $response;
+		}
+
+		// Proceed to add custom meta.
+		$data = $response->get_data();
+
+		$data['project_url'] = get_post_meta( $post->ID, 'wpmozo_ae_portfolio_project_url', true );
 
 		$response->set_data( $data );
 
