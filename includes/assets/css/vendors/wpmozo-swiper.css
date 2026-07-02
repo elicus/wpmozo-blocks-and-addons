@@ -157,3 +157,7 @@
 	border-radius: 0;
 	vertical-align: middle
 }
+.wpmozo_swiper_pagination{
+	margin-top: 20px;
+	position: relative;
+}

@@ -48,7 +48,7 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 		wp_register_style(
 			$this->plugin_name . '-editor-style',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'css/editor/wpmozo-blocks-and-addons-editor.css',
-			array( 'wp-edit-blocks' ),
+			array(),
 			WPMOZO_BNA_VERSION
 		);
 
@@ -63,13 +63,13 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 		wp_register_style(
 			$this->plugin_name . '-swiper-style',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/swiper-bundle.css',
-			array( 'wp-edit-blocks' ),
+			array(),
 			WPMOZO_BNA_VERSION
 		);
 		wp_register_style(
 			$this->plugin_name . '-swiper-wpmozo-style',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/wpmozo-swiper.css',
-			array( 'wp-edit-blocks' ),
+			array(),
 			WPMOZO_BNA_VERSION
 		);
 
@@ -91,14 +91,14 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 		wp_register_style(
 			$this->plugin_name . '-twentytwenty-style',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/twentytwenty.css',
-			array( 'wp-edit-blocks' ),
+			array(),
 			WPMOZO_BNA_VERSION
 		);
 
 		wp_register_style(
 			$this->plugin_name . '-tippy-animation-style',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/all-animation.css',
-			array( 'wp-edit-blocks' ),
+			array(),
 			WPMOZO_BNA_VERSION
 		);
 
@@ -293,7 +293,6 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 	 * @since 1.0.0
 	 */
 	public function enqueue_block_assets() {
-		wp_enqueue_style( $this->plugin_name . '-fontawesome-style' );
 		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
 
 		// Load frontend localize variables.

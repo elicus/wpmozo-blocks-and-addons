@@ -15,8 +15,9 @@
 	"attributes": {
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
-		
+
 		"image": { "type": "string" },
+		"imageAlt": { "type": "string" },
 		"title": { "type": "string" },
 		"titleLevel": { "type": "string", "default": "h2" },
 		"titleColor": { "type": "string" },
@@ -30,7 +31,7 @@
 		"titleLetterCase": { "type": "string" },
 		"titleLineHeight": { "type": "string" },
 		"titleAlign": { "type": "string", "default": "left" },
-		
+
 		"content": { "type": "string" },
 		"descriptionColor": { "type": "string" },
 		"descriptionFontSize": { "type": "string" },
@@ -43,7 +44,7 @@
 		"descriptionLetterCase": { "type": "string" },
 		"descriptionLineHeight": { "type": "string" },
 		"descriptionAlign": { "type": "string", "default": "left" },
-		
+
 		"overlayColor": { "type": "string" },
 		"useIcon": { "type": "boolean", "default": false },
 		"icon": { "type": "string" },
@@ -51,7 +52,7 @@
 		"iconAlign": { "type": "string", "default": "center" },
 		"useIconFontSize": { "type": "boolean", "default": false },
 		"iconFontSize": { "type": "string" },
-		
+
 		"showButton": { "type": "boolean", "default": false },
 		"buttonText": { "type": "string", "default": "Read More" },
 		"buttonUrl": { "type": "string" },
@@ -71,7 +72,7 @@
 		"buttonborderRadius": { "type": "string" },
 		"buttonpadding": { "type": "object" },
 		"buttonwrapmargin": { "type": "object" },
-		
+
 		"tiltMax": { "type": "number", "default": 20 },
 		"tiltPerspective": { "type": "number", "default": 1000 },
 		"tiltScale": { "type": "number", "default": 1 },
@@ -83,9 +84,9 @@
 		"tilt3dValue": { "type": "number", "default": 1 },
 		"useDisableAxis": { "type": "boolean", "default": false },
 		"tiltDisableAxis": { "type": "string" },
-		
+
 		"useOverlay": { "type": "boolean", "default": false },
-		
+
 		"contentOnHover": { "type": "boolean", "default": false },
 		"contentAlignment": { "type": "string", "default": "center" },
 		"contentAnimationDirection": { "type": "string", "default": "off" },
@@ -93,6 +94,7 @@
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
-	"style": "file:./style-index.css",
+	"editorStyle": ["wpmozo-blocks-and-addons-fontawesome-style","file:./index.css"],
+	"style": ["wpmozo-blocks-and-addons-fontawesome-style","file:./style-index.css"],
 	"script": "file:./script.js"
 }

@@ -15,10 +15,11 @@
 	"attributes": {
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
-		
+
 		"image": { "type": "string" },
 		"imageAlignment": { "type": "string" },
 		"imageTitle": { "type": "string" },
+		"imageAlt": { "type": "string" },
 
 		"scrollDirection": { "type": "string", "default": "top" },
 		"scrollSpeed": { "type": "number", "default": 5 },

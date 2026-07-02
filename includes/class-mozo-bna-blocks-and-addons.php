@@ -60,6 +60,13 @@ class Mozo_Bna_Blocks_And_Addons {
 	protected $version;
 
 	/**
+	 * The plugin options.
+	 *
+	 * @since 1.0.0
+	 */
+	static $plugin_options;
+
+	/**
 	 * The single instance of the class.
 	 *
 	 * @since 1.0.0
@@ -199,6 +206,8 @@ class Mozo_Bna_Blocks_And_Addons {
 		 */
 		require_once WPMOZO_BNA_INC_DIR_PATH . 'admin/class-mozo-bna-admin.php';
 
+		// Manage plugin admin settings panel.
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'admin/panel/class-mozo-bna-panel.php';
 	}
 
 	/**
@@ -246,6 +255,32 @@ class Mozo_Bna_Blocks_And_Addons {
 			$this->load_admin_dependencies();
 			$this->add_admin_hooks();
 		}
+	}
+
+	/**
+	 * Get plugin options.
+	 * 
+	 * @since 1.19.0
+	 *
+	 * @return array plugin options array.
+	 */
+	public static function get_plugin_options() {
+		if ( empty( self::$plugin_options ) ) {
+			self::$plugin_options = get_option( WPMOZO_BNA_OPTION );
+		}
+
+		return self::$plugin_options;
+	}
+
+	/**
+	 * Check if block is disabled.
+	 */
+	public static function get_deactivate_blocks( $need_array = true ) {
+		$inactive_blocks = self::get_plugin_options()['wpmozo_inactive_blocks'] ?? [];
+		if ( true === $need_array && ! is_array( $inactive_blocks ) ) {
+			return explode( ',', $inactive_blocks );
+		}
+		return $inactive_blocks;
 	}
 
 	/**

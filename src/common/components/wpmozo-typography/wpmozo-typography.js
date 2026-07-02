@@ -16,6 +16,7 @@ import { __ } from '@wordpress/i18n';
 import { compose } from '@wordpress/compose';
 import { Fragment } from '@wordpress/element';
 import './style.scss';
+import {wpmozo_is_empty} from '../../utils.js';
 
 const WpmozoTypography = (args) => {
 	const { TypographyKey, props } = args;
@@ -35,10 +36,17 @@ const WpmozoTypography = (args) => {
 	};
 
 	const typoSetValue = (styleType, value = null) => {
-		const val = setValue(styleType, value);
-		props.setAttributes({ [TypographyKey + styleType]: val });
+		var val = setValue(styleType, value);
 
-		if (args.afterOnChange) {
+		if ( 'Decoration' === styleType && wpmozo_is_empty( value ) ) {
+			val = 'none';
+		}
+		if ( 'LetterCase' === styleType && wpmozo_is_empty( value ) ) {
+			val = 'none';
+		}
+
+		props.setAttributes( { [TypographyKey + styleType]: val } );
+		if ( args.afterOnChange ) {
 			args.afterOnChange(props);
 		}
 	};

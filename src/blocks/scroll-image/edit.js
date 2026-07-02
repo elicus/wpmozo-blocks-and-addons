@@ -39,7 +39,7 @@ export default function Edit( props ) {
 			<div id={`block-${attributes.ID}`} { ...useBlockProps( { className: 'wpmozo-bna-scroll-image' } ) }>
 				<div className="wpmozo-bna-scroll-image-wrapper">
 					<div className="wpmozo-bna-scroll-image-inner-wrap" data-direction={attributes.scrollDirection}>
-						<img className="wpmozo-bna-scroll-image-img" title={title} src={image} />
+						<img className="wpmozo-bna-scroll-image-img" title={title} src={image} alt={attributes.imageAlt} />
 					</div>
 				</div>
 			</div>

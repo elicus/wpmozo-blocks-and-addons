@@ -15,7 +15,7 @@ export default function Edit( props ) {
 	attributes.ID = clientId;
 
 	let wpmozo_init_magnifier_img = ( element, attributes ) => {
-		if( element.find( ".wpmozo-bna-image-magnifier-wrapper" ).length > 0 ) {			
+		if( element.find( ".wpmozo-bna-image-magnifier-wrapper" ).length > 0 ) {
 			element.find( ".wpmozo-bna-image-magnifier-wrapper" ).find( ".zoom" ).magnify( {
 	            speed: attributes.lenseSpeed,
 	            src: image
@@ -42,7 +42,7 @@ export default function Edit( props ) {
 			<div id={`block-${attributes.ID}`} { ...useBlockProps( { className: 'wpmozo-bna-image-magnifier' } ) }>
 				<div className={`wpmozo-bna-image-magnifier-wrapper`}>
 					<div className="magnify">
-						<img className="wpmozo-bna-image-magnifier-image zoom" src={image} />
+						<img className="wpmozo-bna-image-magnifier-image zoom" src={image} alt={attributes.imageAlt}/>
 					</div>
 				</div>
 			</div>

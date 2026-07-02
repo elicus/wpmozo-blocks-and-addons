@@ -48,8 +48,8 @@
 	},
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",
-    "editorStyle": "file:./index.css",
-    "style": ["wpmozo-blocks-and-addons-magnificPopup-style","file:./style-index.css"],
+	"editorStyle": ["wpmozo-blocks-and-addons-fontawesome-style","file:./index.css"],
+    "style": ["wpmozo-blocks-and-addons-fontawesome-style", "wpmozo-blocks-and-addons-magnificPopup-style","file:./style-index.css"],
 	"script": ["wpmozo-blocks-and-addons-isotope-script","wpmozo-blocks-and-addons-imagesloaded-script","wpmozo-blocks-and-addons-magnificPopup-script","file:./script.js"],
 	"render": "file:./render.php"
 }

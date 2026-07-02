@@ -43,7 +43,7 @@ export default function save({attributes}) {
 		>
 			<div className={`wpmozo-bna-tilt-image-wrapper wpmozo-editor wpmozo-bna-tilt-align-${contentAlignment}`}>
 				<div className="wpmozo-bna-tilt-image-inner-wrapper">
-					<img className="wpmozo-bna-tilt-image-image" src={image}/>
+					<img className="wpmozo-bna-tilt-image-image" src={image}  alt={attributes.imageAlt}/>
 					<div className={`wpmozo-bna-tilt-content-wrapper${animationClass}`}>
 						{ attributes.useIcon && icon }
 						<RichText.Content

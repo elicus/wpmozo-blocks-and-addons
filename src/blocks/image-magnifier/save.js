@@ -15,7 +15,7 @@ export default function save({attributes}) {
 		>
 			<div className={`wpmozo-bna-image-magnifier-wrapper`}>
 				<div className="magnify">
-					<img className="wpmozo-bna-image-magnifier-image zoom" src={image} />
+					<img className="wpmozo-bna-image-magnifier-image zoom" src={image} alt={attributes.imageAlt}/>
 				</div>
 			</div>
 		</div>

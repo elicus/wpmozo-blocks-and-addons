@@ -26,7 +26,7 @@
         "itemborder": { "type": "object" },
         "itemborderRadius": { "type": "string" },
 
-        "dividerColor": { "type": "string" },  
+        "dividerColor": { "type": "string" },
         "textAlignment": { "type": "string" },
         "nameHeadingLavel": { "type": "string", "default": "h4" },
         "currencySymbolPosition": { "type": "string" },
@@ -126,5 +126,6 @@
     },
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",
-    "style": "file:./style-index.css"
+	"editorStyle": ["wpmozo-blocks-and-addons-fontawesome-style","file:./index.css"],
+	"style": ["wpmozo-blocks-and-addons-fontawesome-style","file:./style-index.css"]
 }
