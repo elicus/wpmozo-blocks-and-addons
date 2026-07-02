@@ -10,9 +10,9 @@
  * Plugin URI:        https://wpmozo.com/product/wpmozo-blocks-and-addons
  * Description:       WPMozo Blocks and Addons is a plugin designed to extend the functionality of the Gutenberg editor.
  * It provides a variety of blocks to help you create stunning and interactive content in WordPress effortlessly.
- * Version:           1.7.0
+ * Version:           1.8.0
  * Requires at least: 5.0
- * Requires PHP:      5.6
+ * Requires PHP:      7.3
  * Author:            Elicus
  * Author URI:        https://elicus.com
  * License:           GPL-2.0-or-later
@@ -24,15 +24,15 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-define( 'WPMOZO_BNA_VERSION', '1.7.0' );// Current plugin version.
-define( 'WPMOZO_BNA_FILE', __FILE__ );// Plugin main file.
-define( 'WPMOZO_BNA_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );// Plugin dir path.
-define( 'WPMOZO_BNA_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );// Plugin dir url.
-define( 'WPMOZO_BNA_INC_DIR_PATH', WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/' );// Includes dir path.
-define( 'WPMOZO_BNA_INC_DIR_URL', WPMOZO_BNA_PLUGIN_DIR_URL . 'includes/' );// Includes dir url.
-define( 'WPMOZO_BNA_ASSETS_DIR_PATH', WPMOZO_BNA_INC_DIR_PATH . 'assets/' );// Assets dir path.
-define( 'WPMOZO_BNA_ASSETS_DIR_URL', WPMOZO_BNA_INC_DIR_URL . 'assets/' );// Assets dir url.
-define( 'WPMOZO_BNA_OPTION', 'wpmozo-blocks-and-addons-option' );// Option name.
+define( 'WPMOZO_BNA_VERSION', '1.8.0' ); // Current plugin version.
+define( 'WPMOZO_BNA_FILE', __FILE__ ); // Plugin main file.
+define( 'WPMOZO_BNA_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) ); // Plugin dir path.
+define( 'WPMOZO_BNA_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) ); // Plugin dir url.
+define( 'WPMOZO_BNA_INC_DIR_PATH', WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/' ); // Includes dir path.
+define( 'WPMOZO_BNA_INC_DIR_URL', WPMOZO_BNA_PLUGIN_DIR_URL . 'includes/' ); // Includes dir url.
+define( 'WPMOZO_BNA_ASSETS_DIR_PATH', WPMOZO_BNA_INC_DIR_PATH . 'assets/' ); // Assets dir path.
+define( 'WPMOZO_BNA_ASSETS_DIR_URL', WPMOZO_BNA_INC_DIR_URL . 'assets/' ); // Assets dir url.
+define( 'WPMOZO_BNA_OPTION', 'wpmozo-blocks-and-addons-option' ); // Option name.
 
 require_once WPMOZO_BNA_INC_DIR_PATH . 'class-mozo-bna-blocks-and-addons.php';
 
@@ -62,9 +62,24 @@ function create_block_wpmozo_blocks_and_addons_block_init() {
 	/**
 	 * Registers the block type(s) in the `blocks-manifest.php` file.
 	 */
-	$manifest_data = require __DIR__ . '/build/blocks-manifest.php';
+	$manifest_data   = require __DIR__ . '/build/blocks-manifest.php';
+	$disabled_blocks = Mozo_Bna_Blocks_And_Addons::get_deactivate_blocks();
 	foreach ( array_keys( $manifest_data ) as $block_type ) {
 		register_block_type( __DIR__ . "/build/{$block_type}" );
+	}
+}
+
+/**
+ * Unregister blocks which are disabled in panel.
+ */
+function unregister_block_wpmozo_blocks_and_addons_block_init() {
+	// Get the disabled blocks.
+	$disabled_blocks = array_filter( Mozo_Bna_Blocks_And_Addons::get_deactivate_blocks() );
+	$registry = WP_Block_Type_Registry::get_instance();
+	foreach ( $disabled_blocks as $block ) {
+		if ( $registry->is_registered( "wpmozo/{$block}" ) ) {
+			unregister_block_type( "wpmozo/{$block}" );
+		}
 	}
 }
 
@@ -78,6 +93,7 @@ function wpmozo_add_block_category($categories) {
 }
 add_filter( 'block_categories_all', 'wpmozo_add_block_category');
 add_action( 'init', 'create_block_wpmozo_blocks_and_addons_block_init' );
+add_action( 'init', 'unregister_block_wpmozo_blocks_and_addons_block_init', 50 );
 
 /**
  * Runs init class which loads all the necessory resources
@@ -88,5 +104,5 @@ if( ! function_exists( "wpmozo_bna_run_init_class" ) ){
 		$wpmozo_bna = Mozo_Bna_Blocks_And_Addons::instance();
 		$wpmozo_bna->run();
 	}
-	add_action( 'plugins_loaded', 'wpmozo_bna_run_init_class' );
+	add_action( 'plugins_loaded', 'wpmozo_bna_run_init_class', 20 );
 }

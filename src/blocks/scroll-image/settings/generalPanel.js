@@ -31,6 +31,11 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				value={ attributes.imageTitle }
 				onChange={ ( newValue ) => setAttributes( { imageTitle: newValue } ) }
 			/>
+			<TextControl
+				label={ __( 'Image Alt', 'wpmozo-blocks-and-addons' ) }
+				value={ attributes.imageAlt }
+				onChange={ ( newValue ) => setAttributes( { imageAlt: newValue } ) }
+			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Configuration', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
 			<SelectControl

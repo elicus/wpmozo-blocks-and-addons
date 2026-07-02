@@ -27,10 +27,10 @@
         "accordionTransitionDuration" : { "type": "number", "default": 500 },
         "accordionHeight": { "type": "string", "default": "350px" },
 
-        "textColor": { "type": "string", "default": "dark" },  
+        "textColor": { "type": "string", "default": "dark" },
         "textAlignment": { "type": "string" },
 
-        "titleColor": { "type": "string" },  
+        "titleColor": { "type": "string" },
         "titleAlign": { "type": "string" },
         "titleLavel": { "type": "string", "default": "h4" },
         "titleFontSize": { "type": "string", "default": "18px" },
@@ -50,7 +50,7 @@
         "titlepadding": { "type": "object" },
         "titlemargin": { "type": "object" },
 
-        "descriptionColor": { "type": "string" },  
+        "descriptionColor": { "type": "string" },
         "descriptionAlign": { "type": "string" },
         "descriptionFontSize": { "type": "string", "default": "18px" },
         "descriptionFontAppearance": {
@@ -103,6 +103,7 @@
     },
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",
-    "style": "file:./style-index.css",
+	"editorStyle": ["wpmozo-blocks-and-addons-fontawesome-style","file:./index.css"],
+	"style": ["wpmozo-blocks-and-addons-fontawesome-style","file:./style-index.css"],
     "script": "file:./script.js"
 }

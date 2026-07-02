@@ -15,13 +15,13 @@
 	"attributes": {
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
-		
+
 		"animationType": { "type": "string", "default": "flip" },
 		"flipDirection": { "type": "string", "default": "top" },
 		"depth3dEffect": { "type": "boolean", "default": true },
 		"shakeOnFlip": { "type": "boolean", "default": false },
 		"flipSpeed": { "type": "number", "default": 700 },
-		
+
 		"globalTitleColor": { "type": "string", "default": "#fff" },
 		"globalContentColor": { "type": "string", "default": "#fff" },
 		"globalTitletext": { "type": "string" },
@@ -64,7 +64,7 @@
 		"frontTitleDecoration": { "type": "string" },
 		"frontTitleLetterCase": { "type": "string" },
 		"frontTitleLineHeight": { "type": "string" },
-		
+
 		"frontContnet": { "type": "string", "default": "Here you can set front text." },
 		"frontContentColor": { "type": "string" },
 		"frontContenttext": { "type": "string" },
@@ -81,11 +81,11 @@
 		"frontContentLineHeight": { "type": "string" },
 		"frontContentHorAlignment": { "type": "string", "default": "center" },
 		"frontContentVerAlignment": { "type": "string", "default": "center" },
-		
+
 		"frontElType": { "type": "string", "default": "icon" },
 		"frontBackgroundColor": { "type": "string", "default": "#543EC4" },
 		"frontElementAlign": { "type": "string", "default": "top" },
-		
+
 		"frontElIcon": { "type": "string", "default": "fas fa-star" },
 		"frontIconColor": { "type": "string", "default": "#fff" },
 		"frontIconSize": { "type": "string" },
@@ -97,12 +97,12 @@
 		"frontIconShapeborderRadius": { "type": "string" },
 		"frontIconShapeborder": { "type": "object" },
 		"frontIconShapeBorderColor": { "type": "string" },
-		
+
 		"frontElImage": { "type": "string" },
 		"frontImageAlignment": { "type": "string", "default": "center" },
 		"frontImageWidth": { "type": "string", "default": "100px" },
 		"frontImageWidthUnit": { "type": "string", "default": "px" },
-		
+
 		"frontFlipboxborder": { "type": "object" },
 		"frontFlipboxborderRadius": { "type": "string" },
 		"frontFlipboxBackground": { "type": "string", "default": "#543EC4" },
@@ -112,7 +112,7 @@
 		},
 		"flipboxWidth": { "type": "string", "default": "100%" },
 		"flipboxWidthUnit": { "type": "string", "default": "%" },
-		
+
 		"backTitle": { "type": "string", "default": "Back Title" },
 		"backHeadingLevel": { "type": "string", "default": "h2" },
 		"backTitleColor": { "type": "string" },
@@ -128,7 +128,7 @@
 		"backTitleDecoration": { "type": "string" },
 		"backTitleLetterCase": { "type": "string" },
 		"backTitleLineHeight": { "type": "string" },
-		
+
 		"backContnet": { "type": "string", "default": "Here you can set back text." },
 		"backContentColor": { "type": "string" },
 		"backContenttext": { "type": "string" },
@@ -145,11 +145,11 @@
 		"backContentLineHeight": { "type": "string" },
 		"backContentHorAlignment": { "type": "string", "default": "center" },
 		"backContentVerAlignment": { "type": "string", "default": "center" },
-		
+
 		"backElType": { "type": "string", "default": "icon" },
 		"backBackgroundColor": { "type": "string", "default": "#863AD0" },
 		"backElementAlign": { "type": "string", "default": "top" },
-		
+
 		"backElIcon": { "type": "string", "default": "fas fa-star" },
 		"backIconColor": { "type": "string", "default": "#fff" },
 		"backIconSize": { "type": "string" },
@@ -160,12 +160,12 @@
 		"backIconHasShapeBorder": { "type": "boolean", "default": false },
 		"backIconShapeborderRadius": { "type": "string" },
 		"backIconShapeborder": { "type": "object" },
-		
+
 		"backElImage": { "type": "string" },
 		"backImageAlignment": { "type": "string", "default": "center" },
 		"backImageWidth": { "type": "string", "default": "100px" },
 		"backImageWidthUnit": { "type": "string", "default": "px" },
-		
+
 		"backFlipboxborder": { "type": "object" },
 		"backFlipboxborderRadius": { "type": "string" },
 		"backFlipboxBackground": { "type": "string", "default": "#863AD0" },
@@ -195,7 +195,7 @@
 		"backBtnDecoration": { "type": "string", "default": "none" },
 		"backBtnLetterCase": { "type": "string" },
 		"backBtnLineHeight": { "type": "string" },
-		"backBtnborder": { 
+		"backBtnborder": {
 			"type": "object",
 			"default": { "width": "1px", "style": "solid", "color": "#fff" }
 		},
@@ -208,7 +208,7 @@
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
+	"editorStyle": ["wpmozo-blocks-and-addons-fontawesome-style","file:./index.css"],
+	"style": ["wpmozo-blocks-and-addons-fontawesome-style","file:./style-index.css"],
 	"script": "file:./script.js"
 }

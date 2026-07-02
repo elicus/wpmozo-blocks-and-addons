@@ -35,7 +35,8 @@
 .wp-block-wpmozo-post-ticker .wpmozo_post_ticker_post_title{
 	padding: 0 5px;
 	font-size: 16px;
-	color: #000;
+	color: #000000;
+	text-decoration: none;
 }
 .wp-block-wpmozo-post-ticker .wpmozo_ticker_effect_scroll .wpmozo_post_ticker_bar{
 	position: absolute;
@@ -52,6 +53,7 @@
 }
 .wp-block-wpmozo-post-ticker .wpmozo_ticker_effect_scroll .wpmozo_post_ticker_item{
 	white-space: nowrap;
+	line-height: 1.2rem;
 }
 
 .wp-block-wpmozo-post-ticker .wpmozo_ticker_effect_scroll .wpmozo_post_ticker_item:last-child::after {
@@ -59,7 +61,7 @@
 }
 .wp-block-wpmozo-post-ticker .wpmozo_ticker_effect_scroll .wpmozo_post_ticker_post_title{
 	display: inline-block;
-	vertical-align:-webkit-baseline-middle;
+	// vertical-align:-webkit-baseline-middle; // creating issue, adding space at top.
 }
 .wp-block-wpmozo-post-ticker .wpmozo_ticker_effect_slide .wpmozo_post_ticker_bar{
 	height: 100%;

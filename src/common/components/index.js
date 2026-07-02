@@ -9,6 +9,7 @@ import WpmozoIconpicker from './wpmozo-iconpicker/wpmozo-iconpicker';
 import WpmozoAlignment from './wpmozo-alignment/wpmozo-alignment';
 import WpmozoColorCombo from './wpmozo-colorcombo/wpmozo-colorcombo';
 import WpmozoRangeSize from './wpmozo-range-size/wpmozo-range-size';
+import WpmozoVideoUploader from './wpmozo-video-uploader/wpmozo-video-uploader';
 
 export {
 	WpmozoTypography,
@@ -21,6 +22,7 @@ export {
 	WpmozoAlignment,
 	WpmozoColorCombo,
 	WpmozoRangeSize,
+	WpmozoVideoUploader,
 }
 
 // Export them globally for pro plugin.
@@ -37,5 +39,6 @@ if ( typeof window !== 'undefined' ) {
 		WpmozoAlignment,
 		WpmozoColorCombo,
 		WpmozoRangeSize,
+		WpmozoVideoUploader,
 	} );
 }

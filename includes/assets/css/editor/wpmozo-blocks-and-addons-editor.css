@@ -121,7 +121,7 @@
 
 .wpmozo-settings-tab-panel button.is-active,
 .wpmozo-settings-tab-panel button.is-active:hover {
-	background-color: #5600b7;
+	background-color: #3D3EED;
 	color: #ffffff;
 }
 
@@ -173,7 +173,7 @@
 }
 
 .wpmozo-block-icon path {
-	fill: #5600b7;
+	fill: #3D3EED;
 }
 
 /* Custom field warning. */

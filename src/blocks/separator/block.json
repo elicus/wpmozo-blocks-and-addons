@@ -15,11 +15,11 @@
 	"attributes": {
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
-		
+
 		"separatorType": { "type": "string", "default": "line" },
 		"lineUseWith": { "type": "string", "default": "onlySeparator" },
 		"lineStyle": { "type": "string", "default": "solid" },
-		
+
 		"separatorText": { "type": "string", "default": "Add text here" },
 		"textNormalColor": { "type": "string", "default": "#222222" },
 		"textHoverColor": { "type": "string", "default": "#000000" },
@@ -36,7 +36,7 @@
 		"textHoverLetterCase": { "type": "string" },
 		"textHoverLineHeight": { "type": "string" },
 		"textAlign": { "type": "string", "default": "center" },
-		
+
 		"separatorImage": { "type": "string", "default": "" },
 		"imageWidth": { "type": "number" },
 		"imagePosition": { "type": "string", "default": "center" },
@@ -51,7 +51,7 @@
 		"shapeBackground": { "type": "string" },
 		"enableShapeBorder": { "type": "boolean", "default": false },
 		"shapeBorderColor": { "type": "string" },
-		
+
 		"separatorThickness": { "type": "number", "default": 3 },
 		"separatorGradient": { "type": "string" },
 		"separatorColor": { "type": "string", "default": "#2b87da" },
@@ -60,5 +60,5 @@
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
 	"editorStyle": "wpmozo-blocks-and-addons-fontawesome-style",
-	"style": "file:./style-index.css"
+	"style": ["wpmozo-blocks-and-addons-fontawesome-style","file:./style-index.css"]
 }

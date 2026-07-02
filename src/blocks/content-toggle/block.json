@@ -17,7 +17,7 @@
         "ID": { "type": "string" },
         "className": { "type": "string" },
         "anchor": { "type": "string" },
-        
+
         "toggleSwitchType": { "type": "string", "default": "rounded" },
         "toggleSwitchAlignment": { "type": "string" },
         "toggleSwitchColor": { "type": "string" },
@@ -30,7 +30,7 @@
         "toggleSwitchHoverOnStateBackground": { "type": "string" },
         "toggleSwitchDimensionspadding": { "type": "object" },
         "toggleSwitchDimensionsmargin": { "type": "object" },
-        
+
         "toggleOneTitle": { "type": "string", "default": "Title One" },
         "titleOneColor": { "type": "string" },
         "titleOneIconSize": { "type": "number" },
@@ -49,7 +49,7 @@
         "titleOneLineHeight": { "type": "string" },
         "toggleOneIcon": { "type": "string" },
         "toggleOneIconPostion": { "type": "string", "default": "before" },
-        
+
         "toggleTwoTitle": { "type": "string", "default": "Title Two" },
         "titleTwoColor": { "type": "string" },
         "titleTwoIconSize": { "type": "number" },
@@ -68,7 +68,7 @@
         "titleTwoLineHeight": { "type": "string" },
         "toggleTwoIcon": { "type": "string" },
         "toggleTwoIconPostion": { "type": "string", "default": "before" },
-        
+
         "contentOneColor": { "type": "string" },
         "contentOneBackground": { "type": "string" },
         "contentOneFontSize": { "type": "string" },
@@ -80,7 +80,7 @@
         "contentOneDimensionspadding": { "type": "object", "default": { "bottom": "20px", "left": "20px", "right": "20px", "top": "20px" } },
         "contentOneDimensionsmargin": { "type": "object" },
         "contentOneAlignment": { "type": "string" },
-        
+
         "contentTwoColor": { "type": "string" },
         "contentTwoBackground": { "type": "string" },
         "contentTwoFontSize": { "type": "string" },
@@ -95,6 +95,7 @@
     },
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",
-    "style": "file:./style-index.css",
+	"editorStyle": ["wpmozo-blocks-and-addons-fontawesome-style","file:./index.css"],
+    "style": ["wpmozo-blocks-and-addons-fontawesome-style","file:./style-index.css"],
     "script": "file:./script.js"
 }
