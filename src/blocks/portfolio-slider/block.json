@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/portfolio-slider",
+	"version": "0.1.0",
+	"title": "Portfolio Slider",
+	"category": "wpmozo",
+	"icon": "portfolio",
+	"description": "Showcase portfolio projects beautifully with an interactive portfolio slider.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"customClassName": false
+	},
+	"attributes": {
+		"ID": { "type": "string" },
+		"className": { "type": "string" },
+		"layout": { "type": "string", "default": "layout1" }
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"editorStyle": ["wpmozo-blocks-and-addons-fontawesome-style","file:./index.css"],
+	"style": [ "file:./style-index.css", "wpmozo-blocks-and-addons-fontawesome-style", "wpmozo-blocks-and-addons-swiper-style", "wpmozo-blocks-and-addons-swiper-wpmozo-style" ],
+	"script": [ "file:./script.js", "wpmozo-blocks-and-addons-swiper-script" ],
+	"render": "file:./render.php"
+}
