@@ -25,6 +25,7 @@
 		"noResultText": { "type": "string", "default": "The portfolios you requested could not be found. Try changing your module settings or create some new portfolios." },
 
 		"showTitle": { "type": "boolean", "default": true },
+		"showContent": { "type": "boolean", "default": false },
 		"showFeaturedImage": { "type": "boolean", "default": true },
 		"showExcerpt": { "type": "boolean", "default": true },
 		"excerptLength": { "type": "number", "default": 120 },

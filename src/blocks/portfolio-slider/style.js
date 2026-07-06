@@ -22,13 +22,13 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 		styles += `text-align: ${attributes.globalTextAlign};`;
 	}
 
-	// Excerpt content body.
-	if ( attributes.showExcerpt ) {
-		styles += `.wpmozo_portfolio_slider_excerpt, .wpmozo_portfolio_slider_excerpt p{
+	// Excerpt/content body.
+	if ( attributes.showExcerpt || attributes.showContent ) {
+		styles += `.wpmozo_portfolio_slider_excerpt, .wpmozo_portfolio_slider_excerpt p, .wpmozo_portfolio_slider_content, .wpmozo_portfolio_slider_content p{
 			${attributes.bodyColor ? `color: ${attributes.bodyColor};` : ''}
 			${convertedStyle.body}
 		}
-		.wpmozo_portfolio_slider_excerpt:hover, .wpmozo_portfolio_slider_excerpt:hover p{
+		.wpmozo_portfolio_slider_excerpt:hover, .wpmozo_portfolio_slider_excerpt:hover p, .wpmozo_portfolio_slider_content:hover, .wpmozo_portfolio_slider_content:hover p{
 			${attributes.bodyHoverColor ? `color: ${attributes.bodyHoverColor};` : ''}
 			${convertedStyle.bodyHover}
 		}`;

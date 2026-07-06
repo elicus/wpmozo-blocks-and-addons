@@ -58,6 +58,7 @@ if ( ! function_exists( 'portfolio_slider_render_callback' ) ) {
 
 			// Display options.
 			$show_title          = $attributes['showTitle'] ?? true;
+			$show_content        = $attributes['showContent'] ?? false;
 			$show_featured_image = $attributes['showFeaturedImage'] ?? true;
 			$show_excerpt        = $attributes['showExcerpt'] ?? true;
 			$excerpt_length      = $attributes['excerptLength'] ?? 120;
@@ -117,7 +118,7 @@ if ( ! function_exists( 'portfolio_slider_render_callback' ) ) {
 				}
 
 				$pagination_dots = sprintf(
-					'<div class="wpmozo-bna-portfolio-slider-pagination">
+					'<div class="wpmozo_swiper_pagination wpmozo-bna-portfolio-slider-pagination">
 						<div class="swiper-pagination %1$s %2$s"></div>
 					</div>',
 					esc_attr( $attributes['controlDotStyle'] ),

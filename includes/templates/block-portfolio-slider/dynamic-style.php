@@ -32,12 +32,12 @@ if ( ! function_exists( 'portfolio_slider_generate_dynamic_style' ) ) {
 		}
 
 		// Excerpt Content body.
-		if ( isset( $attrs['showExcerpt'] ) && true === $attrs['showExcerpt'] ) {
-			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_excerpt, {$mainSelector} .wpmozo_portfolio_slider_excerpt p{";
+		if ( ( isset( $attrs['showExcerpt'] ) && true === $attrs['showExcerpt'] ) || ( isset( $attrs['showContent'] ) && true === $attrs['showContent'] ) ) {
+			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_excerpt, {$mainSelector} .wpmozo_portfolio_slider_excerpt p, {$mainSelector} .wpmozo_portfolio_slider_content, {$mainSelector} .wpmozo_portfolio_slider_content p{";
 				$styles .= ( ! empty( $attrs['bodyColor'] ) ? "color: {$attrs['bodyColor']};" : '' );
 				$styles .= $block_helpers::get_font_style( 'body', $attrs );
 			$styles .= "}";
-			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_excerpt:hover, {$mainSelector} .wpmozo_portfolio_slider_excerpt:hover p{";
+			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_excerpt:hover, {$mainSelector} .wpmozo_portfolio_slider_excerpt:hover p, {$mainSelector} .wpmozo_portfolio_slider_content:hover, {$mainSelector} .wpmozo_portfolio_slider_content:hover p{";
 				$styles .= ( ! empty( $attrs['bodyHoverColor'] ) ? "color: {$attrs['bodyHoverColor']};" : '' );
 				$styles .= $block_helpers::get_font_style( 'bodyHover', $attrs );
 			$styles .= "}";

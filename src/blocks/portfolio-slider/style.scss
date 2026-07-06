@@ -1,5 +1,123 @@
 .wp-block-wpmozo-portfolio-slider {
-	/* Skeleton styles */
-	border: 1px dashed #ccc;
-	padding: 10px;
+	position: relative;
+}
+
+.wpmozo_portfolio_slide {
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+}
+
+.wpmozo_portfolio_slider_item_card {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+.wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_item_card {
+	flex-direction: column-reverse;
+}
+
+.wpmozo_portfolio_slider_image_wrap {
+	width: 100%;
+	line-height: 0;
+	overflow: hidden;
+}
+
+.wpmozo_portfolio_slider_image {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	display: block;
+}
+
+.wpmozo_portfolio_slider_content_wrap {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.wpmozo_portfolio_slider_categories {
+	font-size: 14px;
+	margin-bottom: 8px;
+}
+
+.wpmozo_portfolio_slider_cat {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.wpmozo_portfolio_slider_title {
+	font-size: 20px;
+	margin: 0 0 10px 0;
+}
+
+.wpmozo_portfolio_slider_excerpt,
+.wpmozo_portfolio_slider_content {
+	font-size: 16px;
+	line-height: 1.6;
+	margin-bottom: 15px;
+}
+
+.wpmozo_portfolio_slider_button_wrap {
+	display: flex;
+	gap: 15px;
+	flex-wrap: wrap;
+}
+
+.wpmozo_portfolio_slider_btn {
+	display: inline-block;
+	text-decoration: none;
+	padding: 8px 16px;
+	background-color: #f4f4f4;
+	color: #333;
+	border-radius: 4px;
+	transition: all 0.3s ease;
+}
+
+.wpmozo_portfolio_slider_btn:hover {
+	background-color: #e0e0e0;
+}
+
+/* Equal Height. */
+.wpmozo_equal_portfolio_height .swiper-slide {
+	height: auto;
+}
+.wpmozo_equal_portfolio_height .wpmozo_portfolio_slider_item_card {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+.wpmozo_equal_portfolio_height.layout2 .wpmozo_portfolio_slider_item_card {
+	flex-direction: column-reverse;
+}
+.wpmozo_equal_portfolio_height .wpmozo_portfolio_slider_content_wrap {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+.wpmozo_equal_portfolio_height .wpmozo_portfolio_slider_button_wrap {
+	margin-top: auto;
+}
+
+/* Pagination centering and spacing overrides. */
+.wpmozo-bna-portfolio-slider-pagination .swiper-pagination-bullets-dynamic {
+	margin-left: auto;
+	margin-right: auto;
+	white-space: nowrap;
+}
+.wpmozo-bna-portfolio-slider-pagination .swiper-container-horizontal > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+	left: auto;
+	-webkit-transform: none;
+	-moz-transform: none;
+	transform: none;
+}
+.wpmozo-bna-portfolio-slider-pagination .swiper-pagination {
+	width: auto !important;
+}
+
+.wpmozo_swiper_wrapper .swiper-button-next:after,
+.wpmozo_swiper_wrapper .swiper-button-prev:after {
+	display: contents;
 }

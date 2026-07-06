@@ -53,6 +53,18 @@ if ( true === $show_title ) {
 	);
 }
 
+// Content
+$portfolio_content = '';
+if ( true === $show_content ) {
+	$raw_content_full = get_the_content();
+	if ( ! empty( $raw_content_full ) ) {
+		$portfolio_content = sprintf(
+			'<div class="wpmozo_portfolio_slider_content">%1$s</div>',
+			wp_kses_post( apply_filters( 'the_content', $raw_content_full ) )
+		);
+	}
+}
+
 // Excerpt
 $portfolio_excerpt = '';
 if ( true === $show_excerpt ) {
@@ -98,11 +110,12 @@ if ( ! empty( $buttons_html ) ) {
 
 // Content wrap
 $content_wrapper = '';
-if ( ! empty( $portfolio_cats ) || ! empty( $portfolio_title ) || ! empty( $portfolio_excerpt ) || ! empty( $portfolio_buttons ) ) {
+if ( ! empty( $portfolio_cats ) || ! empty( $portfolio_title ) || ! empty( $portfolio_content ) || ! empty( $portfolio_excerpt ) || ! empty( $portfolio_buttons ) ) {
 	$content_wrapper = sprintf(
-		'<div class="wpmozo_portfolio_slider_content_wrap">%1$s%2$s%3$s%4$s</div>',
+		'<div class="wpmozo_portfolio_slider_content_wrap">%1$s%2$s%3$s%4$s%5$s</div>',
 		$helpers::esc_previously( $portfolio_cats ),
 		$helpers::esc_previously( $portfolio_title ),
+		$helpers::esc_previously( $portfolio_content ),
 		$helpers::esc_previously( $portfolio_excerpt ),
 		$helpers::esc_previously( $portfolio_buttons )
 	);
