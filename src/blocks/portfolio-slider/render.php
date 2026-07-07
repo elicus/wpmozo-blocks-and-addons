@@ -22,13 +22,15 @@ if ( ! function_exists( 'portfolio_slider_render_callback' ) ) {
 		$query_args = array(
 			'post_type'           => 'wpmozoae-portfolio',
 			'posts_per_page'      => $posts_to_show,
-			'offset'              => $offset_number,
 			'post_status'         => 'publish',
 			'orderby'             => 'date',
 			'order'               => 'DESC',
 			'ignore_sticky_posts' => true,
 			'no_found_rows'        => true,
 		);
+		if ( $offset_number > 0 ) {
+			$query_args['offset'] = $offset_number;
+		}
 		if ( is_user_logged_in() ) {
 			$query_args['post_status'] = array( 'publish', 'private' );
 		}
@@ -137,6 +139,7 @@ if ( ! function_exists( 'portfolio_slider_render_callback' ) ) {
 			// Get data attrs.
 			$data_attrs = array(
 				'clientId'                    => $attributes['ID'] ?? '',
+				'clientid'                    => $attributes['ID'] ?? '',
 				'slide_effect'                => $attributes['slideEffect'] ?? 'slide',
 				'slides_per_view'             => $attributes['slidesPerView'] ?? '1',
 				'slides_per_view_tablet'      => $attributes['slidesPerViewTablet'] ?? '1',

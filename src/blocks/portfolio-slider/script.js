@@ -48,7 +48,7 @@ let wpmozoPortfolioSwipers = {};
 function initWPMozoPortfolioSlider( blockObj ) {
 
 	const wrapObj  = blockObj.find( '.wpmozo_swiper_wrapper' );
-	const clientId = wrapObj.attr( 'data-clientId' );
+	const clientId = wrapObj.attr( 'data-clientid' ) || wrapObj.attr( 'data-clientId' );
 
 	// Destroy if already exists.
 	if ( wpmozoPortfolioSwipers[clientId] && ! wpmozo_is_empty( wpmozoPortfolioSwipers[clientId] ) ) {

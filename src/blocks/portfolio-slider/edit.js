@@ -19,10 +19,14 @@ const Edit = (props) => {
 	const setAttributes = props.setAttributes;
 	const clientId      = props.clientId;
 
-	attributes.ID = clientId;
-	setAttributes( { ID: clientId } );
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+	}, [ clientId, attributes.ID ] );
 
 	const postsToShow        = parseInt( attributes.postsToShow ) ?? 5;
+	const offsetNumber       = parseInt( attributes.offsetNumber ) ?? 0;
 	const postOrder          = attributes.postOrder ?? 'DESC';
 	const postOrderBy        = attributes.postOrderBy ?? 'date';
 	const includesCategories = attributes.includesCategories ?? [];
@@ -35,11 +39,14 @@ const Edit = (props) => {
 			orderby: postOrderBy,
 			_embed: true
 		};
+		if ( offsetNumber > 0 ) {
+			queryArgs.offset = offsetNumber;
+		}
 		if ( includesCategories.length > 0 ) {
 			queryArgs['wpmozo-ae-portfolio-category'] = includesCategories;
 		}
 		return select( 'core' ).getEntityRecords( 'postType', 'wpmozoae-portfolio', queryArgs );
-	}, [ postsToShow, postOrder, postOrderBy, includesCategories ] );
+	}, [ postsToShow, offsetNumber, postOrder, postOrderBy, includesCategories ] );
 
 	// Get taxonomy terms for mapping names.
 	const terms = useSelect( (select) =>
@@ -154,7 +161,7 @@ const Edit = (props) => {
 				);
 			}
 			if ( showProjectUrl ) {
-				const projectUrl = post.meta?.wpmozo_ae_portfolio_project_url || '';
+				const projectUrl = post.project_url || '';
 				if ( projectUrl ) {
 					buttonsHtml.push(
 						<a key="projecturl" href={ projectUrl } className="wpmozo_portfolio_slider_btn wpmozo_portfolio_slider_projecturl" target="_blank" rel="noopener noreferrer">
@@ -237,11 +244,24 @@ const Edit = (props) => {
 		const event = new CustomEvent( 'WPMozoPortfolioPropsChanged' );
 		window.dispatchEvent( event );
 
-		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' ) || document.querySelector( '.editor-canvas__iframe' );
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [props] );
+	}, [
+		attributes.slidesPerView,
+		attributes.slidesPerViewTablet,
+		attributes.slidesPerViewMobile,
+		attributes.slidesPerGroup,
+		attributes.slidesPerGroupTablet,
+		attributes.slidesPerGroupMobile,
+		attributes.spaceBetweenSlides,
+		attributes.spaceBetweenSlidesTablet,
+		attributes.spaceBetweenSlidesMobile,
+		attributes.slideEffect,
+		attributes.layout,
+		posts
+	] );
 
 	const equalHeightClass = ( attributes.equalHeight ) ? ' wpmozo_equal_portfolio_height' : '';
 
@@ -255,7 +275,7 @@ const Edit = (props) => {
 
 			<div {...useBlockProps()} onClick={selectBlock}>
 				<div className={"wpmozo_swiper_wrapper" + equalHeightClass}
-					data-clientId={ clientId }
+					data-clientid={ clientId }
 					data-slide_effect={ attributes.slideEffect || 'slide' }
 					data-slides_per_view={ attributes.slidesPerView || '1' }
 					data-slides_per_view_tablet={ attributes.slidesPerViewTablet || '1' }

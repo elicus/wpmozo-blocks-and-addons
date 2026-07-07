@@ -12,6 +12,7 @@ import {
 	RangeControl,
 	ToggleControl,
 	BaseControl,
+	SelectControl,
 } from '@wordpress/components';
 import {
 	WpmozoBorder,
@@ -24,8 +25,13 @@ import {
 export const DesignPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
-	const [ bodyTextTab, setBodyTextTab ]     = useState( 'normal' );
 	const [ titleTab, setTitleTab ]           = useState( 'normal' );
+	const [ categoriesTab, setCategoriesTab ] = useState( 'normal' );
+	const [ contentTab, setContentTab ]       = useState( 'normal' );
+	const [ excerptTab, setExcerptTab ]       = useState( 'normal' );
+	const [ readMoreTab, setReadMoreTab ]     = useState( 'normal' );
+	const [ projectUrlTab, setProjectUrlTab ] = useState( 'normal' );
+	const [ cardTab, setCardTab ]             = useState( 'normal' );
 
 	return ( <>
 		{/* Alignment. */}
@@ -37,64 +43,46 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				onChange={ ( newValue ) => setAttributes( { globalTextAlign: newValue } ) }
 			/>
 		</PanelBody>
-		{/* Body (Excerpt). */}
-		{ attributes.showExcerpt && (
-			<PanelBody title={ __( 'Body (Excerpt)', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-				<BaseControl
-					className="wpmozo-button-tabs-wrap"
-					__nextHasNoMarginBottom={ true }
-				>
-					<ButtonGroup>
-						<Button
-							className="wpmozo-button-tabs-btn"
-							isPressed={ ( 'normal' === bodyTextTab ) ? true : false }
-							onClick={ () => setBodyTextTab( 'normal' ) }
-						>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
-						<Button
-							className="wpmozo-button-tabs-btn"
-							isPressed={ ( 'hover' === bodyTextTab ) ? true : false }
-							onClick={ () => setBodyTextTab( 'hover' ) }
-						>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
-					</ButtonGroup>
-					{ 'normal' === bodyTextTab && <>
-						<WpmozoColorPicker
-							ColorKey="body"
-							props={ props }
-							ColorTypes={ [
-								{ key: 'Color', label: __( 'Body Color', 'wpmozo-blocks-and-addons' ) }
-							] }
-						/>
-						<WpmozoTypography
-							TypographyKey="body"
-							props={ props }
-						/>
-					</> }
-					{ 'hover' === bodyTextTab && <>
-						<WpmozoColorPicker
-							ColorKey="bodyHover"
-							props={ props }
-							ColorTypes={ [
-								{ key: 'Color', label: __( 'Body Color', 'wpmozo-blocks-and-addons' ) }
-							] }
-						/>
-						<WpmozoTypography
-							TypographyKey="bodyHover"
-							props={ props }
-						/>
-					</> }
-				</BaseControl>
-			</PanelBody>
-		) }
+
 		{/* Featured Image. */}
-		{ attributes.showFeaturedImage &&
+		{ attributes.showFeaturedImage && (
 			<PanelBody title={ __( 'Featured Image', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<RangeControl
+					label={ __( 'Image Width(px)', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.featuredImageWidth }
+					onChange={ ( newValue ) => setAttributes( { featuredImageWidth: newValue } ) }
+					min={50} max={1200} step={1}
+				/>
+				<RangeControl
+					label={ __( 'Image Height(px)', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.featuredImageHeight }
+					onChange={ ( newValue ) => setAttributes( { featuredImageHeight: newValue } ) }
+					min={50} max={1000} step={1}
+				/>
+				<SelectControl
+					label={ __( 'Object Fit', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.featuredImageObjectFit }
+					options={ [
+						{ value: 'cover', label: __( 'Cover', 'wpmozo-blocks-and-addons' ) },
+						{ value: 'contain', label: __( 'Contain', 'wpmozo-blocks-and-addons' ) },
+						{ value: 'fill', label: __( 'Fill', 'wpmozo-blocks-and-addons' ) },
+						{ value: 'none', label: __( 'None', 'wpmozo-blocks-and-addons' ) }
+					] }
+					onChange={ ( newValue ) => setAttributes( { featuredImageObjectFit: newValue } ) }
+				/>
 				<WpmozoBorder props={ props }
 					label={ __( 'Image Border', 'wpmozo-blocks-and-addons' ) }
 					BorderKey="featuredImage"
 					BorderTypes={ { border: true, radius: true } }
 				/>
+				<WpmozoDimensions props={ props }
+					label={ __( 'Image Dimensions', 'wpmozo-blocks-and-addons' ) }
+					DimensionKey='featuredImage'
+					DimensionsTypes={ { padding: true, margin: true } }
+				/>
 			</PanelBody>
-		}
+		) }
+
 		{/* Title. */}
 		{ attributes.showTitle && (
 			<PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
@@ -143,6 +131,289 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				</BaseControl>
 			</PanelBody>
 		) }
+
+		{/* Categories. */}
+		<PanelBody title={ __( 'Categories', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<BaseControl
+				className="wpmozo-button-tabs-wrap"
+				__nextHasNoMarginBottom={ true }
+			>
+				<ButtonGroup>
+					<Button
+						className="wpmozo-button-tabs-btn"
+						isPressed={ ( 'normal' === categoriesTab ) ? true : false }
+						onClick={ () => setCategoriesTab( 'normal' ) }
+					>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
+					<Button
+						className="wpmozo-button-tabs-btn"
+						isPressed={ ( 'hover' === categoriesTab ) ? true : false }
+						onClick={ () => setCategoriesTab( 'hover' ) }
+					>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
+				</ButtonGroup>
+				{ 'normal' === categoriesTab && <>
+					<WpmozoColorPicker
+						ColorKey="categories"
+						props={ props }
+						ColorTypes={ [
+							{ key: 'Color', label: __( 'Categories Color', 'wpmozo-blocks-and-addons' ) }
+						] }
+					/>
+					<WpmozoTypography
+						TypographyKey="categories"
+						props={ props }
+					/>
+				</> }
+				{ 'hover' === categoriesTab && <>
+					<WpmozoColorPicker
+						ColorKey="categoriesHover"
+						props={ props }
+						ColorTypes={ [
+							{ key: 'Color', label: __( 'Categories Color', 'wpmozo-blocks-and-addons' ) }
+						] }
+					/>
+					<WpmozoTypography
+						TypographyKey="categoriesHover"
+						props={ props }
+					/>
+				</> }
+			</BaseControl>
+			<WpmozoDimensions props={ props }
+				label={ __( 'Categories Dimensions', 'wpmozo-blocks-and-addons' ) }
+				DimensionKey='categories'
+				DimensionsTypes={ { padding: true, margin: true } }
+			/>
+		</PanelBody>
+
+		{/* Content. */}
+		{ attributes.showContent && (
+			<PanelBody title={ __( 'Content', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<BaseControl
+					className="wpmozo-button-tabs-wrap"
+					__nextHasNoMarginBottom={ true }
+				>
+					<ButtonGroup>
+						<Button
+							className="wpmozo-button-tabs-btn"
+							isPressed={ ( 'normal' === contentTab ) ? true : false }
+							onClick={ () => setContentTab( 'normal' ) }
+						>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
+						<Button
+							className="wpmozo-button-tabs-btn"
+							isPressed={ ( 'hover' === contentTab ) ? true : false }
+							onClick={ () => setContentTab( 'hover' ) }
+						>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
+					</ButtonGroup>
+					{ 'normal' === contentTab && <>
+						<WpmozoColorPicker
+							ColorKey="content"
+							props={ props }
+							ColorTypes={ [
+								{ key: 'Color', label: __( 'Content Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+						<WpmozoTypography
+							TypographyKey="content"
+							props={ props }
+						/>
+					</> }
+					{ 'hover' === contentTab && <>
+						<WpmozoColorPicker
+							ColorKey="contentHover"
+							props={ props }
+							ColorTypes={ [
+								{ key: 'Color', label: __( 'Content Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+						<WpmozoTypography
+							TypographyKey="contentHover"
+							props={ props }
+						/>
+					</> }
+				</BaseControl>
+				<WpmozoDimensions props={ props }
+					label={ __( 'Content Dimensions', 'wpmozo-blocks-and-addons' ) }
+					DimensionKey='content'
+					DimensionsTypes={ { padding: true, margin: true } }
+				/>
+			</PanelBody>
+		) }
+
+		{/* Excerpt. */}
+		{ attributes.showExcerpt && (
+			<PanelBody title={ __( 'Excerpt', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<BaseControl
+					className="wpmozo-button-tabs-wrap"
+					__nextHasNoMarginBottom={ true }
+				>
+					<ButtonGroup>
+						<Button
+							className="wpmozo-button-tabs-btn"
+							isPressed={ ( 'normal' === excerptTab ) ? true : false }
+							onClick={ () => setExcerptTab( 'normal' ) }
+						>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
+						<Button
+							className="wpmozo-button-tabs-btn"
+							isPressed={ ( 'hover' === excerptTab ) ? true : false }
+							onClick={ () => setExcerptTab( 'hover' ) }
+						>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
+					</ButtonGroup>
+					{ 'normal' === excerptTab && <>
+						<WpmozoColorPicker
+							ColorKey="excerpt"
+							props={ props }
+							ColorTypes={ [
+								{ key: 'Color', label: __( 'Excerpt Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+						<WpmozoTypography
+							TypographyKey="excerpt"
+							props={ props }
+						/>
+					</> }
+					{ 'hover' === excerptTab && <>
+						<WpmozoColorPicker
+							ColorKey="excerptHover"
+							props={ props }
+							ColorTypes={ [
+								{ key: 'Color', label: __( 'Excerpt Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+						<WpmozoTypography
+							TypographyKey="excerptHover"
+							props={ props }
+						/>
+					</> }
+				</BaseControl>
+				<WpmozoDimensions props={ props }
+					label={ __( 'Excerpt Dimensions', 'wpmozo-blocks-and-addons' ) }
+					DimensionKey='excerpt'
+					DimensionsTypes={ { padding: true, margin: true } }
+				/>
+			</PanelBody>
+		) }
+
+		{/* Read More Button. */}
+		{ attributes.showReadMore && (
+			<PanelBody title={ __( 'Read More Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<BaseControl
+					className="wpmozo-button-tabs-wrap"
+					__nextHasNoMarginBottom={ true }
+				>
+					<ButtonGroup>
+						<Button
+							className="wpmozo-button-tabs-btn"
+							isPressed={ ( 'normal' === readMoreTab ) ? true : false }
+							onClick={ () => setReadMoreTab( 'normal' ) }
+						>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
+						<Button
+							className="wpmozo-button-tabs-btn"
+							isPressed={ ( 'hover' === readMoreTab ) ? true : false }
+							onClick={ () => setReadMoreTab( 'hover' ) }
+						>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
+					</ButtonGroup>
+					{ 'normal' === readMoreTab && <>
+						<WpmozoColorPicker
+							ColorKey="readMore"
+							props={ props }
+							ColorTypes={ [
+								{ key: 'Color', label: __( 'Button Text Color', 'wpmozo-blocks-and-addons' ) },
+								{ key: 'Background', label: __( 'Button Background Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+						<WpmozoTypography
+							TypographyKey="readMore"
+							props={ props }
+						/>
+					</> }
+					{ 'hover' === readMoreTab && <>
+						<WpmozoColorPicker
+							ColorKey="readMoreHover"
+							props={ props }
+							ColorTypes={ [
+								{ key: 'Color', label: __( 'Button Text Color', 'wpmozo-blocks-and-addons' ) },
+								{ key: 'Background', label: __( 'Button Background Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+						<WpmozoTypography
+							TypographyKey="readMoreHover"
+							props={ props }
+						/>
+					</> }
+				</BaseControl>
+				<WpmozoBorder props={ props }
+					label={ __( 'Button Border', 'wpmozo-blocks-and-addons' ) }
+					BorderKey="readMore"
+					BorderTypes={ { border: true, radius: true } }
+				/>
+				<WpmozoDimensions props={ props }
+					label={ __( 'Button Spacing', 'wpmozo-blocks-and-addons' ) }
+					DimensionKey='readMore'
+					DimensionsTypes={ { padding: true, margin: true } }
+				/>
+			</PanelBody>
+		) }
+
+		{/* Project URL Button. */}
+		{ attributes.showProjectUrl && (
+			<PanelBody title={ __( 'Project URL Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<BaseControl
+					className="wpmozo-button-tabs-wrap"
+					__nextHasNoMarginBottom={ true }
+				>
+					<ButtonGroup>
+						<Button
+							className="wpmozo-button-tabs-btn"
+							isPressed={ ( 'normal' === projectUrlTab ) ? true : false }
+							onClick={ () => setProjectUrlTab( 'normal' ) }
+						>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
+						<Button
+							className="wpmozo-button-tabs-btn"
+							isPressed={ ( 'hover' === projectUrlTab ) ? true : false }
+							onClick={ () => setProjectUrlTab( 'hover' ) }
+						>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
+					</ButtonGroup>
+					{ 'normal' === projectUrlTab && <>
+						<WpmozoColorPicker
+							ColorKey="projectUrl"
+							props={ props }
+							ColorTypes={ [
+								{ key: 'Color', label: __( 'Button Text Color', 'wpmozo-blocks-and-addons' ) },
+								{ key: 'Background', label: __( 'Button Background Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+						<WpmozoTypography
+							TypographyKey="projectUrl"
+							props={ props }
+						/>
+					</> }
+					{ 'hover' === projectUrlTab && <>
+						<WpmozoColorPicker
+							ColorKey="projectUrlHover"
+							props={ props }
+							ColorTypes={ [
+								{ key: 'Color', label: __( 'Button Text Color', 'wpmozo-blocks-and-addons' ) },
+								{ key: 'Background', label: __( 'Button Background Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+						<WpmozoTypography
+							TypographyKey="projectUrlHover"
+							props={ props }
+						/>
+					</> }
+				</BaseControl>
+				<WpmozoBorder props={ props }
+					label={ __( 'Button Border', 'wpmozo-blocks-and-addons' ) }
+					BorderKey="projectUrl"
+					BorderTypes={ { border: true, radius: true } }
+				/>
+				<WpmozoDimensions props={ props }
+					label={ __( 'Button Spacing', 'wpmozo-blocks-and-addons' ) }
+					DimensionKey='projectUrl'
+					DimensionsTypes={ { padding: true, margin: true } }
+				/>
+			</PanelBody>
+		) }
+
 		{/* Slider. */}
 		<PanelBody title={ __( 'Slider Navigation & Pagination', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			<WpmozoDimensions props={ props }
@@ -181,26 +452,61 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				/>
 			</> }
 		</PanelBody>
+
 		{/* Portfolio Container card styling. */}
 		<PanelBody title={ __( 'Portfolio Card', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			<ColorGradientControl colors={[]} gradients={[]}
-				label={ __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
-				colorValue={ attributes.portfolioBackground }
-				gradientValue={ attributes.portfolioBGGradient }
-				onColorChange={ (newValue) => setAttributes( { portfolioBackground: newValue } ) }
-				onGradientChange={ (newValue) => setAttributes( { portfolioBGGradient: newValue } ) }
-			/>
+			<BaseControl
+				className="wpmozo-button-tabs-wrap"
+				__nextHasNoMarginBottom={ true }
+			>
+				<ButtonGroup>
+					<Button
+						className="wpmozo-button-tabs-btn"
+						isPressed={ ( 'normal' === cardTab ) ? true : false }
+						onClick={ () => setCardTab( 'normal' ) }
+					>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
+					<Button
+						className="wpmozo-button-tabs-btn"
+						isPressed={ ( 'hover' === cardTab ) ? true : false }
+						onClick={ () => setCardTab( 'hover' ) }
+					>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
+				</ButtonGroup>
+				{ 'normal' === cardTab && <>
+					<ColorGradientControl colors={[]} gradients={[]}
+						label={ __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
+						colorValue={ attributes.portfolioBackground }
+						gradientValue={ attributes.portfolioBGGradient }
+						onColorChange={ (newValue) => setAttributes( { portfolioBackground: newValue } ) }
+						onGradientChange={ (newValue) => setAttributes( { portfolioBGGradient: newValue } ) }
+					/>
+					<WpmozoBorder props={ props }
+						label={ __( 'Portfolio Border', 'wpmozo-blocks-and-addons' ) }
+						BorderKey="portfolio"
+						BorderTypes={ { border: true, radius: true } }
+					/>
+				</> }
+				{ 'hover' === cardTab && <>
+					<ColorGradientControl colors={[]} gradients={[]}
+						label={ __( 'Background Hover Color', 'wpmozo-blocks-and-addons' ) }
+						colorValue={ attributes.portfolioBackgroundHover }
+						gradientValue={ attributes.portfolioBGGradientHover }
+						onColorChange={ (newValue) => setAttributes( { portfolioBackgroundHover: newValue } ) }
+						onGradientChange={ (newValue) => setAttributes( { portfolioBGGradientHover: newValue } ) }
+					/>
+					<WpmozoBorder props={ props }
+						label={ __( 'Portfolio Hover Border', 'wpmozo-blocks-and-addons' ) }
+						BorderKey="portfolioHover"
+						BorderTypes={ { border: true, radius: true } }
+					/>
+				</> }
+			</BaseControl>
 			<WpmozoDimensions props={ props }
 				label={ __( 'Portfolio Dimensions', 'wpmozo-blocks-and-addons' ) }
 				DimensionKey='portfolio'
 				DimensionsTypes={ { padding: true } }
 			/>
-			<WpmozoBorder props={ props }
-				label={ __( 'Portfolio Border', 'wpmozo-blocks-and-addons' ) }
-				BorderKey="portfolio"
-				BorderTypes={ { border: true, radius: true } }
-			/>
 		</PanelBody>
+
 		{/* Slider Wrapper Container. */}
 		<PanelBody title={ __( 'Slider Container', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
 			<WpmozoDimensions props={ props }
@@ -211,3 +517,5 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		</PanelBody>
 	</> );
 };
+
+export default DesignPanel;

@@ -1,5 +1,6 @@
 .wp-block-wpmozo-portfolio-slider {
 	position: relative;
+	max-width: none !important;
 }
 
 .wpmozo_portfolio_slide {
@@ -17,7 +18,21 @@
 }
 
 .wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_item_card {
-	flex-direction: column-reverse;
+	position: relative;
+	width: 100%;
+}
+.wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_content_wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	z-index: 7;
+	box-sizing: border-box;
+	padding: 20px;
 }
 
 .wpmozo_portfolio_slider_image_wrap {

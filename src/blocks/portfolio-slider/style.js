@@ -8,9 +8,20 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 		'bodyHover',
 		'title',
 		'titleHover',
+		'categories',
+		'categoriesHover',
+		'content',
+		'contentHover',
+		'excerpt',
+		'excerptHover',
+		'readMore',
+		'readMoreHover',
+		'projectUrl',
+		'projectUrlHover',
 		'featuredImage',
 		'arrow',
 		'portfolio',
+		'portfolioHover',
 		'container',
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
@@ -22,22 +33,17 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 		styles += `text-align: ${attributes.globalTextAlign};`;
 	}
 
-	// Excerpt/content body.
-	if ( attributes.showExcerpt || attributes.showContent ) {
-		styles += `.wpmozo_portfolio_slider_excerpt, .wpmozo_portfolio_slider_excerpt p, .wpmozo_portfolio_slider_content, .wpmozo_portfolio_slider_content p{
-			${attributes.bodyColor ? `color: ${attributes.bodyColor};` : ''}
-			${convertedStyle.body}
-		}
-		.wpmozo_portfolio_slider_excerpt:hover, .wpmozo_portfolio_slider_excerpt:hover p, .wpmozo_portfolio_slider_content:hover, .wpmozo_portfolio_slider_content:hover p{
-			${attributes.bodyHoverColor ? `color: ${attributes.bodyHoverColor};` : ''}
-			${convertedStyle.bodyHover}
-		}`;
-	}
-
 	// Featured Image.
 	if ( attributes.showFeaturedImage ) {
-		styles += `.wpmozo_portfolio_slider_image img{
+		styles += `.wpmozo_portfolio_slider_image_wrap{
+			${attributes.featuredImageWidth ? `width: ${attributes.featuredImageWidth}px !important; max-width: 100%;` : ''}
+			${attributes.featuredImageHeight ? `height: ${attributes.featuredImageHeight}px !important;` : ''}
 			${convertedStyle.featuredImage}
+		}
+		.wpmozo_portfolio_slider_image_wrap img{
+			${attributes.featuredImageWidth ? `width: ${attributes.featuredImageWidth}px !important; max-width: 100%;` : ''}
+			${attributes.featuredImageHeight ? `height: ${attributes.featuredImageHeight}px !important;` : ''}
+			${attributes.featuredImageObjectFit ? `object-fit: ${attributes.featuredImageObjectFit} !important;` : ''}
 		}`;
 	}
 
@@ -53,11 +59,87 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 		}`;
 	}
 
+	// Categories.
+	styles += `.wpmozo_portfolio_slider_categories{
+		${convertedStyle.categories}
+	}
+	.wpmozo_portfolio_slider_cat a{
+		${attributes.categoriesColor ? `color: ${attributes.categoriesColor};` : ''}
+		${convertedStyle.categories}
+	}
+	.wpmozo_portfolio_slider_cat a:hover{
+		${attributes.categoriesHoverColor ? `color: ${attributes.categoriesHoverColor};` : ''}
+		${convertedStyle.categoriesHover}
+	}`;
+
+	// Content.
+	if ( attributes.showContent ) {
+		styles += `.wpmozo_portfolio_slider_content, .wpmozo_portfolio_slider_content p{
+			${attributes.contentColor ? `color: ${attributes.contentColor};` : ''}
+			${convertedStyle.content}
+		}
+		.wpmozo_portfolio_slider_content:hover, .wpmozo_portfolio_slider_content:hover p{
+			${attributes.contentHoverColor ? `color: ${attributes.contentHoverColor};` : ''}
+			${convertedStyle.contentHover}
+		}`;
+	}
+
+	// Excerpt.
+	if ( attributes.showExcerpt ) {
+		styles += `.wpmozo_portfolio_slider_excerpt, .wpmozo_portfolio_slider_excerpt p{
+			${attributes.excerptColor ? `color: ${attributes.excerptColor};` : ''}
+			${convertedStyle.excerpt}
+		}
+		.wpmozo_portfolio_slider_excerpt:hover, .wpmozo_portfolio_slider_excerpt:hover p{
+			${attributes.excerptHoverColor ? `color: ${attributes.excerptHoverColor};` : ''}
+			${convertedStyle.excerptHover}
+		}`;
+	}
+
+	// Read More.
+	if ( attributes.showReadMore ) {
+		styles += `.wpmozo_portfolio_slider_readmore{
+			${attributes.readMoreColor ? `color: ${attributes.readMoreColor} !important;` : ''}
+			${attributes.readMoreBackground ? `background-color: ${attributes.readMoreBackground} !important;` : ''}
+			${convertedStyle.readMore}
+		}
+		.wpmozo_portfolio_slider_readmore:hover{
+			${attributes.readMoreHoverColor ? `color: ${attributes.readMoreHoverColor} !important;` : ''}
+			${attributes.readMoreHoverBackground ? `background-color: ${attributes.readMoreHoverBackground} !important;` : ''}
+			${convertedStyle.readMoreHover}
+		}`;
+	}
+
+	// Project URL.
+	if ( attributes.showProjectUrl ) {
+		styles += `.wpmozo_portfolio_slider_projecturl{
+			${attributes.projectUrlColor ? `color: ${attributes.projectUrlColor} !important;` : ''}
+			${attributes.projectUrlBackground ? `background-color: ${attributes.projectUrlBackground} !important;` : ''}
+			${convertedStyle.projectUrl}
+		}
+		.wpmozo_portfolio_slider_projecturl:hover{
+			${attributes.projectUrlHoverColor ? `color: ${attributes.projectUrlHoverColor} !important;` : ''}
+			${attributes.projectUrlHoverBackground ? `background-color: ${attributes.projectUrlHoverBackground} !important;` : ''}
+			${convertedStyle.projectUrlHover}
+		}`;
+	}
+
 	// Portfolio card wrapper.
-	styles += `.wpmozo_portfolio_slider_item_card{
+	const cardSelector = attributes.layout === 'layout2' ? '.wpmozo_portfolio_slider_content_wrap' : '.wpmozo_portfolio_slider_item_card';
+	const hoverSelector = attributes.layout === 'layout2' ? '.wpmozo_portfolio_slider_content_wrap:hover' : '.wpmozo_portfolio_slider_item_card:hover';
+	styles += `${cardSelector}{
 		${attributes.portfolioBGGradient ? `background:`+ attributes.portfolioBGGradient + `;` : ''}
 		${attributes.portfolioBackground ? `background-color:`+ attributes.portfolioBackground + `;` : ''}
+	}
+	.wpmozo_portfolio_slider_item_card{
 		${convertedStyle.portfolio}
+	}
+	${hoverSelector}{
+		${attributes.portfolioBackgroundHover ? `background-color: ${attributes.portfolioBackgroundHover} !important;` : ''}
+		${attributes.portfolioBGGradientHover ? `background: ${attributes.portfolioBGGradientHover} !important;` : ''}
+	}
+	.wpmozo_portfolio_slider_item_card:hover{
+		${convertedStyle.portfolioHover}
 	}`;
 
 	// Slider arrows.
