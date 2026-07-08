@@ -52,12 +52,14 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					value={ attributes.featuredImageWidth }
 					onChange={ ( newValue ) => setAttributes( { featuredImageWidth: newValue } ) }
 					min={50} max={1200} step={1}
+					allowReset={ true }
 				/>
 				<RangeControl
 					label={ __( 'Image Height(px)', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.featuredImageHeight }
 					onChange={ ( newValue ) => setAttributes( { featuredImageHeight: newValue } ) }
 					min={50} max={1000} step={1}
+					allowReset={ true }
 				/>
 				<SelectControl
 					label={ __( 'Object Fit', 'wpmozo-blocks-and-addons' ) }
@@ -155,7 +157,8 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						ColorKey="categories"
 						props={ props }
 						ColorTypes={ [
-							{ key: 'Color', label: __( 'Categories Color', 'wpmozo-blocks-and-addons' ) }
+							{ key: 'Color', label: __( 'Categories Color', 'wpmozo-blocks-and-addons' ) },
+							{ key: 'Background', label: __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
 						] }
 					/>
 					<WpmozoTypography
@@ -168,7 +171,8 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						ColorKey="categoriesHover"
 						props={ props }
 						ColorTypes={ [
-							{ key: 'Color', label: __( 'Categories Color', 'wpmozo-blocks-and-addons' ) }
+							{ key: 'Color', label: __( 'Categories Color', 'wpmozo-blocks-and-addons' ) },
+							{ key: 'Background', label: __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
 						] }
 					/>
 					<WpmozoTypography
@@ -176,6 +180,11 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						props={ props }
 					/>
 				</> }
+				<WpmozoBorder props={ props }
+					label={ __( 'Categories Border', 'wpmozo-blocks-and-addons' ) }
+					BorderKey="categories"
+					BorderTypes={ { border: true, radius: true } }
+				/>
 			</BaseControl>
 			<WpmozoDimensions props={ props }
 				label={ __( 'Categories Dimensions', 'wpmozo-blocks-and-addons' ) }
@@ -472,13 +481,36 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
 				</ButtonGroup>
 				{ 'normal' === cardTab && <>
-					<ColorGradientControl colors={[]} gradients={[]}
-						label={ __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
-						colorValue={ attributes.portfolioBackground }
-						gradientValue={ attributes.portfolioBGGradient }
-						onColorChange={ (newValue) => setAttributes( { portfolioBackground: newValue } ) }
-						onGradientChange={ (newValue) => setAttributes( { portfolioBGGradient: newValue } ) }
-					/>
+					{ attributes.layout === 'layout2' ? (
+						<ColorGradientControl
+							colors={[]}
+							gradients={[]}
+							enableAlpha={ true }
+							label={ __( 'Overlay Background Color', 'wpmozo-blocks-and-addons' ) }
+							colorValue={ attributes.overlayBackground }
+							gradientValue={ attributes.overlayBGGradient }
+							onColorChange={ ( newValue ) => {
+								console.log( 'Overlay Color Changed:', newValue );
+								setAttributes( {
+									overlayBackground: newValue,
+								} );
+							} }
+							onGradientChange={ ( newValue ) => {
+								console.log( 'Overlay Gradient Changed:', newValue );
+								setAttributes( {
+									overlayBGGradient: newValue,
+								} );
+							} }
+						/>
+					) : (
+						<ColorGradientControl colors={[]} gradients={[]}
+							label={ __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
+							colorValue={ attributes.portfolioBackground }
+							gradientValue={ attributes.portfolioBGGradient }
+							onColorChange={ (newValue) => setAttributes( { portfolioBackground: newValue } ) }
+							onGradientChange={ (newValue) => setAttributes( { portfolioBGGradient: newValue } ) }
+						/>
+					) }
 					<WpmozoBorder props={ props }
 						label={ __( 'Portfolio Border', 'wpmozo-blocks-and-addons' ) }
 						BorderKey="portfolio"
@@ -486,13 +518,23 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					/>
 				</> }
 				{ 'hover' === cardTab && <>
-					<ColorGradientControl colors={[]} gradients={[]}
-						label={ __( 'Background Hover Color', 'wpmozo-blocks-and-addons' ) }
-						colorValue={ attributes.portfolioBackgroundHover }
-						gradientValue={ attributes.portfolioBGGradientHover }
-						onColorChange={ (newValue) => setAttributes( { portfolioBackgroundHover: newValue } ) }
-						onGradientChange={ (newValue) => setAttributes( { portfolioBGGradientHover: newValue } ) }
-					/>
+					{ attributes.layout === 'layout2' ? (
+						<ColorGradientControl colors={[]} gradients={[]}
+							label={ __( 'Overlay Background Hover Color', 'wpmozo-blocks-and-addons' ) }
+							colorValue={ attributes.overlayBackgroundHover }
+							gradientValue={ attributes.overlayBGGradientHover }
+							onColorChange={ (newValue) => setAttributes( { overlayBackgroundHover: newValue } ) }
+							onGradientChange={ (newValue) => setAttributes( { overlayBGGradientHover: newValue } ) }
+						/>
+					) : (
+						<ColorGradientControl colors={[]} gradients={[]}
+							label={ __( 'Background Hover Color', 'wpmozo-blocks-and-addons' ) }
+							colorValue={ attributes.portfolioBackgroundHover }
+							gradientValue={ attributes.portfolioBGGradientHover }
+							onColorChange={ (newValue) => setAttributes( { portfolioBackgroundHover: newValue } ) }
+							onGradientChange={ (newValue) => setAttributes( { portfolioBGGradientHover: newValue } ) }
+						/>
+					) }
 					<WpmozoBorder props={ props }
 						label={ __( 'Portfolio Hover Border', 'wpmozo-blocks-and-addons' ) }
 						BorderKey="portfolioHover"
@@ -509,10 +551,19 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 
 		{/* Slider Wrapper Container. */}
 		<PanelBody title={ __( 'Slider Container', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			<WpmozoDimensions props={ props }
-				label={ __( 'Container Dimensions', 'wpmozo-blocks-and-addons' ) }
-				DimensionKey='container'
-				DimensionsTypes={ { padding: true } }
+			<RangeControl
+				label={ __( 'Container Width(%)', 'wpmozo-blocks-and-addons' ) }
+				value={ attributes.containerWidth }
+				onChange={ ( newValue ) => setAttributes( { containerWidth: newValue } ) }
+				min={10} max={100} step={1}
+				allowReset={ true }
+			/>
+			<RangeControl
+				label={ __( 'Container Max Width(px)', 'wpmozo-blocks-and-addons' ) }
+				value={ attributes.containerMaxWidth }
+				onChange={ ( newValue ) => setAttributes( { containerMaxWidth: newValue } ) }
+				min={100} max={2000} step={10}
+				allowReset={ true }
 			/>
 		</PanelBody>
 	</> );

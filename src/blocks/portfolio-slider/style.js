@@ -1,5 +1,5 @@
 // style.js
-import { convertInlineStyleStr } from '../../common/utils.js';
+import { convertInlineStyleStr, convertInlineStyle } from '../../common/utils.js';
 
 const generateDynamicStyle = ( { attributes, clientId } ) => {
 
@@ -26,11 +26,21 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
-	let styles = `#block-${attributes.ID} {`;
+	const blockId = clientId || attributes.ID;
+	let styles = `#block-${blockId} {`;
 
-	// Global text align.
+	// Global text align and container width.
 	if ( attributes?.globalTextAlign ) {
 		styles += `text-align: ${attributes.globalTextAlign};`;
+	}
+	if ( attributes?.containerWidth ) {
+		styles += `width: ${attributes.containerWidth}%;`;
+	}
+	if ( attributes?.containerMaxWidth ) {
+		styles += `max-width: ${attributes.containerMaxWidth}px;`;
+	}
+	if ( attributes?.containerWidth || attributes?.containerMaxWidth ) {
+		styles += `margin-left: auto; margin-right: auto;`;
 	}
 
 	// Featured Image.
@@ -61,15 +71,42 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 
 	// Categories.
 	styles += `.wpmozo_portfolio_slider_categories{
-		${convertedStyle.categories}
+		${convertInlineStyle({
+			padding: attributes.categoriespadding,
+			margin: attributes.categoriesmargin,
+		})}
+	}
+	.wpmozo_portfolio_slider_cat{
+		${attributes.categoriesBackground ? `background-color: ${attributes.categoriesBackground};` : ''}
+		${convertInlineStyle({
+			border: attributes.categoriesborder,
+			borderRadius: attributes.categoriesborderRadius,
+		})}
+	}
+	.wpmozo_portfolio_slider_cat:hover{
+		${attributes.categoriesHoverBackground ? `background-color: ${attributes.categoriesHoverBackground} !important;` : ''}
 	}
 	.wpmozo_portfolio_slider_cat a{
 		${attributes.categoriesColor ? `color: ${attributes.categoriesColor};` : ''}
-		${convertedStyle.categories}
+		${convertInlineStyle({
+			FontSize: attributes.categoriesFontSize,
+			LetterSpacing: attributes.categoriesLetterSpacing,
+			Decoration: attributes.categoriesDecoration,
+			LetterCase: attributes.categoriesLetterCase,
+			LineHeight: attributes.categoriesLineHeight,
+			FontAppearance: attributes.categoriesFontAppearance,
+		})}
 	}
 	.wpmozo_portfolio_slider_cat a:hover{
 		${attributes.categoriesHoverColor ? `color: ${attributes.categoriesHoverColor};` : ''}
-		${convertedStyle.categoriesHover}
+		${convertInlineStyle({
+			FontSize: attributes.categoriesHoverFontSize,
+			LetterSpacing: attributes.categoriesHoverLetterSpacing,
+			Decoration: attributes.categoriesHoverDecoration,
+			LetterCase: attributes.categoriesHoverLetterCase,
+			LineHeight: attributes.categoriesHoverLineHeight,
+			FontAppearance: attributes.categoriesHoverFontAppearance,
+		})}
 	}`;
 
 	// Content.
@@ -125,26 +162,38 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 	}
 
 	// Portfolio card wrapper.
-	const cardSelector = attributes.layout === 'layout2' ? '.wpmozo_portfolio_slider_content_wrap' : '.wpmozo_portfolio_slider_item_card';
-	const hoverSelector = attributes.layout === 'layout2' ? '.wpmozo_portfolio_slider_content_wrap:hover' : '.wpmozo_portfolio_slider_item_card:hover';
-	styles += `${cardSelector}{
-		${attributes.portfolioBGGradient ? `background:`+ attributes.portfolioBGGradient + `;` : ''}
-		${attributes.portfolioBackground ? `background-color:`+ attributes.portfolioBackground + `;` : ''}
+	if ( attributes.layout === 'layout2' ) {
+		styles += `.wpmozo_portfolio_slider_content_wrap{
+			${attributes.overlayBGGradient ? `background: ${attributes.overlayBGGradient};` : ''}
+			${attributes.overlayBackground ? `background-color: ${attributes.overlayBackground};` : ''}
+		}
+		.wpmozo_portfolio_slider_item_card{
+			${convertedStyle.portfolio}
+		}
+		.wpmozo_portfolio_slider_content_wrap:hover{
+			${attributes.overlayBackgroundHover ? `background-color: ${attributes.overlayBackgroundHover} !important;` : ''}
+			${attributes.overlayBGGradientHover ? `background: ${attributes.overlayBGGradientHover} !important;` : ''}
+		}
+		.wpmozo_portfolio_slider_item_card:hover{
+			${convertedStyle.portfolioHover}
+		}`;
+	} else {
+		styles += `.wpmozo_portfolio_slider_item_card{
+			${attributes.portfolioBGGradient ? `background: ${attributes.portfolioBGGradient};` : ''}
+			${attributes.portfolioBackground ? `background-color: ${attributes.portfolioBackground};` : ''}
+			${convertedStyle.portfolio}
+		}
+		.wpmozo_portfolio_slider_item_card:hover{
+			${attributes.portfolioBackgroundHover ? `background-color: ${attributes.portfolioBackgroundHover} !important;` : ''}
+			${attributes.portfolioBGGradientHover ? `background: ${attributes.portfolioBGGradientHover} !important;` : ''}
+			${convertedStyle.portfolioHover}
+		}`;
 	}
-	.wpmozo_portfolio_slider_item_card{
-		${convertedStyle.portfolio}
-	}
-	${hoverSelector}{
-		${attributes.portfolioBackgroundHover ? `background-color: ${attributes.portfolioBackgroundHover} !important;` : ''}
-		${attributes.portfolioBGGradientHover ? `background: ${attributes.portfolioBGGradientHover} !important;` : ''}
-	}
-	.wpmozo_portfolio_slider_item_card:hover{
-		${convertedStyle.portfolioHover}
-	}`;
 
 	// Slider arrows.
 	if ( attributes.showArrows ) {
 		styles += `.swiper-button-next, .swiper-button-prev{
+			${attributes.arrowIconSize ? `font-size: ${attributes.arrowIconSize}px;` : ''}
 			${attributes.arrowBackground ? `background-color: ${attributes.arrowBackground};` : ''}
 			${attributes.arrowColor ? `color: ${attributes.arrowColor};` : ''}
 			${convertedStyle.arrow}

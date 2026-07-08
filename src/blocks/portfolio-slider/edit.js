@@ -244,10 +244,11 @@ const Edit = (props) => {
 		const event = new CustomEvent( 'WPMozoPortfolioPropsChanged' );
 		window.dispatchEvent( event );
 
-		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' ) || document.querySelector( '.editor-canvas__iframe' );
-		if ( iframe?.contentWindow ) {
-			iframe.contentWindow.dispatchEvent( event );
-		}
+		document.querySelectorAll( 'iframe' ).forEach( ( iframe ) => {
+			if ( iframe.contentWindow ) {
+				iframe.contentWindow.dispatchEvent( event );
+			}
+		} );
 	}, [
 		attributes.slidesPerView,
 		attributes.slidesPerViewTablet,
@@ -257,9 +258,13 @@ const Edit = (props) => {
 		attributes.slidesPerGroupMobile,
 		attributes.spaceBetweenSlides,
 		attributes.spaceBetweenSlidesTablet,
-		attributes.spaceBetweenSlidesMobile,
 		attributes.slideEffect,
 		attributes.layout,
+		attributes.arrowIconSize,
+		attributes.featuredImageWidth,
+		attributes.featuredImageHeight,
+		attributes.containerWidth,
+		attributes.containerMaxWidth,
 		posts
 	] );
 

@@ -26,10 +26,21 @@ if ( ! function_exists( 'portfolio_slider_generate_dynamic_style' ) ) {
 
 		$styles = '';
 
-		// Global text align.
-		if ( ! empty( $attrs['globalTextAlign'] ) ) {
-			$styles .= "{$mainSelector}{text-align: {$attrs['globalTextAlign']};}";
-		}
+		// Global text align and container width.
+		$styles .= "{$mainSelector}{";
+			if ( ! empty( $attrs['globalTextAlign'] ) ) {
+				$styles .= "text-align: {$attrs['globalTextAlign']};";
+			}
+			if ( ! empty( $attrs['containerWidth'] ) ) {
+				$styles .= "width: {$attrs['containerWidth']}%;";
+			}
+			if ( ! empty( $attrs['containerMaxWidth'] ) ) {
+				$styles .= "max-width: {$attrs['containerMaxWidth']}px;";
+			}
+			if ( ! empty( $attrs['containerWidth'] ) || ! empty( $attrs['containerMaxWidth'] ) ) {
+				$styles .= "margin-left: auto; margin-right: auto;";
+			}
+		$styles .= "}";
 
 		// Featured Image.
 		if ( isset( $attrs['showFeaturedImage'] ) && true === $attrs['showFeaturedImage'] ) {
@@ -140,27 +151,36 @@ if ( ! function_exists( 'portfolio_slider_generate_dynamic_style' ) ) {
 		}
 
 		// Portfolio card wrapper.
-		$cardSelector = ( 'layout2' === $layout ) ? "{$mainSelector} .wpmozo_portfolio_slider_content_wrap" : "{$mainSelector} .wpmozo_portfolio_slider_item_card";
-		$hoverSelector = ( 'layout2' === $layout ) ? "{$mainSelector} .wpmozo_portfolio_slider_content_wrap:hover" : "{$mainSelector} .wpmozo_portfolio_slider_item_card:hover";
-
-		$styles .= "{$cardSelector}{";
-			$styles .= ( ! empty( $attrs['portfolioBGGradient'] ) ? "background: {$attrs['portfolioBGGradient']};" : '' );
-			$styles .= ( ! empty( $attrs['portfolioBackground'] ) ? "background-color: {$attrs['portfolioBackground']};" : '' );
-		$styles .= "}";
-
-		$styles .= "{$mainSelector} .wpmozo_portfolio_slider_item_card{";
-			$styles .= $block_helpers::get_border_style( 'portfolio', $attrs, true );
-			$styles .= $block_helpers::get_padding_style( 'portfolio', $attrs );
-		$styles .= "}";
-
-		$styles .= "{$hoverSelector}{";
-			$styles .= ( ! empty( $attrs['portfolioBackgroundHover'] ) ? "background-color: {$attrs['portfolioBackgroundHover']} !important;" : '' );
-			$styles .= ( ! empty( $attrs['portfolioBGGradientHover'] ) ? "background: {$attrs['portfolioBGGradientHover']} !important;" : '' );
-		$styles .= "}";
-
-		$styles .= "{$mainSelector} .wpmozo_portfolio_slider_item_card:hover{";
-			$styles .= $block_helpers::get_border_style( 'portfolioHover', $attrs, true );
-		$styles .= "}";
+		$layout = $attrs['layout'] ?? 'layout1';
+		if ( 'layout2' === $layout ) {
+			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_content_wrap{";
+				$styles .= ( ! empty( $attrs['overlayBGGradient'] ) ? "background: {$attrs['overlayBGGradient']};" : '' );
+				$styles .= ( ! empty( $attrs['overlayBackground'] ) ? "background-color: {$attrs['overlayBackground']};" : '' );
+			$styles .= "}";
+			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_item_card{";
+				$styles .= $block_helpers::get_border_style( 'portfolio', $attrs, true );
+				$styles .= $block_helpers::get_padding_style( 'portfolio', $attrs );
+			$styles .= "}";
+			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_content_wrap:hover{";
+				$styles .= ( ! empty( $attrs['overlayBackgroundHover'] ) ? "background-color: {$attrs['overlayBackgroundHover']} !important;" : '' );
+				$styles .= ( ! empty( $attrs['overlayBGGradientHover'] ) ? "background: {$attrs['overlayBGGradientHover']} !important;" : '' );
+			$styles .= "}";
+			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_item_card:hover{";
+				$styles .= $block_helpers::get_border_style( 'portfolioHover', $attrs, true );
+			$styles .= "}";
+		} else {
+			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_item_card{";
+				$styles .= ( ! empty( $attrs['portfolioBGGradient'] ) ? "background: {$attrs['portfolioBGGradient']};" : '' );
+				$styles .= ( ! empty( $attrs['portfolioBackground'] ) ? "background-color: {$attrs['portfolioBackground']};" : '' );
+				$styles .= $block_helpers::get_border_style( 'portfolio', $attrs, true );
+				$styles .= $block_helpers::get_padding_style( 'portfolio', $attrs );
+			$styles .= "}";
+			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_item_card:hover{";
+				$styles .= ( ! empty( $attrs['portfolioBackgroundHover'] ) ? "background-color: {$attrs['portfolioBackgroundHover']} !important;" : '' );
+				$styles .= ( ! empty( $attrs['portfolioBGGradientHover'] ) ? "background: {$attrs['portfolioBGGradientHover']} !important;" : '' );
+				$styles .= $block_helpers::get_border_style( 'portfolioHover', $attrs, true );
+			$styles .= "}";
+		}
 
 		// Slider arrows.
 		if ( isset( $attrs['showArrows'] ) && true === $attrs['showArrows'] ) {

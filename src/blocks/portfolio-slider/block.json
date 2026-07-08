@@ -160,6 +160,10 @@
 		"categoriesHoverFontWeight": { "type": "string" },
 		"categoriespadding": { "type": "object" },
 		"categoriesmargin": { "type": "object" },
+		"categoriesBackground": { "type": "string" },
+		"categoriesHoverBackground": { "type": "string" },
+		"categoriesborder": { "type": "object" },
+		"categoriesborderRadius": { "type": "object" },
 
 		"contentColor": { "type": "string" },
 		"contentFontSize": { "type": "string" },
@@ -251,7 +255,14 @@
 		"projectUrlborder": { "type": "object" },
 		"projectUrlborderRadius": { "type": "object" },
 		"projectUrlpadding": { "type": "object" },
-		"projectUrlmargin": { "type": "object" }
+		"projectUrlmargin": { "type": "object" },
+
+		"overlayBackground": { "type": "string" },
+		"overlayBackgroundHover": { "type": "string" },
+		"overlayBGGradient": { "type": "string" },
+		"overlayBGGradientHover": { "type": "string" },
+		"containerWidth": { "type": "number" },
+		"containerMaxWidth": { "type": "number" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
