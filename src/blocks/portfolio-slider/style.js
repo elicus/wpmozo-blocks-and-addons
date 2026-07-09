@@ -70,15 +70,11 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 	}
 
 	// Categories.
-	styles += `.wpmozo_portfolio_slider_categories{
+	styles += `.wpmozo_portfolio_slider_cat{
+		${attributes.categoriesBackground ? `background-color: ${attributes.categoriesBackground};` : ''}
 		${convertInlineStyle({
 			padding: attributes.categoriespadding,
 			margin: attributes.categoriesmargin,
-		})}
-	}
-	.wpmozo_portfolio_slider_cat{
-		${attributes.categoriesBackground ? `background-color: ${attributes.categoriesBackground};` : ''}
-		${convertInlineStyle({
 			border: attributes.categoriesborder,
 			borderRadius: attributes.categoriesborderRadius,
 		})}

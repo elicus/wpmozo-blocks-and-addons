@@ -47,20 +47,24 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		{/* Featured Image. */}
 		{ attributes.showFeaturedImage && (
 			<PanelBody title={ __( 'Featured Image', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-				<RangeControl
-					label={ __( 'Image Width(px)', 'wpmozo-blocks-and-addons' ) }
-					value={ attributes.featuredImageWidth }
-					onChange={ ( newValue ) => setAttributes( { featuredImageWidth: newValue } ) }
-					min={50} max={1200} step={1}
-					allowReset={ true }
-				/>
-				<RangeControl
-					label={ __( 'Image Height(px)', 'wpmozo-blocks-and-addons' ) }
-					value={ attributes.featuredImageHeight }
-					onChange={ ( newValue ) => setAttributes( { featuredImageHeight: newValue } ) }
-					min={50} max={1000} step={1}
-					allowReset={ true }
-				/>
+				{ attributes.layout !== 'layout2' && (
+					<>
+						<RangeControl
+							label={ __( 'Image Width(px)', 'wpmozo-blocks-and-addons' ) }
+							value={ attributes.featuredImageWidth }
+							onChange={ ( newValue ) => setAttributes( { featuredImageWidth: newValue } ) }
+							min={50} max={1200} step={1}
+							allowReset={ true }
+						/>
+						<RangeControl
+							label={ __( 'Image Height(px)', 'wpmozo-blocks-and-addons' ) }
+							value={ attributes.featuredImageHeight }
+							onChange={ ( newValue ) => setAttributes( { featuredImageHeight: newValue } ) }
+							min={50} max={1000} step={1}
+							allowReset={ true }
+						/>
+					</>
+				) }
 				<SelectControl
 					label={ __( 'Object Fit', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.featuredImageObjectFit }
@@ -72,16 +76,20 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					] }
 					onChange={ ( newValue ) => setAttributes( { featuredImageObjectFit: newValue } ) }
 				/>
-				<WpmozoBorder props={ props }
-					label={ __( 'Image Border', 'wpmozo-blocks-and-addons' ) }
-					BorderKey="featuredImage"
-					BorderTypes={ { border: true, radius: true } }
-				/>
-				<WpmozoDimensions props={ props }
-					label={ __( 'Image Dimensions', 'wpmozo-blocks-and-addons' ) }
-					DimensionKey='featuredImage'
-					DimensionsTypes={ { padding: true, margin: true } }
-				/>
+				{ attributes.layout !== 'layout2' && (
+					<>
+						<WpmozoBorder props={ props }
+							label={ __( 'Image Border', 'wpmozo-blocks-and-addons' ) }
+							BorderKey="featuredImage"
+							BorderTypes={ { border: true, radius: true } }
+						/>
+						<WpmozoDimensions props={ props }
+							label={ __( 'Image Dimensions', 'wpmozo-blocks-and-addons' ) }
+							DimensionKey='featuredImage'
+							DimensionsTypes={ { padding: true, margin: true } }
+						/>
+					</>
+				) }
 			</PanelBody>
 		) }
 
@@ -520,6 +528,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				{ 'hover' === cardTab && <>
 					{ attributes.layout === 'layout2' ? (
 						<ColorGradientControl colors={[]} gradients={[]}
+							enableAlpha={ true }
 							label={ __( 'Overlay Background Hover Color', 'wpmozo-blocks-and-addons' ) }
 							colorValue={ attributes.overlayBackgroundHover }
 							gradientValue={ attributes.overlayBGGradientHover }

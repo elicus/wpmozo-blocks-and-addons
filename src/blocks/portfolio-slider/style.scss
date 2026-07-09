@@ -21,15 +21,27 @@
 	position: relative;
 	width: 100%;
 }
-.wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_content_wrap {
+.wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_image_wrap {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	z-index: 1;
+}
+.wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_image_wrap a {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_image {
+	width: 100%;
+	height: 100% !important;
+	object-fit: cover;
+}
+.wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_content_wrap {
+	position: relative;
+	width: 100%;
 	z-index: 7;
 	box-sizing: border-box;
 	padding: 20px;
@@ -136,4 +148,100 @@
 .wpmozo_swiper_wrapper .swiper-button-next:after,
 .wpmozo_swiper_wrapper .swiper-button-prev:after {
 	display: contents;
+}
+
+/* Fallback styles for Layout 1 card and defaults */
+.wpmozo_portfolio_layout.layout1 .wpmozo_portfolio_slider_item_card {
+	background-color: #ffffff;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+}
+
+.wpmozo_portfolio_layout.layout1 .wpmozo_portfolio_slider_content_wrap {
+	padding: 20px;
+}
+
+/* Default title formatting */
+.wpmozo_portfolio_slider_title a {
+	text-decoration: none;
+	color: #2c3e50;
+	transition: color 0.3s ease;
+}
+.wpmozo_portfolio_slider_title a:hover {
+	color: #5600b7;
+}
+
+/* Default excerpt formatting & spacing */
+.wpmozo_portfolio_slider_excerpt {
+	margin-bottom: 15px;
+	line-height: 1.5;
+	font-size: 14px;
+}
+.wpmozo_portfolio_layout.layout1 .wpmozo_portfolio_slider_excerpt {
+	color: #7f8c8d; /* Scoped strictly to Layout 1 */
+}
+
+/* Button wrap top spacing */
+.wpmozo_portfolio_slider_button_wrap {
+	margin-top: 5px;
+}
+
+/* Category Badge Fallback CSS (excluding typography defaults) */
+.wpmozo_portfolio_slider_cat {
+	display: inline-block;
+	margin-right: 6px;
+	margin-bottom: 6px;
+	padding: 4px 8px;
+	background-color: #f3e8ff;
+	border-radius: 4px;
+}
+.wpmozo_portfolio_slider_cat a {
+	color: #5600b7;
+	text-decoration: none;
+}
+.wpmozo_portfolio_slider_cat a:hover {
+	color: #3c0084;
+	text-decoration: none;
+}
+
+/* Read More Button Fallback CSS */
+.wpmozo_portfolio_slider_readmore {
+	display: inline-block;
+	text-decoration: none;
+	padding: 10px 20px;
+	background-color: #5600b7;
+	color: #ffffff !important;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+.wpmozo_portfolio_slider_readmore:hover {
+	background-color: #3c0084;
+	color: #ffffff !important;
+	text-decoration: none;
+}
+
+/* Premium navigation arrow styles */
+.wpmozo_swiper_wrapper .swiper-button-next,
+.wpmozo_swiper_wrapper .swiper-button-prev {
+	background-color: #ffffff;
+	color: #5600b7;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+.wpmozo_swiper_wrapper .swiper-button-next:hover,
+.wpmozo_swiper_wrapper .swiper-button-prev:hover {
+	background-color: #5600b7;
+	color: #ffffff;
+}
+.wpmozo_swiper_wrapper .swiper-button-next:after,
+.wpmozo_swiper_wrapper .swiper-button-prev:after {
+	font-size: 16px;
+	font-weight: bold;
 }

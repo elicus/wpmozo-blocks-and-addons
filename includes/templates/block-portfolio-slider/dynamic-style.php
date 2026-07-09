@@ -71,9 +71,14 @@ if ( ! function_exists( 'portfolio_slider_generate_dynamic_style' ) ) {
 		}
 
 		// Categories.
-		$styles .= "{$mainSelector} .wpmozo_portfolio_slider_categories{";
+		$styles .= "{$mainSelector} .wpmozo_portfolio_slider_cat{";
+			$styles .= ( ! empty( $attrs['categoriesBackground'] ) ? "background-color: {$attrs['categoriesBackground']};" : '' );
 			$styles .= $block_helpers::get_padding_style( 'categories', $attrs );
 			$styles .= $block_helpers::get_margin_style( 'categories', $attrs );
+			$styles .= $block_helpers::get_border_style( 'categories', $attrs );
+		$styles .= "}";
+		$styles .= "{$mainSelector} .wpmozo_portfolio_slider_cat:hover{";
+			$styles .= ( ! empty( $attrs['categoriesHoverBackground'] ) ? "background-color: {$attrs['categoriesHoverBackground']} !important;" : '' );
 		$styles .= "}";
 		$styles .= "{$mainSelector} .wpmozo_portfolio_slider_cat a{";
 			$styles .= ( ! empty( $attrs['categoriesColor'] ) ? "color: {$attrs['categoriesColor']};" : '' );
