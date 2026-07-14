@@ -59,8 +59,8 @@
 		"coverflowDepth": { "type": "number", "default": 100 },
 
 		"showArrows": { "type": "boolean", "default": true },
-		"prevArrowIcon": { "type": "string", "default": "" },
-		"nextArrowIcon": { "type": "string", "default": "" },
+		"nextArrowIcon": { "type": "string", "default": "fas fa-chevron-right" },
+		"prevArrowIcon": { "type": "string", "default": "fas fa-chevron-left" },
 		"showArrowOnHover": { "type": "boolean", "default": false },
 		"arrowsPosition": { "type": "string", "default": "inside" },
 		"showControlDot": { "type": "boolean", "default": false },

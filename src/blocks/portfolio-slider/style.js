@@ -45,12 +45,12 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 
 	// Featured Image.
 	if ( attributes.showFeaturedImage ) {
-		styles += `.wpmozo_portfolio_slider_image_wrap{
+		styles += `.wpmozo_portfolio_layout.layout1 .wpmozo_portfolio_slider_image_wrap{
 			${attributes.featuredImageWidth ? `width: ${attributes.featuredImageWidth}px !important; max-width: 100%;` : ''}
 			${attributes.featuredImageHeight ? `height: ${attributes.featuredImageHeight}px !important;` : ''}
 			${convertedStyle.featuredImage}
 		}
-		.wpmozo_portfolio_slider_image_wrap img{
+		.wpmozo_portfolio_layout.layout1 .wpmozo_portfolio_slider_image_wrap img{
 			${attributes.featuredImageWidth ? `width: ${attributes.featuredImageWidth}px !important; max-width: 100%;` : ''}
 			${attributes.featuredImageHeight ? `height: ${attributes.featuredImageHeight}px !important;` : ''}
 			${attributes.featuredImageObjectFit ? `object-fit: ${attributes.featuredImageObjectFit} !important;` : ''}

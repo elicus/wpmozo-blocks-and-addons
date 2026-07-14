@@ -248,6 +248,8 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 		wp_localize_script( $this->plugin_name . '-editor-script', 'wpmozo_bna_editor_object', $all_options );
 
 		wp_enqueue_style( $this->plugin_name . '-editor-style' );
+		wp_enqueue_style( $this->plugin_name . '-swiper-style' );
+		wp_enqueue_style( $this->plugin_name . '-swiper-wpmozo-style' );
 		wp_enqueue_script( $this->plugin_name . '-editor-script' );
 		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
 		wp_enqueue_script( $this->plugin_name . '-tilt-script' );

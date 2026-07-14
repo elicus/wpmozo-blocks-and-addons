@@ -44,14 +44,14 @@ if ( ! function_exists( 'portfolio_slider_generate_dynamic_style' ) ) {
 
 		// Featured Image.
 		if ( isset( $attrs['showFeaturedImage'] ) && true === $attrs['showFeaturedImage'] ) {
-			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_image_wrap{";
+			$styles .= "{$mainSelector} .wpmozo_portfolio_layout.layout1 .wpmozo_portfolio_slider_image_wrap{";
 				$styles .= ( ! empty( $attrs['featuredImageWidth'] ) ? "width: {$attrs['featuredImageWidth']}px !important; max-width: 100%;" : '' );
 				$styles .= ( ! empty( $attrs['featuredImageHeight'] ) ? "height: {$attrs['featuredImageHeight']}px !important;" : '' );
 				$styles .= $block_helpers::get_border_style( 'featuredImage', $attrs );
 				$styles .= $block_helpers::get_padding_style( 'featuredImage', $attrs );
 				$styles .= $block_helpers::get_margin_style( 'featuredImage', $attrs );
 			$styles .= "}";
-			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_image_wrap img{";
+			$styles .= "{$mainSelector} .wpmozo_portfolio_layout.layout1 .wpmozo_portfolio_slider_image_wrap img{";
 				$styles .= ( ! empty( $attrs['featuredImageWidth'] ) ? "width: {$attrs['featuredImageWidth']}px !important; max-width: 100%;" : '' );
 				$styles .= ( ! empty( $attrs['featuredImageHeight'] ) ? "height: {$attrs['featuredImageHeight']}px !important;" : '' );
 				$styles .= ( ! empty( $attrs['featuredImageObjectFit'] ) ? "object-fit: {$attrs['featuredImageObjectFit']} !important;" : '' );
