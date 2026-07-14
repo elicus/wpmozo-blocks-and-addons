@@ -92,20 +92,26 @@
 	display: flex;
 	gap: 15px;
 	flex-wrap: wrap;
+	align-items: center;
 }
 
 .wpmozo_portfolio_slider_btn {
 	display: inline-block;
 	text-decoration: none;
-	padding: 8px 16px;
-	background-color: #f4f4f4;
-	color: #333;
+	padding: 10px 20px;
+	background-color: #5600b7;
+	color: #ffffff !important;
 	border-radius: 4px;
-	transition: all 0.3s ease;
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .wpmozo_portfolio_slider_btn:hover {
-	background-color: #e0e0e0;
+	background-color: #3c0084;
+	color: #ffffff !important;
+	text-decoration: none;
 }
 
 /* Equal Height. */
@@ -204,44 +210,29 @@
 	text-decoration: none;
 }
 
-/* Read More Button Fallback CSS */
-.wpmozo_portfolio_slider_readmore {
-	display: inline-block;
-	text-decoration: none;
-	padding: 10px 20px;
-	background-color: #5600b7;
-	color: #ffffff !important;
-	border-radius: 4px;
-	font-size: 14px;
-	font-weight: 500;
-	cursor: pointer;
-	transition: background-color 0.3s ease, color 0.3s ease;
-}
-.wpmozo_portfolio_slider_readmore:hover {
-	background-color: #3c0084;
-	color: #ffffff !important;
-	text-decoration: none;
-}
 
 /* Premium navigation arrow styles */
-.wpmozo_swiper_wrapper .swiper-button-next,
-.wpmozo_swiper_wrapper .swiper-button-prev {
+.wpmozo_portfolio_layout .swiper-button-next,
+.wpmozo_portfolio_layout .swiper-button-prev {
 	background-color: #ffffff;
 	color: #5600b7;
-	width: 40px;
-	height: 40px;
+	width: 36px;
+	height: 36px;
 	border-radius: 50%;
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 	cursor: pointer;
+	margin-top: 0;
+	transform: translateY(-50%);
 	transition: background-color 0.3s ease, color 0.3s ease;
 }
-.wpmozo_swiper_wrapper .swiper-button-next:hover,
-.wpmozo_swiper_wrapper .swiper-button-prev:hover {
+.wpmozo_portfolio_layout .swiper-button-next:hover,
+.wpmozo_portfolio_layout .swiper-button-prev:hover {
 	background-color: #5600b7;
 	color: #ffffff;
 }
-.wpmozo_swiper_wrapper .swiper-button-next:after,
-.wpmozo_swiper_wrapper .swiper-button-prev:after {
+.wpmozo_portfolio_layout .swiper-button-next:after,
+.wpmozo_portfolio_layout .swiper-button-prev:after {
 	font-size: 16px;
 	font-weight: bold;
+	transform: none; /* Correct vertical off-centering from wpmozo-swiper.css */
 }
