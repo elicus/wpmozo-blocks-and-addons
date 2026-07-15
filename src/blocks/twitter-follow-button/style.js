@@ -19,7 +19,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 	styles += `.wpmozo_twitter_embed_follow_button{
 		text-decoration: none;
 		${attributes.fallbackTextColor ? `color: ${attributes.fallbackTextColor};` : ''}
-		${convertedStyle.fallbackText}
+		${convertedStyle.fallbackText || ''}
 	}`;
 
 	styles += `}`;

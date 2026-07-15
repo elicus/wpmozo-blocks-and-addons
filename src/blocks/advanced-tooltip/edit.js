@@ -92,7 +92,6 @@ export default function Edit(props) {
 		   className={ [
 			   'wpmozo-bna-button',
 			   'wpmozo_tooltip_trigger_element',
-			   'wpmozo_promotion_bar_button',
 			   ( attributes.buttonIconStyle && attributes.buttonIconOnHover ) ? 'wpmozo-icon-on-hover' : '',
 			   ( attributes.buttonIconStyle && 'before' === attributes.buttonIconPosition ) ? 'wpmozo-icon-at-before' : 'wpmozo-icon-at-after'
 		   ].join(" ") }

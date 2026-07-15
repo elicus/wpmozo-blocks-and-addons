@@ -30,7 +30,8 @@
 	box-sizing: border-box;
 	text-align: center;
 	-webkit-transition: all .3s ease-in-out;
-	transition: all .3s ease-in-out
+	transition: all .3s ease-in-out;
+	overflow: hidden;
 }
 .wpmozo-image-stack-inner:hover .wpmozo-image-stack-item{
 	margin-left: 0 !important

@@ -14,10 +14,8 @@ import { useState, useEffect } from "@wordpress/element";
 
 const Inspector = ( { attributes, setAttributes } ) => {
 
-	let props = { attributes, setAttributes },
-		tabsArr = inspectorPanelTabs();
+	let props = { attributes, setAttributes };
 		props = Object.assign( {}, props, { preAttributes: {} } );
-		tabsArr = tabsArr.filter(item => item.name !== "design");
 	const [ hoverState, setHoverState ] = useState( false );
 	const isSaving = useSelect(select =>
 		select('core/editor').isSavingPost()
@@ -33,7 +31,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 			<TabPanel
 				className="wpmozo-settings-tab-panel"
 				activeClass="is-active"
-				tabs={ tabsArr }
+				tabs={ inspectorPanelTabs({ showDesign: false }) }
 			>
 				{ ( tab ) => ( <div className="wpmozo-settings-tab-panel-content">
 					{ tab.name === 'general' && 

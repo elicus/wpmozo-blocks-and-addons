@@ -22,7 +22,8 @@ export default function Edit(props) {
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,
 		blockProps = useBlockProps(wrapProps),
-		wrapStyle = wrapArgs?.wrapStyle;
+		wrapStyle = wrapArgs?.wrapStyle,
+        isEdit = true;
 
     const parentAttributes = useSelect( (select) => {
         const { getBlockRootClientId, getBlock } = select('core/block-editor');
@@ -57,7 +58,7 @@ export default function Edit(props) {
     return (
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
-            <style>{ generateDynamicStyle({ attributes, clientId, parentAttributes }) }</style>
+            <style>{ generateDynamicStyle({ attributes, clientId, parentAttributes, isEdit }) }</style>
             
             <div { ...blockProps}>
                 <div className="list-item-wrap" >

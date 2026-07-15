@@ -8,6 +8,11 @@
 	max-width: 100%;
 	height: auto;
 }
+.wpmozo_star_rating_title_container .wpmozo_star_rating_title,
+.wpmozo_star_rating_description,
+.wpmozo_star_rating_number{
+    transition: all 300ms;
+}
 .wpmozo_star_rating_image_container{
     margin-bottom: 20px;
     line-height: 0;

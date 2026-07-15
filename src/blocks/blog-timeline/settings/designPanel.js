@@ -22,6 +22,7 @@ import {
 	WpmozoDimensions,
 	WpmozoTypography,
 	WpmozoColorPicker,
+	MozoStates
 } from '../../../common/components';
 import { headingLevelsList } from '../../../common/utils.js';
 
@@ -167,40 +168,40 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				</ButtonGroup>
 			</BaseControl>
 			<hr />
-			<BaseControl className="wpmozo-button-tabs-wrap">
-				<ButtonGroup>
-					<Button className="wpmozo-button-tabs-btn"
-						isPressed={ ( 'normal' === titleType ) ? true : false }
-						onClick={ () => setTitleType( 'normal' ) }
-					>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
-					<Button className="wpmozo-button-tabs-btn"
-						isPressed={ ( 'hover' === titleType ) ? true : false }
-						onClick={ () => setTitleType( 'hover' ) }
-					>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
-				</ButtonGroup>
-				{ 'normal' === titleType && <>
-					<WpmozoColorPicker props={ props }
-						ColorKey="title"
+			<MozoStates
+				value = {hoverState}
+				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) =>  (
+						isHover ?  setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+						
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={props}
+						label=" "
+						ColorKey={ isHover ? "titleHover" : "title" }
 						ColorTypes={ [
-							{ key: 'Color', label: __( 'Title Text Color', 'wpmozo-blocks-and-addons' ) },
+							{ key: 'Color', label: __( 'Title Text Color', 'wpmozo-blocks-and-addons' ) }
 						] }
 					/>
+				) }
+			/>
+			<MozoStates
+				value = {hoverState}
+				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) =>  (
+						isHover ?  setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+						
+				}
+				control={ ( isHover ) => (
 					<WpmozoTypography props={ props }
-						TypographyKey="title"
+						TypographyKey={ isHover ? "titleHover" : "title" }
 					/>
-				</> }
-				{ 'hover' === titleType && <>
-					<WpmozoColorPicker props={ props }
-						ColorKey="titleHover"
-						ColorTypes={ [
-							{ key: 'Color', label: __( 'Title Text Hover Color', 'wpmozo-blocks-and-addons' ) },
-						] }
-					/>
-					<WpmozoTypography props={ props }
-						TypographyKey="titleHover"
-					/>
-				</> }
-			</BaseControl>
+				) }
+			/>
 		</PanelBody>
 		{/* Post Excerpt. */}
 		<PanelBody title={ __( 'Post Excerpt', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>

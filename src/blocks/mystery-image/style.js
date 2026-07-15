@@ -1,29 +1,42 @@
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ({ attributes, clientId }) => {
+const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	const { iconFontSize, separatorColor } = attributes,
-		parent = '#block-' + clientId,
 		toConvertStyles = [];
 	let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
-	let styles = `#block-${clientId}{`;
+	
+	let normalcss = [],
+	hovercss = [],
+	cssExtras = [];
+	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
 
-	styles += `
-		.wpmozo-mystery-image-anchor .wpmozo-overlay-icon{
-			background:${attributes.overlayBackgroundColor}!important;
-			color:${attributes.overlayIconColor}!important;
-			font-size: ${attributes.overlayIconSize}px!important;
-		}
-		`;
-	styles += `}`;
-
+	normalcss.push(
+		( attributes.overlayBackgroundColor || attributes.overlayIconColor || attributes.overlayIconSize )
+			? `.wpmozo-mystery-image-anchor .wpmozo-overlay-icon{
+					${attributes.overlayBackgroundColor ? `background:${attributes.overlayBackgroundColor}!important;` : ''}
+					${attributes.overlayIconColor ? `color:${attributes.overlayIconColor}!important;` : ''}
+					${attributes.overlayIconSize ? `font-size:${attributes.overlayIconSize}px!important;` : ''}
+				}`
+			: ''
+	);
 	if(true === attributes.showLightbox){
-		styles += `.block-block-${clientId}_lightbox{
-			background:${attributes.lightboxBackgroundColor};
-		}
-		.block-block-${clientId}_lightbox .mfp-close{
-			color:${attributes.lightboxCloseIconColor} !important;
-		}`;
+		cssExtras.push( attributes.lightboxBackgroundColor ? `.block-block-${clientId}_lightbox{ background:${attributes.lightboxBackgroundColor}; }` : '' );
+
+		cssExtras.push( attributes.lightboxCloseIconColor ? `.block-block-${clientId}_lightbox .mfp-close{ color:${attributes.lightboxCloseIconColor} !important; }` : '' );
 	}
+
+	const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);
+	
+	let styles = hasStyles ? `#block-${attributes.ID}{${normalcss.filter(Boolean).join('\n')} ${hovercss.filter(Boolean).join('\n')}}` : '';
+	
+	styles += cssExtras.some(Boolean) ? cssExtras.filter(Boolean).join('\n') : '';
+	styles = styles.replace(/\s+/g, ' ')
+	.replace(/\s*{\s*/g, '{')
+	.replace(/\s*}\s*/g, '}')
+	.replace(/\s*:\s*/g, ':')
+	.replace(/\s*;\s*/g, ';')
+	.replace(/\s*,\s*/g, ',')    
+	.trim();
 
 	return styles;
 };

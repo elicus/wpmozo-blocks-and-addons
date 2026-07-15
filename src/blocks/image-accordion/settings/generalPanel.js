@@ -11,6 +11,9 @@ import {
 	WpmozoRangeSize
 } from '../../../common/components/index';
 
+import {store as blockEditorStore } from '@wordpress/block-editor';
+import { useSelect } from '@wordpress/data';
+
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
@@ -18,6 +21,11 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
         'title': __( 'Title', 'wpmozo-blocks-and-addons' ),
         'icon': __( 'Icon', 'wpmozo-blocks-and-addons' ),
     };
+
+	const childCount = useSelect(
+		( select ) => select( blockEditorStore ).getBlockOrder( attributes.ID ).length,
+		[ attributes.ID ]
+	);
 
     const toggleOption = (key) => {
         const newInactiveState = attributes.inactiveState.includes(key)
@@ -131,6 +139,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				value={ attributes.activeAccordion }
 				onChange={ ( newValue ) => setAttributes( { activeAccordion: newValue } ) }
 				min={ 0 }
+				max={childCount}
 				step={ 1 }
 				__next40pxDefaultSize = {true}
 				__nextHasNoMarginBottom = {true}

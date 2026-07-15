@@ -14,6 +14,8 @@ import {
 	TabPanel,
 	ExternalLink
 } from "@wordpress/components";
+import { useSelect } from '@wordpress/data';
+import { useState, useEffect } from "@wordpress/element";
 
 /**
  * Internal dependencies

@@ -100,15 +100,13 @@
     margin: 10px;
 }
 
-.wp-block-wpmozo-pricing-table .wpmozo-bna-pricing-table-features-list,
-.wp-block-wpmozo-pricing-table .wpmozo-bna-pricing-table-features-list .wpmozo-bna-pricing-table-feature-icon {
-    font-size: 18px;
+.wp-block-wpmozo-pricing-table .wpmozo-bna-pricing-table-features-list{
+    display: flex;
+    align-items: center;
 }
 
 .wp-block-wpmozo-pricing-table .wpmozo-bna-pricing-table-features-list img,
 .wp-block-wpmozo-pricing-table .wpmozo-bna-pricing-table-feature-icon {
-    width: 18px;
-    height: 18px;
     margin-right: 5px;
 }
 

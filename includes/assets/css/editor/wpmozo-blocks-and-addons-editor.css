@@ -181,6 +181,9 @@
 .wpmozo-block-icon path {
 	fill: #3D3EED;
 }
+.is-primary .wpmozo-block-icon path {
+    fill: white;
+}
 
 /* Custom field warning. */
 .wpmozo-field-warning.is-warning {

@@ -1,12 +1,19 @@
 import { __ } from '@wordpress/i18n';
 import { PanelBody, ToggleControl, RangeControl } from '@wordpress/components';
 import { WpmozoColorPicker, WpmozoIconpicker } from "../../../common/components";
+import { useState } from 'react';
 
 export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
+	const [openPanel, setOpenPanel] = useState('panel1');
+							
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
+
 	return ( <>
-		<PanelBody title={ __( 'Overlay', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
+		<PanelBody title={ __( 'Overlay', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<ToggleControl
 				label={ __( 'Enable Overlay', 'wpmozo-blocks-and-addons' ) }
 				checked={attributes.enableOverlay}
@@ -18,6 +25,12 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 					ColorTypes={ [
 						{ key: 'BackgroundColor', label: __( 'Overlay Background Color', 'wpmozo-blocks-and-addons' ) }
 					] }
+				/>
+				<WpmozoIconpicker props={props}
+					label={ __( 'Overlay Icon', 'wpmozo-blocks-and-addons' ) }
+					iconPickerKey='overlayIcon'
+					value={ attributes.overlayIcon }
+					onChange={ (newValue) => setAttributes( { overlayIcon: newValue } ) }
 				/>
 				<RangeControl
 					label={ __( 'Icon Size (px)', 'wpmozo-blocks-and-addons' ) }
@@ -32,16 +45,10 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 						{ key: 'IconColor', label: __( 'Overlay Icon Color', 'wpmozo-blocks-and-addons' ) }
 					] }
 				/>
-				<WpmozoIconpicker props={props}
-					label={ __( 'Overlay Icon', 'wpmozo-blocks-and-addons' ) }
-					iconPickerKey='overlayIcon'
-					value={ attributes.overlayIcon }
-					onChange={ (newValue) => setAttributes( { overlayIcon: newValue } ) }
-				/>
 			</> ) }
 		</PanelBody>
 		{ true === attributes.showLightbox && (
-			<PanelBody title={ __('Lightbox', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __('Lightbox', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 				<WpmozoColorPicker
 					ColorKey="lightbox"
 					props={props}

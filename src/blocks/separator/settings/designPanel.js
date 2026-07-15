@@ -10,7 +10,11 @@ import {
     BaseControl,
     ButtonGroup,
     Button,
-    ToggleControl
+	Dashicon,
+    ToggleControl,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
+	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
 } from "@wordpress/components";
 import {
     WpmozoTypography,
@@ -18,14 +22,20 @@ import {
     WpmozoAlignment,
 } from '../../../common/components/index';
 import { useState } from "@wordpress/element";
+import { chevronLeft, Marker, chevronRight } from '@wordpress/icons';
 
 export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+									
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
 
 	const [ textStyleType, setTextStyleType ] = useState( 'normal' );
 
 	return ( <>
-		<PanelBody title={ __( 'Separator Styling', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
+		<PanelBody title={ __( 'Separator Styling', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<RangeControl
 				label={ __( 'Separator Thickness', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.separatorThickness }
@@ -65,7 +75,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			}
 			{ ( 'shadow' === attributes.separatorType || ( 'line' === attributes.separatorType && 'solid' !== attributes.lineStyle ) ) &&
 				<WpmozoColorPicker props={props}
-					ColorKey="shadow"
+					ColorKey="separator"
 					ColorTypes={ [
 						{ key: 'Color', label: __( 'Separator Color', 'wpmozo-blocks-and-addons' ) },
 					] }
@@ -73,17 +83,18 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			}
 		</PanelBody>
 		{ 'line' === attributes.separatorType && 'imageSeparator' === attributes.lineUseWith &&
-			<PanelBody title={ __( 'Image Styling', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
-				<SelectControl
+			<PanelBody title={ __( 'Image Styling', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
+				<ToggleGroupControl
+					__next40pxDefaultSize
 					label={ __( 'Image Position', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.imagePosition }
-					options={ [
-						{ value: 'center', label: __( 'Center', 'wpmozo-blocks-and-addons' ) },
-						{ value: 'left', label: __( 'Left', 'wpmozo-blocks-and-addons' ) },
-						{ value: 'right', label: __( 'Right', 'wpmozo-blocks-and-addons' ) },
-					] }
 					onChange={ ( newValue ) => setAttributes( { imagePosition: newValue } ) }
-				/>
+				>
+					<ToggleGroupControlOption value="left" aria-label="Left" label={<Dashicon icon="arrow-left-alt2" />}  showTooltip={ true } />
+					
+					<ToggleGroupControlOption value="center" aria-label="Center" label={<Dashicon icon="marker" />} showTooltip={ true } />
+					<ToggleGroupControlOption value="right" aria-label="Right" label={<Dashicon icon="arrow-right-alt2" />} showTooltip={ true } />
+				</ToggleGroupControl>
 				<RangeControl
 					label={ __( 'Image Width', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.imageWidth }
@@ -93,17 +104,18 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			</PanelBody>
 		}
 		{ 'line' === attributes.separatorType && 'iconSeparator' === attributes.lineUseWith &&
-			<PanelBody title={ __( 'Icon Styling', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
-				<SelectControl
+			<PanelBody title={ __( 'Icon Styling', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
+				<ToggleGroupControl
+					__next40pxDefaultSize
 					label={ __( 'Icon Position', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.iconPosition }
-					options={ [
-						{ value: 'center', label: __( 'Center', 'wpmozo-blocks-and-addons' ) },
-						{ value: 'left', label: __( 'Left', 'wpmozo-blocks-and-addons' ) },
-						{ value: 'right', label: __( 'Right', 'wpmozo-blocks-and-addons' ) },
-					] }
 					onChange={ ( newValue ) => setAttributes( { iconPosition: newValue } ) }
-				/>
+				>
+					<ToggleGroupControlOption value="left" aria-label="Left" label={<Dashicon icon="arrow-left-alt2" />}  showTooltip={ true } />
+					
+					<ToggleGroupControlOption value="center" aria-label="Center" label={<Dashicon icon="marker" />} showTooltip={ true } />
+					<ToggleGroupControlOption value="right" aria-label="Right" label={<Dashicon icon="arrow-right-alt2" />} showTooltip={ true } />
+				</ToggleGroupControl>
 				<WpmozoColorPicker props={props} 
 					ColorKey="icon"
 					ColorTypes={ [ 
@@ -166,7 +178,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			</PanelBody>
 		}
 		{ 'line' === attributes.separatorType && 'textSeparator' === attributes.lineUseWith &&
-			<PanelBody title={ __( 'Text Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-text-styling-panel wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Text Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-text-styling-panel wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 				<BaseControl className="wpmozo-button-tabs-wrap">    
 					<ButtonGroup>
 						<Button className="wpmozo-button-tabs-btn"

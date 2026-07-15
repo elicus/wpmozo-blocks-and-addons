@@ -248,7 +248,6 @@ export const headingLevelsList = [
 
 export const inspectorPanelTabs = ({showGeneral = true, showDesign = true, showAdvanced = true} = {}) => {
 	const tabs = [];
-
 	if (showGeneral) {
 		tabs.push({
 			name: 'general',

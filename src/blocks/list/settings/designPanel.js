@@ -20,6 +20,11 @@ import {
 
 export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+					
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
 	const [ deviceType, setDeviceType ] = useState('tablet'),
 		[ textType, setTextType ] = useState('text'),
 		dividerStyle = [
@@ -58,7 +63,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 	];
 
 	return ( <>
-		<PanelBody title={ __( 'List', 'wpmozo-blocks-and-addons' ) }  initialOpen={true}>
+		<PanelBody title={ __( 'List', 'wpmozo-blocks-and-addons' ) }  opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<WpmozoAlignment
 				label={__( 'Alignment', 'wpmozo-blocks-and-addons')}
 				onChange={ ( newValue ) => setAttributes( { listAlignment: newValue } ) }
@@ -97,7 +102,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				onGradientChange={ (newValue) => setAttributes({ globalItemBackgroundGradient: newValue }) }
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Item Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-text-styling-panel wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Item Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-text-styling-panel wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			<RangeControl
 				label={ __( 'Indentation', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.indentation }
@@ -163,7 +168,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				}
 			</BaseControl>
 		</PanelBody>
-		<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+		<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 			<RangeControl
 				label={ __( 'Icon Font Size', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.iconFontSize }
@@ -183,7 +188,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				]}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Image', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+		<PanelBody title={ __( 'Image', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 			<RangeControl
 				label={ __( 'Thumbnail Width', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.imageWidth }
@@ -193,7 +198,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				max={ 100 }
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Divider', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+		<PanelBody title={ __( 'Divider', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
 			<RangeControl
 				label={ __( 'Divider Size', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.dividerSize }

@@ -81,6 +81,7 @@ export const AdvancedPanel = ( { attributes, setAttributes, exclude = {}, hoverS
 								? { wrapBackgroundHover: color || '' }
 								: { wrapBackground: color || '' }
 						) }
+						enableAlpha
 					/>
 				) }
 			/>

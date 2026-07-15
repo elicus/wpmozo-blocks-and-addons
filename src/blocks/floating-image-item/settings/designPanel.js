@@ -13,6 +13,11 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 
 	let props = { attributes, setAttributes };
 	props = Object.assign({}, props, {preAttributes: {}});
+	const [openPanel, setOpenPanel] = useState('panel1');
+		
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	};
 
 	const [ contentType, setContentType ] = useState('front');
 
@@ -64,7 +69,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 	];
 
 	return ( <>
-		<PanelBody title={ __( 'Image Position', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+		<PanelBody title={ __( 'Image Position', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')} >
 			<__experimentalUnitControl
 				label={ __( 'Horizontal Align', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.horizontalAlign }
@@ -78,7 +83,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				__next40pxDefaultSize = {true}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Image Animation', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+		<PanelBody title={ __( 'Image Animation', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			<SelectControl
 				label={ __( 'Floating Effect', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.animationEffect }
@@ -124,7 +129,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				__nextHasNoMarginBottom = {true}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Image Sizing', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Image Sizing', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 			<WpmozoSize
 				SizeKey="image"
 				props={props}
@@ -132,7 +137,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				__nextHasNoMarginBottom = {true}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Image Border', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Image Border', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 			<WpmozoBorder
 				BorderKey="image"
 				props={props}

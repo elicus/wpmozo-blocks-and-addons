@@ -32,14 +32,11 @@ const Inspector = ( { attributes, setAttributes } ) => {
 			<TabPanel
 				className="wpmozo-settings-tab-panel"
 				activeClass="is-active"
-				tabs={ inspectorPanelTabs() }
+				tabs={ inspectorPanelTabs({ showDesign: false }) }
 			>
 				{ ( tab ) => ( <div className="wpmozo-settings-tab-panel-content">
 					{ tab.name === 'general' &&
 						<GeneralPanel attributes={attributes} setAttributes={setAttributes} />
-					}
-					{ tab.name === 'design' &&
-						<DesignPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState} />
 					}
 					{ tab.name === 'advanced' &&
 						<AdvancedPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState}/>

@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { concat, find } from 'lodash';
+import { at, concat, find } from 'lodash';
 import { Fragment } from "@wordpress/element";
 import { View } from '@wordpress/primitives';
 
@@ -109,7 +109,7 @@ export default function Edit( props ) {
 				fromSavedContent: Boolean( block.originalContent ),
 				id:               block.attributes.id,
 				url:              block.attributes.url,
-				caption:          block.attributes.caption ?? '',
+				caption:          block.attributes.caption?.text ? block.attributes.caption.text : block.attributes.caption ,
 			} ) ),
 		[ innerBlockImages ]
 	);
@@ -119,7 +119,8 @@ export default function Edit( props ) {
 		if ( Array.isArray( images ) && images.length > 0 ) {
 			setAttributes( { images_data: images } );
 		}
-	}, [ images ] );
+	}, [ images, JSON.stringify( attributes ) ] );
+	console.log(attributes.images_data);
 
 	useEffect( () => {
 		const event = new CustomEvent( 'WPMozoWavyGalleryPropsChanged' );

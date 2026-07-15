@@ -32,7 +32,8 @@ export default function Edit(props) {
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,
 		blockProps = useBlockProps(wrapProps),
-		wrapStyle = wrapArgs?.wrapStyle;
+		wrapStyle = wrapArgs?.wrapStyle,
+        isEdit = true;
 
     useEffect( () => {
 		if ( attributes.ID !== clientId ) {
@@ -94,7 +95,7 @@ export default function Edit(props) {
         <Fragment>
             <Inspector {...props} />
             <style>
-                { generateDynamicStyle({ attributes, clientId }) }
+                { generateDynamicStyle({ attributes, clientId, isEdit }) }
             </style>
             <BlockControls>
                 <ToolbarGroup>

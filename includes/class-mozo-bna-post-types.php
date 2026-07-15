@@ -359,17 +359,18 @@ class Mozo_Bna_Post_Types {
 		// Proceed to add custom meta.
 		$data = $response->get_data();
 
-		$data['short_description'] = get_post_meta( $post->ID, 'wpmozo_ae_team_member_short_desc', true );
-		$data['designation']       = get_post_meta( $post->ID, 'wpmozo_ae_team_member_designation', true );
-		$data['phone_number']      = get_post_meta( $post->ID, 'wpmozo_ae_team_member_phone_number', true );
-		$data['email_address']     = get_post_meta( $post->ID, 'wpmozo_ae_team_member_email_address', true );
-		$data['website']           = get_post_meta( $post->ID, 'wpmozo_ae_team_member_website', true );
-		$data['facebook']          = get_post_meta( $post->ID, 'wpmozo_ae_team_member_facebook', true );
-		$data['twitter']           = get_post_meta( $post->ID, 'wpmozo_ae_team_member_twitter', true );
-		$data['linkedin']          = get_post_meta( $post->ID, 'wpmozo_ae_team_member_linkedin', true );
-		$data['instagram']         = get_post_meta( $post->ID, 'wpmozo_ae_team_member_instagram', true );
-		$data['youtube']           = get_post_meta( $post->ID, 'wpmozo_ae_team_member_youtube', true );
-		$data['member_skills']     = get_post_meta( $post->ID, 'wpmozo_ae_team_member_member_skills', true );
+		$data['short_description']    = get_post_meta( $post->ID, 'wpmozo_ae_team_member_short_desc', true );
+		$data['designation']          = get_post_meta( $post->ID, 'wpmozo_ae_team_member_designation', true );
+		$data['phone_number']         = get_post_meta( $post->ID, 'wpmozo_ae_team_member_phone_number', true );
+		$data['email_address']        = get_post_meta( $post->ID, 'wpmozo_ae_team_member_email', true );
+		$data['website']              = get_post_meta( $post->ID, 'wpmozo_ae_team_member_website', true );
+		$data['facebook']             = get_post_meta( $post->ID, 'wpmozo_ae_team_member_facebook', true );
+		$data['twitter']              = get_post_meta( $post->ID, 'wpmozo_ae_team_member_twitter', true );
+		$data['linkedin']             = get_post_meta( $post->ID, 'wpmozo_ae_team_member_linkedin', true );
+		$data['instagram']            = get_post_meta( $post->ID, 'wpmozo_ae_team_member_instagram', true );
+		$data['youtube']              = get_post_meta( $post->ID, 'wpmozo_ae_team_member_youtube', true );
+		$data['member_skills']        = get_post_meta( $post->ID, 'wpmozo_ae_team_member_skills', true );
+		$data['member_skills_values'] = get_post_meta( $post->ID, 'wpmozo_ae_team_member_skills_value', true );
 
 		$response->set_data( $data );
 

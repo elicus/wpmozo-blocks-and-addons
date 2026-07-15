@@ -11,9 +11,15 @@ import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function Edit(props) {
 
-    const { attributes, setAttributes, clientId } = props;
+    const { attributes, setAttributes, clientId } = props,
+        wrapArgs = attributes?.ID && mergeWrapperProps( { 
+            className: `wpmozo-content-wrapper`,
+            style: {}
+        }, attributes ),
+        wrapProps = wrapArgs?.wrapprops,
+        blockProps = useBlockProps(wrapProps);
     return (
-        <div {...useBlockProps( mergeWrapperProps( { className: 'wpmozo-content-wrapper' }, attributes ) )}>
+        <div {...blockProps}>
             <InnerBlocks
                 renderAppender={
                     select( "core/block-editor" ).getBlockOrder(clientId).length > 0 ? undefined : InnerBlocks.ButtonBlockAppender

@@ -8,16 +8,13 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 		];
 	let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
 
-	let styles = `#block-${clientId}{`;
-
-	styles += `
+	let styles = (attributes.logoBackground || convertedStyle.logo) ? `
+	#block-${clientId}{
 		.logo-wrap {
-			background: ${attributes.logoBackground};
-			${convertedStyle.logo}
+			${attributes.logoBackground ? `background: ${attributes.logoBackground}` : ''};
+			${convertedStyle.logo ?? ''}
 		}
-	`;
-
-	styles += `}`;
+	}` : '';
 
 	return styles;
 };

@@ -21,7 +21,8 @@ export default function Edit(props) {
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,
 		blockProps = useBlockProps(wrapProps),
-		wrapStyle = wrapArgs?.wrapStyle;
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit = true;
 
 	const ID = clientId;
 		// Ensure ID is set once (no render-time mutation).
@@ -85,7 +86,7 @@ export default function Edit(props) {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, clientId, isEdit } ) }</style>
 
 			<div id={`block-${ID}`} { ...blockProps}>
 				<div className="wpmozo-bna-fancy-heading-wrap">

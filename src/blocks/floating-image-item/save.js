@@ -11,7 +11,7 @@ export default function save({ attributes }) {
             ? attributes.altText
             : 'alt',
         wrapArgs = attributes?.ID && mergeWrapperProps( { 
-			className: 'wpmozo-bna-floating-image-item' ,
+			className: 'wpmozo-bna-floating-image-item floating-image-item' ,
 			style: {}
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,

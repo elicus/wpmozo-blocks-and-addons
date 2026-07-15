@@ -14,11 +14,16 @@ import {WpmozoDimensions, WpmozoColorPicker, WpmozoTypography} from '../../../co
 
 export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+					
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
 	const [ contentType, setContentType ] = useState('front');
 	const [ textType, setTextType ] = useState('normal');
 
 	return ( <>
-		<PanelBody title={ __( 'Item Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-text-styling-panel wpmozo-typography-panel" initialOpen={true}>
+		<PanelBody title={ __( 'Item Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-text-styling-panel wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<BaseControl
 				className="wpmozo-button-tabs-wrap"
 			>
@@ -77,7 +82,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			</BaseControl>
 		</PanelBody>
 		{ 'icon' === attributes.markerType &&
-			<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+			<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 				<ToggleControl
 					label={ __( 'Style Icon', 'wpmozo-blocks-and-addons' ) }
 					checked={ attributes.styleIcon }
@@ -149,7 +154,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				}
 			</PanelBody>
 		}
-		<PanelBody title={ __( 'Spacing', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+		<PanelBody title={ __( 'Spacing', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 			<WpmozoDimensions
 				DimensionKey='item'
 				label={ __( 'Item Spacing', 'wpmozo-blocks-and-addons' ) }
@@ -160,7 +165,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				props={props}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Background', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+		<PanelBody title={ __( 'Background', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 			<ColorGradientControl
 				colorValue={ attributes.itemBackgroundColor }
 				gradientValue={ attributes.itemBackgroundGradient }

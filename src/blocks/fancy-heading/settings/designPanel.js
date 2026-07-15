@@ -14,16 +14,22 @@ import {
 	WpmozoColorPicker,
 	WpmozoTypography
 } from '../../../common/components/index';
+import {useState} from "@wordpress/element"
 
 import { headingLevelsList } from '../../../common/utils.js';
 
 export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+		
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	};
 
 	return ( <>
 		{/* Global Text Settings. */}
 		<PanelBody title={ __( 'Global Text Settings', 'wpmozo-blocks-and-addons' ) }
-			className="wpmozo-typography-panel" initialOpen={true}
+			className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={() => handleToggle('panel1')}
 		>
 			<WpmozoColorPicker
 				ColorKey="heading"
@@ -51,7 +57,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 		</PanelBody>
 		{/* Pre Text Settings. */}
 		<PanelBody title={ __( 'Pre Text Settings', 'wpmozo-blocks-and-addons' ) }
-			className="wpmozo-typography-panel" initialOpen={false}
+			className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={() => handleToggle('panel2')}
 		>
 			<WpmozoColorCombo
 				label={ __( 'Pre Text Color', 'wpmozo-blocks-and-addons' ) }
@@ -89,7 +95,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 		</PanelBody>
 		{/* Main Text Settings. */}
 		<PanelBody title={ __( 'Main Text Settings', 'wpmozo-blocks-and-addons' ) }
-			className="wpmozo-typography-panel" initialOpen={false}
+			className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={() => handleToggle('panel3')}
 		>
 			<WpmozoColorCombo
 				label={ __( 'Main Text Color', 'wpmozo-blocks-and-addons' ) }
@@ -127,7 +133,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 		</PanelBody>
 		{/* Post Text Settings. */}
 		<PanelBody title={ __( 'Post Text Settings', 'wpmozo-blocks-and-addons' ) }
-			className="wpmozo-typography-panel" initialOpen={false}
+			className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={() => handleToggle('panel4')}
 		>
 			<WpmozoColorCombo
 				label={ __( 'Post Text Color', 'wpmozo-blocks-and-addons' ) }

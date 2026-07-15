@@ -23,7 +23,8 @@ const Edit = (props) => {
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,
 		blockProps = useBlockProps(wrapProps),
-		wrapStyle = wrapArgs?.wrapStyle;
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit = true;
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
 		if ( attributes.ID !== clientId ) {
@@ -244,7 +245,7 @@ const Edit = (props) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, clientId, isEdit } ) }</style>
 
 			<div {...blockProps} onClick={selectBlock}>
 				<div className={"wpmozo_swiper_wrapper" + equalHeightClass}
@@ -259,6 +260,8 @@ const Edit = (props) => {
 					data-space_between_slides={ attributes.spaceBetweenSlides || '20' }
 					data-space_between_slides_tablet={ attributes.spaceBetweenSlidesTablet || '20' }
 					data-space_between_slides_mobile={ attributes.spaceBetweenSlidesMobile || '20' }
+					data-coverflow_rotate={attributes.coverflowRotate || '40'}
+					data-coverflow_depth={attributes.coverflowDepth || '100'}
 
 					data-enable_coverflow_shadow={ attributes.enableCoverflowShadow ?? 'false' }
 					data-enable_loop={ attributes.enableLoop || 'false' }

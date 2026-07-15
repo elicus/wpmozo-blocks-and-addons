@@ -14,11 +14,16 @@ import {
 export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	let props = { attributes, setAttributes };
 	props = Object.assign({}, props, {preAttributes: {}});
+	const [openPanel, setOpenPanel] = useState('panel1');
+					
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
 
 	const [ deviceType, setDeviceType ] = useState('tablet');
 
 	return ( <>
-		<PanelBody title={ __( 'Container', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
+		<PanelBody title={ __( 'Container', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<WpmozoColorPicker
 				ColorKey="container"
 				props={props}
@@ -37,7 +42,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				props={props}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Slider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Slider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			<WpmozoColorPicker
 				ColorKey="slider"
 				props={props}
@@ -77,7 +82,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				props={props}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Logo', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Logo', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 			<RangeControl
 				label={ __( 'Logo Width', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.logoWidth }

@@ -30,10 +30,8 @@ export const DesignPanel = ({attributes, setAttributes, hoverState, setHoverStat
 	const [btnStyle, setBtnStyleType] = useState('normal');
 	const [iconColor, setIconColorType] = useState('normal');
 	const [textStyle, setTextStyleType] = useState('normal');
-	// Track which panel is open — null matlab koi nahi
 	const [openPanel, setOpenPanel] = useState('panel1');
 
-	// Toggle helper: same panel dobara click karo to band ho
 	const handleToggle = (panelId) => {
 		setOpenPanel(prev => prev === panelId ? null : panelId);
 	};

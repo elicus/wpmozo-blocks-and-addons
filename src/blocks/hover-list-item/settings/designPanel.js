@@ -29,6 +29,12 @@ import { headingLevelsList } from '../../../common/utils.js';
 export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
+	const [openPanel, setOpenPanel] = useState('panel1');
+		
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	};
+
 	const [ titleType, setTitleType ]       = useState( 'normal' );
 	const [ subTitleType, setSubTitleType ] = useState( 'normal' );
 	const [ descType, setDescType ]         = useState( 'normal' );
@@ -36,7 +42,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 
 	return ( <>
 		{/* Title Text. */}
-		<PanelBody title={ __( 'Title Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
+		<PanelBody title={ __( 'Title Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<BaseControl label={ __( 'Title Level', 'wpmozo-blocks-and-addons' ) }>
 				<ButtonGroup>
 					{ headingLevelsList.map( ( item, index ) => (
@@ -88,7 +94,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			</BaseControl>
 		</PanelBody>
 		{/* Subtitle Text. */}
-		<PanelBody title={ __( 'Sub Title Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Sub Title Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>
 				<ButtonGroup>
 					<Button className="wpmozo-button-tabs-btn"
@@ -127,7 +133,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			</BaseControl>
 		</PanelBody>
 		{/* Description Text. */}
-		<PanelBody title={ __( 'Description Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Description Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>
 				<ButtonGroup>
 					<Button className="wpmozo-button-tabs-btn"
@@ -167,7 +173,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 		</PanelBody>
 		{/* Icon. */}
 		{ attributes.showIcon && ( <>
-			<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 				<RangeControl
 					label={ __( 'Icon Font Size', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.iconFontsize }
@@ -186,7 +192,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 		</> ) }
 		{/* Button. */}
 		{ attributes.showButton && ( <>
-			<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
 				<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>   
 					<ButtonGroup>
 						<Button
@@ -284,7 +290,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				</BaseControl>
 			</PanelBody>
 			{/* Block. */}
-			<PanelBody title={ __( 'Block', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Block', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel6'} onToggle={()=> handleToggle('panel6')}>
 				<ColorGradientControl colors={[]} gradients={[]}
 					label={ __( 'Background', 'wpmozo-blocks-and-addons' ) }
 					colorValue={ attributes.blockBackground }

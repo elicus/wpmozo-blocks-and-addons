@@ -20,12 +20,17 @@ import { headingLevelsList } from '../../../common/utils.js';
 
 export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	};
 
 	const [ titleStyleType, setTitleStyleType ] = useState( 'normal' );
 
 	return ( <>
 		{ 'layout1' === attributes.breadcrumbLayout && <>
-			<PanelBody title={ __( 'Breadcrumbs', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
+			<PanelBody title={ __( 'Breadcrumbs', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={() => handleToggle('panel1')}>
 				<WpmozoColorPicker props={props}
 					ColorKey="breadcrumbs"
 					ColorTypes={ [
@@ -65,7 +70,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			</PanelBody>
 		</> }
 		{ 'layout2' === attributes.breadcrumbLayout && <>
-			<PanelBody title={ __( 'Separator Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Separator Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={() => handleToggle('panel2')}>
 				<WpmozoColorPicker props={props}
 					ColorKey="separator"
 					ColorTypes={ [
@@ -113,7 +118,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				/>
 			</PanelBody>
 		</> }
-		<PanelBody title={ __( 'Home Link', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Home Link', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={() => handleToggle('panel3')}>
 			<ToggleControl
 				label={ __( 'Custom Home Link Text', 'wpmozo-blocks-and-addons' ) }
 				checked={ attributes.useHomeLinkText || false }
@@ -166,7 +171,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				</>
 			}
 		</PanelBody>
-		<PanelBody title={ __( 'Text Settings', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Text Settings', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={() => handleToggle('panel4')}>
 			<WpmozoColorPicker props={ props }
 				label={ __( 'Text Color', 'wpmozo-blocks-and-addons' ) }
 				ColorKey="text"

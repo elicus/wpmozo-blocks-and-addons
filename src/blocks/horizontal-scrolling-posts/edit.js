@@ -50,6 +50,16 @@ export default function Edit(props) {
 			setAttributes( updates );
 		}
 	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+	
+
+	useEffect(() => {
+        const event = new CustomEvent('WPMozoScrollPostsPropsChanged');
+        const iframe = document.querySelector('iframe[name="editor-canvas"]');
+        window.dispatchEvent(event);
+        if (iframe?.contentWindow) {
+            iframe.contentWindow.dispatchEvent(event);
+        }
+    }, [attributes]);
 
 	const postsToShow        = parseInt( attributes.postsToShow ) ?? 5;
 	const postOrder          = attributes.postOrder ?? 'DESC';

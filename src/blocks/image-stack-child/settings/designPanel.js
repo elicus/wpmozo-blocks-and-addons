@@ -13,7 +13,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 
 	return ( <>
 		{'icon' === attributes.stackType && (
-			<PanelBody title={ __( 'Item Background', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={open}>
+			<PanelBody title={ __( 'Icon Background', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={open}>
 				<ColorGradientControl colors={[]} gradients={[]}
 									  label={ __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
 									  colorValue={ attributes.itemBackground }
@@ -23,7 +23,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				/>
 			</PanelBody>
 		)}
-		<PanelBody title={ __( 'icon/image Border', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={open}>
+		<PanelBody title={ __( `${'image' === attributes.stackType ? 'Image' :'Icon'}  Border`, 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={open}>
 			<WpmozoBorder
 				props={props}
 				BorderKey="image"

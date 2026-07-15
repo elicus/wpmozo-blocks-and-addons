@@ -20,7 +20,8 @@ const Edit = (props) => {
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,
 		blockProps = useBlockProps(wrapProps),
-		wrapStyle = wrapArgs?.wrapStyle;
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit = true;
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
@@ -74,7 +75,7 @@ const Edit = (props) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, clientId, isEdit } ) }</style>
 
 			<div id={`block-${attributes.ID}`} { ...blockProps}>
 				<div className="wpmozo-bna-image-card-wrapper">

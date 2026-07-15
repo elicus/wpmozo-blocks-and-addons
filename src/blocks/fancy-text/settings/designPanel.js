@@ -14,14 +14,20 @@ import {
 	WpmozoColorPicker,
 	WpmozoTypography
 } from '../../../common/components/index';
+import { useState } from '@wordpress/element';
 
 export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 	let backImage = ( attributes.fancyTextBackgroundImg ) ? attributes.fancyTextBackgroundImg : WPMozoEditorObj.placeholderImg;
+	const [openPanel, setOpenPanel] = useState('panel1');
+		
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	};
 
 	return ( <>
 		<PanelBody title={__('Fancy Text Style', 'wpmozo-blocks-and-addons')}
-				className="wpmozo-typography-panel" initialOpen={true}
+				className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={() => handleToggle('panel1')}
 		>
 			{ 'gradient' === attributes.textStyle && (
 				<WpmozoColorPicker props={props}
@@ -120,15 +126,15 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 						DimensionsTypes={ { padding: true } }
 					/>
 				</> ) }
-				<WpmozoAlignment
-					label={ __( 'Text Alignment', 'wpmozo-blocks-and-addons' ) }
-					onChange={ ( newValue ) => setAttributes( { textAlignment: newValue } ) }
-					value={attributes.textAlignment}
-				/>
 			</> ) }
+			<WpmozoAlignment
+				label={ __( 'Text Alignment', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( newValue ) => setAttributes( { textAlignment: newValue } ) }
+				value={attributes.textAlignment}
+			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Fancy Text Typography', 'wpmozo-blocks-and-addons' ) }
-			className="wpmozo-typography-panel" initialOpen={false}
+			className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={() => handleToggle('panel2')}
 		>
 			<WpmozoTypography props={props}
 				TypographyKey="text"

@@ -21,6 +21,11 @@ import { headingLevelsList } from '../../../common/utils.js';
 
 export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+		
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	};
 
 	const [ typographyType, setTypographyType ]               = useState( 'title' );
 	const [ flipBoxType, setFlipBoxType ]                     = useState( 'front' );
@@ -32,7 +37,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 	const [ flipboxDimensionsType, setFlipboxDimensionsType ] = useState( 'front' );
 
 	return ( <>
-		<PanelBody title={ __( 'Global Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
+		<PanelBody title={ __( 'Global Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<WpmozoRangeSize props={props}
 				label={ __( 'Content Width', 'wpmozo-blocks-and-addons') }
 				rangeSizeKey='flipboxWidth'
@@ -67,7 +72,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				}
 			</BaseControl>
 		</PanelBody>
-		<PanelBody title={ __( 'FlipBox Style', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'FlipBox Style', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			<BaseControl className="wpmozo-button-tabs-wrap">    
 				<ButtonGroup>
 					<Button className="wpmozo-button-tabs-btn"
@@ -169,7 +174,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				</> }
 			</BaseControl>
 		</PanelBody>
-		<PanelBody title={ __( 'FlipBox Image/Icon Style', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'FlipBox Image/Icon Style', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 			<BaseControl className="wpmozo-button-tabs-wrap">    
 				<ButtonGroup>
 					<Button className="wpmozo-button-tabs-btn"
@@ -205,16 +210,18 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 							value={ attributes.frontImageAlignment }
 						/>
 					</> }
-					<SelectControl
-						label={ __( 'Image/Icon Placment', 'wpmozo-blocks-and-addons' ) }
-						value={ attributes.frontElementAlign }
-						options={ [
-							{ value: 'top', label: __( 'Top', 'wpmozo-blocks-and-addons' ) },
-							{ value: 'left', label: __( 'Left', 'wpmozo-blocks-and-addons' ) },
-							{ value: 'right', label: __( 'Right', 'wpmozo-blocks-and-addons' ) }
-						] }
-						onChange={ ( newValue ) => setAttributes( { frontElementAlign: newValue } ) }
-					/>
+					{ ('image' === attributes.frontElType || 'icon' === attributes.frontElType) ? <> 
+						<SelectControl
+							label={ __( `${('image' === attributes.frontElType ? 'Image' : 'Icon')} Placement`, 'wpmozo-blocks-and-addons' ) }
+							value={ attributes.frontElementAlign }
+							options={ [
+								{ value: 'top', label: __( 'Top', 'wpmozo-blocks-and-addons' ) },
+								{ value: 'left', label: __( 'Left', 'wpmozo-blocks-and-addons' ) },
+								{ value: 'right', label: __( 'Right', 'wpmozo-blocks-and-addons' ) }
+							] }
+							onChange={ ( newValue ) => setAttributes( { frontElementAlign: newValue } ) }
+						/>
+					</> : "Select an element." }
 					{ 'icon' === attributes.frontElType && <>
 						<ToggleControl
 							label={ __( 'Style Icon', 'wpmozo-blocks-and-addons' ) }
@@ -290,16 +297,18 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 							value={ attributes.backImageAlignment }
 						/>                                        
 					</> }
-					<SelectControl
-						label={ __( 'Image/Icon Placment', 'wpmozo-blocks-and-addons' ) }
-						value={ attributes.backElementAlign }
-						options={ [
-							{ value: 'top', label: __( 'Top', 'wpmozo-blocks-and-addons' ) },
-							{ value: 'left', label: __( 'Left', 'wpmozo-blocks-and-addons' ) },
-							{ value: 'right', label: __( 'Right', 'wpmozo-blocks-and-addons' ) }
-						] }
-						onChange={ ( newValue ) => setAttributes( { backElementAlign: newValue } ) }
-					/>
+					{('image' === attributes.backElType || 'icon' === attributes.backElType) ? <>
+						<SelectControl
+							label={ __( `${'image' === attributes.backElType ? 'Image' : 'Icon'} Placement`, 'wpmozo-blocks-and-addons' ) }
+							value={ attributes.backElementAlign }
+							options={ [
+								{ value: 'top', label: __( 'Top', 'wpmozo-blocks-and-addons' ) },
+								{ value: 'left', label: __( 'Left', 'wpmozo-blocks-and-addons' ) },
+								{ value: 'right', label: __( 'Right', 'wpmozo-blocks-and-addons' ) }
+							] }
+							onChange={ ( newValue ) => setAttributes( { backElementAlign: newValue } ) }
+						/>
+					</> : "Select an element." }
 					{ 'icon' === attributes.backElType && <>
 						<ToggleControl
 							label={ __( 'Style Icon', 'wpmozo-blocks-and-addons' ) }
@@ -353,7 +362,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				</> }
 			</BaseControl>
 		</PanelBody>
-		<PanelBody title={ __( 'FlipBox Content Alignment', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'FlipBox Content Alignment', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 			<BaseControl className="wpmozo-button-tabs-wrap">    
 				<ButtonGroup>
 					<Button className="wpmozo-button-tabs-btn"
@@ -393,7 +402,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				</> }
 			</BaseControl>
 		</PanelBody>
-		<PanelBody title={ __( 'FlipBox Border', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'FlipBox Border', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
 			<BaseControl className="wpmozo-button-tabs-wrap">    
 				<ButtonGroup>
 					<Button className="wpmozo-button-tabs-btn"
@@ -417,7 +426,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				}
 			</BaseControl>
 		</PanelBody>
-		<PanelBody title={ __( 'FlipBox Padding', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'FlipBox Padding', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel6'} onToggle={()=> handleToggle('panel6')}>
 			<BaseControl className="wpmozo-button-tabs-wrap">    
 				<ButtonGroup>
 					<Button className="wpmozo-button-tabs-btn"
@@ -444,7 +453,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			</BaseControl>
 		</PanelBody>
 		{ attributes.backHasButton && <>
-			<PanelBody title={ __( 'FlipBox Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'FlipBox Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel7'} onToggle={()=> handleToggle('panel7')}>
 				<WpmozoColorPicker props={props}
 					ColorKey="back"
 					ColorTypes={ [ 

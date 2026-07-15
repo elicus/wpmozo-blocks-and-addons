@@ -20,34 +20,35 @@ const WPMozoEditorObj = wpmozo_bna_editor_object;
         ID = clientId,
         altText = ! wpmozo_is_empty( attributes.altText ) 
             ? attributes.altText
-            : 'alt',
+            : (attributes?.image?.title ? attributes.image.title : 'alt'),
         wrapArgs = attributes?.ID && mergeWrapperProps( { 
-			className: `wpmozo-bna-floating-image-item${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			className: `floating-image-item wpmozo-bna-floating-image-item${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
 			style: {}
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,
 		blockProps = useBlockProps(wrapProps),
 		wrapStyle = wrapArgs?.wrapStyle;
-        useEffect( () => {
-            if ( attributes.ID !== clientId ) {
-                setAttributes( { ID: clientId } );
+    useEffect( () => {
+        if ( attributes.ID !== clientId ) {
+            setAttributes( { ID: clientId } );
+        }
+        const updates = {};
+        if ( attributes.ID !== clientId ) {
+            updates.ID = clientId;
+        }
+
+        // wrapStyle recalculate karke attribute mein store karo
+        if ( attributes.ID ) {
+            if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+                updates.wrapStyle = wrapStyle;
             }
-            const updates = {};
-            if ( attributes.ID !== clientId ) {
-                updates.ID = clientId;
-            }
+        }
+
+        if ( Object.keys( updates ).length ) {
+            setAttributes( updates );
+        }
+    }, [ clientId, JSON.stringify( attributes ) ] );
     
-            // wrapStyle recalculate karke attribute mein store karo
-            if ( attributes.ID ) {
-                if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
-                    updates.wrapStyle = wrapStyle;
-                }
-            }
-    
-            if ( Object.keys( updates ).length ) {
-                setAttributes( updates );
-            }
-        }, [ clientId, JSON.stringify( attributes ) ] );
 
     return (
         <Fragment>

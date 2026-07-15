@@ -23,7 +23,8 @@ const Edit = (props) => {
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,
 		blockProps = useBlockProps(wrapProps),
-		wrapStyle = wrapArgs?.wrapStyle;
+		wrapStyle = wrapArgs?.wrapStyle,
+        isEdit = true;
 
     let emptyBarEnabled = '';
 
@@ -57,7 +58,7 @@ const Edit = (props) => {
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
-                {generateDynamicStyle({attributes, clientId})}
+                {generateDynamicStyle({attributes, clientId, isEdit})}
             </style>
             <div {...blockProps} id={`block-${attributes.ID}`}>
                 <div className={`wpmozo-bna-bar-counter ${emptyBarEnabled}`}>
