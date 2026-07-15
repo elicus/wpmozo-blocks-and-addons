@@ -159,6 +159,8 @@ if ( ! function_exists( 'portfolio_slider_render_callback' ) ) {
 				'enable_linear_trans'         => $attributes['enableLinearTrans'] ? 'true' : 'false',
 				'trans_duration'              => $attributes['transDuration'] ?? '1000',
 				'enable_coverflow_shadow'     => $attributes['enableCoverflowShadow'] ?? 'false',
+				'coverflow_rotate'            => $attributes['coverflowRotate'] ?? '40',
+				'coverflow_depth'             => $attributes['coverflowDepth'] ?? '100',
 
 				'show_arrows'                 => $attributes['showArrows'] ? 'true' : 'false',
 				'show_control_dot'            => $attributes['showControlDot'] ? 'true' : 'false',

@@ -293,6 +293,8 @@ const Edit = (props) => {
 					data-space_between_slides_mobile={ attributes.spaceBetweenSlidesMobile || '20' }
 
 					data-enable_coverflow_shadow={ attributes.enableCoverflowShadow ?? 'false' }
+					data-coverflow_rotate={ attributes.coverflowRotate ?? '40' }
+					data-coverflow_depth={ attributes.coverflowDepth ?? '100' }
 					data-enable_loop={ attributes.enableLoop || 'false' }
 					data-auto_height={ autoHeight || 'false' }
 					data-autoplay={ attributes.autoplay || 'true' }

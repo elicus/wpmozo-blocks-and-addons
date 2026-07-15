@@ -78,11 +78,6 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				/>
 				{ attributes.layout !== 'layout2' && (
 					<>
-						<WpmozoBorder props={ props }
-							label={ __( 'Image Border', 'wpmozo-blocks-and-addons' ) }
-							BorderKey="featuredImage"
-							BorderTypes={ { border: true, radius: true } }
-						/>
 						<WpmozoDimensions props={ props }
 							label={ __( 'Image Dimensions', 'wpmozo-blocks-and-addons' ) }
 							DimensionKey='featuredImage'

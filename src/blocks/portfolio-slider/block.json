@@ -120,9 +120,6 @@
 
 		"containerpadding": { "type": "object" },
 
-		"featuredImageborder": { "type": "object" },
-		"featuredImageborderRadius": { "type": "object" },
-
 		"portfoliopadding": { "type": "object" },
 		"portfolioBackground": { "type": "string" },
 		"portfolioBGGradient": { "type": "string" },
