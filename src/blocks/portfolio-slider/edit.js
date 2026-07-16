@@ -208,8 +208,10 @@ const Edit = (props) => {
 					? `custom-swiper-button-prev swiper-button-prev ${attributes.prevArrowIcon}`
 					: 'swiper-button-prev';
 
+			const arrowBgDisabledClass = ( ! attributes.arrowEnableBg ) ? ' wpmozo_arrow_bg_disabled' : '';
+
 			$sliderArrows = <div
-				className={`wpmozo_swiper_navigation wpmozo_arrows_${attributes.arrowsPosition}`}
+				className={`wpmozo_swiper_navigation wpmozo_arrows_${attributes.arrowsPosition}${arrowBgDisabledClass}`}
 				data-arrows_desktop={ attributes.arrowsPosition }
 			>
 				<div className={buttonNextClass}></div>

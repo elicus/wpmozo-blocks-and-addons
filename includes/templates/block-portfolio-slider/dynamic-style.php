@@ -189,16 +189,26 @@ if ( ! function_exists( 'portfolio_slider_generate_dynamic_style' ) ) {
 
 		// Slider arrows.
 		if ( isset( $attrs['showArrows'] ) && true === $attrs['showArrows'] ) {
+			$arrow_bg_size   = $attrs['arrowBgSize'] ?? 36;
+			$arrow_icon_size = $attrs['arrowIconSize'] ?? 24;
+			$final_bg_size   = max( $arrow_bg_size, $arrow_icon_size );
+			$enable_bg       = $attrs['arrowEnableBg'] ?? true;
+
 			$styles .= "{$mainSelector} .swiper-button-next, {$mainSelector} .swiper-button-prev{";
 				$styles .= ( ! empty( $attrs['arrowIconSize'] ) ? "font-size: {$attrs['arrowIconSize']}px;" : '' );
-				$styles .= ( ! empty( $attrs['arrowBackground'] ) ? "background-color: {$attrs['arrowBackground']};" : '' );
 				$styles .= ( ! empty( $attrs['arrowColor'] ) ? "color: {$attrs['arrowColor']};" : '' );
-				$styles .= $block_helpers::get_border_style( 'arrow', $attrs );
-				$styles .= $block_helpers::get_padding_style( 'arrow', $attrs );
+				if ( $enable_bg ) {
+					$styles .= "width: {$final_bg_size}px; height: {$final_bg_size}px;";
+					if ( ! empty( $attrs['arrowBackground'] ) ) {
+						$styles .= "background-color: {$attrs['arrowBackground']};";
+					}
+					$styles .= $block_helpers::get_border_style( 'arrow', $attrs );
+					$styles .= $block_helpers::get_padding_style( 'arrow', $attrs );
+				}
 			$styles .= "}
 				.wpmozo_swiper_wrapper .swiper-button-next:after,
 				.wpmozo_swiper_wrapper .swiper-button-prev:after{
-						font-size: {$attrs['arrowIconSize']}px;
+						font-size: {$arrow_icon_size}px;
 				}
 			";
 			if ( true === $attrs['showArrowOnHover'] ) {

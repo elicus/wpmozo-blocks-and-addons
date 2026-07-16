@@ -111,6 +111,8 @@
 		"titleHoverFontStyle": { "type": "string" },
 		"titleHoverFontWeight": { "type": "string" },
 
+		"arrowEnableBg": { "type": "boolean", "default": true },
+		"arrowBgSize": { "type": "number", "default": 36 },
 		"arrowpadding": { "type": "object" },
 		"arrowIconSize": { "type": "number", "default": 24 },
 		"arrowColor": { "type": "string", "default": "" },

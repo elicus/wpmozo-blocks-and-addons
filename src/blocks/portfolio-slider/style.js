@@ -186,18 +186,31 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 		}`;
 	}
 
-	// Slider arrows.
+	// Slider Navigation controls.
 	if ( attributes.showArrows ) {
-		styles += `.swiper-button-next, .swiper-button-prev{
-			${attributes.arrowIconSize ? `font-size: ${attributes.arrowIconSize}px;` : ''}
-			${attributes.arrowBackground ? `background-color: ${attributes.arrowBackground};` : ''}
-			${attributes.arrowColor ? `color: ${attributes.arrowColor};` : ''}
-			${convertedStyle.arrow}
-		}
-		.wpmozo_swiper_wrapper .swiper-button-next:after,
-		.wpmozo_swiper_wrapper .swiper-button-prev:after{
-			${attributes.arrowIconSize ? `font-size: ${attributes.arrowIconSize}px;` : ''}
-		}`;
+		const arrowBgSize = attributes.arrowBgSize ?? 36;
+		const arrowIconSize = attributes.arrowIconSize ?? 24;
+		const finalBgSize = Math.max( arrowBgSize, arrowIconSize );
+		const enableBg = attributes.arrowEnableBg ?? true;
+
+		styles += `
+			.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-next,
+			.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-prev{
+				${attributes.arrowIconSize ? `font-size: ${attributes.arrowIconSize}px !important;` : ''}
+				${attributes.arrowColor ? `color: ${attributes.arrowColor} !important;` : ''}
+				${enableBg ? `
+					width: ${finalBgSize}px !important;
+					height: ${finalBgSize}px !important;
+					${attributes.arrowBackground ? `background-color: ${attributes.arrowBackground} !important;` : ''}
+					${convertedStyle.arrow}
+				` : ''}
+			}
+			.wpmozo_swiper_wrapper .swiper-button-next:after,
+			.wpmozo_swiper_wrapper .swiper-button-prev:after{
+					${attributes.arrowIconSize ? `font-size: ${attributes.arrowIconSize}px !important;` : ''}
+			}
+		`;
+
 		if ( attributes.showArrowOnHover ) {
 			styles += `.swiper-button-next, .swiper-button-prev{
 				visibility: hidden; opacity: 0; transition: all 300ms ease;

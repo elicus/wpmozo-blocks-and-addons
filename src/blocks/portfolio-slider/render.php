@@ -96,14 +96,17 @@ if ( ! function_exists( 'portfolio_slider_render_callback' ) ) {
 					$button_prev_class .= ' custom-swiper-button-prev ' . esc_attr( $attributes['prevArrowIcon'] );
 				}
 
+				$arrow_bg_disabled_class = ( isset( $attributes['arrowEnableBg'] ) && ! $attributes['arrowEnableBg'] ) ? ' wpmozo_arrow_bg_disabled' : '';
+
 				$slider_arrows = sprintf(
-					'<div class="wpmozo_swiper_navigation wpmozo_arrows_%1$s" data-arrows_desktop="%4$s">
+					'<div class="wpmozo_swiper_navigation wpmozo_arrows_%1$s%5$s" data-arrows_desktop="%4$s">
 						<div class="%2$s"></div><div class="%3$s"></div>
 					</div>',
 					esc_attr( $attributes['arrowsPosition'] ),
 					esc_attr( $button_next_class ),
 					esc_attr( $button_prev_class ),
-					esc_attr( $attributes['arrowsPosition'] )
+					esc_attr( $attributes['arrowsPosition'] ),
+					esc_attr( $arrow_bg_disabled_class )
 				);
 			}
 

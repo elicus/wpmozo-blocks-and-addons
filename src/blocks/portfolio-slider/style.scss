@@ -236,3 +236,14 @@
 	line-height: 1;
 	transform: translateY(-50%);
 }
+
+.wpmozo_swiper_wrapper .wpmozo_arrow_bg_disabled .swiper-button-next,
+.wpmozo_swiper_wrapper .wpmozo_arrow_bg_disabled .swiper-button-prev {
+	background-color: transparent !important;
+	box-shadow: none !important;
+	border: none !important;
+}
+.wpmozo_swiper_wrapper .wpmozo_arrow_bg_disabled .swiper-button-next:hover,
+.wpmozo_swiper_wrapper .wpmozo_arrow_bg_disabled .swiper-button-prev:hover {
+	background-color: transparent !important;
+}

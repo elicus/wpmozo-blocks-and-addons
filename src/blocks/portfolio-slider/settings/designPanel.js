@@ -439,19 +439,36 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				onChange={ ( newValue ) => setAttributes( { arrowIconSize: newValue } ) }
 				min={10} max={100} step={1}
 			/>
+			<ToggleControl
+				label={ __( 'Show Arrow Background', 'wpmozo-blocks-and-addons' ) }
+				checked={ attributes.arrowEnableBg }
+				onChange={ ( newValue ) => setAttributes( { arrowEnableBg: newValue } ) }
+			/>
+			{ attributes.arrowEnableBg && (
+				<RangeControl
+					label={ __( 'Arrow Background Size', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.arrowBgSize }
+					onChange={ ( newValue ) => setAttributes( { arrowBgSize: newValue } ) }
+					min={20} max={150} step={1}
+				/>
+			) }
 			<WpmozoColorPicker props={props}
 				label={ __( 'Arrows Color', 'wpmozo-blocks-and-addons' ) }
 				ColorKey="arrow"
-				ColorTypes={ [
+				ColorTypes={ attributes.arrowEnableBg ? [
 					{ key: 'Color', label: __( 'Arrow Color', 'wpmozo-blocks-and-addons' ) },
 					{ key: 'Background', label: __( 'Arrow Background Color', 'wpmozo-blocks-and-addons' ) }
+				] : [
+					{ key: 'Color', label: __( 'Arrow Color', 'wpmozo-blocks-and-addons' ) }
 				] }
 			/>
-			<WpmozoBorder props={ props }
-				label={ __( 'Arrows Border', 'wpmozo-blocks-and-addons' ) }
-				BorderKey="arrow"
-				BorderTypes={ { border: true, radius: true } }
-			/>
+			{ attributes.arrowEnableBg && (
+				<WpmozoBorder props={ props }
+					label={ __( 'Arrows Border', 'wpmozo-blocks-and-addons' ) }
+					BorderKey="arrow"
+					BorderTypes={ { border: true, radius: true } }
+				/>
+			) }
 			{ attributes.showControlDot && <>
 				<WpmozoColorPicker
 					label={ __( 'Control Dot Color', 'wpmozo-blocks-and-addons' ) }
