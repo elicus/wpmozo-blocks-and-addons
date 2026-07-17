@@ -1,4 +1,5 @@
 #wpmozo_ae_team_member_metabox h2,
+#wpmozo_ae_portfolio_metabox h2,
 #wpmozo_ae_testimonial_metabox h2 {
 	position: relative;
 	justify-content: flex-start;
@@ -15,27 +16,32 @@
 }
 
 #wpmozo_ae_team_member_metabox .handle-actions,
+#wpmozo_ae_portfolio_metabox .handle-actions,
 #wpmozo_ae_testimonial_metabox .handle-actions {
 	background-color: #fff
 }
 
 #wpmozo_ae_team_member_metabox .handle-actions button:hover,
+#wpmozo_ae_portfolio_metabox .handle-actions button:hover,
 #wpmozo_ae_testimonial_metabox .handle-actions button:hover {
 	background: #eee
 }
 
 #wpmozo_ae_team_member_metabox .handle-actions button:focus,
+#wpmozo_ae_portfolio_metabox .handle-actions button:focus,
 #wpmozo_ae_testimonial_metabox .handle-actions button:focus {
 	box-shadow: none;
 	outline: 0
 }
 
 #wpmozo_ae_team_member_metabox .handle-actions button,
+#wpmozo_ae_portfolio_metabox .handle-actions button,
 #wpmozo_ae_testimonial_metabox .handle-actions button {
 	color: #000
 }
 
 #wpmozo_ae_team_member_metabox .handlediv,
+#wpmozo_ae_portfolio_metabox .handlediv,
 #wpmozo_ae_testimonial_metabox .handlediv {
 	z-index: 9;
 	position: relative;
@@ -49,34 +55,41 @@
 }
 
 .js #wpmozo_ae_team_member_metabox .handlediv:focus .toggle-indicator:before,
+.js #wpmozo_ae_portfolio_metabox .handlediv:focus .toggle-indicator:before,
 .js #wpmozo_ae_testimonial_metabox .handlediv:focus .toggle-indicator:before {
 	box-shadow: none
 }
 
 .js #wpmozo_ae_team_member_metabox .wpmozo_ae_meta_image,
+.js #wpmozo_ae_portfolio_metabox .wpmozo_ae_meta_image,
 .js #wpmozo_ae_testimonial_metabox .wpmozo_ae_meta_image,
 .js #wpmozo_ae_testimonial_metabox-hide+.wpmozo_ae_meta_image,
+.js #wpmozo_ae_portfolio_metabox-hide+.wpmozo_ae_meta_image,
 .js #wpmozo_ae_team_member_metabox-hide+.wpmozo_ae_meta_image {
 	width: 65px;
 	margin-right: 20px
 }
 
 #wpmozo_ae_team_member_metabox .handlediv:hover,
+#wpmozo_ae_portfolio_metabox .handlediv:hover,
 #wpmozo_ae_testimonial_metabox .handlediv:hover {
 	background: #57ba65
 }
 
 #wpmozo_ae_team_member_metabox .handlediv .toggle-indicator,
+#wpmozo_ae_portfolio_metabox .handlediv .toggle-indicator,
 #wpmozo_ae_testimonial_metabox .handlediv .toggle-indicator {
 	color: #000
 }
 
 #wpmozo_ae_team_member_metabox .inside,
+#wpmozo_ae_portfolio_metabox .inside,
 #wpmozo_ae_testimonial_metabox .inside {
 	margin: 0 27px 15px
 }
 
 #side-sortables #wpmozo_ae_team_member_metabox h2,
+#side-sortables #wpmozo_ae_portfolio_metabox h2,
 #side-sortables #wpmozo_ae_testimonial_metabox h2 {
 	padding: 10px;
 	font-size: 18px;
@@ -84,6 +97,7 @@
 }
 
 #side-sortables #wpmozo_ae_team_member_metabox h2:before,
+#side-sortables #wpmozo_ae_portfolio_metabox h2:before,
 #side-sortables #wpmozo_ae_testimonial_metabox h2:before {
 	width: 16px;
 	height: 16px;
@@ -92,6 +106,7 @@
 }
 
 #side-sortables #wpmozo_ae_team_member_metabox .handle-actions,
+#side-sortables #wpmozo_ae_portfolio_metabox .handle-actions,
 #side-sortables #wpmozo_ae_testimonial_metabox .handle-actions {
 	display: flex;
 	align-items: stretch;
@@ -100,17 +115,20 @@
 }
 
 #side-sortables #wpmozo_ae_team_member_metabox .postbox-header,
+#side-sortables #wpmozo_ae_portfolio_metabox .postbox-header,
 #side-sortables #wpmozo_ae_testimonial_metabox .postbox-header {
 	display: block
 }
 
 #side-sortables #wpmozo_ae_team_member_metabox .handlediv,
+#side-sortables #wpmozo_ae_portfolio_metabox .handlediv,
 #side-sortables #wpmozo_ae_testimonial_metabox .handlediv {
 	padding: 0 10px;
 	font-size: 20px
 }
 
 #side-sortables #wpmozo_ae_team_member_metabox .inside,
+#side-sortables #wpmozo_ae_portfolio_metabox .inside,
 #side-sortables #wpmozo_ae_testimonial_metabox .inside {
 	margin: 0 15px 15px
 }

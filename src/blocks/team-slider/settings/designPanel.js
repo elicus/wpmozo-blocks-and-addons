@@ -54,7 +54,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 		</PanelBody>
 		{/* Name Text. */}
 		<PanelBody title={ __( 'Name Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
-			<BaseControl label={ __( 'Name Level', 'wpmozo-blocks-and-addons' ) }>
+			<BaseControl label={ __( 'Name Heading Level', 'wpmozo-blocks-and-addons' ) }>
 				<ButtonGroup>
 					{ headingLevelsList.map( ( item, index ) => (
 						<Button key={ item.value }
@@ -82,7 +82,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 		{/* Designation Text. */}
 		{ ( attributes.showDesignation ) && (
 			<PanelBody title={ __( 'Designation Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
-				<BaseControl label={ __( 'Designation Level', 'wpmozo-blocks-and-addons' ) }>
+				<BaseControl label={ __( 'Designation Heading Level', 'wpmozo-blocks-and-addons' ) }>
 					<ButtonGroup>
 						{ headingLevelsList.map( ( item, index ) => (
 							<Button key={ item.value }
@@ -257,7 +257,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			</PanelBody>
 			{/* Popup Name Text. */}
 			<PanelBody title={ __( 'Popup Name Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel9'} onToggle={()=> handleToggle('panel9')}>
-				<BaseControl label={ __( 'Name Level', 'wpmozo-blocks-and-addons' ) }>
+				<BaseControl label={ __( 'Name Heading Level', 'wpmozo-blocks-and-addons' ) }>
 					<ButtonGroup>
 						{ headingLevelsList.map( ( item, index ) => (
 							<Button key={ item.value }

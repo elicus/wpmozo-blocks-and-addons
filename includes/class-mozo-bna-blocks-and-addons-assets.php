@@ -373,8 +373,7 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			wp_enqueue_style( $this->plugin_name . '-plugins' );
 		}
 		if ( isset( $screen->post_type ) && ( $screen->base === 'post' || $screen->base === 'upload' ) &&
-			( $screen->post_type === 'wpmozoae-testimonial' || $screen->post_type === 'wpmozoae-team-member' ||
-			$screen->post_type === 'attachment' )
+			( $screen->post_type === 'wpmozoae-testimonial' || $screen->post_type === 'wpmozoae-team-member' || $screen->post_type === 'wpmozoae-portfolio' || $screen->post_type === 'attachment' )
 		) {
 			wp_enqueue_script( $this->plugin_name . '-metaboxes' );
 			wp_enqueue_style( $this->plugin_name . '-metaboxes' );

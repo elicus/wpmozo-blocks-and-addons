@@ -109,7 +109,7 @@ export default function Edit( props ) {
 				fromSavedContent: Boolean( block.originalContent ),
 				id:               block.attributes.id,
 				url:              block.attributes.url,
-				caption:          block.attributes.caption?.text ? block.attributes.caption.text : block.attributes.caption ,
+				caption:          block.attributes.caption?.text ? block.attributes.caption.text : block.attributes.caption,
 			} ) ),
 		[ innerBlockImages ]
 	);
@@ -120,7 +120,6 @@ export default function Edit( props ) {
 			setAttributes( { images_data: images } );
 		}
 	}, [ images, JSON.stringify( attributes ) ] );
-	console.log(attributes.images_data);
 
 	useEffect( () => {
 		const event = new CustomEvent( 'WPMozoWavyGalleryPropsChanged' );

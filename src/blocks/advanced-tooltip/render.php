@@ -28,7 +28,7 @@ if ( ! empty( $entrance_animation ) && 'fade' !== $entrance_animation ) {
 	wp_enqueue_style( 'dipl-tippy-animation-style', WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/all-animation.css' );
 }
 echo $helpers::get_block_dynamic_style( 'advanced-tooltip', $attributes ); ?>
-<div <?php echo get_block_wrapper_attributes(array('class'=>'wpmozo-wrap-'.$attributes['ID'] . ' ' . 'wpmozo-advanced-tooltip' . ' ' .(isset($attributes['wrapCustomClass']) ?$attributes['wrapCustomClass'] : '' ))); ?> id="block-<?php echo $attributes['ID']; ?>">
+<div <?php echo get_block_wrapper_attributes(array('class'=>'wpmozo-wrap-'.$attributes['ID'] . ' ' . 'wpmozo-advanced-tooltip' . ' ' .(isset($attributes['wrapCustomClass']) ? $attributes['wrapCustomClass'] : '' ))); ?> id="block-<?php echo esc_attr($attributes['ID']); ?>">
 	<div class="wpmozo_advanced_tooltip icon_">
 		<div
 			class="wpmozo_tooltip_trigger_element_wrap trigger_type_<?php echo esc_attr( $trigger_element ); ?>"
@@ -36,14 +36,14 @@ echo $helpers::get_block_dynamic_style( 'advanced-tooltip', $attributes ); ?>
 			data-animation="<?php echo esc_attr( $entrance_animation ); ?>"
 			data-duration="<?php echo esc_attr( $animation_duration ); ?>"
 			data-speech-bubble="<?php if ( $showSpeechBubble === true ) {
-				echo "true";
+				echo esc_attr("true");
 			} else {
-				echo "false";
+				echo esc_attr("false");
 			} ?>"
 			data-interactive="<?php if ( $make_interactive === true ) {
-				echo "true";
+				echo esc_attr("true");
 			} else {
-				echo "false";
+				echo esc_attr("false");
 			} ?>"
 			data-tooltip-width="<?php echo esc_attr( $tooltip_width ); ?>"
 			data-trigger-element="<?php echo esc_attr( $trigger_element ); ?>"

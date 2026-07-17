@@ -1,0 +1,249 @@
+.wp-block-wpmozo-portfolio-slider {
+	position: relative;
+	max-width: none !important;
+}
+
+.wpmozo_portfolio_slide {
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+}
+
+.wpmozo_portfolio_slider_item_card {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+.wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_item_card {
+	position: relative;
+	width: 100%;
+}
+.wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_image_wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+.wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_image_wrap a {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_image {
+	width: 100%;
+	height: 100% !important;
+	object-fit: cover;
+}
+.wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_content_wrap {
+	position: relative;
+	width: 100%;
+	z-index: 7;
+	box-sizing: border-box;
+	padding: 20px;
+	background-color: rgba(244, 244, 244, 0.7);
+}
+
+.wpmozo_portfolio_slider_image_wrap {
+	width: 100%;
+	line-height: 0;
+	overflow: hidden;
+}
+
+.wpmozo_portfolio_slider_image {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	display: block;
+}
+
+.wpmozo_portfolio_slider_content_wrap {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.wpmozo_portfolio_slider_categories {
+	font-size: 14px;
+	margin-bottom: 8px;
+}
+
+.wpmozo_portfolio_slider_cat {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.wpmozo_portfolio_slider_title {
+	font-size: 20px;
+	margin: 0 0 10px 0;
+}
+
+.wpmozo_portfolio_slider_excerpt,
+.wpmozo_portfolio_slider_content {
+	font-size: 16px;
+	line-height: 1.6;
+	margin-bottom: 15px;
+}
+
+.wpmozo_portfolio_slider_button_wrap {
+	display: flex;
+	gap: 15px;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.wpmozo_portfolio_slider_btn {
+	display: inline-block;
+	text-decoration: none;
+	padding: 10px 20px;
+	background-color: #5600b7;
+	color: #ffffff !important;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.wpmozo_portfolio_slider_btn:hover {
+	background-color: #3c0084;
+	color: #ffffff !important;
+	text-decoration: none;
+}
+
+/* Equal Height. */
+.wpmozo_equal_portfolio_height .swiper-slide {
+	height: auto;
+}
+.wpmozo_equal_portfolio_height .wpmozo_portfolio_slider_item_card {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+.wpmozo_equal_portfolio_height.layout2 .wpmozo_portfolio_slider_item_card {
+	flex-direction: column-reverse;
+}
+.wpmozo_equal_portfolio_height .wpmozo_portfolio_slider_content_wrap {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+.wpmozo_equal_portfolio_height .wpmozo_portfolio_slider_button_wrap {
+	margin-top: auto;
+}
+
+/* Pagination centering and spacing overrides. */
+.wpmozo-bna-portfolio-slider-pagination .swiper-pagination-bullets-dynamic {
+	margin-left: auto;
+	margin-right: auto;
+	white-space: nowrap;
+}
+.wpmozo-bna-portfolio-slider-pagination .swiper-container-horizontal > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+	left: auto;
+	-webkit-transform: none;
+	-moz-transform: none;
+	transform: none;
+}
+.wpmozo-bna-portfolio-slider-pagination .swiper-pagination {
+	width: auto !important;
+}
+
+.wpmozo_swiper_wrapper .swiper-button-next:after,
+.wpmozo_swiper_wrapper .swiper-button-prev:after {
+	display: contents;
+}
+
+/* Fallback styles for Layout 1 card and defaults */
+.wpmozo_portfolio_layout.layout1 .wpmozo_portfolio_slider_item_card {
+	background-color: #ffffff;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+}
+
+.wpmozo_portfolio_layout.layout1 .wpmozo_portfolio_slider_content_wrap {
+	padding: 20px;
+}
+
+/* Default title formatting */
+.wpmozo_portfolio_slider_title a {
+	text-decoration: none;
+	color: #2c3e50;
+	transition: color 0.3s ease;
+}
+.wpmozo_portfolio_slider_title a:hover {
+	color: #5600b7;
+}
+
+/* Default excerpt formatting & spacing */
+.wpmozo_portfolio_slider_excerpt {
+	margin-bottom: 15px;
+	line-height: 1.5;
+	font-size: 14px;
+}
+.wpmozo_portfolio_layout.layout1 .wpmozo_portfolio_slider_excerpt {
+	color: #7f8c8d; /* Scoped strictly to Layout 1 */
+}
+
+/* Button wrap top spacing */
+.wpmozo_portfolio_slider_button_wrap {
+	margin-top: 5px;
+}
+
+/* Category Badge Fallback CSS (excluding typography defaults) */
+.wpmozo_portfolio_slider_cat {
+	display: inline-block;
+	margin-right: 6px;
+	margin-bottom: 6px;
+	padding: 4px 8px;
+	background-color: #f3e8ff;
+	border-radius: 4px;
+}
+.wpmozo_portfolio_slider_cat a {
+	color: #5600b7;
+	text-decoration: none;
+}
+.wpmozo_portfolio_slider_cat a:hover {
+	color: #3c0084;
+	text-decoration: none;
+}
+
+
+/* Premium navigation arrow styles */
+.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-next,
+.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-prev {
+	background-color: #ffffff;
+	color: #5600b7;
+	width: 36px;
+	height: 36px;
+	padding: 0; /* Override auto padding to ensure perfect circle */
+	border-radius: 50%;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-next:hover,
+.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-prev:hover {
+	background-color: #5600b7;
+	color: #ffffff;
+}
+.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-next:after,
+.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-prev:after {
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 1;
+	transform: translateY(-50%);
+}
+
+.wpmozo_swiper_wrapper .wpmozo_arrow_bg_disabled .swiper-button-next,
+.wpmozo_swiper_wrapper .wpmozo_arrow_bg_disabled .swiper-button-prev {
+	background-color: transparent !important;
+	box-shadow: none !important;
+	border: none !important;
+}
+.wpmozo_swiper_wrapper .wpmozo_arrow_bg_disabled .swiper-button-next:hover,
+.wpmozo_swiper_wrapper .wpmozo_arrow_bg_disabled .swiper-button-prev:hover {
+	background-color: transparent !important;
+}

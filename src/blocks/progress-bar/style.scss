@@ -1,0 +1,159 @@
+.wp-block-wpmozo-progress-bar {
+	.wpmozo-bna-progress-bar-wrapper {
+		position: relative;
+		overflow: hidden;
+		transition: background-color 0.2s ease;
+	}
+
+	.wpmozo-bna-progress-bar-title {
+		margin: 6px 0;
+	}
+
+	.wpmozo-bna-progress-bar-percent {
+		padding: 5px;
+		font-size: 12px;
+		font-weight: bold;
+	}
+
+	/* Bar layout */
+	.wpmozo-bna-progress-bar-layout-bar {
+		height: 30px;
+		width: 100%;
+		border-radius: 50px;
+		border: 0 solid #000;
+		box-sizing: border-box;
+
+		.wpmozo-bna-progress-bar-inner {
+			transition: width 0.1s ease-out, height 0.1s ease-out, background-color 0.2s ease;
+			width: 0%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: absolute;
+			left: 0;
+			top: 0;
+			overflow: hidden;
+		}
+
+		&.wpmozo-bna-progress-bar-striped .wpmozo-bna-progress-bar-inner {
+			background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+			background-size: 40px 40px;
+			animation: wpmozo-stripe-slide 1s linear infinite;
+		}
+	}
+
+	/* Vertical Bar direction */
+	.wpmozo-bna-progress-bar-wrapper[data-bar_direction="vertical"] {
+		width: 30px;
+		height: 500px;
+		display: inline-block;
+
+		.wpmozo-bna-progress-bar-inner {
+			top: auto;
+			bottom: 0;
+			width: 100%;
+			height: 0%;
+		}
+
+		.wpmozo-bna-progress-bar-percent {
+			writing-mode: vertical-lr;
+			transform: rotate(180deg);
+		}
+	}
+
+	/* Circle layout */
+	.wpmozo-bna-progress-bar-layout-circle {
+		width: 150px;
+		background: none;
+
+		.wpmozo-bna-progress-bar-inner {
+			width: 100% !important;
+			position: relative;
+		}
+
+		.wpmozo-bna-progress-bar-percent {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 16px;
+			z-index: 2;
+		}
+
+		svg.wpmozo-bna-progress-bar-circle {
+			width: 100%;
+			height: auto;
+			transform: rotate(-90deg);
+			display: block;
+		}
+
+		svg circle {
+			fill: none;
+			stroke-width: 10;
+			cx: 50;
+			cy: 50;
+			r: 45;
+		}
+
+		svg circle.wpmozo-bna-circle-bg {
+			stroke-width: 8;
+		}
+
+		svg circle.wpmozo-bna-circle-fg {
+			stroke-linecap: round;
+			stroke-width: 8;
+			stroke-dasharray: 282.74;
+			stroke-dashoffset: 282.74;
+			transition: stroke-dashoffset 0.1s ease-out, stroke 0.2s ease;
+		}
+	}
+
+	/* Half Circle layout */
+	.wpmozo-bna-progress-bar-layout-half_circle {
+		width: 150px;
+		background: none;
+
+		.wpmozo-bna-progress-bar-inner {
+			width: 100% !important;
+			position: relative;
+		}
+
+		.wpmozo-bna-progress-bar-percent {
+			position: absolute;
+			top: 70%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 16px;
+			z-index: 2;
+		}
+
+		svg.wpmozo-bna-half-circle {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+
+		svg path {
+			fill: none;
+			stroke-width: 12;
+		}
+
+		svg path.wpmozo-bna-circle-bg {
+			stroke-width: 12;
+		}
+
+		svg path.wpmozo-bna-circle-fg {
+			stroke-width: 12;
+			stroke-linecap: square;
+			stroke-dasharray: 282.74;
+			stroke-dashoffset: 282.74;
+			transition: stroke-dashoffset 0.1s ease-out, stroke 0.2s ease;
+		}
+	}
+}
+
+@keyframes wpmozo-stripe-slide {
+	from { background-position: 40px 0; }
+	to { background-position: 0 0; }
+}

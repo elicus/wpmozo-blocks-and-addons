@@ -1,0 +1,71 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/progress-bar",
+	"version": "0.1.0",
+	"title": "Progress Bar",
+	"category": "wpmozo",
+	"icon": "smiley",
+	"description": "Progress bar to showcase progress or skill levels visually.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"customClassName": false
+	},
+	"attributes": {
+		"ID": { "type": "string"  },
+		"className": { "type": "string" },
+
+		"layout": { "type": "string", "default": "bar" },
+		"barDirection": { "type": "string", "default": "horizontal" },
+		"showStriped": { "type": "boolean", "default": false },
+		"showNumber": { "type": "boolean", "default": true },
+		
+		"percentage": { "type": "number", "default": 50 },
+
+		"barSize": { "type": "number", "default": 30 },
+		"barHeight": { "type": "number", "default": 500 },
+		
+		"circleSize": { "type": "number", "default": 150 },
+		"circleFillColor": { "type": "string", "default": "#a5a5a5" },
+		
+		"barEmptyColor": { "type": "string", "default": "#eeeeee" },
+		"barFilledColor": { "type": "string", "default": "#007bff" },
+		"percentAlign": { "type": "string", "default": "center" },
+
+		"barEmptyHoverColor": { "type": "string" },
+		"barFilledHoverColor": { "type": "string" },
+		"circleFillHoverColor": { "type": "string" },
+		"percentageHoverColor": { "type": "string" },
+
+		"percentageColor": { "type": "string" },
+		"percentageFontSize": { "type": "string" },
+		"percentageFontAppearance": {
+			"type": "object",
+			"fontStyle": { "type": "string" },
+			"fontWeight": { "type": "string" },
+			"default": {
+				"fontStyle": "",
+				"fontWeight": ""
+			}
+		},
+		"percentageLetterSpacing": { "type": "string" },
+		"percentageDecoration": { "type": "string" },
+		"percentageLetterCase": { "type": "string" },
+		"percentageLineHeight": { "type": "string" },
+
+		"percentageTextShadowX": { "type": "string" },
+		"percentageTextShadowY": { "type": "string" },
+		"percentageTextShadowBlur": { "type": "string" },
+		"percentageTextShadowColor": { "type": "string" },
+		"percentageTextShadowOpacity": { "type": "number" },
+		
+		"barborder": { "type": "object" },
+		"barborderRadius": { "type": "string" }
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

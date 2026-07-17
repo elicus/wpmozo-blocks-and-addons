@@ -18,13 +18,13 @@ export default function Edit(props) {
 
 	const {attributes, setAttributes, clientId} = props,
 	wrapArgs = attributes?.ID && mergeWrapperProps( { 
-			className: `wpmozo-advanced-button${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
-			style: {}
-		}, attributes ),
-		wrapProps = wrapArgs?.wrapprops,
-		blockProps = useBlockProps(wrapProps),
-		wrapStyle = wrapArgs?.wrapStyle,
-		isEdit = true;
+		className: `wpmozo-post-ticker${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+		style: {}
+	}, attributes ),
+	wrapProps = wrapArgs?.wrapprops,
+	blockProps = useBlockProps(wrapProps),
+	wrapStyle = wrapArgs?.wrapStyle,
+	isEdit = true;
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
 		if ( attributes.ID !== clientId ) {

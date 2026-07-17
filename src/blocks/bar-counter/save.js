@@ -41,7 +41,6 @@ const Save = ({ attributes }) => {
                                         <div className="wpmozo-bna-bar-counter-bar">
                                             <div
                                                 className="wpmozo-bna-bar-counter-filled-bar-wrapper"
-                                                data-percent={`${attributes.percentage}%`}
                                                 style={{width: `${attributes.percentage}%`}}
                                             >
                                                 {attributes.useStripes ? (
@@ -59,7 +58,6 @@ const Save = ({ attributes }) => {
                                     {!attributes.displayEmptyBar && (
                                         <div
                                             className="wpmozo-bna-bar-counter-filled-bar-wrapper"
-                                            data-percent={`${attributes.percentage}%`}
                                             style={{width: `${attributes.percentage}%`}}
                                         >
                                             {attributes.useStripes ? (
@@ -77,8 +75,7 @@ const Save = ({ attributes }) => {
 
                             {/* Layout 2 */}
                             {attributes.layoutType === 'layout2' && (
-                                <div className="wpmozo-bna-bar-counter-filled-bar-wrapper"
-                                     data-percent={`${attributes.percentage}%`}>
+                                <div className="wpmozo-bna-bar-counter-filled-bar-wrapper">
                                     {Array.from({length: 10}, (_, i) => {
                                         const index = i + 1;
                                         if (index <= (attributes.percentage / 10)) {

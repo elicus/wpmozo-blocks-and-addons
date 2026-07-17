@@ -141,7 +141,7 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 						$breadcrumb_list .= sprintf(
 							'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
 								<a class="breadcrumb-item dipl-home-page" href="%2$s" property="item" typeof="WebPage" %6$s>
-									<span class="breadcrumb-home-icon et-pb-icon"><i class="%3$s"></i></span>
+									<span class="breadcrumb-home-icon"><i class="%3$s"></i></span>
 									<span class="breadcrumb-page" property="name">%4$s</span>
 								</a>
 								<meta property="position" content="%5$s" />
@@ -159,7 +159,7 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 							'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
 								<a class="breadcrumb-item dipl-home-page" href="%2$s" property="item" typeof="WebPage" %5$s>
 									<span class="breadcrumb-page" property="name">
-										<span class="breadcrumb-home-icon et-pb-icon"><i class="%3$s"></i></span>
+										<span class="breadcrumb-home-icon"><i class="%3$s"></i></span>
 									</span>
 								</a>
 								<meta property="position" content="%4$s" />
@@ -174,7 +174,7 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 					} else {
 						$breadcrumb_list .= sprintf(
 							'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
-								<span class="breadcrumb-home-icon et-pb-icon"><i class="%6$s"></i></span>
+								<span class="breadcrumb-home-icon"><i class="%6$s"></i></span>
 								<a class="breadcrumb-item dipl-home-page" href="%2$s" property="item" typeof="WebPage" %5$s>
 									<span class="breadcrumb-page" property="name">%3$s</span>
 								</a>
