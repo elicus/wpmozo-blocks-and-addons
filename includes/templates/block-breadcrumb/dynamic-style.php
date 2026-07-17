@@ -112,9 +112,17 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 		";
 
 		$styles .= "
-			{$mainSelector} .breadcrumb-page {";
+		{$mainSelector} .breadcrumb-page {";
 		$styles .= $block_helpers::get_font_style( 'text', $attrs );
 		$styles .= "}";
+
+		if ( ! empty( $attrs['textDecoration'] ) ) {
+			$styles .= "
+				{$mainSelector} .breadcrumb-item {
+					text-decoration: {$attrs['textDecoration']};
+				}
+			";
+		}
 
 		$styles .= "
 			{$mainSelector} .wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page {";

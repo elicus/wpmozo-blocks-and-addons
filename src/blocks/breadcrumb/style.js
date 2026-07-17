@@ -47,6 +47,11 @@ const generateDynamicStyle = ( { attributes } ) => {
 		: '' 
 	);
 	normalcss.push(
+		attributes.textDecoration
+		? `.breadcrumb-item { text-decoration: ${attributes.textDecoration}; }`
+		: ''
+	);
+	normalcss.push(
 		attributes.homeLinkIconSizeFontSize
 		? `.dipl-home-page,.wpmozo-bna-home-page{ font-size: ${attributes.homeLinkIconSizeFontSize}; }` 
 		: ''
