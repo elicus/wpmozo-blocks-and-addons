@@ -75,11 +75,6 @@
 	padding: 10px 15px;
 }
 
-//.tippy-box {
-//	background-color: #333;
-//	color:#fff;
-//}
-
 .wp-block-wpmozo-advanced-tooltip .wpmozo_advanced_tooltip_content {
 	padding: 20px;
 	color: #fff
@@ -137,8 +132,6 @@
 	padding: 0;
 	display:contents;
 	z-index: 1000;
-	opacity: 0;
-	visibility: hidden;
 	transition: opacity 0.2s ease, visibility 0.2s ease;
 
 	&.tooltip-visible {

@@ -16,17 +16,50 @@ import {
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function Edit(props) {
 
-	const { attributes, setAttributes, clientId } = props;
+	const { attributes, setAttributes, clientId } = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-horizontal-scrolling-posts${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
 		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
 		}
-	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+	
+
+	useEffect(() => {
+        const event = new CustomEvent('WPMozoScrollPostsPropsChanged');
+        const iframe = document.querySelector('iframe[name="editor-canvas"]');
+        window.dispatchEvent(event);
+        if (iframe?.contentWindow) {
+            iframe.contentWindow.dispatchEvent(event);
+        }
+    }, [attributes]);
 
 	const postsToShow        = parseInt( attributes.postsToShow ) ?? 5;
 	const postOrder          = attributes.postOrder ?? 'DESC';
@@ -163,7 +196,7 @@ export default function Edit(props) {
 			<Inspector attributes={attributes} setAttributes={setAttributes}/>
 			<style>{generateDynamicStyle({attributes})}</style>
 
-			<div {...useBlockProps()} id={`block-${attributes.ID}`}>
+			<div {...blockProps} id={`block-${attributes.ID}`}>
 				<div className={`wpmozo-sticky-posts-scroller`}>
 					<div className={`wpmozo-sticky-posts-wrapper ${attributes.layout}`}>
 						<div className={`wpmozo-sticky-posts-inner`}>

@@ -2,10 +2,18 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ( { attributes } ) => {
 
-	const { ID, className, isLastChild } = attributes;
+	const { ID, className, isLastChild } = attributes,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-hover-list-item ${isLastChild ? 'wpmozo-is-last-child' : ''}` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	// Get the title.
 	let $title = '';
@@ -70,22 +78,13 @@ const Save = ( { attributes } ) => {
 		</div>;
 	}
 
-	// Only add ID attribute if it exists.
-	const blockProps = useBlockProps.save( {
-		className: [
-			className,
-			isLastChild ? 'wpmozo-is-last-child' : '' // last child.
-		].filter( Boolean ).join( ' ' ),
-		...( ID ? { id: `block-${ ID }` } : {} ),
-	} );
-
 	return ( <>
 		{/* Only output <style> if ID exists. */}
 		{ ( ID && '' !== ID ) && (
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 		) }
 
-		<div { ...blockProps }>
+		<div { ...blockProps } id={`block-${ID}`}>
 			<div className="wpmozo-bna-hover-list-item-wrapper"
 				data-image={ attributes.hoverImage || wpmozo_bna_editor_object.placeholderImg }
 			>

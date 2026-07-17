@@ -1,5 +1,6 @@
 import {RichText, useBlockProps} from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ({ attributes }) => {
 
@@ -9,12 +10,19 @@ const Save = ({ attributes }) => {
     if (attributes.displayEmptyBar) {
         emptyBarEnabled = 'empty-bar-enabled';
     }
+    const wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-advanced-button' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
     return (
         <>
             <style>{ generateDynamicStyle({attributes }) }</style>
 
-            <div {...useBlockProps.save( { className: attributes.className } ) } id={`block-${ID}`}>
+            <div {...blockProps} id={`block-${ID}`}>
                 <div className={`wpmozo-bna-bar-counter ${emptyBarEnabled}`}>
                     <div className={`wpmozo-ban-bar-counter-wrapper ${attributes.layoutType}`}>
 						{attributes.title && (
@@ -33,7 +41,6 @@ const Save = ({ attributes }) => {
                                         <div className="wpmozo-bna-bar-counter-bar">
                                             <div
                                                 className="wpmozo-bna-bar-counter-filled-bar-wrapper"
-                                                data-percent={`${attributes.percentage}%`}
                                                 style={{width: `${attributes.percentage}%`}}
                                             >
                                                 {attributes.useStripes ? (
@@ -51,7 +58,6 @@ const Save = ({ attributes }) => {
                                     {!attributes.displayEmptyBar && (
                                         <div
                                             className="wpmozo-bna-bar-counter-filled-bar-wrapper"
-                                            data-percent={`${attributes.percentage}%`}
                                             style={{width: `${attributes.percentage}%`}}
                                         >
                                             {attributes.useStripes ? (
@@ -69,8 +75,7 @@ const Save = ({ attributes }) => {
 
                             {/* Layout 2 */}
                             {attributes.layoutType === 'layout2' && (
-                                <div className="wpmozo-bna-bar-counter-filled-bar-wrapper"
-                                     data-percent={`${attributes.percentage}%`}>
+                                <div className="wpmozo-bna-bar-counter-filled-bar-wrapper">
                                     {Array.from({length: 10}, (_, i) => {
                                         const index = i + 1;
                                         if (index <= (attributes.percentage / 10)) {

@@ -161,10 +161,6 @@
     "separatorColor": {
       "type": "string",
       "default": "#2b87da"
-    },
-    "shadowColor": {
-      "type": "string",
-      "default": "#2b87da"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",

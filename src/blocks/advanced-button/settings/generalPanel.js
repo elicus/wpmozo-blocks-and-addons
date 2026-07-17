@@ -15,6 +15,7 @@ export const GeneralPanel = ({attributes, setAttributes}) => {
 	return (<>
 		<PanelBody title={__('Configuration', 'wpmozo-blocks-and-addons')} initialOpen={true}>
 			<ToggleGroupControl
+				__next40pxDefaultSize
 				label={ __( 'Orientation', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.btnOrientation }
 				onChange={ ( newValue ) => setAttributes( { btnOrientation: newValue } ) }

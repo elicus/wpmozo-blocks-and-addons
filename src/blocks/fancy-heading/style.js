@@ -1,6 +1,6 @@
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ( { attributes, clientId } ) => {
+const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 	const toConvertStyles = [
 		'preText',
 		'preTextDimensions',
@@ -26,10 +26,14 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 		mainTextAddi      = convertedStyle.mainText + convertedStyle.mainTextDimensions,
 		postTextAddi      = convertedStyle.postText + convertedStyle.postTextDimensions;
 
-	let styles = `#block-${attributes.ID}{`;
+	let normalcss = [],
+	    hovercss  = [],
+	    cssExtras = [];
+	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
 
-	styles += `
-		.wpmozo-bna-fancy-heading-inner {
+
+    normalcss.push(
+		`.wpmozo-bna-fancy-heading-inner{
 			display: flex;
 			align-items: center;
 			line-height: 1;
@@ -37,55 +41,90 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 			margin: 0;
 			white-space: pre-wrap;
 			flex-wrap: wrap;
-			flex-direction: ${flexDirection};
+			${ flexDirection ? `flex-direction: ${flexDirection};` : ''}
 			${ attributes.headingAlignment ? `text-align: ${headingAlignment};` : ''}
 			${ attributes.headingAlignment ? `justify-content: ${headingAlignment};` : ''}
 			${ ( attributes.displayInStack && attributes.headingAlignment ) ? `align-items: ${headingAlignment};` : ''}
-		}
-		.wpmozo-bna-fancy-heading-inner span {
+		} .wpmozo-bna-fancy-heading-inner span {
 			display: inline-block;
-			color: ${attributes.headingColor};
-			background: ${attributes.headingBackground};
+			${attributes.headingColor ? `color: ${attributes.headingColor};` : ''}
+			${attributes.headingBackground ? `background: ${attributes.headingBackground};` : ''}
+			
+		}.wpmozo-bna-fancy-heading-inner span {
+			display: inline-block;
+			${attributes.headingColor ? `color: ${attributes.headingColor};` : ''}
+			${attributes.headingBackground ? `background: ${attributes.headingBackground};` : ''}
+			
 		}
 		span.wpmozo-bna-pre-text {
             transition: all 300ms;
-			color: ${attributes.preTextColor};
-    		background: ${attributes.preTextBackground};
+			${ attributes.preTextColor ? `color: ${attributes.preTextColor};` : ''}
+			${ attributes.preTextBackground ? `background: ${attributes.preTextBackground};` : ''}
             ${ ( attributes.displayInStack && attributes.preTextAlignment ) ? `align-self: ${preTextAlignment};`: ''}
             ${ attributes.preTextAlignment ? `text-align: ${preTextAlignment};` : ''}
-			${preTextAddi}
-		}
-		span.wpmozo-bna-pre-text:hover {
-			color: ${attributes.preTextHoverColor};
-    		background: ${attributes.preTextHoverBackground};
-		}
-		span.wpmozo-bna-main-text {
-    		transition: all 300ms;
-			color: ${attributes.mainTextColor};
-    		background: ${attributes.mainTextBackground};
-    		${ ( attributes.displayInStack && attributes.mainTextAlignment ) ? `align-self: ${mainTextAlignment};`: ''}
-    		${attributes.mainTextAlignment ? `text-align: ${attributes.mainTextAlignment};` : ''}
-    		${mainTextAddi}
-		}
-		span.wpmozo-bna-main-text:hover {
-			color: ${attributes.mainTextHoverColor};
-    		background: ${attributes.mainTextHoverBackground};
-		}
-		span.wpmozo-bna-post-text {
-    		transition: all 300ms;
-			color: ${attributes.postTextColor};
-    		background: ${attributes.postTextBackground};
-    		${ ( attributes.displayInStack && attributes.postTextAlignment ) ? `align-self: ${postTextAlignment};`: ''}
-    		${attributes.postTextAlignment ? `text-align: ${attributes.postTextAlignment};`: ''}
-    		${postTextAddi}
-		}
-		span.wpmozo-bna-post-text:hover {
-			color: ${attributes.postTextHoverColor};
-    		background: ${attributes.postTextHoverBackground};
-		}
-	`;
+			${ preTextAddi || '' }
+		}`
+	);
+	hovercss.push(
+		(attributes.preTextHoverColor || attributes.preTextHoverBackground) 
+		? `span.wpmozo-bna-pre-text:hover${isEditor('span.wpmozo-bna-pre-text')}{
+				${attributes.preTextHoverColor ? `color:`+ attributes.preTextHoverColor + `;` : ''}
+				${attributes.preTextHoverBackground ? `background:`+ attributes.preTextHoverBackground + `;` : ''}
+			}`
+		: ''
+	);
 
-	styles += `}`;
+	normalcss.push(
+		`span.wpmozo-bna-main-text {
+    		transition: all 300ms;
+			${ attributes.mainTextColor ? `color: ${attributes.mainTextColor};` : ''}
+			${ attributes.mainTextBackground ? `background: ${attributes.mainTextBackground};` : ''}
+			${ ( attributes.displayInStack && attributes.mainTextAlignment ) ? `align-self: ${mainTextAlignment};`: ''}
+    		${attributes.mainTextAlignment ? `text-align: ${attributes.mainTextAlignment};` : ''}\
+			${mainTextAddi || ''}
+		}`
+	);
+	hovercss.push(
+		(attributes.mainTextHoverColor || attributes.mainTextHoverBackground) 
+		? `span.wpmozo-bna-main-text:hover${isEditor('span.wpmozo-bna-main-text')}{
+				${attributes.mainTextHoverColor ? `color:`+ attributes.mainTextHoverColor + `;` : ''}
+				${attributes.mainTextHoverBackground ? `background:`+ attributes.mainTextHoverBackground + `;` : ''}
+			}`
+		: ''
+	);
+
+	normalcss.push(
+		`span.wpmozo-bna-post-text {
+    		transition: all 300ms;
+			${ attributes.postTextColor ? `color: ${attributes.postTextColor};` : ''}
+			${ attributes.postTextBackground ? `background: ${attributes.postTextBackground};` : ''}
+			${ ( attributes.displayInStack && attributes.postTextAlignment ) ? `align-self: ${postTextAlignment};`: ''}
+    		${attributes.postTextAlignment ? `text-align: ${attributes.postTextAlignment};` : ''}\
+			${postTextAddi || ''}
+		}`
+	);
+	hovercss.push(
+		(attributes.postTextHoverColor || attributes.postTextHoverBackground) 
+		? `span.wpmozo-bna-post-text:hover${isEditor('span.wpmozo-bna-post-text')}{
+				${attributes.postTextHoverColor ? `color:`+ attributes.postTextHoverColor + `;` : ''}
+				${attributes.postTextHoverBackground ? `background:`+ attributes.postTextHoverBackground + `;` : ''}
+			}`
+		: ''
+	);
+
+
+	const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);
+	
+	let styles = hasStyles ? `#block-${attributes.ID}{${normalcss.filter(Boolean).join('\n')} ${hovercss.filter(Boolean).join('\n')}}` : '';
+	
+	styles += cssExtras.some(Boolean) ? cssExtras.filter(Boolean).join('\n') : '';
+	styles = styles.replace(/\s+/g, ' ')
+    .replace(/\s*{\s*/g, '{')
+    .replace(/\s*}\s*/g, '}')
+    .replace(/\s*:\s*/g, ':')
+    .replace(/\s*;\s*/g, ';')
+    .replace(/\s*,\s*/g, ',')    
+    .trim();
 	return styles;
 };
 

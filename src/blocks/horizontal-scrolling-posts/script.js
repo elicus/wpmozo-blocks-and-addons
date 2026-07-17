@@ -28,6 +28,7 @@ function initHorizontalScrollPost($section){
 		viewPortPosition = $container.data( 'animation_start_viewport_pos' ) || 'center',
 		animationSpeed   = parseFloat( $container.data( 'animation_speed' ) ) || 1;
 
+
 	gsap.to( $container, {
 		x: -totalScroll,
 		ease: "none",

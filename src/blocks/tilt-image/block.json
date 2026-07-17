@@ -5,6 +5,7 @@
 	"version": "0.1.0",
 	"title": "Tilt Image",
 	"category": "wpmozo",
+	"keywords": [ "wptiltimage", "wpmztiltimage", "wpmztitlimage", "wptitlimage" ],
 	"icon": "smiley",
 	"description": "Add an interesting tilt effect to your images for an interactive touch.",
 	"example": {},

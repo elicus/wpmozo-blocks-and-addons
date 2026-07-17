@@ -1,28 +1,33 @@
 import {convertInlineStyleStr} from '../../common/utils.js';
-const generateDynamicStyle = ({attributes, clientId}) => {
+const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 	const toConvertStyles = [
 		'item'
 	];
 	let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
-
-	let styles = `#block-${attributes.ID}{`;
-
 	let alignment = (attributes.alighment) ?? 'center';
 	alignment = ('left' === alignment) ? 'flex-start' : (('right' === alignment) ? 'flex-end' : alignment);
-	styles += `.wpmozo-image-stack-wrap{`;
-	styles += `justify-content: ${alignment};`;
-	styles += `}`;
 
-	if (attributes.itemBorderWidth > 0) {
-		styles += `.wpmozo-image-stack-item{
-			border: ${attributes.itemBorderWidth}px ${attributes.itemBorderType} ${attributes.borderColor};
-			border-radius: ${attributes.itemBorderRadius}%;
-			${convertedStyle.item}
-		}`;
-	}
-	// Clean and fix style string for image stack
+	let normalcss = [],
+	hovercss = [],
+	cssExtras = [];
+	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
 
-	styles += `
+	normalcss.push(
+		alignment 
+		? `.wpmozo-image-stack-wrap{justify-content: ${alignment};}` : ''
+	);
+
+	normalcss.push(
+		( attributes.itemBorderWidth || attributes.itemBorderType || attributes.borderColor || attributes.itemBorderRadius || convertedStyle.item )
+		? `.wpmozo-image-stack-item{
+				${attributes.itemBorderWidth || attributes.itemBorderType || attributes.borderColor ? `border: ${attributes.itemBorderWidth}px ${attributes.itemBorderType} ${attributes.borderColor};` : ''}
+				${attributes.itemBorderRadius ? `border-radius: ${attributes.itemBorderRadius}%;` : ''}
+				${convertedStyle.item || ''}
+			}`
+		: ''
+	);
+
+	normalcss.push(`
 		.wpmozo-image-stack-item .stack-item-type-icon {
 			width: ${attributes.stackItemSize || 40}px;
 			height: ${attributes.stackItemSize || 40}px;
@@ -52,28 +57,44 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 			object-fit: cover;
 			display: block;
 		}
-	}`;
+	`);
 
 	if (attributes.showTooltip) {
-		styles += `
-			.tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}'] {
+		cssExtras.push(`.tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}'] {
 				display: block !important;
 			}
 			.tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}']:before {
 				content: "" !important;
-			}
-			.tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}']{
-				background-color: ${attributes.tooltipBackgroundColor} !important;
-				color: ${attributes.tooltipColor} !important;
-			}
-		`;
+			}`
+		);
+		cssExtras.push(
+			(attributes.tooltipColor || attributes.tooltipBackgroundColor) 
+			? `.tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}']{
+					${attributes.titleColor ? `background-color: ${attributes.tooltipBackgroundColor} !important;` : ''}
+					${attributes.titleAlign ? `color: ${attributes.tooltipColor} !important;` : ''}
+				}`
+			: ''
+		);
 	} else {
-		styles += `
+
+		cssExtras.push(`
 			.tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}'] {
 				display: none !important;
-			}
-		`;
+			}`
+		);
 	}
+	const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);
+	
+	let styles = hasStyles ? `#block-${attributes.ID}{${normalcss.filter(Boolean).join('\n')} ${hovercss.filter(Boolean).join('\n')}}` : '';
+	
+	styles += cssExtras.some(Boolean) ? cssExtras.filter(Boolean).join('\n') : '';
+	styles = styles.replace(/\s+/g, ' ')
+    .replace(/\s*{\s*/g, '{')
+    .replace(/\s*}\s*/g, '}')
+    .replace(/\s*:\s*/g, ':')
+    .replace(/\s*;\s*/g, ';')
+    .replace(/\s*,\s*/g, ',')    
+    .trim();
 	return styles;
 };
 

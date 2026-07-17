@@ -2,14 +2,14 @@
 Contributors: elicus
 Tags: gutenberg, blocks, gutenberg blocks, gutenberg editor, wordpress blocks
 Tested up to: 7.0
-Stable tag: 1.8.0
+Stable tag: 1.9.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-WPMozo Blocks and Addons is a plugin that enhances the Gutenberg editor with a collection of powerful and customizable blocks.
+WPMozo Blocks and Addons is a plugin that enhances the Block editor with a collection of powerful and customizable blocks.
 
 == Description ==
-WPMozo Blocks and Addons is a plugin designed to extend the functionality of the Gutenberg editor. It provides a variety of blocks to help you create stunning and interactive content in WordPress effortlessly.
+WPMozo Blocks and Addons is a plugin designed to extend the functionality of the Block editor. It provides a variety of blocks to help you create stunning and interactive content in WordPress effortlessly.
 
 ### [View Demo](https://wpmozoblocks.com "View Demo")
 
@@ -125,7 +125,7 @@ WPMozo Wavy Gallery block adds a unique horizontal wave animation to your image 
 WPMozo Call To Action block adds a custom title, description and button..
 
 
-This plugin is fully compatible with Gutenberg and WordPress block editor, ensuring seamless integration with your website.
+This plugin is fully compatible with WordPress block editor, ensuring seamless integration with your website.
 
 == Related Plugins ==
 - [WPMozo Product Grid for WooCommerce](https://wordpress.org/plugins/wpmozo-product-grid-for-woocommerce/) – Gutenberg block plugin to display WooCommerce products grid.

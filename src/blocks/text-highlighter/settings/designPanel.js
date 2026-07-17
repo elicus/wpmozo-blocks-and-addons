@@ -13,14 +13,21 @@ import {
 	RangeControl,
 	ToggleControl
 } from '@wordpress/components';
+import { useState } from 'react';
 
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+									
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
+
 
 	return ( <>
 		{/* Highlighter. */}
-		<PanelBody title={ __( 'Highlighter Shape Settings', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
+		<PanelBody title={ __( 'Highlighter Shape Settings', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<WpmozoColorPicker
 				ColorKey="highlighter"
 				label="Highlighter Color"
@@ -80,7 +87,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				</>
 			)}
 		</PanelBody>
-		<PanelBody title={__('Text Settings', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={__('Text Settings', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			<BaseControl className="wpmozo-button-tabs-wrap">
 				<ButtonGroup>
 					<Button

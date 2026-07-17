@@ -15,13 +15,18 @@ import {
   WpmozoAlignment
 } from '../../../common/components';
 
-export const DesignPanel = ({attributes, setAttributes}) => {
+export const DesignPanel = ({ attributes, setAttributes, hoverState, setHoverState }) => {
 	const props = {attributes, setAttributes, preAttributes: {}};
+	const [openPanel, setOpenPanel] = useState('panel1');
+								
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
 
 	return (
 		<>
 			{/* Wrapper Box. */}
-			<PanelBody title={__('Wrapper Box', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={__('Wrapper Box', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 				<WpmozoColorPicker
 					props={props}
 					ColorKey="wrapper"
@@ -59,7 +64,7 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 				/>
 			</PanelBody>
 			{/* Text. */}
-			<PanelBody title={__('Text', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={__('Text', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 				<WpmozoColorPicker props={props}
 				   ColorKey="text"
 				   ColorTypes={[
@@ -71,18 +76,18 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 				/>
 			</PanelBody>
 			{/* Image/Icon. */}
-			<PanelBody title={__('Image/Icon', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={__(`${attributes.useImage ? 'Image' : 'Icon'}`, 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 				<WpmozoColorPicker props={props}
 					ColorKey="element"
 					ColorTypes={[
 						...(!attributes.useImage 
 	      					? [{ key: 'Color', label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ) }] 
 	      					: []),
-						{key: 'Background', label: __('Image/Icon Background Color', 'wpmozo-blocks-and-addons')}
+						{key: 'Background', label: __(`${attributes.useImage ? 'Image' : 'Icon'} Background Color`, 'wpmozo-blocks-and-addons')}
 					]}
 				/>
 				<WpmozoRangeSize props={props}
-					label={ __( 'Image/Icon Wrapper Size', 'wpmozo-blocks-and-addons') }
+					label={ __( `${attributes.useImage ? 'Image' : 'Icon'} Wrapper Size`, 'wpmozo-blocks-and-addons') }
 					rangeSizeKey='elementWrapperSize'
 				/>
 				{ !attributes.useImage && ( <>

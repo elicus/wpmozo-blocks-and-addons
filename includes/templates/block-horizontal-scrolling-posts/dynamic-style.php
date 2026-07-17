@@ -90,7 +90,7 @@ if ( ! function_exists( 'horizontal_scrolling_posts_generate_dynamic_style' ) ) 
 		$styles .= "}";
 
 		//Meta Icon
-		$styles .= "{$mainSelector} .wpmozo_horizontal_scrolling_post_meta_wrapper .et-pb-icon, {$mainSelector} .wpmozo_horizontal_scrolling_post_tag .et-pb-icon, {$mainSelector} .wpmozo_horizontal_scrolling_post_meta_wrapper .fas{";
+		$styles .= "{$mainSelector} .wpmozo_horizontal_scrolling_post_meta_wrapper .wpmozo-bna-icon, {$mainSelector} .wpmozo_horizontal_scrolling_post_tag .wpmozo-bna-icon, {$mainSelector} .wpmozo_horizontal_scrolling_post_meta_wrapper .fas{";
 		$styles .= ( ! empty( $attrs['metaIconFontSize'] ) ? "font-size: {$attrs['metaIconFontSize']}px;" : '' );
 		$styles .= ( ! empty( $attrs['metaIconColor'] ) ? "color: {$attrs['metaIconColor']};" : '' );
 		$styles .= "}";

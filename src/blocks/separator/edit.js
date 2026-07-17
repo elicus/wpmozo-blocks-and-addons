@@ -5,6 +5,7 @@ import generateDynamicStyle from './style';
 import { __ } from "@wordpress/i18n";
 import { Fragment, useEffect } from "@wordpress/element";
 import { useBlockProps } from "@wordpress/block-editor";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -14,9 +15,36 @@ import { useBlockProps } from "@wordpress/block-editor";
  */
 const Edit = (props) => {
 
-	const { attributes, setAttributes, clientId } = props;
+	const { attributes, setAttributes, clientId } = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-separator${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit = true;
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
 
-	attributes.ID = clientId;
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 	let position = '';
 
 	if( 'line' === attributes.separatorType ){
@@ -49,9 +77,9 @@ const Edit = (props) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, clientId, isEdit } ) }</style>
 
-			<div { ...useBlockProps() }>
+			<div { ...blockProps}>
 				{ 'line' === attributes.separatorType && (
 					<div className={`wpmozo-bna-separator-container ${position}`}>
 						<div className="wpmozo-bna-line wpmozo-bna-line-before"></div>

@@ -21,6 +21,7 @@ class Mozo_Bna_Public {
 	public function __construct() {
 		add_action( 'wp_ajax_wpmozo_bna_get_team_detail', array( __class__, 'wpmozo_bna_get_team_detail' ) );
 		add_action( 'wp_ajax_nopriv_wpmozo_bna_get_team_detail', array( __class__, 'wpmozo_bna_get_team_detail' ) );
+		add_action( 'wp_enqueue_scripts', array( __class__, 'wpmozo_inject_wrap_styles' ) );
 	}
 
 	/**
@@ -185,6 +186,58 @@ class Mozo_Bna_Public {
 		wp_die();
 	}
 
+	/**
+	 * Frontend par saare wpmozo blocks ke wrapStyle ek saath inject karo.
+	 */
+	public static function wpmozo_inject_wrap_styles() {
+		// Sirf frontend par
+		if ( is_admin() ) {
+			return;
+		}
+
+		global $post;
+		if ( ! $post || ! has_blocks( $post->post_content ) ) {
+			return;
+		}
+
+		$blocks      = parse_blocks( $post->post_content );
+		$all_css     = self::wpmozo_collect_wrap_styles( $blocks );
+
+		if ( empty( trim( $all_css ) ) ) {
+			return;
+		}
+
+		// Plugin ke kisi bhi registered style handle ke saath attach karo
+		wp_add_inline_style( 'wpmozo-blocks-and-addons-blocks-style', $all_css );
+	}
+
+
+	/**
+	 * Recursively sabhi blocks (aur inner blocks) se wrapStyle collect karo.
+	 *
+	 * @param array $blocks parse_blocks() ka output
+	 * @return string       Combined CSS string
+	 */
+	public static function wpmozo_collect_wrap_styles( array $blocks ): string {
+		$css = '';
+
+		foreach ( $blocks as $block ) {
+			// Sirf wpmozo blocks
+			if ( isset( $block['blockName'] ) && str_starts_with( $block['blockName'], 'wpmozo/' ) ) {
+				$wrap_style = $block['attrs']['wrapStyle'] ?? '';
+				if ( ! empty( trim( $wrap_style ) ) ) {
+					$css .= $wrap_style . "\n";
+				}
+			}
+
+			// InnerBlocks recursively handle karo
+			if ( ! empty( $block['innerBlocks'] ) ) {
+				$css .= self::wpmozo_collect_wrap_styles( $block['innerBlocks'] );
+			}
+		}
+
+		return $css;
+	}
 }
 
 return new Mozo_Bna_Public();

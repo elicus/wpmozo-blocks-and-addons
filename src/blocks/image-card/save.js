@@ -1,10 +1,17 @@
 import {RichText, useBlockProps} from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
-import {wpmozo_is_empty} from '../../common/utils.js';
+import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ( { attributes } ) => {
 
-	const clientId    = attributes.ID;
+	const clientId    = attributes.ID,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-bna-image-card-main' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	const image       = (attributes.image) ? attributes.image : wpmozo_bna_editor_object.placeholderImg;
 	const showOnHover = ( attributes.showMediaOnHover ) ? ' show-on-hover' : '';
@@ -37,7 +44,7 @@ const Save = ( { attributes } ) => {
 	return ( <>
 		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 		
-		<div id={`block-${attributes.ID}`} {...useBlockProps.save( { className: 'wpmozo-bna-image-card-main ' + attributes.className } ) }>
+		<div id={`block-${attributes.ID}`} {...blockProps}>
 			<div className="wpmozo-bna-image-card-wrapper">
 				<div className="wpmozo-bna-image-card-wrapper-inner">
 					<img className="wpmozo-bna-image-card-image" src={image}/>

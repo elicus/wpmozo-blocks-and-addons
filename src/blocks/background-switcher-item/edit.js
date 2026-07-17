@@ -12,17 +12,54 @@ import Inspector from './inspector';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Edit = ( props ) => {
 
-	const { attributes, setAttributes, clientId } = props;
+	const { attributes, setAttributes, clientId } = props,
+		isFirstChild = useSelect( ( select ) => {
+			const { getBlockIndex, getBlockRootClientId } = select( 'core/block-editor' );
+
+			const rootId = getBlockRootClientId( clientId ); // null if top-level
+			const index  = getBlockIndex( clientId, rootId );  // index within parent
+
+			return index === 0; // true if first block in parent
+		}, [ clientId ] ),
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-background-swticher-item${ attributes?.wrapIsHover ? ' is_hover' : '' } ${isFirstChild ? 'wpmozo-bna-bg-switcher-hover' : ''}` ,
+			id: `block-${attributes.ID}`,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
+
+	useEffect( () => {
+		if ( attributes.isFirstChild !== isFirstChild ) {
+			setAttributes( { isFirstChild } );
+		}
+	}, [ isFirstChild ] );
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
 		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
+		}const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
 		}
-	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	// Get the title.
 	let $title = '';
@@ -80,27 +117,6 @@ const Edit = ( props ) => {
 			</div>
 		);
 	}
-
-	// Check if this is the first child.
-	const isFirstChild = useSelect( ( select ) => {
-		const { getBlockIndex, getBlockRootClientId } = select( 'core/block-editor' );
-
-		const rootId = getBlockRootClientId( clientId ); // null if top-level
-		const index  = getBlockIndex( clientId, rootId );  // index within parent
-
-		return index === 0; // true if first block in parent
-	}, [ clientId ] );
-
-	useEffect( () => {
-		if ( attributes.isFirstChild !== isFirstChild ) {
-			setAttributes( { isFirstChild } );
-		}
-	}, [ isFirstChild ] );
-
-	const blockProps = useBlockProps( {
-		id: `block-${attributes.ID}`,
-		className: isFirstChild ? 'wpmozo-bna-bg-switcher-hover' : ''
-	} );
 
 	return (
 		<Fragment>

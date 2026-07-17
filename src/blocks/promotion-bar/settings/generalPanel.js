@@ -138,9 +138,9 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				onChange={ ( newValue ) => setAttributes( { displayLabel: newValue } ) }
 				__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
 			/>
-			<BaseControl label={ __( 'Display Labels In Stack', 'wpmozo-blocks-and-addons' ) }>
+			<BaseControl label={ __( 'Stack Label Under Digits', 'wpmozo-blocks-and-addons' ) }>
 				<ToggleControl
-					label={ __( 'Show stacked (In new line) label.', 'wpmozo-blocks-and-addons' ) }
+					label={ __( 'Show stacked labels.', 'wpmozo-blocks-and-addons' ) }
 					checked={ attributes.stackLabel }
 					onChange={ ( newValue ) => setAttributes( { stackLabel: newValue } ) }
 				/>

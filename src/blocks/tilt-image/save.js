@@ -1,9 +1,16 @@
 import { useBlockProps, RichText } from "@wordpress/block-editor";
-import { wpmozo_is_empty } from '../../common/utils';
+import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils';
 import generateDynamicStyle from './style';
 
 export default function save({attributes}) {
-	const ID = attributes.ID;
+	const ID = attributes.ID,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-bna-tilt-image' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 	let image = (attributes.image) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,
 		contentAlignment = attributes.contentAlignment,
 		linkTarget = ('external' === attributes.buttonLinkTarget) ? '_blank' : '_self',
@@ -30,7 +37,7 @@ export default function save({attributes}) {
 	return ( <>
 		<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-		<div { ...useBlockProps.save( {className: 'wpmozo-bna-tilt-image ' + ( attributes.className || '' ) } ) }
+		<div { ...blockProps}
 			id={`block-${ID}`}
 			data-max-tilt={attributes.tiltMax}
 			data-perspective={attributes.tiltPerspective}

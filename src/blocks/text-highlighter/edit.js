@@ -11,15 +11,43 @@ import {useBlockProps, RichText} from "@wordpress/block-editor";
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function Edit(props) {
 
 	const attributes = props.attributes,
 		setAttributes = props.setAttributes,
 		clientId = props.clientId,
-		blockProps = useBlockProps(),
 		heighlighterShape = attributes.textHighlighterShape,
-		displayInStackSpace = attributes.displayInStack ? '' : '\u00A0';
+		displayInStackSpace = attributes.displayInStack ? '' : '\u00A0',
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-text-highlighter${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	useEffect(() => {
 		const event = new CustomEvent('WPMozoTextHighlighterPropsChanged');
@@ -30,7 +58,6 @@ export default function Edit(props) {
 		}
 	}, [props]);
 
-	attributes.ID = clientId;
 
     return (
 		<Fragment>

@@ -1,39 +1,9 @@
+// deprecated/version-1.js
 import { useBlockProps } from '@wordpress/block-editor';
+import generateDynamicStyle from '../style';
+import ReactDOMServer from 'react-dom/server';
 
-const deprecatedSave = ({ attributes }) => {
-const WPMozoEditorObj = wpmozo_bna_editor_object;
-    const elId = `block-${attributes.ID}`;
-    const beforeImage = attributes.beforeImage || WPMozoEditorObj.placeholderImg;
-    const afterImage = attributes.afterImage || WPMozoEditorObj.placeholderImg;
-    const beforeLabel = attributes.beforeHasLabel ? attributes.beforeLabel : '';
-    const afterLabel = attributes.afterHasLabel ? attributes.afterLabel : '';
-    const no_overlay = attributes.overlayOnHover ? false : true;
-    const handleOffset = attributes.handleOffset;
-    const sliderOrientation = attributes.sliderOrientation;
-    const moveHandleOnHover = attributes.moveHandleOnHover;
-    const moveHandleOnClick = attributes.moveHandleOnClick;
-
-    return (
-        <div {...useBlockProps.save()}>
-            <div
-                className="wpmozo-bna-before-after-image-wrapper"
-                id={elId}
-                data-before-label={beforeLabel}
-                data-after-label={afterLabel}
-                data-handle-offset={handleOffset}
-                data-slider-orientation={sliderOrientation}
-                data-move-onhover={moveHandleOnHover}
-                data-move-onclick={moveHandleOnClick}
-                data-no-overlay={no_overlay}
-            >
-                <img src={beforeImage} />
-                <img src={afterImage} />
-            </div>
-        </div>
-    );
-};
-
-export default {
+const V1 = {
     attributes: {
         // Same as old v1.0.0 attributes
         ID: { type: 'string' },
@@ -87,5 +57,38 @@ export default {
             beforeLabelFontAppearance: attributes.beforeLabelFontAppearance,
         };
     },
-    save: deprecatedSave,
+    save( { attributes } ) {
+        const WPMozoEditorObj = wpmozo_bna_editor_object,
+            elId = `block-${attributes.ID}`,
+            beforeImage = attributes.beforeImage || WPMozoEditorObj.placeholderImg,
+            afterImage = attributes.afterImage || WPMozoEditorObj.placeholderImg,
+            beforeLabel = attributes.beforeHasLabel ? attributes.beforeLabel : '',
+            afterLabel = attributes.afterHasLabel ? attributes.afterLabel : '',
+            no_overlay = attributes.overlayOnHover ? false : true,
+            handleOffset = attributes.handleOffset,
+            sliderOrientation = attributes.sliderOrientation,
+            moveHandleOnHover = attributes.moveHandleOnHover,
+            moveHandleOnClick = attributes.moveHandleOnClick;
+
+        return (
+            <div {...useBlockProps.save()}>
+                <div
+                    className="wpmozo-bna-before-after-image-wrapper"
+                    id={elId}
+                    data-before-label={beforeLabel}
+                    data-after-label={afterLabel}
+                    data-handle-offset={handleOffset}
+                    data-slider-orientation={sliderOrientation}
+                    data-move-onhover={moveHandleOnHover}
+                    data-move-onclick={moveHandleOnClick}
+                    data-no-overlay={no_overlay}
+                >
+                    <img src={beforeImage} />
+                    <img src={afterImage} />
+                </div>
+            </div>
+        );
+    },
 };
+
+export default V1;

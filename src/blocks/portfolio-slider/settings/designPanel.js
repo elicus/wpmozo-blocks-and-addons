@@ -25,6 +25,12 @@ import {
 export const DesignPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
+	const [openPanel, setOpenPanel] = useState('panel1');
+							
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
+
 	const [ titleTab, setTitleTab ]           = useState( 'normal' );
 	const [ categoriesTab, setCategoriesTab ] = useState( 'normal' );
 	const [ contentTab, setContentTab ]       = useState( 'normal' );
@@ -35,7 +41,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 
 	return ( <>
 		{/* Alignment. */}
-		<PanelBody title={ __( 'Alignment', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
+		<PanelBody title={ __( 'Alignment', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<WpmozoAlignment
 				label={ __( 'Text Alignment', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.globalTextAlign }
@@ -46,7 +52,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 
 		{/* Featured Image. */}
 		{ attributes.showFeaturedImage && (
-			<PanelBody title={ __( 'Featured Image', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Featured Image', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 				{ attributes.layout !== 'layout2' && (
 					<>
 						<RangeControl
@@ -90,7 +96,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 
 		{/* Title. */}
 		{ attributes.showTitle && (
-			<PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 				<BaseControl
 					className="wpmozo-button-tabs-wrap"
 					__nextHasNoMarginBottom={ true }
@@ -138,7 +144,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		) }
 
 		{/* Categories. */}
-		<PanelBody title={ __( 'Categories', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Categories', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 			<BaseControl
 				className="wpmozo-button-tabs-wrap"
 				__nextHasNoMarginBottom={ true }
@@ -198,7 +204,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 
 		{/* Content. */}
 		{ attributes.showContent && (
-			<PanelBody title={ __( 'Content', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Content', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
 				<BaseControl
 					className="wpmozo-button-tabs-wrap"
 					__nextHasNoMarginBottom={ true }
@@ -252,7 +258,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 
 		{/* Excerpt. */}
 		{ attributes.showExcerpt && (
-			<PanelBody title={ __( 'Excerpt', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Excerpt', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel6'} onToggle={()=> handleToggle('panel6')}>
 				<BaseControl
 					className="wpmozo-button-tabs-wrap"
 					__nextHasNoMarginBottom={ true }
@@ -306,7 +312,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 
 		{/* Read More Button. */}
 		{ attributes.showReadMore && (
-			<PanelBody title={ __( 'Read More Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Read More Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel7'} onToggle={()=> handleToggle('panel7')}>
 				<BaseControl
 					className="wpmozo-button-tabs-wrap"
 					__nextHasNoMarginBottom={ true }
@@ -367,7 +373,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 
 		{/* Project URL Button. */}
 		{ attributes.showProjectUrl && (
-			<PanelBody title={ __( 'Project URL Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Project URL Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel8'} onToggle={()=> handleToggle('panel8')}>
 				<BaseControl
 					className="wpmozo-button-tabs-wrap"
 					__nextHasNoMarginBottom={ true }
@@ -427,7 +433,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		) }
 
 		{/* Slider. */}
-		<PanelBody title={ __( 'Slider Navigation & Pagination', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Slider Navigation & Pagination', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel9'} onToggle={()=> handleToggle('panel9')}>
 			<WpmozoDimensions props={ props }
 				label={ __( 'Arrows Dimensions', 'wpmozo-blocks-and-addons' ) }
 				DimensionKey='arrow'
@@ -483,7 +489,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		</PanelBody>
 
 		{/* Portfolio Container card styling. */}
-		<PanelBody title={ __( 'Portfolio Card', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Portfolio Card', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel10'} onToggle={()=> handleToggle('panel10')}>
 			<BaseControl
 				className="wpmozo-button-tabs-wrap"
 				__nextHasNoMarginBottom={ true }
@@ -571,7 +577,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		</PanelBody>
 
 		{/* Slider Wrapper Container. */}
-		<PanelBody title={ __( 'Slider Container', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Slider Container', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel11'} onToggle={()=> handleToggle('panel11')}>
 			<RangeControl
 				label={ __( 'Container Width(%)', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.containerWidth }

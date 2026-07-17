@@ -5,7 +5,8 @@
     font-size: 16px;
     line-height: 1.4;
     height: 100%;
-    align-content: space-evenly
+    align-content: space-evenly;
+    transition:all 300ms;
 }
 .wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter-bar{
     display: flex;
@@ -136,5 +137,38 @@
     overflow: hidden
 }
 .wpmozo-bna-bar-counter-title {
-    margin: 6px 0
+    margin: 6px 0;
+    transition:all 300ms;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/*@property --gradient-start {
+  syntax: '<color>';
+  initial-value: #ff7e5f;
+  inherits: false;
+}
+
+@property --gradient-end {
+  syntax: '<color>';
+  initial-value: #feb47b;
+  inherits: false;
+}
+
+.wpmozo-bna-bar-counter-filled-bar-wrapper:hover .wpmozo-bna-bar-counter-filled-bar {
+  --gradient-start: #2b5876;
+  --gradient-end: #4e4376;
+}
+.wpmozo-bna-bar-counter-filled-bar-wrapper .wpmozo-bna-bar-counter-filled-bar{
+    transition: --gradient-start .5s ease, --gradient-end .5s ease;
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end))!important;
+}*/

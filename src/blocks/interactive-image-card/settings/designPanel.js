@@ -18,13 +18,19 @@ import {
 import { useState } from "@wordpress/element";
 import { headingLevelsList } from '../../../common/utils.js';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
 	const [ titleStyleType, setTitleStyleType ] = useState( 'normal' );
 
+	const [openPanel, setOpenPanel] = useState('panel1');
+					
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
+
 	return ( <>
-		<PanelBody title={ __( 'Layout', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
+		<PanelBody title={ __( 'Layout', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<SelectControl
 				label={ __( 'Select Layout', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.layout }
@@ -43,7 +49,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				onChange={ ( newValue ) => setAttributes( { layout: newValue } ) }
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Layout Settings', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Layout Settings', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			{ 'romeo' !== attributes.layout && 'marley' !== attributes.layout &&
 				<WpmozoColorPicker props={props}
 					ColorKey="overlay"
@@ -65,13 +71,13 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				min={0} step={0.1} max={1}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 			<BaseControl label={ __( 'Title Heading Level', 'wpmozo-blocks-and-addons' ) }>
 				<ButtonGroup>
 					{ headingLevelsList.map( ( item, key ) => (
 						<Button key={ 'title-level-' + key }
 							isPressed={ ( item.value === attributes.titleLevel ) ? true : false }
-							onClick={ ( newValue ) => setAttributes( { titleLevel: newValue } ) }
+							onClick={ ( newValue ) => setAttributes( { titleLevel: item.value } ) }
 						>{item.label}</Button>
 					) ) }
 				</ButtonGroup>
@@ -118,7 +124,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				/>
 			}
 		</PanelBody>
-		<PanelBody title={__('Content', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={__('Content', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 			<WpmozoColorPicker props={props}
 				ColorKey="content"
 				ColorTypes={ [

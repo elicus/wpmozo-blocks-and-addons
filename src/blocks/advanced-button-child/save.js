@@ -1,9 +1,17 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from './style';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function save({ attributes }) {
 
-	const clientId   = attributes.ID;
+	const clientId   = attributes.ID,
+		wrapArgs = attributes?.ID && mergeWrapperProps( {
+			className: "wpmozo-advanced-button-child", 
+			id: `block-${clientId}`
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	let showOnHover = (attributes.showMediaOnHover) ? ' show-on-hover' : '',
 		bkStyle = attributes.backgroundFillStyle ? ` wpmozo_button_${attributes.backgroundFillStyle}` : '';
@@ -11,9 +19,9 @@ export default function save({ attributes }) {
 	return (
 		<>
 			<style>
-				{ generateDynamicStyle({ attributes }) }
+				{ `${ generateDynamicStyle({ attributes }) }` }
 			</style>
-			<div {...useBlockProps.save({className: "wpmozo-advanced-button-child", id: `block-${clientId}`})}>
+			<div {...blockProps}>
 				{/* Button container */}
 				<div className="wpmozo-button-container">
 					<div className="wpmozo-button-item">

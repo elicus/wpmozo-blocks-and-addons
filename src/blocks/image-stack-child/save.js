@@ -1,9 +1,18 @@
 import classnames from 'classnames';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
+import {useBlockProps} from "@wordpress/block-editor";
 
 export default function save(props) {
 
-	const { attributes, clientId } = props;
+	const { attributes, clientId } = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-image-stack-item' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	const ID = attributes.ID;
 
@@ -16,7 +25,7 @@ export default function save(props) {
 	const defaultedAlt = image && image.alt ? image.alt : '';
 
 	return ( <>
-		<div id={'block-' + ID} className={ classnames( 'wpmozo-image-stack-item', attributes.className ) }>
+		<div id={'block-' + ID} {...blockProps}>
 			<span className={`wpmozo-stack-item-wrapper stack-item-type-` + attributes.stackType}>
 				{ 'image' === attributes.stackType && (
 					<img className="wpmozo-stack-item-img"

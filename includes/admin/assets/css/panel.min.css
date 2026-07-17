@@ -242,7 +242,7 @@
 	transform: translateY(-50%) translateX(-50%);
 	transition: all 100ms ease;
 }
-.wpmozo_bna_panel_wrapper:not(.proactive) .wpmozo_bna_panel_multiple_checkboxes .wpmozo_pro:after {
+.wpmozo_bna_panel_wrapper .wpmozo_bna_panel_multiple_checkboxes .wpmozo_pro:after {
 	content: "PRO";
 	position: absolute;
 	width: 15%;

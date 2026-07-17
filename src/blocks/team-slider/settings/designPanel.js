@@ -26,14 +26,20 @@ import {
 
 import { headingLevelsList } from '../../../common/utils.js';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+									
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
+
 
 	const [ buttonType, setButtonType ] = useState( 'normal' );
 
 	return ( <>
 		{/* Image. */}
-		<PanelBody title={ __( 'Image', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
+		<PanelBody title={ __( 'Image', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<RangeControl
 				label={ __( 'Image Height(px)', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.imageHeight }
@@ -47,8 +53,8 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		{/* Name Text. */}
-		<PanelBody title={ __( 'Name Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			<BaseControl label={ __( 'Name Level', 'wpmozo-blocks-and-addons' ) }>
+		<PanelBody title={ __( 'Name Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
+			<BaseControl label={ __( 'Name Heading Level', 'wpmozo-blocks-and-addons' ) }>
 				<ButtonGroup>
 					{ headingLevelsList.map( ( item, index ) => (
 						<Button key={ item.value }
@@ -59,7 +65,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				</ButtonGroup>
 			</BaseControl>
 			<WpmozoAlignment
-				label={ __( 'Designation Alignment', 'wpmozo-blocks-and-addons' ) }
+				label={ __( 'Name Alignment', 'wpmozo-blocks-and-addons' ) }
 				onChange={ ( newValue ) => setAttributes( { nameAlign: newValue } ) }
 				value={ attributes.nameAlign }
 			/>
@@ -75,8 +81,8 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		</PanelBody>
 		{/* Designation Text. */}
 		{ ( attributes.showDesignation ) && (
-			<PanelBody title={ __( 'Designation Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-				<BaseControl label={ __( 'Designation Level', 'wpmozo-blocks-and-addons' ) }>
+			<PanelBody title={ __( 'Designation Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
+				<BaseControl label={ __( 'Designation Heading Level', 'wpmozo-blocks-and-addons' ) }>
 					<ButtonGroup>
 						{ headingLevelsList.map( ( item, index ) => (
 							<Button key={ item.value }
@@ -87,7 +93,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					</ButtonGroup>
 				</BaseControl>
 				<WpmozoAlignment
-					label={ __( 'Name Alignment', 'wpmozo-blocks-and-addons' ) }
+					label={ __( 'Designation Alignment', 'wpmozo-blocks-and-addons' ) }
 					onChange={ ( newValue ) => setAttributes( { designationAlign: newValue } ) }
 					value={ attributes.designationAlign }
 				/>
@@ -104,7 +110,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 	 	) }
 		{/* Short Description Text. */}
 		{ ( attributes.showShortDesc ) && (
-			<PanelBody title={ __( 'Description Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Description Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 				<WpmozoAlignment showJustify={ true }
 					label={ __( 'Description Alignment', 'wpmozo-blocks-and-addons' ) }
 					onChange={ ( newValue ) => setAttributes( { descriptionAlign: newValue } ) }
@@ -123,7 +129,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		) }
 		{/* Skill Text. */}
 		{ ( attributes.showSkills ) && ( <>
-			<PanelBody title={ __( 'Skill Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Skill Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
 				<WpmozoAlignment
 					label={ __( 'Skill Alignment', 'wpmozo-blocks-and-addons' ) }
 					onChange={ ( newValue ) => setAttributes( { skillAlign: newValue } ) }
@@ -132,14 +138,14 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				<WpmozoColorPicker props={ props }
 					ColorKey="skill"
 					ColorTypes={ [
-						{ key: 'Color', label: __( 'Description Color', 'wpmozo-blocks-and-addons' ) }
+						{ key: 'Color', label: __( 'Skill Text Color', 'wpmozo-blocks-and-addons' ) }
 					] }
 				/>
 				<WpmozoTypography props={ props }
 					TypographyKey="skill"
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Skills', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Skills', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel6'} onToggle={()=> handleToggle('panel6')}>
 				<RangeControl
 					label={ __( 'Bar Height(px)', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.barHeight }
@@ -158,7 +164,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		</> ) }
 		{/* Social Icons. */}
 		{ ( attributes.showSocialIcon ) && ( <>
-			<PanelBody title={ __( 'Social Icons', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Social Icons', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel7'} onToggle={()=> handleToggle('panel7')}>
 				{ 'layout1' === attributes.layout && ( <>
 					<RangeControl
 						label={ __( 'Separator Size(px)', 'wpmozo-blocks-and-addons' ) }
@@ -202,7 +208,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		{/* Popup. */}
 		{ ( attributes.enableLink && attributes.usePopup ) && ( <>
 			{/* Popup Styling. */}
-			<PanelBody title={ __( 'Popup Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Popup Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel8'} onToggle={()=> handleToggle('panel8')}>
 				<SelectControl
 					label={ __( 'Close Icon Position', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.popupCloseIconPos }
@@ -250,8 +256,8 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				/>
 			</PanelBody>
 			{/* Popup Name Text. */}
-			<PanelBody title={ __( 'Popup Name Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-				<BaseControl label={ __( 'Name Level', 'wpmozo-blocks-and-addons' ) }>
+			<PanelBody title={ __( 'Popup Name Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel9'} onToggle={()=> handleToggle('panel9')}>
+				<BaseControl label={ __( 'Name Heading Level', 'wpmozo-blocks-and-addons' ) }>
 					<ButtonGroup>
 						{ headingLevelsList.map( ( item, index ) => (
 							<Button key={ item.value }
@@ -278,7 +284,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			</PanelBody>
 			{/* Popup Designation Text. */}
 			{ ( ( attributes.displayInPopup ).includes( 'designation' ) ) && (
-				<PanelBody title={ __( 'Popup Designation Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<PanelBody title={ __( 'Popup Designation Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel10'} onToggle={()=> handleToggle('panel10')}>
 					<WpmozoAlignment
 						label={ __( 'Designation Alignment', 'wpmozo-blocks-and-addons' ) }
 						onChange={ ( newValue ) => setAttributes( { popupDesignationAlign: newValue } ) }
@@ -297,7 +303,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			) }
 			{/* Popup Description Text. */}
 			{ ( ( attributes.displayInPopup ).includes( 'content' ) ) && (
-				<PanelBody title={ __( 'Popup Description Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<PanelBody title={ __( 'Popup Description Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel11'} onToggle={()=> handleToggle('panel11')}>
 					<WpmozoAlignment showJustify={ true }
 						label={ __( 'Description Alignment', 'wpmozo-blocks-and-addons' ) }
 						onChange={ ( newValue ) => setAttributes( { popupDescriptionAlign: newValue } ) }
@@ -316,7 +322,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			) }
 			{/* Popup Skill Text. */}
 			{ ( ( attributes.displayInPopup ).includes( 'skills_bars' ) ) && (
-				<PanelBody title={ __( 'Popup Skill Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<PanelBody title={ __( 'Popup Skill Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel12'} onToggle={()=> handleToggle('panel12')}>
 					<WpmozoAlignment
 						label={ __( 'Skill Alignment', 'wpmozo-blocks-and-addons' ) }
 						onChange={ ( newValue ) => setAttributes( { popupSkillAlign: newValue } ) }
@@ -335,7 +341,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			) }
 			{/* Popup Skill Bars. */}
 			{ ( ( attributes.displayInPopup ).includes( 'skills_bars' ) ) && (
-				<PanelBody title={ __( 'Popup Skill Bars', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<PanelBody title={ __( 'Popup Skill Bars', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel13'} onToggle={()=> handleToggle('panel13')}>
 					<SelectControl
 						label={ __( 'Skill Bar Layout', 'wpmozo-blocks-and-addons' ) }
 						value={ attributes.popupBarLayout }
@@ -392,7 +398,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			) }
 			{/* Popup Social Icons. */}
 			{ ( ( attributes.displayInPopup ).includes( 'social_icons' ) ) && ( <>
-				<PanelBody title={ __( 'Popup Social Icons', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+				<PanelBody title={ __( 'Popup Social Icons', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel14'} onToggle={()=> handleToggle('panel14')}>
 					<WpmozoAlignment
 						label={ __( 'Popup Social Icon Alignment', 'wpmozo-blocks-and-addons' ) }
 						onChange={ ( newValue ) => setAttributes( { popupSocialIconAlign: newValue } ) }
@@ -421,7 +427,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			</> ) }
 		</> ) }
 		{/* Slider. */}
-		<PanelBody title={ __( 'Slider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Slider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel15'} onToggle={()=> handleToggle('panel15')}>
 			<WpmozoDimensions props={ props }
 				label={ __( 'Arrows Dimensions', 'wpmozo-blocks-and-addons' ) }
 				DimensionKey='arrow'
@@ -460,7 +466,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		</PanelBody>
 		{/* Button. */}
 		{ ( attributes.enableLink && 'button' === attributes.linkType ) && ( <>
-			<PanelBody title={ __( 'Link Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Link Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel16'} onToggle={()=> handleToggle('panel16')}>
 				<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>
 					<ButtonGroup>
 						<Button
@@ -559,7 +565,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			</PanelBody>
 		</> ) }
 		{/* Team Member Item. */}
-		<PanelBody title={ __( 'Team Member Item', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Team Member Item', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel17'} onToggle={()=> handleToggle('panel17')}>
 			<ColorGradientControl colors={[]} gradients={[]}
 				label={ __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
 				colorValue={ attributes.itemBackground }
@@ -579,7 +585,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		{/* Slider Container. */}
-		<PanelBody title={ __( 'Slider Container', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Slider Container', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel18'} onToggle={()=> handleToggle('panel18')}>
 			<WpmozoDimensions props={ props }
 				label={ __( 'Container Dimensions', 'wpmozo-blocks-and-addons' ) }
 				DimensionKey='container'

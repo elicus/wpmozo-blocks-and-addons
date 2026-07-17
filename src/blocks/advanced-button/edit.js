@@ -4,7 +4,7 @@ import Inspector from './inspector';
 import { useSelect, useDispatch  } from '@wordpress/data';
 import { Fragment,useEffect } from "@wordpress/element";
 import generateDynamicStyle from './style';
-import {getIdByClientid} from '../../common/utils.js';
+import { getIdByClientid, mergeWrapperProps } from '../../common/utils.js';
 import { createBlock } from '@wordpress/blocks';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -17,7 +17,13 @@ export default function Edit(props) {
 	const attributes = props.attributes,
 		setAttributes = props.setAttributes,
 		clientId = props.clientId,
-		blockProps = useBlockProps({ className: 'wpmozo-advanced-button' });
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-advanced-button${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	const childBlocks = useSelect((select) => {
 		return select('core/block-editor').getBlocks(clientId);
@@ -45,18 +51,29 @@ export default function Edit(props) {
 		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
 		}
-	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>
-				{ generateDynamicStyle({ attributes }) }
+				{ `${ generateDynamicStyle({ attributes }) }` }
 			</style>
-			{/* Parent wrapper for the Advanced Button block */}
-			<div {...useBlockProps({ className: `wpmozo-advanced-button` })}>
-
-				{/* InnerBlocks allows adding child button blocks inside this parent */}
+			<div {...blockProps}>
 				<InnerBlocks
 					templateLock={false} // Child blocks can be added/removed freely
 					template={ TEMPLATE } // Default block template (predefined structure)

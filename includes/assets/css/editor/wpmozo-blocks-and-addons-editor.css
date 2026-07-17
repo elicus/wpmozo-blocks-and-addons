@@ -135,6 +135,12 @@
 .wpmozo-settings-tab-panel .components-datetime__date h3 {
 	margin-bottom: 0 !important;
 }
+.wpmozo-settings-tab-panel .wpmozo-settings-tab-panel-content .components-panel__body.is-opened .components-panel__body-title{
+	background: #EBEBEB;
+}
+.wpmozo-settings-tab-panel .wpmozo-settings-tab-panel-content .components-panel__body.is-opened .components-panel__body-title:hover{
+	background: #F0F0F0;
+}
 
 /* Arrow. */
 /* .wpmozo-settings-tab-panel button.is-active::after{
@@ -175,6 +181,9 @@
 .wpmozo-block-icon path {
 	fill: #3D3EED;
 }
+.is-primary .wpmozo-block-icon path {
+    fill: white;
+}
 
 /* Custom field warning. */
 .wpmozo-field-warning.is-warning {
@@ -202,4 +211,86 @@
 
 .block-editor-inserter__panel-title, .block-editor-inserter__panel-title button{
     text-transform: capitalize;
+}
+.block-editor-block-types-list__list-item:has( .wpmozo-block-icon) .components-button.block-editor-block-types-list__item:not(:disabled,[aria-disabled=true]):hover .block-editor-block-types-list__item-title span{
+    color: #3D3EED;
+}
+.block-editor-block-types-list__list-item:has( .wpmozo-block-icon) .components-button.block-editor-block-types-list__item:not(:disabled,[aria-disabled=true]):hover:after{
+	background:#3D3EED;
+}
+/* Pattern C — Opt-in swap toggle (editor sidebar only) */
+.mozostates-prop-wrap{
+	padding-top: 10px;
+    position: relative;
+}
+.mozostates-prop-wrap .components-tools-panel-header .components-dropdown-menu .components-dropdown-menu__toggle{
+	position: absolute;
+    top: 8px;
+    right: -15px;
+}
+.mozostates-prop-wrap .components-tools-panel{
+	border-top: none;
+}
+
+.mozostates-prop-header {
+	display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+}
+
+.mozostates-prop-label {
+	display: flex;
+    align-items: baseline;
+    gap: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e1e1e;
+}
+
+.mozostates-state-suffix {
+	margin-left: 4px;
+    font-size: 8px;
+    font-weight: 600;
+    color: #757575;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Pill chip — off state: outlined accent, on state: dark filled */
+.mozostates-prop-wrap:has( .components-tools-panel-header .components-dropdown-menu .components-dropdown-menu__toggle) .mozostates-hover-chip{
+	right: 10px;
+}
+.mozostates-hover-chip {
+	position: absolute;
+	right: 0px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.2;
+    padding: 3px 8px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: transparent;
+    color: var(--wp-admin-theme-color, #007cba);
+    cursor: pointer;
+    transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+    white-space: nowrap;
+
+    &:hover:not(.is-on) {
+        border-color: var(--wp-admin-theme-color, #007cba);
+    }
+
+    &.is-on {
+        background: #1e1e1e;
+        border-color: #1e1e1e;
+        color: #fff;
+    }
+}
+.mozostates-prop-divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 16px 0;
 }

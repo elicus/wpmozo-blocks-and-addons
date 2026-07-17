@@ -53,6 +53,9 @@
     "titleColor": {
       "type": "string"
     },
+    "titleHoverColor": {
+      "type": "string"
+    },
     "titleAlign": {
       "type": "string"
     },
@@ -85,6 +88,9 @@
       "type": "string"
     },
     "percentageColor": {
+      "type": "string"
+    },
+    "percentageHoverColor": {
       "type": "string"
     },
     "percentageAlign": {

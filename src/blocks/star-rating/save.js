@@ -1,9 +1,17 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ( { attributes } ) => {
 
-	const clientId = attributes.ID;
+	const clientId = attributes.ID,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-star-rating' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	const imageUrl    = ( attributes.image ) ? attributes.image : '';
 	const rateIcon    = ( attributes.rateIcon ) ?? 'default';
@@ -96,7 +104,7 @@ const Save = ( { attributes } ) => {
 		<>
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-			<div {...useBlockProps.save( { className: attributes.className } )} id={`block-${clientId}`}>
+			<div {...blockProps} id={`block-${clientId}`}>
 				<div className="wpmozo_star_rating_wrapper">
 					{ ( imageUrl && '' !== imageUrl ) && (
 						<div className="wpmozo_star_rating_image_container">

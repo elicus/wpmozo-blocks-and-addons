@@ -19,15 +19,20 @@ import {
 } from '../../../common/components/index';
 import { headingLevelsList } from '../../../common/utils.js';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const WPMozoEditorObj = wpmozo_bna_editor_object;
 
 	let props = { attributes, setAttributes };
 	props = Object.assign({}, props, {preAttributes: {}});
+	const [openPanel, setOpenPanel] = useState('panel1');
+		
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	};
 
 	return (
 		<>
-			<PanelBody title={ __( 'Title Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
+			<PanelBody title={ __( 'Title Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 				<WpmozoAlignment
 					label={__( 'Text Alignment', 'wpmozo-blocks-and-addons')}
 					onChange={ ( newValue ) => setAttributes( { titleTextAlignment: newValue } ) }
@@ -56,7 +61,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					props={props}
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Excerpt Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Excerpt Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 				<WpmozoAlignment
 					label={__( 'Text Alignment', 'wpmozo-blocks-and-addons')}
 					onChange={ ( newValue ) => setAttributes( { excerptTextAlignment: newValue } ) }
@@ -74,7 +79,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					props={props}
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Post Item', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Post Item', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 				<RangeControl
 					label={ __( 'Post Item Width', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.postItemWidth }
@@ -98,7 +103,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					DimensionsTypes={{padding: true,margin: true}}
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Post Content', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Post Content', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 				<WpmozoColorPicker
 					props={props}
 					ColorKey="postContent"
@@ -116,7 +121,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					DimensionsTypes={{padding: true,margin: true}}
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Category', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Category', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
 				<WpmozoColorPicker
 					props={props}
 					ColorKey="cat"
@@ -139,7 +144,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					DimensionsTypes={{padding: true,margin: true}}
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Post Image', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Post Image', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel6'} onToggle={()=> handleToggle('panel6')}>
 				<ToggleControl
 					label={ __( 'Enable Custom Height', 'wpmozo-blocks-and-addons' ) }
 					checked={ attributes.enableCustomHeight }
@@ -164,7 +169,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					DimensionsTypes={{padding: true,margin: true}}
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Meta Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Meta Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel7'} onToggle={()=> handleToggle('panel7')}>
 				<RangeControl
 					label={__('Meta Icon font Size Height (px)', 'wpmozo-blocks-and-addons')}
 					value={attributes.metaIconFontSize}
@@ -179,7 +184,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					] }
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Meta Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Meta Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel8'} onToggle={()=> handleToggle('panel8')}>
 				<WpmozoColorPicker
 					props={props}
 					ColorKey="metaText"
@@ -203,7 +208,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					DimensionsTypes={{padding: true,margin: true}}
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel9'} onToggle={()=> handleToggle('panel9')}>
 				<WpmozoAlignment
 					label={__( 'Button Alignment', 'wpmozo-blocks-and-addons')}
 					onChange={ ( newValue ) => setAttributes( { buttonAlignment: newValue } ) }
@@ -281,14 +286,14 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					</>
 				)}
 			</PanelBody>
-			<PanelBody title={ __( 'Spacing', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Spacing', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel10'} onToggle={()=> handleToggle('panel10')}>
 				<WpmozoDimensions
 					props={props}
 					DimensionKey='container'
 					DimensionsTypes={{padding: true,margin: true}}
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Border', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Border', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel11'} onToggle={()=> handleToggle('panel11')}>
 				<WpmozoBorder
 					props={props}
 					BorderKey="container"

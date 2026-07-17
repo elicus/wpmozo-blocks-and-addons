@@ -1,51 +1,42 @@
 import $ from 'jquery';
-
-$(document).ready(function(e) {
-
+$(window).load(function() {
+	$('.wp-block-wpmozo-advanced-tooltip').each(function() {
+		initAdvancedButton($(this), 'load');
+	});
 	window.addEventListener('WPMozoButtonPropsChanged', () => {
-		$('.wpmozo_advanced_tooltip').each(function() {
-			initAdvancedButton($(this));
+		$('.wp-block-wpmozo-advanced-tooltip').each(function() {
+			initAdvancedButton($(this), 'event');
 		});
 	});
-
-	//Initial gallery setup
-	setTimeout( function (){
-			$('.wp-block-wpmozo-advanced-tooltip').each(function() {
-				initAdvancedButton($(this));
-			})
-	}, 1000);
-
 });
 
-function initAdvancedButton($galleryContainer) {
+function initAdvancedButton($galleryContainer, source = 'load') {
 	const wrapID = $galleryContainer.attr('id');
 
-	let $this = $($galleryContainer),
+	let $this = $galleryContainer,
 		$wrap = $this.find('.wpmozo_tooltip_trigger_element_wrap');
-
+		
 	// Get data attributes or fallback to defaults
-	let triggerType = $wrap.data('trigger-action') || 'mouseenter',
-		animationType = $wrap.data('animation') || 'fade',
-		duration = parseInt($wrap.data('duration')) || 350,
-		speechBubble = $wrap.data('speechbubble') || false,
-		interactive = $wrap.data('interactive') || false,
-		width = $wrap.data('tooltip-width') || '350',
-		triggerEl = $wrap.data('trigger-element') || 'button',
-		triggerSelector = $wrap.data('trigger-selector') || '';
-
-
+	let triggerType = ('load' === source ? $wrap.data('trigger-action')  : $wrap.attr('data-trigger-action')) || 'mouseenter',
+		animationType = ('load' === source ? $wrap.data('animation')  : $wrap.attr('data-animation')) || 'fade',
+		duration = parseInt('load' === source ? $wrap.data('duration')  : $wrap.attr('data-duration')) || 350,
+		speechBubble = ('load' === source ? $wrap.data('speech-bubble')  : $wrap.attr('data-speech-bubble') === "true") || false,
+		interactive = ('load' === source ? $wrap.data('interactive')  : $wrap.attr('data-interactive') === "true") || false,
+		width = ('load' === source ? $wrap.data('tooltip-width')  : $wrap.attr('data-tooltip-width')) || '350',
+		triggerEl = ('load' === source ? $wrap.data('trigger-element')  : $wrap.attr('data-trigger-element')) || 'button',
+		triggerSelector = ('load' === source ? $wrap.data('trigger-selector')  : $wrap.attr('data-trigger-selector') ) || '';
+		
 	// 🔧 Fix: Look inside current tooltip instance only
 	let $tooltipContent = $this.find('.wpmozo_advanced_tooltip_content_wrap');
 	if (!$tooltipContent.length) return;
-
-
+		
+		
 	// 🔧 Fix: Localize trigger selector - use jQuery object instead of string selector
 	let $triggerElement = $this.find('.wpmozo_tooltip_trigger_element');
-
+		
 	// Check if tippy instance already exists on this trigger element
 	if ($triggerElement.length && $triggerElement[0]._tippy) {
-		// If tippy already initialized, do not add a new one
-		return;
+		$triggerElement[0]._tippy.destroy();
 	}
 
 	// Initialize tippy.js

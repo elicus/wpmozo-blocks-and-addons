@@ -1,8 +1,16 @@
 import {RichText, useBlockProps} from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ({ attributes }) => {
-    const ID = attributes.ID;
+    const ID = attributes.ID,
+    wrapArgs = attributes?.ID && mergeWrapperProps( { 
+        className: 'wpmozo-progress-bar' ,
+        style: {}
+    }, attributes ),
+    wrapProps = wrapArgs?.wrapprops,
+    blockProps = useBlockProps.save(wrapProps),
+    wrapStyle = wrapArgs?.wrapStyle;
 
     const renderLayoutShape = () => {
         if ('circle' === attributes.layout) {
@@ -49,7 +57,7 @@ const Save = ({ attributes }) => {
         <>
             <style>{ generateDynamicStyle({ attributes }) }</style>
 
-            <div {...useBlockProps.save({ className: attributes.className })} id={`block-${ID}`}>
+            <div {...blockProps} id={`block-${ID}`}>
                 <div 
                     className={`wpmozo-bna-progress-bar-wrapper wpmozo-bna-progress-bar-layout-${attributes.layout} ${attributes.showStriped ? 'wpmozo-bna-progress-bar-striped' : ''}`}
                     data-bar_direction={'bar' === attributes.layout ? attributes.barDirection : undefined}

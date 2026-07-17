@@ -6,14 +6,19 @@ import {
 } from '@wordpress/block-editor';
 import Inspector from './inspector';
 import generateDynamicStyle from './style';
-import { Fragment, useMemo } from "@wordpress/element";
-import { wpmozo_is_empty } from '../../common/utils.js';
+import { Fragment, useMemo, useEffect } from "@wordpress/element";
+import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils.js';
 
 export default function Edit(props) {
     const { attributes, setAttributes, clientId } = props;
-    attributes.ID = clientId;
-    const blockProps = useBlockProps({ className: 'wpmozo-bna-floating-image' });
-
+    const wrapArgs = attributes?.ID && mergeWrapperProps( { 
+        className: `wpmozo-bna-floating-image${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+        style: {}
+    }, attributes ),
+    wrapProps = wrapArgs?.wrapprops,
+    blockProps = useBlockProps(wrapProps),
+    wrapStyle = wrapArgs?.wrapStyle;
+    
     const { images = [] } = attributes;
     const TEMPLATE = useMemo(() => {
         if (!wpmozo_is_empty(images)) {
@@ -24,7 +29,27 @@ export default function Edit(props) {
         }
         return [];
     }, [images]);
+    useEffect( () => {
+        if ( attributes.ID !== clientId ) {
+            setAttributes( { ID: clientId } );
+        }
+        const updates = {};
+        if ( attributes.ID !== clientId ) {
+            updates.ID = clientId;
+        }
 
+        // wrapStyle recalculate karke attribute mein store karo
+        if ( attributes.ID ) {
+            if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+                updates.wrapStyle = wrapStyle;
+            }
+        }
+
+        if ( Object.keys( updates ).length ) {
+            setAttributes( updates );
+        }
+    }, [ clientId, JSON.stringify( attributes ) ] );
+    
     return (
         <Fragment>
             { wpmozo_is_empty(images) &&

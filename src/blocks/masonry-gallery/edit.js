@@ -34,6 +34,7 @@ import { useDispatch, useSelect } from '@wordpress/data';
 import Inspector from './inspector';
 import { pickRelevantMediaFiles } from '../../common/components/wpmozo-block-gallery/shared-helpers';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
@@ -50,14 +51,41 @@ function Edit(props) {
 		clientId,
 		noticeOperations,
 		isSelected,
-	} = props;
+	} = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-masonry-gallery${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	const {
 		replaceInnerBlocks,
 		updateBlockAttributes,
 	} = useDispatch( blockEditorStore );
 
-	attributes.ID = clientId;
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 
 	const { getBlock, preferredStyle } = useSelect( ( select ) => {
@@ -248,8 +276,6 @@ function Edit(props) {
 			value={ hasImageIds ? images : {} }
 		/>
 	);
-
-	const blockProps = useBlockProps({className:'wpmozo_masonry_gallery'});
 
 	return (
 		<>

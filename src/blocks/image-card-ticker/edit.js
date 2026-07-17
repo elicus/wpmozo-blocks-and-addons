@@ -23,6 +23,7 @@ import generateDynamicStyle from "./style";
  */
 import './editor.scss';
 import {pickRelevantMediaFiles} from "../../common/components/wpmozo-block-gallery/shared-helpers";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
 
@@ -32,7 +33,14 @@ const PLACEHOLDER_TEXT = Platform.isNative
 
 export default function Edit(props) {
 
-	const {setAttributes, attributes, clientId, noticeOperations, isSelected} = props;
+	const {setAttributes, attributes, clientId, noticeOperations, isSelected} = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-image-card-ticker${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	const {replaceInnerBlocks, updateBlockAttributes} = useDispatch( blockEditorStore );
 
@@ -41,7 +49,22 @@ export default function Edit(props) {
 		if (attributes.ID !== clientId) {
 			setAttributes({ID: clientId});
 		}
-	}, [clientId]); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	useEffect( () => {
 		const event = new CustomEvent( 'WPMozoImageTickerPropsChanged' );
@@ -245,7 +268,7 @@ export default function Edit(props) {
 			<Inspector attributes={attributes} setAttributes={setAttributes}/>
 			<style>{generateDynamicStyle({attributes})}</style>
 
-			<div {...useBlockProps()} >
+			<div {...blockProps}>
 				{'curve' === attributes.tickerLayout && (
 					<svg width="0" height="0">
 						<defs>

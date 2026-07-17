@@ -39,7 +39,7 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 			}
 			{$mainSelector} .dipl-home-page,
 			{$mainSelector} .wpmozo-bna-home-page{
-				font-size:  {$attrs['homeLinkIconSizeFontSize']};
+				font-size:  " . ( isset( $attrs['homeLinkIconSizeFontSize'] ) ? $attrs['homeLinkIconSizeFontSize'] : 'inherit' ) . ";
 			}
 			{$mainSelector} .dipl-home-page .breadcrumb-home-icon i,
 			{$mainSelector} .wpmozo-bna-home-page .breadcrumb-page .breadcrumb-home-icon .icon-wrapper i{

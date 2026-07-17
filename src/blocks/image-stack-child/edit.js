@@ -12,13 +12,40 @@ import Inspector from './inspector';
 
 import classnames from 'classnames';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function Edit(props) {
 
-	const { attributes, setAttributes, isSelected, clientId } = props;
+	const { attributes, setAttributes, isSelected, clientId } = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-image-stack-item${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
-	attributes.ID = clientId;
-	setAttributes( { ID: clientId } );
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	const {
 		image,
@@ -39,9 +66,6 @@ export default function Edit(props) {
 			});
 		}
 	}, [imageSrc, image]);
-
-	// const blockProps = useBlockProps({className:'wpmozo-bna-image-stack'});
-	const blockProps = useBlockProps();
 
 	const parentId = useSelect( ( select ) => {
         return select( 'core/block-editor' ).getBlockRootClientId( clientId );

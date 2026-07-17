@@ -6,8 +6,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 use WPMOZO\BNA\Helpers\Mozo_Bna_Helpers;
 use WPMOZO\BNA\Helpers\Mozo_Bna_Block_Helpers;
 
-if ( ! function_exists( 'horizontal_scrolling_post_render_callback' ) ) {
-	function horizontal_scrolling_post_render_callback( $attributes ) {
+if ( ! function_exists( 'post_ticker_render_callback' ) ) {
+	function post_ticker_render_callback( $attributes ) {
 
 		$helpers       = new Mozo_Bna_Helpers();
 		$block_helpers = new Mozo_Bna_Block_Helpers();
@@ -72,9 +72,9 @@ if ( ! function_exists( 'horizontal_scrolling_post_render_callback' ) ) {
 			}
 
 			// Get wrapper attributes.
-			$wrapper_attributes = get_block_wrapper_attributes( array(
-				'class' => ( $attributes['className'] ) ?? ''
-			) );
+			$wrapper_attributes = get_block_wrapper_attributes(array(
+				'class'=>'wpmozo-wrap-'.$attributes['ID'] . ' ' . 'wpmozo-advanced-tooltip' . ' ' .$attributes['wrapCustomClass']. ' ' .$attributes['className']
+			));
 
 			// Get data attrs.
 			$data_attrs    = array(
@@ -155,4 +155,4 @@ if ( ! function_exists( 'horizontal_scrolling_post_render_callback' ) ) {
 	}
 }
 
-echo horizontal_scrolling_post_render_callback( $attributes );
+echo post_ticker_render_callback( $attributes );

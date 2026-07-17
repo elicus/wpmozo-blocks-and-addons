@@ -4,10 +4,43 @@ import {useBlockProps, RichText} from "@wordpress/block-editor";
 import Inspector from './inspector';
 import './editor.scss';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Edit = (props) => {
     const { attributes, clientId, setAttributes } = props;
-    const blockProps = useBlockProps({ className: 'wpmozo-bna-progress-bar-main' });
+
+	let linkTarget = ( 'external' === attributes.buttonLinkTarget ) ? '_blank' : '_self',
+		showIconOnHover = ( attributes.showIconOnHover ) ? ' show-on-hover' : '',
+		buttonIconPosition = ( attributes.buttonIconPosition ) ? attributes.buttonIconPosition : ' icon-after',
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-pricing-table${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit = true;
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] );
     const [scrollPercent, setScrollPercent] = useState(attributes.percentage);
     useEffect(() => {
 
@@ -99,13 +132,6 @@ const Edit = (props) => {
         };
     
     }, []);
-    useEffect(() => {
-        if (attributes.ID !== clientId) {
-            setAttributes({
-                ID: clientId,
-            });
-        }
-    }, [clientId, attributes.ID]);
 
     // SVG length offset for static preview inside editor
     const displayPercent = scrollPercent;

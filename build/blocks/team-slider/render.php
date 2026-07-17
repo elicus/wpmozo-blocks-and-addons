@@ -298,9 +298,9 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 			}
 
 			// Get wrapper attributes.
-			$wrapper_attributes = get_block_wrapper_attributes( array(
-				'class' => ( $attributes['className'] ) ?? ''
-			) );
+			$wrapper_attributes = get_block_wrapper_attributes(array(
+				'class'=>'wpmozo-wrap-'.$attributes['ID'] . ' ' . 'wpmozo-team-slider' . ' ' .$attributes['wrapCustomClass']. ' ' .$attributes['className']
+			));
 
 			// Equal height testimonial class.
 			$equal_height_class = ( true === $attributes['equalHeight'] ) ? ' wpmozo_equal_team_member_height' : '';

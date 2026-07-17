@@ -54,8 +54,7 @@
 
 		"separatorThickness": { "type": "number", "default": 3 },
 		"separatorGradient": { "type": "string" },
-		"separatorColor": { "type": "string", "default": "#2b87da" },
-		"shadowColor": { "type": "string", "default": "#2b87da" }
+		"separatorColor": { "type": "string", "default": "#2b87da" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

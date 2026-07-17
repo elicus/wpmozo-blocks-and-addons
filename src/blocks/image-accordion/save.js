@@ -1,15 +1,17 @@
 import { InnerBlocks, useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import generateDynamicStyle from './style';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function save({ attributes }) {
     
-    const { ID, className } = attributes;
-
-    // Only add ID attribute if it exists.
-    const blockProps = useBlockProps.save( {
-        className: className,
-        ...( ID ? { id: `block-${ ID }` } : {} ),
-    } );
+    const { ID, className } = attributes,
+        wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-image-accordion' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
     return (
         <>
@@ -17,7 +19,7 @@ export default function save({ attributes }) {
             { ( ID && '' !== ID ) && (
                 <style>{ generateDynamicStyle( { attributes } ) }</style>
             ) }
-            <div { ...blockProps }>
+            <div { ...blockProps } id={`block-${ID}`}>
                 <div 
                     className={`wpmozo-bna-image-accordion-wrapper wpmozo-bna-image-accordion-content-${attributes.contentAlignment} ${attributes.accordionOrientation}`}
                     data-trigger={attributes.accordionTrigger}

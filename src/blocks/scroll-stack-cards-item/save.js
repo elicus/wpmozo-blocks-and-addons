@@ -1,19 +1,20 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from './style';
 import { RichText } from '@wordpress/block-editor';
-import {wpmozo_is_empty} from '../../common/utils.js';
+import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils.js';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
 export default function save({ attributes }) {
     
-    const { ID, parentAtts } = attributes;
-
-    // Only add ID attribute if it exists
-    const blockProps = useBlockProps.save( {
-        className: attributes.className,
-        ...( ID ? { id: `block-${ ID }` } : {} ),
-    } );
+    const { ID, parentAtts } = attributes,
+        wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-scroll-stack-cards-item' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
     const {
         itemButtonText,
@@ -175,7 +176,7 @@ export default function save({ attributes }) {
             { ( ID && '' !== ID ) && (
                 <style>{ generateDynamicStyle( { attributes } ) }</style>
             ) }
-            <div { ...blockProps }>
+            <div { ...blockProps } id={`block-${ ID }`}>
                 { 'vertical' === layout &&
                     LayoutVertical
                 }

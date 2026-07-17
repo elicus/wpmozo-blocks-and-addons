@@ -22,15 +22,20 @@ import {
 	WpmozoColorPicker, WpmozoAlignment,
 } from '../../../common/components/index.js';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
 	const [ linkTextType, setLinkTextType ] = useState( 'normal' );
 	const [ buttonType, setButtonType ]     = useState( 'normal' );
+	const [openPanel, setOpenPanel] = useState('panel1');
+	
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	};
 
 	return ( <>
 		{/* Dropdown Button. */}
-		<PanelBody title={ __( 'Dropdown Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
+		<PanelBody title={ __( 'Dropdown Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={() => handleToggle('panel1')}>
 			<WpmozoAlignment
 				label={__('Button Alignment', 'wpmozo-blocks-and-addons')}
 				onChange={(newValue) => setAttributes({buttonAlign: newValue})}
@@ -133,7 +138,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			</BaseControl>
 		</PanelBody>
 		{/* Dropdown Menu. */}
-		<PanelBody title={ __( 'Dropdown Menu', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Dropdown Menu', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={() => handleToggle('panel2')}>
 			<RangeControl
 				label={ __( 'Dropdown Min Width (in px)', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.submenuMinwidth }
@@ -159,7 +164,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		{/* Dropdown Link Text. */}
-		<PanelBody title={ __( 'Dropdown Link', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Dropdown Link', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={() => handleToggle('panel3')}>
 			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>
 				<ButtonGroup>
 					<Button

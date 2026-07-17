@@ -265,7 +265,7 @@ class Mozo_Bna_Post_Types {
 	 * @since 1.1.0
 	 */
 	public static function manage_block_editor_for_post_type( $use_block_editor, $post_type ) {
-		if ( $post_type === 'wpmozoae-testimonial' || $post_type === 'wpmozoae-team-member' || $post_type === 'wpmozoae-portfolio' ) {
+		if ( $post_type === 'wpmozoae-testimonial' || $post_type === 'wpmozoae-team-member'|| $post_type === 'wpmozoae-portfolio' ) {
 			return false; // disable block editor for this post type
 		}
 		return $use_block_editor;
@@ -365,22 +365,24 @@ class Mozo_Bna_Post_Types {
 		// Proceed to add custom meta.
 		$data = $response->get_data();
 
-		$data['short_description'] = get_post_meta( $post->ID, 'wpmozo_ae_team_member_short_desc', true );
-		$data['designation']       = get_post_meta( $post->ID, 'wpmozo_ae_team_member_designation', true );
-		$data['phone_number']      = get_post_meta( $post->ID, 'wpmozo_ae_team_member_phone_number', true );
-		$data['email_address']     = get_post_meta( $post->ID, 'wpmozo_ae_team_member_email_address', true );
-		$data['website']           = get_post_meta( $post->ID, 'wpmozo_ae_team_member_website', true );
-		$data['facebook']          = get_post_meta( $post->ID, 'wpmozo_ae_team_member_facebook', true );
-		$data['twitter']           = get_post_meta( $post->ID, 'wpmozo_ae_team_member_twitter', true );
-		$data['linkedin']          = get_post_meta( $post->ID, 'wpmozo_ae_team_member_linkedin', true );
-		$data['instagram']         = get_post_meta( $post->ID, 'wpmozo_ae_team_member_instagram', true );
-		$data['youtube']           = get_post_meta( $post->ID, 'wpmozo_ae_team_member_youtube', true );
-		$data['member_skills']     = get_post_meta( $post->ID, 'wpmozo_ae_team_member_member_skills', true );
+		$data['short_description']    = get_post_meta( $post->ID, 'wpmozo_ae_team_member_short_desc', true );
+		$data['designation']          = get_post_meta( $post->ID, 'wpmozo_ae_team_member_designation', true );
+		$data['phone_number']         = get_post_meta( $post->ID, 'wpmozo_ae_team_member_phone_number', true );
+		$data['email_address']        = get_post_meta( $post->ID, 'wpmozo_ae_team_member_email', true );
+		$data['website']              = get_post_meta( $post->ID, 'wpmozo_ae_team_member_website', true );
+		$data['facebook']             = get_post_meta( $post->ID, 'wpmozo_ae_team_member_facebook', true );
+		$data['twitter']              = get_post_meta( $post->ID, 'wpmozo_ae_team_member_twitter', true );
+		$data['linkedin']             = get_post_meta( $post->ID, 'wpmozo_ae_team_member_linkedin', true );
+		$data['instagram']            = get_post_meta( $post->ID, 'wpmozo_ae_team_member_instagram', true );
+		$data['youtube']              = get_post_meta( $post->ID, 'wpmozo_ae_team_member_youtube', true );
+		$data['member_skills']        = get_post_meta( $post->ID, 'wpmozo_ae_team_member_skills', true );
+		$data['member_skills_values'] = get_post_meta( $post->ID, 'wpmozo_ae_team_member_skills_value', true );
 
 		$response->set_data( $data );
 
 		return $response;
 	}
+
 
 	/**
 	 * Register portfolio post types.

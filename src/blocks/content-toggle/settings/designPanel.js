@@ -12,13 +12,19 @@ import {
 	WpmozoTypography
 } from '../../../common/components/index';
 import { wpmozo_is_empty } from '../../../common/utils.js';
+import { useState } from '@wordpress/element';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+	
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	};
 
 	return ( <>
 		{/* Toggle Switch. */}
-		<PanelBody title={ __( 'Toggle Switch' ) } className="wpmozo-typography-panel" initialOpen={true}>
+		<PanelBody title={ __( 'Toggle Switch' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={() => handleToggle('panel1')}>
 			<SelectControl
 				label={ __( 'Switch Type', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.toggleSwitchType }
@@ -64,7 +70,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		{/* Title One. */}
-		<PanelBody title={ __( 'Title One' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Title One' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={() => handleToggle('panel2')}>
 			<WpmozoColorPicker props={props}
 				ColorKey="titleOne"
 				ColorTypes={ [ 
@@ -96,7 +102,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			</> ) }
 		</PanelBody>
 		{/* Title Two. */}
-		<PanelBody title={ __( 'Title Two' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Title Two' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={() => handleToggle('panel3')}>
 			<WpmozoColorPicker props={props}
 				ColorKey="titleTwo"
 				ColorTypes={ [ 
@@ -129,7 +135,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			</> ) }
 		</PanelBody>
 		{/* Content One. */}
-		<PanelBody title={ __( 'Content One' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Content One' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={() => handleToggle('panel4')}>
 			<WpmozoColorPicker props={props}
 				ColorKey="contentOne"
 				ColorTypes={ [ 
@@ -158,7 +164,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		{/* Content Two. */}
-		<PanelBody title={ __( 'Content Two' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Content Two' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={() => handleToggle('panel5')}>
 			<WpmozoColorPicker props={props}
 				ColorKey="contentTwo"
 				ColorTypes={ [

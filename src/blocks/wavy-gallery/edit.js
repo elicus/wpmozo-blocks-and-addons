@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { concat, find } from 'lodash';
+import { at, concat, find } from 'lodash';
 import { Fragment } from "@wordpress/element";
 import { View } from '@wordpress/primitives';
 
@@ -28,6 +28,7 @@ import generateDynamicStyle from './style';
  */
 import './editor.scss';
 import { pickRelevantMediaFiles } from "../../common/components/wpmozo-block-gallery/shared-helpers";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
 const PLACEHOLDER_TEXT = Platform.isNative
@@ -42,19 +43,46 @@ export default function Edit( props ) {
 		clientId,
 		noticeOperations,
 		isSelected,
-	} = props;
-
-	const {
-		replaceInnerBlocks,
-		updateBlockAttributes,
-	} = useDispatch( blockEditorStore );
-
+	} = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-wavy-gallery${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
+	const isSaving = useSelect(select =>
+		select('core/editor').isSavingPost()
+	);
+	useEffect(() => {
+			setAttributes({wrapIsHover: false});
+	}, [isSaving]);
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
 		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
 		}
-	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+
+	const {
+		replaceInnerBlocks,
+		updateBlockAttributes,
+	} = useDispatch( blockEditorStore );
 
 	const { getBlock, preferredStyle } = useSelect( ( select ) => {
 		const settings = select( blockEditorStore ).getSettings();
@@ -81,7 +109,7 @@ export default function Edit( props ) {
 				fromSavedContent: Boolean( block.originalContent ),
 				id:               block.attributes.id,
 				url:              block.attributes.url,
-				caption:          block.attributes.caption ?? '',
+				caption:          block.attributes.caption?.text ? block.attributes.caption.text : block.attributes.caption,
 			} ) ),
 		[ innerBlockImages ]
 	);
@@ -91,7 +119,7 @@ export default function Edit( props ) {
 		if ( Array.isArray( images ) && images.length > 0 ) {
 			setAttributes( { images_data: images } );
 		}
-	}, [ images ] );
+	}, [ images, JSON.stringify( attributes ) ] );
 
 	useEffect( () => {
 		const event = new CustomEvent( 'WPMozoWavyGalleryPropsChanged' );
@@ -247,7 +275,7 @@ export default function Edit( props ) {
 			<Inspector attributes={ attributes } setAttributes={ setAttributes } />
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-			<div { ...useBlockProps() } id={ `block-${ attributes.ID }` }>
+			<div { ...blockProps} id={ `block-${ attributes.ID }` }>
 				<div className="wpmozo_wavy_gallery_wrapper">
 					{ attributes.images_data && (
 						<Notice status="warning" isDismissible={ false }>

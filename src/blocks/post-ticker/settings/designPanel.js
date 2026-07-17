@@ -15,15 +15,20 @@ import {
 } from "../../../common/components";
 import { headingLevelsList } from '../../../common/utils.js';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+							
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
 	const [btnStyle, setBtnStyleType] = useState('normal');
 	const [btnPostItemsStyle, setBtnPostItemsType] = useState('normal');
 	const [btnPostItemStyle, setBtnPostItemType] = useState('normal');
 
 	return (
 		<>
-			<PanelBody title={__('Ticker Label', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={true}>
+			<PanelBody title={__('Ticker Label', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 				<BaseControl className="wpmozo-button-tabs-wrap">
 					<ButtonGroup>
 						<Button
@@ -89,7 +94,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					)}
 				</BaseControl>
 			</PanelBody>
-			<PanelBody title={__('Post Items Bar', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={__('Post Items Bar', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 				<BaseControl className="wpmozo-button-tabs-wrap">
 					<ButtonGroup>
 						<Button
@@ -145,7 +150,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					)}
 				</BaseControl>
 			</PanelBody>
-			<PanelBody title={__('Post Item','wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={__('Post Item','wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 				<BaseControl className="wpmozo-button-tabs-wrap">
 					<ButtonGroup>
 						<Button
@@ -201,7 +206,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					)}
 				</BaseControl>
 			</PanelBody>
-			<PanelBody title={__('Post Item Separator','wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={__('Post Item Separator','wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 				<RangeControl
 					label={ __( 'Separator Font Size', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.separatorFontSize }
@@ -222,7 +227,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				/>
 
 			</PanelBody>
-			<PanelBody title={__('Arrows','wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={__('Arrows','wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
 				<RangeControl
 					label={ __( 'Arrow Font Size', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.arrowFontSize }

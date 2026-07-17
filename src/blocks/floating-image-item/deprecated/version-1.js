@@ -1,20 +1,8 @@
+// deprecated/version-1.js
 import { useBlockProps } from '@wordpress/block-editor';
 import {wpmozo_is_empty} from "../../../common/utils";
 
-const deprecatedSave = ({ attributes }) => {
-    const ID = attributes.ID,
-        altText = !wpmozo_is_empty( attributes.altText ) 
-            ? attributes.altText
-            : 'alt';
-     
-    return (
-       <div className="floating-image-item" id={`block-${ID}`}>
-            <img className="floating-image" src={ attributes.image.url } alt={altText} />
-        </div>
-    );
-};
-
-export default {
+const V1 = {
     attributes: {
         // Same as old v1.0.0 attributes
         ID: { type: "string", },
@@ -32,5 +20,18 @@ export default {
         imageborderRadius: { type: "string", },
         imageborder: { type: "object", }
     },
-    save: deprecatedSave,
+    save( { attributes } ) {
+        const ID = attributes.ID,
+            altText = !wpmozo_is_empty( attributes.altText ) 
+                ? attributes.altText
+                : 'alt';
+        
+        return (
+        <div className="floating-image-item" id={`block-${ID}`}>
+                <img className="floating-image" src={ attributes.image.url } alt={altText} />
+            </div>
+        );
+    },
 };
+
+export default V1;

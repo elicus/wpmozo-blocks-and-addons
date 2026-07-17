@@ -2,19 +2,18 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ( { attributes } ) => {
 
-	const { ID, className, isFirstChild } = attributes;
-
-	// Only add ID attribute if it exists.
-	const blockProps = useBlockProps.save( {
-		className: [
-			className,
-			isFirstChild ? 'wpmozo-bna-bg-switcher-hover' : '' // first child active background.
-		].filter( Boolean ).join( ' ' ),
-		...( ID ? { id: `block-${ ID }` } : {} ),
-	} );
+	const { ID, className, isFirstChild } = attributes,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-advanced-button ${isFirstChild ? 'wpmozo-bna-bg-switcher-hover' : ''}` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	// Get the title.
 	let $title = '';
@@ -77,7 +76,7 @@ const Save = ( { attributes } ) => {
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 		) }
 
-		<div { ...blockProps }>
+		<div {...blockProps} id={`block-${ID}`}>
 			<div className="wpmozo_bna_bg_switcher_item_wrap">
 				<div className="wpmozo_bna_bg_switcher_content">
 					{ $title }

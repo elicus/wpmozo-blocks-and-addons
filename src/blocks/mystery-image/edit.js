@@ -32,6 +32,7 @@ import { View } from '@wordpress/primitives';
 import Inspector from './inspector';
 import { pickRelevantMediaFiles } from '../../common/components/wpmozo-block-gallery/shared-helpers';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
@@ -86,13 +87,40 @@ function Edit( props ) {
 		clientId,
 		noticeOperations,
 		isSelected,
-	} = props;
+	} = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `${className} wpmozo-mustery-image${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
+
+		// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	const {
 		replaceInnerBlocks,
 	} = useDispatch( blockEditorStore );
-
-	attributes.ID = clientId;
 
 
 	const innerBlockImages = useSelect(
@@ -113,9 +141,6 @@ function Edit( props ) {
 			} ) ),
 		[ innerBlockImages ]
 	);
-
-	const blockProps = useBlockProps( {
-		className: classnames( className)} );
 
 	const hasImages = !! images.length;
 	const hasImageIds = hasImages && images.some( ( image ) => !! image.id );
@@ -210,7 +235,7 @@ function Edit( props ) {
 			<style>
 				{generateDynamicStyle({attributes, clientId})}
 			</style>
-			<div {...useBlockProps({ id: `block-${clientId}` })}>
+			<div {...blockProps} id={`block-${clientId}`}>
 			{images && Array.isArray(images) && images.length > 0 && (() => {
 				const randomIndex = Math.floor(Math.random() * images.length);
 				const randomImage = images[randomIndex];

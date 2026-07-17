@@ -2,8 +2,9 @@ import Inspector from "./inspector";
 import generateDynamicStyle from "./style";
 
 import {__} from "@wordpress/i18n";
-import {Fragment} from "@wordpress/element";
+import {Fragment, useEffect} from "@wordpress/element";
 import {useBlockProps, RichText} from "@wordpress/block-editor";
+import { mergeWrapperProps } from '../../common/utils.js';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -16,10 +17,36 @@ export default function Edit(props) {
 	let attributes = props.attributes,
 		clientId = props.clientId,
 		setAttributes = props.setAttributes,
-		blockProps = useBlockProps({className: 'wpmozo-bna-fancy-text-wrap'}),
-		position = '';
+		position = '',
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-bna-fancy-text-wrap${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit = true;
 
-	attributes.ID = clientId;
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] );
 
 
 	if ('line' === attributes.separatorType) {
@@ -40,7 +67,7 @@ export default function Edit(props) {
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes}/>
 			<style>
-				{generateDynamicStyle({attributes, clientId})}
+				{generateDynamicStyle({attributes, clientId, isEdit})}
 			</style>
 			<div {...blockProps} id={`block-${attributes.ID}`}>
 				<RichText

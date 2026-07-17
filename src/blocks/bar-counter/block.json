@@ -27,6 +27,7 @@
 		"stripeAnimationSpeed": { "type": "number" },
 
 		"titleColor": { "type": "string" },
+		"titleHoverColor": { "type": "string" },
 		"titleAlign": { "type": "string" },
 		"titleFontSize": { "type": "string" },
 		"titleFontAppearance": {
@@ -44,6 +45,7 @@
 		"titleLineHeight": { "type": "string" },
 
 		"percentageColor": { "type": "string" },
+		"percentageHoverColor": { "type": "string" },
 		"percentageAlign": { "type": "string" },
 		"percentageFontSize": { "type": "string" },
 		"percentageFontAppearance": {

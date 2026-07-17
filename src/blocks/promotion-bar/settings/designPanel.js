@@ -26,8 +26,13 @@ import {
 
 import { headingLevelsList } from '../../../common/utils.js';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+								
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
 
 	const [ titleType, setTitleType ]         = useState( 'normal' );
 	const [ descType, setDescType ]           = useState( 'normal' );
@@ -37,7 +42,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 	
 	return ( <>
 		{/* Content Box. */}
-		<PanelBody title={ __( 'Content Box', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
+		<PanelBody title={ __( 'Content Box', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<WpmozoAlignment
 				label={ __( 'Content Box Alignment', 'wpmozo-blocks-and-addons' ) }
 				onChange={ ( newValue ) => setAttributes( { contentBoxAlign: newValue } ) }
@@ -55,7 +60,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		</PanelBody>
 		{/* Image. */}
 		{ ( attributes.showImage ) && ( <>
-			<PanelBody title={ __( 'Image', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Image', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 				<WpmozoDimensions props={ props }
 					label={ __( 'Image Dimensions', 'wpmozo-blocks-and-addons' ) }
 					DimensionKey='image'
@@ -92,7 +97,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			</PanelBody>
 		</> ) }
 		{/* Title Text. */}
-		<PanelBody title={ __( 'Title Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Title Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 			<BaseControl label={ __( 'Heading Level', 'wpmozo-blocks-and-addons' ) }
 				__nextHasNoMarginBottom={ true }
 			>
@@ -147,7 +152,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			</BaseControl>
 		</PanelBody>
 		{/* Description. */}
-		<PanelBody title={ __( 'Description Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Description Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>    
 				<ButtonGroup>
 					<Button
@@ -188,7 +193,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			</BaseControl>
 		</PanelBody>
 		{/* Timer/Clock Box. */}
-		<PanelBody title={ __( 'Timer/Clock Box', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Timer/Clock Box', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
 			<WpmozoAlignment
 				label={ __( 'Timer Box Alignment', 'wpmozo-blocks-and-addons' ) }
 				onChange={ ( newValue ) => setAttributes( { timerBoxAlign: newValue } ) }
@@ -213,7 +218,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		{/* Timer/Clock Digits. */}
-		<PanelBody title={ __( 'Timer/Clock Digits', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Timer/Clock Digits', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel6'} onToggle={()=> handleToggle('panel6')}>
 			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>    
 				<ButtonGroup>
 					<Button
@@ -269,7 +274,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			</BaseControl>
 		</PanelBody>
 		{/* Timer/Clock Labels. */}
-		<PanelBody title={ __( 'Timer/Clock Labels', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Timer/Clock Labels', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel7'} onToggle={()=> handleToggle('panel7')}>
 			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>    
 				<ButtonGroup>
 					<Button
@@ -313,7 +318,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			</BaseControl>
 		</PanelBody>
 		{/* Timer Separator. */}
-		<PanelBody title={ __( 'Timer Separator', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Timer Separator', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel8'} onToggle={()=> handleToggle('panel8')}>
 			<ToggleControl
 				label={ __( 'Show Separator', 'wpmozo-blocks-and-addons' ) }
 				checked={ attributes.showSeparator || false }
@@ -341,7 +346,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			</> ) }
 		</PanelBody>
 		{ ( attributes.showButton ) && ( <>
-			<PanelBody title={ __( 'Sale Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Sale Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel9'} onToggle={()=> handleToggle('panel9')}>
 				<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>   
 					<ButtonGroup>
 						<Button

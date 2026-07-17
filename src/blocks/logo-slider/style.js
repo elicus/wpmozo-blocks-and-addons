@@ -1,6 +1,6 @@
 import {wpmozo_is_empty,convertInlineStyleStr} from '../../common/utils.js';
 
-const generateDynamicStyle = ({attributes, clientId}) => {
+const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 
 	const {iconFontSize, separatorColor} = attributes,
 		toConvertStyles = [
@@ -9,65 +9,66 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 		];
 	let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
 
-	let styles = `#block-${attributes.ID}{`;
+	let normalcss = [],
+	hovercss = [],
+	cssExtras = [];
+	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
 
-	styles += `
-		.logo-img {
-			width: ${attributes.logoWidth}px;
-			height: ${attributes.logoHeight}px;
-		}
-		.wpmozo-bna-logo-slider-inner-wrap {
-			${convertedStyle.container}
-		}
-		.swiper-button-next:after, .swiper-button-next:before, .swiper-button-prev:after, .swiper-button-prev:before {
-			color: ${attributes.sliderArrowColor};
-            font-size: ${attributes.arrowFontSize};
-		}
-		.swiper-button-next, .swiper-button-prev {
-			background: ${attributes.sliderArrowBackground};
-			${convertedStyle.arrow}
-		}
-		.swiper-pagination-bullet.swiper-pagination-bullet-active {
-			background: ${attributes.sliderActiveDoteColor};
-		}
-		.swiper-pagination-bullet {
-			background: ${attributes.sliderInactiveDoteColor};
-		}
+	normalcss.push(
+		( attributes.logoWidth || attributes.logoHeight )
+		? `.logo-img {
+				${attributes.logoWidth ? `width: ${attributes.logoWidth}px;` : ''}
+				${attributes.logoHeight ? `height: ${attributes.logoHeight}px;` : ''}
+			}`
+		: ''
+	);
 
-	`;
+	normalcss.push( convertedStyle.container ? `.wpmozo-bna-logo-slider-inner-wrap { ${convertedStyle.container || ''} }` : '' );
+	
+	normalcss.push( attributes.sliderActiveDoteColor ? `.swiper-pagination-bullet.swiper-pagination-bullet-active { background: ${attributes.sliderActiveDoteColor}; }` : '' );
+	
+	normalcss.push( attributes.sliderInactiveDoteColor ? `.swiper-pagination-bullet { background: ${attributes.sliderInactiveDoteColor}; }` : '' );
+	
+	normalcss.push(
+		( attributes.sliderArrowColor || attributes.arrowFontSize )
+		? `.swiper-button-next:after, .swiper-button-next:before, .swiper-button-prev:after, .swiper-button-prev:before {
+				${attributes.sliderArrowColor ? `color: ${attributes.sliderArrowColor};` : ''}
+				${attributes.arrowFontSize ? `font-size: ${attributes.arrowFontSize};` : ''}
+			}`
+		: ''
+	);
 
-	if ( ! wpmozo_is_empty( attributes.nextSlideArrow ) ) {
-		styles += `
-		.custom-swiper-button-next:after {
-			display: none !important;
-		}
-		`;
-	}
+	normalcss.push(
+		( attributes.sliderArrowBackground || convertedStyle.arrow )
+		? `.swiper-button-next, .swiper-button-prev {
+				${attributes.sliderArrowBackground ? `background: ${attributes.sliderArrowBackground};` : ''}
+				${convertedStyle.arrow || ''}
+			}`
+		: ''
+	);
 
-	if ( ! wpmozo_is_empty( attributes.previousSlideArrow ) ) {
-		styles += `
-		.custom-swiper-button-prev:after {
-			display: none !important;
-		}
-		`;
-	}
+	normalcss.push( ! wpmozo_is_empty( attributes.nextSlideArrow ) ? `.custom-swiper-button-next:after { display: none !important; }` : '' );
+	
+	normalcss.push( ! wpmozo_is_empty( attributes.previousSlideArrow ) ? `.custom-swiper-button-prev:after { display: none !important; }` : '' );
+	
+	normalcss.push( attributes.enableLinearTransition ? `.swiper-wrapper { transition-timing-function: linear !important; }` : '' );
 
-	if ( attributes.enableLinearTransition ) {
-		styles += `
-		.swiper-wrapper {
-			transition-timing-function: linear !important;
-		}
-		`;
-	}
 
 	if ( 'outside' === attributes.arrowsPosition ) {
-		styles += `
-		.wpmozo-bna-arrows-outside::before{ width: ${attributes.arrowFontSize ? attributes.arrowFontSize : '18px'}; left: -${attributes.arrowFontSize ? attributes.arrowFontSize : '18px'};}
-		.wpmozo-bna-arrows-outside::after{ width: ${attributes.arrowFontSize ? attributes.arrowFontSize : '18px'}; right: -${attributes.arrowFontSize ? attributes.arrowFontSize : '18px'};}`;
+		normalcss.push( `
+			.wpmozo-bna-arrows-outside::before{ 
+				width: ${attributes.arrowFontSize ?? '18px'}; 
+				left: -${attributes.arrowFontSize ?? '18px'};
+			}
+			.wpmozo-bna-arrows-outside::after{ 
+				width: ${attributes.arrowFontSize ?? '18px'}; 
+				right: -${attributes.arrowFontSize ?? '18px'};
+			}
+		`);
 	}
 
 	if ( attributes.showArrowOnHover ) {
-		styles += `
+		normalcss.push(`
 			.wpmozo-bna-logo-slider-navigation .swiper-button-prev {
 				visibility: hidden; opacity: 0; transition: all 300ms ease;
 			}
@@ -111,11 +112,21 @@ const generateDynamicStyle = ({attributes, clientId}) => {
 				height: 100%;
 			}
 
-		`;
-
+		`);
 	}
 
-	styles += `}`;
+	const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);
+	
+	let styles = hasStyles ? `#block-${attributes.ID}{${normalcss.filter(Boolean).join('\n')} ${hovercss.filter(Boolean).join('\n')}}` : '';
+	
+	styles += cssExtras.some(Boolean) ? cssExtras.filter(Boolean).join('\n') : '';
+	styles = styles.replace(/\s+/g, ' ')
+    .replace(/\s*{\s*/g, '{')
+    .replace(/\s*}\s*/g, '}')
+    .replace(/\s*:\s*/g, ':')
+    .replace(/\s*;\s*/g, ';')
+    .replace(/\s*,\s*/g, ',')    
+    .trim();
 
 	return styles;
 };

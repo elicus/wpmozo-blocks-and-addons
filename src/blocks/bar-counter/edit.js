@@ -1,5 +1,5 @@
 import {__} from "@wordpress/i18n";
-import {Fragment} from "@wordpress/element";
+import {Fragment,useEffect } from "@wordpress/element";
 import {useBlockProps, RichText} from "@wordpress/block-editor";
 import Inspector from './inspector';
 /**
@@ -10,13 +10,21 @@ import Inspector from './inspector';
  */
 import './editor.scss';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Edit = (props) => {
 
     let attributes = props.attributes,
         clientId = props.clientId,
         setAttributes = props.setAttributes,
-        blockProps = useBlockProps({className: 'wpmozo-bna-bar-counter-main'});
+        wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-bna-bar-coutner-main${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle,
+        isEdit = true;
 
     let emptyBarEnabled = '';
 
@@ -24,13 +32,33 @@ const Edit = (props) => {
         emptyBarEnabled = 'empty-bar-enabled';
     }
 
-    attributes.ID = clientId;
+    // Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
     return (
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
-                {generateDynamicStyle({attributes, clientId})}
+                {generateDynamicStyle({attributes, clientId, isEdit})}
             </style>
             <div {...blockProps} id={`block-${attributes.ID}`}>
                 <div className={`wpmozo-bna-bar-counter ${emptyBarEnabled}`}>
@@ -51,7 +79,6 @@ const Edit = (props) => {
                                         <div className="wpmozo-bna-bar-counter-bar">
                                             <div
                                                 className="wpmozo-bna-bar-counter-filled-bar-wrapper"
-                                                data-percent={`${attributes.percentage}%`}
                                                 style={{width: `${attributes.percentage}%`}}
                                             >
                                                 {attributes.useStripes ? (
@@ -69,7 +96,6 @@ const Edit = (props) => {
                                     {!attributes.displayEmptyBar && (
                                         <div
                                             className="wpmozo-bna-bar-counter-filled-bar-wrapper"
-                                            data-percent={`${attributes.percentage}%`}
                                             style={{width: `${attributes.percentage}%`}}
                                         >
                                             {attributes.useStripes ? (
@@ -87,8 +113,7 @@ const Edit = (props) => {
 
                             {/* Layout 2 */}
                             {attributes.layoutType === 'layout2' && (
-                                <div className="wpmozo-bna-bar-counter-filled-bar-wrapper"
-                                     data-percent={`${attributes.percentage}%`}>
+                                <div className="wpmozo-bna-bar-counter-filled-bar-wrapper">
                                     {Array.from({length: 10}, (_, i) => {
                                         const index = i + 1;
                                         if (index <= (attributes.percentage / 10)) {

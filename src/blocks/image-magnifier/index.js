@@ -1,9 +1,10 @@
 import {registerBlockType} from '@wordpress/blocks';
 import metadata from './block.json';
+import advancedAttributes from '../../common/components/advanced-panel/advancedAttributes';
 import Edit from './edit';
 import save from './save';
 import Icon from './icon';
-import V1 from './deprecated/version-1';
+import deprecated from './deprecated';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * All files containing  keyword are bundled together. The code used
@@ -13,9 +14,15 @@ import V1 from './deprecated/version-1';
  */
 import './style.scss';
 
+const mergedAttributes = {
+	...metadata.attributes,
+	...advancedAttributes,
+};
+
 registerBlockType(metadata.name, {
+	attributes: mergedAttributes,
 	edit: Edit,
 	icon: Icon,
 	save,
-	deprecated: [ V1 ]
+	deprecated
 });

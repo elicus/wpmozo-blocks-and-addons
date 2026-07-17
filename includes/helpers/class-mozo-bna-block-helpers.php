@@ -99,40 +99,32 @@ class Mozo_Bna_Block_Helpers {
 
 		$styles = '';
 
-		// Border width, color and style.
+		// Border width.
 		$border_key = $pre . 'border';
 		if ( isset( $props[ $border_key ] ) && is_array( $props[ $border_key ] ) ) {
 			$border = $props[ $border_key ];
 
 			// Directional (top, right, etc.)
-			if ( isset( $border['top'] ) || isset( $border['right'] ) || isset( $border['bottom'] ) || isset( $border['left'] ) ) {
+			if ( isset( $border['top'], $border['right'], $border['bottom'], $border['left'] ) ) {
 				foreach ( array( 'top', 'right', 'bottom', 'left' ) as $side ) {
-					if ( isset( $border[ $side ] ) && is_array( $border[ $side ] ) ) {
-						$side_border = $border[ $side ];
-						foreach ( $side_border as $item => $val ) {
-							if ( ! empty( $val ) ) {
-								$styles .= sprintf( 'border-%s-%s: %s%s;', $side, $item, $val, $imp );
-							}
-						}
-						if ( ! isset( $side_border['style'] ) && isset( $side_border['width'] ) ) {
-							$styles .= sprintf( 'border-%s-style: solid%s;', $side, $imp );
-						}
+					if ( isset( $border[ $side ]['width'] ) ) {
+						$styles .= sprintf( 'border-%s-width: %s%s;', $side, $border[ $side ]['width'], $imp );
 					}
 				}
 			} // Shorthand (single width)
-			else {
-				if ( isset( $border['width'] ) ) {
-					$styles .= sprintf( 'border-width: %s%s;', $border['width'], $imp );
-				}
-				if ( isset( $border['color'] ) ) {
-					$styles .= sprintf( 'border-color: %s%s;', $border['color'], $imp );
-				}
-				if ( isset( $border['style'] ) ) {
-					$styles .= sprintf( 'border-style: %s%s;', $border['style'], $imp );
-				} elseif ( isset( $border['width'] ) ) {
-					$styles .= sprintf( 'border-style: solid%s;', $imp );
-				}
+			elseif ( isset( $border['width'] ) ) {
+				$styles .= sprintf( 'border-width: %s%s;', $border['width'], $imp );
 			}
+		}
+
+		// Border color.
+		if ( isset( $border['color'] ) ) {
+			$styles .= sprintf( 'border-color: %s%s;', $border['color'], $imp );
+		}
+
+		// Border Style
+		if ( isset( $border['style'] ) ) {
+			$styles .= sprintf( 'border-style: %s%s;', $border['style'], $imp );
 		}
 
 		// Border radius.

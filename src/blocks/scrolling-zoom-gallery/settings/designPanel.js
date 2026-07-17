@@ -15,14 +15,19 @@ import {
 	WpmozoColorPicker, WpmozoIconpicker, WpmozoDimensions, WpmozoMediaUploader
 } from "../../../common/components";
 
-export const DesignPanel = ({attributes, setAttributes}) => {
+export const DesignPanel = ({ attributes, setAttributes, hoverState, setHoverState }) => {
 	const props = {attributes, setAttributes, preAttributes: {}};
+	const [openPanel, setOpenPanel] = useState('panel1');
+									
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
 
 	const [buttonType, setButtonType] = useState('normal');
 
 	return (
 		<>
-			<PanelBody title={ __( 'Image Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
+			<PanelBody title={ __( 'Image Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 				<>
 					<BaseControl className="wpmozo-button-tabs-wrap">
 						<ButtonGroup>
@@ -52,7 +57,7 @@ export const DesignPanel = ({attributes, setAttributes}) => {
 					</BaseControl>
 				</>
 			</PanelBody>
-			<PanelBody title={ __( 'Background', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Background', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 				<>
 					<BaseControl
 						label={__('Background Type', 'wpmozo-blocks-and-addons')}

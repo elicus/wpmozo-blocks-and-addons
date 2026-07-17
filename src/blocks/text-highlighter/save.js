@@ -2,17 +2,25 @@ import {Fragment} from "@wordpress/element";
 import {useBlockProps} from "@wordpress/block-editor";
 import Shape from './Shape';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function save({ attributes }) {
 
 	const heighlighterShape = attributes.textHighlighterShape,
 		ID = attributes.ID,
-		displayInStackSpace = attributes.displayInStack ? '' : '\u00A0';
+		displayInStackSpace = attributes.displayInStack ? '' : '\u00A0',
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-text-highlighter' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
     return (
 		<>
 			<style>{generateDynamicStyle({attributes, ID})}</style>
-			<div {...useBlockProps.save()} id={`block-${ID}`}>
+			<div {...blockProps} id={`block-${ID}`}>
 			<div className={`wpmozo-bna-text-highlighter ${attributes.displayInStack ? 'wpmozo-bna-text-highlighter-stack' : ''}`}>
 				<div className={`wpmozo-bna-text-highlighter-wrapper wpmozo-highlight-${attributes.textHighlighterShape}`}>
 					{attributes.wrapInHeadingTag ? (

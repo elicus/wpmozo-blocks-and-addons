@@ -25,7 +25,7 @@ if ( ! function_exists( 'masonry_gallery_render_callback' ) ) {
 
 			$extra_class        = implode( ' ', $extra_class );
 			$wrapper_attributes = get_block_wrapper_attributes( array(
-				'class' => trim( ( $attributes['className'] ?? '' ) . ' ' . $extra_class )
+				'class' => trim( ( $attributes['className'] ?? '' ) . ' ' . $extra_class . ' wpmozo-wrap-'.$attributes['ID'].' '.$attributes['wrapCustomClass'] )
 			) );
 
 			$gallery_images = '';

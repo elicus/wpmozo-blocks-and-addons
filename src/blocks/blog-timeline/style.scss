@@ -108,8 +108,9 @@
 	background: #fff;
 }
 .wp-block-wpmozo-blog-timeline .wpmozo_bna_border_fill,
-.wp-block-wpmozo-blog-timeline .wpmozo_bna_icon_fill{
-	transition: ease 1s;
+.wp-block-wpmozo-blog-timeline .wpmozo_bna_icon_fill,
+.wp-block-wpmozo-blog-timeline .wpmozo_bna_blog_timeline_post_icon{
+	transition: 300ms;
 }
 .wp-block-wpmozo-blog-timeline .layout1 .wpmozo_bna_blog_timeline_meta_date{
 	margin-bottom: 10px;

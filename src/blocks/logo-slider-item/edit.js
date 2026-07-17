@@ -1,9 +1,9 @@
 import {__} from "@wordpress/i18n";
 import {useBlockProps} from '@wordpress/block-editor';
-import {Fragment} from "@wordpress/element";
+import {Fragment, useEffect} from "@wordpress/element";
 import Inspector from './inspector';
 import generateDynamicStyle from "./style";
-import {wpmozo_is_empty} from "../../common/utils";
+import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -18,9 +18,36 @@ export default function Edit(props) {
 		clientId = props.clientId,
 		altText = !wpmozo_is_empty( attributes.altText )
 			? attributes.altText
-			: 'alt';
+			: 'alt',
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-logo-slider-item swiper-slide ${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
-	attributes.ID = clientId;
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 	const selectBlock = () => {
 	    if ( wp && wp.data && wp.data.dispatch ) {
 			wp.data.dispatch('core/block-editor').selectBlock(clientId);
@@ -33,7 +60,7 @@ export default function Edit(props) {
 			<style>
 				{generateDynamicStyle({attributes, clientId})}
 			</style>
-			<div className="swiper-slide" id={`block-${clientId}`}  data-client-id={clientId} onClick={selectBlock}>
+			<div {...blockProps} id={`block-${clientId}`}  data-client-id={clientId} onClick={selectBlock}>
 				<div className="logo-wrap">
 					<img className="logo-img" src={attributes.logo.url} alt={altText}/>
 				</div>

@@ -1,22 +1,24 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ( { attributes } ) => {
 
-	const { ID, className } = attributes;
+	const { ID, className } = attributes,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-twitter-follow-button' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	// Get attributes.
 	const twitterUsername = attributes.twitterUsername ?? '';
 	const buttonSize      = attributes.buttonSize ?? 'small';
 	const doNotTrack      = ( false === attributes.doNotTrack ) ? 0 : 1;
 	const showUsername    = attributes.showUsername ?? false;
-
-	// Only add ID attribute if it exists
-	const blockProps = useBlockProps.save( {
-		className: className,
-		...( ID ? { id: `block-${ ID }` } : {} ),
-	} );
 	
 	return ( <>
 		{/* Only output <style> if ID exists. */}
@@ -24,7 +26,7 @@ const Save = ( { attributes } ) => {
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 		) }
 
-		<div { ...blockProps }>
+		<div { ...blockProps } id={`block-${ ID }`}>
 			{ ( twitterUsername && '' !== twitterUsername ) && (
 				<div className="wpmozo_twitter_embedded_follow_button">
 					<a className="wpmozo_twitter_embed_follow_button"

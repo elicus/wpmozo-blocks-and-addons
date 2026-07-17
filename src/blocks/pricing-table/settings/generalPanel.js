@@ -223,7 +223,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					</ButtonGroup>
 				</BaseControl>
 				<SelectControl
-					label={ __( 'Button Icon Type', 'wpmozo-blocks-and-addons' ) }
+					label={ __( 'Button Media Type', 'wpmozo-blocks-and-addons' ) }
 					value={attributes.buttonIconType}
 					options={ [
 						{ value: 'none', label: __( 'None', 'wpmozo-blocks-and-addons' ) },

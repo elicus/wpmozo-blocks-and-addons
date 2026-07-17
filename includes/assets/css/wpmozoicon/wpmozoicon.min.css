@@ -30,7 +30,7 @@
 .wpmozo-bna-icon-business-hours:before {
 	content: "\e95f";
 }
-.wpmozo-bna-icon-scroll-progress:before {
+.wpmozo-bna-icon-progress-bar:before {
 	content: "\e95c";
 }
 .wpmozo-bna-icon-wavy-gallery:before {
@@ -309,10 +309,6 @@
 .wpmozo-bna-icon-ajax-search:before {
 	content: "\e901";
 }
-.wpmozo-bna-icon-progress-bar:before {
-	content: "\e95c";
-}
-
 .wpmozo-bna-brandicon:after {
 	font-size:22px;
 	content:"\e900";
