@@ -239,7 +239,7 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 				}
 
 				$pagination_dots = sprintf(
-					'<div class="wpmozo-bna-testimonial-slider-pagination">
+					'<div class="wpmozo-bna-team-slider-pagination">
 						<div class="swiper-pagination %1$s %2$s"></div>
 					</div>',
 					esc_attr( $attributes['controlDotStyle'] ),
@@ -302,7 +302,7 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 				'class'=>'wpmozo-wrap-'.$attributes['ID'] . ' ' . 'wpmozo-team-slider' . ' ' .$attributes['wrapCustomClass']. ' ' .$attributes['className']
 			));
 
-			// Equal height testimonial class.
+			// Equal height team class.
 			$equal_height_class = ( true === $attributes['equalHeight'] ) ? ' wpmozo_equal_team_member_height' : '';
 
 			// Render final output.

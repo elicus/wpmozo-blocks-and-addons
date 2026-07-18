@@ -104,7 +104,7 @@ const Edit = (props) => {
 			)) {
 				paginationClass = (attributes.enableDynamicDots) ? ' swiper-pagination-bullets-dynamic' : ' swiper-pagination-bullets';
 			}
-			$paginationDots = <div className="wpmozo-bna-testimonial-slider-pagination">
+			$paginationDots = <div className="wpmozo-bna-team-slider-pagination">
 				<div className={`swiper-pagination ${attributes.controlDotStyle} ${paginationClass}`}></div>
 			</div>;
 		}
@@ -130,7 +130,7 @@ const Edit = (props) => {
 	// Get attrs.
 	const displayInPopup = attributes.displayInPopup ?? ["image", "designation", "social_icons", "content", "skills_bars"];
 
-	// Equal height testimonial class.
+	// Equal height team member class.
 	const equalHeightClass = (attributes.equalHeight) ? ' wpmozo_equal_team_member_height' : '';
 
 	let autoHeight = (attributes.autoHeight) ?? 'false';
