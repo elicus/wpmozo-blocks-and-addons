@@ -60,6 +60,6 @@
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
-	"style": ["file:./style-index.css", "wpmozo-blocks-and-addons-swiper-style"],
+	"style": ["file:./style-index.css", "wpmozo-blocks-and-addons-swiper-style", "wpmozo-blocks-and-addons-fontawesome-style"],
 	"script": ["wpmozo-blocks-and-addons-swiper-script", "file:./script.js"]
 }
