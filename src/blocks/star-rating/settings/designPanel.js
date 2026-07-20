@@ -51,6 +51,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			/>
 		</PanelBody>
 		{/* Title. */}
+		{ ! attributes.hideTitle && (
 		<PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			<BaseControl
 				label={ __( 'Heading Level', 'wpmozo-blocks-and-addons' ) }
@@ -109,6 +110,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				</> }
 			</BaseControl>
 		</PanelBody>
+		) }
 		{/* Description. */}
 		<PanelBody title={ __( 'Description', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>
@@ -153,6 +155,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			</BaseControl>
 		</PanelBody>
 		{/* Rating Number. */}
+		{ attributes.showRateNum && (
 		<PanelBody title={ __( 'Rating Number', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>
 				<ButtonGroup>
@@ -195,6 +198,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				</> }
 			</BaseControl>
 		</PanelBody>
+		) }
 		{/* Rate Icons/Stars. */}
 		<PanelBody title={ __( 'Rate Icons/Stars', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
 			<RangeControl

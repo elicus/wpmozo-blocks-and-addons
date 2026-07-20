@@ -55,8 +55,9 @@ const Edit = ( props ) => {
 	const rateIcon    = ( attributes.rateIcon ) ?? 'default';
 	const showRateNum = ( attributes.showRateNum ) ?? true;
 
-	// Track previous rateIcon to force reload even if "same" is chosen.
+	// Track previous rateIcon and ratingOutOf to manage cache clearing.
 	const prevRateIcon = useRef( null );
+	const prevRatingOutOf = useRef( null );
 
 	// ratingOutOf (force 5 for smiley).
 	let ratingOutOf = ( attributes.ratingOutOf && '' !== attributes.ratingOutOf ) ? attributes.ratingOutOf : 5;
@@ -80,20 +81,23 @@ const Edit = ( props ) => {
 
 	// Preload required SVGs.
 	useEffect( () => {
-		// If first load OR reselecting same icon → reset cache.
-		if ( prevRateIcon.current === rateIcon ) {
-			// reselect same icon, force clear.
-			setAttributes( { iconSVGs: {} } );
-		}
+		let active = true;
+		// Detect if the icon type changed
+		const isIconChanged = prevRateIcon.current && prevRateIcon.current !== rateIcon;
 		prevRateIcon.current = rateIcon;
-
+		prevRatingOutOf.current = ratingOutOf;
 		// Define moods (1..ratingOutOf) and icon types.
 		const moods = Array.from( { length: ratingOutOf }, (_, i) => i + 1 );
 		const types = [ 'filled', 'half_filled', 'empty' ];
-
-		// Load all SVGs for this icon set.
-		preloadSVGs( rateIcon, moods, types, attributes, setAttributes );
-
+		// Load all SVGs for this icon set, using active state wrapper to prevent race conditions.
+		preloadSVGs( rateIcon, moods, types, attributes, ( updates ) => {
+			if ( active ) {
+				setAttributes( updates );
+			}
+		}, isIconChanged );
+		return () => {
+			active = false;
+		};
 		// eslint-disable-line react-hooks/exhaustive-deps.
 	}, [ rateIcon, ratingOutOf ] );
 

@@ -27,15 +27,43 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				<TextControl
 					label={ __( 'Rating', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.rating }
-					onChange={ ( newValue ) => setAttributes( { rating: newValue } ) }
+					type="number"
+					min={ 0 }
+					max={ attributes.ratingOutOf || 5 }
+					step={ 0.1 }
+					onChange={ ( newValue ) => {
+						if ( newValue === '' ) {
+							setAttributes( { rating: '' } );
+							return;
+						}
+						// Allow only valid numbers (integers or decimals)
+						if ( /^[0-9]*\.?[0-9]*$/.test( newValue ) ) {
+							setAttributes( { rating: newValue } );
+						}
+					} }
 					__next40pxDefaultSize={ true }  __nextHasNoMarginBottom={ true }
 				/>
+				{ attributes.rateIcon !== 'smiley_scale' && (
 				<TextControl
 					label={ __( 'Rating Out Of', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.ratingOutOf }
-					onChange={ ( newValue ) => setAttributes( { ratingOutOf: newValue } ) }
+					type="number"
+					min={ 1 }
+					step={ 1 }
+					onChange={ ( newValue ) => {
+						if ( newValue === '' ) {
+							setAttributes( { ratingOutOf: undefined } );
+							return;
+						}
+						const parsed = parseInt( newValue, 10 );
+						if ( ! isNaN( parsed ) ) {
+							setAttributes( { ratingOutOf: parsed } );
+						}
+					} }
 					__next40pxDefaultSize={ true }  __nextHasNoMarginBottom={ true }
 				/>
+				) }
+
 				<WpmozoMediaUploader attrKye="image" props={ props }
 					label={ __( 'Image', 'wpmozo-blocks-and-addons' ) }
 				/>
