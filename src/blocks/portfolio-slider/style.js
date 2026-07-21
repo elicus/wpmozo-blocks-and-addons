@@ -93,7 +93,7 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 			FontAppearance: attributes.categoriesFontAppearance,
 		})}
 	}
-	.wpmozo_portfolio_slider_cat a:hover{
+	.wpmozo_portfolio_slider_cat:hover a{
 		${attributes.categoriesHoverColor ? `color: ${attributes.categoriesHoverColor};` : ''}
 		${convertInlineStyle({
 			FontSize: attributes.categoriesHoverFontSize,

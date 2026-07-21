@@ -84,7 +84,7 @@ if ( ! function_exists( 'portfolio_slider_generate_dynamic_style' ) ) {
 			$styles .= ( ! empty( $attrs['categoriesColor'] ) ? "color: {$attrs['categoriesColor']};" : '' );
 			$styles .= $block_helpers::get_font_style( 'categories', $attrs );
 		$styles .= "}";
-		$styles .= "{$mainSelector} .wpmozo_portfolio_slider_cat a:hover{";
+		$styles .= "{$mainSelector} .wpmozo_portfolio_slider_cat:hover a{";
 			$styles .= ( ! empty( $attrs['categoriesHoverColor'] ) ? "color: {$attrs['categoriesHoverColor']};" : '' );
 			$styles .= $block_helpers::get_font_style( 'categoriesHover', $attrs );
 		$styles .= "}";
