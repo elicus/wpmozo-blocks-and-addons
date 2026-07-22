@@ -269,24 +269,7 @@ const Edit = (props) => {
 				iframe.contentWindow.dispatchEvent( event );
 			}
 		} );
-	}, [
-		attributes.slidesPerView,
-		attributes.slidesPerViewTablet,
-		attributes.slidesPerViewMobile,
-		attributes.slidesPerGroup,
-		attributes.slidesPerGroupTablet,
-		attributes.slidesPerGroupMobile,
-		attributes.spaceBetweenSlides,
-		attributes.spaceBetweenSlidesTablet,
-		attributes.slideEffect,
-		attributes.layout,
-		attributes.arrowIconSize,
-		attributes.featuredImageWidth,
-		attributes.featuredImageHeight,
-		attributes.containerWidth,
-		attributes.containerMaxWidth,
-		posts
-	] );
+	}, [ JSON.stringify( attributes ), posts ] );
 
 	const equalHeightClass = ( attributes.equalHeight ) ? ' wpmozo_equal_portfolio_height' : '';
 
@@ -317,9 +300,9 @@ const Edit = (props) => {
 					data-coverflow_depth={ attributes.coverflowDepth ?? '100' }
 					data-enable_loop={ attributes.enableLoop || 'false' }
 					data-auto_height={ autoHeight || 'false' }
-					data-autoplay={ attributes.autoplay || 'true' }
+					data-autoplay={ attributes.autoplay ? 'true' : 'false' }
 					data-autoplay_delay={ attributes.autoplayDelay || '3000' }
-					data-pause_on_hover={ attributes.pauseOnHover || 'true' }
+					data-pause_on_hover={ attributes.pauseOnHover ? 'true' : 'false' }
 					data-enable_linear_trans={ attributes.enableLinearTrans || 'false' }
 					data-trans_duration={ attributes.transDuration || '1000' }
 

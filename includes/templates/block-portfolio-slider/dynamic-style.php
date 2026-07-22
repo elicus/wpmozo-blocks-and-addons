@@ -56,6 +56,9 @@ if ( ! function_exists( 'portfolio_slider_generate_dynamic_style' ) ) {
 				$styles .= ( ! empty( $attrs['featuredImageHeight'] ) ? "height: {$attrs['featuredImageHeight']}px !important;" : '' );
 				$styles .= ( ! empty( $attrs['featuredImageObjectFit'] ) ? "object-fit: {$attrs['featuredImageObjectFit']} !important;" : '' );
 			$styles .= "}";
+			$styles .= "{$mainSelector} .wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_image_wrap img{";
+				$styles .= ( ! empty( $attrs['featuredImageObjectFit'] ) ? "object-fit: {$attrs['featuredImageObjectFit']} !important;" : '' );
+			$styles .= "}";
 		}
 
 		// Title.

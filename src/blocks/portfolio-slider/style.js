@@ -54,6 +54,9 @@ const generateDynamicStyle = ( { attributes, clientId } ) => {
 			${attributes.featuredImageWidth ? `width: ${attributes.featuredImageWidth}px !important; max-width: 100%;` : ''}
 			${attributes.featuredImageHeight ? `height: ${attributes.featuredImageHeight}px !important;` : ''}
 			${attributes.featuredImageObjectFit ? `object-fit: ${attributes.featuredImageObjectFit} !important;` : ''}
+		}
+		.wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_image_wrap img{
+			${attributes.featuredImageObjectFit ? `object-fit: ${attributes.featuredImageObjectFit} !important;` : ''}
 		}`;
 	}
 
