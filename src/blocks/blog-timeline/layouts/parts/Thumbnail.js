@@ -6,7 +6,6 @@ const Thumbnail = ( { post, attributes } ) => {
 	if ( ! attributes.showThumbnail ) {
 		return null;
 	}
-	console.log(wp.mediaUtils);
 
 	const imageSize     = attributes.featuredImageSize;
 	const featuredMedia = post?._embedded?.['wp:featuredmedia']?.[0];

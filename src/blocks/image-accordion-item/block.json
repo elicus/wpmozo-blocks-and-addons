@@ -34,7 +34,7 @@
         "contentWrappermargin": { "type": "object" },
 		"Containerborder": { "type": "object" },
 		"ContainerborderRadius": { "type": "string" },
-        "normalUseBackgroundImage": { "type": "boolean", "default": false },
+        "normalUseBackgroundImage": { "type": "boolean", "default": true },
         "normalAccordionBackground": { "type": "string" },
         "normalBackgroundImage": { "type": "string" },
         "normalAccordionBackgroundGradient": {

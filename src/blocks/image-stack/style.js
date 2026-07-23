@@ -18,9 +18,9 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 	);
 
 	normalcss.push(
-		( attributes.itemBorderWidth || attributes.itemBorderType || attributes.borderColor || attributes.itemBorderRadius || convertedStyle.item )
+		( attributes.itemBorderWidth || (attributes.itemBorderType && 'none' !== attributes.itemBorderType) || attributes.borderColor || attributes.itemBorderRadius || convertedStyle.item )
 		? `.wpmozo-image-stack-item{
-				${attributes.itemBorderWidth || attributes.itemBorderType || attributes.borderColor ? `border: ${attributes.itemBorderWidth}px ${attributes.itemBorderType} ${attributes.borderColor};` : ''}
+				${attributes.itemBorderWidth || (attributes.itemBorderType && 'none' !== attributes.itemBorderType) || attributes.borderColor ? `border: ${attributes.itemBorderWidth}px ${attributes.itemBorderType} ${attributes.borderColor};` : ''}
 				${attributes.itemBorderRadius ? `border-radius: ${attributes.itemBorderRadius}%;` : ''}
 				${convertedStyle.item || ''}
 			}`
@@ -70,8 +70,8 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 		cssExtras.push(
 			(attributes.tooltipColor || attributes.tooltipBackgroundColor) 
 			? `.tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}']{
-					${attributes.titleColor ? `background-color: ${attributes.tooltipBackgroundColor} !important;` : ''}
-					${attributes.titleAlign ? `color: ${attributes.tooltipColor} !important;` : ''}
+					${attributes.tooltipColor ? `color: ${attributes.tooltipColor} !important;` : ''}
+					${attributes.tooltipBackgroundColor ? `background-color: ${attributes.tooltipBackgroundColor} !important;` : ''}
 				}`
 			: ''
 		);

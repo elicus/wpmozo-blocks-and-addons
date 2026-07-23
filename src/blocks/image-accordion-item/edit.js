@@ -138,6 +138,7 @@ export default function Edit(props) {
     if ( useButtonIcon && buttonIcon && buttonIconHover ) {
         buttonIconHoverClass = 'wpmozo-icon-on-hover';
     }
+    attributes.normalBackgroundImage = ( attributes.normalBackgroundImage ) ? attributes.normalBackgroundImage : wpmozo_bna_editor_object.placeholderImg;
 
     const wrapArgs = attributes?.ID && mergeWrapperProps( { 
 			className: `wpmozo-image-accordion-item${ attributes?.wrapIsHover ? ' is_hover' : '' } ${animationClass}` ,

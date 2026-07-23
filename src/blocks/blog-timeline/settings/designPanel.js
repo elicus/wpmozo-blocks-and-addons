@@ -1,5 +1,4 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from "@wordpress/element";
 
 import {
 	__experimentalColorGradientControl as ColorGradientControl
@@ -25,6 +24,9 @@ import {
 	MozoStates
 } from '../../../common/components';
 import { headingLevelsList } from '../../../common/utils.js';
+import { useEffect, useState } from '@wordpress/element';
+
+
 
 export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };

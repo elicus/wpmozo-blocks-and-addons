@@ -180,6 +180,7 @@ const Edit = (props) => {
 					 data-bar_layout={attributes.layout ?? 'layout1'}
 					 data-use_stripes={attributes.popupBarUseStripe ? 'on' : 'off'}
 					 data-popup_name_level={attributes.popupNameLevel ?? 'h2'}
+					 data-close_icon_position={attributes.popupCloseIconPos ?? 'outside'}
 				>
 					<div className={"wpmozo_bna_team_slider_container wpmozo_swiper_inner_wrap " + layout}>
 						{$postItems.length > 0 ? (

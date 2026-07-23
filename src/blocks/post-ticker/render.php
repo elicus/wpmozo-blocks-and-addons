@@ -150,6 +150,7 @@ if ( ! function_exists( 'post_ticker_render_callback' ) ) {
 				$block_helpers::get_block_dynamic_style( 'post-ticker', $attributes )
 			);
 		}
+		wp_reset_postdata();
 
 		return $render_output;
 	}

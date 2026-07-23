@@ -15,11 +15,11 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 		{'icon' === attributes.stackType && (
 			<PanelBody title={ __( 'Icon Background', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={open}>
 				<ColorGradientControl colors={[]} gradients={[]}
-									  label={ __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
-									  colorValue={ attributes.itemBackground }
-									  gradientValue={ attributes.itemBGGradient }
-									  onColorChange={ (newValue) => setAttributes( { itemBackground: newValue } ) }
-									  onGradientChange={ (newValue) => setAttributes( { itemBGGradient: newValue } ) }
+					label={ __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
+					colorValue={ attributes.itemBackground }
+					gradientValue={ attributes.itemBGGradient }
+					onColorChange={ (newValue) => setAttributes( { itemBackground: newValue } ) }
+					onGradientChange={ (newValue) => setAttributes( { itemBGGradient: newValue } ) }
 				/>
 			</PanelBody>
 		)}

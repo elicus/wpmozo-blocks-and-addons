@@ -10,9 +10,32 @@ import {
 	TextareaControl,
 	RangeControl,
 } from '@wordpress/components';
+import apiFetch from '@wordpress/api-fetch';
+import { useEffect, useState } from '@wordpress/element';
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const ImageSizeControl = () => {
+		const [sizes, setSizes] = useState([]);
+
+		useEffect(() => {
+			apiFetch({ path: '/wpmozo/v1/image-sizes' })
+				.then((data) => {
+					data = {full:'',...data}
+					const options = Object.keys(data).map((key) => ({
+						label: `${key.charAt(0).toUpperCase() + key.replace(/_/g, ' ').slice(1)} ${data[key].width && data[key].height ? `(${data[key].width}x${data[key].height})`: ''}`,
+						value: key,
+					}));
+					setSizes(options);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}, []);
+
+		return sizes
+	};
+	const sizess = ImageSizeControl();
 
 	// Get the terms.
 	const terms = useSelect( (select) =>
@@ -119,11 +142,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				<SelectControl
 					label={ __( 'Featured Image Size', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.featuredImageSize }
-					options={ [
-						{ value: 'medium', label: __( 'Medium', 'wpmozo-blocks-and-addons' ) },
-						{ value: 'large', label: __( 'Large', 'wpmozo-blocks-and-addons' ) },
-						{ value: 'full', label: __( 'Full', 'wpmozo-blocks-and-addons' ) },
-					] }
+					options={sizess}
 					onChange={ ( newValue ) => setAttributes( { featuredImageSize: newValue } ) }
 					__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
 				/>

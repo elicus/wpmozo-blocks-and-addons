@@ -291,6 +291,7 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 				'bar_layout'                  => $attributes['popupBarLayout'] ?? 'layout1',
 				'use_stripes'                 => $attributes['popupBarUseStripe'] ? 'on' : 'off',
 				'popup_name_level'            => $attributes['popupNameLevel'] ?? 'h2',
+				'close_icon_position'         => $attributes['popupCloseIconPos'] ?? 'outside'
 			);
 			$data_attr_str = '';
 			foreach ( $data_attrs as $key => $val ) {
@@ -299,7 +300,7 @@ if ( ! function_exists( 'team_slider_render_callback' ) ) {
 
 			// Get wrapper attributes.
 			$wrapper_attributes = get_block_wrapper_attributes(array(
-				'class'=>'wpmozo-wrap-'.$attributes['ID'] . ' ' . 'wpmozo-team-slider' . ' ' .$attributes['wrapCustomClass']. ' ' .$attributes['className']
+				'class'=>'wpmozo-wrap-'.$attributes['ID'] . ' ' . 'wpmozo-team-slider' . ' ' .(isset($attributes['wrapCustomClass']) ? $attributes['wrapCustomClass']: ''). ' ' .(isset($attributes['className']) ? $attributes['className'] : '')
 			));
 
 			// Equal height testimonial class.

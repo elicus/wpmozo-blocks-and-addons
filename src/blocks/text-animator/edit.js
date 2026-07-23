@@ -83,7 +83,17 @@ const Edit = (props) => {
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [animation] );
+	}, 
+	[
+		animation, 
+		attributes.animatedText,
+		attributes.stopAnimationOnHover,
+		attributes.typingSpeed,
+		attributes.erasingSpeed,
+		attributes.animationDuration,
+		attributes.animationDelay,
+		attributes.animateOnlyOnce
+	] );
 
 	return (
 		<Fragment>

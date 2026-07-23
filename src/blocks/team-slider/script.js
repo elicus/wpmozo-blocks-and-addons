@@ -52,8 +52,9 @@ jQuery( document ).ready( function( $ ) {
 			social_icons_target  : $mainWrap.attr( 'data-social_icons_target' ),
 		} );
 
-		let	$position            = $wrapObj.data( 'close_icon_position' );
+		let	$position            = $mainWrap.data( 'close_icon_position' );
 		let $close_icon_position = 'inside' === $position ? true : false;
+		console.log($close_icon_position);
 
 		$wrapObj.addClass( 'wpmozo_bna_team_lightbox_loader' );
 		$.ajax( {

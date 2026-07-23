@@ -53,6 +53,7 @@ export default function Edit(props) {
     const childAttributes = childBlocks.map(block => block.attributes);
 
     const TEMPLATE = [
+        [ 'wpmozo/image-accordion-item', { text: childAttributes.text} ], // Prefills a child block when parent is inserted
         [ 'wpmozo/image-accordion-item', { text: childAttributes.text} ] // Prefills a child block when parent is inserted
     ];
 

@@ -22,6 +22,30 @@ class Mozo_Bna_Public {
 		add_action( 'wp_ajax_wpmozo_bna_get_team_detail', array( __class__, 'wpmozo_bna_get_team_detail' ) );
 		add_action( 'wp_ajax_nopriv_wpmozo_bna_get_team_detail', array( __class__, 'wpmozo_bna_get_team_detail' ) );
 		add_action( 'wp_enqueue_scripts', array( __class__, 'wpmozo_inject_wrap_styles' ) );
+		add_action('rest_api_init', function () {
+			register_rest_route('wpmozo/v1', '/image-sizes', array(
+				'methods'  => 'GET',
+				'callback' => array(__class__,'wpmozo_get_image_sizes'),
+				'permission_callback' => '__return_true',
+			));
+		});
+	}
+
+	public static function wpmozo_get_image_sizes() {
+		global $_wp_additional_image_sizes;
+
+		$sizes = [];
+
+		// Default sizes
+		foreach (get_intermediate_image_sizes() as $size) {
+			$sizes[$size] = [
+				'width'  => isset($_wp_additional_image_sizes[$size]['width']) ? $_wp_additional_image_sizes[$size]['width'] : get_option("{$size}_size_w"),
+				'height' => isset($_wp_additional_image_sizes[$size]['height']) ? $_wp_additional_image_sizes[$size]['height'] : get_option("{$size}_size_h"),
+				'crop'   => isset($_wp_additional_image_sizes[$size]['crop']) ? $_wp_additional_image_sizes[$size]['crop'] : false,
+			];
+		}
+
+		return $sizes;
 	}
 
 	/**

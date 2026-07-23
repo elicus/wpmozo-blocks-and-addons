@@ -1,4 +1,25 @@
 import $ from 'jquery';
+function resetAnimation(animatedBlock) {
+    // Clear interval
+    let intervalId = animatedBlock.data('interval-id');
+    if (intervalId) {
+        clearInterval(intervalId);
+        animatedBlock.removeData('interval-id');
+    }
+
+    animatedBlock.stop(true, true);
+
+    animatedBlock.removeClass(
+        'wpmozo-wipeIn wpmozo-wipeOut wpmozo-zoomIn wpmozo-zoomOut ' +
+        'wpmozo-bounceIn wpmozo-bounceOut wpmozo-flipUpFirst wpmozo-flipUpSecond ' +
+        'wpmozo-slideIn wpmozo-slideOut wpmozo-fadeIn wpmozo-fadeOut ' +
+        'wpmozo_animation_stop wpmozo_animation_paused'
+    );
+
+    animatedBlock.html('');
+
+    animatedBlock[0].offsetHeight;
+}
 
 jQuery( document ).ready( function($) {
 		$( document ).find( '.wp-block-wpmozo-text-animator' ).each( function() {
@@ -22,21 +43,11 @@ function initWPMozoTextAnimator( $thisObj ) {
 	let words         = [];
 
 	// Reset any previous intervals/animations.
-	let oldIntervalId = animatedBlock.data( 'interval-id' );
-	if ( oldIntervalId ) {
-		clearInterval( parseInt( oldIntervalId ) );
-		animatedBlock.removeData( 'interval-id' );
-		animatedBlock.html(''); // reset text
-		animatedBlock.removeClass(
-			'wpmozo-wipeIn wpmozo-wipeOut wpmozo-zoomIn wpmozo-zoomOut ' +
-			'wpmozo-bounceIn wpmozo-bounceOut wpmozo-flipUpFirst wpmozo-flipUpSecond ' +
-			'wpmozo-slideIn wpmozo-slideOut wpmozo-fadeIn wpmozo-fadeOut ' +
-			'wpmozo_animation_stop wpmozo_animation_paused'
-		);
-	}
+	resetAnimation(animatedBlock);
 
-	if ( '' !== animatedBlock.data('text') && undefined !== animatedBlock.data('text') ) {
-		words = animatedBlock.data('text').toString().split("|").map(function(e){return e.trim();});
+
+	if ( '' !== animatedBlock.attr('data-text') && undefined !== animatedBlock.attr('data-text') ) {
+		words = animatedBlock.attr('data-text').toString().split("|").map(function(e){return e.trim();});
 	}
 
 	if ( words.length > 0 ) {
@@ -64,7 +75,7 @@ function initWPMozoTextAnimator( $thisObj ) {
 		if ( $thisObj.find('.wpmozo-wave').length > 0 ) {
 			wpmozoWaveEffect( animatedBlock, words );
 		}
-		if ( true === animatedBlock.data( 'stop-animation-on-hover' ) ) {
+		if ( 'true' === animatedBlock.attr( 'data-stop-animation-on-hover' ) ) {
 			$thisObj.find( '.animated_text_wrapper' ).on( 'mouseenter mouseleave', function(e) {
 				if ( e.type === 'mouseenter' ) {
 					animatedBlock.addClass( 'wpmozo_animation_paused' );
@@ -78,11 +89,11 @@ function initWPMozoTextAnimator( $thisObj ) {
 }
 
 function wpmozoTypingEffect( animatedBlock, words ) {
-	let intervalId        = animatedBlock.data('interval-id') ? parseInt( animatedBlock.data('interval-id') ) : 0;
-	let waitTime          = animatedBlock.data('wait-time') ? parseInt( animatedBlock.data('wait-time') ) : 1000;
-	let typingTime        = animatedBlock.data('typing-time') ? parseInt( animatedBlock.data('typing-time') ) : 800;
-	let erasingTime       = animatedBlock.data('erasing-time') ? parseInt( animatedBlock.data('erasing-time') ) : 300;
-	let animateOnlyOnce   = animatedBlock.data('animate-only-once') ? animatedBlock.data('animate-only-once') : 'off';
+	let intervalId        = animatedBlock.attr('data-interval-id') ? parseInt( animatedBlock.attr('data-interval-id') ) : 0;
+	let waitTime          = animatedBlock.attr('data-wait-time') ? parseInt( animatedBlock.attr('data-wait-time') ) : 1000;
+	let typingTime        = animatedBlock.attr('data-typing-time') ? parseInt( animatedBlock.attr('data-typing-time') ) : 800;
+	let erasingTime       = animatedBlock.attr('data-erasing-time') ? parseInt( animatedBlock.attr('data-erasing-time') ) : 300;
+	let animateOnlyOnce   = 'true' === animatedBlock.attr('data-animate-only-once') ? true : 'off';
 	let currentIntervalId = 0;
 	let charIndex         = 0;
 	let i                 = 0;
@@ -155,10 +166,10 @@ function wpmozoTypingEffect( animatedBlock, words ) {
 }
 
 function wpmozoWaveEffect( animatedBlock, words ) {
-	let intervalId        = animatedBlock.data('interval-id') ? parseInt( animatedBlock.data('interval-id') ) : 0;
-	let waitTime          = animatedBlock.data('wait-time') ? parseInt( animatedBlock.data('wait-time') ) : 800;
-	let animationTime     = animatedBlock.data('animation-time') ? parseInt( animatedBlock.data('animation-time') ) : 300;
-	let animateOnlyOnce   = animatedBlock.data('animate-only-once') ? animatedBlock.data('animate-only-once') : 'off';
+	let intervalId        = animatedBlock.attr('data-interval-id') ? parseInt( animatedBlock.attr('data-interval-id') ) : 0;
+	let waitTime          = animatedBlock.attr('data-wait-time') ? parseInt( animatedBlock.attr('data-wait-time') ) : 800;
+	let animationTime     = animatedBlock.attr('data-animation-time') ? parseInt( animatedBlock.attr('data-animation-time') ) : 300;
+	let animateOnlyOnce   = 'true' === animatedBlock.attr('data-animate-only-once') ? true : 'off';
 	let currentIntervalId = 0;
 	let i                 = 0;
 
@@ -239,10 +250,10 @@ function wpmozoWaveEffect( animatedBlock, words ) {
 }
 
 function wpmozoBounceEffect( animatedBlock, words ) {
-	let intervalId        = animatedBlock.data('interval-id') ? parseInt( animatedBlock.data('interval-id') ) : 0;
-	let waitTime          = animatedBlock.data('wait-time') ? parseInt( animatedBlock.data('wait-time') ) : 800;
-	let animationTime     = animatedBlock.data('animation-time') ? parseInt( animatedBlock.data('animation-time') ) : 300;
-	let animateOnlyOnce   = animatedBlock.data('animate-only-once') ? animatedBlock.data('animate-only-once') : 'off';
+	let intervalId        = animatedBlock.attr('data-interval-id') ? parseInt( animatedBlock.attr('data-interval-id') ) : 0;
+	let waitTime          = animatedBlock.attr('data-wait-time') ? parseInt( animatedBlock.attr('data-wait-time') ) : 800;
+	let animationTime     = animatedBlock.attr('data-animation-time') ? parseInt( animatedBlock.attr('data-animation-time') ) : 300;
+	let animateOnlyOnce   = 'true' === animatedBlock.attr('data-animate-only-once') ? true : 'off';
 	let currentIntervalId = 0;
 	let i                 = 0;
 
@@ -285,10 +296,10 @@ function wpmozoBounceEffect( animatedBlock, words ) {
 }
 
 function wpmozoZoomEffect( animatedBlock, words ) {
-	let intervalId        = animatedBlock.data('interval-id') ? parseInt( animatedBlock.data('interval-id') ) : 0;
-	let waitTime          = animatedBlock.data('wait-time') ? parseInt( animatedBlock.data('wait-time') ) : 800;
-	let animationTime     = animatedBlock.data('animation-time') ? parseInt( animatedBlock.data('animation-time') ) : 300;
-	let animateOnlyOnce   = animatedBlock.data('animate-only-once') ? animatedBlock.data('animate-only-once') : 'off';
+	let intervalId        = animatedBlock.attr('data-interval-id') ? parseInt( animatedBlock.attr('data-interval-id') ) : 0;
+	let waitTime          = animatedBlock.attr('data-wait-time') ? parseInt( animatedBlock.attr('data-wait-time') ) : 800;
+	let animationTime     = animatedBlock.attr('data-animation-time') ? parseInt( animatedBlock.attr('data-animation-time') ) : 300;
+	let animateOnlyOnce   = 'true' === animatedBlock.attr('data-animate-only-once') ? true : 'off';
 	let currentIntervalId = 0;
 	let i                 = 0;
 
@@ -331,10 +342,10 @@ function wpmozoZoomEffect( animatedBlock, words ) {
 }
 
 function wpmozoSlideEffect( animatedBlock, words ) {
-	let intervalId        = animatedBlock.data('interval-id') ? parseInt( animatedBlock.data('interval-id') ) : 0;
-	let waitTime          = animatedBlock.data('wait-time') ? parseInt( animatedBlock.data('wait-time') ) : 800;
-	let animationTime     = animatedBlock.data('animation-time') ? parseInt( animatedBlock.data('animation-time') ) : 300;
-	let animateOnlyOnce   = animatedBlock.data('animate-only-once') ? animatedBlock.data('animate-only-once') : 'off';
+	let intervalId        = animatedBlock.attr('data-interval-id') ? parseInt( animatedBlock.attr('data-interval-id') ) : 0;
+	let waitTime          = animatedBlock.attr('data-wait-time') ? parseInt( animatedBlock.attr('data-wait-time') ) : 800;
+	let animationTime     = animatedBlock.attr('data-animation-time') ? parseInt( animatedBlock.attr('data-animation-time') ) : 300;
+	let animateOnlyOnce   = 'true' === animatedBlock.attr('data-animate-only-once') ? true : 'off';
 	let currentIntervalId = 0;
 	let i                 = 0;
 
@@ -377,10 +388,10 @@ function wpmozoSlideEffect( animatedBlock, words ) {
 }
 
 function wpmozoFlipEffect( animatedBlock, words ) {
-	let intervalId        = animatedBlock.data('interval-id') ? parseInt( animatedBlock.data('interval-id') ) : 0;
-	let waitTime          = animatedBlock.data('wait-time') ? parseInt( animatedBlock.data('wait-time') ) : 500;
-	let animationTime     = animatedBlock.data('animation-time') ? parseInt( animatedBlock.data('animation-time') ) : 1500;
-	let animateOnlyOnce   = animatedBlock.data('animate-only-once') ? animatedBlock.data('animate-only-once') : 'off';
+	let intervalId        = animatedBlock.attr('data-interval-id') ? parseInt( animatedBlock.attr('data-interval-id') ) : 0;
+	let waitTime          = animatedBlock.attr('data-wait-time') ? parseInt( animatedBlock.attr('data-wait-time') ) : 500;
+	let animationTime     = animatedBlock.attr('data-animation-time') ? parseInt( animatedBlock.attr('data-animation-time') ) : 1500;
+	let animateOnlyOnce   = 'true' === animatedBlock.attr('data-animate-only-once') ? true : 'off';
 	let currentIntervalId = 0;
 	let i                 = 0;
 
@@ -423,10 +434,10 @@ function wpmozoFlipEffect( animatedBlock, words ) {
 }
 
 function wpmozoFadeEffect( animatedBlock, words ) {
-	let intervalId        = animatedBlock.data('interval-id') ? parseInt( animatedBlock.data('interval-id') ) : 0;
-	let waitTime          = animatedBlock.data('wait-time') ? parseInt( animatedBlock.data('wait-time') ) : 500;
-	let animationTime     = animatedBlock.data('animation-time') ? parseInt( animatedBlock.data('animation-time') ) : 1500;
-	let animateOnlyOnce   = animatedBlock.data('animate-only-once') ? animatedBlock.data('animate-only-once') : 'off';
+	let intervalId        = animatedBlock.attr('data-interval-id') ? parseInt( animatedBlock.attr('data-interval-id') ) : 0;
+	let waitTime          = animatedBlock.attr('data-wait-time') ? parseInt( animatedBlock.attr('data-wait-time') ) : 500;
+	let animationTime     = animatedBlock.attr('data-animation-time') ? parseInt( animatedBlock.attr('data-animation-time') ) : 1500;
+	let animateOnlyOnce   = 'true' === animatedBlock.attr('data-animate-only-once') ? true : 'off';
 	let currentIntervalId = 0;
 	let i                 = 0;
 
@@ -468,10 +479,10 @@ function wpmozoFadeEffect( animatedBlock, words ) {
 }
 
 function wpmozoWipeEffect( animatedBlock, words ) {
-	let intervalId        = animatedBlock.data('interval-id') ? parseInt( animatedBlock.data('interval-id') ) : 0;
-	let waitTime          = animatedBlock.data('wait-time') ? parseInt( animatedBlock.data('wait-time') ) : 800;
-	let animationTime     = animatedBlock.data('animation-time') ? parseInt( animatedBlock.data('animation-time') ) : 300;
-	let animateOnlyOnce   = animatedBlock.data('animate-only-once') ? animatedBlock.data('animate-only-once') : 'off';
+	let intervalId        = animatedBlock.attr('data-interval-id') ? parseInt( animatedBlock.attr('data-interval-id') ) : 0;
+	let waitTime          = animatedBlock.attr('data-wait-time') ? parseInt( animatedBlock.attr('data-wait-time') ) : 800;
+	let animationTime     = animatedBlock.attr('data-animation-time') ? parseInt( animatedBlock.attr('data-animation-time') ) : 300;
+	let animateOnlyOnce   = 'true' === animatedBlock.attr('data-animate-only-once') ? true : 'off';
 	let currentIntervalId = 0;
 	let i                 = 0;
 

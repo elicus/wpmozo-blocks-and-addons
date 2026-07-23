@@ -32,7 +32,8 @@
 
 		"tooltipColor": { "type": "string","default": "" },
 		"tooltipBackgroundColor": { "type": "string", "default": "" },
-		"showTooltip": { "type": "boolean", "default": false }
+		"showTooltip": { "type": "boolean", "default": false },
+		"tooltipType": { "type": "string", "default": "imageTitle" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
