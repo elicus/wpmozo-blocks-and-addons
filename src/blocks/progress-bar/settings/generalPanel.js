@@ -2,7 +2,6 @@ import { __ } from '@wordpress/i18n';
 import {
     PanelBody,
     TextControl,
-    RangeControl,
     ToggleControl,
     SelectControl
 } from "@wordpress/components";
@@ -46,13 +45,6 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				checked={ attributes.showNumber }
 				onChange={ (newValue) => setAttributes( { showNumber: newValue } ) }
 				__nextHasNoMarginBottom={true}
-			/>
-			<RangeControl
-				label={ __( 'Percentage (Preview in Editor)', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.percentage }
-				onChange={(newValue) => setAttributes({percentage: newValue})}
-				min={0} max={100} step={1} allowReset={true}
-				__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
 			/>
 		</PanelBody>
 	</> );

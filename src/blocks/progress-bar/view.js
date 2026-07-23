@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const percent = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
 
         progressBars.forEach(progressBar => {
+            if (progressBar.closest('.block-editor-block-list__layout') || progressBar.closest('.editor-styles-wrapper') || document.body.classList.contains('wp-admin')) return;
             const wrapper = progressBar.querySelector('.wpmozo-bna-progress-bar-wrapper');
             if (!wrapper) return;
 

@@ -20,8 +20,6 @@
 		"barDirection": { "type": "string", "default": "horizontal" },
 		"showStriped": { "type": "boolean", "default": false },
 		"showNumber": { "type": "boolean", "default": true },
-		
-		"percentage": { "type": "number", "default": 50 },
 
 		"barSize": { "type": "number", "default": 30 },
 		"barHeight": { "type": "number", "default": 500 },
