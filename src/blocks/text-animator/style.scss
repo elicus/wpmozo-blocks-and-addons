@@ -8,6 +8,12 @@
     padding: 0;
     margin: 0;
 }
+.wp-block-wpmozo-text-animator .wpmozo-animated-text,
+.wp-block-wpmozo-text-animator .animated_text,
+.wp-block-wpmozo-text-animator .post_text_wrapper,
+.wp-block-wpmozo-text-animator .pre_text_wrapper{
+    transition: all 300ms;
+}
 
 .wpmozo-flip{
     perspective: 1000px;

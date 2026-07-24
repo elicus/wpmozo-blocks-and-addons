@@ -1,6 +1,6 @@
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ({ attributes, clientId }) => {
+const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	const { iconFontSize, separatorColor } = attributes,
 		parent = '#block-' + clientId,
 		toConvertStyles = [
@@ -26,6 +26,7 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 			}`
 		: ''
 	);
+	hovercss.push( attributes.globalTextHoverColor? `.wpmozo-bna-text-highlighter-wrapper:hover${isEditor('.wpmozo-bna-text-highlighter-wrapper')} { color: ${attributes.globalTextHoverColor};}` : '' );
 
 	normalcss.push(
 		( attributes.preTextColor || convertedStyle.pre )
@@ -35,6 +36,7 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 			}`
 		: ''
 	);
+	hovercss.push( attributes.preTextHoverColor ? `.wpmozo-bna-text-highlighter-pre-inner-wrapper:hover${isEditor('.wpmozo-bna-text-highlighter-pre-inner-wrapper')} { color: ${attributes.preTextHoverColor};}` : '' );
 
 	normalcss.push(
 		( attributes.mainTextColor || convertedStyle.main )
@@ -44,6 +46,7 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 			}`
 		: ''
 	);
+	hovercss.push( attributes.mainTextHoverColor ? `.wpmozo-bna-text-highlighted-content:hover${isEditor('.wpmozo-bna-text-highlighted-content')} { color: ${attributes.mainTextHoverColor};}` : '' );
 
 	normalcss.push(
 		( attributes.postTextColor || convertedStyle.post )
@@ -53,16 +56,27 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 			}`
 		: ''
 	);
+	hovercss.push( attributes.postTextHoverColor ? `.wpmozo-bna-text-highlighter-post-inner-wrapper:hover${isEditor('.wpmozo-bna-text-highlighter-post-inner-wrapper')} { color: ${attributes.postTextHoverColor};}` : '' );
 
 	normalcss.push(
-		( attributes.highlighterColor || attributes.stockWidth || attributes.stockPaintAnimationDelay )
+		( attributes.highlighterColor || attributes.stockWidth || attributes.stockPaintAnimationDelay || attributes.strokePaintAnimationDuration )
 		? `.wpmozo-bna-text-highlighter-inner-wrapper svg path {
 				${attributes.highlighterColor ? `stroke: ${attributes.highlighterColor};` : ''}
 				${attributes.stockWidth ? `stroke-width: ${attributes.stockWidth}px;` : ''}
 				${attributes.stockPaintAnimationDelay ? `animation-delay: ${attributes.stockPaintAnimationDelay}s;` : ''}
+				${attributes.strokePaintAnimationDuration ? `animation-duration: ${attributes.strokePaintAnimationDuration}s;` : ''}
 			}`
 		: ''
 	);
+	hovercss.push(
+		( attributes.highlighterHoverColor || attributes.stockWidthHover )
+		? `.wpmozo-bna-text-highlighter-wrapper:hover svg path${isEditor('.wpmozo-bna-text-highlighter-wrapper svg path')} {
+				${attributes.highlighterHoverColor ? `stroke: ${attributes.highlighterHoverColor};` : ''}
+				${attributes.stockWidthHover ? `stroke-width: ${attributes.stockWidthHover}px;` : ''}
+			}`
+		: ''
+	);
+
 	if ( attributes.customPositionForHighlighter ) {
 		normalcss.push(
 			( attributes.customVerticalPosition || attributes.customHorizontalPosition )

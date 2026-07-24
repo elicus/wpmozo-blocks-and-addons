@@ -12,6 +12,7 @@ import {
     WpmozoColorPicker,
     WpmozoTypography,
     WpmozoDimensions,
+	MozoStates
 } from '../../../common/components/index.js';
 import { useState } from "@wordpress/element";
 
@@ -24,8 +25,9 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 	}
 
 
-	const [ textTypeTab, setTextTypeTab ] = useState( 'global' );
-	const [ textBGTab, setTextBGTab ]     = useState( 'prePost' );
+	const [ textTypeTab, setTextTypeTab ]   = useState( 'global' );
+	const [ textBGTab, setTextBGTab ]       = useState( 'global' );
+	const [ textSpaceTab, setTextSpaceTab ] = useState( 'prePost' );
 
 	return ( <>
 		{/* Text Typography. */}
@@ -50,14 +52,6 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				</ButtonGroup>
 			</BaseControl>
 			{ 'global' === textTypeTab && ( <>
-				<WpmozoColorPicker
-					props={props}
-				   	ColorKey="globalText"
-				   	label={ __( 'Global Text', 'wpmozo-blocks-and-addons' ) }
-				   	ColorTypes={ [
-					   { key: 'Color', label: __( 'Global Text Color', 'wpmozo-blocks-and-addons' ) }
-				   	] }
-				/>
 				<WpmozoAlignment
 					label={ __( 'Global Text Alignment', 'wpmozo-blocks-and-addons' ) }
 					onChange={ ( newValue ) => setAttributes( { globalTextAlignment: newValue } ) }
@@ -73,33 +67,19 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 					}}
 					props={props}
 					TypographyKey="global"
-					label={ __( 'Global Typography', 'wpmozo-blocks-and-addons' ) }
+					label={ __( 'Global Text Typography', 'wpmozo-blocks-and-addons' ) }
 				/>
 			</> ) }
 			{ 'prePost' === textTypeTab && ( <>
-				<WpmozoColorPicker props={props}
-					label={ __( 'Pre/Post Text', 'wpmozo-blocks-and-addons' ) }
-					ColorKey="prePostText"
-					ColorTypes={ [
-						{ key: 'Color', label: __( 'Pre/Post Text Color', 'wpmozo-blocks-and-addons' ) }
-					] }
-				/>
 				<WpmozoTypography props={props}
 					TypographyKey="prePost"
-					label={ __( 'Pre/Post Typography', 'wpmozo-blocks-and-addons' ) }
+					label={ __( 'Pre/Post Text Typography', 'wpmozo-blocks-and-addons' ) }
 				/>
 			</> ) }
 			{ 'animated' === textTypeTab && ( <>
-				<WpmozoColorPicker props={props}
-					ColorKey="animatedText"
-					label={ __( 'Animated Text', 'wpmozo-blocks-and-addons' ) }
-					ColorTypes={ [
-						{ key: 'Color', label: __( 'Animated Text Color', 'wpmozo-blocks-and-addons' ) }
-					] }
-				/>
 				<WpmozoTypography props={props}
 					TypographyKey="animated"
-					label={ __( 'Animated Typography', 'wpmozo-blocks-and-addons' ) }
+					label={ __( 'Animated Text Typography', 'wpmozo-blocks-and-addons' ) }
 				/>
 			</> ) }
 		</PanelBody>
@@ -107,6 +87,11 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 		<PanelBody title={ __( 'Text Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			<BaseControl className="wpmozo-button-tabs-wrap">
 				<ButtonGroup>
+					<Button className="wpmozo-button-tabs-btn"
+						isPressed={ ( 'global' === textBGTab ) ? true : false }
+						onClick={ () => setTextBGTab( 'global' ) }
+						label={ __( 'Global', 'wpmozo-blocks-and-addons' ) }
+					>{ __( 'Global', 'wpmozo-blocks-and-addons' ) }</Button>
 					<Button className="wpmozo-button-tabs-btn"
 						isPressed={ ( 'prePost' === textBGTab ) ? true : false }
 						onClick={ () => setTextBGTab( 'prePost' ) }
@@ -118,7 +103,48 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 						label={ __( 'Animated', 'wpmozo-blocks-and-addons' ) }
 					>{ __( 'Animated', 'wpmozo-blocks-and-addons' ) }</Button>
 				</ButtonGroup>
+				{ 'global' === textBGTab && ( <>
+					<MozoStates
+						value = {hoverState}
+						title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+						onChange={ ( isHover ) =>  (
+							isHover ?  setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)
+								
+						}
+						control={ ( isHover ) => (
+							<WpmozoColorPicker
+								props={props}
+								ColorKey={ isHover ? 'globalTextHover' : 'globalText' }
+								label={ __( 'Global Text', 'wpmozo-blocks-and-addons' ) }
+								ColorTypes={ [
+								{ key: 'Color', label: __( 'Global Text Color', 'wpmozo-blocks-and-addons' ) }
+								] }
+							/>
+						) }
+					/>
+				</> ) }
 				{ 'prePost' === textBGTab && ( <>
+					<MozoStates
+						value = {hoverState}
+						title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+						onChange={ ( isHover ) =>  (
+							isHover ?  setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)
+								
+						}
+						control={ ( isHover ) => (
+							<WpmozoColorPicker props={props}
+								label={ __( 'Pre/Post Text', 'wpmozo-blocks-and-addons' ) }
+								ColorKey={ isHover ? 'prePostTextHover' : 'prePostText' }
+								ColorTypes={ [
+									{ key: 'Color', label: __( 'Pre/Post Text Color', 'wpmozo-blocks-and-addons' ) }
+								] }
+							/>
+						) }
+					/>
 					<ToggleControl
 						label={ __( 'Use Background', 'wpmozo-blocks-and-addons' ) }
 						checked={ attributes.useBackgroundPrepost }
@@ -141,11 +167,23 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 								>{ __( 'Gradient', 'wpmozo-blocks-and-addons' ) }</Button>
 							</ButtonGroup>
 							{ 'classic' === attributes.prePostBackgroundType && (
-								<WpmozoColorPicker props={props}
-									ColorKey="prePostBackground"
-									ColorTypes={ [
-										{ key: 'Color', label: __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
-									] }
+								<MozoStates
+									value = {hoverState}
+									title={ __( 'Background', 'wpmozo-blocks-and-addons' ) }
+									onChange={ ( isHover ) =>  (
+										isHover ?  setHoverState(true) : setHoverState(false),
+										setAttributes({wrapIsHover: !hoverState})
+									)
+											
+									}
+									control={ ( isHover ) => (
+										<WpmozoColorPicker props={props}
+											ColorKey={ isHover ? 'prePostBackgroundHover' : 'prePostBackground' }
+											ColorTypes={ [
+												{ key: 'Color', label: __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
+											] }
+										/>
+									) }
 								/>
 							) }
 							{ 'gradient'=== attributes.prePostBackgroundType && (
@@ -162,14 +200,27 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 							) }
 						</BaseControl>
 					</> ) }
-					<WpmozoDimensions props={props}
-						label={ __( 'Pre/Post Text Dimensions', 'wpmozo-blocks-and-addons' ) }
-						DimensionKey='prePost'
-						DimensionsTypes={ { padding: true, margin: true } }
-					/>
 				</> ) }
-
 				{ 'animated' === textBGTab && ( <>
+					<MozoStates
+						value = {hoverState}
+						title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+						onChange={ ( isHover ) =>  (
+							isHover ?  setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)
+								
+						}
+						control={ ( isHover ) => (
+							<WpmozoColorPicker props={props}
+								ColorKey={ isHover ? 'animatedTextHover' : 'animatedText' }
+								label={ __( 'Animated Text', 'wpmozo-blocks-and-addons' ) }
+								ColorTypes={ [
+									{ key: 'Color', label: __( 'Animated Text Color', 'wpmozo-blocks-and-addons' ) }
+								] }
+							/>
+						) }
+					/>
 					<ToggleControl
 						label={ __( 'Use Background', 'wpmozo-blocks-and-addons' ) }
 						checked={ attributes.useBackgroundAnimated }
@@ -192,11 +243,23 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 								>{ __( 'Gradient', 'wpmozo-blocks-and-addons' ) }</Button>
 							</ButtonGroup>
 							{ 'classic' === attributes.animatedBackgroundType && (
-								<WpmozoColorPicker props={props}
-									ColorKey="animatedBackground"
-									ColorTypes={ [
-										{ key: 'Color', label: __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
-									] }
+								<MozoStates
+									value = {hoverState}
+									title={ __( 'Background', 'wpmozo-blocks-and-addons' ) }
+									onChange={ ( isHover ) =>  (
+										isHover ?  setHoverState(true) : setHoverState(false),
+										setAttributes({wrapIsHover: !hoverState})
+									)
+											
+									}
+									control={ ( isHover ) => (
+										<WpmozoColorPicker props={props}
+											ColorKey={ isHover ? 'animatedBackgroundHover' : 'animatedBackground' }
+											ColorTypes={ [
+												{ key: 'Color', label: __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
+											] }
+										/>
+									) }
 								/>
 							) }
 							{ 'gradient'=== attributes.animatedBackgroundType && (
@@ -213,10 +276,59 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 							) }
 						</BaseControl>
 					</> ) }
-					<WpmozoDimensions props={props}
-						label={ __( 'Animated Text Dimensions', 'wpmozo-blocks-and-addons' ) }
-						DimensionKey='animated'
-						DimensionsTypes={ { padding: true, margin: true } }
+				</> ) }
+			</BaseControl>
+		</PanelBody>
+		<PanelBody title={ __( 'Text Spacing', 'wpmozo-blocks-and-addons' ) } className="wpmozo-spacing-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
+			<BaseControl className="wpmozo-button-tabs-wrap">
+				<ButtonGroup>
+					<Button className="wpmozo-button-tabs-btn"
+						isPressed={ ( 'prePost' === textSpaceTab ) ? true : false }
+						onClick={ () => setTextSpaceTab( 'prePost' ) }
+						label={ __( 'Pre/Post', 'wpmozo-blocks-and-addons' ) }
+					>{ __( 'Pre/Post', 'wpmozo-blocks-and-addons' ) }</Button>
+					<Button className="wpmozo-button-tabs-btn"
+						isPressed={ ( 'animated' === textSpaceTab ) ? true : false }
+						onClick={ () => setTextSpaceTab( 'animated' ) }
+						label={ __( 'Animated', 'wpmozo-blocks-and-addons' ) }
+					>{ __( 'Animated', 'wpmozo-blocks-and-addons' ) }</Button>
+				</ButtonGroup>
+				{ 'prePost' === textSpaceTab && ( <>
+					<MozoStates
+						value = {hoverState}
+						title={ __( 'Pre/Post Spacing', 'wpmozo-blocks-and-addons' ) }
+						onChange={ ( isHover ) =>  (
+								isHover ?  setHoverState(true) : setHoverState(false),
+								setAttributes({wrapIsHover: !hoverState})
+							)	
+						}
+						control={ ( isHover ) => (
+							<WpmozoDimensions
+								label= " "
+								props={props}
+								DimensionKey={ isHover ? "prePostHover" : "prePost" }
+								DimensionsTypes={isHover ? {padding: true} : {padding: true, margin: true}}
+							/>
+						) }
+					/>
+				</> ) }
+				{ 'animated' === textSpaceTab && ( <>
+					<MozoStates
+						value = {hoverState}
+						title={ __( 'Animated Spacing', 'wpmozo-blocks-and-addons' ) }
+						onChange={ ( isHover ) =>  (
+								isHover ?  setHoverState(true) : setHoverState(false),
+								setAttributes({wrapIsHover: !hoverState})
+							)	
+						}
+						control={ ( isHover ) => (
+							<WpmozoDimensions
+								label= " "
+								props={props}
+								DimensionKey={ isHover ? "animatedHover" : "animated" }
+								DimensionsTypes={isHover ? {padding: true} : {padding: true, margin: true}}
+							/>
+						) }
 					/>
 				</> ) }
 			</BaseControl>

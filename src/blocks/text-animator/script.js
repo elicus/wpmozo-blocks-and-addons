@@ -16,8 +16,6 @@ function resetAnimation(animatedBlock) {
         'wpmozo_animation_stop wpmozo_animation_paused'
     );
 
-    animatedBlock.html('');
-
     animatedBlock[0].offsetHeight;
 }
 
@@ -100,7 +98,6 @@ function wpmozoTypingEffect( animatedBlock, words ) {
 
 	if ( intervalId !== 0 ) {
 		clearInterval( intervalId );
-		animatedBlock.html('');
 		animatedBlock.removeClass( 'wpmozo-wipeIn wpmozo-wipeOut wpmozo-zoomIn wpmozo-zoomOut wpmozo-bounceIn wpmozo-bounceOut wpmozo-flipUpFirst wpmozo-flipUpSecond wpmozo-slideIn wpmozo-slideOut wpmozo-fadeIn wpmozo-fadeOut' );
 	}
 
@@ -256,6 +253,7 @@ function wpmozoBounceEffect( animatedBlock, words ) {
 	let animateOnlyOnce   = 'true' === animatedBlock.attr('data-animate-only-once') ? true : 'off';
 	let currentIntervalId = 0;
 	let i                 = 0;
+	animatedBlock.html( words[0] );
 
 	if ( intervalId !== 0 ) {
 		clearInterval( intervalId );
@@ -302,6 +300,7 @@ function wpmozoZoomEffect( animatedBlock, words ) {
 	let animateOnlyOnce   = 'true' === animatedBlock.attr('data-animate-only-once') ? true : 'off';
 	let currentIntervalId = 0;
 	let i                 = 0;
+	animatedBlock.html( words[0] );
 
 	if ( intervalId !== 0 ) {
 		clearInterval( intervalId );
@@ -394,6 +393,7 @@ function wpmozoFlipEffect( animatedBlock, words ) {
 	let animateOnlyOnce   = 'true' === animatedBlock.attr('data-animate-only-once') ? true : 'off';
 	let currentIntervalId = 0;
 	let i                 = 0;
+	animatedBlock.html( words[0] );
 
 	if ( intervalId !== 0 ) {
 		clearInterval( intervalId );
@@ -440,6 +440,7 @@ function wpmozoFadeEffect( animatedBlock, words ) {
 	let animateOnlyOnce   = 'true' === animatedBlock.attr('data-animate-only-once') ? true : 'off';
 	let currentIntervalId = 0;
 	let i                 = 0;
+	animatedBlock.html( words[0] );
 
 	if ( intervalId !== 0 ) {
 		clearInterval( intervalId );
@@ -458,19 +459,21 @@ function wpmozoFadeEffect( animatedBlock, words ) {
 			return;
 		}
 
+		
 		if ( words.length === ( parseInt(i) + 1 ) )  {
 			i = 0;
 		} else {
-			i = i + 1;
+			i++;
 		}
-
 		animatedBlock.removeClass( 'wpmozo-fadeIn' );
 		animatedBlock.addClass( 'wpmozo-fadeOut' );
+		console.log(words.length);
 		setTimeout( function() {
 			animatedBlock.fadeIn( '100', 'swing', function() {
 				animatedBlock.removeClass( 'wpmozo-fadeOut' );
 				animatedBlock.addClass( 'wpmozo-fadeIn' );
 				animatedBlock.html( words[i] );
+				console.log(words[i]);
 			} );
 		}, animationTime );
 	};
@@ -485,6 +488,7 @@ function wpmozoWipeEffect( animatedBlock, words ) {
 	let animateOnlyOnce   = 'true' === animatedBlock.attr('data-animate-only-once') ? true : 'off';
 	let currentIntervalId = 0;
 	let i                 = 0;
+	animatedBlock.html( words[0] );
 
 	if ( intervalId !== 0 ) {
 		clearInterval( intervalId );

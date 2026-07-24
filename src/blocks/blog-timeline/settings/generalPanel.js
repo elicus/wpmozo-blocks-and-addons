@@ -29,7 +29,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					setSizes(options);
 				})
 				.catch((error) => {
-					console.log(error);
+					console.error(error);
 				});
 		}, []);
 

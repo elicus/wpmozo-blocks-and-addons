@@ -12,15 +12,15 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 		'divider'
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
+	let titleAlign = attributes.titleAlign || '';
+	titleAlign = titleAlign.replace(/^(left|right)$/, match =>
+		match === "left" ? "flex-start" : "flex-end"
+	);
 
 	let normalcss = [],
 		hovercss = [],
 		cssExtras = [];
 	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
-	let titleAlign = attributes.titleAlign || '';
-		titleAlign = titleAlign.replace(/^(left|right)$/, match =>
-			match === "left" ? "flex-start" : "flex-end"
-		);
 	
 	normalcss.push(
 		( titleAlign || attributes.titleWidth ) 

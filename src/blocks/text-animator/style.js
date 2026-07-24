@@ -5,8 +5,8 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 		'global',
 		'prePost',
 		'animated',
-		'prePostDimensions',
-		'animatedDimensions'
+		'prePostHover',
+		'animatedHover'
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
@@ -51,6 +51,7 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 			}`
 		: ''
 	);
+	hovercss.push( attributes.globalTextHoverColor  ? `.wpmozo-animated-text:hover${isEditor('.wpmozo-animated-text')}{color: ${attributes.globalTextHoverColor}; }` : '' );
 	
 	normalcss.push(
 		( attributes.prePostTextColor || convertedStyle.prePost || ( attributes.useBackgroundPrepost && attributes.prePostBackgroundType === 'classic' && attributes.prePostBackgroundColor ) || ( attributes.useBackgroundPrepost && attributes.prePostBackgroundType === 'gradient' && attributes.prePostBackgroundGradient ) )
@@ -69,6 +70,20 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 		}`
 		: ''
 	);
+	hovercss.push(
+		( attributes.prePostTextHoverColor|| convertedStyle.prePostHover || ( attributes.useBackgroundPrepost && attributes.prePostBackgroundType === 'classic' && attributes.prePostBackgroundHoverColor ) )
+		? `.pre_text_wrapper:hover, .post_text_wrapper:hover${isEditor('.pre_text_wrapper')}${isEditor('.post_text_wrapper')}{
+			${attributes.prePostTextHoverColor ? `color: ${attributes.prePostTextHoverColor};` : ''}
+			${convertedStyle.prePostHover || ''}
+
+			${ ( attributes.useBackgroundPrepost && 'classic' === attributes.prePostBackgroundType ) 
+				? ( attributes.prePostBackgroundHoverColor ? `background-color: ${attributes.prePostBackgroundHoverColor};` : '' )
+				: '' 
+			}
+		}`
+		: ''
+	);
+	
 	normalcss.push(
 		( attributes.animatedTextColor || convertedStyle.animated || ( attributes.useBackgroundAnimated && attributes.animatedBackgroundType === 'classic' && attributes.animatedBackgroundColor ) || ( attributes.useBackgroundAnimated && attributes.animatedBackgroundType === 'gradient' && attributes.animatedBackgroundGradient ) )
 		? `.animated_text{
@@ -81,6 +96,19 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 			}
 			${ ( attributes.useBackgroundAnimated && 'gradient' === attributes.animatedBackgroundType ) 
 				? ( attributes.animatedBackgroundGradient ? `background-image: ${attributes.animatedBackgroundGradient};` : '' )
+				: '' 
+			}
+		}`
+		: ''
+	);
+	hovercss.push(
+		( attributes.animatedTextHoverColor || convertedStyle.animatedHover || ( attributes.useBackgroundAnimated && attributes.animatedBackgroundType === 'classic' && attributes.animatedBackgroundHoverColor ) )
+		? `.animated_text:hover${isEditor('.animated_text')}{
+			${attributes.animatedTextHoverColor ? `color: ${attributes.animatedTextHoverColor};` : ''}
+			${convertedStyle.animatedHover || ''}
+
+			${ ( attributes.useBackgroundAnimated && 'classic' === attributes.animatedBackgroundType ) 
+				? ( attributes.animatedBackgroundHoverColor ? `background-color: ${attributes.animatedBackgroundHoverColor};` : '' )
 				: '' 
 			}
 		}`

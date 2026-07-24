@@ -15,7 +15,8 @@ const Edit = (props) => {
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,
 		blockProps = useBlockProps(wrapProps),
-		wrapStyle = wrapArgs?.wrapStyle;
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit = true;
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
 		if ( attributes.ID !== clientId ) {
@@ -98,7 +99,7 @@ const Edit = (props) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, isEdit } ) }</style>
 
 			<div { ...blockProps} id={`block-${attributes.ID}`}>
 				<div className={`animated_text_wrapper wpmozo-${attributes.selectAnimation}`}>
