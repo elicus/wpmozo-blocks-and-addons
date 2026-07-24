@@ -70,7 +70,7 @@ if ( ! function_exists( 'post_ticker_render_callback' ) ) {
 				}
 				$testimonials .= '</div>';
 			}
-
+			wp_reset_postdata();
 			// Get wrapper attributes.
 			$wrapper_attributes = get_block_wrapper_attributes(array(
 				'class'=>'wpmozo-wrap-'.$attributes['ID'] . ' ' . 'wpmozo-advanced-tooltip' . ' ' .$attributes['wrapCustomClass']. ' ' .$attributes['className']

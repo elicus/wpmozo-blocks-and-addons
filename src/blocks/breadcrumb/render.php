@@ -12,31 +12,32 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 		$helpers       = new Mozo_Bna_Helpers();
 		$block_helpers = new Mozo_Bna_Block_Helpers();
 
-		$breadcrumb_layout  = esc_attr( $attributes['breadcrumbLayout'] );
-		$link_target        = ( "1" === esc_attr( $attributes['linkTarget'] ) ) ? 'target="_blank"' : '';
-		$enable_fade        = esc_attr( $attributes['enableFade'] );
-		$fade_range         = esc_attr( $attributes['fadeRange'] );
+		$breadcrumb_layout  = isset( $attributes['breadcrumbLayout'] ) ? esc_attr( $attributes['breadcrumbLayout'] ) : 'layout1';
+		$link_target        = ( isset( $attributes['linkTarget'] ) && "1" === esc_attr( $attributes['linkTarget'] ) ) ? 'target="_blank"' : '';
+		$enable_fade        = isset( $attributes['enableFade'] ) ? esc_attr( $attributes['enableFade'] ) : '';
+		$fade_range         = isset( $attributes['fadeRange'] ) ? esc_attr( $attributes['fadeRange'] ) : '';
 		$separator_icon     = ( 'layout2' === $breadcrumb_layout && ! empty( $attributes['separatorIcon'] ) ) ? esc_attr( $attributes['separatorIcon'] ) : '';
-		$home_link_text     = ! empty( $attributes['homeLinkText'] ) ? sprintf( esc_html__( '%s', 'wpmozo-blocks-and-addons' ), $attributes['homeLinkText'] ) : esc_html__( 'Home', 'wpmozo-blocks-and-addons' );
-		$use_home_link_icon = esc_attr( $attributes['useHomeLinkIcon'] );
-		$hide_home_text     = esc_attr( $attributes['hideHomeText'] );
-		$home_link_icon     = ( $use_home_link_icon ) ? esc_attr( $attributes['homeLinkIcon'] ) : '';
+		$home_link_text     = ! empty( $attributes['homeLinkText'] ) ? esc_html( $attributes['homeLinkText'] ) : esc_html__( 'Home', 'wpmozo-blocks-and-addons' );
+		$use_home_link_icon = isset( $attributes['useHomeLinkIcon'] ) ? esc_attr( $attributes['useHomeLinkIcon'] ) : '';
+		$hide_home_text     = isset( $attributes['hideHomeText'] ) ? esc_attr( $attributes['hideHomeText'] ) : '';
+		$home_link_icon     = ( $use_home_link_icon && ! empty( $attributes['homeLinkIcon'] ) ) ? esc_attr( $attributes['homeLinkIcon'] ) : '';
 		$breadcrumb_list    = '';
 		$output             = '';
 		$opacity            = 1;
 		$opacity_style      = '';
-
 		$hide_home_text     = empty( $hide_home_text ) ? 'off' : 'on';
 		$use_home_link_icon = empty( $use_home_link_icon ) ? 'off' : 'on';
-		$Seprator_Icon      = ( 'icon_separator' === $attributes['separatorType'] ) ? '<span class="breadcrumb-home-icon"><i class="' . $attributes['separatorIcon'] . '"></i></span>' : '';
+		$separator_type_val = isset( $attributes['separatorType'] ) ? $attributes['separatorType'] : '';
+		$separator_icon_val = isset( $attributes['separatorIcon'] ) ? esc_attr( $attributes['separatorIcon'] ) : '';
+		$Seprator_Icon      = ( 'icon_separator' === $separator_type_val && '' !== $separator_icon_val ) ? '<span class="breadcrumb-home-icon"><i class="' . $separator_icon_val . '"></i></span>' : '';
 
 		$breadcrumb = traverse_breadcrumbs( $attributes );
 
 		$breadcrumb_size = (int) esc_attr( count( $breadcrumb ) );
 		for ( $i = 0; $i < $breadcrumb_size; $i ++ ) {
 			$breadcrumbs_keys = array_keys( $breadcrumb[ $i ] );
-			$title            = $breadcrumbs_keys[0];
-			$link             = $breadcrumb[ $i ][ $title ];
+			$title            = isset( $breadcrumbs_keys[0] ) ? esc_html( $breadcrumbs_keys[0] ) : '';
+			$link             = ( isset( $breadcrumbs_keys[0] ) && isset( $breadcrumb[ $i ][ $breadcrumbs_keys[0] ] ) ) ? esc_url( $breadcrumb[ $i ][ $breadcrumbs_keys[0] ] ) : '#';
 
 
 			if ( "1" === $enable_fade && '' !== $fade_range ) {
@@ -140,13 +141,13 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 					if ( 'on' === $use_home_link_icon && 'off' === $hide_home_text ) {
 						$breadcrumb_list .= sprintf(
 							'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
-								<a class="breadcrumb-item dipl-home-page" href="%2$s" property="item" typeof="WebPage" %6$s>
+								<a class="breadcrumb-item wpmozo-home-page" href="%2$s" property="item" typeof="WebPage" %6$s>
 									<span class="breadcrumb-home-icon"><i class="%3$s"></i></span>
 									<span class="breadcrumb-page" property="name">%4$s</span>
 								</a>
 								<meta property="position" content="%5$s" />
 							</li>',
-							isset( $attributes['separatorIcon'] ) ? $attributes['separatorIcon'] : '',
+							isset( $attributes['separatorIcon'] ) ? esc_attr( $attributes['separatorIcon'] ) : '',
 							$link,
 							$home_link_icon,
 							$title,
@@ -157,14 +158,14 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 					} elseif ( 'on' === $use_home_link_icon && 'on' === $hide_home_text ) {
 						$breadcrumb_list .= sprintf(
 							'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
-								<a class="breadcrumb-item dipl-home-page" href="%2$s" property="item" typeof="WebPage" %5$s>
+								<a class="breadcrumb-item wpmozo-home-page" href="%2$s" property="item" typeof="WebPage" %5$s>
 									<span class="breadcrumb-page" property="name">
 										<span class="breadcrumb-home-icon"><i class="%3$s"></i></span>
 									</span>
 								</a>
 								<meta property="position" content="%4$s" />
 							</li>',
-							isset( $attributes['separatorIcon'] ) ? $attributes['separatorIcon'] : '',
+							isset( $attributes['separatorIcon'] ) ? esc_attr( $attributes['separatorIcon'] ) : '',
 							$link,
 							$home_link_icon,
 							( $i + 1 ),
@@ -175,12 +176,12 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 						$breadcrumb_list .= sprintf(
 							'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
 								<span class="breadcrumb-home-icon"><i class="%6$s"></i></span>
-								<a class="breadcrumb-item dipl-home-page" href="%2$s" property="item" typeof="WebPage" %5$s>
+								<a class="breadcrumb-item wpmozo-home-page" href="%2$s" property="item" typeof="WebPage" %5$s>
 									<span class="breadcrumb-page" property="name">%3$s</span>
 								</a>
 								<meta property="position" content="%4$s" />
 							</li>',
-							isset( $attributes['separatorIcon'] ) ? $attributes['separatorIcon'] : '',
+							isset( $attributes['separatorIcon'] ) ? esc_attr( $attributes['separatorIcon'] ) : '',
 							$link,
 							$title,
 							( $i + 1 ),
@@ -192,10 +193,10 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 					$breadcrumb_list .= sprintf(
 						'<li property="itemListElement" typeof="ListItem" data-icon="%1$s">
 							%4$s
-							<span class="breadcrumb-page dipl-last-page" property="name">%2$s</span>
+							<span class="breadcrumb-page wpmozo-last-page" property="name">%2$s</span>
 							<meta property="position" content="%3$s" />
 						</li>',
-						isset( $attributes['separatorIcon'] ) ? $attributes['separatorIcon'] : '',
+						isset( $attributes['separatorIcon'] ) ? esc_attr( $attributes['separatorIcon'] ) : '',
 						$title,
 						( $i + 1 ),
 						$Seprator_Icon
@@ -209,7 +210,7 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 							</a>
 							<meta property="position" content="%4$s" />
 						</li>',
-						isset( $attributes['separatorIcon'] ) ? $attributes['separatorIcon'] : '',
+						isset( $attributes['separatorIcon'] ) ? esc_attr( $attributes['separatorIcon'] ) : '',
 						$link,
 						$title,
 						( $i + 1 ),
@@ -221,8 +222,9 @@ if ( ! function_exists( 'breadcrumb_render_callback' ) ) {
 		}
 
 		// Get wrapper attributes.
+		$block_id           = isset( $attributes['ID'] ) ? esc_attr( $attributes['ID'] ) : '';
 		$wrapper_attributes = get_block_wrapper_attributes( array(
-			'class'=>'wpmozo-wrap-'.$attributes['ID'] . ' ' . 'wpmozo-breadcrumb'. ' ' .(isset($attributes['wrapCustomClass']) ? $attributes['wrapCustomClass'] : '' )
+			'class'=>'wpmozo-wrap-' . $block_id . ' ' . 'wpmozo-breadcrumb' . ' ' . ( isset( $attributes['wrapCustomClass'] ) ? $attributes['wrapCustomClass'] : '' )
 		));
 
 
@@ -266,63 +268,65 @@ if ( ! function_exists( 'traverse_breadcrumbs' ) ) {
 
 			if ( is_singular() || ( defined( 'REST_REQUEST' ) && REST_REQUEST && isset( $_REQUEST['context'] ) && 'edit' === $_REQUEST['context'] ) ) {
 				$post_object = get_post( $page_id );
-				$post_type   = $post_object->post_type;
-				$post_parent = $post_object->post_parent;
+				if ( $post_object instanceof WP_Post ) {
+					$post_type   = $post_object->post_type;
+					$post_parent = $post_object->post_parent;
 
-				if ( 'post' === $post_type ) {
+					if ( 'post' === $post_type ) {
 
-					$categories = get_the_category( $post_object->ID );
+						$categories = get_the_category( $post_object->ID );
 
-					if ( ! empty( $categories ) ) {
+						if ( ! empty( $categories ) ) {
 
-						$indexed_categories = array_values( $categories );
-						$category           = end( $indexed_categories );
-						$category_parent    = $category->parent;
-						$category_trail[]   = array( $category->name => get_term_link( $category->term_id ) );
+							$indexed_categories = array_values( $categories );
+							$category           = end( $indexed_categories );
+							$category_parent    = $category->parent;
+							$category_trail[]   = array( $category->name => get_term_link( $category->term_id ) );
 
-						if ( 0 !== $category_parent ) {
+							if ( 0 !== $category_parent ) {
 
-							while ( $category_parent ) {
-								$parent_category  = get_term( $category_parent, 'category' );
-								$category_trail[] = array( $parent_category->name => get_term_link( $parent_category->term_id ) );
-								$category_parent  = $parent_category->parent;
+								while ( $category_parent ) {
+									$parent_category  = get_term( $category_parent, 'category' );
+									$category_trail[] = array( $parent_category->name => get_term_link( $parent_category->term_id ) );
+									$category_parent  = $parent_category->parent;
+								}
+								$category_trail = array_reverse( $category_trail );
 							}
-							$category_trail = array_reverse( $category_trail );
+							$category_trail_size = (int) count( $category_trail );
+							for ( $i = 0; $category_trail_size > $i; $i ++ ) {
+								array_push( $breadcrumb, $category_trail[ $i ] );
+							}
+
 						}
-						$category_trail_size = (int) count( $category_trail );
-						for ( $i = 0; $category_trail_size > $i; $i ++ ) {
-							array_push( $breadcrumb, $category_trail[ $i ] );
+
+					}
+
+
+					if ( ! in_array( $post_type, array( 'post', 'page', 'attachment' ), true ) ) {
+						$post_type_object = get_post_type_object( $post_type );
+						$archive_link     = esc_url( get_post_type_archive_link( $post_type ) );
+						$archive_trail    = array( $post_type_object->labels->singular_name => $archive_link );
+						array_push( $breadcrumb, $archive_trail );
+					}
+
+					if ( 0 !== $post_parent ) {
+						$post_trail[] = array( $post_object->post_title => get_permalink( $post_object ) );
+						while ( $post_parent ) {
+							$parent       = get_post( $post_parent );
+							$post_trail[] = array( get_the_title( $parent->ID ) => esc_url( get_permalink( $parent->ID ) ) );
+							$post_parent  = wp_get_post_parent_id( $parent->ID );
 						}
 
-					}
+						$post_trail      = array_reverse( $post_trail );
+						$post_trail_size = (int) count( $post_trail );
 
-				}
-
-
-				if ( ! in_array( $post_type, array( 'post', 'page', 'attachment' ), true ) ) {
-					$post_type_object = get_post_type_object( $post_type );
-					$archive_link     = esc_url( get_post_type_archive_link( $post_type ) );
-					$archive_trail    = array( $post_type_object->labels->singular_name => $archive_link );
-					array_push( $breadcrumb, $archive_trail );
-				}
-
-				if ( 0 !== $post_parent ) {
-					$post_trail[] = array( $post_object->post_title => get_permalink( $post_object ) );
-					while ( $post_parent ) {
-						$parent       = get_post( $post_parent );
-						$post_trail[] = array( get_the_title( $parent->ID ) => esc_url( get_permalink( $parent->ID ) ) );
-						$post_parent  = wp_get_post_parent_id( $parent->ID );
-					}
-
-					$post_trail      = array_reverse( $post_trail );
-					$post_trail_size = (int) count( $post_trail );
-
-					for ( $i = 0; $post_trail_size > $i; $i ++ ) {
-						array_push( $breadcrumb, $post_trail[ $i ] );
-					}
-				} else {
-					if ( ! is_front_page( $post_object ) ) {
-						$breadcrumb[] = array( $post_object->post_title => get_permalink( $post_object ) );
+						for ( $i = 0; $post_trail_size > $i; $i ++ ) {
+							array_push( $breadcrumb, $post_trail[ $i ] );
+						}
+					} else {
+						if ( ! is_front_page( $post_object ) ) {
+							$breadcrumb[] = array( $post_object->post_title => get_permalink( $post_object ) );
+						}
 					}
 				}
 			}
@@ -330,29 +334,31 @@ if ( ! function_exists( 'traverse_breadcrumbs' ) ) {
 
 			if ( is_archive() ) {
 				if ( is_category() || is_tag() || is_tax() ) {
-					$term_object   = get_term( $query_object );
-					$taxonomy      = $term_object->taxonomy;
-					$terms_name    = $term_object->name;
-					$term_parent   = $term_object->parent;
-					$term_link     = get_term_link( $term_object->term_id );
-					$terms_trail[] = array( $term_object->name => get_term_link( $term_object->term_id ) );
-
-					if ( 0 !== $term_parent ) {
-						while ( $term_parent ) {
-							$term          = get_term( $term_parent, $taxonomy );
-							$terms_trail[] = array( $term->name => get_term_link( $term->term_id ) );
-							$term_parent   = $term->parent;
+					$term_object = get_term( $query_object );
+					if ( $term_object && ! is_wp_error( $term_object ) ) {
+						$taxonomy      = $term_object->taxonomy;
+						$terms_name    = $term_object->name;
+						$term_parent   = $term_object->parent;
+						$term_link     = get_term_link( $term_object->term_id );
+						$terms_trail[] = array( $term_object->name => get_term_link( $term_object->term_id ) );
+						if ( 0 !== $term_parent ) {
+							while ( $term_parent ) {
+								$term          = get_term( $term_parent, $taxonomy );
+								$terms_trail[] = array( $term->name => get_term_link( $term->term_id ) );
+								$term_parent   = $term->parent;
+							}
+							$terms_trail = array_reverse( $terms_trail );
 						}
-						$terms_trail = array_reverse( $terms_trail );
-					}
-					$terms_trail_size = (int) count( $terms_trail );
-					for ( $i = 0; $terms_trail_size > $i; $i ++ ) {
-						array_push( $breadcrumb, $terms_trail[ $i ] );
+						$terms_trail_size = (int) count( $terms_trail );
+						for ( $i = 0; $terms_trail_size > $i; $i ++ ) {
+							array_push( $breadcrumb, $terms_trail[ $i ] );
+						}
 					}
 				} elseif ( is_author() ) {
 					global $author;
 					$author_data  = get_userdata( $author );
-					$breadcrumb[] = array( 'Author archive for: ' . $author_data->display_name => '#' );
+					$display_name = ( $author_data && isset( $author_data->display_name ) ) ? $author_data->display_name : 'Author';
+					$breadcrumb[] = array( 'Author archive for: ' . $display_name => '#' );
 
 				} elseif ( is_day() ) {
 					$breadcrumb[] = array( get_the_time( 'Y' ) => get_year_link( get_the_time( 'Y' ) ) );
@@ -367,9 +373,10 @@ if ( ! function_exists( 'traverse_breadcrumbs' ) ) {
 					$breadcrumb[] = array( get_the_time( 'Y' ) . ' Archives' => '#' );
 
 				} elseif ( is_post_type_archive() ) {
-					$post_type        = $wp_query->query_vars['post_type'];
-					$post_type_object = get_post_type_object( $post_type );
-					$breadcrumb[]     = array( $post_type_object->labels->singular_name => '#' );
+					$post_type        = isset( $wp_query->query_vars['post_type'] ) ? $wp_query->query_vars['post_type'] : '';
+					$post_type_object = ( ! empty( $post_type ) && is_string( $post_type ) ) ? get_post_type_object( $post_type ) : null;
+					$label_name       = ( $post_type_object && isset( $post_type_object->labels->singular_name ) ) ? $post_type_object->labels->singular_name : 'Archive';
+					$breadcrumb[]     = array( $label_name => '#' );
 
 				}
 			}

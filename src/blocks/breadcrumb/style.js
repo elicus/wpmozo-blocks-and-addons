@@ -16,8 +16,8 @@ const generateDynamicStyle = ( { attributes } ) => {
 	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
 	
 	normalcss.push( `.layout2 li .breadcrumb-page{ background-color: transparent !important; }` );
-	normalcss.push( `.dipl-home-page .breadcrumb-home-icon i, .wpmozo-bna-home-page .breadcrumb-page .breadcrumb-home-icon .icon-wrapper i{ color:initial; }` );
-	normalcss.push( `.dipl-home-page .breadcrumb-home-icon i,.wpmozo-bna-home-page .breadcrumb-page .breadcrumb-home-icon .icon-wrapper i{ color:initial; }` );
+	normalcss.push( `.wpmozo-home-page .breadcrumb-home-icon i, .wpmozo-bna-home-page .breadcrumb-page .breadcrumb-home-icon .icon-wrapper i{ color:initial; }` );
+	normalcss.push( `.wpmozo-home-page .breadcrumb-home-icon i,.wpmozo-bna-home-page .breadcrumb-page .breadcrumb-home-icon .icon-wrapper i{ color:initial; }` );
     normalcss.push(
 		attributes.breadcrumbsNavBackground
 		? `.layout1 li .breadcrumb-page{ background-color: ${attributes.breadcrumbsNavBackground};}` : ''
@@ -53,12 +53,12 @@ const generateDynamicStyle = ( { attributes } ) => {
 	);
 	normalcss.push(
 		attributes.homeLinkIconSizeFontSize
-		? `.dipl-home-page,.wpmozo-bna-home-page{ font-size: ${attributes.homeLinkIconSizeFontSize}; }` 
+		? `.wpmozo-home-page,.wpmozo-bna-home-page{ font-size: ${attributes.homeLinkIconSizeFontSize}; }` 
 		: ''
 	);
 	normalcss.push(
 		(attributes.homeIconColor ||  attributes.homeLinkIconSizeFontSize) 
-		? `.dipl-home-page breadcrumb-home-icon i,
+		? `.wpmozo-home-page breadcrumb-home-icon i,
 			.wpmozo-bna-home-page .breadcrumb-page .breadcrumb-home-icon .icon-wrapper i{
 				${attributes.homeIconColor ? `color: ${attributes.homeIconColor};` : ''}
 				${attributes.homeLinkIconSizeFontSize ? `font-size:${attributes.homeLinkIconSizeFontSize};`: '' } 

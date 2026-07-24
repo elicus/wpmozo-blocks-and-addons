@@ -204,7 +204,8 @@
       "type": "string"
     },
     "homeLinkIcon": {
-      "type": "string"
+      "type": "string",
+      "default": "fas fa-house"
     },
     "homeLinkIconSizeFontSize": {
       "type": "string"

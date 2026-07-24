@@ -137,7 +137,10 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			<ToggleControl
 				label={ __( 'Use Home Link Icon', 'wpmozo-blocks-and-addons' ) }
 				checked={ attributes.useHomeLinkIcon || false }
-				onChange={ ( newValue ) => setAttributes( { useHomeLinkIcon: newValue } ) }
+				onChange={ ( newValue ) => setAttributes( { 
+					useHomeLinkIcon: newValue,
+					homeLinkIcon: newValue && ! attributes.homeLinkIcon ? 'fas fa-house' : attributes.homeLinkIcon
+				} ) }
 				__nextHasNoMarginBottom={ true }
 			/>
 			{ attributes.useHomeLinkIcon &&

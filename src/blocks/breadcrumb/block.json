@@ -58,7 +58,7 @@
 		"useHomeLinkIcon": {"type": "boolean", "default": false},
 		"hideHomeText": {"type": "boolean", "default": false},
 		"homeIconColor": {"type": "string"},
-		"homeLinkIcon": { "type": "string" },
+		"homeLinkIcon": { "type": "string", "default": "fas fa-house" },
 		"homeLinkIconSizeFontSize": { "type": "string" },
 
 		"textColor": { "type": "string", "default": "" },
