@@ -78,10 +78,20 @@ const Save = ({ attributes }) => {
                                 <div className="wpmozo-bna-bar-counter-filled-bar-wrapper">
                                     {Array.from({length: 10}, (_, i) => {
                                         const index = i + 1;
-                                        if (index <= (attributes.percentage / 10)) {
+                                        const chunkMin = (index - 1) * 10;
+                                        const chunkMax = index * 10;
+                                        const totalPercentage = attributes.percentage || 0;
+                                        let chunkFill = 0;
+                                        if (totalPercentage >= chunkMax) {
+                                            chunkFill = 100;
+                                        } else if (totalPercentage > chunkMin) {
+                                            chunkFill = Math.round(((totalPercentage - chunkMin) / 10) * 100);
+                                        }
+                                        if (chunkFill > 0) {
                                             return (
                                                 <div key={index}
-                                                     className="wpmozo-bna-bar-counter-chunks wpmozo-bna-bar-counter-filled-chunks wpmozo-animate-filled"></div>
+                                                     className="wpmozo-bna-bar-counter-chunks wpmozo-bna-bar-counter-filled-chunks wpmozo-animate-filled"
+                                                     style={{ '--chunk-fill-width': `${chunkFill}%` }}></div>
                                             );
                                         } else if (attributes.displayEmptyBar) {
                                             return (
@@ -91,7 +101,6 @@ const Save = ({ attributes }) => {
                                         }
                                         return null;
                                     })}
-
                                     <span className="wpmozo-bna-bar-counter-percent">{attributes.percentage}%</span>
                                 </div>
                             )}
