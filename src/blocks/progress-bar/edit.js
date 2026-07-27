@@ -13,7 +13,7 @@ const Edit = (props) => {
 		showIconOnHover = ( attributes.showIconOnHover ) ? ' show-on-hover' : '',
 		buttonIconPosition = ( attributes.buttonIconPosition ) ? attributes.buttonIconPosition : ' icon-after',
 		wrapArgs = attributes?.ID && mergeWrapperProps( { 
-			className: `wpmozo-progress-bar${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			className: `wpmozo-pricing-table${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
 			style: {}
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,

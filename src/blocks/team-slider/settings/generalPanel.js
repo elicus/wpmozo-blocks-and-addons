@@ -23,6 +23,11 @@ import {
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+									
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
 
 	// Get the terms.
 	const terms = useSelect( (select) =>
@@ -56,7 +61,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 
 	return ( <>
 		{/* Content. */}
-		<PanelBody title={ __( 'Content', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
+		<PanelBody title={ __( 'Content', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<SelectControl
 				label={ __( 'Layout', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.layout }
@@ -108,7 +113,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		{/* Display. */}
-		<PanelBody title={ __( 'Display', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+		<PanelBody title={ __( 'Display', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			<br />
 			<ToggleControl
 				label={ __( 'Show Short Description', 'wpmozo-blocks-and-addons' ) }
@@ -143,7 +148,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		{/* Slider. */}
-		<PanelBody title={ __( 'Slider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Slider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 			<SelectControl
 				label={ __( 'Slide Effect', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.slideEffect }
@@ -376,7 +381,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			}
 		</PanelBody>
 		{/* Slider Navigation. */}
-		<PanelBody title={ __( 'Slider Navigation', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+		<PanelBody title={ __( 'Slider Navigation', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 			<ToggleControl
 				label={ __( 'Show Arrows', 'wpmozo-blocks-and-addons' ) }
 				checked={ attributes.showArrows }
@@ -443,7 +448,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			</> }
 		</PanelBody>
 		{/* Link. */}
-		<PanelBody title={ __( 'Link', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Link', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
 			<ToggleControl
 				label={ __( 'Enable Member Link', 'wpmozo-blocks-and-addons' ) }
 				checked={ attributes.enableLink }

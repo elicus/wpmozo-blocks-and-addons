@@ -15,9 +15,9 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 
 
     // Percentage styling
-    styles += `
+	styles += `
 		${id} .wpmozo-bna-progress-bar-percent {
-			color : ${attributes.percentageColor} !important;
+			${attributes.percentageColor ? `color: ${attributes.percentageColor} !important;` : ''}
 			${convertedStyle.percentage}
 			${percentShadow ? `text-shadow: ${percentShadow} !important;` : ''}
 		}

@@ -48,7 +48,7 @@ let wpmozoTestimonialSwipers = {};
 function initWPMozoTestimonialSlider( blockObj ) {
 
 	const wrapObj  = blockObj.find( '.wpmozo_swiper_wrapper' );
-	const clientId = wrapObj.attr( 'data-clientId' );
+	const clientId = wrapObj.attr( 'data-clientid' );
 
 	// Destroy if already exists.
 	if ( wpmozoTestimonialSwipers[clientId] && ! wpmozo_is_empty( wpmozoTestimonialSwipers[clientId] ) ) {
@@ -65,6 +65,9 @@ function initWPMozoTestimonialSlider( blockObj ) {
 		'autoplay'                    : wrapObj.attr( 'data-autoplay' ),
 		'autoplay_delay'              : wrapObj.attr( 'data-autoplay_delay' ),
 		'trans_duration'              : wrapObj.attr( 'data-trans_duration' ),
+		// 'free_mode'                   : wrapObj.attr( 'data-free-mode' ),
+		// 'mousewheel'                  : wrapObj.attr( 'data-mousewheel' ),
+		'enable_linear'               : wrapObj.attr( 'data-enable_linear_trans' ),
 		'pause_on_hover'              : wrapObj.attr( 'data-pause_on_hover' ),
 		'enable_coverflow_shadow'     : wrapObj.attr( 'data-enable_coverflow_shadow' ),
 		'coverflow_rotate'            : wrapObj.attr( 'data-coverflow_rotate' ),
@@ -122,12 +125,12 @@ function initWPMozoTestimonialSlider( blockObj ) {
 	}
 
 	let autoplay_speed      = ( settings?.autoplay_delay ) ?? 3000,
-		pause_on_hover      = ( settings?.pause_on_hover ) ?? 'true',
+		pause_on_hover      = ( settings?.pause_on_hover ) ?? 'false',
 		transition_duration = ( settings?.trans_duration ) ?? 1000,
-		loop_param          = ( 'true' === settings?.enable_loop ) ? true : false,
-		dynamic_bullets     = ( 'true' === settings?.enable_dynamic_dots ) ? true : false;
+		loop_param          = 'true' === settings?.enable_loop ? true : false,
+		dynamic_bullets     = 'true' === settings?.enable_dynamic_dots ? true : false;
 
-	let $arrow_params = 'false';
+	let $arrow_params = false;
 	if ( 'true' === settings?.show_arrow ) {
 		$arrow_params = {
 			nextEl: '#' + $orderId + ' .swiper-button-next',
@@ -147,7 +150,9 @@ function initWPMozoTestimonialSlider( blockObj ) {
 	if ( 'true' === settings?.autoplay ) {
 		$autoplay_param = {
 			delay: parseInt( autoplay_speed ),
-			disableOnInteraction: ( 'on' === pause_on_hover ) ? true : false,
+			disableOnInteraction: ( 'true' === pause_on_hover ) ? true : false,
+			pauseOnMouseEnter: ( 'true' === pause_on_hover ) ? true : false,
+			stopOnLastSlide: true
 		};
 	}
 	let $slide_setting_cube = false;
@@ -193,6 +198,16 @@ function initWPMozoTestimonialSlider( blockObj ) {
 		grabCursor: true,
 		observer: true,
 		observeParents: true,
+		// freeMode: {
+		// 	enabled: 'true' === settings?.free_mode ? true : false,
+		// 	sticky: false,
+		// 	momentum: true
+		// },
+		// mousewheel: {
+		// 	enabled: 'true' === settings?.mousewheel ? true : false,
+		// 	forceToAxis: true,
+		// 	sensitivity:4
+		// },
 		breakpoints: {
 			1080: {
 				slidesPerView: parseInt( $slides_per_view ),
@@ -214,26 +229,25 @@ function initWPMozoTestimonialSlider( blockObj ) {
 			}
 		}
 	} );
-
-	wrapObj.addClass( 'wpmozo-slider-initialized' );
-	if ( 'true' === pause_on_hover && 'true' === settings?.autoplay ) {
-		$( '#' + $orderId + ' .swiper-container' ).on( 'mouseleave', function(e) {
-			if ( typeof swipperSlider?.autoplay?.stop === "function" ) {
-				swipperSlider.autoplay.stop();
-			}
-		} );
-		$( '#' + $orderId + ' .swiper-container' ).on( 'mouseenter', function(e) {
-			if ( typeof swipperSlider?.autoplay?.start === "function" ) {
-				swipperSlider.autoplay.start();
-			}
-		} );
+	if(window.self !== window.top){
+		if ( 'true' === pause_on_hover && 'true' === settings?.autoplay ) {
+			wrapObj.find('.swiper-container').on( 'mouseenter', function(e) {
+				if ( typeof swipperSlider?.autoplay?.stop === "function" ) {
+					swipperSlider.autoplay.stop();
+				}
+			} );
+			wrapObj.find('.swiper-container').on( 'mouseleave', function(e) {
+				if ( typeof swipperSlider?.autoplay?.start === "function" ) {
+					swipperSlider.autoplay.start();
+				}
+			} );
+		}
+		if ( 'true' !== settings?.enable_loop ) {
+			swipperSlider.on( 'reachEnd', function() {
+				swipperSlider.autoplay = false;
+			} );
+		}
 	}
-	if ( 'true' !== settings?.enable_loop ) {
-		swipperSlider.on( 'reachEnd', function() {
-			swipperSlider.autoplay = false;
-		} );
-	}
 
-	// Add the swipers object to global vars.
 	wpmozoTestimonialSwipers[clientId] = swipperSlider;
 }

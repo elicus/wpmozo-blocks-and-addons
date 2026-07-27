@@ -221,7 +221,7 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 
 			// Get wrapper attributes.
 			$wrapper_attributes = get_block_wrapper_attributes(array(
-				'class'=>'wpmozo-wrap-'.$attributes['ID'] . ' ' . 'wpmozo-testimonial-slider' . ' ' .$attributes['wrapCustomClass']. ' ' .$attributes['className']
+				'class'=>'wpmozo-wrap-'.$attributes['ID'] . ' ' . 'wpmozo-testimonial-slider' . ' ' .(isset($attributes['wrapCustomClass']) ? $attributes['wrapCustomClass'] : ''). ' ' .(isset($attributes['className']) ? $attributes['className'] : '')
 			));
 
 			$auto_height = ( $attributes['autoHeight'] ) ? 'true' : 'false';
@@ -229,7 +229,7 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 
 			// Get data attrs.
 			$data_attrs = array(
-				'clientId'                    => $attributes['ID'] ?? '',
+				'clientid'                    => $attributes['ID'] ?? '',
 				'slide_effect'                => $attributes['slideEffect'] ?? 'slide',
 				'slides_per_view'             => $attributes['slidesPerView'] ?? '1',
 				'slides_per_view_tablet'      => $attributes['slidesPerViewTablet'] ?? '1',
@@ -249,6 +249,8 @@ if ( ! function_exists( 'testimonial_slider_render_callback' ) ) {
 				'autoplay_delay'              => $attributes['autoplayDelay'] ?? '3000',
 				'pause_on_hover'              => $attributes['pauseOnHover'] ? 'true' : 'false',
 				'enable_linear_trans'         => $attributes['enableLinearTrans'] ? 'true' : 'false',
+				// 'free_mode'                   => $attributes['enableFree'] ? 'true' : 'false',
+				// 'mousewheel'                  => $attributes['enableMouse'] ? 'true' : 'false',
 				'trans_duration'              => $attributes['transDuration'] ?? '1000',
 				'enable_coverflow_shadow'     => $attributes['enableCoverflowShadow'] ?? 'false',
 

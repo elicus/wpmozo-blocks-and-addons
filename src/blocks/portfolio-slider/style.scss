@@ -1,6 +1,6 @@
 .wp-block-wpmozo-portfolio-slider {
 	position: relative;
-	max-width: none !important;
+	max-width: none;
 }
 
 .wpmozo_portfolio_slide {
@@ -15,6 +15,7 @@
 	width: 100%;
 	overflow: hidden;
 	box-sizing: border-box;
+	transition: all 0.3s;
 }
 
 .wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_item_card {
@@ -64,6 +65,7 @@
 .wpmozo_portfolio_slider_content_wrap {
 	width: 100%;
 	box-sizing: border-box;
+	transition: all 0.3s;
 }
 
 .wpmozo_portfolio_slider_categories {
@@ -86,6 +88,7 @@
 	font-size: 16px;
 	line-height: 1.6;
 	margin-bottom: 15px;
+	transition: all 0.3s;
 }
 
 .wpmozo_portfolio_slider_button_wrap {
@@ -105,7 +108,7 @@
 	font-size: 14px;
 	font-weight: 500;
 	cursor: pointer;
-	transition: background-color 0.3s ease, color 0.3s ease;
+	transition: all 0.3s;
 }
 
 .wpmozo_portfolio_slider_btn:hover {
@@ -133,6 +136,11 @@
 }
 .wpmozo_equal_portfolio_height .wpmozo_portfolio_slider_button_wrap {
 	margin-top: auto;
+}
+
+.wpmozo_portfolio_slider_excerpt p,
+.wpmozo_portfolio_slider_content p {
+	transition: all 0.3s;
 }
 
 /* Pagination centering and spacing overrides. */
@@ -171,7 +179,7 @@
 .wpmozo_portfolio_slider_title a {
 	text-decoration: none;
 	color: #2c3e50;
-	transition: color 0.3s ease;
+	transition: all 0.3s;
 }
 .wpmozo_portfolio_slider_title a:hover {
 	color: #5600b7;
@@ -200,12 +208,14 @@
 	padding: 4px 8px;
 	background-color: #f3e8ff;
 	border-radius: 4px;
+	transition: all 0.3s;
 }
 .wpmozo_portfolio_slider_cat a {
 	color: #5600b7;
 	text-decoration: none;
+	transition: all 0.3s;
 }
-.wpmozo_portfolio_slider_cat a:hover {
+.wpmozo_portfolio_slider_cat:hover a {
 	color: #3c0084;
 	text-decoration: none;
 }
@@ -222,7 +232,7 @@
 	border-radius: 50%;
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 	cursor: pointer;
-	transition: background-color 0.3s ease, color 0.3s ease;
+	transition: all 0.3s;
 }
 .wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-next:hover,
 .wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-prev:hover {

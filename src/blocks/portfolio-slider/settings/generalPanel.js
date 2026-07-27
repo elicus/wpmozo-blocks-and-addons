@@ -54,7 +54,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				min={1} max={50} step={1}
 			/>
 			<RangeControl
-				label={ __( 'Offset Number', 'wpmozo-blocks-and-addons' ) }
+				label={ __( 'Offset', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.offsetNumber }
 				onChange={ ( newValue ) => setAttributes( { offsetNumber: newValue } ) }
 				min={0} max={50} step={1}

@@ -22,6 +22,7 @@ import {
 	WpmozoDimensions,
 	WpmozoIconpicker,
 	WpmozoColorPicker,
+	MozoStates
 } from '../../../common/components';
 
 import { headingLevelsList } from '../../../common/utils.js';

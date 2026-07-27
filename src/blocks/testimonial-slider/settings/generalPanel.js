@@ -21,6 +21,11 @@ import {
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+										
+		const handleToggle = (panelId) => {
+			setOpenPanel(prev => prev === panelId ? null : panelId);
+		}
 
 	// Get the terms.
 	const terms = useSelect( (select) =>
@@ -37,9 +42,9 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 
 	return ( <>
 		{/* Content. */}
-		<PanelBody title={ __( 'Content', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
+		<PanelBody title={ __( 'Content', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<SelectControl
-				label={ __( 'Testimonial Layout', 'wpmozo-blocks-and-addons' ) }
+				label={ __( 'Layout', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.layout }
 				options={ [
 					{ value: 'layout1', label: __( 'Layout 1', 'wpmozo-blocks-and-addons' ) },
@@ -77,7 +82,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				onChange={ ( newValue ) => setAttributes( { postOrderBy: newValue } ) }
 			/>
 			<SelectControl multiple
-				label={ __( 'Includes Categories', 'wpmozo-blocks-and-addons' ) }
+				label={ __( 'Include Categories', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.includesCategories }
 				options={ options }
 				onChange={ ( newValue ) => setAttributes( { includesCategories: newValue } ) }
@@ -89,7 +94,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		{/* Display. */}
-		<PanelBody title={ __( 'Display', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+		<PanelBody title={ __( 'Display', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			<ToggleControl
 				label={ __( 'Show Rating', 'wpmozo-blocks-and-addons' ) }
 				checked={ attributes.showRating }
@@ -112,7 +117,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		{/* Slider. */}
-		<PanelBody title={ __( 'Slider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Slider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 			<SelectControl
 				label={ __( 'Slide Effect', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.slideEffect }
@@ -241,6 +246,16 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				onChange={ ( newValue ) => setAttributes( { transDuration: newValue } ) }
 				min={0} max={10000} step={100}
 			/>
+			{/* <ToggleControl
+				label={ __( 'Enable Free Mode', 'wpmozo-blocks-and-addons' ) }
+				checked={ attributes.enableFree }
+				onChange={ ( newValue ) => setAttributes( { enableFree: newValue } ) }
+			/>
+			<ToggleControl
+				label={ __( 'Enable Mousewheel Control', 'wpmozo-blocks-and-addons' ) }
+				checked={ attributes.enableMouse }
+				onChange={ ( newValue ) => setAttributes( { enableMouse: newValue } ) }
+			/> */}
 
 			{/* Responsive slide settings. */}
 			{ ( 'slide' === attributes.slideEffect || 'coverflow' === attributes.slideEffect ) &&
@@ -345,7 +360,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			}
 		</PanelBody>
 		{/* Slider Navigation. */}
-		<PanelBody title={ __( 'Slider Navigation', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+		<PanelBody title={ __( 'Slider Navigation', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 			<ToggleControl
 				label={ __( 'Show Arrows', 'wpmozo-blocks-and-addons' ) }
 				checked={ attributes.showArrows }

@@ -56,7 +56,6 @@ const Edit = (props) => {
 				order: postOrder,
 				orderby: postOrderBy,
 				categories: includesCategories.join(','),
-				// author: 1,
 				_embed: true
 			}),
 		[postsNumber, postOrder, postOrderBy, includesCategories.join(',')]);
@@ -119,13 +118,11 @@ const Edit = (props) => {
 
 	useEffect(() => {
 		const event = new CustomEvent('WPMozoTeamSliderPropsChanged');
-		window.dispatchEvent(event);
-
 		const iframe = document.querySelector('iframe[name="editor-canvas"]');
 		if (iframe?.contentWindow) {
 			iframe.contentWindow.dispatchEvent(event);
 		}
-	}, [props]);
+	}, [JSON.stringify(attributes), posts]);
 
 	// Get attrs.
 	const displayInPopup = attributes.displayInPopup ?? ["image", "designation", "social_icons", "content", "skills_bars"];
@@ -160,9 +157,9 @@ const Edit = (props) => {
 					 data-enable_coverflow_shadow={attributes.enableCoverflowShadow ?? 'false'}
 					 data-enable_loop={attributes.enableLoop ?? 'false'}
 					 data-auto_height={autoHeight ?? 'false'}
-					 data-autoplay={attributes.autoplay ?? 'true'}
-					 data-autoplay_delay={attributes.autoplayDelay || '3000'}
-					 data-pause_on_hover={attributes.pauseOnHover ?? 'true'}
+					 data-autoplay={attributes.autoplay ?? 'false'}
+					 data-autoplay_delay={attributes.autoplayDelay ?? '3000'}
+					 data-pause_on_hover={attributes.pauseOnHover ?? 'false'}
 					 data-enable_linear_trans={attributes.enableLinearTrans ?? 'false'}
 					 data-trans_duration={attributes.transDuration || '1000'}
 

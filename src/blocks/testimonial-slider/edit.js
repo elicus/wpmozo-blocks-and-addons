@@ -59,7 +59,6 @@ const Edit = (props) => {
 			order: postOrder,
 			orderby: postOrderBy,
 			categories: includesCategories.join( ',' ),
-			// author: 1,
 			_embed: true
 		} ),
 	[ postsToShow, postOrder, postOrderBy, includesCategories.join(',') ] );
@@ -227,13 +226,11 @@ const Edit = (props) => {
 
 	useEffect( () => {
 		const event = new CustomEvent( 'WPMozoTestimonialPropsChanged' );
-		window.dispatchEvent( event );
-
 		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [props] );
+	}, [JSON.stringify(attributes), posts] );
 
 	// Equal height testimonial class.
 	const equalHeightClass = ( attributes.equalHeight ) ? ' wpmozo_equal_testimonial_height' : '';
@@ -249,7 +246,7 @@ const Edit = (props) => {
 
 			<div {...blockProps} onClick={selectBlock}>
 				<div className={"wpmozo_swiper_wrapper" + equalHeightClass}
-					data-clientId={ clientId }
+					data-clientid={ clientId }
 					data-slide_effect={ attributes.slideEffect || 'slide' }
 					data-slides_per_view={ attributes.slidesPerView || '1' }
 					data-slides_per_view_tablet={ attributes.slidesPerViewTablet || '1' }
@@ -257,25 +254,29 @@ const Edit = (props) => {
 					data-slides_per_group={ attributes.slidesPerGroup || '1' }
 					data-slides_per_group_tablet={ attributes.slidesPerGroupTablet || '1' }
 					data-slides_per_group_mobile={ attributes.slidesPerGroupMobile || '1' }
+					
 					data-space_between_slides={ attributes.spaceBetweenSlides || '20' }
 					data-space_between_slides_tablet={ attributes.spaceBetweenSlidesTablet || '20' }
 					data-space_between_slides_mobile={ attributes.spaceBetweenSlidesMobile || '20' }
+					
 					data-coverflow_rotate={attributes.coverflowRotate || '40'}
 					data-coverflow_depth={attributes.coverflowDepth || '100'}
-
 					data-enable_coverflow_shadow={ attributes.enableCoverflowShadow ?? 'false' }
-					data-enable_loop={ attributes.enableLoop || 'false' }
-					data-auto_height={ autoHeight || 'false' }
-					data-autoplay={ attributes.autoplay || 'true' }
-					data-autoplay_delay={ attributes.autoplayDelay || '3000' }
-					data-pause_on_hover={ attributes.pauseOnHover || 'true' }
-					data-enable_linear_trans={ attributes.enableLinearTrans || 'false' }
+
+					data-enable_loop={ attributes.enableLoop ?? 'false' }
+					data-auto_height={ autoHeight ?? 'false' }
+					data-autoplay={ attributes.autoplay ?? 'false' }
+					data-autoplay_delay={ attributes.autoplayDelay ?? '3000' }
+					data-pause_on_hover={ attributes.pauseOnHover ?? 'false' }
+					// data-mousewheel={ attributes.enableMouse ?? 'false' }
+					// data-free-mode={ attributes.enableFree ?? 'false' }
+					data-enable_linear_trans={ attributes.enableLinearTrans ?? 'false' }
 					data-trans_duration={ attributes.transDuration || '1000' }
 
-					data-show_arrows={ attributes.showArrows || 'false' }
-					data-show_control_dot={ attributes.showControlDot || 'false' }
+					data-show_arrows={ attributes.showArrows ?? 'false' }
+					data-show_control_dot={ attributes.showControlDot ?? 'false' }
 					data-control_dot_style={ attributes.controlDotStyle || 'solid_dot' }
-					data-enable_dynamic_dots={ attributes.enableDynamicDots || 'false' }
+					data-enable_dynamic_dots={ attributes.enableDynamicDots ?? 'false' }
 				>
 					<div className={"wpmozo_testimonial_layout wpmozo_swiper_inner_wrap " + layout}>
 						<div className="swiper swiper-container">
