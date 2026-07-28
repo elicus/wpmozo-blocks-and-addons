@@ -45,7 +45,6 @@
 		"contentAlign": { "type": "string", "default": "center" },
 
 		"backImage": { "type": "string" },
-		"imageOpacity": { "type": "number", "default": 0.7 },
 
 		"layout": { "type": "string", "default": "lily" },
 		"layoutborder": {

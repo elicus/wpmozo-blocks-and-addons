@@ -3,7 +3,6 @@ import { __ } from '@wordpress/i18n';
 import {
 	PanelBody,
 	SelectControl,
-	RangeControl,
 	BaseControl,
 	ButtonGroup,
 	Button,
@@ -64,12 +63,6 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 					BorderTypes={ { border: true } }
 				/>
 			}
-			<RangeControl
-				label={ __( 'Image Opacity', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.imageOpacity }
-				onChange={ ( newValue ) => setAttributes( { imageOpacity: newValue } ) }
-				min={0} step={0.1} max={1}
-			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 			<BaseControl label={ __( 'Title Heading Level', 'wpmozo-blocks-and-addons' ) }>
