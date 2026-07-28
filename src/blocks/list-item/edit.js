@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { createBlock } from '@wordpress/blocks';
 import Inspector from './inspector';
 import { Fragment, useEffect } from "@wordpress/element";
 import generateDynamicStyle from './style';
@@ -15,7 +16,7 @@ import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function Edit(props) {
 
-    const { attributes, setAttributes, clientId } = props,
+    const { attributes, setAttributes, clientId, onReplace } = props,
         wrapArgs = attributes?.ID && mergeWrapperProps( { 
 			className: `wpmozo-bna-list-item${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
 			style: {}
@@ -91,6 +92,14 @@ export default function Edit(props) {
                             onChange={ ( newContent ) =>
                                 setAttributes( { text: newContent } )
                             }
+                            onSplit={ ( value ) =>
+                                createBlock( 'wpmozo/list-item', {
+                                    ...attributes,
+                                    text: value,
+                                    ID: '',
+                                } )
+                            }
+                            onReplace={ onReplace }
                             key="editable"
                             placeholder={__("Enter list item…", "wpmozo-blocks-and-addons")}
                         />

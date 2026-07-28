@@ -34,6 +34,19 @@
 		"titleFontStyle": { "type": "string" },
 		"titleFontWeight": { "type": "string" },
 
+		"titleHoverColor": { "type": "string" },
+		"titleHoverFontSize": { "type": "string" },
+		"titleHoverLetterSpacing": { "type": "string" },
+		"titleHoverDecoration": { "type": "string" },
+		"titleHoverLetterCase": { "type": "string" },
+		"titleHoverLineHeight": { "type": "string" },
+		"titleHoverFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"titleHoverFontStyle": { "type": "string" },
+		"titleHoverFontWeight": { "type": "string" },
+
 		"rating": { "type": "string", "default": "5" },
 		"iconSVGs": { "type": "object" },
 
@@ -50,9 +63,23 @@
 		"ratingFontStyle": { "type": "string" },
 		"ratingFontWeight": { "type": "string" },
 
+		"ratingHoverColor": { "type": "string" },
+		"ratingHoverFontSize": { "type": "string" },
+		"ratingHoverLetterSpacing": { "type": "string" },
+		"ratingHoverDecoration": { "type": "string" },
+		"ratingHoverLetterCase": { "type": "string" },
+		"ratingHoverLineHeight": { "type": "string" },
+		"ratingHoverFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"ratingHoverFontStyle": { "type": "string" },
+		"ratingHoverFontWeight": { "type": "string" },
+
 		"ratingOutOf": { "type": "number", "default": 5 },
 		"image": { "type": "string", "default": "" },
 		"imageAlt": { "type": "string", "default": "" },
+		"imageCustomAlt": { "type": "string", "default": "" },
 		"description": { "type": "string", "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
 		"descriptionColor": { "type": "string" },
 		"descriptionFontSize": { "type": "string" },
@@ -66,6 +93,19 @@
 		},
 		"descriptionFontStyle": { "type": "string" },
 		"descriptionFontWeight": { "type": "string" },
+
+		"descriptionHoverColor": { "type": "string" },
+		"descriptionHoverFontSize": { "type": "string" },
+		"descriptionHoverLetterSpacing": { "type": "string" },
+		"descriptionHoverDecoration": { "type": "string" },
+		"descriptionHoverLetterCase": { "type": "string" },
+		"descriptionHoverLineHeight": { "type": "string" },
+		"descriptionHoverFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"descriptionHoverFontStyle": { "type": "string" },
+		"descriptionHoverFontWeight": { "type": "string" },
 
 		"rateIcon": { "type": "string", "default": "default" },
 		"rateIconFilledColor": { "type": "string", "default": "#fac917" },

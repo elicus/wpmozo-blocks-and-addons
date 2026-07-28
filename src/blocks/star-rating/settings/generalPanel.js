@@ -36,13 +36,21 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					onChange={ ( newValue ) => setAttributes( { ratingOutOf: newValue } ) }
 					__next40pxDefaultSize={ true }  __nextHasNoMarginBottom={ true }
 				/>
-				<WpmozoMediaUploader attrKye="image" props={ props }
+				<WpmozoMediaUploader 
+					attrKye={'image'}
+					props={ props }
+					onSelect={(media) => {
+						setAttributes({
+							image: media?.url ? media.url : '',
+							imageAlt: media?.alt ? media.alt : '',
+						});
+					}}
 					label={ __( 'Image', 'wpmozo-blocks-and-addons' ) }
 				/>
 				<TextControl
 					label={ __( 'Image Alt Text', 'wpmozo-blocks-and-addons' ) }
-					value={ attributes.imageAlt }
-					onChange={ ( newValue ) => setAttributes( { imageAlt: newValue } ) }
+					value={ attributes.imageCustomAlt }
+					onChange={ ( newValue ) => setAttributes( { imageCustomAlt: newValue } ) }
 					__next40pxDefaultSize={ true }  __nextHasNoMarginBottom={ true }
 				/>
 				<TextareaControl

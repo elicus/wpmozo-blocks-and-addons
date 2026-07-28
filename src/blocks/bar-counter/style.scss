@@ -130,7 +130,7 @@
 
 @keyframes wpmozo-animate-filled {
     0% { width: 0 }
-    100% { width: 100% }
+    100% { width: var(--chunk-fill-width, 100%) }
 }
 
 .wp-block-wpmozo-bar-counter .wpmozo-bna-bar-counter .layout1 .wpmozo-bna-bar-counter-bar-wrapper {

@@ -14,8 +14,6 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 	cssExtras = [];
 	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
 
-	normalcss.push( undefined !== attributes.imageOpacity ? `.wpmozo-bna-interactive-image-card-image { opacity: ${attributes.imageOpacity}; }` : '' );
-
 	normalcss.push(
 		( attributes.titleNormalColor || convertedStyle.titleNormal )
 		? `.wpmozo-bna-interactive-image-card-title {

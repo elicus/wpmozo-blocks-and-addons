@@ -3,6 +3,8 @@ import { __ } from "@wordpress/i18n";
 import { MediaUpload, MediaUploadCheck } from "@wordpress/block-editor";
 import { Fragment } from "@wordpress/element";
 import './style.scss';
+import { useState } from "@wordpress/element";
+
 
 const WpmozoMediaUploader = ( {
     props,
@@ -20,7 +22,6 @@ const WpmozoMediaUploader = ( {
     const allowed = allowedTypes || ["image"];
     const accepted = accept || "image/*";
     const imageSrc = customImageSrc || props.attributes[attrKye];
-
     const defaultOnSelect = (media) => {
         props.setAttributes( { [attrKye]: media.url } );
     };

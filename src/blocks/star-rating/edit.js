@@ -54,7 +54,6 @@ const Edit = ( props ) => {
 	const imageUrl    = ( attributes.image ) ? attributes.image : '';
 	const rateIcon    = ( attributes.rateIcon ) ?? 'default';
 	const showRateNum = ( attributes.showRateNum ) ?? true;
-
 	// Track previous rateIcon to force reload even if "same" is chosen.
 	const prevRateIcon = useRef( null );
 
@@ -77,7 +76,7 @@ const Edit = ( props ) => {
 			rating = mid;
 		}
 	}
-
+	
 	// Preload required SVGs.
 	useEffect( () => {
 		// If first load OR reselecting same icon → reset cache.
@@ -96,7 +95,6 @@ const Edit = ( props ) => {
 
 		// eslint-disable-line react-hooks/exhaustive-deps.
 	}, [ rateIcon, ratingOutOf ] );
-
 	let ratingWrapper = '';
 	if ( rating && rating > 0 ) {
 		let unfilled_stars  = '';
@@ -112,7 +110,7 @@ const Edit = ( props ) => {
 			}
 			mood++;
 		}
-
+		console.log(rating !== Math.abs(parseInt( rating ) ));
 		if ( rating !== Math.abs(parseInt( rating ) ) ) {
 			if ('default' !== rateIcon) {
 				stars.push( renderSVGIcon( rateIcon, 'half_filled', mood, null, attributes ) );
@@ -148,6 +146,7 @@ const Edit = ( props ) => {
 			</div>
 		);
 	}
+	// console.log(stars);
 
 	return (
 		<Fragment>
@@ -158,7 +157,7 @@ const Edit = ( props ) => {
 				<div className="wpmozo_star_rating_wrapper">
 					{ ( imageUrl && '' !== imageUrl ) && (
 						<div className="wpmozo_star_rating_image_container">
-							<img src={ imageUrl } alt={ attributes?.imageAlt || '' } className="wpmozo_star_rating_image" />
+							<img src={ imageUrl } alt={ attributes?.imageCustomAlt || attributes?.imageAlt || '' } className="wpmozo_star_rating_image" />
 						</div>
 					) }
 					<div className="wpmozo_star_rating_title_container">
