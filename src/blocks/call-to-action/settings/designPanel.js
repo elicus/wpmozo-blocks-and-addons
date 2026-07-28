@@ -85,24 +85,11 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 		{/* Button. */}
 		{ ( attributes.showButton ) && ( <>
 			<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={() => handleToggle('panel3')}>
-				<RangeControl
-					label={ __( 'Button Container Size(%)', 'wpmozo-blocks-and-addons' ) }
-					value={ attributes.buttonContainerSize }
-					onChange={ ( newValue ) => setAttributes( { buttonContainerSize: newValue } ) }
-					min={ 1 } step={ 1 } max={ 100 } allowReset={ true }
-					initialPosition={ 25 } resetFallbackValue={ 25 }
-					__next40pxDefaultSize __nextHasNoMarginBottom
+				<WpmozoAlignment
+					label={ __( 'Button Alignment', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( newValue ) => setAttributes( { buttonAlign: newValue } ) }
+					value={ attributes.buttonAlign }
 				/>
-				<ToggleGroupControl
-					label={ __( 'Stack Button On', 'wpmozo-blocks-and-addons' ) }
-					value={ attributes.buttonStackOn }
-					onChange={ ( newValue ) => setAttributes( { buttonStackOn: newValue } ) }
-				>
-					<ToggleGroupControlOption value="none" label={ __( 'None', 'wpmozo-blocks-and-addons' ) } />
-					<ToggleGroupControlOption value="desktop" label={ __( 'Desktop', 'wpmozo-blocks-and-addons' ) } />
-					<ToggleGroupControlOption value="tablet" label={ __( 'Tablet', 'wpmozo-blocks-and-addons' ) } />
-					<ToggleGroupControlOption value="mobile" label={ __( 'Mobile', 'wpmozo-blocks-and-addons' ) } />
-				</ToggleGroupControl>
 				<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>   
 					<ButtonGroup>
 						<Button
@@ -124,39 +111,6 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 							onColorChange={ (newValue) => setAttributes( { buttonBackground: newValue } ) }
 							onGradientChange={ (newValue) => setAttributes( { buttonBGGradient: newValue } ) }
 						/>
-						<WpmozoAlignment
-							label={ __( 'Button Alignment', 'wpmozo-blocks-and-addons' ) }
-							onChange={ ( newValue ) => setAttributes( { buttonAlign: newValue } ) }
-							value={ attributes.buttonAlign }
-						/>
-						<hr />
-						<ToggleControl
-							label={ __( 'Show Button Icon', 'wpmozo-blocks-and-addons' ) }
-							checked={ attributes.buttonUseIcon || false }
-							onChange={ ( newValue ) => setAttributes( { buttonUseIcon: newValue } ) }
-							__nextHasNoMarginBottom={ true }
-						/>
-						{ ( attributes.buttonUseIcon ) && <>
-							<WpmozoIconpicker props={ props }
-								label={ __( 'Icon', 'wpmozo-blocks-and-addons' ) }
-								iconPickerKey='buttonIcon'
-								value={ attributes.buttonIcon }
-								onChange={ ( newValue ) => setAttributes( { buttonIcon: newValue } ) }
-							/>
-							<ToggleGroupControl
-								label={ __( 'Icon Position', 'wpmozo-blocks-and-addons' ) }
-								value={ attributes.buttonIconPosition }
-								onChange={ ( newValue ) => setAttributes( { buttonIconPosition: newValue } ) }
-							>
-								<ToggleGroupControlOption value="before" label="Before" />
-								<ToggleGroupControlOption value="after" label="After" />
-							</ToggleGroupControl>
-							<ToggleControl
-								label={ __( 'Show Icon On Hover', 'wpmozo-blocks-and-addons' ) }
-								checked={ attributes.buttonIconOnHover }
-								onChange={ ( newValue ) => setAttributes( { buttonIconOnHover: newValue } ) }
-							/>
-						</> }
 						<WpmozoColorPicker props={ props }
 							label={ __( 'Button Text Color', 'wpmozo-blocks-and-addons' ) }
 							ColorKey="button"
@@ -166,11 +120,6 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 						/>
 						<WpmozoTypography props={ props }
 							TypographyKey="button"
-						/>
-						<WpmozoDimensions props={ props }
-							label={ __( 'Button Dimensions', 'wpmozo-blocks-and-addons' ) }
-							DimensionKey='button'
-							DimensionsTypes={ { padding: true, margin: true } }
 						/>
 						<WpmozoBorder props={ props }
 							label={ __( 'Button Border', 'wpmozo-blocks-and-addons' ) }
@@ -203,6 +152,56 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 						/>
 					</> }
 				</BaseControl>
+				<WpmozoDimensions props={ props }
+					label={ __( 'Button Dimensions', 'wpmozo-blocks-and-addons' ) }
+					DimensionKey='button'
+					DimensionsTypes={ { padding: true, margin: true } }
+				/>
+				<RangeControl
+					label={ __( 'Button Container Size(%)', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.buttonContainerSize }
+					onChange={ ( newValue ) => setAttributes( { buttonContainerSize: newValue } ) }
+					min={ 1 } step={ 1 } max={ 100 } allowReset={ true }
+					initialPosition={ 25 } resetFallbackValue={ 25 }
+					__next40pxDefaultSize __nextHasNoMarginBottom
+				/>
+				<ToggleControl
+					label={ __( 'Show Button Icon', 'wpmozo-blocks-and-addons' ) }
+					checked={ attributes.buttonUseIcon || false }
+					onChange={ ( newValue ) => setAttributes( { buttonUseIcon: newValue } ) }
+					__nextHasNoMarginBottom={ true }
+				/>
+				{ ( attributes.buttonUseIcon ) && <>
+					<WpmozoIconpicker props={ props }
+						label={ __( 'Icon', 'wpmozo-blocks-and-addons' ) }
+						iconPickerKey='buttonIcon'
+						value={ attributes.buttonIcon }
+						onChange={ ( newValue ) => setAttributes( { buttonIcon: newValue } ) }
+					/>
+					<ToggleGroupControl
+						label={ __( 'Icon Position', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.buttonIconPosition }
+						onChange={ ( newValue ) => setAttributes( { buttonIconPosition: newValue } ) }
+					>
+						<ToggleGroupControlOption value="before" label="Before" />
+						<ToggleGroupControlOption value="after" label="After" />
+					</ToggleGroupControl>
+					<ToggleControl
+						label={ __( 'Show Icon On Hover', 'wpmozo-blocks-and-addons' ) }
+						checked={ attributes.buttonIconOnHover }
+						onChange={ ( newValue ) => setAttributes( { buttonIconOnHover: newValue } ) }
+					/>
+				</> }
+				<ToggleGroupControl
+					label={ __( 'Stack Button On', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.buttonStackOn }
+					onChange={ ( newValue ) => setAttributes( { buttonStackOn: newValue } ) }
+				>
+					<ToggleGroupControlOption value="none" label={ __( 'None', 'wpmozo-blocks-and-addons' ) } />
+					<ToggleGroupControlOption value="desktop" label={ __( 'Desktop', 'wpmozo-blocks-and-addons' ) } />
+					<ToggleGroupControlOption value="tablet" label={ __( 'Tablet', 'wpmozo-blocks-and-addons' ) } />
+					<ToggleGroupControlOption value="mobile" label={ __( 'Mobile', 'wpmozo-blocks-and-addons' ) } />
+				</ToggleGroupControl>
 			</PanelBody>
 		</> ) }
 		{/* Block. */}

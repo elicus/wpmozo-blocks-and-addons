@@ -70,6 +70,9 @@
     "globalTextColor": {
       "type": "string"
     },
+    "globalTextHoverColor": {
+      "type": "string"
+    },
     "globalTextAlignment": {
       "type": "string"
     },
@@ -101,6 +104,9 @@
     "prePostTextColor": {
       "type": "string"
     },
+    "prePostTextHoverColor": {
+      "type": "string"
+    },
     "prePostFontSize": {
       "type": "string"
     },
@@ -130,6 +136,9 @@
       "type": "string"
     },
     "animatedTextColor": {
+      "type": "string"
+    },
+    "animatedTextHoverColor": {
       "type": "string"
     },
     "animatedFontSize": {
@@ -178,6 +187,9 @@
     "prePostBackgroundColor": {
       "type": "string"
     },
+    "prePostBackgroundHoverColor": {
+      "type": "string"
+    },
     "prePostBackgroundGradient": {
       "type": "string"
     },
@@ -188,16 +200,25 @@
     "animatedBackgroundColor": {
       "type": "string"
     },
+    "animatedBackgroundHoverColor": {
+      "type": "string"
+    },
     "animatedBackgroundGradient": {
       "type": "string"
     },
     "prePostpadding": {
       "type": "object"
     },
+    "prePostHoverpadding": {
+      "type": "object"
+    },
     "prePostmargin": {
       "type": "object"
     },
     "animatedpadding": {
+      "type": "object"
+    },
+    "animatedHoverpadding": {
       "type": "object"
     },
     "animatedmargin": {

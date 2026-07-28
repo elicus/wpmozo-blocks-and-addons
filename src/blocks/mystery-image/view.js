@@ -1,6 +1,7 @@
 import $ from 'jquery';
 document.querySelectorAll('.wp-block-wpmozo-mystery-image').forEach(function(block) {
-	var images = block.querySelectorAll('.wp-block-image');
+	var images = block.querySelectorAll('.wp-block-image'),
+	enLightbox = block.classList.contains('wpmozo-mystery-image-lightbox');
 
 	if (images.length > 0) {
 		// Hide all first
@@ -18,8 +19,12 @@ document.querySelectorAll('.wp-block-wpmozo-mystery-image').forEach(function(blo
 		var anchor = selectedImage.querySelector('a');
 
 		if (imgTag && !anchor) {
-			anchor = document.createElement('a');
-			anchor.href = imgTag.src;
+			if(enLightbox){
+				anchor = document.createElement('a');
+				anchor.href = imgTag.src;
+			}else{
+				anchor = document.createElement('div');
+			}
 			anchor.className = 'wpmozo-mystery-image-anchor';
 			imgTag.parentNode.insertBefore(anchor, imgTag);
 			anchor.appendChild(imgTag);

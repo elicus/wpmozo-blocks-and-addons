@@ -97,6 +97,7 @@ if ( ! function_exists( 'horizontal_scrolling_post_render_callback' ) ) {
 				$block_helpers::get_block_dynamic_style( 'horizontal-scrolling-posts', $attributes )
 			);
 		}
+		wp_reset_postdata();
 
 		return $render_output;
 	}

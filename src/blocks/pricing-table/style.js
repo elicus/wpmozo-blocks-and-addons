@@ -34,6 +34,14 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 	);
 
 	normalcss.push(
+	attributes.buttonIconType === 'image'
+		? `.wpmozo-bna-pricing-table-button-wrapper .wpmozo-bna-button .wpmozo-bna-button-image img {
+			width: ${attributes.buttonFontSize ? `${attributes.buttonFontSize}px` : "20px"};
+		}`
+		: ''
+	);
+
+	normalcss.push(
 		( attributes.titleColor || attributes.titleAlign || convertedStyle.title )
 		? `.wpmozo-bna-pricing-table-title{
 				${attributes.titleColor ? `color: ${attributes.titleColor};` : ''}

@@ -4,7 +4,9 @@ import {
 	BaseControl,
 	PanelBody,
 	RangeControl,
-	ToggleControl
+	ToggleControl,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from "@wordpress/components";
 import {
 	WpmozoAlignment,
@@ -45,6 +47,16 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				checked={attributes.showTooltip}
 				onChange={ ( newValue ) => setAttributes( { showTooltip: newValue } ) }
 			/>
+			{attributes.showTooltip && 
+				<ToggleGroupControl
+					label={ __( 'Tooltip Type', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.tooltipType }
+					onChange={ ( newValue ) => setAttributes( { tooltipType: newValue } ) }
+				>
+					<ToggleGroupControlOption value="imageTitle" label={ __( 'Image Title', 'wpmozo-blocks-and-addons' ) } />
+					<ToggleGroupControlOption value="custom" label={ __( 'Custom Tooltip', 'wpmozo-blocks-and-addons' ) } />
+				</ToggleGroupControl>
+			}
 		</PanelBody>
 	</> );
 };

@@ -70,6 +70,10 @@
     "showTooltip": {
       "type": "boolean",
       "default": false
+    },
+    "tooltipType": {
+      "type": "string",
+      "default": "imageTitle"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",

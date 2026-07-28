@@ -255,6 +255,7 @@
     color: #757575;
     text-transform: uppercase;
     letter-spacing: 0.04em;
+	line-height: 0;
 }
 
 /* Pill chip — off state: outlined accent, on state: dark filled */

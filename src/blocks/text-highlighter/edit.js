@@ -26,7 +26,8 @@ export default function Edit(props) {
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,
 		blockProps = useBlockProps(wrapProps),
-		wrapStyle = wrapArgs?.wrapStyle;
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit = true;
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
 		if ( attributes.ID !== clientId ) {
@@ -56,13 +57,19 @@ export default function Edit(props) {
 		if (iframe?.contentWindow) {
 			iframe.contentWindow.dispatchEvent(event);
 		}
-	}, [props]);
-
+	}, [
+		attributes.textHighlighterShape,
+		attributes.displayInStack,
+		attributes.wrapInHeadingTag,
+		attributes.headingLevel,
+		attributes.stockWidth,
+		attributes.stockPaintAnimationDelay
+	]);
 
     return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes}/>
-			<style>{generateDynamicStyle({attributes, clientId})}</style>
+			<style>{generateDynamicStyle({attributes, clientId, isEdit})}</style>
 			<div {...blockProps}>
 				<div className={`wpmozo-bna-text-highlighter ${attributes.displayInStack ? 'wpmozo-bna-text-highlighter-stack' : ''}`}>
 					<div className={`wpmozo-bna-text-highlighter-wrapper wpmozo-highlight-${attributes.textHighlighterShape}`}>

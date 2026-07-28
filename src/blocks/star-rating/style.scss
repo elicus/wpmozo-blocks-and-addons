@@ -8,6 +8,9 @@
 	max-width: 100%;
 	height: auto;
 }
+.wp-block-wpmozo-star-rating .wpmozo_star_rating_wrapper{
+    overflow:hidden;
+}
 .wpmozo_star_rating_title_container .wpmozo_star_rating_title,
 .wpmozo_star_rating_description,
 .wpmozo_star_rating_number{

@@ -241,22 +241,41 @@ function Edit( props ) {
 				const randomImage = images[randomIndex];
 				return (
 					<figure className="wp-block-image mystery-show">
-						<a href="#" className="wpmozo-mystery-image-anchor">
-							<img
-								src={randomImage.url}
-								alt={randomImage.alt || ''}
-								className="wpmozo-mystery-image-img"
-								loading="lazy"
-							/>
-							{true === attributes.enableOverlay && (
-								<>
-									<span className="wpmozo-overlay-icon">
-										<i className={attributes.overlayIcon}></i>
-									</span>
-								</>
+						{true === attributes.showLightbox ? (
+							<a href="#" className="wpmozo-mystery-image-anchor">
+								<img
+									src={randomImage.url}
+									alt={randomImage.alt || ''}
+									className="wpmozo-mystery-image-img"
+									loading="lazy"
+								/>
+								{true === attributes.enableOverlay && (
+									<>
+										<span className="wpmozo-overlay-icon">
+											<i className={attributes.overlayIcon}></i>
+										</span>
+									</>
 
-							)}
-						</a>
+								)}
+							</a>
+						) : 
+							<div className="wpmozo-mystery-image-anchor">
+								<img
+									src={randomImage.url}
+									alt={randomImage.alt || ''}
+									className="wpmozo-mystery-image-img"
+									loading="lazy"
+								/>
+								{true === attributes.enableOverlay && (
+									<>
+										<span className="wpmozo-overlay-icon">
+											<i className={attributes.overlayIcon}></i>
+										</span>
+									</>
+
+								)}
+							</div>
+						}
 					</figure>
 				);
 

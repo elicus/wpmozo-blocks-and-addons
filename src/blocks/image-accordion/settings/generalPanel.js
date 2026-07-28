@@ -5,7 +5,9 @@ import {
 	SelectControl,
 	CheckboxControl,
 	BaseControl,
-	RangeControl
+	RangeControl,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from '@wordpress/components';
 import {
 	WpmozoRangeSize
@@ -38,36 +40,22 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	return ( <>
 		{/* Configuration settings. */}
 		<PanelBody title={ __( 'Configuration', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
-			<SelectControl
+			<ToggleGroupControl
 				label={ __( 'Accordion Trigger', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.accordionTrigger }
-				options={[
-					{
-						value: 'hover',
-						label: __( 'Hover', 'wpmozo-blocks-and-addons' ),
-					},
-					{
-						value: 'click',
-						label: __( 'Click', 'wpmozo-blocks-and-addons' ),
-					},
-				]}
 				onChange={ ( newValue ) => setAttributes( { accordionTrigger: newValue } ) }
-			/>
-			<SelectControl
+			>
+				<ToggleGroupControlOption value="hover" label="Hover" />
+				<ToggleGroupControlOption value="click" label="Click" />
+			</ToggleGroupControl>
+			<ToggleGroupControl
 				label={ __( 'Accordion Orientation', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.accordionOrientation }
-				options={[
-					{
-						value: 'horizontal',
-						label: __( 'Horizontal', 'wpmozo-blocks-and-addons' ),
-					},
-					{
-						value: 'vertical',
-						label: __( 'Vertical', 'wpmozo-blocks-and-addons' ),
-					},
-				]}
 				onChange={ ( newValue ) => setAttributes( { accordionOrientation: newValue } ) }
-			/>
+			>
+				<ToggleGroupControlOption value="horizontal" label="Horizontal" />
+				<ToggleGroupControlOption value="vertical" label="Vertical" />
+			</ToggleGroupControl>
 			<SelectControl
 				label={ __( 'Content Alignment', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.contentAlignment }

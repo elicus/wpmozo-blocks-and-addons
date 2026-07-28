@@ -16,6 +16,9 @@
     "wpmozo/image-stack"
   ],
   "attributes": {
+    "parentAtts": {
+      "type": "object"
+    },
     "ID": {
       "type": "string"
     },

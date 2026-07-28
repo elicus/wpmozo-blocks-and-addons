@@ -2,7 +2,7 @@
 import {Fragment} from "@wordpress/element";
 import {useBlockProps} from "@wordpress/block-editor";
 import Shape from '../Shape';
-import generateDynamicStyle from "../style";
+import generateDynamicStyle from "./style";
 
 const V1 = {
     attributes: {
@@ -93,6 +93,13 @@ const V1 = {
 		postmargin: {type: "object"},
 		postpadding: {type: "object"}
 
+    },
+	migrate(attributes) {
+        return {
+            ...attributes,
+            "pre": { "type": "string", "default": "WPMozo" },
+			"post": { "type": "string", "default": "Block" },
+        };
     },
     save( { attributes } ) {
         const heighlighterShape = attributes.textHighlighterShape,

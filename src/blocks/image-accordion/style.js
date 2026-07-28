@@ -32,7 +32,7 @@ const generateDynamicStyle = ({ attributes }) => {
 		accordionSpacing
     } = attributes,
     flexDirection = ( 'horizontal' === accordionOrientation ) ? 'row' : 'column',
-    textColorStyle = ( 'dark' === textColor ) ? '#666' : '#fff';
+    textColorStyle = ( 'dark' === textColor ) ? '#111' : '#fff';
 
 	let normalcss = [],
 		hovercss = [],

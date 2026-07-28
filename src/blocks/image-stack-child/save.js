@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import generateDynamicStyle from "./style";
-import { mergeWrapperProps } from '../../common/utils.js';
+import { mergeWrapperProps, wpmozo_is_empty } from '../../common/utils.js';
 import {useBlockProps} from "@wordpress/block-editor";
 
 export default function save(props) {
@@ -18,11 +18,13 @@ export default function save(props) {
 
 	const {
 		image,
-		tooltipText
+		tooltipText,
+		parentAtts
 	} = attributes;
 
 	const imageSrc = image && image.url ? image.url : (typeof wpmozo_bna_editor_object !== 'undefined' ? wpmozo_bna_editor_object.placeholderImg : '');
 	const defaultedAlt = image && image.alt ? image.alt : '';
+	const imageTitle = image && image.url ? image.title :  '';
 
 	return ( <>
 		<div id={'block-' + ID} {...blockProps}>
@@ -32,7 +34,8 @@ export default function save(props) {
 						alt={defaultedAlt}
 						src={imageSrc}
 						loading="lazy"
-						title={tooltipText}
+						title={!wpmozo_is_empty(parentAtts) ? (parentAtts.showTooltip && 'custom' === parentAtts.tooltipType) ? tooltipText : ((parentAtts.showTooltip && 'imageTitle' === parentAtts.tooltipType) ? imageTitle : '') : ''
+						}
 					/>
 				) }
 				{ 'icon' === attributes.stackType && (

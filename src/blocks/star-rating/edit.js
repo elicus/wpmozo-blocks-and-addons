@@ -54,10 +54,8 @@ const Edit = ( props ) => {
 	const imageUrl    = ( attributes.image ) ? attributes.image : '';
 	const rateIcon    = ( attributes.rateIcon ) ?? 'default';
 	const showRateNum = ( attributes.showRateNum ) ?? true;
-
-	// Track previous rateIcon and ratingOutOf to manage cache clearing.
+	// Track previous rateIcon to force reload even if "same" is chosen.
 	const prevRateIcon = useRef( null );
-	const prevRatingOutOf = useRef( null );
 
 	// ratingOutOf (force 5 for smiley).
 	let ratingOutOf = ( attributes.ratingOutOf && '' !== attributes.ratingOutOf ) ? attributes.ratingOutOf : 5;
@@ -78,29 +76,25 @@ const Edit = ( props ) => {
 			rating = mid;
 		}
 	}
-
+	
 	// Preload required SVGs.
 	useEffect( () => {
-		let active = true;
-		// Detect if the icon type changed
-		const isIconChanged = prevRateIcon.current && prevRateIcon.current !== rateIcon;
+		// If first load OR reselecting same icon → reset cache.
+		if ( prevRateIcon.current === rateIcon ) {
+			// reselect same icon, force clear.
+			setAttributes( { iconSVGs: {} } );
+		}
 		prevRateIcon.current = rateIcon;
-		prevRatingOutOf.current = ratingOutOf;
+
 		// Define moods (1..ratingOutOf) and icon types.
 		const moods = Array.from( { length: ratingOutOf }, (_, i) => i + 1 );
 		const types = [ 'filled', 'half_filled', 'empty' ];
-		// Load all SVGs for this icon set, using active state wrapper to prevent race conditions.
-		preloadSVGs( rateIcon, moods, types, attributes, ( updates ) => {
-			if ( active ) {
-				setAttributes( updates );
-			}
-		}, isIconChanged );
-		return () => {
-			active = false;
-		};
+
+		// Load all SVGs for this icon set.
+		preloadSVGs( rateIcon, moods, types, attributes, setAttributes );
+
 		// eslint-disable-line react-hooks/exhaustive-deps.
 	}, [ rateIcon, ratingOutOf ] );
-
 	let ratingWrapper = '';
 	if ( rating && rating > 0 ) {
 		let unfilled_stars  = '';
@@ -116,7 +110,7 @@ const Edit = ( props ) => {
 			}
 			mood++;
 		}
-
+		console.log(rating !== Math.abs(parseInt( rating ) ));
 		if ( rating !== Math.abs(parseInt( rating ) ) ) {
 			if ('default' !== rateIcon) {
 				stars.push( renderSVGIcon( rateIcon, 'half_filled', mood, null, attributes ) );
@@ -152,6 +146,7 @@ const Edit = ( props ) => {
 			</div>
 		);
 	}
+	// console.log(stars);
 
 	return (
 		<Fragment>
@@ -162,7 +157,7 @@ const Edit = ( props ) => {
 				<div className="wpmozo_star_rating_wrapper">
 					{ ( imageUrl && '' !== imageUrl ) && (
 						<div className="wpmozo_star_rating_image_container">
-							<img src={ imageUrl } alt={ attributes?.imageAlt || '' } className="wpmozo_star_rating_image" />
+							<img src={ imageUrl } alt={ attributes?.imageCustomAlt || attributes?.imageAlt || '' } className="wpmozo_star_rating_image" />
 						</div>
 					) }
 					<div className="wpmozo_star_rating_title_container">

@@ -120,6 +120,11 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Features', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+			<ToggleControl
+				label={__('Show Icon', 'wpmozo-blocks-and-addons')}
+				checked={attributes.showFeaturesIcon || false}
+				onChange={(newValue) => setAttributes({showFeaturesIcon: newValue})}
+			/>
 			{ ( attributes.features || [] ).map( ( feature, index ) => (
 				<div
 					key={index}
@@ -138,18 +143,20 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 						__nextHasNoMarginBottom={true}
 						style={{minWidth: 0}}
 					/>
-					<div>
-						<WpmozoIconpicker
-							label={__(`Icon ${index + 1}`, 'wpmozo-blocks-and-addons')}
-							value={feature['icon'] || ''}
-							props={props}
-							onChange={(value) => {
-								const newFeatures = [...(attributes.features || [])];
-								newFeatures[index] = {...newFeatures[index], icon: value};
-								setAttributes({features: newFeatures});
-							}}
-						/>
-					</div>
+					{ attributes.showFeaturesIcon &&
+						<div>
+							<WpmozoIconpicker
+								label={__(`Icon ${index + 1}`, 'wpmozo-blocks-and-addons')}
+								value={feature['icon'] || ''}
+								props={props}
+								onChange={(value) => {
+									const newFeatures = [...(attributes.features || [])];
+									newFeatures[index] = {...newFeatures[index], icon: value};
+									setAttributes({features: newFeatures});
+								}}
+							/>
+						</div>
+					}
 					<Button
 						isDestructive
 						variant="secondary"
@@ -176,11 +183,6 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			>
 				{__('Add Item', 'wpmozo-blocks-and-addons')}
 			</Button>
-			<ToggleControl
-				label={__('Show Icon', 'wpmozo-blocks-and-addons')}
-				checked={attributes.showFeaturesIcon || false}
-				onChange={(newValue) => setAttributes({showFeaturesIcon: newValue})}
-			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
 			<ToggleControl
@@ -249,7 +251,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 						/>
 					}
 					<BaseControl
-						label={ __( 'Button Icon Position', 'wpmozo-blocks-and-addons' ) }
+						label={ __( 'Button Media Position', 'wpmozo-blocks-and-addons' ) }
 						className="wpmozo-button-tabs-wrap"
 					>
 						<ButtonGroup>
@@ -266,7 +268,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 						</ButtonGroup>
 					</BaseControl>
 					<ToggleControl
-						label={ __( 'Show Icon On Hover', 'wpmozo-blocks-and-addons' ) }
+						label={ __( 'Show Media On Hover', 'wpmozo-blocks-and-addons' ) }
 						checked={ attributes.showIconOnHover }
 						onChange={ (newValue) => setAttributes( { showIconOnHover: newValue } ) }
 					/>

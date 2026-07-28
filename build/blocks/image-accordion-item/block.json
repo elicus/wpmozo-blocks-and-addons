@@ -70,7 +70,7 @@
     },
     "normalUseBackgroundImage": {
       "type": "boolean",
-      "default": false
+      "default": true
     },
     "normalAccordionBackground": {
       "type": "string"

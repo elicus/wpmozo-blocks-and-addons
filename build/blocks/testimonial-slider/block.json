@@ -131,6 +131,14 @@
       "type": "boolean",
       "default": false
     },
+    "enableFree": {
+      "type": "boolean",
+      "default": false
+    },
+    "enableMouse": {
+      "type": "boolean",
+      "default": false
+    },
     "autoplayDelay": {
       "type": "number",
       "default": 3000
@@ -165,11 +173,11 @@
     },
     "prevArrowIcon": {
       "type": "string",
-      "default": ""
+      "default": "fas fa-chevron-left"
     },
     "nextArrowIcon": {
       "type": "string",
-      "default": ""
+      "default": "fas fa-chevron-right"
     },
     "showArrowOnHover": {
       "type": "boolean",

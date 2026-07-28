@@ -71,17 +71,19 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 						/>
 					</>
 				) }
-				<SelectControl
-					label={ __( 'Object Fit', 'wpmozo-blocks-and-addons' ) }
-					value={ attributes.featuredImageObjectFit }
-					options={ [
-						{ value: 'cover', label: __( 'Cover', 'wpmozo-blocks-and-addons' ) },
-						{ value: 'contain', label: __( 'Contain', 'wpmozo-blocks-and-addons' ) },
-						{ value: 'fill', label: __( 'Fill', 'wpmozo-blocks-and-addons' ) },
-						{ value: 'none', label: __( 'None', 'wpmozo-blocks-and-addons' ) }
-					] }
-					onChange={ ( newValue ) => setAttributes( { featuredImageObjectFit: newValue } ) }
-				/>
+				{ attributes.layout !== 'layout1' && (
+					<SelectControl
+						label={ __( 'Object Fit', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.featuredImageObjectFit }
+						options={ [
+							{ value: 'cover', label: __( 'Cover', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'contain', label: __( 'Contain', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'fill', label: __( 'Fill', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'none', label: __( 'None', 'wpmozo-blocks-and-addons' ) }
+						] }
+						onChange={ ( newValue ) => setAttributes( { featuredImageObjectFit: newValue } ) }
+					/>
+				)}
 				{ attributes.layout !== 'layout2' && (
 					<>
 						<WpmozoDimensions props={ props }

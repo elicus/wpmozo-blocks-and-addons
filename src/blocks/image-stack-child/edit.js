@@ -54,6 +54,7 @@ export default function Edit(props) {
 
 	const imageSrc = image && image.url ? image.url : (typeof wpmozo_bna_editor_object !== 'undefined' ? wpmozo_bna_editor_object.placeholderImg : '');
 	const defaultedAlt = image && image.alt ? image.alt : '';
+	const imageTitle = image && image.title ? image.title : '';
 
 	useEffect(() => {
 		// Only update if imageSrc is different from the current image.url
@@ -89,6 +90,14 @@ export default function Edit(props) {
 			wp.data.dispatch('core/block-editor').selectBlock(parentId);
 		}
 	}, [selectedBlockId, clientId, parentId] );
+	
+	const parentAttributes = useSelect( (select) => {
+        const { getBlockRootClientId, getBlock } = select('core/block-editor');
+        const parentId = getBlockRootClientId(clientId);
+        return parentId ? getBlock(parentId)?.attributes : null;
+    }, [clientId] );
+	attributes.parentAtts = parentAttributes;
+    
 
 	return ( <>
 		{ isSelected && ( <Inspector attributes={attributes} setAttributes={setAttributes} /> ) }
@@ -100,7 +109,7 @@ export default function Edit(props) {
 				{ 'image' === attributes.stackType && (
 					<img className="wpmozo-stack-item-img"
 						alt={defaultedAlt}
-						title={tooltipText}
+						title={(parentAttributes.showTooltip && 'custom' === parentAttributes.tooltipType) ? tooltipText : ((parentAttributes.showTooltip && 'imageTitle' === parentAttributes.tooltipType) ? imageTitle : '')}
 						src={imageSrc}
 						loading="lazy"
 					/>
@@ -111,6 +120,6 @@ export default function Edit(props) {
 			</span>
 		</div>
 
-		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+		<style>{ generateDynamicStyle( { attributes, clientId, parentAttributes } ) }</style>
 	</> );
 }

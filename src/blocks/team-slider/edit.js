@@ -56,7 +56,6 @@ const Edit = (props) => {
 				order: postOrder,
 				orderby: postOrderBy,
 				categories: includesCategories.join(','),
-				// author: 1,
 				_embed: true
 			}),
 		[postsNumber, postOrder, postOrderBy, includesCategories.join(',')]);
@@ -104,7 +103,7 @@ const Edit = (props) => {
 			)) {
 				paginationClass = (attributes.enableDynamicDots) ? ' swiper-pagination-bullets-dynamic' : ' swiper-pagination-bullets';
 			}
-			$paginationDots = <div className="wpmozo-bna-team-slider-pagination">
+			$paginationDots = <div className="wpmozo-bna-testimonial-slider-pagination">
 				<div className={`swiper-pagination ${attributes.controlDotStyle} ${paginationClass}`}></div>
 			</div>;
 		}
@@ -119,18 +118,16 @@ const Edit = (props) => {
 
 	useEffect(() => {
 		const event = new CustomEvent('WPMozoTeamSliderPropsChanged');
-		window.dispatchEvent(event);
-
 		const iframe = document.querySelector('iframe[name="editor-canvas"]');
 		if (iframe?.contentWindow) {
 			iframe.contentWindow.dispatchEvent(event);
 		}
-	}, [props]);
+	}, [JSON.stringify(attributes), posts]);
 
 	// Get attrs.
 	const displayInPopup = attributes.displayInPopup ?? ["image", "designation", "social_icons", "content", "skills_bars"];
 
-	// Equal height team member class.
+	// Equal height testimonial class.
 	const equalHeightClass = (attributes.equalHeight) ? ' wpmozo_equal_team_member_height' : '';
 
 	let autoHeight = (attributes.autoHeight) ?? 'false';
@@ -160,9 +157,9 @@ const Edit = (props) => {
 					 data-enable_coverflow_shadow={attributes.enableCoverflowShadow ?? 'false'}
 					 data-enable_loop={attributes.enableLoop ?? 'false'}
 					 data-auto_height={autoHeight ?? 'false'}
-					 data-autoplay={attributes.autoplay ?? 'true'}
-					 data-autoplay_delay={attributes.autoplayDelay || '3000'}
-					 data-pause_on_hover={attributes.pauseOnHover ?? 'true'}
+					 data-autoplay={attributes.autoplay ?? 'false'}
+					 data-autoplay_delay={attributes.autoplayDelay ?? '3000'}
+					 data-pause_on_hover={attributes.pauseOnHover ?? 'false'}
 					 data-enable_linear_trans={attributes.enableLinearTrans ?? 'false'}
 					 data-trans_duration={attributes.transDuration || '1000'}
 
@@ -180,6 +177,7 @@ const Edit = (props) => {
 					 data-bar_layout={attributes.layout ?? 'layout1'}
 					 data-use_stripes={attributes.popupBarUseStripe ? 'on' : 'off'}
 					 data-popup_name_level={attributes.popupNameLevel ?? 'h2'}
+					 data-close_icon_position={attributes.popupCloseIconPos ?? 'outside'}
 				>
 					<div className={"wpmozo_bna_team_slider_container wpmozo_swiper_inner_wrap " + layout}>
 						{$postItems.length > 0 ? (

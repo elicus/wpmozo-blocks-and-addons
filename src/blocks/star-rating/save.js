@@ -108,7 +108,7 @@ const Save = ( { attributes } ) => {
 				<div className="wpmozo_star_rating_wrapper">
 					{ ( imageUrl && '' !== imageUrl ) && (
 						<div className="wpmozo_star_rating_image_container">
-							<img src={ imageUrl } alt={ attributes?.imageAlt || '' } class="wpmozo_star_rating_image" />
+							<img src={ imageUrl } alt={ attributes?.imageCustomAlt || attributes?.imageAlt || '' } class="wpmozo_star_rating_image" />
 						</div>
 					) }
 					<div className="wpmozo_star_rating_title_container">

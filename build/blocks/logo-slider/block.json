@@ -155,8 +155,7 @@
   "editorScript": "file:./index.js",
   "style": [
     "file:./style-index.css",
-    "wpmozo-blocks-and-addons-swiper-style",
-    "wpmozo-blocks-and-addons-fontawesome-style"
+    "wpmozo-blocks-and-addons-swiper-style"
   ],
   "script": [
     "wpmozo-blocks-and-addons-swiper-script",
