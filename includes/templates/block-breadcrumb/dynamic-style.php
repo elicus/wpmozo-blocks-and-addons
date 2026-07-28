@@ -18,34 +18,37 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 
 		$styles = '';
 
+		$nav_bg     = isset( $attrs['breadcrumbsNavBackground'] ) ? $attrs['breadcrumbsNavBackground'] : '';
+		$text_color = isset( $attrs['textColor'] ) ? $attrs['textColor'] : '';
+		$text_align = isset( $attrs['textAlign'] ) ? $attrs['textAlign'] : 'left';
 		$styles .= "
 			{$mainSelector} .wpmozo-bna-breadcrumb-wrapper li .breadcrumb-page{
-				background-color: {$attrs['breadcrumbsNavBackground']};
+				background-color: {$nav_bg};
 			}
 			{$mainSelector} .layout1 li .breadcrumb-page::after{
-				border-color: transparent transparent transparent {$attrs['breadcrumbsNavBackground']} !important;
+				border-color: transparent transparent transparent {$nav_bg} !important;
 			}
 			{$mainSelector} .layout1 li .breadcrumb-page::before{
-				border-color: {$attrs['breadcrumbsNavBackground']} {$attrs['breadcrumbsNavBackground']} {$attrs['breadcrumbsNavBackground']} transparent !important;
+				border-color: {$nav_bg} {$nav_bg} {$nav_bg} transparent !important;
 			}
 			{$mainSelector} .breadcrumb-page {
-				color:{$attrs['textColor']};
+				color:{$text_color};
 			}
 			{$mainSelector} .layout2 li .breadcrumb-page{
 				background-color: transparent !important;
 			}
 			{$mainSelector} .wpmozo-bna-breadcrumb-wrapper{
-				justify-content: {$attrs['textAlign']};
+				justify-content: {$text_align};
 			}
-			{$mainSelector} .dipl-home-page,
+			{$mainSelector} .wpmozo-home-page,
 			{$mainSelector} .wpmozo-bna-home-page{
 				font-size:  " . ( isset( $attrs['homeLinkIconSizeFontSize'] ) ? $attrs['homeLinkIconSizeFontSize'] : 'inherit' ) . ";
 			}
-			{$mainSelector} .dipl-home-page .breadcrumb-home-icon i,
+			{$mainSelector} .wpmozo-home-page .breadcrumb-home-icon i,
 			{$mainSelector} .wpmozo-bna-home-page .breadcrumb-page .breadcrumb-home-icon .icon-wrapper i{
 				color:initial;
 			}
-			{$mainSelector} .dipl-home-page .breadcrumb-home-icon i,
+			{$mainSelector} .wpmozo-home-page .breadcrumb-home-icon i,
 			{$mainSelector} .wpmozo-bna-home-page .breadcrumb-page .breadcrumb-home-icon .icon-wrapper i{
 				color:" . ( isset( $attrs['homeIconColor'] ) ? $attrs['homeIconColor'] : 'inherit' ) . ";
 				font-size:" . ( isset( $attrs['homeLinkIconSizeFontSize'] ) ? $attrs['homeLinkIconSizeFontSize'] : 'inherit' ) . ";
@@ -112,9 +115,17 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 		";
 
 		$styles .= "
-			{$mainSelector} .breadcrumb-page {";
+		{$mainSelector} .breadcrumb-page {";
 		$styles .= $block_helpers::get_font_style( 'text', $attrs );
 		$styles .= "}";
+
+		if ( ! empty( $attrs['textDecoration'] ) ) {
+			$styles .= "
+				{$mainSelector} .breadcrumb-item {
+					text-decoration: {$attrs['textDecoration']};
+				}
+			";
+		}
 
 		$styles .= "
 			{$mainSelector} .wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page {";
@@ -122,38 +133,37 @@ if ( ! function_exists( 'breadcrumb_generate_dynamic_style' ) ) {
 		$styles .= "}";
 
 
-		if ( 'text_separator' === $attrs['separatorType'] ) {
+		$sep_type = isset( $attrs['separatorType'] ) ? $attrs['separatorType'] : '';
+		if ( 'text_separator' === $sep_type ) {
 			$separatorText = isset($attrs['separatorText']) ? esc_attr($attrs['separatorText']) : '>';
 			$separatorFontSize = !empty($attrs['separatorSizeFontSize']) ? $attrs['separatorSizeFontSize'] : 'inherit';
 			$separatorColor = !empty($attrs['separatorColor']) ? $attrs['separatorColor'] : 'inherit';
-
 			$styles .= "
 				{$mainSelector} .layout2 li:after {
 					content: '{$separatorText}';
 					font-size: {$separatorFontSize};
 					color: {$separatorColor};
 				}";
-		} elseif ( 'icon_separator' === $attrs['separatorType'] ) {
+		} elseif ( 'icon_separator' === $sep_type ) {
 			$separatorFontSize = !empty($attrs['separatorSizeFontSize']) ? $attrs['separatorSizeFontSize'] : 'inherit';
 			$separatorColor = !empty($attrs['separatorColor']) ? $attrs['separatorColor'] : 'inherit';
-
 			$styles .= "
 				{$mainSelector} .breadcrumb-home-icon i {
 					font-size: {$separatorFontSize};
 					color: {$separatorColor};
 				}";
 		}
-
-		if ( $attrs['enableDifferentBg'] ) {
+		if ( ! empty( $attrs['enableDifferentBg'] ) ) {
+			$last_bg = isset( $attrs['breadcrumbsNavLastItemBackground'] ) ? $attrs['breadcrumbsNavLastItemBackground'] : '';
 			$styles .= "
 				{$mainSelector} .wpmozo-bna-breadcrumb-wrapper.layout1 li .breadcrumb-page.wpmozo-bna-last-page{
-					background-color: {$attrs['breadcrumbsNavLastItemBackground']};
+					background-color: {$last_bg};
 				}
 				{$mainSelector} .layout1 li .breadcrumb-page.wpmozo-bna-last-page::after{
-					border-color: transparent transparent transparent {$attrs['breadcrumbsNavLastItemBackground']} !important;
+					border-color: transparent transparent transparent {$last_bg} !important;
 				}
 				{$mainSelector} .layout1 li .breadcrumb-page.wpmozo-bna-last-page::before{
-					border-color: {$attrs['breadcrumbsNavLastItemBackground']} {$attrs['breadcrumbsNavLastItemBackground']} {$attrs['breadcrumbsNavLastItemBackground']} transparent !important;
+					border-color: {$last_bg} {$last_bg} {$last_bg} transparent !important;
 				}
 			";
 		}
