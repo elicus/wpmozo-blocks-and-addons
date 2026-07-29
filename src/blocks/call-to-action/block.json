@@ -56,7 +56,7 @@
 		"descriptionFontWeight": { "type": "string" },
 
         "showButton": { "type": "boolean", "default": true },
-		"buttonText": { "type": "string", "default": "Lean more" },
+		"buttonText": { "type": "string", "default": "Learn more" },
 		"buttonUrl": { "type": "string", "default": "#" },
 		"buttonLinkTarget": { "type": "string", "default": "same" },
 
@@ -101,7 +101,38 @@
 			"default": { "fontStyle": "", "fontWeight": "" }
 		},
 		"buttonHoverFontStyle": { "type": "string" },
-		"buttonHoverFontWeight": { "type": "string" }
+		"buttonHoverFontWeight": { "type": "string" },
+
+		"titleHoverColor": { "type": "string" },
+		"titleHoverFontSize": { "type": "string" },
+		"titleHoverLetterSpacing": { "type": "string" },
+		"titleHoverDecoration": { "type": "string" },
+		"titleHoverLetterCase": { "type": "string" },
+		"titleHoverLineHeight": { "type": "string" },
+		"titleHoverFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"titleHoverFontStyle": { "type": "string" },
+		"titleHoverFontWeight": { "type": "string" },
+
+		"descriptionHoverColor": { "type": "string" },
+		"descriptionHoverFontSize": { "type": "string" },
+		"descriptionHoverLetterSpacing": { "type": "string" },
+		"descriptionHoverDecoration": { "type": "string" },
+		"descriptionHoverLetterCase": { "type": "string" },
+		"descriptionHoverLineHeight": { "type": "string" },
+		"descriptionHoverFontAppearance": {
+			"type": "object",
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"descriptionHoverFontStyle": { "type": "string" },
+		"descriptionHoverFontWeight": { "type": "string" },
+
+		"blockHoverBackground": { "type": "string" },
+		"blockHoverBGGradient": { "type": "string" },
+		"blockHoverborder": { "type": "object" },
+		"blockHoverborderRadius": { "type": "object" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
