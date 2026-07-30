@@ -53,7 +53,8 @@ function wpmozo_toggle_switch(input, main) {
         main.find('.wpmozo-bna-content-toggle-one').removeClass('wpmozo-bna-content-toggle-active');
         main.find('.wpmozo-bna-content-toggle-two').addClass('wpmozo-bna-content-toggle-active');
     } else {
-        jQuery('.wpmozo-bna-content-toggle-two').removeClass('wpmozo-bna-content-toggle-active');
-        jQuery('.wpmozo-bna-content-toggle-one').addClass('wpmozo-bna-content-toggle-active');
+        main.find('.wpmozo-bna-content-toggle-two').removeClass('wpmozo-bna-content-toggle-active');
+        main.find('.wpmozo-bna-content-toggle-one').addClass('wpmozo-bna-content-toggle-active');
     }
 }
+

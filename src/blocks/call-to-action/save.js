@@ -3,7 +3,6 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 import generateDynamicStyle from "./style";
 import { mergeWrapperProps } from '../../common/utils.js';
-import ReactDOMServer from 'react-dom/server';
 
 const Save = ( { attributes } ) => {
 
@@ -39,7 +38,7 @@ const Save = ( { attributes } ) => {
 	}
 
 	// Button.
-	const showButton = attributes.showButton ?? false;
+	const showButton = attributes.showButton ?? true;
 	const buttonUrl  = attributes.buttonUrl ?? '';
 
 	let $button = '';
