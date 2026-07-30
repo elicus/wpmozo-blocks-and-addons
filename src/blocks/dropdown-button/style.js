@@ -5,6 +5,7 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 		'button',
 		'buttonHover',
 		'submenu',
+		'submenuHover',
 		'linkText',
 		'linkTextHover',
 	];
@@ -30,6 +31,7 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 				${attributes.buttonBackground ? `background:`+ attributes.buttonBackground + `;` : ''}
 				${attributes.buttonColor ? `color: ${attributes.buttonColor};` : ''}
 				${convertedStyle.button || ''}
+				transition: all 300ms;
 			}`
 		: ''
 	);
@@ -52,6 +54,16 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 				${attributes.submenuBGGradient ? `background:`+ attributes.submenuBGGradient + `;` : ''}
 				${attributes.submenuBackground ? `background:`+ attributes.submenuBackground + `;` : ''}
 				${convertedStyle.submenu || ''}
+				transition: all 300ms;
+			}`
+		: ''
+	);
+	hovercss.push(
+		(attributes.submenuHoverBGGradient || attributes.submenuHoverBackground || convertedStyle.submenuHover) 
+		? `.wpmozo_dropdown_menu_items:hover${isEditor('.wpmozo_dropdown_menu_items')}{
+				${attributes.submenuHoverBGGradient ? `background:`+ attributes.submenuHoverBGGradient + `;` : ''}
+				${attributes.submenuHoverBackground ? `background:`+ attributes.submenuHoverBackground + `;` : ''}
+				${convertedStyle.submenuHover || ''}
 			}`
 		: ''
 	);
@@ -63,6 +75,7 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 				${attributes.linkTextColor ? `color:`+ attributes.linkTextColor + `;` : ''}
 				${attributes.linkTextBackground ? `background:`+ attributes.linkTextBackground + `;` : ''}
 				${convertedStyle.linkText || ''}
+				transition: all 300ms;
 			}`
 		: ''
 	);

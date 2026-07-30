@@ -73,6 +73,10 @@
 		"submenuBGGradient": { "type": "string" },
 		"submenuborder": { "type": "object" },
 		"submenuborderRadius": { "type": "string" },
+		"submenuHoverBackground": { "type": "string", "default": "" },
+		"submenuHoverBGGradient": { "type": "string" },
+		"submenuHoverborder": { "type": "object" },
+		"submenuHoverborderRadius": { "type": "string" },
 
 		"linkTextColor": { "type": "string" },
 		"linkTextBackground": { "type": "string" },
@@ -102,7 +106,7 @@
 		"linkTextHoverFontStyle": { "type": "string" },
 		"linkTextHoverFontWeight": { "type": "string" },
 
-		"buttonAlign": {"type": "default","default": "left"}
+		"buttonAlign": {"type": "string","default": "left"}
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

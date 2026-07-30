@@ -192,6 +192,19 @@
     "submenuborderRadius": {
       "type": "string"
     },
+    "submenuHoverBackground": {
+      "type": "string",
+      "default": ""
+    },
+    "submenuHoverBGGradient": {
+      "type": "string"
+    },
+    "submenuHoverborder": {
+      "type": "object"
+    },
+    "submenuHoverborderRadius": {
+      "type": "string"
+    },
     "linkTextColor": {
       "type": "string"
     },
@@ -262,7 +275,7 @@
       "type": "string"
     },
     "buttonAlign": {
-      "type": "default",
+      "type": "string",
       "default": "left"
     }
   },
