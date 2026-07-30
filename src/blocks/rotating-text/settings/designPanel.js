@@ -4,7 +4,8 @@ import {useState} from "@wordpress/element";
 import {
 	PanelBody,
 	RangeControl,
-	SelectControl
+	SelectControl,
+	ToggleControl
 } from "@wordpress/components";
 import {
 	WpmozoColorPicker,
@@ -12,7 +13,7 @@ import {
 	WpmozoDimensions,
 	WpmozoBorder,
 	WpmozoRangeSize,
-  WpmozoAlignment
+  	WpmozoAlignment
 } from '../../../common/components';
 
 export const DesignPanel = ({ attributes, setAttributes, hoverState, setHoverState }) => {
@@ -44,7 +45,7 @@ export const DesignPanel = ({ attributes, setAttributes, hoverState, setHoverSta
 					rangeSizeKey='circleSize'
 				/>
 				<RangeControl
-					label={__('Circle Animation Speed', 'wpmozo-blocks-and-addons')}
+					label={__('Animation Speed', 'wpmozo-blocks-and-addons')}
 					value={attributes.circleAnimationSpeed}
 					onChange={(newValue) => setAttributes({circleAnimationSpeed: newValue})}
 					min={1000} step={100} max={25000}
@@ -57,6 +58,11 @@ export const DesignPanel = ({ attributes, setAttributes, hoverState, setHoverSta
 						{ value: 'anti-clockwise', label: __( 'Anti-Clockwise', 'wpmozo-blocks-and-addons' ) }
 					] }
 					onChange={ ( newValue ) => setAttributes( { textRotation: newValue } ) }
+				/>
+				<ToggleControl
+					label={ __( 'Pause Animation on Hover', 'wpmozo-blocks-and-addons' ) }
+					checked={ attributes.pauseOnHover }
+					onChange={ ( newValue ) => setAttributes( { pauseOnHover: newValue } ) }
 				/>
 				<WpmozoBorder
 					props={props}
@@ -86,6 +92,20 @@ export const DesignPanel = ({ attributes, setAttributes, hoverState, setHoverSta
 						{key: 'Background', label: __(`${attributes.useImage ? 'Image' : 'Icon'} Background Color`, 'wpmozo-blocks-and-addons')}
 					]}
 				/>
+				{ !attributes.useImage && ( <>
+					<SelectControl
+						label={ __( 'Object Fit', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.imageObjectFit }
+						options={ [
+							{ value: 'cover', label: __( 'Cover', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'contain', label: __( 'Contain', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'fill', label: __( 'Fill', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'scale-down', label: __( 'Scale Down', 'wpmozo-blocks-and-addons' ) },
+							{ value: 'none', label: __( 'None', 'wpmozo-blocks-and-addons' ) }
+						] }
+						onChange={ ( newValue ) => setAttributes( { imageObjectFit: newValue } ) }
+					/>
+				</> ) }
 				<WpmozoRangeSize props={props}
 					label={ __( `${attributes.useImage ? 'Image' : 'Icon'} Wrapper Size`, 'wpmozo-blocks-and-addons') }
 					rangeSizeKey='elementWrapperSize'

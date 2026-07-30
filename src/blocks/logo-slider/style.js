@@ -33,15 +33,20 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 		( attributes.sliderArrowColor || attributes.arrowFontSize )
 		? `.swiper-button-next:after, .swiper-button-next:before, .swiper-button-prev:after, .swiper-button-prev:before {
 				${attributes.sliderArrowColor ? `color: ${attributes.sliderArrowColor};` : ''}
-				${attributes.arrowFontSize ? `font-size: ${attributes.arrowFontSize};` : ''}
+				${attributes.arrowFontSize ? `font-size: ${attributes.arrowFontSize} !important;` : ''}
+				line-height: 1 !important;
+				display: inline-flex !important;
+				align-items: center !important;
+				justify-content: center !important;
+				vertical-align: middle !important;
 			}`
 		: ''
 	);
-
 	normalcss.push(
-		( attributes.sliderArrowBackground || convertedStyle.arrow )
+		( attributes.sliderArrowBackground || convertedStyle.arrow || attributes.arrowFontSize )
 		? `.swiper-button-next, .swiper-button-prev {
 				${attributes.sliderArrowBackground ? `background: ${attributes.sliderArrowBackground};` : ''}
+				${attributes.arrowFontSize ? `width: ${attributes.arrowFontSize} !important; height: ${attributes.arrowFontSize} !important; box-sizing: content-box !important; display: flex !important; align-items: center !important; justify-content: center !important; line-height: 1 !important;` : ''}
 				${convertedStyle.arrow || ''}
 			}`
 		: ''

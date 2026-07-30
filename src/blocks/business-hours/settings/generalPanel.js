@@ -5,6 +5,7 @@ import {
 	PanelBody,
 	TextControl,
 } from "@wordpress/components";
+import { Icon, reusableBlock, trash } from '@wordpress/icons';
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
@@ -35,7 +36,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 						} }
 						__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
 					/>
-					<Button isDestructive className='wpmozo-repeator-trash' variant="secondary" icon="trash"
+					<Button isDestructive className='wpmozo-repeator-trash' variant="secondary" icon={trash}
 						label={ __( 'Remove', 'wpmozo-blocks-and-addons' ) }
 						onClick={ () => {
 							const newItems = ( attributes.hours || [] ).filter( ( _, innerIndex ) => innerIndex !== index );
@@ -43,6 +44,22 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 						} }
 					>
 						<span className="screen-reader-text">{ __( 'Remove', 'wpmozo-blocks-and-addons' ) }</span>
+					</Button>
+					<Button className='wpmozo-repeator-duplicate' variant="secondary" icon={reusableBlock}
+						label={ __( 'Duplicate', 'wpmozo-blocks-and-addons' ) }
+						onClick={ () => {
+							const items = attributes.hours || [];
+
+							const newItems = [
+								...items.slice(0, index + 1),
+								{ ...items[index] }, // duplicate object
+								...items.slice(index + 1),
+							];
+
+							setAttributes({ hours: newItems });
+						} }
+					>
+						<span className="screen-reader-text">{ __( 'Duplicate', 'wpmozo-blocks-and-addons' ) }</span>
 					</Button>
 				</div>
 			) ) }

@@ -9,7 +9,7 @@ import { __experimentalBorderRadiusControl } from '@wordpress/block-editor';
 const WpmozoBorder = (args) => {
 	const { BorderKey, props } = args;
 	const preAttributes = props.preAttributes;
-	const label = args.label || __('Border', 'wpmozo-blocks-and-addons');
+	const label = args.label ?? __('Border', 'wpmozo-blocks-and-addons');
 	let BorderTypes = args.BorderTypes || null;
 
 	const setValue = (styleType, value) => {

@@ -4,26 +4,28 @@ import {
     PanelBody,
     TextareaControl,
     SelectControl,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+	__experimentalToggleGroupControlOption as ToggleGroupControlOption
 } from "@wordpress/components";
 import {
     WpmozoMediaUploader,
     WpmozoIconpicker
 } from '../../../common/components/index';
+import { shadow, separator } from '@wordpress/icons';
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
 	return ( <>
 		<PanelBody title={ __( 'Separator Content', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
-			<SelectControl
+			<ToggleGroupControl
 				label={ __( 'Separator Type', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.separatorType }
-				options={ [
-					{ value: 'line', label: __( 'Line', 'wpmozo-blocks-and-addons' ) },
-					{ value: 'shadow', label: __( 'Shadow', 'wpmozo-blocks-and-addons' ) }
-				] }
 				onChange={ ( newValue ) => setAttributes( { separatorType: newValue } ) }
-			/>
+			>
+				<ToggleGroupControlOption value="line" label={ __( 'Line', 'wpmozo-blocks-and-addons' ) } showTooltip={ true } />
+				<ToggleGroupControlOption value="shadow" label={ __( 'Shadow', 'wpmozo-blocks-and-addons' ) } showTooltip={ true } />
+			</ToggleGroupControl>
 			{ 'line' === attributes.separatorType &&
 				<SelectControl
 					label={ __( 'Select Line Style', 'wpmozo-blocks-and-addons' ) }

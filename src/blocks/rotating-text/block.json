@@ -49,6 +49,8 @@
 		"elementColor": { "type": "string" },
 		"elementBackground": { "type": "string" },
 		"elementWrapperSize": { "type": "string" },
+		"imageObjectFit": { "type": "string", "default": "contain" },
+		"pauseOnHover": { "type": "boolean", "default": false },
 		"iconSize": { "type": "string" },
 		"elementpadding": { "type": "object" },
 		"elementborder": { "type": "object" },

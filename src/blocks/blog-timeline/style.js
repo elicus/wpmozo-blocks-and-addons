@@ -1,6 +1,6 @@
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ( { attributes } ) => {
+const generateDynamicStyle = ( { attributes, isEdit } ) => {
 	const toConvertStyles = [
 		'button',
 		'buttonHover',
@@ -13,10 +13,10 @@ const generateDynamicStyle = ( { attributes } ) => {
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
-    let styles = `#block-${attributes.ID} {`;
-
-	// Timeline icon.
-	// Calculate icons size.
+    let normalcss = [],
+	    hovercss = [],
+	    cssExtras = [];
+	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
 	let iconWidth = attributes.timelineIconFontSize ?? 22;
 	if ( 'none' !== attributes.tlIconShape ) {
 		// Add default 10px padding on all side.
@@ -28,134 +28,179 @@ const generateDynamicStyle = ( { attributes } ) => {
 		}
 	}
 
-	styles += `.wpmozo_bna_blog_timeline_post_icon{
-		width: ${ iconWidth }px;
-		height: ${ iconWidth }px;
-		${attributes.timelineIconColor ? `color:`+ attributes.timelineIconColor + `;` : ''}
-		${attributes.timelineIconFontSize ? `font-size:`+ attributes.timelineIconFontSize + `px;` : ''}
+	normalcss.push(( iconWidth || attributes.timelineIconColor || attributes.timelineIconFontSize || attributes.tlIconShape !== 'none' || (attributes.tlIconShape !== 'none' && attributes.tlIconShapeUseBorder) )
+		? `.wpmozo_bna_blog_timeline_post_icon{
+				${iconWidth ? `width:${iconWidth}px; height:${iconWidth}px;` : ''}
+				${attributes.timelineIconColor ? `color:${attributes.timelineIconColor};` : ''}
+				${attributes.timelineIconFontSize ? `font-size:${attributes.timelineIconFontSize}px;` : ''}
 
-		${attributes.tlIconShape !== 'none' ?
-			`padding: 10px;
-			${attributes.tlIconShape === 'use_circle' ? 'border-radius: 50%;' : 'border-radius: 0;'}
-			${attributes.tlIconShapeColor ? `background-color:` + attributes.tlIconShapeColor + `;` : ''}`
-		: '' }
-		${attributes.tlIconShape !== 'none' && attributes.tlIconShapeUseBorder ?
-			`border-style: solid;
-			${attributes.tlIconShapeBorderSize ? `border-width:` + attributes.tlIconShapeBorderSize + `px;` : ''}
-			${attributes.tlIconShapeBorderColor ? `border-color:` + attributes.tlIconShapeBorderColor + `;` : ''}`
-		: '' }
-	}`;
-	styles += `.wpmozo_bna_blog_timeline_post_icon.wpmozo_bna_icon_fill{
-		${attributes.timelineIconFillColor ? `color:`+ attributes.timelineIconFillColor + `;` : ''}
-		
-		${attributes.tlIconShape !== 'none' ?
-			`${attributes.tlIconShapeFillColor ? `background-color:` + attributes.tlIconShapeFillColor + `;` : ''}`
-		: '' }
-		${attributes.tlIconShape !== 'none' && attributes.tlIconShapeUseBorder ?
-			`${attributes.tlIconShapeBorderFillColor ? `border-color:` + attributes.tlIconShapeBorderFillColor + `;` : ''}`
-		: '' }
-	}`;
+				${attributes.tlIconShape !== 'none' ? `
+					padding: 10px;
+					${attributes.tlIconShape === 'use_circle' ? 'border-radius: 50%;' : 'border-radius: 0;'}
+					${attributes.tlIconShapeColor ? `background-color:${attributes.tlIconShapeColor};` : ''}
+				` : ''}
 
-	// Timeline bar.
-	styles += `.wpmozo_bna_stem_wrapper{
-		${attributes.barSize ? `width:`+ attributes.barSize + `px;` : ''}
-		${attributes.barColor ? `background:`+ attributes.barColor + `;` : ''}
-	}`;
-	if ( 'right' === attributes.orientation && 'layout1' === attributes.layout ) {
-		styles += `.wpmozo_bna_blog_timeline_right .wpmozo_bna_stem_wrapper{
-			left: ${ iconWidth / 2 }px;
-		}`;
-	}
-	if ( 'left' === attributes.orientation && 'layout1' === attributes.layout ) {
-		styles += `.wpmozo_bna_blog_timeline_left .wpmozo_bna_stem_wrapper{
-			right: ${ iconWidth / 2 }px;
-		}`;
-	}
-	styles += `.wpmozo_bna_blog_stem{
-		${attributes.barFillColor ? `background:`+ attributes.barFillColor + `;` : ''}
-	}`;
+				${attributes.tlIconShape !== 'none' && attributes.tlIconShapeUseBorder ? `
+					border-style: solid;
+					${attributes.tlIconShapeBorderSize ? `border-width:${attributes.tlIconShapeBorderSize}px;` : ''}
+					${attributes.tlIconShapeBorderColor ? `border-color:${attributes.tlIconShapeBorderColor};` : ''}
+				` : ''}
+			}`
+		: ''
+	);
 
-	// Post image.
-	if ( attributes.showThumbnail ) {
-		styles += `.wpmozo_bna_blog_timeline_image_wrapper .wpmozo_bna_blog_timeline_image_link{
-			${attributes.thumbnailSize ? `width:`+ attributes.thumbnailSize + `%;` : ''}
-		}`;
-		styles += `.wpmozo_bna_blog_timeline_image_wrapper{
-			${attributes.thumbnailAlign ? `text-align:`+ attributes.thumbnailAlign + `;` : ''}
-		}`;
-	}
+	normalcss.push( ( attributes.timelineIconFillColor || (attributes.tlIconShape !== 'none' && attributes.tlIconShapeFillColor) || (attributes.tlIconShape !== 'none' && attributes.tlIconShapeUseBorder && attributes.tlIconShapeBorderFillColor) )
+		? `.wpmozo_bna_blog_timeline_post_icon.wpmozo_bna_icon_fill{
+				${attributes.timelineIconFillColor ? `color:${attributes.timelineIconFillColor};` : ''}
 
-	// Read More Button.
-	if ( attributes.showReadMore ) {
-		styles += `.wpmozo-bna-button-wrap .wpmozo-bna-button{
-			${attributes.buttonBGGradient ? `background:`+ attributes.buttonBGGradient + `;` : ''}
-			${attributes.buttonBackground ? `background:`+ attributes.buttonBackground + `;` : ''}
-			${attributes.buttonColor ? `color: ${attributes.buttonColor};` : ''}
-			${convertedStyle.button}
-		}`;
-		styles += `.wpmozo-bna-button-wrap .wpmozo-bna-button:hover{
-			${attributes.buttonHoverBGGradient ? `background:`+ attributes.buttonHoverBGGradient + `;` : ''}
-			${attributes.buttonHoverBackground ? `background:`+ attributes.buttonHoverBackground + `;` : ''}
-			${attributes.buttonHoverColor ? `color: ${attributes.buttonHoverColor};` : ''}
-			${convertedStyle.buttonHover}
-		}`;
-	}
+				${attributes.tlIconShape !== 'none' ? `
+					${attributes.tlIconShapeFillColor ? `background-color:${attributes.tlIconShapeFillColor};` : ''}
+				` : ''}
 
-	// Post.
-	styles += `.wpmozo_bna_blog_timeline_content_wrapper{
-		${attributes.postBGGradient ? `background:`+ attributes.postBGGradient + `;` : ''}
-		${attributes.postBackground ? `background:`+ attributes.postBackground + `;` : ''}
-		${convertedStyle.post}
-	}`;
+				${attributes.tlIconShape !== 'none' && attributes.tlIconShapeUseBorder ? `
+					${attributes.tlIconShapeBorderFillColor ? `border-color:${attributes.tlIconShapeBorderFillColor};` : ''}
+				` : ''}
+			}`
+		: ''
+	);
 
-	// Post title.
-	styles += `.wpmozo_bna_blog_timeline_post_title, .wpmozo_bna_blog_timeline_post_title a{
-		${attributes.titleAlign ? `text-align: ${attributes.titleAlign};` : ''}
-		${attributes.titleColor ? `color: ${attributes.titleColor};` : ''}
-		${convertedStyle.title}
-	}`;
-	styles += `.wpmozo_bna_blog_timeline_post_title:hover a{
-		${attributes.titleHoverColor ? `color: ${attributes.titleHoverColor};` : ''}
-		${convertedStyle.titleHover}
-	}`;
-
-	// Post excerpt.
-	if ( attributes.showExcerpt ) {
-		styles += `.wpmozo_bna_blog_timeline_post_content_inner, .wpmozo_bna_blog_timeline_post_content_inner p{
-			${attributes.excerptAlign ? `text-align: ${attributes.excerptAlign};` : ''}
-			${attributes.excerptColor ? `color: ${attributes.excerptColor};` : ''}
-			${convertedStyle.excerpt}
-		}`;
-	}
-
-	// Post date.
-	if ( attributes.showDate ) {
-		styles += `.wpmozo_bna_blog_timeline_meta_date .published{
-			${attributes.dateColor ? `color: ${attributes.dateColor};` : ''}
-			${convertedStyle.date}
-		}`;
-	}
-
-	// Post meta.
-	if ( attributes.showCategories || attributes.showAuthor || attributes.showComments ) {
-		styles += `.wpmozo_bna_blog_timeline_meta, .wpmozo_bna_blog_timeline_meta a,
-		.wpmozo_bna_blog_timeline_meta_icon, .wpmozo_bna_blog_timeline_meta span, .wpmozo_bna_blog_timeline_meta p{
-			${attributes.metaColor ? `color: ${attributes.metaColor};` : ''}
-			${convertedStyle.meta}
-		}`;
-	}
-
-    styles += `}`;
-
-	// Responsive style.
-	styles += `@media only screen and (max-width: 767px) {
-		#block-${attributes.ID} {`;
-		if ( 'alternate' === attributes.orientation ) {
-			styles += `.wpmozo_bna_blog_timeline_alternate .wpmozo_bna_stem_wrapper{
+	normalcss.push(
+		( attributes.barSize || attributes.barColor )
+		? `.wpmozo_bna_stem_wrapper{
+				${attributes.barSize ? `width:${attributes.barSize}px;` : ''}
+				${attributes.barColor ? `background:${attributes.barColor};` : ''}
+			}`
+		: ''
+	);
+	
+	normalcss.push(
+		( 'right' === attributes.orientation && 'layout1' === attributes.layout && iconWidth )
+		? `.wpmozo_bna_blog_timeline_right .wpmozo_bna_stem_wrapper{
 				left: ${ iconWidth / 2 }px;
-			}`;
-		}
-	styles += `} }`;
+			}`
+		: ''
+	);
+	
+	normalcss.push(
+		( 'left' === attributes.orientation && 'layout1' === attributes.layout && iconWidth )
+		? `.wpmozo_bna_blog_timeline_left .wpmozo_bna_stem_wrapper{
+				right: ${ iconWidth / 2 }px;
+			}`
+		: ''
+	);
+
+    normalcss.push( attributes.barFillColor ? `.wpmozo_bna_blog_stem{background: ${attributes.barFillColor}; }` : '' );
+	
+	if ( attributes.showThumbnail ) {
+		normalcss.push( attributes.thumbnailSize ? `.wpmozo_bna_blog_timeline_image_wrapper .wpmozo_bna_blog_timeline_image_link{width: ${attributes.thumbnailSize}%; }` : '' );
+
+		normalcss.push( attributes.thumbnailAlign ? `.wpmozo_bna_blog_timeline_image_wrapper{text-align: ${attributes.thumbnailAlign}; }` : '' );
+	}
+	if ( attributes.showReadMore ) {
+		normalcss.push(
+		( attributes.buttonBGGradient || attributes.buttonBackground || attributes.buttonColor || convertedStyle.button )
+			? `.wpmozo-bna-button-wrap .wpmozo-bna-button{
+					${attributes.buttonBGGradient ? `background:${attributes.buttonBGGradient};` : ''}
+					${attributes.buttonBackground ? `background:${attributes.buttonBackground};` : ''}
+					${attributes.buttonColor ? `color:${attributes.buttonColor};` : ''}
+					${convertedStyle.button || ''}
+				}`
+			: ''
+		);
+		hovercss.push(
+		( attributes.buttonHoverBGGradient || attributes.buttonHoverBackground || attributes.buttonHoverColor || convertedStyle.buttonHover )
+			? `.wpmozo-bna-button-wrap .wpmozo-bna-button:hover${isEditor('.wpmozo-bna-button-wrap .wpmozo-bna-button')}{
+					${attributes.buttonHoverBGGradient ? `background:${attributes.buttonHoverBGGradient};` : ''}
+					${attributes.buttonHoverBackground ? `background:${attributes.buttonHoverBackground};` : ''}
+					${attributes.buttonHoverColor ? `color:${attributes.buttonHoverColor};` : ''}
+					${convertedStyle.buttonHover || ''}
+				}`
+			: ''
+		);
+	}
+
+	normalcss.push(
+	( attributes.postBGGradient || attributes.postBackground || convertedStyle.post )
+		? `.wpmozo_bna_blog_timeline_content_wrapper{
+				${attributes.postBGGradient ? `background:${attributes.postBGGradient};` : ''}
+				${attributes.postBackground ? `background:${attributes.postBackground};` : ''}
+				${convertedStyle.post || ''}
+			}`
+		: ''
+	);
+
+	normalcss.push(
+	( attributes.titleAlign || attributes.titleColor || convertedStyle.title )
+		? `.wpmozo_bna_blog_timeline_post_title, .wpmozo_bna_blog_timeline_post_title a{
+				${attributes.titleAlign ? `text-align:${attributes.titleAlign};` : ''}
+				${attributes.titleColor ? `color:${attributes.titleColor};` : ''}
+				${convertedStyle.title || ''}
+			}`
+		: ''
+	);
+	hovercss.push(
+	( attributes.titleHoverColor || convertedStyle.titleHover )
+		? `.wpmozo_bna_blog_timeline_post_title:hover a${isEditor('.wpmozo_bna_blog_timeline_post_title a')}{
+				${attributes.titleHoverColor ? `color:${attributes.titleHoverColor};` : ''}
+				${convertedStyle.titleHover || ''}
+			}`
+		: ''
+	);
+
+	normalcss.push(
+	( attributes.showExcerpt && (attributes.excerptAlign || attributes.excerptColor || convertedStyle.excerpt) )
+		? `.wpmozo_bna_blog_timeline_post_content_inner, .wpmozo_bna_blog_timeline_post_content_inner p{
+				${attributes.excerptAlign ? `text-align:${attributes.excerptAlign};` : ''}
+				${attributes.excerptColor ? `color:${attributes.excerptColor};` : ''}
+				${convertedStyle.excerpt || ''}
+			}`
+		: ''
+	);
+
+	normalcss.push(
+	( attributes.showDate && (attributes.dateColor || convertedStyle.date) )
+		? `.wpmozo_bna_blog_timeline_meta_date .published{
+				${attributes.dateColor ? `color:${attributes.dateColor};` : ''}
+				${convertedStyle.date || ''}
+			}`
+		: ''
+	);
+
+	if ( attributes.showCategories || attributes.showAuthor || attributes.showComments ) {
+		normalcss.push(
+		( attributes.metaColor || convertedStyle.meta )
+			? `.wpmozo_bna_blog_timeline_meta, .wpmozo_bna_blog_timeline_meta a,
+			.wpmozo_bna_blog_timeline_meta_icon, .wpmozo_bna_blog_timeline_meta span, .wpmozo_bna_blog_timeline_meta p{
+					${attributes.metaColor ? `color:${attributes.metaColor};` : ''}
+					${convertedStyle.meta || ''}
+				}`
+			: ''
+		);
+	}
+
+	cssExtras.push(
+		( attributes.ID && 'alternate' === attributes.orientation && iconWidth ) 
+		? `@media only screen and (max-width: 767px) {
+				#block-${attributes.ID} {
+					.wpmozo_bna_blog_timeline_alternate .wpmozo_bna_stem_wrapper{
+						left:${iconWidth / 2}px;
+					}
+				}
+			}`
+		: ''
+	);
+    const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);
+	
+	let styles = hasStyles ? `#block-${attributes.ID}{${normalcss.filter(Boolean).join('\n')} ${hovercss.filter(Boolean).join('\n')}}` : '';
+	
+	styles += cssExtras.some(Boolean) ? cssExtras.filter(Boolean).join('\n') : '';
+	styles = styles.replace(/\s+/g, ' ')
+    .replace(/\s*{\s*/g, '{')
+    .replace(/\s*}\s*/g, '}')
+    .replace(/\s*:\s*/g, ':')
+    .replace(/\s*;\s*/g, ';')
+    .replace(/\s*,\s*/g, ',')    
+    .trim();
 
 	return styles;
 }

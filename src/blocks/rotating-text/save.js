@@ -40,7 +40,7 @@ export default function save({attributes}) {
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 		) }
 		<div {...blockProps} id={`block-${ ID }`}>
-			<div className="wpmozo-bna-rotating-text-wrap">
+			<div className="wpmozo-bna-rotating-text-wrap" data-pause={attributes?.pauseOnHover ? '1': '0'}>
 				<div className="wpmozo-bna-rotating-text-inner">
 					<p>{text}</p>
 				</div>

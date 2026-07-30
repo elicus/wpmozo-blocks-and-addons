@@ -183,10 +183,10 @@
 .wpmozo-bna-logo-slider-main .wpmozo-swiper-navigation svg.wpmozo-swiper-layout-icon-next {
     box-sizing: content-box;
 }
-.wpmozo-bna-logo-slider-main .wpmozo-swiper-navigation .wpmozo-swiper-layout-icon-next,
-.wpmozo-bna-logo-slider-main .wpmozo-swiper-navigation .wpmozo-swiper-layout-icon-prev,
-.wpmozo-bna-logo-slider-main .wpmozo-swiper-wrapper .swiper-button-next,
-.wpmozo-bna-logo-slider-main .wpmozo-swiper-wrapper .swiper-button-prev {
+.wpmozo-bna-logo-slider-main .wpmozo-bna-logo-slider-navigation .wpmozo-swiper-layout-icon-next,
+.wpmozo-bna-logo-slider-main .wpmozo-bna-logo-slider-navigation .wpmozo-swiper-layout-icon-prev,
+.wpmozo-bna-logo-slider-main .wpmozo-bna-logo-slider-wrap .swiper-button-next,
+.wpmozo-bna-logo-slider-main .wpmozo-bna-logo-slider-wrap .swiper-button-prev {
     background-image: none;
     height: auto;
     width: auto;
@@ -221,19 +221,19 @@
     height: auto;
     overflow: hidden;
 }
-.wpmozo-bna-logo-slider-main .wpmozo-swiper-navigation,
+.wpmozo-bna-logo-slider-main .wpmozo-bna-logo-slider-navigation,
 .wpmozo-bna-logo-slider-main .layout2 .wpmozo-ae-team-member-card {
     display: flex;
     flex-wrap: wrap;
 }
-.wpmozo-bna-logo-slider-main .wpmozo-swiper-navigation .swiper-button-next,
-.wpmozo-bna-logo-slider-main .wpmozo-swiper-navigation .swiper-button-prev {
+.wpmozo-bna-logo-slider-main .wpmozo-bna-logo-slider-navigation .swiper-button-next,
+.wpmozo-bna-logo-slider-main .wpmozo-bna-logo-slider-navigation .swiper-button-prev {
     border: 0 solid #333;
+    margin-top: 0;
+    transform: translateY(-50%);
 }
-.wpmozo-bna-logo-slider-main .wpmozo-swiper-navigation .swiper-button-next:after,
-.wpmozo-bna-logo-slider-main .wpmozo-swiper-navigation .swiper-button-prev:after,
-.wpmozo-bna-logo-slider-main .wpmozo-swiper-wrapper .swiper-container .swiper-button-next,
-.wpmozo-bna-logo-slider-main .wpmozo-swiper-wrapper .swiper-container .swiper-button-prev {
+.wpmozo-bna-logo-slider-main .wpmozo-bna-logo-slider-wrap .swiper-container .swiper-button-next,
+.wpmozo-bna-logo-slider-main .wpmozo-bna-logo-slider-wrap .swiper-container .swiper-button-prev {
     display: none;
 }
 .wpmozo-bna-logo-slider-main .wpmozo-bna-arrows-outside .swiper-button-next {
@@ -330,7 +330,7 @@
     -moz-transform: none;
     transform: none;
 }
-.wpmozo-bna-logo-slider-main .wpmozo-swiper-navigation {
+.wpmozo-bna-logo-slider-main .wpmozo-bna-logo-slider-navigation {
     display: flex;
     flex-wrap: wrap;
 }
@@ -339,8 +339,4 @@
     border-width: 0;
     border-style: solid;
     border-color: #333;
-}
-.wpmozo-bna-logo-slider-main .wpmozo-swiper-navigation .swiper-button-next:after,
-.wpmozo-bna-logo-slider-main .wpmozo-swiper-navigation .swiper-button-prev:after {
-    display: none;
 }

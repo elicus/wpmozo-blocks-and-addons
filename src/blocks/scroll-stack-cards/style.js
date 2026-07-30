@@ -89,8 +89,7 @@ const generateDynamicStyle = ({ attributes, isEdit }) => {
 
 	//Card Item style
 	normalcss.push(convertedStyle.cardItem ? `.wp-block-wpmozo-scroll-stack-cards-item{${convertedStyle.cardItem}}`: '');
-	
-	normalcss.push('horizontal' === attributes.layout && attributes.cardItemWidth ? `.wpmozo-bna-scroll-stack-cards-item-inner { width: ${attributes.cardItemWidth}px; `: '');
+	normalcss.push('horizontal' === attributes.layout && attributes.cardItemWidth ? `.wpmozo-bna-scroll-stack-cards-item-inner { width: ${attributes.cardItemWidth}; `: '');
 
 	normalcss.push(
 		( attributes.buttonTextColor || attributes.buttonBackgroundColor || convertedStyle.button )
