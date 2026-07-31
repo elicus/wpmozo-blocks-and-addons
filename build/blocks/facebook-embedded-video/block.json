@@ -55,7 +55,13 @@
     "videoborder": {
       "type": "object"
     },
-    "videoborderRadius": {
+    "videobborderRadius": {
+      "type": "string"
+    },
+    "videoHoverborder": {
+      "type": "object"
+    },
+    "videoHoverborderRadius": {
       "type": "string"
     }
   },

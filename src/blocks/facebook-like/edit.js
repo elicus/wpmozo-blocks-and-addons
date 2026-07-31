@@ -68,7 +68,7 @@ const Edit = ( props ) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, isEdit: true } ) }</style>
 
 			<div {...blockProps} id={`block-${attributes.ID}`}>
 				{ ( fbAppId && '' !== fbAppId ) && (

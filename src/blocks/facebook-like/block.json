@@ -22,8 +22,18 @@
 
 		"buttonLayout": { "type": "string", "default": "button" },
 		"buttonSize": { "type": "string", "default": "small" },
-		"buttonAlign": { "type": "string" }
+		"buttonAlign": { "type": "string" },
+
+		"blockBackground": { "type": "string" },
+		"blockBGGradient": { "type": "string" },
+		"blockHoverBackground": { "type": "string" },
+		"blockHoverBGGradient": { "type": "string" },
+		"blockborder": { "type": "object" },
+		"blockborderRadius": { "type": "string" },
+		"blockHoverborder": { "type": "object" },
+		"blockHoverborderRadius": { "type": "string" }
 	},
+
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
 	"style": "file:./style-index.css",

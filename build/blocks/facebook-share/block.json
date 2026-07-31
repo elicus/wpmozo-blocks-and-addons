@@ -40,6 +40,30 @@
     },
     "buttonAlign": {
       "type": "string"
+    },
+    "blockBackground": {
+      "type": "string"
+    },
+    "blockBGGradient": {
+      "type": "string"
+    },
+    "blockHoverBackground": {
+      "type": "string"
+    },
+    "blockHoverBGGradient": {
+      "type": "string"
+    },
+    "blockborder": {
+      "type": "object"
+    },
+    "blockborderRadius": {
+      "type": "string"
+    },
+    "blockHoverborder": {
+      "type": "object"
+    },
+    "blockHoverborderRadius": {
+      "type": "string"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",

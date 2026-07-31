@@ -44,6 +44,12 @@
     "blockBGGradient": {
       "type": "string"
     },
+    "blockHoverBackground": {
+      "type": "string"
+    },
+    "blockHoverBGGradient": {
+      "type": "string"
+    },
     "blockpadding": {
       "type": "object"
     },
@@ -54,6 +60,12 @@
       "type": "object"
     },
     "blockborderRadius": {
+      "type": "string"
+    },
+    "blockHoverborder": {
+      "type": "object"
+    },
+    "blockHoverborderRadius": {
       "type": "string"
     }
   },

@@ -37,6 +37,46 @@
     "headingBackground": {
       "type": "string"
     },
+    "headingHoverColor": {
+      "type": "string"
+    },
+    "headingHoverBackground": {
+      "type": "string"
+    },
+    "headingHoverFontSize": {
+      "type": "string"
+    },
+    "headingHoverFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "headingHoverFontStyle": {
+      "type": "string"
+    },
+    "headingHoverFontWeight": {
+      "type": "string"
+    },
+    "headingHoverLetterSpacing": {
+      "type": "string"
+    },
+    "headingHoverDecoration": {
+      "type": "string"
+    },
+    "headingHoverLetterCase": {
+      "type": "string"
+    },
+    "headingHoverLineHeight": {
+      "type": "string"
+    },
     "preHeading": {
       "type": "string",
       "default": "Pre"
@@ -79,6 +119,12 @@
         "fontWeight": ""
       }
     },
+    "preTextFontStyle": {
+      "type": "string"
+    },
+    "preTextFontWeight": {
+      "type": "string"
+    },
     "preTextLetterSpacing": {
       "type": "string"
     },
@@ -89,6 +135,40 @@
       "type": "string"
     },
     "preTextLineHeight": {
+      "type": "string"
+    },
+    "preTextHoverFontSize": {
+      "type": "string"
+    },
+    "preTextHoverFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "preTextHoverFontStyle": {
+      "type": "string"
+    },
+    "preTextHoverFontWeight": {
+      "type": "string"
+    },
+    "preTextHoverLetterSpacing": {
+      "type": "string"
+    },
+    "preTextHoverDecoration": {
+      "type": "string"
+    },
+    "preTextHoverLetterCase": {
+      "type": "string"
+    },
+    "preTextHoverLineHeight": {
       "type": "string"
     },
     "mainHeading": {
@@ -133,6 +213,12 @@
         "fontWeight": ""
       }
     },
+    "mainTextFontStyle": {
+      "type": "string"
+    },
+    "mainTextFontWeight": {
+      "type": "string"
+    },
     "mainTextLetterSpacing": {
       "type": "string"
     },
@@ -143,6 +229,40 @@
       "type": "string"
     },
     "mainTextLineHeight": {
+      "type": "string"
+    },
+    "mainTextHoverFontSize": {
+      "type": "string"
+    },
+    "mainTextHoverFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "mainTextHoverFontStyle": {
+      "type": "string"
+    },
+    "mainTextHoverFontWeight": {
+      "type": "string"
+    },
+    "mainTextHoverLetterSpacing": {
+      "type": "string"
+    },
+    "mainTextHoverDecoration": {
+      "type": "string"
+    },
+    "mainTextHoverLetterCase": {
+      "type": "string"
+    },
+    "mainTextHoverLineHeight": {
       "type": "string"
     },
     "postHeading": {
@@ -187,6 +307,12 @@
         "fontWeight": ""
       }
     },
+    "postTextFontStyle": {
+      "type": "string"
+    },
+    "postTextFontWeight": {
+      "type": "string"
+    },
     "postTextLetterSpacing": {
       "type": "string"
     },
@@ -197,6 +323,40 @@
       "type": "string"
     },
     "postTextLineHeight": {
+      "type": "string"
+    },
+    "postTextHoverFontSize": {
+      "type": "string"
+    },
+    "postTextHoverFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "postTextHoverFontStyle": {
+      "type": "string"
+    },
+    "postTextHoverFontWeight": {
+      "type": "string"
+    },
+    "postTextHoverLetterSpacing": {
+      "type": "string"
+    },
+    "postTextHoverDecoration": {
+      "type": "string"
+    },
+    "postTextHoverLetterCase": {
+      "type": "string"
+    },
+    "postTextHoverLineHeight": {
       "type": "string"
     }
   },

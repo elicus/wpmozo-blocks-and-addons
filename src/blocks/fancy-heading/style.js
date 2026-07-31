@@ -2,11 +2,16 @@ import { convertInlineStyleStr } from '../../common/utils.js';
 
 const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 	const toConvertStyles = [
+		'heading',
+		'headingHover',
 		'preText',
+		'preTextHover',
 		'preTextDimensions',
 		'mainText',
+		'mainTextHover',
 		'mainTextDimensions',
 		'postText',
+		'postTextHover',
 		'postTextDimensions',
 	];
 	const convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
@@ -22,16 +27,21 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 		preTextAlignment  = alignMap[ attributes.preTextAlignment ] || '',
 		mainTextAlignment = alignMap[ attributes.mainTextAlignment ] || '',
 		postTextAlignment = alignMap[ attributes.postTextAlignment ] || '',
+		headingAddi       = convertedStyle.heading || '',
+		headingHoverAddi  = convertedStyle.headingHover || '',
 		preTextAddi       = convertedStyle.preText + convertedStyle.preTextDimensions,
+		preTextHoverAddi  = convertedStyle.preTextHover || '',
 		mainTextAddi      = convertedStyle.mainText + convertedStyle.mainTextDimensions,
-		postTextAddi      = convertedStyle.postText + convertedStyle.postTextDimensions;
+		mainTextHoverAddi = convertedStyle.mainTextHover || '',
+		postTextAddi      = convertedStyle.postText + convertedStyle.postTextDimensions,
+		postTextHoverAddi = convertedStyle.postTextHover || '';
 
 	let normalcss = [],
 	    hovercss  = [],
 	    cssExtras = [];
 	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
 
-
+	// 1. Global Heading Normal CSS (Base Fallback)
     normalcss.push(
 		`.wpmozo-bna-fancy-heading-inner{
 			display: flex;
@@ -47,17 +57,28 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 			${ ( attributes.displayInStack && attributes.headingAlignment ) ? `align-items: ${headingAlignment};` : ''}
 		} .wpmozo-bna-fancy-heading-inner span {
 			display: inline-block;
+			transition: all 300ms ease;
 			${attributes.headingColor ? `color: ${attributes.headingColor};` : ''}
 			${attributes.headingBackground ? `background: ${attributes.headingBackground};` : ''}
-			
-		}.wpmozo-bna-fancy-heading-inner span {
-			display: inline-block;
-			${attributes.headingColor ? `color: ${attributes.headingColor};` : ''}
-			${attributes.headingBackground ? `background: ${attributes.headingBackground};` : ''}
-			
-		}
-		span.wpmozo-bna-pre-text {
-            transition: all 300ms;
+			${headingAddi}
+		}`
+	);
+
+	// 2. Global Heading Hover CSS
+	hovercss.push(
+		(attributes.headingHoverColor || attributes.headingHoverBackground || headingHoverAddi) 
+		? `.wpmozo-bna-fancy-heading-inner span:hover${isEditor('.wpmozo-bna-fancy-heading-inner span')}{
+				${attributes.headingHoverColor ? `color: ${attributes.headingHoverColor};` : ''}
+				${attributes.headingHoverBackground ? `background: ${attributes.headingHoverBackground};` : ''}
+				${headingHoverAddi}
+			}`
+		: ''
+	);
+
+	// 3. Pre Text Normal & Hover CSS
+	normalcss.push(
+		`span.wpmozo-bna-pre-text {
+            transition: all 300ms ease;
 			${ attributes.preTextColor ? `color: ${attributes.preTextColor};` : ''}
 			${ attributes.preTextBackground ? `background: ${attributes.preTextBackground};` : ''}
             ${ ( attributes.displayInStack && attributes.preTextAlignment ) ? `align-self: ${preTextAlignment};`: ''}
@@ -66,52 +87,56 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 		}`
 	);
 	hovercss.push(
-		(attributes.preTextHoverColor || attributes.preTextHoverBackground) 
+		(attributes.preTextHoverColor || attributes.preTextHoverBackground || preTextHoverAddi) 
 		? `span.wpmozo-bna-pre-text:hover${isEditor('span.wpmozo-bna-pre-text')}{
-				${attributes.preTextHoverColor ? `color:`+ attributes.preTextHoverColor + `;` : ''}
-				${attributes.preTextHoverBackground ? `background:`+ attributes.preTextHoverBackground + `;` : ''}
+				${attributes.preTextHoverColor ? `color: ${attributes.preTextHoverColor};` : ''}
+				${attributes.preTextHoverBackground ? `background: ${attributes.preTextHoverBackground};` : ''}
+				${preTextHoverAddi}
 			}`
 		: ''
 	);
 
+	// 4. Main Text Normal & Hover CSS
 	normalcss.push(
 		`span.wpmozo-bna-main-text {
-    		transition: all 300ms;
+    		transition: all 300ms ease;
 			${ attributes.mainTextColor ? `color: ${attributes.mainTextColor};` : ''}
 			${ attributes.mainTextBackground ? `background: ${attributes.mainTextBackground};` : ''}
 			${ ( attributes.displayInStack && attributes.mainTextAlignment ) ? `align-self: ${mainTextAlignment};`: ''}
-    		${attributes.mainTextAlignment ? `text-align: ${attributes.mainTextAlignment};` : ''}\
+    		${attributes.mainTextAlignment ? `text-align: ${attributes.mainTextAlignment};` : ''}
 			${mainTextAddi || ''}
 		}`
 	);
 	hovercss.push(
-		(attributes.mainTextHoverColor || attributes.mainTextHoverBackground) 
+		(attributes.mainTextHoverColor || attributes.mainTextHoverBackground || mainTextHoverAddi) 
 		? `span.wpmozo-bna-main-text:hover${isEditor('span.wpmozo-bna-main-text')}{
-				${attributes.mainTextHoverColor ? `color:`+ attributes.mainTextHoverColor + `;` : ''}
-				${attributes.mainTextHoverBackground ? `background:`+ attributes.mainTextHoverBackground + `;` : ''}
+				${attributes.mainTextHoverColor ? `color: ${attributes.mainTextHoverColor};` : ''}
+				${attributes.mainTextHoverBackground ? `background: ${attributes.mainTextHoverBackground};` : ''}
+				${mainTextHoverAddi}
 			}`
 		: ''
 	);
 
+	// 5. Post Text Normal & Hover CSS
 	normalcss.push(
 		`span.wpmozo-bna-post-text {
-    		transition: all 300ms;
+    		transition: all 300ms ease;
 			${ attributes.postTextColor ? `color: ${attributes.postTextColor};` : ''}
 			${ attributes.postTextBackground ? `background: ${attributes.postTextBackground};` : ''}
 			${ ( attributes.displayInStack && attributes.postTextAlignment ) ? `align-self: ${postTextAlignment};`: ''}
-    		${attributes.postTextAlignment ? `text-align: ${attributes.postTextAlignment};` : ''}\
+    		${attributes.postTextAlignment ? `text-align: ${attributes.postTextAlignment};` : ''}
 			${postTextAddi || ''}
 		}`
 	);
 	hovercss.push(
-		(attributes.postTextHoverColor || attributes.postTextHoverBackground) 
+		(attributes.postTextHoverColor || attributes.postTextHoverBackground || postTextHoverAddi) 
 		? `span.wpmozo-bna-post-text:hover${isEditor('span.wpmozo-bna-post-text')}{
-				${attributes.postTextHoverColor ? `color:`+ attributes.postTextHoverColor + `;` : ''}
-				${attributes.postTextHoverBackground ? `background:`+ attributes.postTextHoverBackground + `;` : ''}
+				${attributes.postTextHoverColor ? `color: ${attributes.postTextHoverColor};` : ''}
+				${attributes.postTextHoverBackground ? `background: ${attributes.postTextHoverBackground};` : ''}
+				${postTextHoverAddi}
 			}`
 		: ''
 	);
-
 
 	const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);
 	
