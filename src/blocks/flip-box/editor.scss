@@ -10,29 +10,3 @@
  .wpmozo-bna-flip-box-edit-control{
     margin-bottom: 0px !important;
  }
- .wpmozo-bna-flip-box-wrap.edit-front .wpmozo-bna-flip-box-back{
-    visibility: hidden;
- }
- .wpmozo-bna-flip-box-wrap.edit-front .wpmozo-bna-flip-box-front{
-    -webkit-transform: none !important;
-    -moz-transform: none !important;
-    -ms-transform: none !important;
-    transform: none !important;
-    transition: none !important;
- }
- .wpmozo-bna-flip-box-wrap.edit-back .wpmozo-bna-flip-box-front{
-    visibility: hidden;
- }
- .wpmozo-bna-flip-box-wrap.edit-back .wpmozo-bna-flip-box-back{
-    -webkit-transform: none !important;
-    -moz-transform: none !important;
-    -ms-transform: none !important;
-    transform: none !important;
-    transition: none !important;
- }
- .is-selected.wpmozo-bna-flip-box-main .wpmozo-bna-flip-box-wrap{
-    -webkit-transform: none !important;
-    -moz-transform: none !important;
-    -ms-transform: none !important;
-    transform: none !important;
- }

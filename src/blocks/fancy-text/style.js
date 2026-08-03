@@ -3,6 +3,7 @@ import {convertInlineStyleStr, wpmozo_is_empty} from '../../common/utils.js';
 const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 	const toConvertStyles = [
 		'text',
+		'textHover',
 		'textBgDimensions'
 	];
 	let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
@@ -14,22 +15,29 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 	    cssExtras = [];
 	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
 
-
-    normalcss.push(
-		(attributes.textAlignment || convertedStyle.text)
-        ? `.wpmozo-bna-fancy-text-inner{
-				${attributes.textAlignment ? `text-align:${attributes.textAlignment};}` : ''}
-				${convertedStyle.text || ''} 
-			}`
-		: ''
+	normalcss.push(
+		`.wpmozo-bna-fancy-text-inner {
+			transition: all 300ms ease;
+			${attributes.textAlignment ? `text-align: ${attributes.textAlignment};` : ''}
+			${convertedStyle.text || ''}
+		}`
 	);
 
 	if ( 'gradient' === attributes.textStyle ) {
-		 normalcss.push(
+		normalcss.push(
 			`.wpmozo-bna-fancy-text-inner {
 				background-color: transparent;
 				${attributes.fancyTextBackground ? `background-image: ${attributes.fancyTextBackground};` : ''}
 			}`
+		);
+
+		hovercss.push(
+			(attributes.fancyTextHoverBackground || convertedStyle.textHover)
+			? `.wpmozo-bna-fancy-text-inner:hover${isEditor('.wpmozo-bna-fancy-text-inner')} {
+					${attributes.fancyTextHoverBackground ? `background-image: ${attributes.fancyTextHoverBackground};` : ''}
+					${convertedStyle.textHover || ''}
+				}`
+			: ''
 		);
 	} else {
 		let escURL = encodeURI( attributes.fancyTextBackgroundImg );
@@ -42,6 +50,14 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 				${attributes.textBgPosition ? `background-position: ${attributes.textBgPosition};` : ''}
 				${attributes.textBgRepeat ? `background-repeat: ${attributes.textBgRepeat};` : ''}
 			}`
+			: ''
+		);
+
+		hovercss.push(
+			(convertedStyle.textHover)
+			? `.wpmozo-bna-fancy-text-inner:hover${isEditor('.wpmozo-bna-fancy-text-inner')} {
+					${convertedStyle.textHover || ''}
+				}`
 			: ''
 		);
 
@@ -70,12 +86,23 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 					bottom: 0;
 					left: 0;
 					z-index: -1;
+					transition: all 300ms ease;
 					${(attributes.textBgOverlayColorSolid) ? `background-color: ${attributes.textBgOverlayColorSolid};` : ''}
 					${(!attributes.textBgOverlayColorSolid) ? `background: ${attributes.textBgOverlayColorGradient};` : ''}
 				}`
 			);
+
+			hovercss.push(
+				(attributes.textBgOverlayHoverColorSolid || attributes.textBgOverlayHoverColorGradient)
+				? `.wpmozo-bna-fancy-text-inner:hover:after${isEditor('.wpmozo-bna-fancy-text-inner:after')} {
+						${(attributes.textBgOverlayHoverColorSolid) ? `background-color: ${attributes.textBgOverlayHoverColorSolid};` : ''}
+						${(!attributes.textBgOverlayHoverColorSolid && attributes.textBgOverlayHoverColorGradient) ? `background: ${attributes.textBgOverlayHoverColorGradient};` : ''}
+					}`
+				: ''
+			);
 		}
 	}
+
 	cssExtras.push(
 		`${parent} {
 			z-index: 0;
@@ -103,7 +130,6 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
     .replace(/\s*;\s*/g, ';')
     .replace(/\s*,\s*/g, ',')    
     .trim();
-
 	return styles;
 };
 

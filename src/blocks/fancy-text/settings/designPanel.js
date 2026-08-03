@@ -12,7 +12,8 @@ import {
 	WpmozoDimensions,
 	WpmozoAlignment,
 	WpmozoColorPicker,
-	WpmozoTypography
+	WpmozoTypography,
+	MozoStates,
 } from '../../../common/components/index';
 import { useState } from '@wordpress/element';
 
@@ -30,13 +31,24 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={() => handleToggle('panel1')}
 		>
 			{ 'gradient' === attributes.textStyle && (
-				<WpmozoColorPicker props={props}
-					ColorKey="fancyText"
-					ColorTypes={ [ {
-						key: 'Background',
-						label: __( 'Background', 'wpmozo-blocks-and-addons' ),
-						onlyGradient: true,
-					} ] }
+				<MozoStates
+					value={hoverState}
+					title={ __( 'Background Gradient', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( isHover ) => (
+							isHover ? setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)
+					}
+					control={ ( isHover ) => (
+						<WpmozoColorPicker props={props}
+							ColorKey={ isHover ? "fancyTextHover" : "fancyText" }
+							ColorTypes={ [ {
+								key: 'Background',
+								label: isHover ? __( 'Hover Background Gradient', 'wpmozo-blocks-and-addons' ) : __( 'Background', 'wpmozo-blocks-and-addons' ),
+								onlyGradient: true,
+							} ] }
+						/>
+					) }
 				/>
 			) }
 			{ 'clipping' === attributes.textStyle && ( <>
@@ -113,13 +125,24 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 					onChange={ ( newValue ) => setAttributes( { textBgOverlay: newValue } ) }
 				/>
 				{ 'none' !== attributes.textBgOverlay && ( <>
-					<WpmozoColorPicker props={props}
-						ColorKey="textBgOverlay"
-						ColorTypes={ [ {
-							key: 'Color',
-							label: __( 'Clip Background Color', 'wpmozo-blocks-and-addons' ),
-							withGradient: true,
-						} ] }
+					<MozoStates
+						value={hoverState}
+						title={ __( 'Clip Background Overlay', 'wpmozo-blocks-and-addons' ) }
+						onChange={ ( isHover ) => (
+								isHover ? setHoverState(true) : setHoverState(false),
+								setAttributes({wrapIsHover: !hoverState})
+							)
+						}
+						control={ ( isHover ) => (
+							<WpmozoColorPicker props={props}
+								ColorKey={ isHover ? "textBgOverlayHover" : "textBgOverlay" }
+								ColorTypes={ [ {
+									key: 'Color',
+									label: isHover ? __( 'Clip Hover Background Color', 'wpmozo-blocks-and-addons' ) : __( 'Clip Background Color', 'wpmozo-blocks-and-addons' ),
+									withGradient: true,
+								} ] }
+							/>
+						) }
 					/>
 					<WpmozoDimensions props={props}
 						DimensionKey='textBgDimensions'
@@ -136,16 +159,28 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 		<PanelBody title={ __( 'Fancy Text Typography', 'wpmozo-blocks-and-addons' ) }
 			className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={() => handleToggle('panel2')}
 		>
-			<WpmozoTypography props={props}
-				TypographyKey="text"
-				TypoTypes={ {
-					'FontSize': true,
-					'FontAppearance': true,
-					'LetterSpacing': true,
-					'LetterCase': true,
-					'LineHeight': true,
-				} }
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Fancy Text Typography', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoTypography props={props}
+						TypographyKey={ isHover ? "textHover" : "text" }
+						TypoTypes={ {
+							'FontSize': true,
+							'FontAppearance': true,
+							'LetterSpacing': true,
+							'LetterCase': true,
+							'LineHeight': true,
+						} }
+					/>
+				) }
 			/>
 		</PanelBody>
 	</> );
 };
+

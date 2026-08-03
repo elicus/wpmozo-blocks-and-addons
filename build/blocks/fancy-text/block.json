@@ -83,6 +83,12 @@
         "fontWeight": ""
       }
     },
+    "textFontStyle": {
+      "type": "string"
+    },
+    "textFontWeight": {
+      "type": "string"
+    },
     "textLetterSpacing": {
       "type": "string"
     },
@@ -93,6 +99,52 @@
       "type": "string"
     },
     "textLineHeight": {
+      "type": "string"
+    },
+    "fancyTextHoverBackground": {
+      "type": "string"
+    },
+    "textBgOverlayHoverColor": {
+      "type": "string"
+    },
+    "textBgOverlayHoverColorSolid": {
+      "type": "string"
+    },
+    "textBgOverlayHoverColorGradient": {
+      "type": "string"
+    },
+    "textHoverFontSize": {
+      "type": "string"
+    },
+    "textHoverFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "textHoverFontStyle": {
+      "type": "string"
+    },
+    "textHoverFontWeight": {
+      "type": "string"
+    },
+    "textHoverLetterSpacing": {
+      "type": "string"
+    },
+    "textHoverDecoration": {
+      "type": "string"
+    },
+    "textHoverLetterCase": {
+      "type": "string"
+    },
+    "textHoverLineHeight": {
       "type": "string"
     }
   },

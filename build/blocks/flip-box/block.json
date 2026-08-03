@@ -549,6 +549,126 @@
     },
     "backBtnDimensionsmargin": {
       "type": "object"
+    },
+    "backBtnHoverColor": {
+      "type": "string"
+    },
+    "backBtnHoverBackground": {
+      "type": "string"
+    },
+    "backBtnHoverborder": {
+      "type": "object"
+    },
+    "backBtnHoverborderRadius": {
+      "type": "string"
+    },
+    "frontFlipboxHoverBackground": {
+      "type": "string"
+    },
+    "backFlipboxHoverBackground": {
+      "type": "string"
+    },
+    "frontIconHoverColor": {
+      "type": "string"
+    },
+    "frontIconShapeHoverBackground": {
+      "type": "string"
+    },
+    "backIconHoverColor": {
+      "type": "string"
+    },
+    "backIconShapeHoverBackground": {
+      "type": "string"
+    },
+    "frontTitleHoverFontSize": {
+      "type": "string"
+    },
+    "frontTitleHoverFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "frontTitleHoverLetterSpacing": {
+      "type": "string"
+    },
+    "frontTitleHoverDecoration": {
+      "type": "string"
+    },
+    "frontTitleHoverLetterCase": {
+      "type": "string"
+    },
+    "frontTitleHoverLineHeight": {
+      "type": "string"
+    },
+    "backTitleHoverFontSize": {
+      "type": "string"
+    },
+    "backTitleHoverFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "backTitleHoverLetterSpacing": {
+      "type": "string"
+    },
+    "backTitleHoverDecoration": {
+      "type": "string"
+    },
+    "backTitleHoverLetterCase": {
+      "type": "string"
+    },
+    "backTitleHoverLineHeight": {
+      "type": "string"
+    },
+    "backTitleHoverColor": {
+      "type": "string"
+    },
+    "backContentHoverColor": {
+      "type": "string"
+    },
+    "backContentHoverFontSize": {
+      "type": "string"
+    },
+    "backContentHoverFontAppearance": {
+      "type": "object",
+      "fontStyle": {
+        "type": "string"
+      },
+      "fontWeight": {
+        "type": "string"
+      },
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "backContentHoverLetterSpacing": {
+      "type": "string"
+    },
+    "backContentHoverDecoration": {
+      "type": "string"
+    },
+    "backContentHoverLetterCase": {
+      "type": "string"
+    },
+    "backContentHoverLineHeight": {
+      "type": "string"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",
