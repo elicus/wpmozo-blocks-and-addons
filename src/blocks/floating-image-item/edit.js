@@ -54,7 +54,7 @@ const WPMozoEditorObj = wpmozo_bna_editor_object;
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
-                { generateDynamicStyle({ attributes, clientId }) }
+                { generateDynamicStyle({ attributes, clientId, isEdit: true }) }
             </style>
             <div {...blockProps}>
                 { attributes.image &&

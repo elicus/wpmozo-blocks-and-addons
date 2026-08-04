@@ -68,6 +68,16 @@
     },
     "imageborder": {
       "type": "object"
+    },
+    "imageHoverborder": {
+      "type": "object"
+    },
+    "imageHoverborderRadius": {
+      "type": "string"
+    },
+    "wrapIsHover": {
+      "type": "boolean",
+      "default": false
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",

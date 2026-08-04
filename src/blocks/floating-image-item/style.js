@@ -1,10 +1,11 @@
 import {convertInlineStyleStr, wpmozo_is_empty} from '../../common/utils.js';
 
-const generateDynamicStyle = ({ attributes, clientId }) => {
+const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	
 	const parent = '#block-'+clientId,
 	toConvertStyles = [
-    	'image'
+    	'image',
+    	'imageHover'
     ];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
@@ -32,6 +33,14 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 				${ (attributes.imageheight) ? `height:${ attributes.imageheight};` : '' } 
 				${convertedStyle.image || ''} 
 			}`
+		: ''
+	);
+
+	hovercss.push(
+		(attributes.imageborderHover || convertedStyle.imageHover)
+		? `.floating-image:hover${isEditor('.floating-image')} {
+			${convertedStyle.imageHover || ''}
+		}`
 		: ''
 	);
 	

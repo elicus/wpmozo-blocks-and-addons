@@ -5,7 +5,7 @@ import {
 	SelectControl,
 	__experimentalUnitControl
 } from '@wordpress/components';
-import { WpmozoBorder, WpmozoSize } from '../../../common/components/index';
+import { WpmozoBorder, WpmozoSize, MozoStates } from '../../../common/components/index';
 import { useState } from "@wordpress/element";
 
 export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
@@ -138,9 +138,20 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Image Border', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
-			<WpmozoBorder
-				BorderKey="image"
-				props={props}
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Image Border', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoBorder props={ props }
+						label={ isHover ? __( 'Image Hover Border', 'wpmozo-blocks-and-addons' ) : __( 'Image Border', 'wpmozo-blocks-and-addons' ) }
+						BorderKey={ isHover ? "imageHover" : "image" }
+					/>
+				) }
 			/>
 		</PanelBody>
 	</> );
