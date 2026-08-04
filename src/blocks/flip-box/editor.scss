@@ -5,8 +5,11 @@
  */
 
  .wpmozo-bna-flip-box-wrap a{
-    pointer-events: none;
- }
- .wpmozo-bna-flip-box-edit-control{
-    margin-bottom: 0px !important;
- }
+   pointer-events: none;
+}
+.wpmozo-bna-flip-box-wrap a.wpmozo-bna-flip-box-button{
+   pointer-events: auto;
+}
+.wpmozo-bna-flip-box-edit-control{
+   margin-bottom: 0px !important;
+}
