@@ -111,7 +111,8 @@
 
 		"iconFontsize": { "type": "number", "default": 28 },
 		"iconColor": { "type": "string" },
-		"iconHoverColor": { "type": "string" }
+		"iconHoverColor": { "type": "string" },
+		"wrapIsHover": { "type": "boolean", "default": false }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

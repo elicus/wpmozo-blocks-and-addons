@@ -158,7 +158,8 @@
 			"default": { "fontStyle": "", "fontWeight": "" }
 		},
 		"buttonHoverFontStyle": { "type": "string" },
-		"buttonHoverFontWeight": { "type": "string" }
+		"buttonHoverFontWeight": { "type": "string" },
+		"wrapIsHover": { "type": "boolean", "default": false }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

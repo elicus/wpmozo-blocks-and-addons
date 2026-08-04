@@ -98,7 +98,7 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 			}`
 		: ''
 	);
-	hovercss.push( attributes.descriptionHoverColor  
+	hovercss.push( attributes.iconHoverColor  
 		? `:hover .wpmozo_bna_hover_list_icon${isEditor('.wpmozo_bna_hover_list_icon')}{
 				${ attributes.iconHoverColor ? `color:`+ attributes.iconHoverColor + `;` : '' }
 			}`
