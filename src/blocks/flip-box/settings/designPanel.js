@@ -42,6 +42,9 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			<WpmozoRangeSize props={props}
 				label={ __( 'Content Width', 'wpmozo-blocks-and-addons') }
 				rangeSizeKey='flipboxWidth'
+				min={0}
+				max={100}
+				step={1}
 			/>
 			<WpmozoColorPicker props={props}
 				ColorKey="global"
