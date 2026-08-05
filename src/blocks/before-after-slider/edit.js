@@ -93,7 +93,6 @@ export default function Edit(props) {
 			if ( main.find('.twentytwenty-wrapper').length > 0 ) {
 				wpmozo_before_init( main );
 			}
-			
 			if( main.find('.wpmozo-bna-before-after-image-wrapper').length > 0 ) {
 				jQuery('.wpmozo-bna-before-after-image-wrapper').imagesLoaded( function() {
 					main.find('.wpmozo-bna-before-after-image-wrapper').twentytwenty( {
@@ -101,11 +100,11 @@ export default function Edit(props) {
 						orientation: attributes.sliderOrientation,
 						before_label: beforeLabel,
 						after_label: afterLabel,
-						no_overlay: ! attributes.overlayOnHover,
 						move_slider_on_hover: attributes.moveHandleOnHover,
 						move_with_handle_only: true,
 						click_to_move: attributes.moveHandleOnClick,
 					} );
+					
 				} );
 			}
 		}
@@ -129,7 +128,6 @@ export default function Edit(props) {
 						orientation: attributes.sliderOrientation,
 						before_label: beforeLabel,
 						after_label: afterLabel,
-						no_overlay: ! attributes.overlayOnHover,
 						move_slider_on_hover: attributes.moveHandleOnHover,
 						move_with_handle_only: true,
 						click_to_move: attributes.moveHandleOnClick,

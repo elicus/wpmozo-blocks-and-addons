@@ -174,8 +174,9 @@ const Edit = (props) => {
 					 data-show_skills_bars={displayInPopup.includes('skills_bars') ? 'on' : 'off'}
 					 data-show_social_icons={displayInPopup.includes('social_icons') ? 'on' : 'off'}
 					 data-show_image={displayInPopup.includes('image') ? 'on' : 'off'}
-					 data-bar_layout={attributes.layout ?? 'layout1'}
+					 data-bar_layout={attributes.popupBarLayout ?? 'layout1'}
 					 data-use_stripes={attributes.popupBarUseStripe ? 'on' : 'off'}
+					 data-use_animated_stripes={attributes.popupBarStripeUseAnim ? 'on' : 'off'}
 					 data-popup_name_level={attributes.popupNameLevel ?? 'h2'}
 					 data-close_icon_position={attributes.popupCloseIconPos ?? 'outside'}
 				>

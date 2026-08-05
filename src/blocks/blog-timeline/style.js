@@ -3,13 +3,17 @@ import { convertInlineStyleStr } from '../../common/utils.js';
 const generateDynamicStyle = ( { attributes, isEdit } ) => {
 	const toConvertStyles = [
 		'button',
-		'buttonHover',
 		'post',
 		'title',
-		'titleHover',
 		'excerpt',
 		'date',
-		'meta'
+		'meta',
+		'buttonHover',
+		'postHover',
+		'titleHover',
+		'excerptHover',
+		'dateHover',
+		'metaHover'
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
@@ -128,6 +132,15 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 			}`
 		: ''
 	);
+	hovercss.push(
+	( attributes.postHoverBGGradient || attributes.postHoverBackground || convertedStyle.postHover )
+		? `.wpmozo_bna_blog_timeline_content_wrapper:hover${isEditor('.wpmozo_bna_blog_timeline_content_wrapper')}{
+				${attributes.postHoverBGGradient ? `background:${attributes.postHoverBGGradient};` : ''}
+				${attributes.postHoverBackground ? `background:${attributes.postHoverBackground};` : ''}
+				${convertedStyle.postHover || ''}
+			}`
+		: ''
+	);
 
 	normalcss.push(
 	( attributes.titleAlign || attributes.titleColor || convertedStyle.title )
@@ -156,12 +169,28 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 			}`
 		: ''
 	);
+	hovercss.push(
+	( attributes.showExcerpt && ( attributes.excerptHoverColor || convertedStyle.excerptHover) )
+		? `.wpmozo_bna_blog_timeline_post_content_inner:hover, .wpmozo_bna_blog_timeline_post_content_inner p:hover${isEditor('.wpmozo_bna_blog_timeline_post_content_inner p')}${isEditor('.wpmozo_bna_blog_timeline_post_content_inner')}{
+				${attributes.excerptHoverColor ? `color:${attributes.excerptHoverColor};` : ''}
+				${convertedStyle.excerptHover || ''}
+			}`
+		: ''
+	);
 
 	normalcss.push(
 	( attributes.showDate && (attributes.dateColor || convertedStyle.date) )
 		? `.wpmozo_bna_blog_timeline_meta_date .published{
 				${attributes.dateColor ? `color:${attributes.dateColor};` : ''}
 				${convertedStyle.date || ''}
+			}`
+		: ''
+	);
+	hovercss.push(
+	( attributes.showDate && (attributes.dateHoverColor || convertedStyle.dateHover) )
+		? `.wpmozo_bna_blog_timeline_meta_date .published:hover${isEditor('.wpmozo_bna_blog_timeline_meta_date .published')}{
+				${attributes.dateHoverColor ? `color:${attributes.dateHoverColor};` : ''}
+				${convertedStyle.dateHover || ''}
 			}`
 		: ''
 	);
@@ -173,6 +202,24 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 			.wpmozo_bna_blog_timeline_meta_icon, .wpmozo_bna_blog_timeline_meta span, .wpmozo_bna_blog_timeline_meta p{
 					${attributes.metaColor ? `color:${attributes.metaColor};` : ''}
 					${convertedStyle.meta || ''}
+				}`
+			: ''
+		);
+		hovercss.push(
+		( attributes.metaHoverColor || convertedStyle.metaHover )
+			? `
+			.wpmozo_bna_blog_timeline_meta:hover, 
+			.wpmozo_bna_blog_timeline_meta a:hover,
+			.wpmozo_bna_blog_timeline_meta_icon:hover, 
+			.wpmozo_bna_blog_timeline_meta span:hover, 
+			.wpmozo_bna_blog_timeline_meta p:hover
+			${isEditor('.wpmozo_bna_blog_timeline_meta')}
+			${isEditor('.wpmozo_bna_blog_timeline_meta a')}
+			${isEditor('.wpmozo_bna_blog_timeline_meta_icon')}
+			${isEditor('.wpmozo_bna_blog_timeline_meta span')}
+			${isEditor('.wpmozo_bna_blog_timeline_meta p')} {
+					${attributes.metaHoverColor ? `color:${attributes.metaHoverColor};` : ''}
+					${convertedStyle.metaHover || ''}
 				}`
 			: ''
 		);

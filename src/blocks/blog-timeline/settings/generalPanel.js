@@ -9,9 +9,11 @@ import {
 	ToggleControl,
 	TextareaControl,
 	RangeControl,
+	FormTokenField
 } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 import { useEffect, useState } from '@wordpress/element';
+import { useMemo } from 'react';
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
@@ -45,9 +47,32 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 		} ),
 	[] );
 	const categories = terms?.map( ( term ) => ( {
-		label: term.name,
-		value: term.id,
-	} ) ) || [];
+		label : term.name,
+		value : term.id,
+ 	} ) ) || [];
+	
+	//Category select 
+	const suggestions = useMemo(() => {
+        return categories.map(item => item.label);
+    }, [categories]);
+
+    // Value → Mapping category Ids into Label
+    const selectedLabels = useMemo(() => {
+        return categories
+            .filter(item => attributes.includesCategories?.includes(item.value))
+            .map(item => item.label);
+    }, [categories, attributes.includesCategories]);
+
+	// onChange → Reverse-mapping labels returend by component into category ids.
+    const handleChange = (selectedLabels) => {
+        const selectedValues = categories
+            .filter(item => selectedLabels.includes(item.label))
+            .map(item => item.value);
+
+        setAttributes({
+            includesCategories: selectedValues
+        });
+    };
 
 	return ( <>
 		{/* Content. */}
@@ -71,8 +96,8 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					{ value: 'date', label: __( 'Date', 'wpmozo-blocks-and-addons' ) },
 					{ value: 'modified', label: __( 'Modified Date', 'wpmozo-blocks-and-addons' ) },
 					{ value: 'title', label: __( 'Title', 'wpmozo-blocks-and-addons' ) },
-					{ value: 'name', label: __( 'Slug', 'wpmozo-blocks-and-addons' ) },
-					{ value: 'ID', label: __( 'ID', 'wpmozo-blocks-and-addons' ) },
+					{ value: 'slug', label: __( 'Slug', 'wpmozo-blocks-and-addons' ) },
+					{ value: 'id', label: __( 'ID', 'wpmozo-blocks-and-addons' ) },
 					{ value: 'rand', label: __( 'Random', 'wpmozo-blocks-and-addons' ) },
 					{ value: 'relevance', label: __( 'Relevance', 'wpmozo-blocks-and-addons' ) },
 					{ value: 'none', label: __( 'None', 'wpmozo-blocks-and-addons' ) },
@@ -92,12 +117,16 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
 				/>
 			) }
-			<SelectControl multiple
-				label={ __( 'Includes Categories', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.includesCategories }
-				options={ categories }
-				onChange={ ( newValue ) => setAttributes( { includesCategories: newValue } ) }
+			<FormTokenField
+				label={ __( 'Select Categories', 'wpmozo-blocks-and-addons' ) }
+				value={selectedLabels}
+				suggestions={suggestions}
+				onChange={handleChange}
+				 __experimentalAutoSelectFirstMatch
+  				__experimentalExpandOnFocus
+				placeholder='Enter Category Here...'
 			/>
+			<hr/>
 			<ToggleControl
 				label={ __( 'Ignore Sticky Posts', 'wpmozo-blocks-and-addons' ) }
 				checked={ attributes.ignoreStickyPosts }

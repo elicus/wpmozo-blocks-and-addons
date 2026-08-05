@@ -1,17 +1,20 @@
 import $ from 'jquery';
 
+let animationId;
 $(document).ready(function () {
 
 	window.addEventListener('WPMozoWavyGalleryPropsChanged', () => {
 		$('.wp-block-wpmozo-wavy-gallery').each(function () {
-			gsap.registerPlugin(ScrollTrigger);
+			if(null !== animationId){
+				cancelAnimationFrame(animationId);
+			}
+
 			initWavyGallery($(this));
 		});
 	});
 
 	// Initial Scroll setup
 	$('.wp-block-wpmozo-wavy-gallery').each(function () {
-		gsap.registerPlugin(ScrollTrigger);
 		initWavyGallery($(this));
 	});
 
@@ -20,7 +23,9 @@ $(document).ready(function () {
 
 // Init wavy gallery.
 function initWavyGallery( thisObj ) {
+	const blockId = thisObj.attr('data-block');
 	gsap.registerPlugin( ScrollTrigger );
+	ScrollTrigger.getById(`stwg-${blockId}`) ? ScrollTrigger.getById(`stwg-${blockId}`).kill(true) : '';
 	ScrollTrigger.normalizeScroll( true );
 
 	const orderClass = thisObj.attr('id');
@@ -28,7 +33,7 @@ function initWavyGallery( thisObj ) {
 	let $section         = thisObj.find( '.wpmozo_wavy_gallery_wrapper' ),
 		$wrapper         = $section.find( '.wpmozo_wavy_gallery_items' ),
 		$images          = $wrapper.find( '.wpmozo_wavy_gallery_item' ),
-		showOverlayTitle = $section.data( 'show_overlay_title' );
+		showOverlayTitle = $section.attr( 'data-show_overlay_title' );
 
 	// $overlayContent  = $overlay.find( '.wpmozo_wavy_gallery_overlay_items' ),
 	// $overlayTitle    = $overlay.find( '.wpmozo_wavy_gallery_overlay_item_title' );
@@ -49,6 +54,7 @@ function initWavyGallery( thisObj ) {
 		x: () => `-${scrollDistance}`,
 		ease: "none",
 		scrollTrigger: {
+			id:`stwg-${blockId}`,
 			trigger: sectionEl,
 			start: "top top",
 			end: () => `+=${scrollDistance}`,
@@ -139,7 +145,7 @@ function initWavyGallery( thisObj ) {
 		if ( closestImage ) {
 			closestImage.addClass( 'active' );
 		}
-		requestAnimationFrame( wpmozo_wavy_gallery_animate );
+		animationId = requestAnimationFrame( wpmozo_wavy_gallery_animate );
 	}
 	wpmozo_wavy_gallery_animate();
 
