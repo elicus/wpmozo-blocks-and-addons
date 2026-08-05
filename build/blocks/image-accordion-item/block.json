@@ -131,9 +131,15 @@
     "iconColor": {
       "type": "string"
     },
+    "iconHoverColor": {
+      "type": "string"
+    },
     "iconShapBackground": {
       "type": "string",
       "default": "#9E9E9E"
+    },
+    "iconHoverShapBackground": {
+      "type": "string"
     },
     "styleIcon": {
       "type": "boolean",
@@ -160,6 +166,9 @@
       "type": "string"
     },
     "titleColor": {
+      "type": "string"
+    },
+    "titleHoverColor": {
       "type": "string"
     },
     "titleAlign": {
@@ -197,6 +206,28 @@
     "titleLineHeight": {
       "type": "string"
     },
+    "titleHoverFontSize": {
+      "type": "string"
+    },
+    "titleHoverLetterSpacing": {
+      "type": "string"
+    },
+    "titleHoverDecoration": {
+      "type": "string"
+    },
+    "titleHoverLetterCase": {
+      "type": "string"
+    },
+    "titleHoverLineHeight": {
+      "type": "string"
+    },
+    "titleHoverFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
     "titlepadding": {
       "type": "object"
     },
@@ -204,6 +235,9 @@
       "type": "object"
     },
     "descriptionColor": {
+      "type": "string"
+    },
+    "descriptionHoverColor": {
       "type": "string"
     },
     "descriptionAlign": {
@@ -237,6 +271,28 @@
     "descriptionLineHeight": {
       "type": "string"
     },
+    "descriptionHoverFontSize": {
+      "type": "string"
+    },
+    "descriptionHoverLetterSpacing": {
+      "type": "string"
+    },
+    "descriptionHoverDecoration": {
+      "type": "string"
+    },
+    "descriptionHoverLetterCase": {
+      "type": "string"
+    },
+    "descriptionHoverLineHeight": {
+      "type": "string"
+    },
+    "descriptionHoverFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
     "descriptionpadding": {
       "type": "object"
     },
@@ -246,7 +302,13 @@
     "buttonTextColor": {
       "type": "string"
     },
+    "buttonHoverTextColor": {
+      "type": "string"
+    },
     "buttonBackgroundColor": {
+      "type": "string"
+    },
+    "buttonHoverBackgroundColor": {
       "type": "string"
     },
     "buttonAlignment": {
@@ -280,11 +342,36 @@
     "buttonLineHeight": {
       "type": "string"
     },
+    "buttonHoverFontSize": {
+      "type": "string"
+    },
+    "buttonHoverLetterSpacing": {
+      "type": "string"
+    },
+    "buttonHoverDecoration": {
+      "type": "string"
+    },
+    "buttonHoverLetterCase": {
+      "type": "string"
+    },
+    "buttonHoverLineHeight": {
+      "type": "string"
+    },
+    "buttonHoverFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
     "useButtonIcon": {
       "type": "boolean",
       "default": false
     },
     "buttonIconColor": {
+      "type": "string"
+    },
+    "buttonIconHoverColor": {
       "type": "string"
     },
     "buttonIcon": {
@@ -301,7 +388,13 @@
     "buttonborder": {
       "type": "object"
     },
+    "buttonHoverborder": {
+      "type": "object"
+    },
     "buttonborderRadius": {
+      "type": "string"
+    },
+    "buttonHoverborderRadius": {
       "type": "string"
     },
     "buttonpadding": {

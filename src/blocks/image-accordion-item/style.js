@@ -4,9 +4,13 @@ const generateDynamicStyle = ({ attributes }) => {
 
 	const toConvertStyles = [
 		"title",
+		"titleHover",
 		"description",
+		"descriptionHover",
 		"icon",
+		"iconHover",
 		"button",
+		"buttonHover",
 		"contentWrapper",
 		"Container"
 	];
@@ -160,7 +164,48 @@ const generateDynamicStyle = ({ attributes }) => {
 			}`
 			: ''
 	);
-
+	hovercss.push(
+		( attributes.titleHoverColor || convertedStyle.titleHover ) 
+		? `.wpmozo-bna-image-accordion-item-title:hover{
+				${ attributes.titleHoverColor ? `color: ${attributes.titleHoverColor};` : '' }
+				${ convertedStyle.titleHover || '' }
+			}`
+		: ''
+	);
+	hovercss.push(
+		( attributes.descriptionHoverColor || convertedStyle.descriptionHover ) 
+		? `.wpmozo-bna-image-accordion-item-desc:hover{
+				${ attributes.descriptionHoverColor ? `color: ${attributes.descriptionHoverColor};` : '' }
+				${ convertedStyle.descriptionHover || '' }
+			}`
+		: ''
+	);
+	hovercss.push(
+		( attributes.iconHoverColor || convertedStyle.iconHover ) 
+		? `.wpmozo-bna-image-accordion-item-icon .icon-wrapper i:hover{
+				${ attributes.iconHoverColor ? `color: ${attributes.iconHoverColor};` : '' }
+				${ convertedStyle.iconHover || '' }
+			}`
+		: ''
+	);
+	if ( attributes.styleIcon && attributes.iconHoverShapBackground ) {
+		hovercss.push(`
+			.wpmozo-bna-icon-shape-circle:hover,
+			.wpmozo-bna-icon-shape-square:hover,
+			.wpmozo-bna-icon-hexagon:hover {
+				background-color: ${attributes.iconHoverShapBackground};
+			}
+		`);
+	}
+	hovercss.push(
+		( attributes.buttonHoverTextColor || attributes.buttonHoverBackgroundColor || convertedStyle.buttonHover ) 
+		? `.wpmozo-bna-button:hover{
+				${ attributes.buttonHoverTextColor ? `color: ${attributes.buttonHoverTextColor};` : '' }
+				${ attributes.buttonHoverBackgroundColor ? `background-color: ${attributes.buttonHoverBackgroundColor};` : '' }
+				${ convertedStyle.buttonHover || '' }
+			}`
+		: ''
+	);
 	const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);
 	
 	let styles = hasStyles ? `.wp-block-wpmozo-image-accordion #block-${attributes.ID}{${normalcss.filter(Boolean).join('\n')} ${hovercss.filter(Boolean).join('\n')}}` : '';
