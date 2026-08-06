@@ -117,7 +117,7 @@
 		"containerpadding": { "type": "object" },
 		"containermargin": { "type": "object" },
 		"containerborder": {"type": "object"},
-		"containerborderRadius":{"type": "string"}
+		"containerborderRadius":{"type": "object"}
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

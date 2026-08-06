@@ -163,7 +163,7 @@
 	position: relative;
 	margin-bottom: 10px;
 	background: rgb(248, 249, 250);
-	padding: 15px 10px;
+	padding: 5px 10px;
 	border-radius: 6px;
 	box-shadow: rgba(0, 0, 0, 0.03) 0px 1px 2px;
 }
@@ -176,6 +176,57 @@
 .wpmozo-repeator-trash {
 	margin-right: 10px;
 }
+/* --------- */
+.wpmozo-repeater-content {
+	display: block;
+}
+
+.wpmozo-repeater-row:not(.is-open) .wpmozo-repeater-content {
+	display: none;
+}
+
+/* Caret icon */
+.wpmozo-repeater-row .wpmozo-repeator-caret:focus, 
+.wpmozo-repeater-row .wpmozo-repeator-caret:active {
+	box-shadow: none;
+}
+
+.wpmozo-repeater-row.wpmozo-business-hours-repeator .wpmz-clone-div{
+	float: right;
+	display: none;
+}
+
+.wpmozo-repeater-row.wpmozo-business-hours-repeator .wpmz-clone-div .wpmz-day-clone{
+	margin-right: 10px;
+}
+
+.wpmozo-repeater-row.wpmozo-business-hours-repeator .components-button.wpmozo-repeator-caret {
+	width: 100%;
+	justify-content: space-between;
+	padding-right:0px;
+	padding-left:0px;
+}
+
+/* Rotate when closed */
+.wpmz_close svg {
+  animation: turn-down .3s forwards;
+}
+.wpmz_open svg {
+  animation: turn-up .3s forwards;
+}
+
+@keyframes turn-down {
+ from { transform: rotatex(0deg); }
+ to { transform: rotateX(180deg); }
+}
+@keyframes turn-up {
+ from { transform: rotatex(180deg); }
+ to { transform: rotateX(0deg); }
+}
+
+
+
+
 
 .wpmozo-block-icon path {
 	fill: #3D3EED;

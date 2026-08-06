@@ -40,7 +40,7 @@
 		"containermargin": {"type": "object"},
 		"containerpadding": {"type": "object"},
 		"containerborder": {"type": "object"},
-		"containerborderRadius": {"type": "string"},
+		"containerborderRadius": {"type": "object"},
 
 		"lightboxBackgroundColor": {"type": "string"},
 

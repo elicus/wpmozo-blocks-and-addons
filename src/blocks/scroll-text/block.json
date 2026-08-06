@@ -60,7 +60,7 @@
         "blockpadding": { "type": "object" },
 		"blockmargin": { "type": "object" },
         "blockborder": { "type": "object" },
-		"blockborderRadius": { "type": "string" },
+		"blockborderRadius": { "type": "object" },
 
 		"textAlign": {"type": "string","default": "left"}
     },

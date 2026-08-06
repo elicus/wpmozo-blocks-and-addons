@@ -28,7 +28,7 @@
 		"textRotation": {"type": "string","default": "clockwise"},
 
 		"wrapperborder": { "type": "object" },
-        "wrapperborderRadius": { "type": "string" },
+        "wrapperborderRadius": { "type": "object" },
 
         "textColor": { "type": "string" },
         "textFontSize": { "type": "string" },
@@ -54,7 +54,7 @@
 		"iconSize": { "type": "string" },
 		"elementpadding": { "type": "object" },
 		"elementborder": { "type": "object" },
-        "elementborderRadius": { "type": "string" }
+        "elementborderRadius": { "type": "object" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
