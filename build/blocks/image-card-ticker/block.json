@@ -69,7 +69,7 @@
       "type": "object"
     },
     "containerborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "image_width": {
       "type": "number",

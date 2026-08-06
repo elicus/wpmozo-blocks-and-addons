@@ -28,11 +28,20 @@
     "containerBackgroundColor": {
       "type": "string"
     },
+    "containerHoverBackgroundColor": {
+      "type": "string"
+    },
     "containerborder": {
       "type": "object"
     },
+    "containerHoverborder": {
+      "type": "object"
+    },
     "containerborderRadius": {
-      "type": "string"
+      "type": "object"
+    },
+    "containerHoverborderRadius": {
+      "type": "object"
     },
     "image": {
       "type": "string"
@@ -41,9 +50,15 @@
       "type": "object",
       "default": ""
     },
-    "imageborderRadius": {
-      "type": "string",
+    "imageHoverborder": {
+      "type": "object",
       "default": ""
+    },
+    "imageborderRadius": {
+      "type": "object"
+    },
+    "imageHoverborderRadius": {
+      "type": "object"
     },
     "imageDimensionspadding": {
       "type": "object",
@@ -54,6 +69,9 @@
       "default": "far fa-star"
     },
     "iconColor": {
+      "type": "string"
+    },
+    "iconHoverColor": {
       "type": "string"
     },
     "iconFontSize": {
@@ -79,6 +97,9 @@
     "iconBackground": {
       "type": "string",
       "default": ""
+    },
+    "iconHoverBackground": {
+      "type": "string"
     },
     "shapeBorderColor": {
       "type": "string",
@@ -357,8 +378,13 @@
       }
     },
     "buttonTextborderRadius": {
-      "type": "string",
-      "default": "3px"
+      "type": "object",
+      "default": {
+        "topLeft": "3px",
+        "topRight": "3px",
+        "bottomLeft": "3px",
+        "BottomRight": "3px"
+      }
     },
     "buttonDimensionspadding": {
       "type": "object",

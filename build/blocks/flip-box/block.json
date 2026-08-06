@@ -240,7 +240,7 @@
       "default": false
     },
     "frontIconShapeborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "frontIconShapeborder": {
       "type": "object"
@@ -267,7 +267,7 @@
       "type": "object"
     },
     "frontFlipboxborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "frontFlipboxBackground": {
       "type": "string",
@@ -421,7 +421,7 @@
       "default": false
     },
     "backIconShapeborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "backIconShapeborder": {
       "type": "object"
@@ -445,7 +445,7 @@
       "type": "object"
     },
     "backFlipboxborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "backFlipboxBackground": {
       "type": "string",
@@ -535,8 +535,13 @@
       }
     },
     "backBtnborderRadius": {
-      "type": "string",
-      "default": "3px"
+      "type": "object",
+      "default": {
+        "topLeft": "3px",
+        "topRight": "3px",
+        "bottomLeft": "3px",
+        "BottomRight": "3px"
+      }
     },
     "backBtnDimensionspadding": {
       "type": "object",
@@ -560,7 +565,7 @@
       "type": "object"
     },
     "backBtnHoverborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "frontFlipboxHoverBackground": {
       "type": "string"

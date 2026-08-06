@@ -28,7 +28,7 @@
       "type": "object"
     },
     "logoborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "logoborder": {
       "type": "object"

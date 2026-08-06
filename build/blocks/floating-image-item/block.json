@@ -64,7 +64,7 @@
       "type": "string"
     },
     "imageborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "imageborder": {
       "type": "object"
@@ -73,7 +73,7 @@
       "type": "object"
     },
     "imageHoverborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "wrapIsHover": {
       "type": "boolean",

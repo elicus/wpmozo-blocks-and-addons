@@ -56,8 +56,7 @@
       "type": "string"
     },
     "itemBorderRadius": {
-      "type": "number",
-      "default": ""
+      "type": "object"
     },
     "tooltipColor": {
       "type": "string",

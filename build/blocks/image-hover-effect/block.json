@@ -30,7 +30,7 @@
       "type": "object"
     },
     "imageborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "forceFullwidth": {
       "type": "boolean",

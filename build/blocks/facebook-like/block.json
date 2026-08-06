@@ -57,13 +57,13 @@
       "type": "object"
     },
     "blockborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "blockHoverborder": {
       "type": "object"
     },
     "blockHoverborderRadius": {
-      "type": "string"
+      "type": "object"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",

@@ -43,7 +43,7 @@
       "type": "string"
     },
     "activeAccordionSize": {
-      "number": "string",
+      "type": "string",
       "default": 4
     },
     "activeAccordion": {
@@ -310,10 +310,10 @@
       "type": "object"
     },
     "buttonborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "buttonHoverborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "buttonpadding": {
       "type": "object"

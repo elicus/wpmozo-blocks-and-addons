@@ -90,8 +90,13 @@
       }
     },
     "buttonborderRadius": {
-      "type": "string",
-      "default": "3px"
+      "type": "object",
+      "default": {
+        "topLeft": "3px",
+        "topRight": "3px",
+        "bottomLeft": "3px",
+        "BottomRight": "3px"
+      }
     },
     "buttonColor": {
       "type": "string"
@@ -135,7 +140,7 @@
       "type": "object"
     },
     "buttonHoverborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "buttonHoverColor": {
       "type": "string"
@@ -190,7 +195,7 @@
       "type": "object"
     },
     "submenuborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "submenuHoverBackground": {
       "type": "string",
@@ -203,7 +208,7 @@
       "type": "object"
     },
     "submenuHoverborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "linkTextColor": {
       "type": "string"

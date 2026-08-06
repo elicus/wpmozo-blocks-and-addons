@@ -171,7 +171,7 @@
       "type": "object"
     },
     "postItemborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "postItemmargin": {
       "type": "object"
@@ -186,7 +186,7 @@
       "type": "object"
     },
     "postContentborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "postContentmargin": {
       "type": "object"
@@ -195,10 +195,10 @@
       "type": "object"
     },
     "catTextColor": {
-      "type": "default"
+      "type": "string"
     },
     "catBKColor": {
-      "type": "default"
+      "type": "string"
     },
     "catTextFontSize": {
       "type": "string"
@@ -232,7 +232,7 @@
       "type": "object"
     },
     "catborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "catmargin": {
       "type": "object"
@@ -252,7 +252,7 @@
       "type": "object"
     },
     "postImageborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "postImagemargin": {
       "type": "object"
@@ -330,18 +330,6 @@
     "buttonTextBackground": {
       "type": "string"
     },
-    "buttonborder": {
-      "type": "object",
-      "default": {
-        "width": "2px",
-        "style": "solid",
-        "color": "#313131"
-      }
-    },
-    "buttonborderRadius": {
-      "type": "string",
-      "default": "3px"
-    },
     "showButtonIcon": {
       "type": "boolean",
       "default": false
@@ -377,11 +365,28 @@
     "buttonmargin": {
       "type": "object"
     },
+    "buttonborder": {
+      "type": "object",
+      "default": {
+        "width": "2px",
+        "style": "solid",
+        "color": "#313131"
+      }
+    },
+    "buttonborderRadius": {
+      "type": "object",
+      "default": {
+        "topLeft": "3px",
+        "topRight": "3px",
+        "bottomLeft": "3px",
+        "BottomRight": "3px"
+      }
+    },
     "containerborder": {
       "type": "object"
     },
     "containerborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "containermargin": {
       "type": "object"

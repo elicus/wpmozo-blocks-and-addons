@@ -66,7 +66,7 @@
       "type": "object"
     },
     "ContainerborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "normalUseBackgroundImage": {
       "type": "boolean",
@@ -392,10 +392,10 @@
       "type": "object"
     },
     "buttonborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "buttonHoverborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "buttonpadding": {
       "type": "object"

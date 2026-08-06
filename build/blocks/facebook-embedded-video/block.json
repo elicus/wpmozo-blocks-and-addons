@@ -56,13 +56,13 @@
       "type": "object"
     },
     "videobborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "videoHoverborder": {
       "type": "object"
     },
     "videoHoverborderRadius": {
-      "type": "string"
+      "type": "object"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",
