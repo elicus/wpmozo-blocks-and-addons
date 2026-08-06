@@ -28,7 +28,7 @@
 		"itemBorderType": { "type": "string", "default": "none" },
 		"itemBorderWidth": { "type": "number" },
 		"borderColor": { "type": "string" },
-		"itemBorderRadius": { "type": "number", "default": "" },
+		"itemBorderRadius": { "type": "object" },
 
 		"tooltipColor": { "type": "string","default": "" },
 		"tooltipBackgroundColor": { "type": "string", "default": "" },

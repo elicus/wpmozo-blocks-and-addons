@@ -107,7 +107,7 @@
 
 		"hoverImageSize": { "type": "number", "default": 400 },
 		"hoverImageborder": { "type": "object" },
-		"hoverImageborderRadius": { "type": "string" },
+		"hoverImageborderRadius": { "type": "object" },
 
 		"iconFontsize": { "type": "number", "default": 28 },
 		"iconColor": { "type": "string" },

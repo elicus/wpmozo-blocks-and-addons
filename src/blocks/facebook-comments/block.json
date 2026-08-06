@@ -30,9 +30,9 @@
 		"blockpadding": { "type": "object" },
 		"blockmargin": { "type": "object" },
 		"blockborder": { "type": "object" },
-		"blockborderRadius": { "type": "string" },
+		"blockborderRadius": { "type": "object" },
 		"blockHoverborder": { "type": "object" },
-		"blockHoverborderRadius": { "type": "string" }
+		"blockHoverborderRadius": { "type": "object" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

@@ -20,11 +20,11 @@
 		"containerpadding": { "type": "object" },
 		"containerBackgroundColor": {"type": "string"},
 		"containerborder": {"type": "object"},
-		"containerborderRadius": {"type": "string"},
+		"containerborderRadius": {"type": "object"},
 
 		"image": { "type": "string" },
 		"imageborder": { "type": "object", "default": "" },
-		"imageborderRadius": { "type": "string", "default": "" },
+		"imageborderRadius": { "type": "object" },
 		"imageDimensionspadding": { "type": "object", "default": "" },
 
 		"icon": { "type": "string", "default": "far fa-star" },
@@ -161,7 +161,7 @@
 		"buttonTextFontStyle": { "type": "string" },
 		"buttonTextFontWeight": { "type": "string" },
 		"buttonTextborder": { "type": "object", "default": { "width": "1px", "style": "solid", "color": "#000" } },
-		"buttonTextborderRadius": { "type": "string", "default": "3px" },
+		"buttonTextborderRadius": { "type": "object", "default": {"topLeft": "3px", "topRight": "3px", "bottomLeft": "3px", "BottomRight": "3px"} },
 
 		"buttonDimensionspadding": { "type": "object", "default": { "top": "5px", "right": "8px", "bottom": "5px", "left": "8px" } },
 		"buttonDimensionsmargin": { "type": "object" },

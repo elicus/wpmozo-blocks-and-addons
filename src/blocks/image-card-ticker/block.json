@@ -41,7 +41,7 @@
 		"containermargin": { "type": "object"},
 		"containerpadding": { "type": "object" },
 		"containerborder": {"type": "object"},
-		"containerborderRadius": {"type": "string"},
+		"containerborderRadius": {"type": "object"},
 
 		"image_width": {"type": "number","default": 200},
 		"image_height": {"type": "number","default": 200}

@@ -29,9 +29,9 @@
 		"blockHoverBackground": { "type": "string" },
 		"blockHoverBGGradient": { "type": "string" },
 		"blockborder": { "type": "object" },
-		"blockborderRadius": { "type": "string" },
+		"blockborderRadius": { "type": "object" },
 		"blockHoverborder": { "type": "object" },
-		"blockHoverborderRadius": { "type": "string" }
+		"blockHoverborderRadius": { "type": "object" }
 	},
 
 	"textdomain": "wpmozo-blocks-and-addons",

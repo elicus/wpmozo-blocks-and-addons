@@ -33,7 +33,7 @@
         "contentWrapperpadding": { "type": "object" },
         "contentWrappermargin": { "type": "object" },
 		"Containerborder": { "type": "object" },
-		"ContainerborderRadius": { "type": "string" },
+		"ContainerborderRadius": { "type": "object" },
         "normalUseBackgroundImage": { "type": "boolean", "default": true },
         "normalAccordionBackground": { "type": "string" },
         "normalBackgroundImage": { "type": "string" },
@@ -165,8 +165,8 @@
         "buttonIconHover": { "type": "boolean", "default": false },
         "buttonborder": { "type": "object" },
         "buttonHoverborder": { "type": "object" },
-        "buttonborderRadius": { "type": "string" },
-        "buttonHoverborderRadius": { "type": "string" },
+        "buttonborderRadius": { "type": "object" },
+        "buttonHoverborderRadius": { "type": "object" },
         "buttonpadding": { "type": "object" },
         "buttonmargin": { "type": "object" }
 

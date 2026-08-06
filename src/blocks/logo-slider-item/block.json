@@ -20,7 +20,7 @@
 		"className": { "type": "string" },
 
 		"logo": { "type": "object" },
-		"logoborderRadius": { "type": "string" },
+		"logoborderRadius": { "type": "object" },
 		"logoborder": { "type": "object" },
 
 		"altText": { "type": "string" },
