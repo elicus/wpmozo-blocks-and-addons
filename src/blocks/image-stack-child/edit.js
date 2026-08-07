@@ -120,6 +120,6 @@ export default function Edit(props) {
 			</span>
 		</div>
 
-		<style>{ generateDynamicStyle( { attributes, clientId, parentAttributes } ) }</style>
+		<style>{ generateDynamicStyle( { attributes, clientId, isEdit: true, parentAttributes } ) }</style>
 	</> );
 }

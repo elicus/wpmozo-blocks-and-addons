@@ -49,7 +49,10 @@
 .wpmozo-bna-image-stack .wpmozo-stack-item-wrapper.stack_item-type-text{
 	display: inline-flex;
 	align-items: center;
-	justify-content: center
+	justify-content: center;
+}
+.wpmozo-stack-item-wrapper i {
+	transition: color 300ms ease-in-out;
 }
 
 .wpmozo-image-stack-inner:hover .wpmozo-image-stack-item:not(:first-child){

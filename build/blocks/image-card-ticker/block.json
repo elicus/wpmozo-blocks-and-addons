@@ -68,7 +68,13 @@
     "containerborder": {
       "type": "object"
     },
+    "containerHoverborder": {
+      "type": "object"
+    },
     "containerborderRadius": {
+      "type": "object"
+    },
+    "containerHoverborderRadius": {
       "type": "object"
     },
     "image_width": {

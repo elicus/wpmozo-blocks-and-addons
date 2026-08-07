@@ -29,7 +29,13 @@
     "imageborder": {
       "type": "object"
     },
+    "imageHoverborder": {
+      "type": "object"
+    },
     "imageborderRadius": {
+      "type": "object"
+    },
+    "imageHoverborderRadius": {
       "type": "object"
     },
     "forceFullwidth": {

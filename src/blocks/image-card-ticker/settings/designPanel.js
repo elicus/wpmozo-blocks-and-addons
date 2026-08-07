@@ -10,7 +10,8 @@ import {
 	WpmozoColorPicker,
 	WpmozoTypography,
 	WpmozoDimensions,
-	WpmozoBorder
+	WpmozoBorder,
+	MozoStates
 } from '../../../common/components';
 
 export const DesignPanel = ({ attributes, setAttributes, hoverState, setHoverState }) => {
@@ -53,9 +54,20 @@ export const DesignPanel = ({ attributes, setAttributes, hoverState, setHoverSta
 					}}
 					props={props}
 				/>
-				<WpmozoBorder
-					props={props}
-					BorderKey="container"
+				<MozoStates
+					value={hoverState}
+					title={ __( 'Border', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( isHover ) => (
+							isHover ? setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)
+					}
+					control={ ( isHover ) => (
+						<WpmozoBorder
+							props={props}
+							BorderKey={ isHover ? "containerHover" : "container" }
+						/>
+					) }
 				/>
 			</PanelBody>
 			<PanelBody title={__('Images', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>

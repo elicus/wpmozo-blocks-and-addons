@@ -10,7 +10,6 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 	let normalcss = [],
 	hovercss = [],
 	cssExtras = [];
-	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
 
 	normalcss.push(
 		alignment 
@@ -25,6 +24,14 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 				${convertedStyle.item || ''}
 			}`
 		: ''
+	);
+
+	hovercss.push(
+		( attributes.borderHoverColor )
+			? `.wpmozo-image-stack-item:hover, #block-${attributes.ID}.is_hover .wpmozo-image-stack-item {
+				${attributes.borderHoverColor ? `border-color: ${attributes.borderHoverColor};` : ''}
+			}`
+			: ''
 	);
 
 	normalcss.push(`
@@ -58,6 +65,14 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 			display: block;
 		}
 	`);
+
+	hovercss.push(
+		( attributes.iconHoverColor )
+			? `.wpmozo-stack-item-wrapper i:hover, #block-${attributes.ID}.is_hover .wpmozo-stack-item-wrapper i {
+				${attributes.iconHoverColor ? `color: ${attributes.iconHoverColor} !important;` : ''}
+			}`
+			: ''
+	);
 
 	if (attributes.showTooltip) {
 		cssExtras.push(`.tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}'] {

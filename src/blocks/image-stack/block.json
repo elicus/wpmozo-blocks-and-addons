@@ -23,11 +23,13 @@
 
 		"iconSize": { "type": "number", "default": 38 },
 		"iconColor": { "type": "string" },
+		"iconHoverColor": { "type": "string" },
 
 		"itempadding": { "type": "object" },
 		"itemBorderType": { "type": "string", "default": "none" },
 		"itemBorderWidth": { "type": "number" },
 		"borderColor": { "type": "string" },
+		"borderHoverColor": { "type": "string" },
 		"itemBorderRadius": { "type": "object" },
 
 		"tooltipColor": { "type": "string","default": "" },

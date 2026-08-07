@@ -42,13 +42,37 @@
     "itemBackground": {
       "type": "string"
     },
+    "itemHoverBackground": {
+      "type": "string"
+    },
     "itemBGGradient": {
+      "type": "string"
+    },
+    "itemHoverBGGradient": {
       "type": "string"
     },
     "imageborder": {
       "type": "object"
     },
+    "imageHoverborder": {
+      "type": "object"
+    },
     "imageborderRadius": {
+      "type": "object"
+    },
+    "imageHoverborderRadius": {
+      "type": "object"
+    },
+    "iconborder": {
+      "type": "object"
+    },
+    "iconHoverborder": {
+      "type": "object"
+    },
+    "iconborderRadius": {
+      "type": "object"
+    },
+    "iconHoverborderRadius": {
       "type": "object"
     }
   },

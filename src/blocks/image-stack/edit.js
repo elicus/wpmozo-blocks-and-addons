@@ -53,7 +53,7 @@ export default function Edit(props) {
 	return (
 		<>
 			{ isSelected && ( <Inspector attributes={attributes} setAttributes={setAttributes} /> ) }
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, clientId, isEdit: true } ) }</style>
 
 			<div className="wpmozo-bna-image-stack" id={`block-${clientId}`}  data-client-id={clientId}  >
 				<div className={`wpmozo-image-stack-wrap`}
