@@ -68,7 +68,15 @@
       "type": "string",
       "default": ""
     },
+    "tooltipHoverColor": {
+      "type": "string",
+      "default": ""
+    },
     "tooltipBackgroundColor": {
+      "type": "string",
+      "default": ""
+    },
+    "tooltipHoverBackgroundColor": {
       "type": "string",
       "default": ""
     },

@@ -43,6 +43,13 @@
 		"contentLetterCase": { "type": "string" },
 		"contentLineHeight": { "type": "string" },
 		"contentAlign": { "type": "string", "default": "center" },
+		"contentHoverColor": { "type": "string", "default": "" },
+		"contentHoverFontSize": { "type": "string" },
+		"contentHoverFontAppearance": { "type": "object", "default": { "fontStyle": "", "fontWeight": "" } },
+		"contentHoverLetterSpacing": { "type": "string" },
+		"contentHoverDecoration": { "type": "string" },
+		"contentHoverLetterCase": { "type": "string" },
+		"contentHoverLineHeight": { "type": "string" },
 
 		"backImage": { "type": "string" },
 
@@ -52,7 +59,8 @@
 			"default": { "color": "#000000", "width": "1px", "style": "solid" }
 		},
 
-		"overlayColor": { "type": "string" }
+		"overlayColor": { "type": "string" },
+		"overlayHoverColor": { "type": "string" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

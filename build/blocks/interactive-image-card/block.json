@@ -117,6 +117,32 @@
       "type": "string",
       "default": "center"
     },
+    "contentHoverColor": {
+      "type": "string",
+      "default": ""
+    },
+    "contentHoverFontSize": {
+      "type": "string"
+    },
+    "contentHoverFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "contentHoverLetterSpacing": {
+      "type": "string"
+    },
+    "contentHoverDecoration": {
+      "type": "string"
+    },
+    "contentHoverLetterCase": {
+      "type": "string"
+    },
+    "contentHoverLineHeight": {
+      "type": "string"
+    },
     "backImage": {
       "type": "string"
     },
@@ -133,6 +159,9 @@
       }
     },
     "overlayColor": {
+      "type": "string"
+    },
+    "overlayHoverColor": {
       "type": "string"
     }
   },

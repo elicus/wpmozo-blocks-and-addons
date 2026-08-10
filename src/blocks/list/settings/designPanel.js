@@ -15,6 +15,7 @@ import {
 	WpmozoDimensions,
 	WpmozoColorPicker,
 	WpmozoTypography,
+	MozoStates
 } from '../../../common/components/index';
 
 
@@ -25,81 +26,44 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 	const handleToggle = (panelId) => {
 		setOpenPanel(prev => prev === panelId ? null : panelId);
 	}
-	const [ deviceType, setDeviceType ] = useState('tablet'),
-		[ textType, setTextType ] = useState('text'),
+	const [ textType, setTextType ] = useState('text'),
 		dividerStyle = [
-		{
-			label: __( 'Solid', 'wpmozo-blocks-and-addons' ),
-			value: 'solid'
-		},
-		{
-			label: __( 'Dashed', 'wpmozo-blocks-and-addons' ),
-			value: 'dashed'
-		},
-		{
-			label: __( 'Dotted', 'wpmozo-blocks-and-addons' ),
-			value: 'dotted'
-		},
-		{
-			label: __( 'Double', 'wpmozo-blocks-and-addons' ),
-			value: 'double'
-		},
-		{
-			label: __( 'Groove', 'wpmozo-blocks-and-addons' ),
-			value: 'groove'
-		},
-		{
-			label: __( 'Ridge', 'wpmozo-blocks-and-addons' ),
-			value: 'ridge'
-		},
-		{
-			label: __( 'Inset', 'wpmozo-blocks-and-addons' ),
-			value: 'inset'
-		},
-		{
-			label: __( 'Outset', 'wpmozo-blocks-and-addons' ),
-			value: 'outset'
-		},
+		{ label: __( 'Solid', 'wpmozo-blocks-and-addons' ), value: 'solid' },
+		{ label: __( 'Dashed', 'wpmozo-blocks-and-addons' ), value: 'dashed' },
+		{ label: __( 'Dotted', 'wpmozo-blocks-and-addons' ), value: 'dotted' },
+		{ label: __( 'Double', 'wpmozo-blocks-and-addons' ), value: 'double' },
+		{ label: __( 'Groove', 'wpmozo-blocks-and-addons' ), value: 'groove' },
+		{ label: __( 'Ridge', 'wpmozo-blocks-and-addons' ), value: 'ridge' },
+		{ label: __( 'Inset', 'wpmozo-blocks-and-addons' ), value: 'inset' },
+		{ label: __( 'Outset', 'wpmozo-blocks-and-addons' ), value: 'outset' },
 	];
 
 	return ( <>
-		<PanelBody title={ __( 'List', 'wpmozo-blocks-and-addons' ) }  opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
+		<PanelBody title={ __( 'List', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<WpmozoAlignment
 				label={__( 'Alignment', 'wpmozo-blocks-and-addons')}
 				onChange={ ( newValue ) => setAttributes( { listAlignment: newValue } ) }
 				value={ attributes.listAlignment }
 			/>
-			<ColorGradientControl
-				colorValue={ attributes.globalItemBackgroundColor }
-				gradientValue={ attributes.globalItemBackgroundGradient }
-				colors={ [
-					{ name: 'red', color: '#f00' },
-					{ name: 'white', color: '#fff' },
-					{ name: 'blue', color: '#00f' },
-				] }
-				gradients={[
-					{
-						name: 'Vivid cyan blue to vivid purple',
-						gradient:
-							'linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)',
-						slug: 'vivid-cyan-blue-to-vivid-purple',
-					},
-					{
-						name: 'Light green cyan to vivid green cyan',
-						gradient:
-							'linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%)',
-						slug: 'light-green-cyan-to-vivid-green-cyan',
-					},
-					{
-						name: 'Luminous vivid amber to luminous vivid orange',
-						gradient:
-							'linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%)',
-						slug: 'luminous-vivid-amber-to-luminous-vivid-orange',
-					},
-				]}
-				label={ __("List Background") }
-				onColorChange={ (newValue) => setAttributes({ globalItemBackgroundColor: newValue }) }
-				onGradientChange={ (newValue) => setAttributes({ globalItemBackgroundGradient: newValue }) }
+			<MozoStates
+				value={hoverState}
+				title={ __( 'List Background', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<ColorGradientControl
+						colorValue={ isHover ? attributes.globalItemHoverBackgroundColor : attributes.globalItemBackgroundColor }
+						gradientValue={ isHover ? attributes.globalItemHoverBackgroundGradient : attributes.globalItemBackgroundGradient }
+						colors={ [] }
+						gradients={ [] }
+						label={ isHover ? __( 'Hover List Background', 'wpmozo-blocks-and-addons' ) : __( 'List Background', 'wpmozo-blocks-and-addons' ) }
+						onColorChange={ (newValue) => setAttributes({ [isHover ? 'globalItemHoverBackgroundColor' : 'globalItemBackgroundColor']: newValue }) }
+						onGradientChange={ (newValue) => setAttributes({ [isHover ? 'globalItemHoverBackgroundGradient' : 'globalItemBackgroundGradient']: newValue }) }
+					/>
+				) }
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Item Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-text-styling-panel wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
@@ -111,9 +75,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				step={ 1 }
 				max={ 100 }
 			/>
-			<BaseControl
-				className="wpmozo-button-tabs-wrap"
-			>
+			<BaseControl className="wpmozo-button-tabs-wrap">
 				<ButtonGroup>
 					<Button
 						className="wpmozo-button-tabs-btn"
@@ -132,37 +94,75 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				</ButtonGroup>
 				{ 'text' === textType &&
 					<>
-						<WpmozoColorPicker
-							ColorKey="text"
-							props={props}
-							ColorTypes={[
-								{
-									key: 'Color',
-									label: __( 'Text Color', 'wpmozo-blocks-and-addons' ),
-								},
-							]}
+						<MozoStates
+							value={hoverState}
+							title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+							onChange={ ( isHover ) => (
+									isHover ? setHoverState(true) : setHoverState(false),
+									setAttributes({wrapIsHover: !hoverState})
+								)
+							}
+							control={ ( isHover ) => (
+								<WpmozoColorPicker
+									ColorKey={ isHover ? "textHover" : "text" }
+									props={props}
+									ColorTypes={[
+										{ key: 'Color', label: isHover ? __( 'Hover Text Color', 'wpmozo-blocks-and-addons' ) : __( 'Text Color', 'wpmozo-blocks-and-addons' ) },
+									]}
+								/>
+							) }
 						/>
-						<WpmozoTypography
-							TypographyKey="text"
-							props={props}
+						<MozoStates
+							value={hoverState}
+							title={ __( 'Typography', 'wpmozo-blocks-and-addons' ) }
+							onChange={ ( isHover ) => (
+									isHover ? setHoverState(true) : setHoverState(false),
+									setAttributes({wrapIsHover: !hoverState})
+								)
+							}
+							control={ ( isHover ) => (
+								<WpmozoTypography
+									TypographyKey={ isHover ? "textHover" : "text" }
+									props={props}
+								/>
+							) }
 						/>
 					</>
 				}
 				{ 'link' === textType &&
 					<>
-						<WpmozoColorPicker
-							ColorKey="link"
-							props={props}
-							ColorTypes={[
-								{
-									key: 'Color',
-									label: __( 'Link Color', 'wpmozo-blocks-and-addons' ),
-								},
-							]}
+						<MozoStates
+							value={hoverState}
+							title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+							onChange={ ( isHover ) => (
+									isHover ? setHoverState(true) : setHoverState(false),
+									setAttributes({wrapIsHover: !hoverState})
+								)
+							}
+							control={ ( isHover ) => (
+								<WpmozoColorPicker
+									ColorKey={ isHover ? "linkHover" : "link" }
+									props={props}
+									ColorTypes={[
+										{ key: 'Color', label: isHover ? __( 'Hover Link Color', 'wpmozo-blocks-and-addons' ) : __( 'Link Color', 'wpmozo-blocks-and-addons' ) },
+									]}
+								/>
+							) }
 						/>
-						<WpmozoTypography
-							TypographyKey="link"
-							props={props}
+						<MozoStates
+							value={hoverState}
+							title={ __( 'Typography', 'wpmozo-blocks-and-addons' ) }
+							onChange={ ( isHover ) => (
+									isHover ? setHoverState(true) : setHoverState(false),
+									setAttributes({wrapIsHover: !hoverState})
+								)
+							}
+							control={ ( isHover ) => (
+								<WpmozoTypography
+									TypographyKey={ isHover ? "linkHover" : "link" }
+									props={props}
+								/>
+							) }
 						/>
 					</>
 				}
@@ -177,15 +177,23 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				step={ 1 }
 				max={ 100 }
 			/>
-			<WpmozoColorPicker
-				ColorKey="icon"
-				props={props}
-				ColorTypes={[
-					{
-						key: 'Color',
-						label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ),
-					},
-				]}
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker
+						ColorKey={ isHover ? "iconHover" : "icon" }
+						props={props}
+						ColorTypes={[
+							{ key: 'Color', label: isHover ? __( 'Icon Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Icon Color', 'wpmozo-blocks-and-addons' ) },
+						]}
+					/>
+				) }
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Image', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
@@ -213,15 +221,23 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				options={dividerStyle}
 				onChange={ ( newValue ) => setAttributes( { dividerStyle: newValue } ) }
 			/>
-			<WpmozoColorPicker
-				ColorKey="divider"
-				props={props}
-				ColorTypes={[
-					{
-						key: 'Color',
-						label: __( 'Divider Color', 'wpmozo-blocks-and-addons' ),
-					},
-				]}
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker
+						ColorKey={ isHover ? "dividerHover" : "divider" }
+						props={props}
+						ColorTypes={[
+							{ key: 'Color', label: isHover ? __( 'Divider Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Divider Color', 'wpmozo-blocks-and-addons' ) },
+						]}
+					/>
+				) }
 			/>
 			<ToggleControl
 				label={ __( 'Hide Last Divider', 'wpmozo-blocks-and-addons' ) }

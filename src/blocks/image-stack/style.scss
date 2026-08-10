@@ -60,9 +60,13 @@
 }
 
 //.tippy-box{ display: none; }
+.tippy-box {
+	transition: color 300ms ease-in-out, background-color 300ms ease-in-out;
+}
 .tippy-box:before {
 	position: absolute;
 }
+
 .tippy-box[data-placement="top"]:before,
 .tippy-box[data-placement="bottom"]:before{
 	left: 0;

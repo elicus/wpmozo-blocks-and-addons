@@ -5,21 +5,31 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	const { iconFontSize, separatorColor } = attributes,
 	toConvertStyles = [
     	'text',
+    	'textHover',
         'link',
-        'divider'
+        'linkHover',
+        'divider',
+        'dividerHover'
     ];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
 	let normalcss = [],
 	hovercss = [],
 	cssExtras = [];
-	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
 
 	normalcss.push(
 		( attributes.iconColor || attributes.iconFontSize )
 		? `.wpmozo-bna-list-icon i { 
 				${attributes.iconColor ? `color: ${attributes.iconColor};` : ''} 
 				${attributes.iconFontSize ? `font-size: ${attributes.iconFontSize}px;` : ''} 
+			}`
+		: ''
+	);
+
+	hovercss.push(
+		( attributes.iconHoverColor )
+		? `.wpmozo-bna-list-item:hover .wpmozo-bna-list-icon i, #block-${attributes.ID}.is_hover .wpmozo-bna-list-icon i { 
+				color: ${attributes.iconHoverColor}; 
 			}`
 		: ''
 	);
@@ -52,11 +62,29 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 		: ''
 	);
 
+	hovercss.push(
+		( attributes.textHoverColor || convertedStyle.textHover )
+		? `.wpmozo-bna-list-item:hover .wpmozo-bna-list-item-text, #block-${attributes.ID}.is_hover .wpmozo-bna-list-item-text { 
+				${attributes.textHoverColor ? `color: ${attributes.textHoverColor};` : ''} 
+				${convertedStyle.textHover || ''} 
+			}`
+		: ''
+	);
+
 	normalcss.push(
 		( attributes.linkColor || convertedStyle.link )
 		? `.wpmozo-bna-list-item-text a { 
 				${attributes.linkColor ? `color: ${attributes.linkColor};` : ''} 
 				${convertedStyle.link || ''} 
+			}`
+		: ''
+	);
+
+	hovercss.push(
+		( attributes.linkHoverColor || convertedStyle.linkHover )
+		? `.wpmozo-bna-list-item:hover .wpmozo-bna-list-item-text a, #block-${attributes.ID}.is_hover .wpmozo-bna-list-item-text a { 
+				${attributes.linkHoverColor ? `color: ${attributes.linkHoverColor};` : ''} 
+				${convertedStyle.linkHover || ''} 
 			}`
 		: ''
 	);
@@ -74,6 +102,14 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 				}`
 			: ''
 		);
+		hovercss.push(
+			( attributes.dividerHoverColor || convertedStyle.dividerHover )
+			? `.wpmozo-bna-list-item:hover .wpmozo-bna-list-divider, #block-${attributes.ID}.is_hover .wpmozo-bna-list-divider { 
+					${attributes.dividerHoverColor ? `border-color: ${attributes.dividerHoverColor};` : ''} 
+					${convertedStyle.dividerHover || ''} 
+				}`
+			: ''
+		);
 	} else {
 		normalcss.push(
 			( attributes.dividerSize || attributes.dividerStyle || attributes.dividerColor || convertedStyle.divider )
@@ -82,6 +118,14 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 					${attributes.dividerStyle ? `border-style: ${attributes.dividerStyle};` : ''} 
 					${attributes.dividerColor ? `border-color: ${attributes.dividerColor};` : ''} 
 					${convertedStyle.divider || ''} 
+				}`
+			: ''
+		);
+		hovercss.push(
+			( attributes.dividerHoverColor || convertedStyle.dividerHover )
+			? `.wpmozo-bna-list-item:hover .wpmozo-bna-list-divider, #block-${attributes.ID}.is_hover .wpmozo-bna-list-divider { 
+					${attributes.dividerHoverColor ? `border-color: ${attributes.dividerHoverColor};` : ''} 
+					${convertedStyle.dividerHover || ''} 
 				}`
 			: ''
 		);
@@ -102,6 +146,15 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 					background: ${attributes.globalItemBackgroundColor}; 
 				}`
 			: ''
+		);
+	}
+
+	if ( attributes.globalItemHoverBackgroundColor || attributes.globalItemHoverBackgroundGradient ) {
+		hovercss.push(
+			`.wpmozo-bna-list-item:hover, #block-${attributes.ID}.is_hover .wpmozo-bna-list-item { 
+				${attributes.globalItemHoverBackgroundColor ? `background: ${attributes.globalItemHoverBackgroundColor};` : ''} 
+				${attributes.globalItemHoverBackgroundGradient ? `background: ${attributes.globalItemHoverBackgroundGradient};` : ''} 
+			}`
 		);
 	}
 

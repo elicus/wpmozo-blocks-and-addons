@@ -2,20 +2,19 @@ import {convertInlineStyleStr} from '../../common/utils.js';
 
 const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 
-     // Re-run when clientId changes
 	const toConvertStyles = [
     	'textNormal',
         'textHover',
-        'item'
+        'item',
+        'itemHover'
     ];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
     let iconFontSize = attributes.parentAtts ? attributes.parentAtts.iconFontSize : '';
-
+    let parentAttributes = attributes.parentAtts || {};
 
 	let normalcss = [],
 	hovercss = [],
 	cssExtras = [];
-	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
 
 	if ( undefined === attributes.itemBackgroundColor ) {
 		normalcss.push(`${(attributes.itemBackgroundGradient) ? `background:` +attributes.itemBackgroundGradient+`;` : ''}`);
@@ -23,6 +22,16 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 		normalcss.push(`${(attributes.itemBackgroundColor) ? `background:` +attributes.itemBackgroundColor+`;` : ''}`);
 	}
 	normalcss.push(`${convertedStyle.item || ''}`);
+
+	if ( attributes.itemHoverBackgroundColor || attributes.itemHoverBackgroundGradient || convertedStyle.itemHover ) {
+		hovercss.push(
+			`&#block-${attributes.ID}.wpmozo-bna-list-item:hover, #block-${attributes.ID}.wpmozo-bna-list-item.is_hover {
+				${attributes.itemHoverBackgroundColor ? `background: ${attributes.itemHoverBackgroundColor};` : ''}
+				${attributes.itemHoverBackgroundGradient ? `background: ${attributes.itemHoverBackgroundGradient};` : ''}
+				${convertedStyle.itemHover || ''}
+			}`
+		);
+	}
 
 	normalcss.push(
 		( attributes.textNormalColor || convertedStyle.textNormal )
@@ -32,9 +41,9 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 			}`
 		: ''
 	);
-	normalcss.push(
+	hovercss.push(
 		( attributes.textHoverColor || convertedStyle.textHover )
-		? `.wpmozo-bna-list-item-text p:hover { 
+		? `&#block-${attributes.ID}.wpmozo-bna-list-item:hover .wpmozo-bna-list-item-text p, #block-${attributes.ID}.wpmozo-bna-list-item.is_hover .wpmozo-bna-list-item-text p { 
 				${attributes.textHoverColor ? `color: ${attributes.textHoverColor};` : ''} 
 				${convertedStyle.textHover || ''} 
 			}`
@@ -45,6 +54,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	
 	if ( 'icon' === attributes.markerType ) {
 		normalcss.push( attributes.iconColor ? `.wpmozo-bna-list-icon i { color:`+ attributes.iconColor+`;}` : '' );
+		hovercss.push( attributes.iconHoverColor ? `&#block-${attributes.ID}.wpmozo-bna-list-item:hover .wpmozo-bna-list-icon i, #block-${attributes.ID}.wpmozo-bna-list-item.is_hover .wpmozo-bna-list-icon i { color: ${attributes.iconHoverColor};}` : '' );
 		
 		if( true === attributes.styleIcon ){
 			if( 'hexagon' === attributes.iconShape ){
@@ -66,8 +76,14 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 							transform: rotate(45deg) skew(-15.8deg, -15.8deg) translate(-27%, -72%);
 							width: 55%;
 							height: 100%;
-						}` : '' 
-					);
+						}
+					` : '' );
+					hovercss.push( attributes.shapeHoverBorderColor ? `
+						&#block-${attributes.ID}.wpmozo-bna-list-item:hover .wpmozo-bna-list-icon .hexagon.wpmozo-bna-border-hex,
+						#block-${attributes.ID}.wpmozo-bna-list-item.is_hover .wpmozo-bna-list-icon .hexagon.wpmozo-bna-border-hex { 
+							box-shadow: 2px 0px 0px 0px inset `+ attributes.shapeHoverBorderColor + `, -2px 0px 0px 0px inset `+ attributes.shapeHoverBorderColor +`;
+						}
+					` : '' );
 				} else {
 					normalcss.push(`
 						.wpmozo-bna-list-icon .hexagon:after{ 
@@ -88,12 +104,24 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 						background-color: ${attributes.shapeBackground}; 
 					}` : '' 
 				);
+				hovercss.push( attributes.shapeHoverBackground ? `
+					&#block-${attributes.ID}.wpmozo-bna-list-item:hover .wpmozo-bna-list-icon .hexagon:before,
+					&#block-${attributes.ID}.wpmozo-bna-list-item:hover .wpmozo-bna-list-icon .hexagon:after,
+					&#block-${attributes.ID}.wpmozo-bna-list-item:hover .wpmozo-bna-list-icon .hexagon,
+					#block-${attributes.ID}.wpmozo-bna-list-item.is_hover .wpmozo-bna-list-icon .hexagon:before,
+					#block-${attributes.ID}.wpmozo-bna-list-item.is_hover .wpmozo-bna-list-icon .hexagon:after,
+					#block-${attributes.ID}.wpmozo-bna-list-item.is_hover .wpmozo-bna-list-icon .hexagon { 
+						background-color: ${attributes.shapeHoverBackground}; 
+					}` : '' 
+				);
 			} else {
 				if( true === attributes.enableShapeBorder ){
 					normalcss.push( attributes.shapeBorderColor ? `.wpmozo-bna-list-icon i { border:2px solid `+attributes.shapeBorderColor+`;}` : '');
+					hovercss.push( attributes.shapeHoverBorderColor ? `&#block-${attributes.ID}.wpmozo-bna-list-item:hover .wpmozo-bna-list-icon i, #block-${attributes.ID}.wpmozo-bna-list-item.is_hover .wpmozo-bna-list-icon i { border-color: ${attributes.shapeHoverBorderColor};}` : '');
 				}
 			}
 			normalcss.push(attributes.shapeBackground ? `.wpmozo-bna-list-icon i { background-color:`+attributes.shapeBackground+`;}` : '' );
+			hovercss.push(attributes.shapeHoverBackground ? `&#block-${attributes.ID}.wpmozo-bna-list-item:hover .wpmozo-bna-list-icon i, #block-${attributes.ID}.wpmozo-bna-list-item.is_hover .wpmozo-bna-list-icon i { background-color: ${attributes.shapeHoverBackground};}` : '' );
 		}
 	}
 

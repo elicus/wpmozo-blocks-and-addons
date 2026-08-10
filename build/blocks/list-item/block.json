@@ -39,6 +39,12 @@
     "itemBackgroundGradient": {
       "type": "text"
     },
+    "itemHoverBackgroundColor": {
+      "type": "text"
+    },
+    "itemHoverBackgroundGradient": {
+      "type": "text"
+    },
     "text": {
       "type": "rich-text",
       "source": "rich-text",
@@ -142,7 +148,13 @@
     "iconColor": {
       "type": "string"
     },
+    "iconHoverColor": {
+      "type": "string"
+    },
     "shapeBackground": {
+      "type": "string"
+    },
+    "shapeHoverBackground": {
       "type": "string"
     },
     "enableShapeBorder": {
@@ -150,6 +162,9 @@
       "default": false
     },
     "shapeBorderColor": {
+      "type": "string"
+    },
+    "shapeHoverBorderColor": {
       "type": "string"
     }
   },

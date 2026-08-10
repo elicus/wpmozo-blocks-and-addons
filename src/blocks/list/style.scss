@@ -142,4 +142,17 @@
 	width: 100%;
 	box-sizing: border-box;
 	text-align: center;
+	transition: background 300ms ease-in-out;
 }
+
+.wpmozo-bna-list-item-text,
+.wpmozo-bna-list-item-text p,
+.wpmozo-bna-list-item-text a,
+.wpmozo-bna-list-icon i,
+.wpmozo-bna-list-icon .hexagon,
+.wpmozo-bna-list-icon .hexagon:before,
+.wpmozo-bna-list-icon .hexagon:after,
+.wpmozo-bna-list-divider {
+	transition: color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
+}
+

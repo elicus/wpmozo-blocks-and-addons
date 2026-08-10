@@ -33,7 +33,9 @@
 		"itemBorderRadius": { "type": "object" },
 
 		"tooltipColor": { "type": "string","default": "" },
+		"tooltipHoverColor": { "type": "string","default": "" },
 		"tooltipBackgroundColor": { "type": "string", "default": "" },
+		"tooltipHoverBackgroundColor": { "type": "string", "default": "" },
 		"showTooltip": { "type": "boolean", "default": false },
 		"tooltipType": { "type": "string", "default": "imageTitle" }
 	},

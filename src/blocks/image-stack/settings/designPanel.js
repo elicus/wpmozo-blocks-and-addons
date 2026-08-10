@@ -103,14 +103,27 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			/>
 		</PanelBody>
 		{/* Tooltip Styling. */}
-		<PanelBody title={ __( 'Tooltip', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
-			<WpmozoColorPicker props={props}
-				ColorKey="tooltip"
-				ColorTypes={ [
-					{ key: 'Color', label: __( 'Tooltip Text Color', 'wpmozo-blocks-and-addons' ) },
-					{ key: 'BackgroundColor', label: __( 'Tooltip Background Color', 'wpmozo-blocks-and-addons' ) }
-				] }
-			/>
-		</PanelBody>
+		{ attributes.showTooltip && (
+			<PanelBody title={ __( 'Tooltip', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
+				<MozoStates
+					value={hoverState}
+					title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( isHover ) => (
+							isHover ? setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)
+					}
+					control={ ( isHover ) => (
+						<WpmozoColorPicker props={props}
+							ColorKey={ isHover ? "tooltipHover" : "tooltip" }
+							ColorTypes={ [
+								{ key: 'Color', label: isHover ? __( 'Tooltip Hover Text Color', 'wpmozo-blocks-and-addons' ) : __( 'Tooltip Text Color', 'wpmozo-blocks-and-addons' ) },
+								{ key: 'BackgroundColor', label: isHover ? __( 'Tooltip Hover Background Color', 'wpmozo-blocks-and-addons' ) : __( 'Tooltip Background Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+					) }
+				/>
+			</PanelBody>
+		) }
 	</> );
 };
