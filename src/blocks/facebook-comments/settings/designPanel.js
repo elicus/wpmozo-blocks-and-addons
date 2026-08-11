@@ -9,6 +9,7 @@ import {
 import {
 	WpmozoBorder,
 	WpmozoDimensions,
+	MozoStates,
 } from '../../../common/components';
 
 export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
@@ -17,23 +18,45 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 	return ( <>
 		{/* Block. */}
 		<PanelBody title={ __( 'Block', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
-			<ColorGradientControl colors={[]} gradients={[]}
-				label={ __( 'Block Background', 'wpmozo-blocks-and-addons' ) }
-				colorValue={ attributes.blockBackground }
-				gradientValue={ attributes.blockBGGradient }
-				onColorChange={ ( newValue ) => setAttributes( { blockBackground: newValue } ) }
-				onGradientChange={ ( newValue ) => setAttributes( { blockBGGradient: newValue } ) }
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Block Background', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<ColorGradientControl colors={[]} gradients={[]}
+						label={ isHover ? __( 'Hover Background', 'wpmozo-blocks-and-addons' ) : __( 'Block Background', 'wpmozo-blocks-and-addons' ) }
+						colorValue={ isHover ? attributes.blockHoverBackground : attributes.blockBackground }
+						gradientValue={ isHover ? attributes.blockHoverBGGradient : attributes.blockBGGradient }
+						onColorChange={ (newValue) => setAttributes( isHover ? { blockHoverBackground: newValue } : { blockBackground: newValue } ) }
+						onGradientChange={ (newValue) => setAttributes( isHover ? { blockHoverBGGradient: newValue } : { blockBGGradient: newValue } ) }
+					/>
+				) }
 			/>
 			<WpmozoDimensions props={ props }
 				label={ __( 'Block Dimensions', 'wpmozo-blocks-and-addons' ) }
 				DimensionKey='block'
 				DimensionsTypes={ { padding: true, margin: true } }
 			/>
-			<WpmozoBorder props={ props }
-				label={ __( 'Block Border', 'wpmozo-blocks-and-addons' ) }
-				BorderKey="block"
-				BorderTypes={ { border: true, radius: true } }
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Block Border', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoBorder props={props}
+						BorderKey={ isHover ? "blockHover" : "block" }
+						BorderTypes={ { border: true, radius: true } }
+					/>
+				) }
 			/>
 		</PanelBody>
 	</> );
 };
+

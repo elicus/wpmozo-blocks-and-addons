@@ -1,6 +1,6 @@
 // deprecated/version-1.js
 import { useBlockProps } from '@wordpress/block-editor';
-import generateDynamicStyle from '../style';
+import generateDynamicStyle from './style';
 import ReactDOMServer from 'react-dom/server';
 
 const V1 = {

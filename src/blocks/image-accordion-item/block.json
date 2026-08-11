@@ -33,7 +33,7 @@
         "contentWrapperpadding": { "type": "object" },
         "contentWrappermargin": { "type": "object" },
 		"Containerborder": { "type": "object" },
-		"ContainerborderRadius": { "type": "string" },
+		"ContainerborderRadius": { "type": "object" },
         "normalUseBackgroundImage": { "type": "boolean", "default": true },
         "normalAccordionBackground": { "type": "string" },
         "normalBackgroundImage": { "type": "string" },
@@ -58,7 +58,9 @@
         "activeUseBackgroundImage": { "type": "boolean", "default": false },
 
         "iconColor": { "type": "string" },
+        "iconHoverColor": { "type": "string" },
         "iconShapBackground": { "type": "string", "default": "#9E9E9E" },
+        "iconHoverShapBackground": { "type": "string" },
         "styleIcon": { "type": "boolean", "default": false },
         "iconShape": { "type": "string", "default": "square" },
         "iconFontSize": { "type": "string" },
@@ -69,6 +71,7 @@
         "textAlignment": { "type": "string" },
 
         "titleColor": { "type": "string" },
+        "titleHoverColor": { "type": "string" },
         "titleAlign": { "type": "string" },
         "titleLavel": { "type": "string", "default": "h4" },
         "titleFontSize": { "type": "string" },
@@ -85,10 +88,20 @@
         "titleDecoration": { "type": "string" },
         "titleLetterCase": { "type": "string" },
         "titleLineHeight": { "type": "string" },
+        "titleHoverFontSize": { "type": "string" },
+        "titleHoverLetterSpacing": { "type": "string" },
+        "titleHoverDecoration": { "type": "string" },
+        "titleHoverLetterCase": { "type": "string" },
+        "titleHoverLineHeight": { "type": "string" },
+        "titleHoverFontAppearance": {
+            "type": "object",
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
         "titlepadding": { "type": "object" },
         "titlemargin": { "type": "object" },
 
         "descriptionColor": { "type": "string" },
+        "descriptionHoverColor": { "type": "string" },
         "descriptionAlign": { "type": "string" },
         "descriptionFontSize": { "type": "string" },
         "descriptionFontAppearance": {
@@ -104,11 +117,22 @@
         "descriptionDecoration": { "type": "string" },
         "descriptionLetterCase": { "type": "string" },
         "descriptionLineHeight": { "type": "string" },
+        "descriptionHoverFontSize": { "type": "string" },
+        "descriptionHoverLetterSpacing": { "type": "string" },
+        "descriptionHoverDecoration": { "type": "string" },
+        "descriptionHoverLetterCase": { "type": "string" },
+        "descriptionHoverLineHeight": { "type": "string" },
+        "descriptionHoverFontAppearance": {
+            "type": "object",
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
         "descriptionpadding": { "type": "object" },
         "descriptionmargin": { "type": "object" },
 
         "buttonTextColor": { "type": "string" },
+        "buttonHoverTextColor": { "type": "string" },
         "buttonBackgroundColor": { "type": "string" },
+        "buttonHoverBackgroundColor": { "type": "string" },
         "buttonAlignment": { "type": "string" },
         "buttonFontSize": { "type": "string" },
         "buttonFontAppearance": {
@@ -124,13 +148,25 @@
         "buttonDecoration": { "type": "string" },
         "buttonLetterCase": { "type": "string" },
         "buttonLineHeight": { "type": "string" },
+        "buttonHoverFontSize": { "type": "string" },
+        "buttonHoverLetterSpacing": { "type": "string" },
+        "buttonHoverDecoration": { "type": "string" },
+        "buttonHoverLetterCase": { "type": "string" },
+        "buttonHoverLineHeight": { "type": "string" },
+        "buttonHoverFontAppearance": {
+            "type": "object",
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
         "useButtonIcon": { "type": "boolean", "default": false },
         "buttonIconColor": { "type": "string" },
+        "buttonIconHoverColor": { "type": "string" },
         "buttonIcon": { "type": "string" },
         "buttonIconPlacement": { "type": "string", "default": "after" },
         "buttonIconHover": { "type": "boolean", "default": false },
         "buttonborder": { "type": "object" },
-        "buttonborderRadius": { "type": "string" },
+        "buttonHoverborder": { "type": "object" },
+        "buttonborderRadius": { "type": "object" },
+        "buttonHoverborderRadius": { "type": "object" },
         "buttonpadding": { "type": "object" },
         "buttonmargin": { "type": "object" }
 

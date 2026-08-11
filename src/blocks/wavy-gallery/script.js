@@ -151,7 +151,7 @@ function initWavyGallery( thisObj ) {
 
 	// Update overlay title on click.
 	function updateOverlayTitle() {
-		if ( false === showOverlayTitle ) {
+		if ( 'false' === showOverlayTitle ) {
 			$overlayTitle.hide();
 			return;
 		}

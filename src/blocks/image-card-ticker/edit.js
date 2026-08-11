@@ -266,7 +266,7 @@ export default function Edit(props) {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes}/>
-			<style>{generateDynamicStyle({attributes})}</style>
+			<style>{generateDynamicStyle({attributes, isEdit: true})}</style>
 
 			<div {...blockProps}>
 				{'curve' === attributes.tickerLayout && (

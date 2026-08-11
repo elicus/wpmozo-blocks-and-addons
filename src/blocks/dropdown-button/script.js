@@ -1,18 +1,17 @@
 import $ from 'jquery';
 jQuery( document ).ready( function($) {
-	if ( $( '.wp-block-wpmozo-dropdown-button' ).length > 0 ) {
-		// On change on props, update the slider again.
-		window.addEventListener( 'WPMozoDropdownButtonPropsChanged', () => {
-			$( '.wp-block-wpmozo-dropdown-button' ).each( function() {
-				wpmozoInitDropdownButton( $( this ) );
-			} );
-		} );
-
-		// On load.
-		$( '.wp-block-wpmozo-dropdown-button' ).each( function () {
+	
+	// On change on props, update the slider again.
+	window.addEventListener( 'WPMozoDropdownButtonPropsChanged', (e) => {
+		$( '.wp-block-wpmozo-dropdown-button' ).each( function() {
 			wpmozoInitDropdownButton( $( this ) );
 		} );
-	}
+	} );
+
+	// On load.
+	$( '.wp-block-wpmozo-dropdown-button' ).each( function () {
+		wpmozoInitDropdownButton( $( this ) );
+	} );
 } ); // Document ready.
 
 // Init dropdown button.

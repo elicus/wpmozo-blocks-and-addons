@@ -49,7 +49,10 @@
 .wpmozo-bna-image-stack .wpmozo-stack-item-wrapper.stack_item-type-text{
 	display: inline-flex;
 	align-items: center;
-	justify-content: center
+	justify-content: center;
+}
+.wpmozo-stack-item-wrapper i {
+	transition: color 300ms ease-in-out;
 }
 
 .wpmozo-image-stack-inner:hover .wpmozo-image-stack-item:not(:first-child){
@@ -57,9 +60,13 @@
 }
 
 //.tippy-box{ display: none; }
+.tippy-box {
+	transition: all 300ms;
+}
 .tippy-box:before {
 	position: absolute;
 }
+
 .tippy-box[data-placement="top"]:before,
 .tippy-box[data-placement="bottom"]:before{
 	left: 0;

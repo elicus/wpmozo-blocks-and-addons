@@ -4,9 +4,13 @@ const generateDynamicStyle = ({ attributes }) => {
 
 	const toConvertStyles = [
 		"title",
+		"titleHover",
 		"description",
+		"descriptionHover",
 		"icon",
-		"button"
+		"iconHover",
+		"button",
+		"buttonHover"
 	];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
@@ -170,6 +174,43 @@ const generateDynamicStyle = ({ attributes }) => {
 			normalcss.push( `.wpmozo-bna-btn i {margin-right: -15px !important;}.wpmozo-bna-btn:hover i {margin-right: 0px !important;}` );
 		}
 	}
+
+	hovercss.push(
+		( attributes.titleHoverColor || convertedStyle.titleHover ) 
+		? `.wpmozo-bna-image-accordion-item-title:hover{
+				${ attributes.titleHoverColor ? `color: ${attributes.titleHoverColor};` : '' }
+				${ convertedStyle.titleHover || '' }
+			}`
+		: ''
+	);
+
+	hovercss.push(
+		( attributes.descriptionHoverColor || convertedStyle.descriptionHover ) 
+		? `.wpmozo-bna-image-accordion-item-desc:hover{
+				${ attributes.descriptionHoverColor ? `color: ${attributes.descriptionHoverColor};` : '' }
+				${ convertedStyle.descriptionHover || '' }
+			}`
+		: ''
+	);
+
+	hovercss.push(
+		( attributes.iconHoverColor || convertedStyle.iconHover ) 
+		? `.wpmozo-bna-image-accordion-item-icon .icon-wrapper i:hover{
+				${ attributes.iconHoverColor ? `color: ${attributes.iconHoverColor};` : '' }
+				${ convertedStyle.iconHover || '' }
+			}`
+		: ''
+	);
+
+	hovercss.push(
+		( attributes.buttonHoverTextColor || attributes.buttonHoverBackgroundColor || convertedStyle.buttonHover ) 
+		? `.wpmozo-bna-button:hover{
+				${ attributes.buttonHoverTextColor ? `color: ${attributes.buttonHoverTextColor};` : '' }
+				${ attributes.buttonHoverBackgroundColor ? `background-color: ${attributes.buttonHoverBackgroundColor};` : '' }
+				${ convertedStyle.buttonHover || '' }
+			}`
+		: ''
+	);
 	const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);
 	
 	let styles = hasStyles ? `#block-${attributes.ID}.wp-block-wpmozo-image-accordion{${normalcss.filter(Boolean).join('\n')} ${hovercss.filter(Boolean).join('\n')}}` : '';

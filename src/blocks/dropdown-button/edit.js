@@ -48,7 +48,7 @@ const Edit = (props) => {
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [props] );
+	}, [JSON.stringify(attributes)] );
 
 	// Dropdown button.
 	let $buttonIcon = '';

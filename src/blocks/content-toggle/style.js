@@ -5,11 +5,15 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	const { iconFontSize, separatorColor } = attributes,
 	toConvertStyles = [
     	'titleOne', 
+    	'titleOneHover', 
         'titleTwo', 
+        'titleTwoHover', 
         'toggleSwitchDimensions', 
         'contentOne', 
+        'contentOneHover', 
         'contentOneDimensions', 
         'contentTwo', 
+        'contentTwoHover', 
         'contentTwoDimensions'
     ];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
@@ -43,28 +47,30 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
         : ''
 	);
     
-    normalcss.push(
+	hovercss.push(
 		attributes.toggleSwitchHoverColor 
-        ? `.wpmozo-bna-toggle-button-wrap .wpmozo-bna-toggle-switch:hover::before { background-color: ${attributes.toggleSwitchHoverColor}; }` 
+        ? `.wpmozo-bna-toggle-button-wrap .wpmozo-bna-toggle-switch:hover::before${isEditor('.wpmozo-bna-toggle-button-wrap .wpmozo-bna-toggle-switch::before')} { background-color: ${attributes.toggleSwitchHoverColor}; }` 
         : ''
 	);
     
-    normalcss.push(
+    hovercss.push(
 		attributes.toggleSwitchHoverOnState 
-        ? `.wpmozo-bna-toggle-button-wrap input:checked + .wpmozo-bna-toggle-switch:hover::before { background-color: ${attributes.toggleSwitchHoverOnState}; }` 
+        ? `.wpmozo-bna-toggle-button-wrap input:checked + .wpmozo-bna-toggle-switch:hover::before${isEditor('.wpmozo-bna-toggle-button-wrap input:checked + .wpmozo-bna-toggle-switch::before')} { background-color: ${attributes.toggleSwitchHoverOnState}; }` 
         : ''
 	);
     
-    normalcss.push(
+    hovercss.push(
 		attributes.toggleSwitchHoverBackground 
-        ? `.wpmozo-bna-toggle-button-wrap .wpmozo-bna-toggle-switch:hover { background-color: ${attributes.toggleSwitchHoverBackground}; }` 
+        ? `.wpmozo-bna-toggle-button-wrap .wpmozo-bna-toggle-switch:hover${isEditor('.wpmozo-bna-toggle-button-wrap .wpmozo-bna-toggle-switch')} { background-color: ${attributes.toggleSwitchHoverBackground}; }` 
         : ''
 	);
+    
     hovercss.push(
 		attributes.toggleSwitchHoverOnStateBackground 
         ? `.wpmozo-bna-toggle-button-wrap input:checked + .wpmozo-bna-toggle-switch:hover${isEditor('.wpmozo-bna-toggle-button-wrap input:checked + .wpmozo-bna-toggle-switch')} { background-color: ${attributes.toggleSwitchHoverOnStateBackground}; }` 
         : ''
 	);
+
 
 	normalcss.push(
 		(attributes.toggleSwitchAlignment || convertedStyle.toggleSwitchDimensions) 
@@ -81,6 +87,15 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 				${attributes.titleOneColor ? `color: ${attributes.titleOneColor};` : ''}
                 ${attributes.titleOneIconSpacing ? `gap: ${attributes.titleOneIconSpacing}px;` : ''}
 				${convertedStyle.titleOne || ''}
+				transition: all 300ms;
+			}`
+		: ''
+	);
+	hovercss.push(
+		( attributes.titleOneHoverColor || convertedStyle.titleOneHover ) 
+		? `.wpmozo-bna-toggle-title-one:hover${isEditor('.wpmozo-bna-toggle-title-one')}, .wpmozo-bna-toggle-title-one:hover > h5${isEditor('.wpmozo-bna-toggle-title-one > h5')} {
+				${attributes.titleOneHoverColor ? `color: ${attributes.titleOneHoverColor};` : ''}
+				${convertedStyle.titleOneHover || ''}
 			}`
 		: ''
 	);
@@ -91,6 +106,15 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 				${attributes.titleTwoColor ? `color: ${attributes.titleTwoColor};` : ''}
                 ${attributes.titleTwoIconSpacing ? `gap: ${attributes.titleTwoIconSpacing}px;` : ''}
 				${convertedStyle.titleTwo || ''}
+				transition: all 300ms;
+			}`
+		: ''
+	);
+	hovercss.push(
+		( attributes.titleTwoHoverColor || convertedStyle.titleTwoHover ) 
+		? `.wpmozo-bna-toggle-title-two:hover${isEditor('.wpmozo-bna-toggle-title-two')}, .wpmozo-bna-toggle-title-two:hover > h5${isEditor('.wpmozo-bna-toggle-title-two > h5')} {
+				${attributes.titleTwoHoverColor ? `color: ${attributes.titleTwoHoverColor};` : ''}
+				${convertedStyle.titleTwoHover || ''}
 			}`
 		: ''
 	);
@@ -100,15 +124,31 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 		? `.wpmozo-bna-toggle-title-one .icon-wrapper i {
 				${attributes.titleOneIconSize ? `font-size: ${attributes.titleOneIconSize}px;` : ''} 
                 ${attributes.titleOneIconColor ? `color: ${attributes.titleOneIconColor};` : ''}
+				transition: all 300ms;
+			}`
+		: ''
+	);
+	hovercss.push(
+		attributes.titleOneIconHoverColor 
+		? `.wpmozo-bna-toggle-title-one:hover .icon-wrapper i${isEditor('.wpmozo-bna-toggle-title-one .icon-wrapper i')} {
+                color: ${attributes.titleOneIconHoverColor};
 			}`
 		: ''
 	);
 
 	normalcss.push(
-		( attributes.titleOneIconSize || attributes.titleOneIconColor ) 
+		( attributes.titleTwoIconSize || attributes.titleTwoIconColor ) 
 		? `.wpmozo-bna-toggle-title-two .icon-wrapper i {
 				${attributes.titleTwoIconSize ? `font-size: ${attributes.titleTwoIconSize}px;` : ''}
                 ${attributes.titleTwoIconColor ? `color: ${attributes.titleTwoIconColor};` : ''}
+				transition: all 300ms;
+			}`
+		: ''
+	);
+	hovercss.push(
+		attributes.titleTwoIconHoverColor 
+		? `.wpmozo-bna-toggle-title-two:hover .icon-wrapper i${isEditor('.wpmozo-bna-toggle-title-two .icon-wrapper i')} {
+                color: ${attributes.titleTwoIconHoverColor};
 			}`
 		: ''
 	);
@@ -121,6 +161,16 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
                 ${attributes.contentOneColor ? `color: ${attributes.contentOneColor};` : ''} 
                 ${convertedStyle.contentOne  || ''}
                 ${convertedStyle.contentOneDimensions  || ''}
+				transition: all 300ms;
+			}`
+		: ''
+	);
+	hovercss.push(
+		( attributes.contentOneHoverBackground || attributes.contentOneHoverColor || convertedStyle.contentOneHover ) 
+		? `.wpmozo-bna-content-toggle-one:hover${isEditor('.wpmozo-bna-content-toggle-one')} {
+				${attributes.contentOneHoverBackground ? `background-color: ${attributes.contentOneHoverBackground};` : ''} 
+                ${attributes.contentOneHoverColor ? `color: ${attributes.contentOneHoverColor};` : ''} 
+                ${convertedStyle.contentOneHover  || ''}
 			}`
 		: ''
 	);
@@ -133,6 +183,16 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
                 ${attributes.contentTwoColor ? `color: ${attributes.contentTwoColor};` : ''} 
                 ${convertedStyle.contentTwo  || ''}
                 ${convertedStyle.contentTwoDimensions  || ''}
+				transition: all 300ms;
+			}`
+		: ''
+	);
+	hovercss.push(
+		( attributes.contentTwoHoverBackground || attributes.contentTwoHoverColor || convertedStyle.contentTwoHover ) 
+		? `.wpmozo-bna-content-toggle-two:hover${isEditor('.wpmozo-bna-content-toggle-two')} {
+				${attributes.contentTwoHoverBackground ? `background-color: ${attributes.contentTwoHoverBackground};` : ''} 
+                ${attributes.contentTwoHoverColor ? `color: ${attributes.contentTwoHoverColor};` : ''} 
+                ${convertedStyle.contentTwoHover  || ''}
 			}`
 		: ''
 	);

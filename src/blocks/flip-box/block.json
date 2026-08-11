@@ -94,7 +94,7 @@
 		"frontIconShape": { "type": "string", "default": "square" },
 		"frontIconShapeBackground": { "type": "string", "default": "#000000" },
 		"frontIconHasShapeBorder": { "type": "boolean", "default": false },
-		"frontIconShapeborderRadius": { "type": "string" },
+		"frontIconShapeborderRadius": { "type": "object" },
 		"frontIconShapeborder": { "type": "object" },
 		"frontIconShapeBorderColor": { "type": "string" },
 
@@ -104,7 +104,7 @@
 		"frontImageWidthUnit": { "type": "string", "default": "px" },
 
 		"frontFlipboxborder": { "type": "object" },
-		"frontFlipboxborderRadius": { "type": "string" },
+		"frontFlipboxborderRadius": { "type": "object" },
 		"frontFlipboxBackground": { "type": "string", "default": "#543EC4" },
 		"frontDimensionspadding": {
 			"type": "object",
@@ -158,7 +158,7 @@
 		"backIconShape": { "type": "string", "default": "square" },
 		"backIconShapeBackground": { "type": "string", "default": "#000000" },
 		"backIconHasShapeBorder": { "type": "boolean", "default": false },
-		"backIconShapeborderRadius": { "type": "string" },
+		"backIconShapeborderRadius": { "type": "object" },
 		"backIconShapeborder": { "type": "object" },
 
 		"backElImage": { "type": "string" },
@@ -167,7 +167,7 @@
 		"backImageWidthUnit": { "type": "string", "default": "px" },
 
 		"backFlipboxborder": { "type": "object" },
-		"backFlipboxborderRadius": { "type": "string" },
+		"backFlipboxborderRadius": { "type": "object" },
 		"backFlipboxBackground": { "type": "string", "default": "#863AD0" },
 		"backDimensionspadding": {
 			"type": "object",
@@ -199,12 +199,59 @@
 			"type": "object",
 			"default": { "width": "1px", "style": "solid", "color": "#fff" }
 		},
-		"backBtnborderRadius": { "type": "string", "default": "3px" },
+		"backBtnborderRadius": { "type": "object", "default": {"topLeft": "3px", "topRight": "3px", "bottomLeft": "3px", "BottomRight": "3px"} },
 		"backBtnDimensionspadding": {
 			"type": "object",
 			"default": { "top": "5px", "right": "8px", "bottom": "5px", "left": "8px" }
 		},
-		"backBtnDimensionsmargin": { "type": "object" }
+		"backBtnDimensionsmargin": { "type": "object" },
+
+		"backBtnHoverColor": { "type": "string" },
+		"backBtnHoverBackground": { "type": "string" },
+		"backBtnHoverborder": { "type": "object" },
+		"backBtnHoverborderRadius": { "type": "object" },
+		"frontFlipboxHoverBackground": { "type": "string" },
+		"backFlipboxHoverBackground": { "type": "string" },
+		"frontIconHoverColor": { "type": "string" },
+		"frontIconShapeHoverBackground": { "type": "string" },
+		"backIconHoverColor": { "type": "string" },
+		"backIconShapeHoverBackground": { "type": "string" },
+		"frontTitleHoverFontSize": { "type": "string" },
+		"frontTitleHoverFontAppearance": {
+			"type": "object",
+			"fontStyle": { "type": "string" },
+			"fontWeight": { "type": "string" },
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"frontTitleHoverLetterSpacing": { "type": "string" },
+		"frontTitleHoverDecoration": { "type": "string" },
+		"frontTitleHoverLetterCase": { "type": "string" },
+		"frontTitleHoverLineHeight": { "type": "string" },
+		"backTitleHoverFontSize": { "type": "string" },
+		"backTitleHoverFontAppearance": {
+			"type": "object",
+			"fontStyle": { "type": "string" },
+			"fontWeight": { "type": "string" },
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"backTitleHoverLetterSpacing": { "type": "string" },
+		"backTitleHoverDecoration": { "type": "string" },
+		"backTitleHoverLetterCase": { "type": "string" },
+		"backTitleHoverLineHeight": { "type": "string" },
+
+		"backTitleHoverColor": { "type": "string" },
+		"backContentHoverColor": { "type": "string" },
+		"backContentHoverFontSize": { "type": "string" },
+		"backContentHoverFontAppearance": {
+			"type": "object",
+			"fontStyle": { "type": "string" },
+			"fontWeight": { "type": "string" },
+			"default": { "fontStyle": "", "fontWeight": "" }
+		},
+		"backContentHoverLetterSpacing": { "type": "string" },
+		"backContentHoverDecoration": { "type": "string" },
+		"backContentHoverLetterCase": { "type": "string" },
+		"backContentHoverLineHeight": { "type": "string" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

@@ -1,7 +1,7 @@
 // deprecated/version-2.js
 import { InnerBlocks, useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import {wpmozo_is_empty} from '../../../common/utils.js';
-import generateDynamicStyle from '../style';
+import generateDynamicStyle from './style';
 
 const V2 = {
     attributes: {

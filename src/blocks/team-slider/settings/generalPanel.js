@@ -13,6 +13,7 @@ import {
 	SelectControl,
 	ToggleControl,
 	CheckboxControl,
+	FormTokenField,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
 } from '@wordpress/components';
@@ -20,6 +21,7 @@ import {
 	WpmozoIconpicker,
 	WpmozoColorPicker,
 } from '../../../common/components';
+import { useMemo } from 'react';
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
@@ -35,10 +37,34 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			per_page: -1,
 		} ),
 	[] );
-	const teamCatsOpts = terms?.map( ( term ) => ( {
+	const categories = terms?.map( ( term ) => ( {
 		label: term.name,
 		value: term.id,
 	} ) ) || [];
+
+	//Category select 
+	const suggestions = useMemo(() => {
+		return categories.map(item => item.label);
+	}, [categories]);
+
+	// Value → Mapping category Ids into Label
+	const selectedLabels = useMemo(() => {
+		return categories
+			.filter(item => attributes.includesCategories?.includes(item.value))
+			.map(item => item.label);
+	}, [categories, attributes.includesCategories]);
+
+	// onChange → Reverse-mapping labels returend by component into category ids.
+	const handleChange = (selectedLabels) => {
+		const selectedValues = categories
+			.filter(item => selectedLabels.includes(item.label))
+			.map(item => item.value);
+
+		setAttributes({
+			includesCategories: selectedValues
+		});
+	};
+
 
 	// Display in popup options.
 	const { displayInPopup = [] } = attributes;
@@ -100,12 +126,16 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				] }
 				onChange={ ( newValue ) => setAttributes( { postOrderBy: newValue } ) }
 			/>
-			<SelectControl multiple
-				label={ __( 'Includes Categories', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.includesCategories }
-				options={ teamCatsOpts }
-				onChange={ ( newValue ) => setAttributes( { includesCategories: newValue } ) }
+			<FormTokenField
+				label={ __( 'Select Categories', 'wpmozo-blocks-and-addons' ) }
+				value={selectedLabels}
+				suggestions={suggestions}
+				onChange={handleChange}
+				 __experimentalAutoSelectFirstMatch
+  				__experimentalExpandOnFocus
+				placeholder='Enter Category Here...'
 			/>
+			<hr/>
 			<TextControl
 				label={ __( 'No Result Text', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.noResultText }

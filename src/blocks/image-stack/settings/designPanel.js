@@ -6,7 +6,8 @@ import {
 } from "@wordpress/components";
 import {
 	WpmozoColorPicker,
-	WpmozoDimensions
+	WpmozoDimensions,
+	MozoStates
 } from "../../../common/components";
 import { useState } from "react";
 
@@ -36,12 +37,23 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				onChange={ ( newValue ) => setAttributes( { iconSize: newValue } ) }
 				min={ 1 } step={ 1 } max={ 150 }
 			/>
-			<WpmozoColorPicker props={props}
-				label={ __( 'Icon Color', 'wpmozo-blocks-and-addons' ) }
-				ColorKey="icon"
-				ColorTypes={ [
-					{ key: 'Color', label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ) }
-				] }
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Icon Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={props}
+						label=""
+						ColorKey={ isHover ? "iconHover" : "icon" }
+						ColorTypes={ [
+							{ key: 'Color', label: isHover ? __( 'Icon Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Icon Color', 'wpmozo-blocks-and-addons' ) }
+						] }
+					/>
+				) }
 			/>
 		</PanelBody>
 		{/* Item Styling. */}
@@ -64,12 +76,23 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 					onChange={ ( newValue ) => setAttributes( { itemBorderWidth: newValue } ) }
 					min={ 0 } step={ 1 } max={ 100 }
 				/>
-				<WpmozoColorPicker props={props}
-					label={ __( 'Item Border Color', 'wpmozo-blocks-and-addons' ) }
-					ColorKey="border"
-					ColorTypes={ [
-						{ key: 'Color', label: __( 'Border Color', 'wpmozo-blocks-and-addons' ) }
-					] }
+				<MozoStates
+					value={hoverState}
+					title={ __( 'Border Color', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( isHover ) => (
+							isHover ? setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)
+					}
+					control={ ( isHover ) => (
+						<WpmozoColorPicker props={props}
+							label=""
+							ColorKey={ isHover ? "borderHover" : "border" }
+							ColorTypes={ [
+								{ key: 'Color', label: isHover ? __( 'Border Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Border Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+					) }
 				/>
 			</> ) }
 			<RangeControl
@@ -80,14 +103,27 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			/>
 		</PanelBody>
 		{/* Tooltip Styling. */}
-		<PanelBody title={ __( 'Tooltip', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
-			<WpmozoColorPicker props={props}
-				ColorKey="tooltip"
-				ColorTypes={ [
-					{ key: 'Color', label: __( 'Tooltip Text Color', 'wpmozo-blocks-and-addons' ) },
-					{ key: 'BackgroundColor', label: __( 'Tooltip Background Color', 'wpmozo-blocks-and-addons' ) }
-				] }
-			/>
-		</PanelBody>
+		{ attributes.showTooltip && (
+			<PanelBody title={ __( 'Tooltip', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
+				<MozoStates
+					value={hoverState}
+					title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( isHover ) => (
+							isHover ? setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)
+					}
+					control={ ( isHover ) => (
+						<WpmozoColorPicker props={props}
+							ColorKey={ isHover ? "tooltipHover" : "tooltip" }
+							ColorTypes={ [
+								{ key: 'Color', label: isHover ? __( 'Tooltip Hover Text Color', 'wpmozo-blocks-and-addons' ) : __( 'Tooltip Text Color', 'wpmozo-blocks-and-addons' ) },
+								{ key: 'BackgroundColor', label: isHover ? __( 'Tooltip Hover Background Color', 'wpmozo-blocks-and-addons' ) : __( 'Tooltip Background Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+					) }
+				/>
+			</PanelBody>
+		) }
 	</> );
 };

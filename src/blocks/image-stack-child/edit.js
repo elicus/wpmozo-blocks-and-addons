@@ -109,7 +109,8 @@ export default function Edit(props) {
 				{ 'image' === attributes.stackType && (
 					<img className="wpmozo-stack-item-img"
 						alt={defaultedAlt}
-						title={(parentAttributes.showTooltip && 'custom' === parentAttributes.tooltipType) ? tooltipText : ((parentAttributes.showTooltip && 'imageTitle' === parentAttributes.tooltipType) ? imageTitle : '')}
+						// title={(parentAttributes.showTooltip && 'custom' === parentAttributes.tooltipType) ? tooltipText : ((parentAttributes.tooltipType && 'imageTitle' === parentAttributes.tooltipType) ? imageTitle : '')}
+						{...((parentAttributes.showTooltip && 'custom' === parentAttributes.tooltipType) ? {title: tooltipText} : (parentAttributes.showTooltip && 'imageTitle' === parentAttributes.tooltipType) ? {title: imageTitle} : {})}
 						src={imageSrc}
 						loading="lazy"
 					/>
@@ -120,6 +121,6 @@ export default function Edit(props) {
 			</span>
 		</div>
 
-		<style>{ generateDynamicStyle( { attributes, clientId, parentAttributes } ) }</style>
+		<style>{ generateDynamicStyle( { attributes, clientId, isEdit: true, parentAttributes } ) }</style>
 	</> );
 }

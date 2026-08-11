@@ -1,7 +1,7 @@
 import {convertInlineStyleStr} from '../../common/utils.js'
 
 const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
-    const toConvertStyles = [
+	const toConvertStyles = [
         'title',
         'titleHover',
         'description',
@@ -9,10 +9,13 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
         'content',
         'contentHover',
         'buttonText',
+        'buttonTextHover',
 		'buttonDimensions',
 		'imageDimensions',
 		'image',
+		'imageHover',
 		'container',
+		'containerHover',
 		'icon'
     ];
     let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
@@ -40,6 +43,15 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 			: ''
 	);
 
+	hovercss.push(
+		( attributes.containerHoverBackgroundColor || convertedStyle.containerHover )
+			? `.wpmozo-bna-image-card-wrapper:hover${isEditor('.wpmozo-bna-image-card-wrapper')}{
+				${attributes.containerHoverBackgroundColor ? `background-color: ${attributes.containerHoverBackgroundColor};` : ''}
+				${convertedStyle.containerHover || ''}
+			}`
+			: ''
+	);
+
 	normalcss.push(
 		( attributes.iconAlign || attributes.iconShape || convertedStyle.icon )
 			? `.wpmozo-bna-image-card-icon-wrapper {
@@ -51,7 +63,9 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 	);
 
 	normalcss.push( attributes.iconColor ? `.wpmozo-bna-image-card-icon-wrapper i { color: ${attributes.iconColor}; }` : '' );
-	
+
+	hovercss.push( attributes.iconHoverColor ? `.wpmozo-bna-image-card-icon-wrapper i:hover${isEditor('.wpmozo-bna-image-card-icon-wrapper i')} { color: ${attributes.iconHoverColor}; }` : '' );
+
 	normalcss.push(
 		( attributes.contentBackgroundColor || convertedStyle.content )
 			? `.wpmozo-bna-image-card-content-wrapper {
@@ -61,9 +75,9 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 			: ''
 	);
 
-	normalcss.push(
+	hovercss.push(
 		( attributes.contentHoverBackgroundColor || convertedStyle.contentHover )
-			? `.wpmozo-bna-image-card-content-wrapper:hover {
+			? `.wpmozo-bna-image-card-content-wrapper:hover${isEditor('.wpmozo-bna-image-card-content-wrapper')} {
 				${attributes.contentHoverBackgroundColor ? `background-color: ${attributes.contentHoverBackgroundColor};` : ''}
 				${convertedStyle.contentHover || ''}
 			}`
@@ -80,9 +94,9 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 		: ''
 	);
 
-	normalcss.push(
+	hovercss.push(
 		( attributes.titleHoverColor || convertedStyle.titleHover )
-			? `.wpmozo-bna-image-card-title:hover {
+			? `.wpmozo-bna-image-card-title:hover${isEditor('.wpmozo-bna-image-card-title')} {
 				${attributes.titleHoverColor ? `color: ${attributes.titleHoverColor};` : ''}
 				${convertedStyle.titleHover || ''}
 			}`
@@ -99,14 +113,26 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 			: ''
 	);
 
-	normalcss.push(
+	hovercss.push(
 		( attributes.contentHoverColor || convertedStyle.descriptionHover )
-			? `.wpmozo-bna-image-card-content:hover {
+			? `.wpmozo-bna-image-card-content:hover${isEditor('.wpmozo-bna-image-card-content')} {
 				${attributes.contentHoverColor ? `color: ${attributes.contentHoverColor};` : ''}
 				${convertedStyle.descriptionHover || ''}
 			}`
 			: ''
 	);
+
+	if ( attributes.styleIcon && attributes.iconHoverBackground ) {
+		hovercss.push(`
+			.wpmozo-bna-image-card-icon-wrapper .wpmozo-bna-icon-square:hover${isEditor('.wpmozo-bna-image-card-icon-wrapper .wpmozo-bna-icon-square')},
+			.wpmozo-bna-image-card-icon-wrapper .wpmozo-bna-icon-circle:hover${isEditor('.wpmozo-bna-image-card-icon-wrapper .wpmozo-bna-icon-circle')},
+			.wpmozo-bna-image-card-icon-inner-wrap .hexagon:hover,
+			.wpmozo-bna-image-card-icon-inner-wrap .hexagon:hover:before,
+			.wpmozo-bna-image-card-icon-inner-wrap .hexagon:hover:after {
+				background-color: ${attributes.iconHoverBackground};
+			}
+		`);
+	}
 
 	normalcss.push(
 		( attributes.buttonTextColor || attributes.buttonTextBackground )
@@ -117,11 +143,12 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 			: ''
 	);
 
-	normalcss.push(
-		( attributes.buttonTextHoverColor || attributes.buttonTextHoverBackground )
-			? `.wpmozo-bna-image-card-button:hover {
+	hovercss.push(
+		( attributes.buttonTextHoverColor || attributes.buttonTextHoverBackground || convertedStyle.buttonTextHover )
+			? `.wpmozo-bna-image-card-button:hover${isEditor('.wpmozo-bna-image-card-button')} {
 				${attributes.buttonTextHoverColor ? `color: ${attributes.buttonTextHoverColor};` : ''}
 				${attributes.buttonTextHoverBackground ? `background: ${attributes.buttonTextHoverBackground};` : ''}
+				${convertedStyle.buttonTextHover || ''}
 			}`
 			: ''
 	);
@@ -132,9 +159,17 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 
 	normalcss.push(
 		( convertedStyle.image || convertedStyle.imageDimensions )
-			? `.wpmozo-bna-image-card-wrapper-inner img {
+			? `.wpmozo-bna-image-card-image {
 				${convertedStyle.image || ''}
 				${convertedStyle.imageDimensions || ''}
+			}`
+			: ''
+	);
+
+	hovercss.push(
+		( convertedStyle.imageHover )
+			? `.wpmozo-bna-image-card-image:hover${isEditor('.wpmozo-bna-image-card-image')} {
+				${convertedStyle.imageHover || ''}
 			}`
 			: ''
 	);

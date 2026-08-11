@@ -1,6 +1,6 @@
 // deprecated/version-1.js
 import { useBlockProps, RichText } from '@wordpress/block-editor';
-import generateDynamicStyle from '../style';
+import generateDynamicStyle from './style';
 
 const V1 = {
     attributes: {

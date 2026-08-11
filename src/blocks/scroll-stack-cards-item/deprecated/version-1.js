@@ -1,6 +1,6 @@
 // deprecated/version-1.js
 import { useBlockProps } from '@wordpress/block-editor';
-import generateDynamicStyle from '../style';
+import generateDynamicStyle from './style';
 import { RichText } from '@wordpress/block-editor';
 import {wpmozo_is_empty} from '../../../common/utils.js';
 import { useSelect } from '@wordpress/data';

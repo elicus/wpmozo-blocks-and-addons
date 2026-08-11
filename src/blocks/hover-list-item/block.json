@@ -129,7 +129,7 @@
 		"buttonpadding": { "type": "object", "default": { "top": "10px", "right": "20px", "bottom": "10px", "left": "20px" } },
 		"buttonmargin": { "type": "object" },
 		"buttonborder": { "type": "object", "default": { "width": "2px", "style": "solid", "color": "#313131" } },
-		"buttonborderRadius": { "type": "string", "default": "3px" },
+		"buttonborderRadius": { "type": "object", "default": {"topLeft": "3px", "topRight": "3px", "bottomLeft": "3px", "BottomRight": "3px"} },
 		"buttonColor": { "type": "string" },
 		"buttonFontSize": { "type": "string" },
 		"buttonLetterSpacing": { "type": "string" },
@@ -146,7 +146,7 @@
 		"buttonHoverBackground": { "type": "string", "default": "" },
 		"buttonHoverBGGradient": { "type": "string" },
 		"buttonHoverborder": { "type": "object" },
-		"buttonHoverborderRadius": { "type": "string" },
+		"buttonHoverborderRadius": { "type": "object" },
 		"buttonHoverColor": { "type": "string" },
 		"buttonHoverFontSize": { "type": "string" },
 		"buttonHoverLetterSpacing": { "type": "string" },
@@ -158,7 +158,8 @@
 			"default": { "fontStyle": "", "fontWeight": "" }
 		},
 		"buttonHoverFontStyle": { "type": "string" },
-		"buttonHoverFontWeight": { "type": "string" }
+		"buttonHoverFontWeight": { "type": "string" },
+		"wrapIsHover": { "type": "boolean", "default": false }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

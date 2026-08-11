@@ -81,6 +81,13 @@
     align-items: flex-end;
     justify-content: center;
 }
+.wpmozo-bna-image-accordion-item-title,
+.wpmozo-bna-image-accordion-item-desc,
+.wpmozo-bna-image-accordion-item-icon,
+.wpmozo-bna-image-accordion-item-icon i,
+.wpmozo-bna-button {
+    transition: all 0.3s ease-in-out;
+}
 .wpmozo-bna-image-accordion-item-title {
     padding-bottom: 0;
     margin-top: 0px;

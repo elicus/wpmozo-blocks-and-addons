@@ -1,20 +1,27 @@
 import {convertInlineStyleStr} from '../../common/utils.js';
 
-const generateDynamicStyle = ({ attributes, clientId }) => {
+const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 
 	const { iconFontSize, separatorColor } = attributes,
 	toConvertStyles = [
     	'globalTitle',
     	'globalContent',
     	'frontTitle',
+    	'frontTitleHover',
     	'frontContent',
+    	'frontContentHover',
     	'backTitle',
+    	'backTitleHover',
     	'backContent',
+    	'backContentHover',
     	'frontIconShape',
+    	'frontIconShapeHover',
     	'backIconShape',
-    	'frontFlipbox',
+    	'backIconShapeHover',
+		'frontFlipbox',
     	'backFlipbox',
     	'backBtn',
+    	'backBtnHover',
     	'backBtnDimensions',
     	'frontDimensions',
     	'backDimensions'
@@ -58,6 +65,7 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 	normalcss.push(
 		( attributes.frontBackgroundColor || frontVerticalAlign || convertedStyle.frontFlipbox )
 		? `.wpmozo-bna-flip-box-front { 
+			transition: all 300ms ease;
 			${ (attributes.frontBackgroundColor) ? `background-color:${attributes.frontBackgroundColor} ;` : '' } 
 			${ (frontVerticalAlign) ? `align-items:${frontVerticalAlign} ;` : '' } 
 			${convertedStyle.frontFlipbox || ''}
@@ -65,12 +73,38 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 		: ''
 	);
 
+	hovercss.push(
+		( attributes.frontFlipboxHoverBackground )
+		? `.wpmozo-bna-flip-box-front:hover${isEditor('.wpmozo-bna-flip-box-front')} { 
+			${ (attributes.frontFlipboxHoverBackground) ? `background-color:${attributes.frontFlipboxHoverBackground} ;` : '' } 
+		}`
+		: ''
+	);
+
+	normalcss.push(
+		`.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-title,
+		.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-description,
+		.wpmozo-bna-flip-box-button,
+		.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-icon-wrap i {
+			transition: all 300ms ease;
+		}`
+	);
+
 	normalcss.push(
 		( attributes.backBackgroundColor || backVerticalAlign || convertedStyle.backFlipbox )
 		? `.wpmozo-bna-flip-box-back {
+			transition: all 300ms ease;
 			${ (attributes.backBackgroundColor) ? `background-color:${attributes.backBackgroundColor};` : '' } 
 			${ (backVerticalAlign) ? `align-items:${backVerticalAlign};` : '' } 
 			${convertedStyle.backFlipbox || ''}
+		}`
+		: ''
+	);
+
+	hovercss.push(
+		( attributes.backFlipboxHoverBackground )
+		? `.wpmozo-bna-flip-box-wrap:hover .wpmozo-bna-flip-box-back, .wpmozo-bna-flip-box-back:hover${isEditor('.wpmozo-bna-flip-box-back')} { 
+			${ (attributes.backFlipboxHoverBackground) ? `background-color:${attributes.backFlipboxHoverBackground} ;` : '' } 
 		}`
 		: ''
 	);
@@ -125,6 +159,15 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 		}` 
 		: ''
 	);
+
+	hovercss.push(
+		( attributes.backTitleHoverColor || convertedStyle.backTitleHover )
+		? `.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-title:hover${isEditor('.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-title')} {
+			${ (attributes.backTitleHoverColor) ? `color:${attributes.backTitleHoverColor};` : '' }
+			${convertedStyle.backTitleHover || ''}
+		}`
+		: ''
+	);
 	
 	normalcss.push(
 		( attributes.backContentColor || convertedStyle.backContent ) 
@@ -132,6 +175,15 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 			${ (attributes.backContentColor) ? `color:${attributes.backContentColor};` : '' } 
 			${convertedStyle.backContent || ''}
 		}` 
+		: ''
+	);
+
+	hovercss.push(
+		( attributes.backContentHoverColor || convertedStyle.backContentHover )
+		? `.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-description:hover${isEditor('.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-description')} {
+			${ (attributes.backContentHoverColor) ? `color:${attributes.backContentHoverColor};` : '' }
+			${convertedStyle.backContentHover || ''}
+		}`
 		: ''
 	);
 	
@@ -264,6 +316,14 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 			}`
 		);
 
+		hovercss.push(
+			(attributes.backIconHoverColor)
+			? `.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-icon-wrap i:hover${isEditor('.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-icon-wrap i')} {
+				color: ${attributes.backIconHoverColor};
+			}`
+			: ''
+		);
+
 		if(attributes.backIconStyle && 'hexagon' !== attributes.backIconShape){
 			normalcss.push(
 				`.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-icon-wrap i {
@@ -274,6 +334,16 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 					${attributes.backIconShape === 'circle' ? 'border-radius: 50%;' : ''}
 					${convertedStyle.backIconShape || ''}
 				}`
+			);
+
+			hovercss.push(
+				(attributes.backIconHoverColor || attributes.backIconShapeHoverBackground || convertedStyle.backIconShapeHover)
+				? `.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-icon-wrap i:hover${isEditor('.wpmozo-bna-flip-box-back .wpmozo-bna-flip-box-icon-wrap i')} {
+					${attributes.backIconHoverColor ? `color: ${attributes.backIconHoverColor};` : ''}
+					${attributes.backIconShapeHoverBackground ? `background-color: ${attributes.backIconShapeHoverBackground};` : ''}
+					${convertedStyle.backIconShapeHover || ''}
+				}`
+				: ''
 			);
 		}
 		
@@ -323,6 +393,7 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 	if( attributes.backHasButton ) {
 		normalcss.push(
 			`.wpmozo-bna-flip-box-button {
+				transition: all 300ms ease;
 				color: ${attributes.backBtnColor || 'inherit'};
 				background-color: ${attributes.backBtnBackground || 'transparent'};
 				${backBtnAddi || ''}
@@ -334,6 +405,16 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
 				}` 
 				: ''
 			}`
+		);
+
+		hovercss.push(
+			(attributes.backBtnHoverColor || attributes.backBtnHoverBackground || convertedStyle.backBtnHover)
+			? `.wpmozo-bna-flip-box-button:hover${isEditor('.wpmozo-bna-flip-box-button')} {
+				${attributes.backBtnHoverColor ? `color: ${attributes.backBtnHoverColor};` : ''}
+				${attributes.backBtnHoverBackground ? `background-color: ${attributes.backBtnHoverBackground};` : ''}
+				${convertedStyle.backBtnHover || ''}
+			}`
+			: ''
 		);
 
 		normalcss.push(

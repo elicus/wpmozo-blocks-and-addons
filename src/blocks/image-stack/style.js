@@ -10,21 +10,33 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 	let normalcss = [],
 	hovercss = [],
 	cssExtras = [];
-	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
 
 	normalcss.push(
 		alignment 
 		? `.wpmozo-image-stack-wrap{justify-content: ${alignment};}` : ''
 	);
 
+	const borderWidth = attributes.itemBorderWidth ?? 1;
+	const borderType = (attributes.itemBorderType && 'none' !== attributes.itemBorderType) ? attributes.itemBorderType : 'solid';
+	const hasBorderConfig = attributes.itemBorderWidth || (attributes.itemBorderType && 'none' !== attributes.itemBorderType) || attributes.borderColor || attributes.borderHoverColor;
+
 	normalcss.push(
-		( attributes.itemBorderWidth || (attributes.itemBorderType && 'none' !== attributes.itemBorderType) || attributes.borderColor || attributes.itemBorderRadius || convertedStyle.item )
+		( hasBorderConfig || attributes.itemBorderRadius || convertedStyle.item )
 		? `.wpmozo-image-stack-item{
-				${attributes.itemBorderWidth || (attributes.itemBorderType && 'none' !== attributes.itemBorderType) || attributes.borderColor ? `border: ${attributes.itemBorderWidth}px ${attributes.itemBorderType} ${attributes.borderColor};` : ''}
+				${hasBorderConfig ? `border-width: ${borderWidth}px; border-style: ${borderType};` : ''}
+				${attributes.borderColor ? `border-color: ${attributes.borderColor};` : ''}
 				${attributes.itemBorderRadius ? `border-radius: ${attributes.itemBorderRadius}%;` : ''}
 				${convertedStyle.item || ''}
 			}`
 		: ''
+	);
+
+	hovercss.push(
+		( attributes.borderHoverColor )
+			? `.wpmozo-image-stack-item:hover, #block-${attributes.ID}.is_hover .wpmozo-image-stack-item {
+				border-color: ${attributes.borderHoverColor};
+			}`
+			: ''
 	);
 
 	normalcss.push(`
@@ -38,11 +50,11 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 		}
 		.wpmozo-image-stack-inner .wpmozo-image-stack-item:not(:first-child) {
 			margin-left: -${attributes.stackItemShrink || 10}px;
-			transition: margin 300ms;
+			transition: margin 300ms, border-color 300ms, border-radius 300ms, background-color 300ms;
 		}
 		.wpmozo-image-stack-inner .wpmozo-image-stack-item:not(:last-child) {
 			margin-right: ${attributes.stackItemSpacing || 10}px;
-			transition: margin 300ms;
+			transition: margin 300ms, border-color 300ms, border-radius 300ms, background-color 300ms;
 		}
 		.wpmozo-image-stack-inner .wpmozo-image-stack-item:nth-last-child(2) {
 			margin-right: 0;
@@ -58,6 +70,14 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 			display: block;
 		}
 	`);
+
+	hovercss.push(
+		( attributes.iconHoverColor )
+			? `.wpmozo-stack-item-wrapper i:hover, #block-${attributes.ID}.is_hover .wpmozo-stack-item-wrapper i {
+				${attributes.iconHoverColor ? `color: ${attributes.iconHoverColor} !important;` : ''}
+			}`
+			: ''
+	);
 
 	if (attributes.showTooltip) {
 		cssExtras.push(`.tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}'] {
@@ -75,6 +95,14 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 				}`
 			: ''
 		);
+		if (attributes.tooltipHoverColor || attributes.tooltipHoverBackgroundColor) {
+			cssExtras.push(
+				`.tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}']:hover, #block-${attributes.ID}.is_hover .tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}'] {
+					${attributes.tooltipHoverColor ? `color: ${attributes.tooltipHoverColor} !important;` : ''}
+					${attributes.tooltipHoverBackgroundColor ? `background-color: ${attributes.tooltipHoverBackgroundColor} !important;` : ''}
+				}`
+			);
+		}
 	} else {
 
 		cssExtras.push(`

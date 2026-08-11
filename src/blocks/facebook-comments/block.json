@@ -25,10 +25,14 @@
 
 		"blockBackground": { "type": "string" },
 		"blockBGGradient": { "type": "string" },
+		"blockHoverBackground": { "type": "string" },
+		"blockHoverBGGradient": { "type": "string" },
 		"blockpadding": { "type": "object" },
 		"blockmargin": { "type": "object" },
 		"blockborder": { "type": "object" },
-		"blockborderRadius": { "type": "string" }
+		"blockborderRadius": { "type": "object" },
+		"blockHoverborder": { "type": "object" },
+		"blockHoverborderRadius": { "type": "object" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

@@ -34,8 +34,12 @@
 
         "speedCurve": { "type": "string" },
 
-        "imageborderRadius": { "type": "string" },
-        "imageborder": { "type": "object" }
+        "imageborderRadius": { "type": "object" },
+        "imageborder": { "type": "object" },
+
+        "imageHoverborder": { "type": "object" },
+        "imageHoverborderRadius": { "type": "object" },
+        "wrapIsHover": { "type": "boolean", "default": false }
     },
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",

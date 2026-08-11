@@ -3,8 +3,11 @@ import { convertInlineStyleStr } from '../../common/utils.js';
 const generateDynamicStyle = ( { attributes, isEdit } ) => {
 	const toConvertStyles = [
 		'block',
+		'blockHover',
 		'title',
+		'titleHover',
 		'description',
+		'descriptionHover',
 		'button',
 		'buttonHover'
 	];
@@ -22,6 +25,16 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 				${attributes.blockBGGradient ? `background:`+ attributes.blockBGGradient + `;` : ''}
 				${attributes.blockBackground ? `background:`+ attributes.blockBackground + `;` : ''}
 				${convertedStyle.block || ''}
+				transition: all 300ms;
+			}`
+		: ''
+	);
+	hovercss.push(
+		(attributes.blockHoverBGGradient || attributes.blockHoverBackground || convertedStyle.blockHover) 
+		? `.wpmozo-bna-cta-wrap:hover${isEditor('.wpmozo-bna-cta-wrap')}{
+				${attributes.blockHoverBGGradient ? `background:`+ attributes.blockHoverBGGradient + `;` : ''}
+				${attributes.blockHoverBackground ? `background:`+ attributes.blockHoverBackground + `;` : ''}
+				${convertedStyle.blockHover || ''}
 			}`
 		: ''
 	);
@@ -39,6 +52,15 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 				${attributes.titleAlign ? `text-align: ${attributes.titleAlign};` : ''}
 				${attributes.titleColor ? `color: ${attributes.titleColor};` : ''}
 				${convertedStyle.title || ''}
+				transition: all 300ms;
+			}`
+		: ''
+	);
+	hovercss.push(
+		(attributes.titleHoverColor || convertedStyle.titleHover) 
+		? `.wpmozo-bna-cta-title:hover${isEditor('.wpmozo-bna-cta-title')}{
+				${attributes.titleHoverColor ? `color: ${attributes.titleHoverColor};` : ''}
+				${convertedStyle.titleHover || ''}
 			}`
 		: ''
 	);
@@ -50,6 +72,15 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 				${attributes.descriptionAlign ? `text-align: ${attributes.descriptionAlign};` : ''}
 				${attributes.descriptionColor ? `color: ${attributes.descriptionColor};` : ''}
 				${convertedStyle.description || ''}
+				transition: all 300ms;
+			}`
+		: ''
+	);
+	hovercss.push(
+		(attributes.descriptionHoverColor || convertedStyle.descriptionHover) 
+		? `.wpmozo-bna-cta-desc:hover${isEditor('.wpmozo-bna-cta-desc')}{
+				${attributes.descriptionHoverColor ? `color: ${attributes.descriptionHoverColor};` : ''}
+				${convertedStyle.descriptionHover || ''}
 			}`
 		: ''
 	);
@@ -87,18 +118,21 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 	}
 
 	// Stack on.
-	if ( attributes.buttonStackOn && 'desktop' === attributes.buttonStackOn ) {
-		normalcss.push(`.wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; }.wpmozo-bna-button-wrap{ width: 100% !important; text-align: center; }`
-		);
+	if ( attributes.buttonStackOn.length > 0){
+
+		if( attributes.buttonStackOn.includes('desktop') ) {
+			normalcss.push(`@media only screen and (min-width: 978px) { .wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; } .wpmozo-bna-button-wrap{ width: 100%; text-align: center; }}`
+			);
+		}
+		if ( attributes.buttonStackOn.includes('tablet') ) {
+			normalcss.push(`@media only screen and (max-width: 976px) and (min-width: 768px) { .wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; } .wpmozo-bna-button-wrap{ width: 100%; text-align: center; }}`
+			);
+		}
+		if ( attributes.buttonStackOn.includes('mobile') ) {
+			normalcss.push(`@media only screen and (max-width: 767px) { .wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; } .wpmozo-bna-button-wrap{ width: 100%; text-align: center; }}`
+			);
+		} 
 	}
-	if ( attributes.buttonStackOn && 'tablet' === attributes.buttonStackOn ) {
-		normalcss.push(`@media only screen and (max-width: 976px) { .wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; } .wpmozo-bna-button-wrap{ width: 100% !important; text-align: center; }`
-		);
-	}
-	if ( attributes.buttonStackOn && 'mobile' === attributes.buttonStackOn ) {
-		normalcss.push(`@media only screen and (max-width: 767px) { .wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; } .wpmozo-bna-button-wrap{ width: 100% !important; text-align: center; }`
-		);
-	} 
 
 	const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);
 	

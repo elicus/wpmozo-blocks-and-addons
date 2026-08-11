@@ -16,6 +16,7 @@ export default function save( { attributes } ) {
 	const innerBlocksProps = useInnerBlocksProps.save( blockProps, {
 		allowedBlocks: [ 'wpmozo/image-stack-child' ]
 	});
+	console.log(attributes);
 
 	return (
 		<>

@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import generateDynamicStyle from "./style";
 import { mergeWrapperProps, wpmozo_is_empty } from '../../common/utils.js';
 import {useBlockProps} from "@wordpress/block-editor";
+import { useSelect } from '@wordpress/data';
 
 export default function save(props) {
 
@@ -25,6 +26,7 @@ export default function save(props) {
 	const imageSrc = image && image.url ? image.url : (typeof wpmozo_bna_editor_object !== 'undefined' ? wpmozo_bna_editor_object.placeholderImg : '');
 	const defaultedAlt = image && image.alt ? image.alt : '';
 	const imageTitle = image && image.url ? image.title :  '';
+	console.log(attributes.parentAtts);
 
 	return ( <>
 		<div id={'block-' + ID} {...blockProps}>
@@ -34,8 +36,11 @@ export default function save(props) {
 						alt={defaultedAlt}
 						src={imageSrc}
 						loading="lazy"
-						title={!wpmozo_is_empty(parentAtts) ? (parentAtts.showTooltip && 'custom' === parentAtts.tooltipType) ? tooltipText : ((parentAtts.showTooltip && 'imageTitle' === parentAtts.tooltipType) ? imageTitle : '') : ''
-						}
+						{...((!wpmozo_is_empty(parentAtts) && parentAtts.showTooltip && 'custom' === parentAtts.tooltipType) ? {title: tooltipText} : (!wpmozo_is_empty(parentAtts) && parentAtts.showTooltip && 'imageTitle' === parentAtts.tooltipType) ? {title: imageTitle} : {})}
+						
+						
+						// title={!wpmozo_is_empty(parentAtts) ? (parentAtts.showTooltip && 'custom' === parentAtts.tooltipType) ? tooltipText : ((parentAtts.showTooltip && 'imageTitle' === parentAtts.tooltipType) ? imageTitle : '') : ''
+						// }
 					/>
 				) }
 				{ 'icon' === attributes.stackType && (

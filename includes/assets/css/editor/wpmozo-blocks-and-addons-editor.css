@@ -191,16 +191,25 @@
 	box-shadow: none;
 }
 
-.wpmozo-repeater-row.wpmozo-business-hours-repeator .wpmz-clone-div{
+.wpmozo-repeater-row.wpmozo-business-hours-repeator .wpmz-clone-div,
+.wpmozo-repeater-row.wpmozo-dropdown-item-repeator .wpmz-clone-div{
 	float: right;
 	display: none;
+}
+.wpmozo-repeater-row.wpmozo-dropdown-item-repeator .wpmz-clone-div *{
+	margin-right: 5px;
+}
+
+.wpmozo-repeater-row.wpmozo-dropdown-item-repeator .wpmz-clones{
+	vertical-align: super;
 }
 
 .wpmozo-repeater-row.wpmozo-business-hours-repeator .wpmz-clone-div .wpmz-day-clone{
 	margin-right: 10px;
 }
 
-.wpmozo-repeater-row.wpmozo-business-hours-repeator .components-button.wpmozo-repeator-caret {
+.wpmozo-repeater-row.wpmozo-business-hours-repeator .components-button.wpmozo-repeator-caret,
+.wpmozo-repeater-row.wpmozo-dropdown-item-repeator .components-button.wpmozo-repeator-caret {
 	width: 100%;
 	justify-content: space-between;
 	padding-right:0px;
@@ -344,4 +353,13 @@
     height: 1px;
     background: #e0e0e0;
     margin: 16px 0;
+}
+
+.wpmozo-cta-vstack{
+	display: flex;
+	flex-flow: column wrap;
+	margin: 10px 0px;
+}
+.wpmozo-cta-vstack span.wpmz-label{
+	padding: 10px 0px;
 }
