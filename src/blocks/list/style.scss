@@ -24,24 +24,30 @@
      z-index: 0;
      box-sizing: border-box;
  }
- wpmozo-bna-list-icon{
+ /*.wpmozo-bna-list-icon{
  outline:6px solid red;
- }
- .thisisayush{padding:200px;}
+ }*/
+ 
  .wpmozo-bna-list .wpmozo-bna-icon-circle {
-     padding: 16px;
-     border-radius: 50%;
- }
- .wpmozo-bna-list .wpmozo-bna-icon-square,
- .wpmozo-bna-list .wpmozo-bna-icon-wrapper.shape-hexagon {
-     padding: 16px;
-     box-sizing: content-box;
- }
+   padding: 12px;
+   border-radius: 50%;
+}
 
- .wpmozo-bna-list .wpmozo-bna-icon-wrapper.shape-hexagon {
-     padding: 16px 0px;
-     box-sizing: content-box;
- }
+.wpmozo-bna-list .wpmozo-bna-icon-square {
+   padding: 12px;
+   box-sizing: content-box;
+}
+
+.wpmozo-bna-list .wpmozo-bna-list-icon.shape-hexagon {
+   padding: 16px 0px;
+   box-sizing: content-box;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-right: 10px;
+   justify-self: end;
+}
+
  .wpmozo-bna-list .wpmozo-bna-icon-shape-border {
      border: 2px solid;
  }
@@ -153,6 +159,7 @@
 .wpmozo-bna-list-icon .hexagon:before,
 .wpmozo-bna-list-icon .hexagon:after,
 .wpmozo-bna-list-divider {
-	transition: color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
+	transition: color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
 }
+
 

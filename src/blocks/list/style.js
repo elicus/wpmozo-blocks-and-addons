@@ -17,9 +17,11 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	hovercss = [],
 	cssExtras = [];
 
+	const blockID = `#block-${attributes.ID}`;
+
 	normalcss.push(
 		( attributes.iconColor || attributes.iconFontSize )
-		? `.wpmozo-bna-list-icon i { 
+		? `${blockID} .wpmozo-bna-list-icon i { 
 				${attributes.iconColor ? `color: ${attributes.iconColor};` : ''} 
 				${attributes.iconFontSize ? `font-size: ${attributes.iconFontSize}px;` : ''} 
 			}`
@@ -28,7 +30,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 
 	hovercss.push(
 		( attributes.iconHoverColor )
-		? `.wpmozo-bna-list-item:hover .wpmozo-bna-list-icon i, #block-${attributes.ID}.is_hover .wpmozo-bna-list-icon i { 
+		? `${blockID} .wpmozo-bna-list-icon i:hover, ${blockID}.is_hover .wpmozo-bna-list-icon i { 
 				color: ${attributes.iconHoverColor}; 
 			}`
 		: ''
@@ -36,7 +38,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 
 	normalcss.push(
 		attributes.listAlignment
-		? `.wpmozo-bna-list-layout.wpmozo-bna-list-default, .wpmozo-bna-list-layout.wpmozo-bna-list-default .block-editor-block-list__layout { 
+		? `${blockID} .wpmozo-bna-list-layout.wpmozo-bna-list-default, ${blockID} .wpmozo-bna-list-layout.wpmozo-bna-list-default .block-editor-block-list__layout { 
 				align-items: ${'right' === attributes.listAlignment ? 'flex-end' : ( 'left' === attributes.listAlignment ? 'flex-start' : attributes.listAlignment )}; 
 			}`
 		: ''
@@ -44,7 +46,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 
 	normalcss.push(
 		attributes.listAlignment
-		? `.wpmozo-bna-list-layout.wpmozo-bna-list-inline, .wpmozo-bna-list-layout.wpmozo-bna-list-inline .block-editor-block-list__layout { 
+		? `${blockID} .wpmozo-bna-list-layout.wpmozo-bna-list-inline, ${blockID} .wpmozo-bna-list-layout.wpmozo-bna-list-inline .block-editor-block-list__layout { 
 				display: flex; 
 				justify-content: ${'right' === attributes.listAlignment ? 'flex-end' : ( 'left' === attributes.listAlignment ? 'flex-start' : attributes.listAlignment )}; 
 				flex-flow: row wrap; 
@@ -54,7 +56,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 
 	normalcss.push(
 		( attributes.textColor || attributes.indentation || convertedStyle.text )
-		? `.wpmozo-bna-list-item-text { 
+		? `${blockID} .wpmozo-bna-list-item-text { 
 				${attributes.textColor ? `color: ${attributes.textColor};` : ''} 
 				${attributes.indentation ? `text-indent: ${attributes.indentation}px;` : ''} 
 				${convertedStyle.text || ''} 
@@ -64,7 +66,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 
 	hovercss.push(
 		( attributes.textHoverColor || convertedStyle.textHover )
-		? `.wpmozo-bna-list-item:hover .wpmozo-bna-list-item-text, #block-${attributes.ID}.is_hover .wpmozo-bna-list-item-text { 
+		? `${blockID} .wpmozo-bna-list-item-text p:hover, ${blockID}.is_hover .wpmozo-bna-list-item-text p { 
 				${attributes.textHoverColor ? `color: ${attributes.textHoverColor};` : ''} 
 				${convertedStyle.textHover || ''} 
 			}`
@@ -73,7 +75,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 
 	normalcss.push(
 		( attributes.linkColor || convertedStyle.link )
-		? `.wpmozo-bna-list-item-text a { 
+		? `${blockID} .wpmozo-bna-list-item-text a { 
 				${attributes.linkColor ? `color: ${attributes.linkColor};` : ''} 
 				${convertedStyle.link || ''} 
 			}`
@@ -82,19 +84,19 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 
 	hovercss.push(
 		( attributes.linkHoverColor || convertedStyle.linkHover )
-		? `.wpmozo-bna-list-item:hover .wpmozo-bna-list-item-text a, #block-${attributes.ID}.is_hover .wpmozo-bna-list-item-text a { 
+		? `${blockID} .wpmozo-bna-list-item-text a:hover, ${blockID}.is_hover .wpmozo-bna-list-item-text a { 
 				${attributes.linkHoverColor ? `color: ${attributes.linkHoverColor};` : ''} 
 				${convertedStyle.linkHover || ''} 
 			}`
 		: ''
 	);
 
-	normalcss.push( attributes.imageWidth ? `.wpmozo-bna-marker-image {  width: ${attributes.imageWidth}px; }` : '' );
+	normalcss.push( attributes.imageWidth ? `${blockID} .wpmozo-bna-marker-image { width: ${attributes.imageWidth}px; }` : '' );
 	
 	if ( 'default' === attributes.layout ) {
 		normalcss.push(
 			( attributes.dividerSize || attributes.dividerStyle || attributes.dividerColor || convertedStyle.divider )
-			? `.wpmozo-bna-list-divider { 
+			? `${blockID} .wpmozo-bna-list-divider { 
 					${attributes.dividerSize ? `border-top-width: ${attributes.dividerSize}px;` : ''} 
 					${attributes.dividerStyle ? `border-style: ${attributes.dividerStyle};` : ''} 
 					${attributes.dividerColor ? `border-color: ${attributes.dividerColor};` : ''} 
@@ -104,7 +106,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 		);
 		hovercss.push(
 			( attributes.dividerHoverColor || convertedStyle.dividerHover )
-			? `.wpmozo-bna-list-item:hover .wpmozo-bna-list-divider, #block-${attributes.ID}.is_hover .wpmozo-bna-list-divider { 
+			? `${blockID} .wpmozo-bna-list-divider:hover, ${blockID}.is_hover .wpmozo-bna-list-divider { 
 					${attributes.dividerHoverColor ? `border-color: ${attributes.dividerHoverColor};` : ''} 
 					${convertedStyle.dividerHover || ''} 
 				}`
@@ -113,7 +115,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	} else {
 		normalcss.push(
 			( attributes.dividerSize || attributes.dividerStyle || attributes.dividerColor || convertedStyle.divider )
-			? `.wpmozo-bna-list-divider { 
+			? `${blockID} .wpmozo-bna-list-divider { 
 					${attributes.dividerSize ? `border-right-width: ${attributes.dividerSize}px;` : ''} 
 					${attributes.dividerStyle ? `border-style: ${attributes.dividerStyle};` : ''} 
 					${attributes.dividerColor ? `border-color: ${attributes.dividerColor};` : ''} 
@@ -123,7 +125,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 		);
 		hovercss.push(
 			( attributes.dividerHoverColor || convertedStyle.dividerHover )
-			? `.wpmozo-bna-list-item:hover .wpmozo-bna-list-divider, #block-${attributes.ID}.is_hover .wpmozo-bna-list-divider { 
+			? `${blockID} .wpmozo-bna-list-divider:hover, ${blockID}.is_hover .wpmozo-bna-list-divider { 
 					${attributes.dividerHoverColor ? `border-color: ${attributes.dividerHoverColor};` : ''} 
 					${convertedStyle.dividerHover || ''} 
 				}`
@@ -134,7 +136,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	if ( undefined === attributes.globalItemBackgroundColor ) {
 		normalcss.push(
 			attributes.globalItemBackgroundGradient
-			? `.wpmozo-bna-list-item { 
+			? `${blockID} .wpmozo-bna-list-item { 
 					background: ${attributes.globalItemBackgroundGradient}; 
 				}`
 			: ''
@@ -142,7 +144,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	} else {
 		normalcss.push(
 			attributes.globalItemBackgroundColor
-			? `.wpmozo-bna-list-item { 
+			? `${blockID} .wpmozo-bna-list-item { 
 					background: ${attributes.globalItemBackgroundColor}; 
 				}`
 			: ''
@@ -151,7 +153,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 
 	if ( attributes.globalItemHoverBackgroundColor || attributes.globalItemHoverBackgroundGradient ) {
 		hovercss.push(
-			`.wpmozo-bna-list-item:hover, #block-${attributes.ID}.is_hover .wpmozo-bna-list-item { 
+			`${blockID} .wpmozo-bna-list-item:hover, ${blockID}.is_hover .wpmozo-bna-list-item { 
 				${attributes.globalItemHoverBackgroundColor ? `background: ${attributes.globalItemHoverBackgroundColor};` : ''} 
 				${attributes.globalItemHoverBackgroundGradient ? `background: ${attributes.globalItemHoverBackgroundGradient};` : ''} 
 			}`
@@ -159,21 +161,21 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	}
 
 	if('inline' === attributes.layout){
-		normalcss.push('.wpmozo-bna-list-item{width:auto;}');
+		normalcss.push(`${blockID} .wpmozo-bna-list-item{width:auto;}`);
 	} else {
-		normalcss.push('.list-item-wrap {align-items: center;width: 100%;}');
+		normalcss.push(`${blockID} .list-item-wrap {align-items: center;width: 100%;}`);
 		if('right'=== attributes.listAlignment){
-			normalcss.push('.list-item-wrap {grid-template-columns: 1fr auto auto;} .wpmozo-bna-list-icon.use-icon {justify-content: flex-end;} .wpmozo-bna-list-item-text {justify-content: flex-end;}');
+			normalcss.push(`${blockID} .list-item-wrap {grid-template-columns: 1fr auto auto;} ${blockID} .wpmozo-bna-list-icon.use-icon {justify-content: flex-end; justify-self: end;} ${blockID} .wpmozo-bna-list-item-text {justify-content: flex-end; justify-self: end;}`);
 		} else if('left' === attributes.listAlignment){
-			normalcss.push('.list-item-wrap {grid-template-columns: auto 1fr;} .wpmozo-bna-list-icon.use-icon {align-items: center;justify-content: flex-start;} .wpmozo-bna-list-item-text {align-items: center;justify-content: flex-start;}');
+			normalcss.push(`${blockID} .list-item-wrap {grid-template-columns: auto 1fr;} ${blockID} .wpmozo-bna-list-icon.use-icon {align-items: center;justify-content: flex-start; justify-self: start;} ${blockID} .wpmozo-bna-list-item-text {align-items: center;justify-content: flex-start; justify-self: start;}`);
 		} else {
-			normalcss.push('.list-item-wrap {grid-template-columns: 1fr 1fr;} .wpmozo-bna-list-icon.use-icon {align-items: center;justify-content: flex-end;} .wpmozo-bna-list-item-text {align-items: center;justify-content: flex-start;}');
+			normalcss.push(`${blockID} .list-item-wrap {grid-template-columns: 1fr 1fr;} ${blockID} .wpmozo-bna-list-icon.use-icon {align-items: center;justify-content: flex-end; justify-self: end;} ${blockID} .wpmozo-bna-list-item-text {align-items: center;justify-content: flex-start; justify-self: start;}`);
 		}
 	}
 
 	const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);
 	
-	let styles = hasStyles ? `#block-${attributes.ID}{${normalcss.filter(Boolean).join('\n')} ${hovercss.filter(Boolean).join('\n')}}` : '';
+	let styles = hasStyles ? `${normalcss.filter(Boolean).join('\n')}\n${hovercss.filter(Boolean).join('\n')}` : '';
 	
 	styles += cssExtras.some(Boolean) ? cssExtras.filter(Boolean).join('\n') : '';
 	styles = styles.replace(/\s+/g, ' ')

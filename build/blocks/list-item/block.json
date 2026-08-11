@@ -164,7 +164,7 @@
     "shapeBorderColor": {
       "type": "string"
     },
-    "shapeHoverBorderColor": {
+    "shapeBorderHoverColor": {
       "type": "string"
     }
   },

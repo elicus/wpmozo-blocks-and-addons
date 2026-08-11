@@ -56,7 +56,7 @@
         "shapeHoverBackground": { "type": "string" },
         "enableShapeBorder": { "type": "boolean", "default": false },
         "shapeBorderColor": { "type": "string" },
-        "shapeHoverBorderColor": { "type": "string" }
+        "shapeBorderHoverColor": { "type": "string" }
 
     },
     "textdomain": "wpmozo-blocks-and-addons",
