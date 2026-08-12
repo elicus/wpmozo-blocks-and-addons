@@ -30,7 +30,13 @@
     "logoborderRadius": {
       "type": "object"
     },
+    "logoHoverborderRadius": {
+      "type": "object"
+    },
     "logoborder": {
+      "type": "object"
+    },
+    "logoHoverborder": {
       "type": "object"
     },
     "altText": {
@@ -44,6 +50,9 @@
       "default": "same"
     },
     "logoBackground": {
+      "type": "string"
+    },
+    "logoHoverBackground": {
       "type": "string"
     },
     "logopadding": {

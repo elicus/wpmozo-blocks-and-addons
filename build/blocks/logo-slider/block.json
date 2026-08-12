@@ -94,7 +94,10 @@
       "type": "boolean",
       "default": false
     },
-    "containerbackground": {
+    "containerBackground": {
+      "type": "string"
+    },
+    "containerHoverBackground": {
       "type": "string"
     },
     "containerpadding": {
@@ -103,16 +106,31 @@
     "sliderArrowColor": {
       "type": "string"
     },
+    "sliderArrowHoverColor": {
+      "type": "string"
+    },
     "sliderArrowBackground": {
+      "type": "string"
+    },
+    "sliderArrowHoverBackground": {
       "type": "string"
     },
     "sliderActiveDoteColor": {
       "type": "string"
     },
+    "sliderActiveDoteHoverColor": {
+      "type": "string"
+    },
     "sliderInactiveDoteColor": {
       "type": "string"
     },
+    "sliderInactiveDoteHoverColor": {
+      "type": "string"
+    },
     "arrowFontSize": {
+      "type": "string"
+    },
+    "arrowHoverFontSize": {
       "type": "string"
     },
     "arrowpadding": {
