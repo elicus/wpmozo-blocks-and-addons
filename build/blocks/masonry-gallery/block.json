@@ -71,13 +71,46 @@
     "overlayIcon": {
       "type": "string"
     },
+    "imageborder": {
+      "type": "object"
+    },
+    "imagehoverborder": {
+      "type": "object"
+    },
+    "imageborderRadius": {
+      "type": "object"
+    },
+    "imagehoverborderRadius": {
+      "type": "object"
+    },
+    "captionColor": {
+      "type": "string"
+    },
+    "captionHoverColor": {
+      "type": "string"
+    },
+    "captionFontSize": {
+      "type": "string"
+    },
+    "captionHoverFontSize": {
+      "type": "string"
+    },
     "lightboxBackgroundColor": {
+      "type": "string"
+    },
+    "lightboxHoverBackgroundColor": {
       "type": "string"
     },
     "lightboxExitIconColor": {
       "type": "string"
     },
+    "lightboxHoverExitIconColor": {
+      "type": "string"
+    },
     "lightboxArrowColor": {
+      "type": "string"
+    },
+    "lightboxHoverArrowColor": {
       "type": "string"
     }
   },

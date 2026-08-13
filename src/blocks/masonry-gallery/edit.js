@@ -285,7 +285,7 @@ function Edit(props) {
 				</>
 			) }
 			<style>
-				{generateDynamicStyle({attributes, clientId})}
+				{generateDynamicStyle({attributes, clientId, isEdit: true})}
 			</style>
 			<div {...blockProps}>
 				<div className="wpmozo_pb_module_inner">

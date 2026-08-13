@@ -8,10 +8,18 @@
 // Import styles for rendering the static content of deprecated gallery versions.
 
 .wpmozo_masonry_gallery_wrapper {position: relative;}
-.wpmozo_masonry_gallery_item {position: relative;display: inline-block;}
-.wpmozo_masonry_gallery_image_wrapper {position: relative;overflow: hidden;width: 100%;height: 100%;}
+.wpmozo_masonry_gallery_item {position: relative;display: inline-block;text-decoration: none;}
+.wpmozo_masonry_gallery_image_wrapper {position: relative;overflow: hidden;width: 100%;height: 100%;border: 0px solid transparent;box-sizing: border-box;}
 .wpmozo_masonry_gallery_image_wrapper img {display: block;width: 100%;height: auto;border-radius: 0;}
 .wpmozo_overlay.wpmozo_pb_inline_icon {position: absolute;left: 0; right: 0; bottom: 0; top: 0;display: block;pointer-events: none;background: rgba(0,0,0,0.2);opacity: 0;transition: opacity 0.2s;}
 .wpmozo_masonry_gallery_image_wrapper:hover .wpmozo_overlay.wpmozo_pb_inline_icon {opacity: 1;}
-.wp-element-caption {display: block;text-align: center;font-size: 0.95em;color: #666;margin: 0.5em 0 1.5em 0;}
+.wp-element-caption {display: block;text-align: center;font-size: 0.95em;color: #666;margin: 8px 0 0 0;line-height: 1.4;box-sizing: border-box;text-decoration: none;}
 .wpmozo_overlay i{top: 50%;left: 50%;margin: 0;transform: translate(-50%, -50%);position: absolute;}
+
+.wpmozo_masonry_gallery_image_wrapper,
+.wpmozo_overlay.wpmozo_pb_inline_icon,
+.wpmozo_overlay.wpmozo_pb_inline_icon i,
+.wp-element-caption {
+	transition: background-color 300ms ease-in-out, color 300ms ease-in-out, border-color 300ms ease-in-out, border-radius 300ms ease-in-out, opacity 300ms ease-in-out, font-size 300ms ease-in-out, letter-spacing 300ms ease-in-out;
+}
+
