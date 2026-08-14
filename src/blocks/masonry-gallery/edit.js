@@ -53,7 +53,7 @@ function Edit(props) {
 		isSelected,
 	} = props,
 		wrapArgs = attributes?.ID && mergeWrapperProps( { 
-			className: `wpmozo-masonry-gallery${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			className: `wpmozo-masonry-gallery${ attributes?.showLightbox ? ' wpmozo-masonry-image-lightbox' : '' }${ attributes?.enableOverlay ? ' wpmozo-masonry-image-overlay' : '' }${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
 			style: {}
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,
@@ -293,7 +293,7 @@ function Edit(props) {
 						<div className="wpmozo_masonry_gallery_item_gutter"></div>
 						{attributes.images_data && attributes.images_data.length > 0 && (
 							attributes.images_data.map((image, idx) => (
-								<a className="wpmozo_masonry_gallery_item" href={image.url} key={image.id || idx}>
+								<a className="wpmozo_masonry_gallery_item" href={image.url} key={image.id || idx} onClick={(e) => { if (!attributes.showLightbox) { e.preventDefault(); } }}>
 									<div className="wpmozo_masonry_gallery_image_wrapper">
 										<img src={image.url} alt={image.alt || ''}/>
 										{true === attributes.enableOverlay && (

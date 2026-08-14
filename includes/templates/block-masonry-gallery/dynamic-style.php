@@ -44,9 +44,10 @@ if ( ! function_exists( 'masonry_gallery_generate_dynamic_style' ) ) {
 		$mainSelector = '#block-' . esc_attr( $attrs['ID'] );
 
 		$numberOfColumns = ! empty( $attrs['numberOfColumns'] ) ? intval( $attrs['numberOfColumns'] ) : 1;
+		$gutterSizeVal   = isset( $attrs['customGutterSize'] ) ? intval( $attrs['customGutterSize'] ) : 0;
 		$finalWidth      = 100 / $numberOfColumns;
-		if ( ! empty( $attrs['customGutterSize'] ) ) {
-			$gutterSize = ( intval( $attrs['customGutterSize'] ) * ( $numberOfColumns - 1 ) ) / $numberOfColumns;
+		if ( $gutterSizeVal > 0 ) {
+			$gutterSize = ( $gutterSizeVal * ( $numberOfColumns - 1 ) ) / $numberOfColumns;
 			$finalWidth = "calc({$finalWidth}% - {$gutterSize}px)";
 		} else {
 			$finalWidth = "{$finalWidth}%";
@@ -57,15 +58,15 @@ if ( ! function_exists( 'masonry_gallery_generate_dynamic_style' ) ) {
 		if ( ! empty( $attrs['numberOfColumns'] ) ) {
 			$styles .= "
 				{$mainSelector} .wpmozo_masonry_gallery_item_gutter {
-					width: {$attrs['customGutterSize']}px !important;
+					width: {$gutterSizeVal}px !important;
 				}
 				{$mainSelector} .wpmozo_masonry_gallery_item {
 					width: {$finalWidth};
-					margin-bottom: {$attrs['customGutterSize']}px;
+					" . ( $gutterSizeVal > 0 ? "margin-bottom: {$gutterSizeVal}px;" : "" ) . "
 				}
 			";
 		}
-		if ( false === $attrs['showCaption'] ) {
+		if ( isset( $attrs['showCaption'] ) && false === $attrs['showCaption'] ) {
 			$styles .= "{$mainSelector} .wpmozo_masonry_gallery_wrapper figcaption.wp-element-caption{display:none}";
 		}
 
@@ -115,7 +116,7 @@ if ( ! function_exists( 'masonry_gallery_generate_dynamic_style' ) ) {
 			}
 		}
 		if ( ! empty( $imageHoverBorderCss ) ) {
-			$styles .= "{$mainSelector} .wpmozo_masonry_gallery_item:hover .wpmozo_masonry_gallery_image_wrapper { {$imageHoverBorderCss} }";
+			$styles .= "{$mainSelector} .wpmozo_masonry_gallery_image_wrapper:hover { {$imageHoverBorderCss} }";
 		}
 
 		// Overlay (Native Static Behavior)
@@ -143,7 +144,7 @@ if ( ! function_exists( 'masonry_gallery_generate_dynamic_style' ) ) {
 		}
 		$captionNormalCss .= masonry_gallery_get_typography_styles( $attrs, 'caption' );
 		if ( ! empty( $captionNormalCss ) ) {
-			$styles .= "{$mainSelector} figcaption.wp-element-caption { {$captionNormalCss} }";
+			$styles .= "{$mainSelector} figcaption.wp-element-caption, .block-{$attrs['ID']}-lightbox .mfp-title figcaption.wp-element-caption { {$captionNormalCss} }";
 		}
 
 		// Caption Colors & Typography (Hover)
@@ -153,7 +154,7 @@ if ( ! function_exists( 'masonry_gallery_generate_dynamic_style' ) ) {
 		}
 		$captionHoverCss .= masonry_gallery_get_typography_styles( $attrs, 'captionHover' );
 		if ( ! empty( $captionHoverCss ) ) {
-			$styles .= "{$mainSelector} .wpmozo_masonry_gallery_item:hover figcaption.wp-element-caption { {$captionHoverCss} }";
+			$styles .= "{$mainSelector} figcaption.wp-element-caption:hover, .block-{$attrs['ID']}-lightbox .mfp-title figcaption.wp-element-caption:hover { {$captionHoverCss} }";
 		}
 
 		// Lightbox Normal & Hover Colors

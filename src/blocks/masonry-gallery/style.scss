@@ -9,6 +9,11 @@
 
 .wpmozo_masonry_gallery_wrapper {position: relative;}
 .wpmozo_masonry_gallery_item {position: relative;display: inline-block;text-decoration: none;}
+.wpmozo_masonry_gallery_item:focus,
+.wpmozo_masonry_gallery_item:focus-visible,
+.wpmozo_masonry_gallery_item:active,
+.wpmozo_masonry_gallery_image_wrapper:focus,
+.wpmozo_masonry_gallery_image_wrapper:focus-visible {outline: none !important;box-shadow: none !important;}
 .wpmozo_masonry_gallery_image_wrapper {position: relative;overflow: hidden;width: 100%;height: 100%;border: 0px solid transparent;box-sizing: border-box;}
 .wpmozo_masonry_gallery_image_wrapper img {display: block;width: 100%;height: auto;border-radius: 0;}
 .wpmozo_overlay.wpmozo_pb_inline_icon {position: absolute;left: 0; right: 0; bottom: 0; top: 0;display: block;pointer-events: none;background: rgba(0,0,0,0.2);opacity: 0;transition: opacity 0.2s;}
@@ -19,7 +24,11 @@
 .wpmozo_masonry_gallery_image_wrapper,
 .wpmozo_overlay.wpmozo_pb_inline_icon,
 .wpmozo_overlay.wpmozo_pb_inline_icon i,
-.wp-element-caption {
+.wp-element-caption,
+[class*="-lightbox"].mfp-bg,
+[class*="-lightbox"] .mfp-arrow:after,
+[class*="-lightbox"] .mfp-arrow:before {
 	transition: background-color 300ms ease-in-out, color 300ms ease-in-out, border-color 300ms ease-in-out, border-radius 300ms ease-in-out, opacity 300ms ease-in-out, font-size 300ms ease-in-out, letter-spacing 300ms ease-in-out;
 }
+
 

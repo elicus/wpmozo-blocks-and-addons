@@ -16,6 +16,7 @@
 	"attributes": {
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
+		"wrapCustomClass": { "type": "string", "default": "" },
 		"images": {
 			"type": "array",
 			"default": [],

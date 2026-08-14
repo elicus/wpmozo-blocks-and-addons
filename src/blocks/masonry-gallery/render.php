@@ -24,8 +24,10 @@ if ( ! function_exists( 'masonry_gallery_render_callback' ) ) {
 			}
 
 			$extra_class        = implode( ' ', $extra_class );
+			$block_id           = esc_attr( $attributes['ID'] ?? '' );
+			$wrap_custom_class  = esc_attr( $attributes['wrapCustomClass'] ?? '' );
 			$wrapper_attributes = get_block_wrapper_attributes( array(
-				'class' => trim( ( $attributes['className'] ?? '' ) . ' ' . $extra_class . ' wpmozo-wrap-'.$attributes['ID'].' '.$attributes['wrapCustomClass'] )
+				'class' => trim( ( $attributes['className'] ?? '' ) . ' ' . $extra_class . ' wpmozo-wrap-' . $block_id . ' ' . $wrap_custom_class )
 			) );
 
 			$gallery_images = '';
@@ -34,11 +36,14 @@ if ( ! function_exists( 'masonry_gallery_render_callback' ) ) {
 					isset( $image['attributes'] ) && ! empty( $image['attributes'] ) &&
 					isset( $image['attributes']['url'] ) && ! empty( $image['attributes']['url'] )
 				) {
-					$url            = esc_url( $image['attributes']['url'] );
+					$url     = esc_url( $image['attributes']['url'] );
+					$alt     = isset( $image['attributes']['alt'] ) ? esc_attr( $image['attributes']['alt'] ) : '';
+					$caption = isset( $image['attributes']['caption'] ) ? wp_kses_post( $image['attributes']['caption'] ) : '';
+
 					$gallery_images .= '
 					<a class="wpmozo_masonry_gallery_item" href="' . $url . '">
 						<div class="wpmozo_masonry_gallery_image_wrapper">
-							<img src="' . $url . '" alt="' . $image['attributes']['alt'] . '">
+							<img src="' . $url . '" alt="' . $alt . '">
 							' . ( ! empty( $attributes['enableOverlay'] ) && true === $attributes['enableOverlay']
 								? '<span class="wpmozo_overlay wpmozo_pb_inline_icon" data-icon="0">
 										<i class="' . esc_attr( $attributes['overlayIcon'] ?? '' ) . '"></i>
@@ -46,9 +51,9 @@ if ( ! function_exists( 'masonry_gallery_render_callback' ) ) {
 								: ''
 							) . '
 						</div>
-						' . ( isset( $image['attributes']['caption'] ) && ! empty( $image['attributes']['caption'] )
+						' . ( ! empty( $caption )
 							? '<div class="wpmozo_masonry_gallery_title_caption_wrapper">
-									<figcaption class="wp-element-caption">' . $image['attributes']['caption'] . '</figcaption>
+									<figcaption class="wp-element-caption">' . $caption . '</figcaption>
 								</div>'
 							: ''
 						) . '

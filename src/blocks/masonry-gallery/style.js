@@ -59,11 +59,11 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	normalcss.push( attributes.overlayIconSize ? `${blockID} .wpmozo_overlay.wpmozo_pb_inline_icon { font-size: ${attributes.overlayIconSize}px; }` : '' );
 
 	if ( attributes.captionColor || convertedStyle.caption ) {
-		normalcss.push( `${blockID} figcaption.wp-element-caption { ${attributes.captionColor ? `color: ${attributes.captionColor};` : ''} ${convertedStyle.caption || ''} }` );
+		normalcss.push( `${blockID} figcaption.wp-element-caption, .block-${attributes.ID || clientId}-lightbox .mfp-title figcaption.wp-element-caption { ${attributes.captionColor ? `color: ${attributes.captionColor};` : ''} ${convertedStyle.caption || ''} }` );
 	}
 
 	if ( attributes.captionHoverColor || convertedStyle.captionHover ) {
-		hovercss.push( `${blockID} .wpmozo_masonry_gallery_item:hover figcaption.wp-element-caption, ${blockID}.is_hover figcaption.wp-element-caption { ${attributes.captionHoverColor ? `color: ${attributes.captionHoverColor};` : ''} ${convertedStyle.captionHover || ''} }` );
+		hovercss.push( `${blockID} figcaption.wp-element-caption:hover, .block-${attributes.ID || clientId}-lightbox .mfp-title figcaption.wp-element-caption:hover, ${blockID}.is_hover figcaption.wp-element-caption { ${attributes.captionHoverColor ? `color: ${attributes.captionHoverColor};` : ''} ${convertedStyle.captionHover || ''} }` );
 	}
 
 	if ( true === attributes.showLightbox ) {
