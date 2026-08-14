@@ -76,8 +76,7 @@
       "type": "string"
     },
     "titleHoverFontSize": {
-      "type": "string",
-      "default": "26px"
+      "type": "string"
     },
     "titleHoverLetterSpacing": {
       "type": "string"
