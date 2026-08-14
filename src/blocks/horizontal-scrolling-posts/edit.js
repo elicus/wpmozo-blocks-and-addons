@@ -8,6 +8,7 @@ import {
 	renderTestimonialLayoutOne,
 	renderTestimonialLayoutTwo
 } from './layouts';
+import $, { post } from 'jquery'
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -50,38 +51,51 @@ export default function Edit(props) {
 			setAttributes( updates );
 		}
 	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
-	
-
-	useEffect(() => {
-        const event = new CustomEvent('WPMozoScrollPostsPropsChanged');
-        const iframe = document.querySelector('iframe[name="editor-canvas"]');
-        window.dispatchEvent(event);
-        if (iframe?.contentWindow) {
-            iframe.contentWindow.dispatchEvent(event);
-        }
-    }, [attributes]);
 
 	const postsToShow        = parseInt( attributes.postsToShow ) ?? 5;
 	const postOrder          = attributes.postOrder ?? 'DESC';
 	const postOrderBy        = attributes.postOrderBy ?? 'date';
-	const sticky        = attributes.ignoreStickyPosts ?? false;
+	let sticky               = attributes.ignoreStickyPosts ?? false;
+
+	const stickyQuery = {
+		per_page: -1,
+		order: postOrder,
+		orderby: postOrderBy,
+		_embed: true,
+		sticky: true
+	};
+	const stickyPosts = useSelect(
+		(select) =>
+			select('core').getEntityRecords('postType', 'post', stickyQuery),
+		[stickyQuery]
+	);
 
 	const queryArgs = {
-		per_page: postsToShow,
 		order: postOrder,
 		orderby: postOrderBy,
 		_embed: true
 	};
-
-	if(true === attributes.ignoreStickyPosts){
+	if(stickyPosts){
+		queryArgs.per_page= postsToShow - (stickyPosts?.length || 0);
+	}
+	if(sticky){
+		queryArgs.per_page = postsToShow;
+	}else{
 		queryArgs.sticky = false;
 	}
 
 	const posts = useSelect(
 		(select) =>
 			select('core').getEntityRecords('postType', 'post', queryArgs),
-		[postsToShow, postOrder, postOrderBy, sticky]
+		[queryArgs]
 	);
+	let allPosts = {};
+	if(posts){
+		allPosts = [...posts];
+		if(!sticky && stickyPosts){
+			allPosts = [...stickyPosts, ...posts];
+		}
+	}
 
 	// Get props.
 	const layout = attributes.layout ?? 'layout1';
@@ -95,8 +109,8 @@ export default function Edit(props) {
 
 
 	let postData = [];
-	if ( posts && posts.length > 0 ) {
-		posts.map( ( post ) => {
+	if ( allPosts && allPosts.length > 0 ) {
+		allPosts.map( ( post ) => {
 			const rawContent      = post.content?.rendered || '';
 			let postTitle      = post.title?.rendered || '';
 			let date = post.date;
@@ -190,6 +204,15 @@ export default function Edit(props) {
 			postData.push( <div className={`wpmozo_horizontal_scrolling_post_item item_${attributes.layout}`}>{ $thisSlide }</div> );
 		} );
 	}
+	useEffect( () => {
+		if ( ! attributes.ID ) return;
+		if ( null === posts) return;
+		const event = new CustomEvent( 'WPMozoScrollPostsPropsChanged', {
+			detail: { clientId: attributes.ID }
+		} );
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		iframe?.contentWindow?.dispatchEvent( event );
+	}, [ posts, attributes ] );
 
     return (
 		<Fragment>

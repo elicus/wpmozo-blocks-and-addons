@@ -21,7 +21,7 @@
 		"postOrder": {"type": "string","default": "desc"},
 		"postOrderBy": {"type": "string","default": "date"},
 		"includesCategories": {"type": "string"},
-		"ignoreStickyPosts": {"type": "boolean","default": false},
+		"ignoreStickyPosts": {"type": "boolean", "default": false},
 		"noResultText": {"type": "string","default": "The posts you requested could not be found. Try changing your module settings or create some new posts."},
 
 		"showFeaturedImage": {"type": "boolean","default": true},
@@ -160,6 +160,6 @@
     "editorScript": "file:./index.js",
 	"editorStyle": ["wpmozo-blocks-and-addons-fontawesome-style","file:./index.css"],
 	"style": ["wpmozo-blocks-and-addons-fontawesome-style","file:./style-index.css"],
-	"script": [ "wpmozo-blocks-and-addons-scroll-trigger-script", "wpmozo-blocks-and-addons-gsap-script", "file:./script.js"],
+	"script": [ "wpmozo-blocks-and-addons-scroll-trigger-script", "wpmozo-blocks-and-addons-imagesloaded-script", "wpmozo-blocks-and-addons-gsap-script", "file:./script.js"],
 	"render": "file:./render.php"
 }

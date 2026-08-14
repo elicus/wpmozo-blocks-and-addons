@@ -10,15 +10,18 @@
 $author_id       = get_post_field( 'post_author', $post_id );
 $author_name     = get_the_author_meta( 'display_name', $author_id );
 $author_link     = get_author_posts_url( $author_id );
-$date            = get_the_date( 'M j, Y', $post_id );
+$date            = '';
 $comments_number = get_comments_number( $post_id );
 
-if ( ! $attributes['showDate'] ) {
-	$date = '';
+if ( isset($attributes['showDate']) && !empty($attributes['showDate']) ) {
+	$date = sprintf('
+		<span class="published">%1$s</span>',
+		esc_html(get_the_date( 'M j, Y', $post_id ))
+	);
 }
 
 $post_tag = '';
-if ( ! empty( $attributes['showCategories'] ) ) {
+if ( isset($attributes['showCategories']) && ! empty( $attributes['showCategories'] ) ) {
 	$categories = get_the_category( $post_id );
 	if ( ! empty( $categories ) && is_array( $categories ) ) {
 		$cat_tags = array();
@@ -30,19 +33,20 @@ if ( ! empty( $attributes['showCategories'] ) ) {
 			);
 		}
 		$post_tag = sprintf(
-			'<div class="wpmozo_horizontal_scrolling_post_tag_wrapper">%1$s
-						<span class="published">%2$s</span>
-					</div>',
+			'<div class="wpmozo_horizontal_scrolling_post_tag_wrapper">
+				%1$s
+				%2$s
+			</div>',
 			implode( '', $cat_tags ),
-			esc_html( $date )
+			$date
 		);
 	}
-} else {
+} else if(isset($attributes['showDate']) && ! empty( $attributes['showDate'] )) {
 	$post_tag = sprintf(
 		'<div class="wpmozo_horizontal_scrolling_post_tag_wrapper">
-						<span class="published">%1$s</span>
-				</div>',
-		esc_html( $date )
+			%1$s
+		</div>',
+		$date
 	);
 }
 
@@ -124,24 +128,28 @@ if ( ! empty( $attributes['showButton'] ) ) {
 }
 
 $show_featured_image = ! empty( $featured_image ) ? $featured_image : '';
+$content = sprintf(
+	'<div class="wpmozo_horizontal_scrolling_post_content_wrapper">
+		%1$s
+		%2$s
+		%3$s
+		%4$s
+		%5$s
+	</div>',
+	$post_tag,
+	(isset($attributes['showTtile']) && true === $attributes['showTtile']) ? $post_title : '',
+	(isset($attributes['showExcerpt']) && true === $attributes['showExcerpt']) ? $post_excerpt : '',
+	(isset($attributes['showButton']) && true === $attributes['showButton']) ? $button_html : '',
+	$meta_html
+);
 $testimonials .= sprintf(
 	'<div id="wpmozo_single_post_%1$s" class="wpmozo_horizontal_scrolling_post_wrapper">
 		<div class="wpmozo_horizontal_scrolling_post_inner" style="background-image: url(%2$s);">
-			<div class="wpmozo_horizontal_scrolling_post_content_wrapper">
 			%3$s
-			%4$s
-			%5$s
-			%6$s
-			%7$s
-			</div>
 		</div>
 	</div>',
 	esc_attr( $post_id ),
 	// Show categories and featured image if image is present, else show categories above content
 	$show_featured_image,
-	$post_tag,
-	$post_title,
-	$post_excerpt,
-	$button_html,
-	$meta_html
+	($post_tag || (isset($attributes['showTtile']) && true === $attributes['showTtile']) || (isset($attributes['showExcerpt']) && true === $attributes['showExcerpt']) || (isset($attributes['showButton']) && true === $attributes['showButton']) || $meta_html) ? $content : ''
 );

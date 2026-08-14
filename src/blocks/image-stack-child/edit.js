@@ -47,6 +47,16 @@ export default function Edit(props) {
 		}
 	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
+	useEffect( () => {
+		const event = new CustomEvent( 'WPMozoImageStackPropsChanged' );
+		window.dispatchEvent( event );
+
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
+		}
+	}, [JSON.stringify(attributes)] );
+
 	const {
 		image,
 		tooltipText
@@ -96,7 +106,11 @@ export default function Edit(props) {
         const parentId = getBlockRootClientId(clientId);
         return parentId ? getBlock(parentId)?.attributes : null;
     }, [clientId] );
-	attributes.parentAtts = parentAttributes;
+	if(parentAttributes){
+		setAttributes({
+			parentAtts: parentAttributes
+		});
+	}
     
 
 	return ( <>

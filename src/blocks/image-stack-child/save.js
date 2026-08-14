@@ -26,7 +26,6 @@ export default function save(props) {
 	const imageSrc = image && image.url ? image.url : (typeof wpmozo_bna_editor_object !== 'undefined' ? wpmozo_bna_editor_object.placeholderImg : '');
 	const defaultedAlt = image && image.alt ? image.alt : '';
 	const imageTitle = image && image.url ? image.title :  '';
-	console.log(attributes.parentAtts);
 
 	return ( <>
 		<div id={'block-' + ID} {...blockProps}>

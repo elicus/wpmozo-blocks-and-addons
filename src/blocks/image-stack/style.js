@@ -92,6 +92,11 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 			? `.tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}']{
 					${attributes.tooltipColor ? `color: ${attributes.tooltipColor} !important;` : ''}
 					${attributes.tooltipBackgroundColor ? `background-color: ${attributes.tooltipBackgroundColor} !important;` : ''}
+				}
+				${attributes.tooltipBackgroundColor 
+					? `.tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}'] .tippy-arrow:before {
+					border-top-color: ${attributes.tooltipBackgroundColor} !important;}` 
+					: ''
 				}`
 			: ''
 		);
@@ -100,6 +105,11 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 				`.tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}']:hover, #block-${attributes.ID}.is_hover .tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}'] {
 					${attributes.tooltipHoverColor ? `color: ${attributes.tooltipHoverColor} !important;` : ''}
 					${attributes.tooltipHoverBackgroundColor ? `background-color: ${attributes.tooltipHoverBackgroundColor} !important;` : ''}
+				}
+				${attributes.tooltipHoverBackgroundColor 
+					? `.tippy-box[data-theme='wpmozo-tippy-block-${attributes.ID}']:hover .tippy-arrow:before {
+					border-top-color: ${attributes.tooltipHoverBackgroundColor} !important;}` 
+					: ''
 				}`
 			);
 		}

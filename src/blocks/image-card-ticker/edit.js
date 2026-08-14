@@ -1,5 +1,5 @@
 import { concat, find } from 'lodash';
-import {Fragment} from "@wordpress/element";
+import {Fragment, useRef} from "@wordpress/element";
 import { View } from '@wordpress/primitives';
 import { toHTMLString } from '@wordpress/rich-text';
 
@@ -66,7 +66,13 @@ export default function Edit(props) {
 		}
 	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
+	const isFirstRender = useRef(true);
 	useEffect( () => {
+		if (isFirstRender.current) {
+			isFirstRender.current = false;
+			return;
+		}
+		console.log('heloo there');
 		const event = new CustomEvent( 'WPMozoImageTickerPropsChanged' );
 		window.dispatchEvent( event );
 
@@ -74,7 +80,8 @@ export default function Edit(props) {
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [props] );
+		console.log(attributes);
+	}, [attributes] );
 
 	const { getBlock, preferredStyle } = useSelect( ( select ) => {
 		const settings = select( blockEditorStore ).getSettings();

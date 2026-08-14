@@ -64,15 +64,8 @@ export default function Edit(props) {
 			{ isSelected && ( <Inspector attributes={attributes} setAttributes={setAttributes} /> ) }
 			<style>{ generateDynamicStyle( { attributes, clientId, isEdit: true } ) }</style>
 
-			<div className="wpmozo-bna-image-stack" id={`block-${clientId}`}  data-client-id={clientId}  >
-				<div className={`wpmozo-image-stack-wrap`}
-					data-speech-bubble="yes"
-					data-animation-type="away"
-					data-animation-duration="400"
-					data-animation-name="shift-away"
-					data-tooltip-id="elementor-baca216"
-					data-trigger="hover"
-				>
+			<div className="wpmozo-bna-image-stack" id={`block-${clientId}`}  data-client-id={clientId} data-tooltip-enable={attributes.showTooltip} data-show-arrow={attributes.showArrow} data-trigger={attributes.tooltipTrigger}  >
+				<div className={`wpmozo-image-stack-wrap`}>
 					<div className={`wpmozo-image-stack-inner`}>
 						{innerBlocksProps.children}
 					</div>

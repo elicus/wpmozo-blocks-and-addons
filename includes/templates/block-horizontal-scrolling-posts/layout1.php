@@ -119,24 +119,27 @@ if ( ! empty( $attributes['showButton'] ) ) {
 }
 
 $show_featured_image = ! empty( $featuredImage ) ? $featuredImage : '';
+$content = sprintf(
+	'<div class="wpmozo_horizontal_scrolling_post_content_wrapper">
+		%1$s
+		%2$s
+		%3$s
+		%4$s
+	</div>',
+	$post_tag,
+	(isset($attributes['showTtile']) && true === $attributes['showTtile']) ? $post_title : '',
+	(isset($attributes['showExcerpt']) && true === $attributes['showExcerpt']) ? $post_excerpt : '',
+	(isset($attributes['showButton']) && true === $attributes['showButton']) ? $button_html : ''
+);
 
 $testimonials .= sprintf(
 	'<div id="wpmozo_single_post_%1$s" class="wpmozo_horizontal_scrolling_post_wrapper">
 		%2$s
-		<div class="wpmozo_horizontal_scrolling_post_content_wrapper">
-			%3$s
-			%4$s
-			%5$s
-			%6$s
-		</div>
-		%7$s
+		%3$s
+		%4$s
 	</div>',
 	esc_attr( $post_id ),
-	// Show categories and featured image if image is present, else show categories above content
 	! empty( $show_featured_image ) ? ( $post_tag . $show_featured_image ) : $post_tag,
-	empty( $show_featured_image ) ? $post_tag : '',
-	$post_title,
-	$post_excerpt,
-	$button_html,
+	((isset($attributes['showTtile']) && true === $attributes['showTtile']) || (isset($attributes['showExcerpt']) && true === $attributes['showExcerpt']) || (isset($attributes['showButton']) && true === $attributes['showButton'])) ? $content : '',
 	$meta_html
 );

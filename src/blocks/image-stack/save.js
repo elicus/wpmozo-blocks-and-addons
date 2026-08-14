@@ -16,13 +16,12 @@ export default function save( { attributes } ) {
 	const innerBlocksProps = useInnerBlocksProps.save( blockProps, {
 		allowedBlocks: [ 'wpmozo/image-stack-child' ]
 	});
-	console.log(attributes);
 
 	return (
 		<>
 			<style>{ generateDynamicStyle( { attributes, ID } ) }</style>
 
-			<div {...innerBlocksProps} id={`block-${attributes.ID}`} className={ `wpmozo-bna-image-stack ` + attributes.className }>
+			<div {...innerBlocksProps} id={`block-${attributes.ID}`} className={ `wpmozo-bna-image-stack ` + attributes.className } data-tooltip-enable={attributes.showTooltip}>
 				<div className={`wpmozo-image-stack-wrap`}>
 					<div className={`wpmozo-image-stack-inner`}>
 						{/*<InnerBlocks.Content />*/}
