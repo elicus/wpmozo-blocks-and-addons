@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { PanelBody, ToggleControl, RangeControl } from '@wordpress/components';
-import { WpmozoColorPicker, WpmozoIconpicker } from "../../../common/components";
+import { WpmozoColorPicker, WpmozoIconpicker, MozoStates } from "../../../common/components";
 import { useState } from 'react';
 
 export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
@@ -53,9 +53,26 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 					ColorKey="lightbox"
 					props={props}
 					ColorTypes={ [
-						{ key: 'BackgroundColor', label: __( 'Lightbox Background Color', 'wpmozo-blocks-and-addons' ) },
-						{ key: 'CloseIconColor', label: __( 'Close Icon Color', 'wpmozo-blocks-and-addons' ) }
+						{ key: 'BackgroundColor', label: __( 'Lightbox Background Color', 'wpmozo-blocks-and-addons' ) }
 					] }
+				/>
+				<MozoStates
+					value={hoverState}
+					title={ __( 'Close Icon Colors', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( isHover ) => (
+							isHover ? setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)
+					}
+					control={ ( isHover ) => (
+						<WpmozoColorPicker
+							ColorKey="lightbox"
+							props={props}
+							ColorTypes={ [
+								{ key: isHover ? 'HoverCloseIconColor' : 'CloseIconColor', label: __( 'Close Icon Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+					) }
 				/>
 			</PanelBody>
 		) }

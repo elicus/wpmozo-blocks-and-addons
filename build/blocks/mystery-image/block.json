@@ -44,6 +44,10 @@
       "type": "string",
       "default": ""
     },
+    "lightboxHoverCloseIconColor": {
+      "type": "string",
+      "default": ""
+    },
     "enableOverlay": {
       "type": "boolean",
       "default": false

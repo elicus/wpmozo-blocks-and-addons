@@ -30,6 +30,7 @@
 		"showLightbox": { "type": "boolean", "default": false },
 		"lightboxBackgroundColor": { "type": "string", "default": "" },
 		"lightboxCloseIconColor": { "type": "string", "default": "" },
+		"lightboxHoverCloseIconColor": { "type": "string", "default": "" },
 		"enableOverlay": { "type": "boolean", "default": false },
 		"overlayBackgroundColor" : { "type": "string" },
 		"overlayIconSize" : { "type": "number" },

@@ -16,6 +16,9 @@
 
 
 .wpmozo-mystery-image-anchor { position: relative;display: inline-block; }
+.wpmozo-mystery-image-anchor:focus,
+.wpmozo-mystery-image-anchor:focus-visible,
+.wpmozo-mystery-image-anchor:active { outline: none !important; box-shadow: none !important; }
 .wpmozo-mystery-image-anchor .wpmozo-overlay-icon { position: absolute;top: 0; left: 0; right: 0; bottom: 0;display: flex;align-items: center;justify-content: center;opacity: 0;pointer-events: none;background: rgba(0,0,0,0.4); /* semi-transparent overlay */transition: opacity 0.3s;color: #fff;font-size: 2.5em;}
 .wpmozo-mystery-image-anchor:hover .wpmozo-overlay-icon { opacity: 1;pointer-events: auto; }
 
@@ -94,4 +97,9 @@
 }
 .wpmozo-mystery-image-lightbox .mystery-show a {
 	pointer-events: auto;
+}
+
+[class*="_lightbox"].mfp-bg,
+[class*="_lightbox"] .mfp-close {
+	transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
 }
