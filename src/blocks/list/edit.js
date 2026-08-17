@@ -59,7 +59,7 @@ export default function Edit(props) {
     return (
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
-            <style>{ generateDynamicStyle({ attributes, clientId }) }</style>
+            <style>{ generateDynamicStyle({ attributes, clientId, isEdit: true }) }</style>
 
             <div { ...blockProps}>
                 <div>

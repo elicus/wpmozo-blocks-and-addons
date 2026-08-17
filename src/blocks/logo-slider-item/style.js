@@ -1,20 +1,49 @@
 import {wpmozo_is_empty,convertInlineStyleStr} from '../../common/utils.js';
 
-const generateDynamicStyle = ({attributes, clientId}) => {
+const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 
-	const {iconFontSize, separatorColor} = attributes,
-		toConvertStyles = [
+	const toConvertStyles = [
 			'logo',
+			'logoHover'
 		];
 	let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
 
-	let styles = (attributes.logoBackground || convertedStyle.logo) ? `
-	#block-${clientId}{
-		.logo-wrap {
-			${attributes.logoBackground ? `background: ${attributes.logoBackground}` : ''};
-			${convertedStyle.logo ?? ''}
-		}
-	}` : '';
+	let normalcss = [],
+	hovercss = [],
+	cssExtras = [];
+
+	const itemID = `#block-${attributes.ID || clientId}`;
+
+	normalcss.push(
+		( attributes.logoBackground || convertedStyle.logo )
+		? `${itemID} .logo-wrap {
+				${attributes.logoBackground ? `background: ${attributes.logoBackground};` : ''}
+				${convertedStyle.logo || ''}
+			}`
+		: ''
+	);
+
+	if ( attributes.logoHoverBackground || convertedStyle.logoHover ) {
+		hovercss.push(
+			`${itemID} .logo-wrap:hover, ${itemID}.is_hover .logo-wrap {
+				${attributes.logoHoverBackground ? `background: ${attributes.logoHoverBackground};` : ''}
+				${convertedStyle.logoHover || ''}
+			}`
+		);
+	}
+
+	const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);
+	
+	let styles = hasStyles ? `${normalcss.filter(Boolean).join('\n')}\n${hovercss.filter(Boolean).join('\n')}` : '';
+	
+	styles += cssExtras.some(Boolean) ? cssExtras.filter(Boolean).join('\n') : '';
+	styles = styles.replace(/\s+/g, ' ')
+    .replace(/\s*{\s*/g, '{')
+    .replace(/\s*}\s*/g, '}')
+    .replace(/\s*:\s*/g, ':')
+    .replace(/\s*;\s*/g, ';')
+    .replace(/\s*,\s*/g, ',')    
+    .trim();
 
 	return styles;
 };

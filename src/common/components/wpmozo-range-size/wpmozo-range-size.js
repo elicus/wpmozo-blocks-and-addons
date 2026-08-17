@@ -70,12 +70,18 @@ const WpmozoRangeSize = (args) => {
 
 	const onChange = args.hasOwnProperty('onChange') ? args.onChange : sizeSetValue;
 
+	const rangeControlProps = {};
+	if ( args.min !== undefined ) rangeControlProps.min = args.min;
+	if ( args.max !== undefined ) rangeControlProps.max = args.max;
+	if ( args.step !== undefined ) rangeControlProps.step = args.step;
+
 	const rangeControl = (
 		<RangeControl
 			key={`wpmozo-range-size-${rangeSizeKey}-range`}
 			value={state.range}
 			allowReset={false}
 			withInputField={false}
+			{...rangeControlProps}
 			onChange={(newSpacing) => {
 				const unit = jQuery(`.wpmozo-range-size-${rangeSizeKey}-size .components-unit-control__select`).val();
 				const spacing = newSpacing + unit;
@@ -90,6 +96,7 @@ const WpmozoRangeSize = (args) => {
 			key={`wpmozo-range-size-${rangeSizeKey}-size`}
 			value={props.attributes[rangeSizeKey]}
 			className={`wpmozo-range-size-${rangeSizeKey}-size`}
+			{...rangeControlProps}
 			onChange={(newSpacing) => {
 				const unit = jQuery(`.wpmozo-range-size-${rangeSizeKey}-size .components-unit-control__select`).val();
 				sizeSetValue('value', newSpacing);

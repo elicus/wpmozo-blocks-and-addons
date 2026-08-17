@@ -56,13 +56,11 @@ export default function Inspector( props ) {
 							<GeneralPanel attributes={attributes} setAttributes={setAttributes} />
 						}
 						{ tab.name === 'design' &&
-							<DesignPanel attributes={attributes} setAttributes={setAttributes} />
+							<DesignPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState} />
 						}
 						{ tab.name === 'advanced' &&
-							
-						<AdvancedPanel attributes={attributes} setAttributes={setAttributes} />
-					
-						}
+                        	<AdvancedPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState}/>
+                    	}
 					</div> ) }
 				</TabPanel>
 			</InspectorControls>

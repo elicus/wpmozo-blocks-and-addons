@@ -25,6 +25,8 @@
         "itempadding": { "type": "object" },
         "itemBackgroundColor": { "type": "text" },
         "itemBackgroundGradient": { "type": "text" },
+        "itemHoverBackgroundColor": { "type": "text" },
+        "itemHoverBackgroundGradient": { "type": "text" },
 
         "text": { "type": "rich-text", "source": "rich-text", "selector": "p", "role": "text" },
         "textNormalColor": { "type": "string", "default": "" },
@@ -49,9 +51,12 @@
         "styleIcon": { "type": "boolean", "default": false },
         "iconShape": { "type": "string", "default": "square" },
         "iconColor": { "type": "string" },
+        "iconHoverColor": { "type": "string" },
         "shapeBackground": { "type": "string" },
+        "shapeHoverBackground": { "type": "string" },
         "enableShapeBorder": { "type": "boolean", "default": false },
-        "shapeBorderColor": { "type": "string" }
+        "shapeBorderColor": { "type": "string" },
+        "shapeBorderHoverColor": { "type": "string" }
 
     },
     "textdomain": "wpmozo-blocks-and-addons",

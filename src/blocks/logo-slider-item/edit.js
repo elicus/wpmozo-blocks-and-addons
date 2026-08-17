@@ -58,7 +58,7 @@ export default function Edit(props) {
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
 			<style>
-				{generateDynamicStyle({attributes, clientId})}
+				{generateDynamicStyle({attributes, clientId, isEdit: true})}
 			</style>
 			<div {...blockProps} id={`block-${clientId}`}  data-client-id={clientId} onClick={selectBlock}>
 				<div className="logo-wrap">

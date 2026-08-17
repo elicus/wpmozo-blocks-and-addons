@@ -155,7 +155,7 @@ export default function Edit(props) {
 				<>
 					<Inspector attributes={attributes} setAttributes={setAttributes} />
 					<style>
-						{ generateDynamicStyle({ attributes, clientId }) }
+						{ generateDynamicStyle({ attributes, clientId, isEdit: true }) }
 					</style>
 					<div {...blockProps} id={`block-${clientId}`}>
 						<div className="wpmozo-bna-logo-slider-wrap" data-attr={JSON.stringify(dataAttr)}>

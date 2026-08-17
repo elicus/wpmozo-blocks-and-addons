@@ -53,7 +53,7 @@ function Edit(props) {
 		isSelected,
 	} = props,
 		wrapArgs = attributes?.ID && mergeWrapperProps( { 
-			className: `wpmozo-masonry-gallery${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			className: `wpmozo-masonry-gallery${ attributes?.showLightbox ? ' wpmozo-masonry-image-lightbox' : '' }${ attributes?.enableOverlay ? ' wpmozo-masonry-image-overlay' : '' }${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
 			style: {}
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,
@@ -127,13 +127,17 @@ function Edit(props) {
 	}, [images]);
 
 	useEffect(() => {
+		if( ! attributes.ID ) return;
+		if( ! Array.isArray( images ) ) return;
+		if( ! images.length > 0 ) return;
+		if( ! attributes.images_data ) return;
 		const event = new CustomEvent('WPMozoMasonryGalleryPropsChanged');
 		window.dispatchEvent(event);
 		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [props]);
+	}, [props, images]);
 
 	useEffect( () => {
 		const changedAttributes = {};
@@ -285,7 +289,7 @@ function Edit(props) {
 				</>
 			) }
 			<style>
-				{generateDynamicStyle({attributes, clientId})}
+				{generateDynamicStyle({attributes, clientId, isEdit: true})}
 			</style>
 			<div {...blockProps}>
 				<div className="wpmozo_pb_module_inner">
@@ -293,7 +297,7 @@ function Edit(props) {
 						<div className="wpmozo_masonry_gallery_item_gutter"></div>
 						{attributes.images_data && attributes.images_data.length > 0 && (
 							attributes.images_data.map((image, idx) => (
-								<a className="wpmozo_masonry_gallery_item" href={image.url} key={image.id || idx}>
+								<a className="wpmozo_masonry_gallery_item" href={image.url} key={image.id || idx} onClick={(e) => { if (!attributes.showLightbox) { e.preventDefault(); } }}>
 									<div className="wpmozo_masonry_gallery_image_wrapper">
 										<img src={image.url} alt={image.alt || ''}/>
 										{true === attributes.enableOverlay && (

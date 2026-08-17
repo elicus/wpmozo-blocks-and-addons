@@ -8,6 +8,7 @@ import {
 	WpmozoDimensions,
 	WpmozoColorPicker,
 	WpmozoTypography,
+	MozoStates,
 } from '../../../common/components/index';
 
 
@@ -24,15 +25,26 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 
 	return ( <>
 		<PanelBody title={ __( 'Container', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
-			<WpmozoColorPicker
-				ColorKey="container"
-				props={props}
-				ColorTypes={[
-					{
-						key: 'background',
-						label: __( 'Background Color', 'wpmozo-blocks-and-addons' ),
-					}
-				]}
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker
+						ColorKey={ isHover ? "containerHover" : "container" }
+						props={props}
+						ColorTypes={[
+							{
+								key: 'Background',
+								label: __( 'Background Color', 'wpmozo-blocks-and-addons' ),
+							}
+						]}
+					/>
+				) }
 			/>
 			<WpmozoDimensions
 				DimensionKey='container'
@@ -43,35 +55,57 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Slider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
-			<WpmozoColorPicker
-				ColorKey="slider"
-				props={props}
-				ColorTypes={[
-					{
-						key: 'ArrowColor',
-						label: __( 'Arrow Color', 'wpmozo-blocks-and-addons' ),
-					},
-					{
-						key: 'ArrowBackground',
-						label: __( 'Arrow Background', 'wpmozo-blocks-and-addons' ),
-					},
-					{
-						key: 'ActiveDoteColor',
-						label: __( 'Active Dot Pagination Color', 'wpmozo-blocks-and-addons' ),
-					},
-					{
-						key: 'InactiveDoteColor',
-						label: __( 'Inactive Dot Pagination Color', 'wpmozo-blocks-and-addons' ),
-					}
-				]}
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Slider Colors', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+				<WpmozoColorPicker
+					ColorKey="slider"
+					props={props}
+					ColorTypes={[
+						{
+							key: isHover ? "ArrowHoverColor" : "ArrowColor",
+							label: __( 'Arrow Color', 'wpmozo-blocks-and-addons' ),
+						},
+						{
+							key: isHover ? "ArrowHoverBackground" : "ArrowBackground",
+							label: __( 'Arrow Background', 'wpmozo-blocks-and-addons' ),
+						},
+						{
+							key: isHover ? "ActiveDoteHoverColor" : "ActiveDoteColor",
+							label: __( 'Active Dot Pagination Color', 'wpmozo-blocks-and-addons' ),
+						},
+						{
+							key: isHover ? "InactiveDoteHoverColor" : "InactiveDoteColor",
+							label: __( 'Inactive Dot Pagination Color', 'wpmozo-blocks-and-addons' ),
+						}
+					]}
+				/>
+				) }
 			/>
-			<WpmozoTypography
-				TypographyKey="arrow"
-				label={ __( 'Arrow Font Size', 'wpmozo-blocks-and-addons' ) }
-				props={props}
-				TypoTypes={{
-					'FontSize': true
-				}}
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Arrow Font Size', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoTypography
+						TypographyKey={ isHover ? "arrowHover" : "arrow" }
+						label={ __( 'Arrow Font Size', 'wpmozo-blocks-and-addons' ) }
+						props={props}
+						TypoTypes={{
+							'FontSize': true
+						}}
+					/>
+				) }
 			/>
 			<WpmozoDimensions
 				DimensionKey='arrow'

@@ -20,9 +20,13 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 			: ''
 	);
 	if(true === attributes.showLightbox){
-		cssExtras.push( attributes.lightboxBackgroundColor ? `.block-block-${clientId}_lightbox{ background:${attributes.lightboxBackgroundColor}; }` : '' );
+		cssExtras.push( attributes.lightboxBackgroundColor ? `.block-block-${clientId}_lightbox.mfp-bg, .block-block-${clientId}_lightbox{ background:${attributes.lightboxBackgroundColor} !important; opacity: 1 !important; }` : '' );
 
-		cssExtras.push( attributes.lightboxCloseIconColor ? `.block-block-${clientId}_lightbox .mfp-close{ color:${attributes.lightboxCloseIconColor} !important; }` : '' );
+		cssExtras.push( attributes.lightboxCloseIconColor ? `.block-block-${clientId}_lightbox .mfp-close{ color:${attributes.lightboxCloseIconColor} !important; opacity: 1 !important; }` : `.block-block-${clientId}_lightbox .mfp-close{ opacity: 1 !important; }` );
+
+		if ( attributes.lightboxHoverCloseIconColor ) {
+			cssExtras.push( `.block-block-${clientId}_lightbox .mfp-close:hover, #block-block-${clientId}_lightbox.is_hover .mfp-close { color:${attributes.lightboxHoverCloseIconColor} !important; }` );
+		}
 	}
 
 	const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);

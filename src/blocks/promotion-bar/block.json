@@ -36,7 +36,7 @@
 		"titleFontStyle": { "type": "string" },
 		"titleFontWeight": { "type": "string" },
 		"titleHoverColor": { "type": "string" },
-		"titleHoverFontSize": { "type": "string", "default": "26px" },
+		"titleHoverFontSize": { "type": "string" },
 		"titleHoverLetterSpacing": { "type": "string" },
 		"titleHoverDecoration": { "type": "string" },
 		"titleHoverLetterCase": { "type": "string" },
