@@ -12,7 +12,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 
     let beforeLabelStyle = convertedStyle['beforeLabel'],
         afterLabelStyle = convertedStyle['afterLabel'],
-        handleStyle = ` background-color: ${attributes.globalcolorHandle} !important;`;
+        handleStyle = attributes.globalcolorHandle ? `background-color: ${attributes.globalcolorHandle} !important;`:'';
 
     if ( ! wpmozo_is_empty( attributes.globalcolorHandle ) && 'horizontal' === attributes.sliderOrientation ) {
         handleStyle += `-webkit-box-shadow : 0 3px 0 ${attributes.globalcolorHandle}, 0px 0px 12px rgba(51, 51, 51, 0.5);-moz-box-shadow : 0 3px 0 ${attributes.globalcolorHandle}, 0px 0px 12px rgba(51, 51, 51, 0.5);box-shadow: 0 3px 0 ${attributes.globalcolorHandle}, 0px 0px 12px rgba(51, 51, 51, 0.5);`;

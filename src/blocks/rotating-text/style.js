@@ -35,7 +35,7 @@ const generateDynamicStyle = ({attributes, isEdit}) => {
 	normalcss.push(
 		( textRotation && attributes.circleAnimationSpeed )
 		? `.wpmozo-bna-rotating-text-inner{
-			animation: ${textRotation} ${attributes.circleAnimationSpeed}ms linear infinite !important;
+			animation: ${textRotation} ${attributes.circleAnimationSpeed}ms linear infinite;
 		}`
 		: ''
 	);
@@ -62,10 +62,14 @@ const generateDynamicStyle = ({attributes, isEdit}) => {
 		normalcss.push(
 			( attributes.iconSize || attributes.elementColor )
 			? `.icon-wrapper i{
-				${attributes.iconSize ? `font-size: ${attributes.iconSize} !important;` : ''}
-				${attributes.elementColor ? `color: ${attributes.elementColor} !important;` : ''}
+				${attributes.iconSize ? `font-size: ${attributes.iconSize};` : ''}
+				${attributes.elementColor ? `color: ${attributes.elementColor};` : ''}
 		  	}`
 			: ''
+		);
+	}else{
+		normalcss.push(
+			( attributes.imageObjectFit ) ? `.wpmozo-bna-rotating-text-icon-wrapper .wpmozo-bna-rotating-text-img-img_icon{object-fit: ${attributes.imageObjectFit}; }` : '' 
 		);
 	}
 

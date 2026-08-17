@@ -24,7 +24,7 @@
     },
     "postsNumber": {
       "type": "number",
-      "default": 10
+      "default": 5
     },
     "offsetNumber": {
       "type": "number",
@@ -170,7 +170,13 @@
       "type": "object"
     },
     "postborderRadius": {
-      "type": "string"
+      "type": "object"
+    },
+    "postHoverborder": {
+      "type": "object"
+    },
+    "postHoverborderRadius": {
+      "type": "object"
     },
     "postpadding": {
       "type": "object",
@@ -184,7 +190,13 @@
     "postBackground": {
       "type": "string"
     },
+    "postHoverBackground": {
+      "type": "string"
+    },
     "postBGGradient": {
+      "type": "string"
+    },
+    "postHoverBGGradient": {
       "type": "string"
     },
     "titleColor": {
@@ -290,6 +302,40 @@
     "excerptFontWeight": {
       "type": "string"
     },
+    "excerptHoverColor": {
+      "type": "string"
+    },
+    "excerptHoverAlign": {
+      "type": "string"
+    },
+    "excerptHoverFontSize": {
+      "type": "string"
+    },
+    "excerptHoverLetterSpacing": {
+      "type": "string"
+    },
+    "excerptHoverDecoration": {
+      "type": "string"
+    },
+    "excerptHoverLetterCase": {
+      "type": "string"
+    },
+    "excerptHoverLineHeight": {
+      "type": "string"
+    },
+    "excerptHoverFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "excerptHoverFontStyle": {
+      "type": "string"
+    },
+    "excerptHoverFontWeight": {
+      "type": "string"
+    },
     "dateColor": {
       "type": "string"
     },
@@ -321,6 +367,37 @@
     "dateFontWeight": {
       "type": "string"
     },
+    "dateHoverColor": {
+      "type": "string"
+    },
+    "dateHoverFontSize": {
+      "type": "string"
+    },
+    "dateHoverLetterSpacing": {
+      "type": "string"
+    },
+    "dateHoverDecoration": {
+      "type": "string"
+    },
+    "dateHoverLetterCase": {
+      "type": "string"
+    },
+    "dateHoverLineHeight": {
+      "type": "string"
+    },
+    "dateHoverFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "dateHoverFontStyle": {
+      "type": "string"
+    },
+    "dateHoverFontWeight": {
+      "type": "string"
+    },
     "metaColor": {
       "type": "string"
     },
@@ -350,6 +427,37 @@
       "type": "string"
     },
     "metaFontWeight": {
+      "type": "string"
+    },
+    "metaHoverColor": {
+      "type": "string"
+    },
+    "metaHoverFontSize": {
+      "type": "string"
+    },
+    "metaHoverLetterSpacing": {
+      "type": "string"
+    },
+    "metaHoverDecoration": {
+      "type": "string"
+    },
+    "metaHoverLetterCase": {
+      "type": "string"
+    },
+    "metaHoverLineHeight": {
+      "type": "string"
+    },
+    "metaHoverFontAppearance": {
+      "type": "object",
+      "default": {
+        "fontStyle": "",
+        "fontWeight": ""
+      }
+    },
+    "metaHoverFontStyle": {
+      "type": "string"
+    },
+    "metaHoverFontWeight": {
       "type": "string"
     },
     "buttonBackground": {
@@ -396,8 +504,13 @@
       }
     },
     "buttonborderRadius": {
-      "type": "string",
-      "default": "3px"
+      "type": "object",
+      "default": {
+        "topLeft": "3px",
+        "topRight": "3px",
+        "bottomRight": "3px",
+        "bottomLeft": "3px"
+      }
     },
     "buttonColor": {
       "type": "string"
@@ -441,7 +554,7 @@
       "type": "object"
     },
     "buttonHoverborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "buttonHoverColor": {
       "type": "string"
@@ -487,6 +600,7 @@
     "file:./style-index.css"
   ],
   "script": [
-    "file:./script.js"
+    "file:./script.js",
+    "wpmozo-blocks-and-addons-imagesloaded-script"
   ]
 }

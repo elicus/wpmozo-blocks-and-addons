@@ -67,7 +67,7 @@ export default function Edit( props ) {
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [props]);
+	}, [JSON.stringify(attributes)]);
 
 	return (
 		<Fragment>
@@ -75,7 +75,7 @@ export default function Edit( props ) {
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
 			<div id={`block-${attributes.ID}`} { ...blockProps}>
-				<div className="wpmozo-bna-rotating-text-wrap">
+				<div className="wpmozo-bna-rotating-text-wrap" data-pause={attributes?.pauseOnHover ? '1': '0'}>
 		            <div className="wpmozo-bna-rotating-text-inner">
 		                <p>{text}</p>
 		            </div>

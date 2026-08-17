@@ -84,9 +84,17 @@
       "type": "boolean",
       "default": false
     },
+    "showArrow": {
+      "type": "boolean",
+      "default": true
+    },
     "tooltipType": {
       "type": "string",
       "default": "imageTitle"
+    },
+    "tooltipTrigger": {
+      "type": "string",
+      "default": "mouseenter"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",
@@ -100,6 +108,7 @@
     "file:./index.css"
   ],
   "style": [
+    "wpmozo-blocks-and-addons-tippy-style",
     "wpmozo-blocks-and-addons-fontawesome-style",
     "file:./style-index.css"
   ]

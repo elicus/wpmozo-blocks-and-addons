@@ -94,6 +94,13 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			array(),
 			WPMOZO_BNA_VERSION
 		);
+		
+		wp_register_style(
+			$this->plugin_name . '-tippy-style',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/tippy.min.css',
+			array(),
+			WPMOZO_BNA_VERSION
+		);
 
 		wp_register_style(
 			$this->plugin_name . '-tippy-animation-style',

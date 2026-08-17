@@ -12,7 +12,11 @@ import {
 	WpmozoBorder,
 	WpmozoAlignment,
 	WpmozoTypography,
-	WpmozoColorPicker, WpmozoIconpicker, WpmozoDimensions, WpmozoMediaUploader
+	WpmozoColorPicker,
+	WpmozoIconpicker,
+	WpmozoDimensions,
+	WpmozoMediaUploader,
+	MozoStates
 } from "../../../common/components";
 
 export const DesignPanel = ({ attributes, setAttributes, hoverState, setHoverState }) => {
@@ -28,34 +32,22 @@ export const DesignPanel = ({ attributes, setAttributes, hoverState, setHoverSta
 	return (
 		<>
 			<PanelBody title={ __( 'Image Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
-				<>
-					<BaseControl className="wpmozo-button-tabs-wrap">
-						<ButtonGroup>
-							<Button
-								className="wpmozo-button-tabs-btn"
-								isPressed={('normal' === buttonType) ? true : false}
-								onClick={() => setButtonType('normal')}
-							>{__('Normal', 'wpmozo-blocks-and-addons')}</Button>
-							<Button
-								className="wpmozo-button-tabs-btn"
-								isPressed={('hover' === buttonType) ? true : false}
-								onClick={() => setButtonType('hover')}
-							>{__('Hover', 'wpmozo-blocks-and-addons')}</Button>
-						</ButtonGroup>
-						{'normal' === buttonType && <>
-							<WpmozoBorder
-								props={props}
-								BorderKey="normal"
-							/>
-						</>}
-						{'hover' === buttonType && <>
-							<WpmozoBorder
-								props={props}
-								BorderKey="hover"
-							/>
-						</>}
-					</BaseControl>
-				</>
+				<MozoStates
+					value = {hoverState}
+					title={ __( 'Border', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( isHover ) =>  (
+							isHover ?  setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)	
+					}
+					control={ ( isHover ) => (
+						<WpmozoBorder
+							label=''
+							props={props}
+							BorderKey={isHover ? "hover":"normal"}
+						/>
+					) }
+				/>
 			</PanelBody>
 			<PanelBody title={ __( 'Background', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 				<>

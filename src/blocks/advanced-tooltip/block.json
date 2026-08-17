@@ -60,9 +60,9 @@
 		"buttonHoverpadding": { "type": "object" },
 		"buttonmargin": { "type": "object" },
 		"buttonborder": { "type": "object", "default": { "width": "2px", "style": "solid", "color": "#313131" } },
-		"buttonborderRadius": { "type": "string", "default": "3px" },
+		"buttonborderRadius": { "type": "object", "default": {"topLeft": "3px", "topRight": "3px", "bottomRight": "3px", "bottomLeft": "3px"} },
 		"buttonHoverborder": { "type": "object" },
-		"buttonHoverborderRadius": { "type": "string" },
+		"buttonHoverborderRadius": { "type": "object" },
 
 		"triggerImageWidth": {"type": "number"},
 
@@ -108,7 +108,7 @@
 		"tooltipWidth": {"type": "number","default": 350},
 		"tooltipBackgroundColor": {"type": "string"},
 		"tooltipborder": { "type": "object" },
-		"tooltipborderRadius": { "type": "string" },
+		"tooltipborderRadius": { "type": "object" },
 		"tooltippadding": { "type": "object" },
 		"tooltipmargin": { "type": "object" },
 
@@ -117,7 +117,7 @@
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",
     "editorStyle": ["wpmozo-blocks-and-addons-fontawesome-style","file:./index.css"],
-	"style": ["wpmozo-blocks-and-addons-tippy-animation-style", "wpmozo-blocks-and-addons-fontawesome-style", "file:./style-index.css"],
+	"style": ["wpmozo-blocks-and-addons-tippy-animation-style", "wpmozo-blocks-and-addons-fontawesome-style", "file:./style-index.css", "wpmozo-blocks-and-addons-tippy-style"],
 	"script": ["wpmozo-blocks-and-addons-tippy-script", "file:./script.js"],
 	"render": "file:./render.php"
 }

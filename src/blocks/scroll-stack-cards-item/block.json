@@ -107,7 +107,7 @@
         "buttonIconPlacement": { "type": "string", "default": "after" },
         "buttonIconHover": { "type": "boolean", "default": false },
         "buttonborder": { "type": "object" },
-        "buttonborderRadius": { "type": "string" },
+        "buttonborderRadius": { "type": "object" },
         "buttonpadding": { "type": "object" },
         "buttonmargin": { "type": "object" }
 

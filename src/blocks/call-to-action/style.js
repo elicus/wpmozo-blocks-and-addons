@@ -118,18 +118,21 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 	}
 
 	// Stack on.
-	if ( attributes.buttonStackOn && 'desktop' === attributes.buttonStackOn ) {
-		normalcss.push(`.wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; }.wpmozo-bna-button-wrap{ width: 100% !important; text-align: center; }`
-		);
+	if ( attributes.buttonStackOn.length > 0){
+
+		if( attributes.buttonStackOn.includes('desktop') ) {
+			normalcss.push(`@media only screen and (min-width: 978px) { .wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; } .wpmozo-bna-button-wrap{ width: 100%; text-align: center; }}`
+			);
+		}
+		if ( attributes.buttonStackOn.includes('tablet') ) {
+			normalcss.push(`@media only screen and (max-width: 976px) and (min-width: 768px) { .wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; } .wpmozo-bna-button-wrap{ width: 100%; text-align: center; }}`
+			);
+		}
+		if ( attributes.buttonStackOn.includes('mobile') ) {
+			normalcss.push(`@media only screen and (max-width: 767px) { .wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; } .wpmozo-bna-button-wrap{ width: 100%; text-align: center; }}`
+			);
+		} 
 	}
-	if ( attributes.buttonStackOn && 'tablet' === attributes.buttonStackOn ) {
-		normalcss.push(`@media only screen and (max-width: 976px) { .wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; } .wpmozo-bna-button-wrap{ width: 100% !important; text-align: center; }`
-		);
-	}
-	if ( attributes.buttonStackOn && 'mobile' === attributes.buttonStackOn ) {
-		normalcss.push(`@media only screen and (max-width: 767px) { .wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; } .wpmozo-bna-button-wrap{ width: 100% !important; text-align: center; }`
-		);
-	} 
 
 	const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);
 	

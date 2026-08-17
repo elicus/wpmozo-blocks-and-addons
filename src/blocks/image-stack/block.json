@@ -37,11 +37,13 @@
 		"tooltipBackgroundColor": { "type": "string", "default": "" },
 		"tooltipHoverBackgroundColor": { "type": "string", "default": "" },
 		"showTooltip": { "type": "boolean", "default": false },
-		"tooltipType": { "type": "string", "default": "imageTitle" }
+		"showArrow": { "type": "boolean", "default": true },
+		"tooltipType": { "type": "string", "default": "imageTitle" },
+		"tooltipTrigger": { "type": "string", "default": "mouseenter" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
 	"script": [ "wpmozo-blocks-and-addons-tippy-script", "file:./script.js" ],
 	"editorStyle": ["wpmozo-blocks-and-addons-fontawesome-style","file:./index.css"],
-	"style": ["wpmozo-blocks-and-addons-fontawesome-style","file:./style-index.css"]
+	"style": ["wpmozo-blocks-and-addons-tippy-style","wpmozo-blocks-and-addons-fontawesome-style","file:./style-index.css"]
 }

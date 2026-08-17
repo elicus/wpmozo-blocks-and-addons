@@ -70,7 +70,7 @@
 		"buttonLetterCase": { "type": "string" },
 		"buttonLineHeight": { "type": "string" },
 		"buttonborder": { "type": "object" },
-		"buttonborderRadius": { "type": "string" },
+		"buttonborderRadius": { "type": "object" },
 		"buttonpadding": { "type": "object" },
 		"buttonwrapmargin": { "type": "object" },
 

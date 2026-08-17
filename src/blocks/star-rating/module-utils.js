@@ -38,10 +38,10 @@ export const renderSVGIcon = (
 ) => {
 	const key = getIconKey( icon, type, mood );
 	const svg = attributes.iconSVGs?.[key]?.[mood];
-
 	return svg ? (
 		<span dangerouslySetInnerHTML={ { __html: svg } }
 			className={`wpmozo_star_rating_star dipl-rating-icon-custom wpmozo_star_rating_${type} dipl-rating-icon-${icon}`}
+			key={`${icon}-${type}-${mood}`}
 		/>
 	) : null;
 };
@@ -59,14 +59,13 @@ export const preloadSVGs = async (
 	moods,
 	types,
 	attributes,
-	setAttributes
+	setAttributes,
+	clearCache = false
 ) => {
-
-	// Start from current cache.
-	const current = attributes.iconSVGs || {};
+	// Start from empty cache if icon type changed, otherwise use current cache.
+	const current = clearCache ? {} : ( attributes.iconSVGs || {} );
 	let updated = { ...current };
-	let changed = false;
-
+	let changed = clearCache;
 	const loadOnce = async ( url ) => {
 		const res = await fetch( url );
 		if ( ! res.ok ) {

@@ -102,6 +102,10 @@
       "type": "number",
       "default": 35
     },
+    "customPos": {
+      "type": "boolean",
+      "default": true
+    },
     "animationStartElementPos": {
       "type": "string",
       "default": "0%"
@@ -112,7 +116,7 @@
     },
     "animationEndElementPos": {
       "type": "string",
-      "default": "0%"
+      "default": "80%"
     },
     "animationEndViewportPos": {
       "type": "string",
@@ -136,7 +140,7 @@
       "type": "object"
     },
     "blockborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "textAlign": {
       "type": "string",

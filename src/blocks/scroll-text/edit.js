@@ -47,7 +47,7 @@ const Edit = (props) => {
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [props] );
+	}, [JSON.stringify(attributes)] );
 
 	return (
 		<Fragment>
@@ -60,7 +60,7 @@ const Edit = (props) => {
 					data-split={ attributes.splitBy || 'word' }
 					data-animation_start_element_pos={ attributes.animationStartElementPos || '0%' }
 					data-animation_start_viewport_pos={ attributes.animationStartViewportPos || '80%' }
-					data-animation_end_element_pos={ attributes.animationEndElementPos || '0%' }
+					data-animation_end_element_pos={ attributes.animationEndElementPos || '80%' }
 					data-animation_end_viewport_pos={ attributes.animationEndViewportPos || '40%' }
 				>
 					<div className="wpmozo-scroll-text-inner">

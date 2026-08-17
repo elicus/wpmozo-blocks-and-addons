@@ -171,7 +171,7 @@
       "type": "object"
     },
     "postItemborderRadius": {
-      "type": "object"
+      "type": "string"
     },
     "postItemmargin": {
       "type": "object"
@@ -186,7 +186,7 @@
       "type": "object"
     },
     "postContentborderRadius": {
-      "type": "object"
+      "type": "string"
     },
     "postContentmargin": {
       "type": "object"
@@ -195,10 +195,10 @@
       "type": "object"
     },
     "catTextColor": {
-      "type": "string"
+      "type": "default"
     },
     "catBKColor": {
-      "type": "string"
+      "type": "default"
     },
     "catTextFontSize": {
       "type": "string"
@@ -232,7 +232,7 @@
       "type": "object"
     },
     "catborderRadius": {
-      "type": "object"
+      "type": "string"
     },
     "catmargin": {
       "type": "object"
@@ -252,7 +252,7 @@
       "type": "object"
     },
     "postImageborderRadius": {
-      "type": "object"
+      "type": "string"
     },
     "postImagemargin": {
       "type": "object"
@@ -330,6 +330,18 @@
     "buttonTextBackground": {
       "type": "string"
     },
+    "buttonborder": {
+      "type": "object",
+      "default": {
+        "width": "2px",
+        "style": "solid",
+        "color": "#313131"
+      }
+    },
+    "buttonborderRadius": {
+      "type": "string",
+      "default": "3px"
+    },
     "showButtonIcon": {
       "type": "boolean",
       "default": false
@@ -365,28 +377,11 @@
     "buttonmargin": {
       "type": "object"
     },
-    "buttonborder": {
-      "type": "object",
-      "default": {
-        "width": "2px",
-        "style": "solid",
-        "color": "#313131"
-      }
-    },
-    "buttonborderRadius": {
-      "type": "object",
-      "default": {
-        "topLeft": "3px",
-        "topRight": "3px",
-        "bottomLeft": "3px",
-        "BottomRight": "3px"
-      }
-    },
     "containerborder": {
       "type": "object"
     },
     "containerborderRadius": {
-      "type": "object"
+      "type": "string"
     },
     "containermargin": {
       "type": "object"
@@ -407,6 +402,7 @@
   ],
   "script": [
     "wpmozo-blocks-and-addons-scroll-trigger-script",
+    "wpmozo-blocks-and-addons-imagesloaded-script",
     "wpmozo-blocks-and-addons-gsap-script",
     "file:./script.js"
   ],

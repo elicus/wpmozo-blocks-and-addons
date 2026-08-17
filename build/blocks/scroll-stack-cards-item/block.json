@@ -230,7 +230,7 @@
       "type": "object"
     },
     "buttonborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "buttonpadding": {
       "type": "object"

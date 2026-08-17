@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { useState } from "@wordpress/element";
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
+import { useMemo } from 'react';
 
 import {
 	Button,
@@ -13,6 +14,7 @@ import {
 	SelectControl,
 	ToggleControl,
 	BaseControl,
+	FormTokenField
 } from '@wordpress/components';
 import {
 	WpmozoIconpicker,
@@ -33,12 +35,34 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			per_page: -1,
 		} ),
 	[] );
-	const options = terms?.map( ( term ) => ( {
+	const categories = terms?.map( ( term ) => ( {
 		label: term.name,
 		value: term.id,
 	} ) ) || [];
 
 	const [ deviceType, setDeviceType ] = useState( 'tablet' );
+	//Category select 
+	const suggestions = useMemo(() => {
+		return categories.map(item => item.label);
+	}, [categories]);
+
+	// Value → Mapping category Ids into Label
+	const selectedLabels = useMemo(() => {
+		return categories
+			.filter(item => attributes.includesCategories?.includes(item.value))
+			.map(item => item.label);
+	}, [categories, attributes.includesCategories]);
+
+	// onChange → Reverse-mapping labels returend by component into category ids.
+	const handleChange = (selectedLabels) => {
+		const selectedValues = categories
+			.filter(item => selectedLabels.includes(item.label))
+			.map(item => item.value);
+
+		setAttributes({
+			includesCategories: selectedValues
+		});
+	};
 
 	return ( <>
 		{/* Content. */}
@@ -81,12 +105,16 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				] }
 				onChange={ ( newValue ) => setAttributes( { postOrderBy: newValue } ) }
 			/>
-			<SelectControl multiple
-				label={ __( 'Include Categories', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.includesCategories }
-				options={ options }
-				onChange={ ( newValue ) => setAttributes( { includesCategories: newValue } ) }
+			<FormTokenField
+				label={ __( 'Select Categories', 'wpmozo-blocks-and-addons' ) }
+				value={selectedLabels}
+				suggestions={suggestions}
+				onChange={handleChange}
+				 __experimentalAutoSelectFirstMatch
+  				__experimentalExpandOnFocus
+				placeholder='Enter Category Here...'
 			/>
+			<hr/>
 			<TextControl
 				label={ __( 'No Result Text', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.noResultText }

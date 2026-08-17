@@ -61,7 +61,7 @@
 		"buttonLinkTarget": { "type": "string", "default": "same" },
 
         "buttonContainerSize": { "type": "number", "default": 25 },
-        "buttonStackOn": { "type": "string", "default": "none" },
+        "buttonStackOn": { "type": "array", "default": [] },
         "buttonAlign": { "type": "string" },
 		"buttonBackground": { "type": "string", "default": "" },
 		"buttonBGGradient": { "type": "string" },

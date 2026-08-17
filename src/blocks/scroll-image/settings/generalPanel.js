@@ -23,9 +23,17 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 
 	return ( <>
 		<PanelBody title={ __( 'Image', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
-			<WpmozoMediaUploader props={props}
-				attrKye="image"
-			/>
+			<WpmozoMediaUploader 
+					attrKye={'image'}
+					props={ props }
+					onSelect={(media) => {
+						setAttributes({
+							image: media?.url ? media.url : '',
+							imageAlt: media?.alt ? media.alt : '',
+						});
+					}}
+					label={ __( 'Image', 'wpmozo-blocks-and-addons' ) }
+				/>
 			<TextControl
 				label={ __( 'Image Title Text', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.imageTitle }
@@ -33,8 +41,8 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			/>
 			<TextControl
 				label={ __( 'Image Alt', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.imageAlt }
-				onChange={ ( newValue ) => setAttributes( { imageAlt: newValue } ) }
+				value={ attributes.imageCustomAlt }
+				onChange={ ( newValue ) => setAttributes( { imageCustomAlt: newValue } ) }
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Configuration', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>

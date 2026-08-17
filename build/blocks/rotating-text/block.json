@@ -57,7 +57,7 @@
       "type": "object"
     },
     "wrapperborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "textColor": {
       "type": "string"
@@ -99,6 +99,14 @@
     "elementWrapperSize": {
       "type": "string"
     },
+    "imageObjectFit": {
+      "type": "string",
+      "default": "contain"
+    },
+    "pauseOnHover": {
+      "type": "boolean",
+      "default": false
+    },
     "iconSize": {
       "type": "string"
     },
@@ -109,7 +117,7 @@
       "type": "object"
     },
     "elementborderRadius": {
-      "type": "string"
+      "type": "object"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",

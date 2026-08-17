@@ -99,20 +99,21 @@ class Mozo_Bna_Public {
 		$values         = get_post_custom( $id );
 
 		$meta_keys = [
-			'short_description',
-			'designation',
-			'email_address',
-			'phone_number',
-			'website',
-			'facebook',
-			'twitter',
-			'linkedin',
-			'instagram',
-			'youtube',
-			'member_skills',
+			'wpmozo_ae_team_member_short_desc',
+			'wpmozo_ae_team_member_designation',
+			'wpmozo_ae_team_member_email',
+			'wpmozo_ae_team_member_phone',
+			'wpmozo_ae_team_member_website',
+			'wpmozo_ae_team_member_facebook',
+			'wpmozo_ae_team_member_twitter',
+			'wpmozo_ae_team_member_linkedin',
+			'wpmozo_ae_team_member_instagram',
+			'wpmozo_ae_team_member_youtube',
+			'wpmozo_ae_team_member_skills',
+			'wpmozo_ae_team_member_skills_value',
 		];
 		foreach ( $meta_keys as $key ) {
-			${$key} = isset( $values["_{$key}"][0] ) ? $values["_{$key}"][0] : '';
+			${$key} = isset( $values[$key][0] ) ? $values[$key][0] : '';
 		}
 
 		$thumbnail = '';
@@ -134,19 +135,28 @@ class Mozo_Bna_Public {
 			$linkTarget = $_POST['props']['social_icons_target'];
 		}
 		if ( 'on' === $show_social_icons ) {
-			$social_icons .= $helpers::get_team_member_social( 'website', $website, 'fas fa-globe', $linkTarget );
-			$social_icons .= $helpers::get_team_member_social( 'facebook', $facebook, 'fab fa-facebook-f', $linkTarget );
-			$social_icons .= $helpers::get_team_member_social( 'twitter', $twitter, 'fab fa-x-twitter', $linkTarget );
-			$social_icons .= $helpers::get_team_member_social( 'linkedin', $linkedin, 'fab fa-linkedin-in', $linkTarget );
-			$social_icons .= $helpers::get_team_member_social( 'instagram', $instagram, 'fab fa-instagram', $linkTarget );
-			$social_icons .= $helpers::get_team_member_social( 'youtube', $youtube, 'fab fa-youtube', $linkTarget );
-			$social_icons .= $helpers::get_team_member_social( 'email', $email_address, 'fas fa-envelope', $linkTarget );
-			$social_icons .= $helpers::get_team_member_social( 'phone', $phone_number, 'fas fa-phone', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'website', $wpmozo_ae_team_member_website, 'fas fa-globe', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'facebook', $wpmozo_ae_team_member_facebook, 'fab fa-facebook-f', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'twitter', $wpmozo_ae_team_member_twitter, 'fab fa-x-twitter', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'linkedin', $wpmozo_ae_team_member_linkedin, 'fab fa-linkedin-in', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'instagram', $wpmozo_ae_team_member_instagram, 'fab fa-instagram', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'youtube', $wpmozo_ae_team_member_youtube, 'fab fa-youtube', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'email', $wpmozo_ae_team_member_email, 'fas fa-envelope', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'phone', $wpmozo_ae_team_member_phone, 'fas fa-phone', $linkTarget );
 		}
+		$wpmozo_ae_team_member_skills = explode(',',$wpmozo_ae_team_member_skills);
+		$wpmozo_ae_team_member_skills_value = explode(',',$wpmozo_ae_team_member_skills_value);
 
 		// Skill bars.
+		$member_skills = [];
+
+		foreach ($wpmozo_ae_team_member_skills as $index => $skill) {
+			$member_skills[] = [
+				'title' => $skill,
+				'value' => $wpmozo_ae_team_member_skills_value[$index] ?? null
+			];
+		}
 		$skill_bars    = '';
-		$member_skills = maybe_unserialize( $member_skills );
 		if ( 'on' === $show_skills_bars && ! empty( $member_skills ) ) {
 			foreach ( $member_skills as $key => $skill ) {
 				if ( 'layout2' === $bar_layout ) {
@@ -205,7 +215,7 @@ class Mozo_Bna_Public {
 		$member_output .= '</div>';
 
 		wp_send_json_success( array(
-			'html' => $member_output,
+			'html' => $member_output
 		) );
 		wp_die();
 	}

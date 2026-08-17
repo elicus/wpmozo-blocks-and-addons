@@ -62,6 +62,14 @@ export default function Edit(props) {
         return parentId ? getBlock(parentId)?.attributes : null;
     }, [clientId]);
     attributes.parentAtts = parentAttributes;
+    useEffect(() => {
+        const event = new CustomEvent('WPMozoImageAccorPropsChanged');
+        window.dispatchEvent(event);
+        const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+        if ( iframe?.contentWindow ) {
+            iframe.contentWindow.dispatchEvent( event );
+        }
+    }, [props, JSON.stringify(attributes)]);
 
     let inactiveState = parentAttributes.inactiveState;
 

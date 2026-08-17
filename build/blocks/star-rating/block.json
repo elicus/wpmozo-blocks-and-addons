@@ -285,7 +285,7 @@
       "type": "object"
     },
     "containerborderRadius": {
-      "type": "string"
+      "type": "object"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",

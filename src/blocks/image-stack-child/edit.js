@@ -47,6 +47,16 @@ export default function Edit(props) {
 		}
 	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
+	useEffect( () => {
+		const event = new CustomEvent( 'WPMozoImageStackPropsChanged' );
+		window.dispatchEvent( event );
+
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
+		}
+	}, [JSON.stringify(attributes)] );
+
 	const {
 		image,
 		tooltipText
@@ -96,7 +106,11 @@ export default function Edit(props) {
         const parentId = getBlockRootClientId(clientId);
         return parentId ? getBlock(parentId)?.attributes : null;
     }, [clientId] );
-	attributes.parentAtts = parentAttributes;
+	if(parentAttributes){
+		setAttributes({
+			parentAtts: parentAttributes
+		});
+	}
     
 
 	return ( <>
@@ -109,7 +123,8 @@ export default function Edit(props) {
 				{ 'image' === attributes.stackType && (
 					<img className="wpmozo-stack-item-img"
 						alt={defaultedAlt}
-						title={(parentAttributes.showTooltip && 'custom' === parentAttributes.tooltipType) ? tooltipText : ((parentAttributes.showTooltip && 'imageTitle' === parentAttributes.tooltipType) ? imageTitle : '')}
+						// title={(parentAttributes.showTooltip && 'custom' === parentAttributes.tooltipType) ? tooltipText : ((parentAttributes.tooltipType && 'imageTitle' === parentAttributes.tooltipType) ? imageTitle : '')}
+						{...((parentAttributes.showTooltip && 'custom' === parentAttributes.tooltipType) ? {title: tooltipText} : (parentAttributes.showTooltip && 'imageTitle' === parentAttributes.tooltipType) ? {title: imageTitle} : {})}
 						src={imageSrc}
 						loading="lazy"
 					/>

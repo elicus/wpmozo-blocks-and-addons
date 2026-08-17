@@ -36,9 +36,9 @@
 		"noImagesText": {"type": "string","default":"No images found. Please try uploading again."},
 
 		"normalborder": {"type": "object"},
-		"normalborderRadius": {"type": "string"},
+		"normalborderRadius": {"type": "object"},
 		"hoverborder": {"type": "object"},
-		"hoverborderRadius": {"type": "string"},
+		"hoverborderRadius": {"type": "object"},
 
 		"filledBackgroundType": {"type": "string","default": "classic"},
 		"classicBackgroundColor": {"type": "string"},

@@ -27,7 +27,8 @@ const WPMozoEditorObj = wpmozo_bna_editor_object;
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,
 		blockProps = useBlockProps(wrapProps),
-		wrapStyle = wrapArgs?.wrapStyle;
+		wrapStyle = wrapArgs?.wrapStyle,
+        isEdit = true;
     useEffect( () => {
         if ( attributes.ID !== clientId ) {
             setAttributes( { ID: clientId } );
@@ -54,7 +55,7 @@ const WPMozoEditorObj = wpmozo_bna_editor_object;
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
-                { generateDynamicStyle({ attributes, clientId, isEdit: true }) }
+                { generateDynamicStyle({ attributes, clientId, isEdit }) }
             </style>
             <div {...blockProps}>
                 { attributes.image &&

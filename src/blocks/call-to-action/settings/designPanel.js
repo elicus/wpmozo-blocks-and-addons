@@ -11,6 +11,8 @@ import {
 	ButtonGroup,
 	RangeControl,
 	ToggleControl,
+	__experimentalStack as Stack,
+	CheckboxControl,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from '@wordpress/components';
@@ -247,7 +249,77 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 						onChange={ ( newValue ) => setAttributes( { buttonIconOnHover: newValue } ) }
 					/>
 				</> }
-				<ToggleGroupControl
+				<div className='wpmozo-cta-vstack'>
+					<span className='wpmz-label'>Stack Button On</span>
+					<CheckboxControl
+						label="Select all"
+						onChange={(check) => {
+							const prev = attributes.buttonStackOn || [];
+							check ? setAttributes( { buttonStackOn: ['desktop', 'tablet', 'mobile']}) : setAttributes( { buttonStackOn: []});
+						}}
+						checked={
+							['desktop','tablet','mobile'].every(val =>
+								attributes.buttonStackOn?.includes(val)
+							)
+						}
+						indeterminate={(attributes.buttonStackOn.length < 3 && attributes.buttonStackOn.length > 0)}
+					/>
+					<CheckboxControl
+						label="Desktop"
+						onChange={(check) => {
+							const current = attributes.buttonStackOn || [];
+
+							let updated;
+
+							if (check) {
+								updated = current.includes('desktop') ? current : [...current, 'desktop'];
+							} else {
+								updated = current.filter(item => item !== 'desktop');
+							}
+
+							setAttributes({ buttonStackOn: updated });
+						}}
+						checked={(attributes.buttonStackOn.length > 0 && attributes.buttonStackOn.includes('desktop'))}
+					/>
+					<CheckboxControl
+						label="Tablet"
+						onChange={
+							(check) => {
+								const current = attributes.buttonStackOn || [];
+								let updated;
+
+								if (check) {
+									updated = current.includes('tablet') ? current : [...current, 'tablet'];
+								} else {
+									updated = current.filter(item => item !== 'tablet');
+								}
+
+								setAttributes({ buttonStackOn: updated });
+							}
+						}
+						checked={(attributes.buttonStackOn.length > 0 && attributes.buttonStackOn.includes('tablet'))}
+					/>
+					<CheckboxControl
+						label="Mobile"
+						onChange={
+							(check) => {
+								const current = attributes.buttonStackOn || [];
+
+								let updated;
+
+								if (check) {
+									updated = current.includes('mobile') ? current : [...current, 'mobile'];
+								} else {
+									updated = current.filter(item => item !== 'mobile');
+								}
+
+								setAttributes({ buttonStackOn: updated });
+							}
+						}
+						checked={(attributes.buttonStackOn.length > 0 && attributes.buttonStackOn.includes('mobile'))}
+					/>
+				</div>
+				{/* <ToggleGroupControl
 					label={ __( 'Stack Button On', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.buttonStackOn }
 					onChange={ ( newValue ) => setAttributes( { buttonStackOn: newValue } ) }
@@ -256,7 +328,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 					<ToggleGroupControlOption value="desktop" label={ __( 'Desktop', 'wpmozo-blocks-and-addons' ) } />
 					<ToggleGroupControlOption value="tablet" label={ __( 'Tablet', 'wpmozo-blocks-and-addons' ) } />
 					<ToggleGroupControlOption value="mobile" label={ __( 'Mobile', 'wpmozo-blocks-and-addons' ) } />
-				</ToggleGroupControl>
+				</ToggleGroupControl> */}
 			</PanelBody>
 		</> ) }
 		{/* Block. */}

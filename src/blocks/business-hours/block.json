@@ -83,14 +83,14 @@
 		"hourItempadding": { "type": "object", "default": { "top": "var:preset|spacing|20", "bottom": "var:preset|spacing|20", "left": "var:preset|spacing|20", "right": "var:preset|spacing|20" } },
 		"hourItemmargin": { "type": "object" },
 		"hourItemborder": { "type": "object" },
-		"hourItemborderRadius": { "type": "string" },
+		"hourItemborderRadius": { "type": "object" },
 
 		"blockBackground": { "type": "string" },
 		"blockBGGradient": { "type": "string" },
 		"blockpadding": { "type": "object" },
 		"blockmargin": { "type": "object" },
 		"blockborder": { "type": "object" },
-		"blockborderRadius": { "type": "string" }
+		"blockborderRadius": { "type": "object" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

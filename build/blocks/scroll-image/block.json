@@ -31,6 +31,9 @@
     "imageAlt": {
       "type": "string"
     },
+    "imageCustomAlt": {
+      "type": "string"
+    },
     "scrollDirection": {
       "type": "string",
       "default": "top"

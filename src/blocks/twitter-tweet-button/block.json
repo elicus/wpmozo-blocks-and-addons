@@ -26,7 +26,7 @@
 		"buttonSize": { "type": "string", "default": "small" },
 		"buttonAlign": { "type": "string" },
 		"buttonborder": { "type": "object" },
-		"buttonborderRadius": { "type": "string" },
+		"buttonborderRadius": { "type": "object" },
 
 		"fallbackTextColor": { "type": "string" },
 		"fallbackTextFontSize": { "type": "string", "default": "16px" },

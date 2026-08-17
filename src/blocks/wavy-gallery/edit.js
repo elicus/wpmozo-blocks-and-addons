@@ -128,7 +128,7 @@ export default function Edit( props ) {
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [ props ] );
+	}, [ JSON.stringify(attributes) ] );
 
 	useEffect( () => {
 		const changedAttributes = {};
@@ -276,12 +276,19 @@ export default function Edit( props ) {
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
 			<div { ...blockProps} id={ `block-${ attributes.ID }` }>
-				<div className="wpmozo_wavy_gallery_wrapper">
-					{ attributes.images_data && (
-						<Notice status="warning" isDismissible={ false }>
-							{ __( "Wavy Gallery does not work in the Visual Builder. Please check the frontend to see the effect correctly.", "wpmozo-blocks-and-addons" ) }
-						</Notice>
-					) }
+				<div className="wpmozo_wavy_gallery_wrapper" data-show_overlay_title={`${attributes.showOverlayTitle}`}>
+					<div className="wpmozo_wavy_gallery_items">
+						<div className="wpmozo_wavy_gallery_items">
+							{attributes.images_data && attributes.images_data.length > 0 && (
+								attributes.images_data.map((image, idx) => (
+									<div className="wpmozo_wavy_gallery_item">
+										<img className={`wpmozo_wavy_gallery_image wpmozo-img`} src={image.url}
+												alt={image.alt || ''} title={image.caption || ''}/>
+									</div>
+								))
+							)}
+						</div>
+					</div>
 				</div>
 				{ isSelected && (
 					<View className="gallery-media-placeholder-wrapper">

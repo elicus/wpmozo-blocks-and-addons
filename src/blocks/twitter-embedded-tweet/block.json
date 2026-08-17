@@ -27,7 +27,7 @@
 
 		"tweetAlign": { "type": "string", "default": "" },
 		"tweetborder": { "type": "object" },
-		"tweetborderRadius": { "type": "string" }
+		"tweetborderRadius": { "type": "object" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

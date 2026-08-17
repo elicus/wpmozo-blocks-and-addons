@@ -75,7 +75,7 @@ export default function Edit(props) {
         if ( iframe?.contentWindow ) {
             iframe.contentWindow.dispatchEvent( event );
         }
-    }, [props]);
+    }, [props, JSON.stringify(attributes)]);
 
     let ID = clientId;
 

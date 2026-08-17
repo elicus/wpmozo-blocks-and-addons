@@ -47,13 +47,13 @@
       "type": "object"
     },
     "normalborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "hoverborder": {
       "type": "object"
     },
     "hoverborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "filledBackgroundType": {
       "type": "string",

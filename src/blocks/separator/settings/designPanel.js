@@ -20,6 +20,7 @@ import {
     WpmozoTypography,
     WpmozoColorPicker,
     WpmozoAlignment,
+	MozoStates
 } from '../../../common/components/index';
 import { useState } from "@wordpress/element";
 import { chevronLeft, Marker, chevronRight } from '@wordpress/icons';
@@ -179,40 +180,38 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 		}
 		{ 'line' === attributes.separatorType && 'textSeparator' === attributes.lineUseWith &&
 			<PanelBody title={ __( 'Text Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-text-styling-panel wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
-				<BaseControl className="wpmozo-button-tabs-wrap">    
-					<ButtonGroup>
-						<Button className="wpmozo-button-tabs-btn"
-							isPressed={ ( 'normal' === textStyleType ) ? true : false }
-							onClick={ () => setTextStyleType( 'normal' ) }
-						>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
-						<Button className="wpmozo-button-tabs-btn"
-							isPressed={ ( 'hover' === textStyleType ) ? true : false }
-							onClick={ () => setTextStyleType( 'hover' ) }
-						>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
-					</ButtonGroup>
-					{ 'normal' === textStyleType && <>
+				<MozoStates
+					value = {hoverState}
+					title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( isHover ) =>  (
+							isHover ?  setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)	
+					}
+					control={ ( isHover ) => (
 						<WpmozoColorPicker props={props}
-							ColorKey="textNormal"
+							ColorKey={ isHover ? "textHover" : "textNormal" }
 							ColorTypes={ [ 
 								{ key: 'Color', label: __( 'Text Color', 'wpmozo-blocks-and-addons' ) },
 							] }
 						/>
-						<WpmozoTypography props={props}
-							TypographyKey="textNormal"
+					) }
+				/>
+				<MozoStates
+					value = {hoverState}
+					title={ __( 'Typography', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( isHover ) =>  (
+							isHover ?  setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)	
+					}
+					control={ ( isHover ) => (
+						<WpmozoTypography
+							TypographyKey={ isHover ? "textHover" : "textNormal" }
+							props={props}
 						/>
-					</> }
-					{ 'hover' === textStyleType && <>
-						<WpmozoColorPicker props={props}
-							ColorKey="textHover"
-							ColorTypes={ [
-								{ key: 'Color', label: __( 'Text Color', 'wpmozo-blocks-and-addons' ) },
-							] }
-						/>
-						<WpmozoTypography props={props}
-							TypographyKey="textHover"
-						/>
-					</> }
-				</BaseControl>
+					) }
+				/>
 				<WpmozoAlignment
 					label={ __( 'Text Alignment', 'wpmozo-blocks-and-addons') }
 					onChange={ ( newValue ) => setAttributes( { textAlign: newValue } ) }

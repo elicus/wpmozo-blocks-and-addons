@@ -17,6 +17,9 @@ function wpmozoInitScrollTextBlock($thisObj) {
 	gsap.registerPlugin(ScrollTrigger);
 
 	let $wrapObj = $thisObj.find('.wpmozo-scroll-text-wrap');
+	const blockId = $thisObj.attr('data-block');
+	ScrollTrigger.getById(`tl-${blockId}`) ? ScrollTrigger.getById(`tl-${blockId}`).kill(true) : '';
+	ScrollTrigger.getById(`tl-${blockId}-2`) ? ScrollTrigger.getById(`tl-${blockId}-2`).kill(true) : '';
 
 	// Get variables from data attrs.
 	let $innerWrap = $wrapObj.find('.wpmozo-scroll-text-inner'),
@@ -34,6 +37,9 @@ function wpmozoInitScrollTextBlock($thisObj) {
 		end = endOne + ' ' + endTwo;
 
 	// Add effect class.
+	$innerWrap.removeClass(function (index, className) {
+    	return (className.match(/\bwpmozo_scroll\S*/g) || []).join(' ');
+	});
 	$innerWrap.addClass(`wpmozo_scroll_${splitType}_${effect}`);
 	$innerWrap.html('');
 
@@ -86,6 +92,7 @@ function wpmozoInitScrollTextBlock($thisObj) {
 	// GSAP timeline
 	let tl = gsap.timeline({
 		scrollTrigger: {
+			id:`tl-${blockId}`,
 			trigger: $thisObj[0],
 			start: start,
 			end: end,
@@ -96,6 +103,7 @@ function wpmozoInitScrollTextBlock($thisObj) {
 	if ('3d_flip' === effect) {
 		let tl2 = gsap.timeline({
 			scrollTrigger: {
+				id:`tl-${blockId}-2`,
 				trigger: $thisObj[0],
 				start: end,
 				scrub: true

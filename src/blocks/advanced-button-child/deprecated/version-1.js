@@ -1,5 +1,5 @@
 // deprecated/version-1.js
-import generateDynamicStyle from '../style';
+import generateDynamicStyle from './style';
 import { useBlockProps } from '@wordpress/block-editor';
 
 const V1 = {

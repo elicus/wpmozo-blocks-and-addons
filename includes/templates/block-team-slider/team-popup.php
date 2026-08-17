@@ -28,7 +28,7 @@ $member_output .= '<div class="wpmozo_bna_team_member_content_wrapper">';
 	if ( 'on' === $show_designation ) {
 		$member_output .= sprintf(
 			'<div class="wpmozo_bna_team_member_designation">%1$s</div>',
-			esc_html( $designation )
+			esc_html( $wpmozo_ae_team_member_designation )
 		);
 	}
 

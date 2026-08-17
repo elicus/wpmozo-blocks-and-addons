@@ -22,7 +22,7 @@ function initScrollZoomGallery($gallery) {
 	let $scroller     = $gallery.find('.wpmozo_scroll_zoom_gallery_scroller'),
 		$innerObj     = $gallery.find('.wpmozo_scroll_zoom_gallery_inner'),
 		$images       = $gallery.find('.wpmozo_scroll_zoom_gallery_item'),
-		startOpacity  = parseFloat($scroller.data('start_opacity')),
+		startOpacity  = parseFloat($scroller.attr('data-start_opacity')),
 		imageCount    = $images.length;
 
 	// Cleanup previous ScrollTriggers if any

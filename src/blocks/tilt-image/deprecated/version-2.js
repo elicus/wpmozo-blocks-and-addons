@@ -1,7 +1,7 @@
 // deprecated/version-2.js
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { wpmozo_is_empty } from '../../../common/utils';
-import generateDynamicStyle from '../style';
+import generateDynamicStyle from './style';
 
 const V2 = {
 	attributes: {

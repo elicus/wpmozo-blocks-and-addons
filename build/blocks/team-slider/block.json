@@ -229,7 +229,7 @@
       "type": "object"
     },
     "imageborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "nameLevel": {
       "type": "string",
@@ -417,7 +417,7 @@
       "type": "object"
     },
     "socialIconborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "popupCloseIconPos": {
       "type": "string",
@@ -450,7 +450,7 @@
       "type": "object"
     },
     "popupborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "popupBarLayout": {
       "type": "string",
@@ -502,7 +502,7 @@
       "type": "object"
     },
     "popupSocialIconborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "popupNameLevel": {
       "type": "string",
@@ -667,7 +667,7 @@
       "type": "object"
     },
     "arrowborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "buttonAlign": {
       "type": "string"
@@ -716,8 +716,13 @@
       }
     },
     "buttonborderRadius": {
-      "type": "string",
-      "default": "3px"
+      "type": "object",
+      "default": {
+        "topLeft": "3px",
+        "topRight": "3px",
+        "bottomLeft": "3px",
+        "bottomRight": "3px"
+      }
     },
     "buttonColor": {
       "type": "string"
@@ -761,7 +766,7 @@
       "type": "object"
     },
     "buttonHoverborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "buttonHoverColor": {
       "type": "string"
@@ -804,7 +809,7 @@
       "type": "object"
     },
     "itemborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "itemBackground": {
       "type": "string"

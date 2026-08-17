@@ -186,7 +186,7 @@
       "type": "object"
     },
     "hourItemborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "blockBackground": {
       "type": "string"
@@ -204,7 +204,7 @@
       "type": "object"
     },
     "blockborderRadius": {
-      "type": "string"
+      "type": "object"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",

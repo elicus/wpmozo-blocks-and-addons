@@ -12,7 +12,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	let normalcss = [],
 	    hovercss  = [],
 	    cssExtras = [];
-	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
+	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector},&:hover ${selector}` : ''};
 
 
     normalcss.push(`
@@ -38,7 +38,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 
 	hovercss.push(
 		(attributes.imageborderHover || convertedStyle.imageHover)
-		? `.floating-image:hover${isEditor('.floating-image')} {
+		? `.floating-image:hover${isEditor('.floating-image')}{
 			${convertedStyle.imageHover || ''}
 		}`
 		: ''

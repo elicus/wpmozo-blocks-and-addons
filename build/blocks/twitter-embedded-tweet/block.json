@@ -53,7 +53,7 @@
       "type": "object"
     },
     "tweetborderRadius": {
-      "type": "string"
+      "type": "object"
     }
   },
   "textdomain": "wpmozo-blocks-and-addons",

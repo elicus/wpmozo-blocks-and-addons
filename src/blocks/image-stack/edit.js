@@ -49,22 +49,26 @@ export default function Edit(props) {
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS
 	});
+	useEffect( () => {
+		const event = new CustomEvent( 'WPMozoImageStackPropsChanged' );
+		window.dispatchEvent( event );
+
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
+		}
+	}, [JSON.stringify(attributes)] );
 
 	return (
 		<>
 			{ isSelected && ( <Inspector attributes={attributes} setAttributes={setAttributes} /> ) }
 			<style>{ generateDynamicStyle( { attributes, clientId, isEdit: true } ) }</style>
 
-			<div className="wpmozo-bna-image-stack" id={`block-${clientId}`}  data-client-id={clientId}  >
-				<div className={`wpmozo-image-stack-wrap`}
-					data-speech-bubble="yes"
-					data-animation-type="away"
-					data-animation-duration="400"
-					data-animation-name="shift-away"
-					data-tooltip-id="elementor-baca216"
-					data-trigger="hover"
-				>
-					{innerBlocksProps.children}
+			<div className="wpmozo-bna-image-stack" id={`block-${clientId}`}  data-client-id={clientId} data-tooltip-enable={attributes.showTooltip} data-show-arrow={attributes.showArrow} data-trigger={attributes.tooltipTrigger}  >
+				<div className={`wpmozo-image-stack-wrap`}>
+					<div className={`wpmozo-image-stack-inner`}>
+						{innerBlocksProps.children}
+					</div>
 				</div>
 			</div>
 		</>

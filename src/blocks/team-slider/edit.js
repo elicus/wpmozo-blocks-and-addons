@@ -103,7 +103,7 @@ const Edit = (props) => {
 			)) {
 				paginationClass = (attributes.enableDynamicDots) ? ' swiper-pagination-bullets-dynamic' : ' swiper-pagination-bullets';
 			}
-			$paginationDots = <div className="wpmozo-bna-testimonial-slider-pagination">
+			$paginationDots = <div className="wpmozo-bna-team-slider-pagination">
 				<div className={`swiper-pagination ${attributes.controlDotStyle} ${paginationClass}`}></div>
 			</div>;
 		}
@@ -127,7 +127,7 @@ const Edit = (props) => {
 	// Get attrs.
 	const displayInPopup = attributes.displayInPopup ?? ["image", "designation", "social_icons", "content", "skills_bars"];
 
-	// Equal height testimonial class.
+	// Equal height team class.
 	const equalHeightClass = (attributes.equalHeight) ? ' wpmozo_equal_team_member_height' : '';
 
 	let autoHeight = (attributes.autoHeight) ?? 'false';
@@ -174,8 +174,9 @@ const Edit = (props) => {
 					 data-show_skills_bars={displayInPopup.includes('skills_bars') ? 'on' : 'off'}
 					 data-show_social_icons={displayInPopup.includes('social_icons') ? 'on' : 'off'}
 					 data-show_image={displayInPopup.includes('image') ? 'on' : 'off'}
-					 data-bar_layout={attributes.layout ?? 'layout1'}
+					 data-bar_layout={attributes.popupBarLayout ?? 'layout1'}
 					 data-use_stripes={attributes.popupBarUseStripe ? 'on' : 'off'}
+					 data-use_animated_stripes={attributes.popupBarStripeUseAnim ? 'on' : 'off'}
 					 data-popup_name_level={attributes.popupNameLevel ?? 'h2'}
 					 data-close_icon_position={attributes.popupCloseIconPos ?? 'outside'}
 				>

@@ -152,14 +152,19 @@
       }
     },
     "buttonborderRadius": {
-      "type": "string",
-      "default": "3px"
+      "type": "object",
+      "default": {
+        "topLeft": "3px",
+        "topRight": "3px",
+        "bottomRight": "3px",
+        "bottomLeft": "3px"
+      }
     },
     "buttonHoverborder": {
       "type": "object"
     },
     "buttonHoverborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "triggerImageWidth": {
       "type": "number"
@@ -265,7 +270,7 @@
       "type": "object"
     },
     "tooltipborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "tooltippadding": {
       "type": "object"
@@ -287,7 +292,8 @@
   "style": [
     "wpmozo-blocks-and-addons-tippy-animation-style",
     "wpmozo-blocks-and-addons-fontawesome-style",
-    "file:./style-index.css"
+    "file:./style-index.css",
+    "wpmozo-blocks-and-addons-tippy-style"
   ],
   "script": [
     "wpmozo-blocks-and-addons-tippy-script",

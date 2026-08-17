@@ -48,6 +48,15 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				onChange={ ( newValue ) => setAttributes( { showTooltip: newValue } ) }
 			/>
 			{attributes.showTooltip && 
+				<>
+				<ToggleGroupControl
+					label={ __( 'Tooltip Trigger', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.tooltipTrigger }
+					onChange={ ( newValue ) => setAttributes( { tooltipTrigger: newValue } ) }
+				>
+					<ToggleGroupControlOption value="click" label={ __( 'Click', 'wpmozo-blocks-and-addons' ) } />
+					<ToggleGroupControlOption value="mouseenter" label={ __( 'Hover', 'wpmozo-blocks-and-addons' ) } />
+				</ToggleGroupControl>
 				<ToggleGroupControl
 					label={ __( 'Tooltip Type', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.tooltipType }
@@ -56,6 +65,12 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					<ToggleGroupControlOption value="imageTitle" label={ __( 'Image Title', 'wpmozo-blocks-and-addons' ) } />
 					<ToggleGroupControlOption value="custom" label={ __( 'Custom Tooltip', 'wpmozo-blocks-and-addons' ) } />
 				</ToggleGroupControl>
+				<ToggleControl
+					label={ __( 'Show Speech Bubble', 'wpmozo-blocks-and-addons' ) }
+					checked={attributes.showArrow}
+					onChange={ ( newValue ) => setAttributes( { showArrow: newValue } ) }
+				/>
+				</>
 			}
 		</PanelBody>
 	</> );

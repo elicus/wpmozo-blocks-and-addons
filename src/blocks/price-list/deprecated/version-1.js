@@ -1,6 +1,6 @@
 // deprecated/version-1.js
 import { InnerBlocks, useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
-import generateDynamicStyle from '../style';
+import generateDynamicStyle from './style';
 
 const V1 = {
     attributes: {

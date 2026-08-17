@@ -194,8 +194,13 @@
       }
     },
     "buttonborderRadius": {
-      "type": "string",
-      "default": "3px"
+      "type": "object",
+      "default": {
+        "topLeft": "3px",
+        "topRight": "3px",
+        "bottomRight": "3px",
+        "BottomLeft": "3px"
+      }
     },
     "buttonColor": {
       "type": "string"
@@ -239,7 +244,7 @@
       "type": "object"
     },
     "buttonHoverborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "buttonHoverColor": {
       "type": "string"

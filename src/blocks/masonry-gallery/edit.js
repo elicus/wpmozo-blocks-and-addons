@@ -127,13 +127,17 @@ function Edit(props) {
 	}, [images]);
 
 	useEffect(() => {
+		if( ! attributes.ID ) return;
+		if( ! Array.isArray( images ) ) return;
+		if( ! images.length > 0 ) return;
+		if( ! attributes.images_data ) return;
 		const event = new CustomEvent('WPMozoMasonryGalleryPropsChanged');
 		window.dispatchEvent(event);
 		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [props]);
+	}, [props, images]);
 
 	useEffect( () => {
 		const changedAttributes = {};

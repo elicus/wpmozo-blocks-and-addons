@@ -8,7 +8,7 @@ import { getMainEl, mergeWrapperProps } from '../../common/utils';
 export default function Edit( props ) {
 
 	const { attributes, setAttributes, clientId } = props,
-	wrapArgs = attributes?.ID && mergeWrapperProps( { 
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
 			className: `wpmozo-bna-scroll-image${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
 			style: {}
 		}, attributes ),
@@ -38,7 +38,7 @@ export default function Edit( props ) {
 	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	let image = ( attributes.image ) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,
-		title = attributes.imageTitle;
+		title = attributes.imageTitle || '';
 
 
 	useEffect( () => {
@@ -66,7 +66,7 @@ export default function Edit( props ) {
 			<div id={`block-${attributes.ID}`} { ...blockProps}>
 				<div className="wpmozo-bna-scroll-image-wrapper">
 					<div className="wpmozo-bna-scroll-image-inner-wrap" data-direction={attributes.scrollDirection}>
-						<img className="wpmozo-bna-scroll-image-img" title={title} src={image} alt={attributes.imageAlt} />
+						<img className="wpmozo-bna-scroll-image-img" title={title} src={image} alt={attributes?.imageCustomAlt || attributes?.imageAlt || ''} />
 					</div>
 				</div>
 			</div>

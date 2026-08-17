@@ -145,7 +145,7 @@
       "type": "object"
     },
     "imageborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "imageWrappadding": {
       "type": "object"
@@ -175,7 +175,7 @@
       "type": "object"
     },
     "contentWrapborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "contentWrappadding": {
       "type": "object"
@@ -204,7 +204,7 @@
       "type": "object"
     },
     "cardItemborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "cardItempadding": {
       "type": "object"
@@ -268,7 +268,7 @@
       "type": "object"
     },
     "buttonborderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "buttonpadding": {
       "type": "object"
