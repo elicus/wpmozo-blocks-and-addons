@@ -18,14 +18,6 @@ if ( ! function_exists( 'horizontal_scrolling_post_render_callback' ) ) {
 		$post_order          = $attributes['postOrder'] ?? 'DESC';
 		$post_order_by       = $attributes['postOrderBy'] ?? 'date';
 		$includes_categories = $attributes['includesCategories'] ?? [];
-
-
-
-
-
-
-
-
 		$sticky_posts        = get_option( 'sticky_posts' );
 		$sticky_posts        = is_array( $sticky_posts ) ? array_map( 'absint', $sticky_posts ) : array();
 
@@ -92,81 +84,20 @@ if ( ! function_exists( 'horizontal_scrolling_post_render_callback' ) ) {
 		}
 
 		$query = new WP_Query( $query_args );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// $query_args = array(
-		// 	'post_type'      => 'post',
-		// 	'posts_per_page' => $posts_to_show,
-		// 	'post_status'    => 'publish',
-		// 	'orderby'        => 'date',
-		// 	'order'          => 'DESC',
-		// );
-		// if ( is_user_logged_in() ) {
-		// 	$query_args['post_status'] = array( 'publish', 'private' );
-		// }
-
-		// //check sticky post
-		// if ( is_bool( $ignore_sticky_post ) ) {
-		// 	$query_args['sticky'] = false;
-		// }
-
-		// if ( '' !== $post_order_by ) {
-		// 	$query_args['orderby'] = sanitize_text_field( $post_order_by );
-		// }
-
-		// if ( '' !== $post_order ) {
-		// 	$query_args['order'] = sanitize_text_field( $post_order );
-		// }
-
-		// global $wp_the_query;
-		// $query_backup = $wp_the_query;
-
-		// $query = new WP_Query( $query_args );
-
-		// If posts exists.
 		$render_output = '';
 		if ( $query->have_posts() ) {
 
-			$testimonials = '';
+			$horizontal_scrolling_posts = '';
 			while ( $query->have_posts() ) {
 				$query->the_post();
 
 				$post_id = esc_attr( get_the_ID() );
 
-				$testimonials .= '<div class="wpmozo_horizontal_scrolling_post_item item_'.$layout.'">';
+				$horizontal_scrolling_posts .= '<div class="wpmozo_horizontal_scrolling_post_item item_'.$layout.'">';
 				if ( file_exists( WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-horizontal-scrolling-posts/' . sanitize_file_name( $layout ) . '.php' ) ) {
 					include WPMOZO_BNA_PLUGIN_DIR_PATH . 'includes/templates/block-horizontal-scrolling-posts/' . sanitize_file_name( $layout ) . '.php';
 				}
-				$testimonials .= '</div>';
+				$horizontal_scrolling_posts .= '</div>';
 			}
 
 			// Get wrapper attributes.
@@ -196,7 +127,7 @@ if ( ! function_exists( 'horizontal_scrolling_post_render_callback' ) ) {
 				</div>%5$s',
 				$helpers::esc_previously( $wrapper_attributes ),
 				esc_attr( $layout ),
-				$helpers::esc_previously( $testimonials ),
+				$helpers::esc_previously( $horizontal_scrolling_posts ),
 				esc_attr( $attributes['ID'] ),
 				$block_helpers::get_block_dynamic_style( 'horizontal-scrolling-posts', $attributes )
 			);
