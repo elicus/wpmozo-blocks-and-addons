@@ -102,7 +102,7 @@ if ( ! function_exists( 'horizontal_scrolling_post_render_callback' ) ) {
 
 			// Get wrapper attributes.
 			$wrapper_attributes = get_block_wrapper_attributes( array(
-				'class' => ( $attributes['className'] ) ?? ''
+				'class' => $attributes['className'] ?? ''
 			) );
 
 			// Get data attrs.
