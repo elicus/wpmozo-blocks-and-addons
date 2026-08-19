@@ -122,14 +122,19 @@ class Mozo_Bna_Helpers{
 		}
 
 		// Update email and phone urls.
-		$url = ( 'email' === $type ) ? 'mailto:' . $url : $url;
-		$url = ( 'phone' === $type ) ? 'tel:' . $url : $url;
+		if ( 'email' === $type ) {
+			$url = 'mailto:' . sanitize_email( $url );
+		} elseif ( 'phone' === $type ) {
+			$url = 'tel:' . sanitize_text_field( $url );
+		} else {
+			$url = esc_url( $url );
+		}
 
 		return sprintf(
 			'<a href="%1$s" target="%2$s">
 				<span class="wpmozo_bna_team_member_social_icon wpmozo_bna_team_%3$s %4$s"></span>
 			</a>',
-			esc_attr( $url ),
+			esc_url( $url ),
 			( 'same' === $target ) ? '_self' : '_blank',
 			esc_attr( $type ),
 			esc_attr( $icon )
