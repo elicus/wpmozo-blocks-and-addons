@@ -215,7 +215,7 @@ class Mozo_Bna_Public {
 		$member_output .= '</div>';
 
 		wp_send_json_success( array(
-			'html' => $member_output
+			'html' => wp_kses_post( $member_output )
 		) );
 		wp_die();
 	}
