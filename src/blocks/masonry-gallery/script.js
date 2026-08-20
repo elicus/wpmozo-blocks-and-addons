@@ -47,7 +47,7 @@ function initMasonryGallery($galleryContainer) {
 			delegate: 'a',
 			type: 'image',
 			closeOnContentClick: false,
-			closeBtnInside: false,
+			closeBtnInside: true,
 			mainClass: 'mfp-with-zoom mfp-img-mobile wpmozo_masonry_gallery_lightbox ' + mainClass,
 			gallery: {
 				enabled: true,
@@ -57,7 +57,7 @@ function initMasonryGallery($galleryContainer) {
 			},
 			image: {
 				markup: '<div class="mfp-figure">'+
-					'<div class="mfp-close"></div>'+
+					'<button type="button" class="mfp-close" aria-label="Close dialog">×</button>'+
 					'<div class="mfp-img"></div>'+
 					'<div class="mfp-bottom-bar">'+
 					'<div class="mfp-title"></div>'+
