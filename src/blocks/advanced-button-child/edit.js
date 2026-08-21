@@ -54,7 +54,7 @@ export default function Edit(props) {
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes}/>
 			<style>
-				{`${ generateDynamicStyle({ attributes }) }`}
+				{`${ generateDynamicStyle({ attributes, isEdit: true }) }`}
 			</style>
 			{/*Wrapper div with block props (applies block ID and classes */}
 			<div {...blockProps}>
