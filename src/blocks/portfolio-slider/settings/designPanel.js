@@ -518,13 +518,11 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 							colorValue={ attributes.overlayBackground }
 							gradientValue={ attributes.overlayBGGradient }
 							onColorChange={ ( newValue ) => {
-								console.log( 'Overlay Color Changed:', newValue );
 								setAttributes( {
 									overlayBackground: newValue,
 								} );
 							} }
 							onGradientChange={ ( newValue ) => {
-								console.log( 'Overlay Gradient Changed:', newValue );
 								setAttributes( {
 									overlayBGGradient: newValue,
 								} );

@@ -64,6 +64,23 @@
 		"classicBackgroundImageHover": {"type": "string"},
 		"gradientBackgroundColorHover": {"type": "string"},
 
+		"buttonHoverFontSize": {"type": "string"},
+		"buttonHoverLetterSpacing": {"type": "string"},
+		"buttonHoverDecoration": {"type": "string", "default": "none"},
+		"buttonHoverLetterCase": {"type": "string"},
+		"buttonHoverLineHeight": {"type": "string"},
+		"buttonHoverFontAppearance": {"type": "object", "default": {"fontStyle": "", "fontWeight": ""}},
+
+		"secondaryTextHoverFontSize": {"type": "string"},
+		"secondaryTextHoverLetterSpacing": {"type": "string"},
+		"secondaryTextHoverDecoration": {"type": "string", "default": "none"},
+		"secondaryTextHoverLetterCase": {"type": "string"},
+		"secondaryTextHoverLineHeight": {"type": "string"},
+		"secondaryTextHoverFontAppearance": {"type": "object", "default": {"fontStyle": "", "fontWeight": ""}},
+
+		"buttonContainerHoverborder": {"type": "object"},
+		"buttonContainerHoverborderRadius": {"type": "object"},
+
 		"primaryAlign": {"type": "string"},
 		"secAlign": {"type": "string"}
 	},

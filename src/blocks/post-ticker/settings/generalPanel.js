@@ -81,10 +81,9 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				onChange={(newValue) => setAttributes({ignoreStickyPosts: newValue})}
 			/>
 			<TextControl
-				label={ __( 'Exclude Posts by ID', 'wpmozo-blocks-and-addons' ) }
+				label={ __( 'No Result Text', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.noResultText }
 				onChange={ ( newValue ) => setAttributes( { noResultText: newValue } ) }
-				help={__('If you would like to exclude specific posts from the loop then enter their post ids here comma separated.','wpmozo-blocks-and-addons')}
 			/>
 		</PanelBody>
 		<PanelBody title={__('Display', 'wpmozo-blocks-and-addons')} initialOpen={false}>

@@ -41,6 +41,7 @@ if ( ! function_exists( 'post_ticker_generate_dynamic_style' ) ) {
 		$styles .= $block_helpers::get_padding_style( 'postItems', $attrs );
 		$styles .= $block_helpers::get_margin_style( 'postItems', $attrs );
 		$styles .= $block_helpers::get_border_style( 'postItems', $attrs );
+		$styles .= "min-height: 1.2em;";
 		$styles .= "}";
 		$styles .= "{$mainSelector} .wpmozo_post_ticker_items:hover{";
 		$styles .= ( ! empty( $attrs['postItemsHoverBackground'] ) ? "background-color: {$attrs['postItemsHoverBackground']};" : '' );

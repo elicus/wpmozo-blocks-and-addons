@@ -17,7 +17,6 @@ const Edit = (props) => {
 		blockProps = useBlockProps(wrapProps),
 		wrapStyle = wrapArgs?.wrapStyle,
 		isEdit = true;
-		console.log(attributes.buttonStackOnv2);
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {

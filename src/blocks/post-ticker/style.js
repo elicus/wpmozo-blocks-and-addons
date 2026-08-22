@@ -34,12 +34,10 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 	);
 	
 	normalcss.push(
-		( attributes.postItemsBackground || convertedStyle.postItems )
-			? `.wpmozo_post_ticker_items{
-					${attributes.postItemsBackground ? `background-color:${attributes.postItemsBackground};` : ''}
-					${convertedStyle.postItems || ''}
-				}`
-			: ''
+		`.wpmozo_post_ticker_items{
+				${attributes.postItemsBackground ? `background-color:${attributes.postItemsBackground};` : ''}
+				${convertedStyle.postItems || ''}
+			}`
 	);
 
 	hovercss.push(
@@ -69,14 +67,14 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 			: ''
 	);
 
-	normalcss.push( attributes.arrowBackground ? `.wpmozo_swiper_navigation{ background-color:${attributes.arrowBackground}; }` : '' );
-
 	normalcss.push(
-		( attributes.arrowColor || attributes.arrowFontSize || convertedStyle.arrow )
+		( attributes.arrowColor || attributes.arrowFontSize || convertedStyle.arrow || attributes.arrowBackground )
 			? `.wpmozo_swiper_icon_prev i,
 				.wpmozo_swiper_icon_next i{
 					${attributes.arrowColor ? `color:${attributes.arrowColor};` : ''}
 					${attributes.arrowFontSize ? `font-size:${attributes.arrowFontSize}px;` : ''}
+					${attributes.arrowBackground ? `background-color:${attributes.arrowBackground}` : ''}
+					;
 					${convertedStyle.arrow || ''}
 				}`
 			: ''

@@ -142,7 +142,7 @@ $content = sprintf(
 	(isset($attributes['showButton']) && true === $attributes['showButton']) ? $button_html : '',
 	$meta_html
 );
-$testimonials .= sprintf(
+$horizontal_scrolling_posts .= sprintf(
 	'<div id="wpmozo_single_post_%1$s" class="wpmozo_horizontal_scrolling_post_wrapper">
 		<div class="wpmozo_horizontal_scrolling_post_inner" style="background-image: url(%2$s);">
 			%3$s

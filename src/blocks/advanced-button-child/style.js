@@ -1,13 +1,17 @@
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ({ attributes }) => {
+const generateDynamicStyle = ({ attributes, isEdit = false }) => {
 	const toConvertStyles = [
 		'button',
 		'buttonContainer',
 		'icon',
-		'secondaryText'
+		'secondaryText',
+		'buttonHover',
+		'buttonContainerHover',
+		'secondaryTextHover'
 	];
 	const convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
+	const isEditor = (selector) => (isEdit ? `, &.is_hover ${selector}` : '');
 
 	const alignmentMap = { left: 'flex-start', right: 'flex-end', center: 'center' };
 	let alignment = alignmentMap[attributes.buttonAlign] || 'auto';
@@ -114,7 +118,7 @@ const generateDynamicStyle = ({ attributes }) => {
 	if (attributes.filledBackgroundTypeHover === 'classic') {
 		if (attributes.classicBackgroundImageHover) {
 			styles += `
-		.wpmozo-button-link:hover {
+		.wpmozo-button-link:hover${isEditor('.wpmozo-button-link')} {
 			background-image: url(${attributes.classicBackgroundImageHover});
 		}
 		.wpmozo-button-link::before,
@@ -123,9 +127,9 @@ const generateDynamicStyle = ({ attributes }) => {
 			background-image:url(${attributes.classicBackgroundImageHover});
 		}
 		`;
-		} else {
+		} else if (attributes.classicBackgroundColorHover) {
 			styles += `
-			.wpmozo-button-link:hover {
+			.wpmozo-button-link:hover${isEditor('.wpmozo-button-link')} {
 				background-color: ${attributes.classicBackgroundColorHover};
 				background-image: none !important;
 			}
@@ -135,9 +139,9 @@ const generateDynamicStyle = ({ attributes }) => {
 			}
 			`;
 		}
-	} else {
+	} else if (attributes.filledBackgroundTypeHover === 'gradient' && attributes.gradientBackgroundColorHover) {
 		styles += `
-		.wpmozo-button-link:hover {
+		.wpmozo-button-link:hover${isEditor('.wpmozo-button-link')} {
 			background-image: ${attributes.gradientBackgroundColorHover};
 		}
 		.wpmozo-button-link::before,
@@ -148,13 +152,10 @@ const generateDynamicStyle = ({ attributes }) => {
 		`;
 	}
 
-	// Hover background image
-
-
 	// Primary text hover color
 	if (attributes.ButtonHoverColor) {
 		styles += `
-		.wpmozo-button-link:hover .wpmozo-button-text {
+		.wpmozo-button-link:hover .wpmozo-button-text${isEditor('.wpmozo-button-link .wpmozo-button-text')} {
 			color: ${attributes.ButtonHoverColor};
 		}
 		`;
@@ -163,7 +164,7 @@ const generateDynamicStyle = ({ attributes }) => {
 	// Secondary text hover color
 	if (attributes.ButtonHoversecColor) {
 		styles += `
-		.wpmozo-button-link:hover .wpmozo-button-secondary-text {
+		.wpmozo-button-link:hover .wpmozo-button-secondary-text${isEditor('.wpmozo-button-link .wpmozo-button-secondary-text')} {
 			color: ${attributes.ButtonHoversecColor};
 		}
 		`;
@@ -172,11 +173,38 @@ const generateDynamicStyle = ({ attributes }) => {
 	// Icon hover color
 	if (attributes.ButtonHoverIconColor) {
 		styles += `
-		.wpmozo-button-link:hover .wpmozo-bna-button-icon {
+		.wpmozo-button-link:hover .wpmozo-bna-button-icon${isEditor('.wpmozo-button-link .wpmozo-bna-button-icon')} {
 			color: ${attributes.ButtonHoverIconColor};
 		}
 		`;
 	}
+
+	// Button Container Hover Border & Radius
+	if (convertedStyle.buttonContainerHover) {
+		styles += `
+		.wpmozo-button-link:hover${isEditor('.wpmozo-button-link')} {
+			${convertedStyle.buttonContainerHover}
+		}
+		`;
+	}
+
+	// Primary Text Hover Typography
+	if (convertedStyle.buttonHover) {
+		styles += `
+		.wpmozo-button-link:hover .wpmozo-button-text${isEditor('.wpmozo-button-link .wpmozo-button-text')} {
+			${convertedStyle.buttonHover}
+		}
+		`;
+	}
+
+	// Secondary Text Hover Typography
+	if (convertedStyle.secondaryTextHover) {
+		styles += `
+		.wpmozo-button-link:hover .wpmozo-button-secondary-text${isEditor('.wpmozo-button-link .wpmozo-button-secondary-text')} {
+			${convertedStyle.secondaryTextHover}
+		}
+		`;
+	}		
 
 	styles += `}`;
 

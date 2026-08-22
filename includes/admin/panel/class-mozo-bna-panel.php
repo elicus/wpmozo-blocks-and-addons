@@ -94,6 +94,12 @@ class Mozo_Bna_Panel {
 		// Check nonce.
 		check_ajax_referer( 'wpmozo-bna-admin-panel-nonce', 'security', true );
 
+		// Check capability.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => __( 'Unauthorized access.', 'wpmozo-blocks-and-addons' ) ), 403 );
+			exit;
+		}
+
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized.
 		$options       = isset( $_POST['options'] ) ? $_POST['options'] : array();
 		$plugin_option = get_option( WPMOZO_BNA_OPTION, array() );
