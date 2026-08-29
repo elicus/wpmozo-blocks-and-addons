@@ -25,6 +25,7 @@
 		"buttonLinkTarget": {"type": "string", "default": "same"},
 		"buttonSecondaryText": {"type": "string"},
 		"secondaryTextColor": {"type": "string"},
+		"secondaryTextFont": {"type": "string"},
 		"secondaryTextFontSize": {"type": "string"},
 		"secondaryTextLetterSpacing": {"type": "string"},
 		"secondaryTextDecoration": {"type": "string", "default": "none"},
@@ -33,6 +34,7 @@
 		"secondaryTextFontAppearance": {"type": "object", "default": {"fontStyle": "", "fontWeight": ""}},
 		"buttonColor": {"type": "string"},
 		"buttonAlign": {"type": "string"},
+		"buttonFont": {"type": "string"},
 		"buttonFontSize": {"type": "string"},
 		"buttonLetterSpacing": {"type": "string"},
 		"buttonDecoration": {"type": "string", "default": "none"},
@@ -64,6 +66,7 @@
 		"classicBackgroundImageHover": {"type": "string"},
 		"gradientBackgroundColorHover": {"type": "string"},
 
+		"buttonHoverFont": {"type": "string"},
 		"buttonHoverFontSize": {"type": "string"},
 		"buttonHoverLetterSpacing": {"type": "string"},
 		"buttonHoverDecoration": {"type": "string", "default": "none"},
@@ -71,6 +74,7 @@
 		"buttonHoverLineHeight": {"type": "string"},
 		"buttonHoverFontAppearance": {"type": "object", "default": {"fontStyle": "", "fontWeight": ""}},
 
+		"secondaryTextHoverFont": {"type": "string"},
 		"secondaryTextHoverFontSize": {"type": "string"},
 		"secondaryTextHoverLetterSpacing": {"type": "string"},
 		"secondaryTextHoverDecoration": {"type": "string", "default": "none"},

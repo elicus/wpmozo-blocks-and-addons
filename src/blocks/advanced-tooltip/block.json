@@ -36,6 +36,7 @@
 		"buttonBackground": {"type": "string"},
 		"buttonHoverColor": {"type": "string"},
 		"buttonHoverBackground": {"type": "string"},
+		"buttonFont": { "type": "string" },
 		"buttonFontSize": { "type": "string" },
 		"buttonLetterSpacing": { "type": "string" },
 		"buttonDecoration": { "type": "string","default": "none" },
@@ -48,6 +49,7 @@
 				"fontWeight": ""
 			}
 		},
+		"buttonHoverFont": { "type": "string" },
 		"buttonHoverFontSize": { "type": "string" },
 		"buttonHoverLetterSpacing": { "type": "string" },
 		"buttonHoverDecoration": { "type": "string" },
@@ -75,6 +77,7 @@
 		"TriggerTextAlign": {"type": "string","default": "left"},
 		"TriggerTextColor": {"type": "string"},
 		"TriggerTextHoverColor": {"type": "string"},
+		"TriggerTextFont": { "type": "string" },
 		"TriggerTextFontSize": { "type": "string" },
 		"TriggerTextLetterSpacing": { "type": "string" },
 		"TriggerTextDecoration": { "type": "string","default": "none" },
@@ -88,6 +91,7 @@
 			}
 		},
 		"triggerTextHoverColor": {"type": "string"},
+		"triggerTextHoverFont": { "type": "string" },
 		"triggerTextHoverFontSize": { "type": "string" },
 		"triggerTextHoverLetterSpacing": { "type": "string" },
 		"triggerTextHoverDecoration": { "type": "string","default": "none" },

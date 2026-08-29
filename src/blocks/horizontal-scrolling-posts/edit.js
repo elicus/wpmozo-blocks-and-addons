@@ -140,7 +140,7 @@ export default function Edit(props) {
 
 			if ( attributes.showFeaturedImage && imageUrl ) {
 				showFeaturedImage = <div className="wpmozo_horizontal_scrolling_post_image_wrapper">
-					<a href={post.link}>
+					<a href="javascript:void(0)">
 						<img src={imageUrl} alt={altText} className="wpmozo_horizontal_scrolling_post_image"/>
 					</a>
 				</div>;

@@ -64,7 +64,7 @@ const Edit = (props) => {
 			<div className="wpmozo-bna-image-card-button-wrap-inner">
 				<a className={`wpmozo-bna-image-card-button${showOnHover}`}
 					target={linkTarget}
-					href={ attributes.buttonUrl }
+					href="javascript:void(0)"
 				>
 					{ attributes.buttonText }{ buttonMedia }
 				</a>

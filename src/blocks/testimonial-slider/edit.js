@@ -156,7 +156,7 @@ const Edit = (props) => {
 			if ( attributes.showCompany && post.author_company ) {
 				companyName = post.author_company;
 				if ( post.author_company_url ) {
-					companyName = <a href={ post.author_company_url } target="_blank" rel="nofollow">{ companyName }</a>;
+					companyName = <a href="javascript:void(0)" target="_blank" rel="nofollow">{ companyName }</a>;
 				}
 				companyName = <div className="wpmozo_testimonial_author_company">{ companyName }</div>
 			}

@@ -48,6 +48,7 @@
         "titleColor": { "type": "string" },
         "titleAlign": { "type": "string" },
         "titleLavel": { "type": "string" },
+        "titleFont": { "type": "string" },
         "titleFontSize": { "type": "string" },
         "titleFontAppearance": {
             "type": "object",
@@ -67,6 +68,7 @@
 
         "descriptionColor": { "type": "string" },
         "descriptionAlign": { "type": "string" },
+        "descriptionFont": { "type": "string" },
         "descriptionFontSize": { "type": "string" },
         "descriptionFontAppearance": {
             "type": "object",
@@ -87,6 +89,7 @@
         "buttonTextColor": { "type": "string" },
         "buttonBackgroundColor": { "type": "string" },
         "buttonAlignment": { "type": "string" },
+        "buttonFont": { "type": "string" },
         "buttonFontSize": { "type": "string" },
         "buttonFontAppearance": {
             "type": "object",

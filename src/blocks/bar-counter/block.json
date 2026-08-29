@@ -29,6 +29,7 @@
 		"titleColor": { "type": "string" },
 		"titleHoverColor": { "type": "string" },
 		"titleAlign": { "type": "string" },
+		"titleFont": { "type": "string" },
 		"titleFontSize": { "type": "string" },
 		"titleFontAppearance": {
 			"type": "object",
@@ -47,6 +48,7 @@
 		"percentageColor": { "type": "string" },
 		"percentageHoverColor": { "type": "string" },
 		"percentageAlign": { "type": "string" },
+		"percentageFont": { "type": "string" },
 		"percentageFontSize": { "type": "string" },
 		"percentageFontAppearance": {
 			"type": "object",

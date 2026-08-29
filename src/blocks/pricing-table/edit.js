@@ -128,7 +128,7 @@ const Edit = ( props ) => {
 						</dl>
 						{ true === attributes.showButton && (
 							<div className="wpmozo-bna-pricing-table-button-wrapper">
-								<a href={attributes.buttonUrl}
+								<a href="javascript:void(0)"
 									className={"wpmozo-bna-button " + buttonIconPosition + showIconOnHover}
 									target={linkTarget}
 								>

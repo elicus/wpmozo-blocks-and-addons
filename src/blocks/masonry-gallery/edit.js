@@ -297,7 +297,7 @@ function Edit(props) {
 						<div className="wpmozo_masonry_gallery_item_gutter"></div>
 						{attributes.images_data && attributes.images_data.length > 0 && (
 							attributes.images_data.map((image, idx) => (
-								<a className="wpmozo_masonry_gallery_item" href={image.url} key={image.id || idx} onClick={(e) => { if (!attributes.showLightbox) { e.preventDefault(); } }}>
+								<a className="wpmozo_masonry_gallery_item" href="javascript:void(0)" key={image.id || idx} onClick={(e) => { if (!attributes.showLightbox) { e.preventDefault(); } }}>
 									<div className="wpmozo_masonry_gallery_image_wrapper">
 										<img src={image.url} alt={image.alt || ''}/>
 										{true === attributes.enableOverlay && (

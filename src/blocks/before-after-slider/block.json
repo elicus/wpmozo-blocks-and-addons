@@ -31,6 +31,7 @@
 		"beforeLabel": { "type": "string", "default": "Before" },
 		"beforeLabelbackground": { "type": "string" },
 		"beforeLabeltext": { "type": "string" },
+		"beforeLabelFont": { "type": "string" },
 		"beforeLabelFontSize": { "type": "string" },
 		"beforeLabelFontAppearance": {
 			"type": "object",
@@ -49,6 +50,7 @@
 		"afterLabel": { "type": "string", "default": "After" },
 		"afterLabelbackground": { "type": "string" },
 		"afterLabeltext": { "type": "string" },
+		"afterLabelFont": { "type": "string" },
 		"afterLabelFontSize": { "type": "string" },
 		"afterLabelFontAppearance": {
 			"type": "object",

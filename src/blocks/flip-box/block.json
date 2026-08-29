@@ -25,6 +25,7 @@
 		"globalTitleColor": { "type": "string", "default": "#fff" },
 		"globalContentColor": { "type": "string", "default": "#fff" },
 		"globalTitletext": { "type": "string" },
+		"globalTitleFont": { "type": "string" },
 		"globalTitleFontSize": { "type": "string" },
 		"globalTitleFontAppearance": {
 			"type": "object",
@@ -37,6 +38,7 @@
 		"globalTitleLetterCase": { "type": "string" },
 		"globalTitleLineHeight": { "type": "string" },
 		"globalContenttext": { "type": "string" },
+		"globalContentFont": { "type": "string" },
 		"globalContentFontSize": { "type": "string" },
 		"globalContentFontAppearance": {
 			"type": "object",
@@ -53,6 +55,7 @@
 		"frontHeadingLevel": { "type": "string", "default": "h2" },
 		"frontTitleColor": { "type": "string" },
 		"frontTitletext": { "type": "string" },
+		"frontTitleFont": { "type": "string" },
 		"frontTitleFontSize": { "type": "string" },
 		"frontTitleFontAppearance": {
 			"type": "object",
@@ -68,6 +71,7 @@
 		"frontContnet": { "type": "string", "default": "Here you can set front text." },
 		"frontContentColor": { "type": "string" },
 		"frontContenttext": { "type": "string" },
+		"frontContentFont": { "type": "string" },
 		"frontContentFontSize": { "type": "string" },
 		"frontContentFontAppearance": {
 			"type": "object",
@@ -117,6 +121,7 @@
 		"backHeadingLevel": { "type": "string", "default": "h2" },
 		"backTitleColor": { "type": "string" },
 		"backTitletext": { "type": "string" },
+		"backTitleFont": { "type": "string" },
 		"backTitleFontSize": { "type": "string" },
 		"backTitleFontAppearance": {
 			"type": "object",
@@ -132,6 +137,7 @@
 		"backContnet": { "type": "string", "default": "Here you can set back text." },
 		"backContentColor": { "type": "string" },
 		"backContenttext": { "type": "string" },
+		"backContentFont": { "type": "string" },
 		"backContentFontSize": { "type": "string" },
 		"backContentFontAppearance": {
 			"type": "object",
@@ -184,6 +190,7 @@
 		"backBtnColor": { "type": "string", "default": "#fff" },
 		"backBtnBackground": { "type": "string" },
 		"backBtntext": { "type": "string" },
+		"backBtnFont": { "type": "string" },
 		"backBtnFontSize": { "type": "string" },
 		"backBtnFontAppearance": {
 			"type": "object",
@@ -216,6 +223,7 @@
 		"frontIconShapeHoverBackground": { "type": "string" },
 		"backIconHoverColor": { "type": "string" },
 		"backIconShapeHoverBackground": { "type": "string" },
+		"frontTitleHoverFont": { "type": "string" },
 		"frontTitleHoverFontSize": { "type": "string" },
 		"frontTitleHoverFontAppearance": {
 			"type": "object",
@@ -227,6 +235,7 @@
 		"frontTitleHoverDecoration": { "type": "string" },
 		"frontTitleHoverLetterCase": { "type": "string" },
 		"frontTitleHoverLineHeight": { "type": "string" },
+		"backTitleHoverFont": { "type": "string" },
 		"backTitleHoverFontSize": { "type": "string" },
 		"backTitleHoverFontAppearance": {
 			"type": "object",
@@ -241,6 +250,7 @@
 
 		"backTitleHoverColor": { "type": "string" },
 		"backContentHoverColor": { "type": "string" },
+		"backContentHoverFont": { "type": "string" },
 		"backContentHoverFontSize": { "type": "string" },
 		"backContentHoverFontAppearance": {
 			"type": "object",

@@ -26,6 +26,7 @@
 		"titleWidth": { "type": "number", "default": 20 },
 		"titleAlign": { "type": "string" },
 		"titleColor": { "type": "string" },
+		"titleFont": { "type": "string" },
 		"titleFontSize": { "type": "string", "default": "20px" },
 		"titleLetterSpacing": { "type": "string" },
 		"titleDecoration": { "type": "string" },
@@ -39,6 +40,7 @@
 		"titleFontWeight": { "type": "string" },
 
 		"titleHoverColor": { "type": "string" },
+		"titleHoverFont": { "type": "string" },
 		"titleHoverFontSize": { "type": "string" },
 		"titleHoverLetterSpacing": { "type": "string" },
 		"titleHoverDecoration": { "type": "string" },
@@ -52,6 +54,7 @@
 		"titleHoverFontWeight": { "type": "string" },
 
 		"subtitleColor": { "type": "string" },
+		"subtitleFont": { "type": "string" },
 		"subtitleFontSize": { "type": "string", "default": "16px" },
 		"subtitleLetterSpacing": { "type": "string" },
 		"subtitleDecoration": { "type": "string" },
@@ -65,6 +68,7 @@
 		"subtitleFontWeight": { "type": "string" },
 
 		"subtitleHoverColor": { "type": "string" },
+		"subtitleHoverFont": { "type": "string" },
 		"subtitleHoverFontSize": { "type": "string" },
 		"subtitleHoverLetterSpacing": { "type": "string" },
 		"subtitleHoverDecoration": { "type": "string" },
@@ -80,6 +84,7 @@
 		"descriptionWidth": { "type": "number", "default": 40 },
 		"descriptionpadding": { "type": "object", "default": { "left": "10px", "right": "10px" } },
 		"descriptionColor": { "type": "string" },
+		"descriptionFont": { "type": "string" },
 		"descriptionFontSize": { "type": "string", "default": "16px" },
 		"descriptionLetterSpacing": { "type": "string" },
 		"descriptionDecoration": { "type": "string" },
@@ -93,6 +98,7 @@
 		"descriptionFontWeight": { "type": "string" },
 
 		"descriptionHoverColor": { "type": "string" },
+		"descriptionHoverFont": { "type": "string" },
 		"descriptionHoverFontSize": { "type": "string" },
 		"descriptionHoverLetterSpacing": { "type": "string" },
 		"descriptionHoverDecoration": { "type": "string" },

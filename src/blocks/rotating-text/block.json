@@ -31,6 +31,7 @@
         "wrapperborderRadius": { "type": "object" },
 
         "textColor": { "type": "string" },
+        "textFont": { "type": "string" },
         "textFontSize": { "type": "string" },
 		"textFontAppearance": {
 			"type": "object",

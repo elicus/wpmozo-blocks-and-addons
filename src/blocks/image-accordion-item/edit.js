@@ -183,7 +183,7 @@ export default function Edit(props) {
                         {itemButtonUrl && itemButtonUrl !== '' && showButton && (
                             <div className="wpmozo-bna-button-wrap wpmozo-bna-image-accordion-btn">
                                 <a
-                                    href={itemButtonUrl}
+                                    href="javascript:void(0)"
                                     target={urlNewWindow}
                                     className={ [
                                         'wpmozo-bna-button',

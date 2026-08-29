@@ -32,6 +32,7 @@
 		"textBgDimensionspadding": { "type": "object" },
 		
 		"textAlignment": { "type": "string", "default": "center" },
+		"textFont": { "type": "string" },
 		"textFontSize": { "type": "string" },
 		"textFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
 		"textFontStyle": { "type": "string" },
@@ -45,6 +46,7 @@
 		"textBgOverlayHoverColor": { "type": "string" },
 		"textBgOverlayHoverColorSolid": { "type": "string" },
 		"textBgOverlayHoverColorGradient": { "type": "string" },
+		"textHoverFont": { "type": "string" },
 		"textHoverFontSize": { "type": "string" },
 		"textHoverFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
 		"textHoverFontStyle": { "type": "string" },

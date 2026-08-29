@@ -31,6 +31,11 @@
 	text-align: center;
 	min-width: 90px;
 }
+
+.wpmozo-promotion-bar-wrap .wpmozo-pb-title,
+.wpmozo-promotion-bar-wrap .wpmozo-pb-desc{
+	transition: all 300ms;
+}
 .wpmozo-promotion-bar-content .wpmozo-promotion-bar-image{
 	border: 0 solid #000;
 }

@@ -12,55 +12,43 @@ import {
 	WpmozoAlignment,
 	WpmozoTypography,
 	WpmozoColorPicker,
-	WpmozoTextShadow
+	WpmozoTextShadow,
+	MozoStates
 } from "../../../common/components";
 import { headingLevelsList } from '../../../common/utils.js';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 	const [ colorTab, setColorTab ] = useState( 'normal' );
 	const [ percentTab, setPercentTab ] = useState( 'normal' );
+	const [openPanel, setOpenPanel] = useState('panel1');
+								
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
 
 	return ( <>
 
 	{ attributes.showNumber && (
-		<PanelBody title={__('Percentage Text', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" initialOpen={false}>
-			
-			{/* Button Tabs wrapper */}
-			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>
-				<ButtonGroup>
-					<Button
-						className="wpmozo-button-tabs-btn"
-						isPressed={ ( 'normal' === percentTab ) ? true : false }
-						onClick={ () => setPercentTab( 'normal' ) }
-					>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
-					<Button
-						className="wpmozo-button-tabs-btn"
-						isPressed={ ( 'hover' === percentTab ) ? true : false }
-						onClick={ () => setPercentTab( 'hover' ) }
-					>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
-				</ButtonGroup>
-
-				{/* Normal Tab Content */}
-				{ 'normal' === percentTab && ( <>
-					<WpmozoColorPicker props={props}
-						ColorKey="percentage"
+		<PanelBody title={__('Percentage Text', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={ props }
+						label={ __( 'Percentage Color', 'wpmozo-blocks-and-addons' ) }
+						ColorKey={ isHover ? "percentageHover" : "percentage" }
 						ColorTypes={ [
-							{ key: 'Color', label: __( 'Percentage Color', 'wpmozo-blocks-and-addons' ) }
+							{key: 'Color', label: __('Percentage Text Color', 'wpmozo-blocks-and-addons')}
 						] }
 					/>
-				</> ) }
-
-				{/* Hover Tab Content */}
-				{ 'hover' === percentTab && ( <>
-					<WpmozoColorPicker props={props}
-						ColorKey="percentageHover"
-						ColorTypes={ [
-							{ key: 'Color', label: __( 'Percentage Hover Color', 'wpmozo-blocks-and-addons' ) }
-						] }
-					/>
-				</> ) }
-			</BaseControl>
+				) }
+			/>
 
 			{ 'bar' === attributes.layout && (
 				<WpmozoAlignment
@@ -82,7 +70,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 	) }
 
 
-		<PanelBody title={ __( 'Bar Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Bar Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			{ 'bar' === attributes.layout && (
 				<RangeControl
 					label={ __( 'Bar Size', 'wpmozo-blocks-and-addons' ) }
@@ -119,67 +107,62 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				/>
 			) }
 
-			<BaseControl className="wpmozo-button-tabs-wrap" __nextHasNoMarginBottom={ true }>
-				<ButtonGroup>
-					<Button
-						className="wpmozo-button-tabs-btn"
-						isPressed={ ( 'normal' === colorTab ) ? true : false }
-						onClick={ () => setColorTab( 'normal' ) }
-					>{ __( 'Normal', 'wpmozo-blocks-and-addons' ) }</Button>
-					<Button
-						className="wpmozo-button-tabs-btn"
-						isPressed={ ( 'hover' === colorTab ) ? true : false }
-						onClick={ () => setColorTab( 'hover' ) }
-					>{ __( 'Hover', 'wpmozo-blocks-and-addons' ) }</Button>
-				</ButtonGroup>
-
-				{ 'normal' === colorTab && ( <>
-					<WpmozoColorPicker props={props}
-						ColorKey="barEmpty"
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={ props }
+						label={ __( 'Bar Empty Color', 'wpmozo-blocks-and-addons' ) }
+						ColorKey={ isHover ? "barEmptyHover" : "barEmpty" }
 						ColorTypes={ [
-							{ key: 'Color', label: __( 'Bar Empty Color', 'wpmozo-blocks-and-addons' ) }
+							{key: 'Color', label: __('Bar Empty Color', 'wpmozo-blocks-and-addons')}
 						] }
 					/>
-					<WpmozoColorPicker props={props}
-						ColorKey="barFilled"
+				) }
+			/>
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={ props }
+						label={ __( 'Bar Filled Color', 'wpmozo-blocks-and-addons' ) }
+						ColorKey={ isHover ? "barFilledHover" : "barFilled" }
 						ColorTypes={ [
-							{ key: 'Color', label: __( 'Bar Filled Color', 'wpmozo-blocks-and-addons' ) }
+							{key: 'Color', label: __('Bar Filled Color', 'wpmozo-blocks-and-addons')}
 						] }
 					/>
-					{ 'bar' !== attributes.layout && (
-						<WpmozoColorPicker props={props}
-							ColorKey="circleFill"
+				) }
+			/>
+			{ 'bar' !== attributes.layout && (
+				<MozoStates
+					value={hoverState}
+					title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( isHover ) => (
+							isHover ? setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)
+					}
+					control={ ( isHover ) => (
+						<WpmozoColorPicker props={ props }
+							label={ __( 'Circle Background', 'wpmozo-blocks-and-addons' ) }
+							ColorKey={ isHover ? "circleFillHover" : "circleFill" }
 							ColorTypes={ [
-								{ key: 'Color', label: __( 'Circle Background Color', 'wpmozo-blocks-and-addons' ) }
+								{key: 'Color', label: __('Circle Background Color', 'wpmozo-blocks-and-addons')}
 							] }
 						/>
 					) }
-				</> ) }
-
-				{ 'hover' === colorTab && ( <>
-					<WpmozoColorPicker props={props}
-						ColorKey="barEmptyHover"
-						ColorTypes={ [
-							{ key: 'Color', label: __( 'Bar Empty Hover Color', 'wpmozo-blocks-and-addons' ) }
-						] }
-					/>
-					<WpmozoColorPicker props={props}
-						ColorKey="barFilledHover"
-						ColorTypes={ [
-							{ key: 'Color', label: __( 'Bar Filled Hover Color', 'wpmozo-blocks-and-addons' ) }
-						] }
-					/>
-					{ 'bar' !== attributes.layout && (
-						<WpmozoColorPicker props={props}
-							ColorKey="circleFillHover"
-							ColorTypes={ [
-								{ key: 'Color', label: __( 'Circle Background Hover Color', 'wpmozo-blocks-and-addons' ) }
-							] }
-						/>
-					) }
-				</> ) }
-			</BaseControl>
-
+				/>
+			)}
 			{ 'bar' === attributes.layout && (
 				<WpmozoBorder props={props}
 					BorderKey="bar"

@@ -195,7 +195,6 @@ export default function Edit(props) {
                                             <a 
                                                 className={`wpmozo-bna-flip-box-button${backBtnOnHover}`}
                                                 target="_blank"
-                                                href={ attributes.backBtnUrl }
                                             >
                                                 { attributes.backBtnText }
                                                 {backBtnIcon}

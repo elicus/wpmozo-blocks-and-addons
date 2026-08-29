@@ -70,6 +70,7 @@
 
 		"globalTextAlign": { "type": "string", "default": "center" },
 		"bodyColor": { "type": "string" },
+		"bodyFont": { "type": "string" },
 		"bodyFontSize": { "type": "string" },
 		"bodyLetterSpacing": { "type": "string" },
 		"bodyDecoration": { "type": "string" },
@@ -83,6 +84,7 @@
 		"bodyFontWeight": { "type": "string" },
 
 		"bodyHoverColor": { "type": "string" },
+		"bodyHoverFont": { "type": "string" },
 		"bodyHoverFontSize": { "type": "string" },
 		"bodyHoverLetterSpacing": { "type": "string" },
 		"bodyHoverDecoration": { "type": "string" },
@@ -96,6 +98,7 @@
 		"bodyHoverFontWeight": { "type": "string" },
 
 		"authorNameColor": { "type": "string" },
+		"authorNameFont": { "type": "string" },
 		"authorNameFontSize": { "type": "string" },
 		"authorNameLetterSpacing": { "type": "string" },
 		"authorNameDecoration": { "type": "string" },
@@ -109,6 +112,7 @@
 		"authorNameFontWeight": { "type": "string" },
 
 		"authorNameHoverColor": { "type": "string" },
+		"authorNameHoverFont": { "type": "string" },
 		"authorNameHoverFontSize": { "type": "string" },
 		"authorNameHoverLetterSpacing": { "type": "string" },
 		"authorNameHoverDecoration": { "type": "string" },
@@ -122,6 +126,7 @@
 		"authorNameHoverFontWeight": { "type": "string" },
 
 		"designationColor": { "type": "string" },
+		"designationFont": { "type": "string" },
 		"designationFontSize": { "type": "string" },
 		"designationLetterSpacing": { "type": "string" },
 		"designationDecoration": { "type": "string" },
@@ -135,6 +140,7 @@
 		"designationFontWeight": { "type": "string" },
 
 		"designationHoverColor": { "type": "string" },
+		"designationHoverFont": { "type": "string" },
 		"designationHoverFontSize": { "type": "string" },
 		"designationHoverLetterSpacing": { "type": "string" },
 		"designationHoverDecoration": { "type": "string" },
@@ -148,6 +154,7 @@
 		"designationHoverFontWeight": { "type": "string" },
 
 		"companyNameColor": { "type": "string" },
+		"companyNameFont": { "type": "string" },
 		"companyNameFontSize": { "type": "string" },
 		"companyNameLetterSpacing": { "type": "string" },
 		"companyNameDecoration": { "type": "string" },
@@ -161,6 +168,7 @@
 		"companyNameFontWeight": { "type": "string" },
 
 		"companyNameHoverColor": { "type": "string" },
+		"companyNameHoverFont": { "type": "string" },
 		"companyNameHoverFontSize": { "type": "string" },
 		"companyNameHoverLetterSpacing": { "type": "string" },
 		"companyNameHoverDecoration": { "type": "string" },

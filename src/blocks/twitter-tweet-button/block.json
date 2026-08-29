@@ -29,6 +29,7 @@
 		"buttonborderRadius": { "type": "object" },
 
 		"fallbackTextColor": { "type": "string" },
+		"fallbackTextFont": { "type": "string"},
 		"fallbackTextFontSize": { "type": "string", "default": "16px" },
 		"fallbackTextLetterSpacing": { "type": "string" },
 		"fallbackTextDecoration": { "type": "string" },

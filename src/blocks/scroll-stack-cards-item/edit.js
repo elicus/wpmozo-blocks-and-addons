@@ -163,7 +163,7 @@ export default function Edit(props) {
             ButtonEl = (
                 <div className="wpmozo-bna-button-wrap wpmozo-bna-scroll-stack-cards-item-btn">
                     <a
-                        href={itemButtonUrl}
+                        href="javascript:void(0)"
                         target={urlNewWindow}
                         className={ [
                             'wpmozo-bna-button',

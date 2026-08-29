@@ -74,6 +74,7 @@
         "titleHoverColor": { "type": "string" },
         "titleAlign": { "type": "string" },
         "titleLavel": { "type": "string", "default": "h4" },
+        "titleFont": { "type": "string" },
         "titleFontSize": { "type": "string" },
         "titleFontAppearance": {
             "type": "object",
@@ -88,6 +89,7 @@
         "titleDecoration": { "type": "string" },
         "titleLetterCase": { "type": "string" },
         "titleLineHeight": { "type": "string" },
+        "titleHoverFont": { "type": "string" },
         "titleHoverFontSize": { "type": "string" },
         "titleHoverLetterSpacing": { "type": "string" },
         "titleHoverDecoration": { "type": "string" },
@@ -103,6 +105,7 @@
         "descriptionColor": { "type": "string" },
         "descriptionHoverColor": { "type": "string" },
         "descriptionAlign": { "type": "string" },
+        "descriptionFont": { "type": "string" },
         "descriptionFontSize": { "type": "string" },
         "descriptionFontAppearance": {
             "type": "object",
@@ -117,6 +120,7 @@
         "descriptionDecoration": { "type": "string" },
         "descriptionLetterCase": { "type": "string" },
         "descriptionLineHeight": { "type": "string" },
+        "descriptionHoverFont": { "type": "string" },
         "descriptionHoverFontSize": { "type": "string" },
         "descriptionHoverLetterSpacing": { "type": "string" },
         "descriptionHoverDecoration": { "type": "string" },
@@ -134,6 +138,7 @@
         "buttonBackgroundColor": { "type": "string" },
         "buttonHoverBackgroundColor": { "type": "string" },
         "buttonAlignment": { "type": "string" },
+        "buttonFont": { "type": "string" },
         "buttonFontSize": { "type": "string" },
         "buttonFontAppearance": {
             "type": "object",
@@ -148,6 +153,7 @@
         "buttonDecoration": { "type": "string" },
         "buttonLetterCase": { "type": "string" },
         "buttonLineHeight": { "type": "string" },
+        "buttonHoverFont": { "type": "string" },
         "buttonHoverFontSize": { "type": "string" },
         "buttonHoverLetterSpacing": { "type": "string" },
         "buttonHoverDecoration": { "type": "string" },
