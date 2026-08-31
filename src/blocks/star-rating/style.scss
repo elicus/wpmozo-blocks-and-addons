@@ -57,10 +57,10 @@
     font-feature-settings: normal;
     speak-as: none;
 }
-.wpmozo_star_rating_star:not( .dipl-rating-icon-custom ):after{
+.wpmozo_star_rating_star:not( .wpmozo-rating-icon-custom ):after{
     content: '\2606';
 }
-.wpmozo_star_rating_filled_star:not( .dipl-rating-icon-custom ):after{
+.wpmozo_star_rating_filled_star:not( .wpmozo-rating-icon-custom ):after{
     content: '\2605';
 }
 .wpmozo_star_rating_star svg{

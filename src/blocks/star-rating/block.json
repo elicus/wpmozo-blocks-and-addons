@@ -22,6 +22,7 @@
 		"titleLevel": { "type": "string", "default": "h4" },
 		"hideTitle": { "type": "boolean", "default": false },
 		"titleColor": { "type": "string" },
+		"titleFont": { "type": "string" },
 		"titleFontSize": { "type": "string" },
 		"titleLetterSpacing": { "type": "string" },
 		"titleDecoration": { "type": "string" },
@@ -35,6 +36,7 @@
 		"titleFontWeight": { "type": "string" },
 
 		"titleHoverColor": { "type": "string" },
+		"titleHoverFont": { "type": "string" },
 		"titleHoverFontSize": { "type": "string" },
 		"titleHoverLetterSpacing": { "type": "string" },
 		"titleHoverDecoration": { "type": "string" },
@@ -51,6 +53,7 @@
 		"iconSVGs": { "type": "object" },
 
 		"ratingColor": { "type": "string" },
+		"ratingFont": { "type": "string" },
 		"ratingFontSize": { "type": "string" },
 		"ratingLetterSpacing": { "type": "string" },
 		"ratingDecoration": { "type": "string" },
@@ -64,6 +67,7 @@
 		"ratingFontWeight": { "type": "string" },
 
 		"ratingHoverColor": { "type": "string" },
+		"ratingHoverFont": { "type": "string" },
 		"ratingHoverFontSize": { "type": "string" },
 		"ratingHoverLetterSpacing": { "type": "string" },
 		"ratingHoverDecoration": { "type": "string" },
@@ -82,6 +86,7 @@
 		"imageCustomAlt": { "type": "string", "default": "" },
 		"description": { "type": "string", "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
 		"descriptionColor": { "type": "string" },
+		"descriptionFont": { "type": "string" },
 		"descriptionFontSize": { "type": "string" },
 		"descriptionLetterSpacing": { "type": "string" },
 		"descriptionDecoration": { "type": "string" },
@@ -95,6 +100,7 @@
 		"descriptionFontWeight": { "type": "string" },
 
 		"descriptionHoverColor": { "type": "string" },
+		"descriptionHoverFont": { "type": "string" },
 		"descriptionHoverFontSize": { "type": "string" },
 		"descriptionHoverLetterSpacing": { "type": "string" },
 		"descriptionHoverDecoration": { "type": "string" },

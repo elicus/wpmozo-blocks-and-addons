@@ -85,6 +85,9 @@
     "titleColor": {
       "type": "string"
     },
+    "titleFont": {
+      "type": "string"
+    },
     "titleFontSize": {
       "type": "string"
     },
@@ -117,6 +120,9 @@
       "type": "string"
     },
     "descriptionColor": {
+      "type": "string"
+    },
+    "descriptionFont": {
       "type": "string"
     },
     "descriptionFontSize": {
@@ -205,6 +211,9 @@
     "buttonColor": {
       "type": "string"
     },
+    "buttonFont": {
+      "type": "string"
+    },
     "buttonFontSize": {
       "type": "string"
     },
@@ -247,6 +256,9 @@
       "type": "object"
     },
     "buttonHoverColor": {
+      "type": "string"
+    },
+    "buttonHoverFont": {
       "type": "string"
     },
     "buttonHoverFontSize": {

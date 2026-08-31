@@ -9,7 +9,7 @@ export const renderTestimonialLayoutOne = ( {postTitle, postExcerpt,categoriesDa
 			<div className="wpmozo_horizontal_scrolling_post_tag_wrapper">
 				{categoriesData.map((cat, i) => (
 					<span key={cat.id || i} className="wpmozo_horizontal_scrolling_post_tag">
-						<a href={cat.link}>{cat.name}</a>
+						<a href="javascript:void(0)">{cat.name}</a>
 						{i < categoriesData.length - 1 ? '' : ''}
 					</span>
 				))}
@@ -35,7 +35,7 @@ export const renderTestimonialLayoutOne = ( {postTitle, postExcerpt,categoriesDa
 					)}
 					{postTitle && (
 						<h2 className="wpmozo_horizontal_scrolling_post_title">
-							<a href={link}>{postTitle}</a>
+							<a href="javascript:void(0)">{postTitle}</a>
 						</h2>
 					)}
 					{postExcerpt && (
@@ -52,7 +52,7 @@ export const renderTestimonialLayoutOne = ( {postTitle, postExcerpt,categoriesDa
 						<>
 							<span className="author">
 								<i className="fas fa-user"></i>
-								<a href={authorLink} rel="author">{authorName}</a>
+								<a href="javascript:void(0)" rel="author">{authorName}</a>
 							</span>
 							<span className="wpmozo_post_meta_divider">|</span>
 						</>
@@ -94,7 +94,7 @@ export const renderTestimonialLayoutTwo = ({postTitle, postExcerpt,categoriesDat
 			<div className="wpmozo_horizontal_scrolling_post_tag_wrapper">
 				{ categoriesData.map((cat, i) => (
 					<span key={cat.id || i} className="wpmozo_horizontal_scrolling_post_tag">
-						<a href={cat.link}>{cat.name}</a>
+						<a href="javascript:void(0)">{cat.name}</a>
 						{i < categoriesData.length - 1 ? '' : ''}
 					</span>
 				))}
@@ -128,7 +128,7 @@ export const renderTestimonialLayoutTwo = ({postTitle, postExcerpt,categoriesDat
 						{catTag}
 						{postTitle && (
 							<h2 className="wpmozo_horizontal_scrolling_post_title">
-								<a href={link}>{postTitle}</a>
+								<a href="javascript:void(0)">{postTitle}</a>
 							</h2>
 						)}
 						{postExcerpt && (
@@ -144,7 +144,7 @@ export const renderTestimonialLayoutTwo = ({postTitle, postExcerpt,categoriesDat
 									<>
 										<span className="author">
 											<i className="fas fa-user"></i>
-											<a href={authorLink} rel="author">{authorName}</a>
+											<a href="javascript:void(0)" rel="author">{authorName}</a>
 										</span>
 										<span className="wpmozo_post_meta_divider">|</span>
 									</>

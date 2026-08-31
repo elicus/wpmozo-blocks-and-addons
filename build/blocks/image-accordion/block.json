@@ -77,6 +77,9 @@
       "type": "string",
       "default": "h4"
     },
+    "titleFont": {
+      "type": "string"
+    },
     "titleFontSize": {
       "type": "string",
       "default": "18px"
@@ -104,6 +107,9 @@
       "type": "string"
     },
     "titleLineHeight": {
+      "type": "string"
+    },
+    "titleHoverFont": {
       "type": "string"
     },
     "titleHoverFontSize": {
@@ -143,6 +149,10 @@
     "descriptionAlign": {
       "type": "string"
     },
+    "descriptionFont": {
+      "type": "string",
+      "default": "18px"
+    },
     "descriptionFontSize": {
       "type": "string",
       "default": "18px"
@@ -170,6 +180,9 @@
       "type": "string"
     },
     "descriptionLineHeight": {
+      "type": "string"
+    },
+    "descriptionHoverFont": {
       "type": "string"
     },
     "descriptionHoverFontSize": {
@@ -231,6 +244,10 @@
     "buttonAlignment": {
       "type": "string"
     },
+    "buttonFont": {
+      "type": "string",
+      "default": "18px"
+    },
     "buttonFontSize": {
       "type": "string",
       "default": "18px"
@@ -258,6 +275,9 @@
       "type": "string"
     },
     "buttonLineHeight": {
+      "type": "string"
+    },
+    "buttonHoverFont": {
       "type": "string"
     },
     "buttonHoverFontSize": {

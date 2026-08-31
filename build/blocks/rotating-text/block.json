@@ -62,6 +62,9 @@
     "textColor": {
       "type": "string"
     },
+    "textFont": {
+      "type": "string"
+    },
     "textFontSize": {
       "type": "string"
     },

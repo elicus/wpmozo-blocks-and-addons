@@ -18,6 +18,7 @@
 
         "scrollText": { "type": "string", "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non augue eget est vestibulum ultrices eu in leo. Quisque sem diam, finibus ac condimentum eu, finibus id arcu." },
         "textColor": { "type": "string" },
+		"textFont": { "type": "string" },
 		"textFontSize": { "type": "string", "default": "55px" },
 		"textLetterSpacing": { "type": "string" },
 		"textDecoration": { "type": "string" },
@@ -31,6 +32,7 @@
 		"textFontWeight": { "type": "string" },
 
         "textHoverColor": { "type": "string" },
+		"textHoverFont": { "type": "string" },
 		"textHoverFontSize": { "type": "string" },
 		"textHoverLetterSpacing": { "type": "string" },
 		"textHoverDecoration": { "type": "string" },

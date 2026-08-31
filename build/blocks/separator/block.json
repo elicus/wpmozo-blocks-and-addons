@@ -43,6 +43,9 @@
       "type": "string",
       "default": "#000000"
     },
+    "textNormalFont": {
+      "type": "string"
+    },
     "textNormalFontSize": {
       "type": "string"
     },
@@ -69,6 +72,9 @@
       "type": "string"
     },
     "textNormalLineHeight": {
+      "type": "string"
+    },
+    "textHoverFont": {
       "type": "string"
     },
     "textHoverFontSize": {

@@ -91,6 +91,9 @@
     "globalTextAlignment": {
       "type": "string"
     },
+    "globalFont": {
+      "type": "string"
+    },
     "globalFontSize": {
       "type": "string"
     },
@@ -123,6 +126,9 @@
       "type": "string"
     },
     "preTextAlignment": {
+      "type": "string"
+    },
+    "preFont": {
       "type": "string"
     },
     "preFontSize": {
@@ -162,6 +168,9 @@
     "mainTextAlignment": {
       "type": "string"
     },
+    "mainFont": {
+      "type": "string"
+    },
     "mainFontSize": {
       "type": "string"
     },
@@ -197,6 +206,9 @@
       "type": "string"
     },
     "postTextAlignment": {
+      "type": "string"
+    },
+    "postFont": {
       "type": "string"
     },
     "postFontSize": {

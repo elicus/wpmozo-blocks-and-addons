@@ -46,6 +46,7 @@
 
 		"textAlign": {"type": "string","default": "left"},
 		"lightboxTitleColor": {"type": "string"},
+		"lightboxTitleFont": { "type": "string" },
 		"lightboxTitleFontSize": { "type": "string" },
 		"lightboxTitleFontAppearance": {
 			"type": "object",

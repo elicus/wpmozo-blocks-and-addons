@@ -66,6 +66,9 @@
     "beforeLabeltext": {
       "type": "string"
     },
+    "beforeLabelFont": {
+      "type": "string"
+    },
     "beforeLabelFontSize": {
       "type": "string"
     },
@@ -113,6 +116,9 @@
       "type": "string"
     },
     "afterLabeltext": {
+      "type": "string"
+    },
+    "afterLabelFont": {
       "type": "string"
     },
     "afterLabelFontSize": {

@@ -26,6 +26,9 @@
     "textColor": {
       "type": "string"
     },
+    "textFont": {
+      "type": "string"
+    },
     "textFontSize": {
       "type": "string",
       "default": "55px"
@@ -56,6 +59,9 @@
       "type": "string"
     },
     "textHoverColor": {
+      "type": "string"
+    },
+    "textHoverFont": {
       "type": "string"
     },
     "textHoverFontSize": {

@@ -67,6 +67,9 @@
       "type": "string",
       "default": "center"
     },
+    "textFont": {
+      "type": "string"
+    },
     "textFontSize": {
       "type": "string"
     },
@@ -111,6 +114,9 @@
       "type": "string"
     },
     "textBgOverlayHoverColorGradient": {
+      "type": "string"
+    },
+    "textHoverFont": {
       "type": "string"
     },
     "textHoverFontSize": {

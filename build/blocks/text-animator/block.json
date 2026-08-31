@@ -76,6 +76,9 @@
     "globalTextAlignment": {
       "type": "string"
     },
+    "globalFont": {
+      "type": "string"
+    },
     "globalFontSize": {
       "type": "string"
     },
@@ -105,6 +108,9 @@
       "type": "string"
     },
     "prePostTextHoverColor": {
+      "type": "string"
+    },
+    "prePostFont": {
       "type": "string"
     },
     "prePostFontSize": {
@@ -139,6 +145,9 @@
       "type": "string"
     },
     "animatedTextHoverColor": {
+      "type": "string"
+    },
+    "animatedFont": {
       "type": "string"
     },
     "animatedFontSize": {

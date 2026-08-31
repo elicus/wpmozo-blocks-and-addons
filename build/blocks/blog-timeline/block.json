@@ -209,6 +209,9 @@
       "type": "string",
       "default": "h3"
     },
+    "titleFont": {
+      "type": "string"
+    },
     "titleFontSize": {
       "type": "string"
     },
@@ -238,6 +241,9 @@
       "type": "string"
     },
     "titleHoverColor": {
+      "type": "string"
+    },
+    "titleHoverFont": {
       "type": "string"
     },
     "titleHoverFontSize": {
@@ -274,6 +280,9 @@
     "excerptAlign": {
       "type": "string"
     },
+    "excerptFont": {
+      "type": "string"
+    },
     "excerptFontSize": {
       "type": "string"
     },
@@ -308,6 +317,9 @@
     "excerptHoverAlign": {
       "type": "string"
     },
+    "excerptHoverFont": {
+      "type": "string"
+    },
     "excerptHoverFontSize": {
       "type": "string"
     },
@@ -337,6 +349,9 @@
       "type": "string"
     },
     "dateColor": {
+      "type": "string"
+    },
+    "dateFont": {
       "type": "string"
     },
     "dateFontSize": {
@@ -370,6 +385,9 @@
     "dateHoverColor": {
       "type": "string"
     },
+    "dateHoverFont": {
+      "type": "string"
+    },
     "dateHoverFontSize": {
       "type": "string"
     },
@@ -401,6 +419,9 @@
     "metaColor": {
       "type": "string"
     },
+    "metaFont": {
+      "type": "string"
+    },
     "metaFontSize": {
       "type": "string"
     },
@@ -430,6 +451,9 @@
       "type": "string"
     },
     "metaHoverColor": {
+      "type": "string"
+    },
+    "metaHoverFont": {
       "type": "string"
     },
     "metaHoverFontSize": {
@@ -515,6 +539,9 @@
     "buttonColor": {
       "type": "string"
     },
+    "buttonFont": {
+      "type": "string"
+    },
     "buttonFontSize": {
       "type": "string"
     },
@@ -557,6 +584,9 @@
       "type": "object"
     },
     "buttonHoverColor": {
+      "type": "string"
+    },
+    "buttonHoverFont": {
       "type": "string"
     },
     "buttonHoverFontSize": {

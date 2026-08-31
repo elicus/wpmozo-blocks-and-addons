@@ -214,6 +214,9 @@
     "bodyColor": {
       "type": "string"
     },
+    "bodyFont": {
+      "type": "string"
+    },
     "bodyFontSize": {
       "type": "string"
     },
@@ -243,6 +246,9 @@
       "type": "string"
     },
     "bodyHoverColor": {
+      "type": "string"
+    },
+    "bodyHoverFont": {
       "type": "string"
     },
     "bodyHoverFontSize": {
@@ -276,6 +282,9 @@
     "authorNameColor": {
       "type": "string"
     },
+    "authorNameFont": {
+      "type": "string"
+    },
     "authorNameFontSize": {
       "type": "string"
     },
@@ -305,6 +314,9 @@
       "type": "string"
     },
     "authorNameHoverColor": {
+      "type": "string"
+    },
+    "authorNameHoverFont": {
       "type": "string"
     },
     "authorNameHoverFontSize": {
@@ -338,6 +350,9 @@
     "designationColor": {
       "type": "string"
     },
+    "designationFont": {
+      "type": "string"
+    },
     "designationFontSize": {
       "type": "string"
     },
@@ -367,6 +382,9 @@
       "type": "string"
     },
     "designationHoverColor": {
+      "type": "string"
+    },
+    "designationHoverFont": {
       "type": "string"
     },
     "designationHoverFontSize": {
@@ -400,6 +418,9 @@
     "companyNameColor": {
       "type": "string"
     },
+    "companyNameFont": {
+      "type": "string"
+    },
     "companyNameFontSize": {
       "type": "string"
     },
@@ -429,6 +450,9 @@
       "type": "string"
     },
     "companyNameHoverColor": {
+      "type": "string"
+    },
+    "companyNameHoverFont": {
       "type": "string"
     },
     "companyNameHoverFontSize": {

@@ -42,6 +42,7 @@
         "thumbnailborderRadius": { "type": "string" },
 
         "nameColor": { "type": "string" },
+        "nameFont": { "type": "string" },
         "nameFontSize": { "type": "string", "default": "20px" },
         "nameFontAppearance": {
             "type": "object",
@@ -58,6 +59,7 @@
         "nameLineHeight": { "type": "string" },
 
         "priceColor": { "type": "string" },
+        "priceFont": { "type": "string" },
         "priceFontSize": { "type": "string", "default": "18px" },
         "priceFontAppearance": {
             "type": "object",
@@ -74,6 +76,7 @@
         "priceLineHeight": { "type": "string" },
 
         "currencyColor": { "type": "string" },
+        "currencyFont": { "type": "string" },
         "currencyFontSize": { "type": "string", "default": "18px" },
         "currencyFontAppearance": {
             "type": "object",
@@ -90,6 +93,7 @@
         "currencyLineHeight": { "type": "string" },
 
         "descriptionColor": { "type": "string" },
+        "descriptionFont": { "type": "string" },
         "descriptionFontSize": { "type": "string", "default": "14px" },
         "descriptionFontAppearance": {
             "type": "object",
@@ -109,6 +113,7 @@
         "dividerWidth": { "type": "string", "default": "1px" },
 
         "periodColor": { "type": "string" },
+        "periodFont": { "type": "string" },
         "periodFontSize": { "type": "string",  "default": "16px" },
         "periodFontAppearance": {
             "type": "object",

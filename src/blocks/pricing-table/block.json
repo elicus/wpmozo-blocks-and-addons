@@ -53,6 +53,7 @@
 		"titleLavel": { "type": "string", "default": "h2" },
 		"titleAlign": { "type": "string", "default": "center" },
 		"titleColor": { "type": "string" },
+		"titleFont": { "type": "string" },
 		"titleFontSize": { "type": "string" },
 		"titleFontAppearance": {
 			"type": "object",
@@ -66,6 +67,7 @@
 		"titleLineHeight": { "type": "string" },
 		"subTitleColor": { "type": "string" },
 		"subTitleAlign": { "type": "string", "default": "center" },
+		"subTitleFont": { "type": "string" },
 		"subTitleFontSize": { "type": "string" },
 		"subTitleFontAppearance": {
 			"type": "object",
@@ -99,6 +101,7 @@
 		"currencyDecoration": { "type": "string" },
 		"currencyLetterCase": { "type": "string" },
 		"currencyLineHeight": { "type": "string" },
+		"currencyFont": { "type": "string" },
 		"currencyFontSize": { "type": "string" },
 		"priceColor": { "type": "string" },
 		"priceFontAppearance": {
@@ -112,6 +115,7 @@
 		"priceDecoration": { "type": "string" },
 		"priceLetterCase": { "type": "string" },
 		"priceLineHeight": { "type": "string" },
+		"priceFont": { "type": "string" },
 		"priceFontSize": { "type": "string" },
 		"periodColor": { "type": "string" },
 		"periodFontAppearance": {
@@ -124,6 +128,7 @@
 		"periodDecoration": { "type": "string" },
 		"periodLetterCase": { "type": "string" },
 		"periodLineHeight": { "type": "string" },
+		"periodFont": { "type": "string" },
 		"periodFontSize": { "type": "string" },
 		"featuresAlign": { "type": "string" },
 		"featuresFontAppearance": {
@@ -136,6 +141,7 @@
 		"featuresDecoration": { "type": "string" },
 		"featuresLetterCase": { "type": "string" },
 		"featuresLineHeight": { "type": "string" },
+		"featuresFont": { "type": "string" },
 		"featuresFontSize": { "type": "string" },
 		"featuresColor": { "type": "string" },
 		"featuresBackground": { "type": "string" },
@@ -151,6 +157,10 @@
 		"buttonTextBackground": { "type": "string" },
 		"iconTextColor": { "type": "string" },
 		"iconTextBackground": { "type": "string" },
+		"buttonborder": { "type": "object" },
+		"buttonborderRadius": { "type": "object" },
+		"buttonHoverborder": { "type": "object" },
+		"buttonHoverborderRadius": { "type": "object" },
 		"borderSelection": { "type": "string", "default": "solid" },
 		"borderWidth": { "type": "string" },
 		"borderRadius": { "type": "string" },

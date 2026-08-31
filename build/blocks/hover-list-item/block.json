@@ -104,6 +104,9 @@
     "titleColor": {
       "type": "string"
     },
+    "titleFont": {
+      "type": "string"
+    },
     "titleFontSize": {
       "type": "string"
     },
@@ -133,6 +136,9 @@
       "type": "string"
     },
     "titleHoverColor": {
+      "type": "string"
+    },
+    "titleHoverFont": {
       "type": "string"
     },
     "titleHoverFontSize": {
@@ -166,6 +172,9 @@
     "subtitleColor": {
       "type": "string"
     },
+    "subtitleFont": {
+      "type": "string"
+    },
     "subtitleFontSize": {
       "type": "string"
     },
@@ -195,6 +204,9 @@
       "type": "string"
     },
     "subtitleHoverColor": {
+      "type": "string"
+    },
+    "subtitleHoverFont": {
       "type": "string"
     },
     "subtitleHoverFontSize": {
@@ -228,6 +240,9 @@
     "descriptionColor": {
       "type": "string"
     },
+    "descriptionFont": {
+      "type": "string"
+    },
     "descriptionFontSize": {
       "type": "string"
     },
@@ -257,6 +272,9 @@
       "type": "string"
     },
     "descriptionHoverColor": {
+      "type": "string"
+    },
+    "descriptionHoverFont": {
       "type": "string"
     },
     "descriptionHoverFontSize": {
@@ -345,6 +363,9 @@
     "buttonColor": {
       "type": "string"
     },
+    "buttonFont": {
+      "type": "string"
+    },
     "buttonFontSize": {
       "type": "string"
     },
@@ -387,6 +408,9 @@
       "type": "object"
     },
     "buttonHoverColor": {
+      "type": "string"
+    },
+    "buttonHoverFont": {
       "type": "string"
     },
     "buttonHoverFontSize": {

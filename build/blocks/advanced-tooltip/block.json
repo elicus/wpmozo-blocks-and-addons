@@ -87,6 +87,9 @@
     "buttonHoverBackground": {
       "type": "string"
     },
+    "buttonFont": {
+      "type": "string"
+    },
     "buttonFontSize": {
       "type": "string"
     },
@@ -109,6 +112,9 @@
         "fontStyle": "",
         "fontWeight": ""
       }
+    },
+    "buttonHoverFont": {
+      "type": "string"
     },
     "buttonHoverFontSize": {
       "type": "string"
@@ -194,6 +200,9 @@
     "TriggerTextHoverColor": {
       "type": "string"
     },
+    "TriggerTextFont": {
+      "type": "string"
+    },
     "TriggerTextFontSize": {
       "type": "string"
     },
@@ -218,6 +227,9 @@
       }
     },
     "triggerTextHoverColor": {
+      "type": "string"
+    },
+    "triggerTextHoverFont": {
       "type": "string"
     },
     "triggerTextHoverFontSize": {

@@ -77,6 +77,9 @@
     "titleOneIconColor": {
       "type": "string"
     },
+    "titleOneFont": {
+      "type": "string"
+    },
     "titleOneFontSize": {
       "type": "string"
     },
@@ -129,6 +132,9 @@
     "titleTwoIconColor": {
       "type": "string"
     },
+    "titleTwoFont": {
+      "type": "string"
+    },
     "titleTwoFontSize": {
       "type": "string"
     },
@@ -168,6 +174,9 @@
       "type": "string"
     },
     "contentOneBackground": {
+      "type": "string"
+    },
+    "contentOneFont": {
       "type": "string"
     },
     "contentOneFontSize": {
@@ -219,6 +228,9 @@
     "contentTwoBackground": {
       "type": "string"
     },
+    "contentTwoFont": {
+      "type": "string"
+    },
     "contentTwoFontSize": {
       "type": "string"
     },
@@ -268,6 +280,9 @@
     "titleOneIconHoverColor": {
       "type": "string"
     },
+    "titleOneHoverFont": {
+      "type": "string"
+    },
     "titleOneHoverFontSize": {
       "type": "string"
     },
@@ -300,6 +315,9 @@
       "type": "string"
     },
     "titleTwoIconHoverColor": {
+      "type": "string"
+    },
+    "titleTwoHoverFont": {
       "type": "string"
     },
     "titleTwoHoverFontSize": {
@@ -336,6 +354,9 @@
     "contentOneHoverBackground": {
       "type": "string"
     },
+    "contentOneHoverFont": {
+      "type": "string"
+    },
     "contentOneHoverFontSize": {
       "type": "string"
     },
@@ -368,6 +389,9 @@
       "type": "string"
     },
     "contentTwoHoverBackground": {
+      "type": "string"
+    },
+    "contentTwoHoverFont": {
       "type": "string"
     },
     "contentTwoHoverFontSize": {

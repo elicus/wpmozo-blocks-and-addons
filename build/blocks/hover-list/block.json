@@ -52,6 +52,9 @@
     "titleColor": {
       "type": "string"
     },
+    "titleFont": {
+      "type": "string"
+    },
     "titleFontSize": {
       "type": "string",
       "default": "20px"
@@ -82,6 +85,9 @@
       "type": "string"
     },
     "titleHoverColor": {
+      "type": "string"
+    },
+    "titleHoverFont": {
       "type": "string"
     },
     "titleHoverFontSize": {
@@ -115,6 +121,9 @@
     "subtitleColor": {
       "type": "string"
     },
+    "subtitleFont": {
+      "type": "string"
+    },
     "subtitleFontSize": {
       "type": "string",
       "default": "16px"
@@ -145,6 +154,9 @@
       "type": "string"
     },
     "subtitleHoverColor": {
+      "type": "string"
+    },
+    "subtitleHoverFont": {
       "type": "string"
     },
     "subtitleHoverFontSize": {
@@ -189,6 +201,9 @@
     "descriptionColor": {
       "type": "string"
     },
+    "descriptionFont": {
+      "type": "string"
+    },
     "descriptionFontSize": {
       "type": "string",
       "default": "16px"
@@ -219,6 +234,9 @@
       "type": "string"
     },
     "descriptionHoverColor": {
+      "type": "string"
+    },
+    "descriptionHoverFont": {
       "type": "string"
     },
     "descriptionHoverFontSize": {

@@ -133,7 +133,7 @@ const Edit = (props) => {
 			if ( showFeaturedImage && imageUrl ) {
 				portfolioImage = (
 					<div className="wpmozo_portfolio_slider_image_wrap">
-						<a href={ post.link || '#' }>
+						<a href="javascript:void(0)">
 							<img className="wpmozo_portfolio_slider_image" src={ imageUrl } alt={ altText } />
 						</a>
 					</div>
@@ -150,7 +150,7 @@ const Edit = (props) => {
 						<div className="wpmozo_portfolio_slider_categories">
 							{ matchedTerms.map( (term, i) => (
 								<span key={term.id} className="wpmozo_portfolio_slider_cat">
-									<a href={ term.link || '#' }>{ term.name }</a>
+									<a href="javascript:void(0)">{ term.name }</a>
 								</span>
 							) ) }
 						</div>
@@ -163,7 +163,7 @@ const Edit = (props) => {
 			if ( showTitle ) {
 				portfolioTitle = (
 					<h3 className="wpmozo_portfolio_slider_title">
-						<a href={ post.link || '#' }>{ post.title?.rendered || __( '(Untitled)', 'wpmozo-blocks-and-addons' ) }</a>
+						<a href="javascript:void(0)">{ post.title?.rendered || __( '(Untitled)', 'wpmozo-blocks-and-addons' ) }</a>
 					</h3>
 				);
 			}
@@ -173,7 +173,7 @@ const Edit = (props) => {
 			let buttonsHtml = [];
 			if ( showReadMore ) {
 				buttonsHtml.push(
-					<a key="readmore" href={ post.link || '#' } className="wpmozo_portfolio_slider_btn wpmozo_portfolio_slider_readmore">
+					<a key="readmore" href="javascript:void(0)" className="wpmozo_portfolio_slider_btn wpmozo_portfolio_slider_readmore">
 						{ readMoreText }
 					</a>
 				);
@@ -182,7 +182,7 @@ const Edit = (props) => {
 				const projectUrl = post.project_url || '';
 				if ( projectUrl ) {
 					buttonsHtml.push(
-						<a key="projecturl" href={ projectUrl } className="wpmozo_portfolio_slider_btn wpmozo_portfolio_slider_projecturl" target="_blank" rel="noopener noreferrer">
+						<a key="projecturl" href="javascript:void(0)" className="wpmozo_portfolio_slider_btn wpmozo_portfolio_slider_projecturl" target="_blank" rel="noopener noreferrer">
 							{ projectUrlText }
 						</a>
 					);
@@ -279,7 +279,7 @@ const Edit = (props) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, clientId, isEdit } ) }</style>
 
 			<div {...blockProps} onClick={selectBlock} id={`block-${attributes.ID}`}>
 				<div className={"wpmozo_swiper_wrapper" + equalHeightClass}

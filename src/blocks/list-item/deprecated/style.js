@@ -8,7 +8,8 @@ const generateDynamicStyle = ({ attributes, clientId }) => {
         'textHover',
         'item'
     ];
-    let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
+    let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes ),
+	parentAttributes = attributes.parentAtts;
     let iconFontSize = attributes.parentAtts ? attributes.parentAtts.iconFontSize : '';
 
 

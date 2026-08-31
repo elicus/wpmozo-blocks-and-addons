@@ -17,10 +17,6 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	return (
 		<>
 			<PanelBody title={ __( 'Display', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
-				<Notice status="warning" isDismissible={false}>
-					<p>{__('Wavy Gallery does not work in the Visual Builder. Please check the frontend to see the effect correctly.','wpmozo-blocks-and-addons')}</p>
-				</Notice>
-				<hr/>
 				<RangeControl
 					label={__('Images Width', 'wpmozo-blocks-and-addons')}
 					value={attributes.imagesWidth}

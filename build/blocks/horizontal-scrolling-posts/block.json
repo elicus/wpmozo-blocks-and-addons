@@ -97,6 +97,9 @@
     "titleTextColor": {
       "type": "string"
     },
+    "titleTextFont": {
+      "type": "string"
+    },
     "titleTextFontSize": {
       "type": "string"
     },
@@ -130,6 +133,9 @@
       "default": "left"
     },
     "excerptTextColor": {
+      "type": "string"
+    },
+    "excerptTextFont": {
       "type": "string"
     },
     "excerptTextFontSize": {
@@ -199,6 +205,9 @@
     },
     "catBKColor": {
       "type": "default"
+    },
+    "catTextFont": {
+      "type": "string"
     },
     "catTextFontSize": {
       "type": "string"
@@ -271,6 +280,9 @@
       "type": "string"
     },
     "metaTextAlign": {
+      "type": "string"
+    },
+    "metaTextFont": {
       "type": "string"
     },
     "metaTextFontSize": {

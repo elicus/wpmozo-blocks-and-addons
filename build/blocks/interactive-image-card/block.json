@@ -35,6 +35,9 @@
       "type": "string",
       "default": ""
     },
+    "titleNormalFont": {
+      "type": "string"
+    },
     "titleNormalFontSize": {
       "type": "string"
     },
@@ -55,6 +58,9 @@
       "type": "string"
     },
     "titleNormalLineHeight": {
+      "type": "string"
+    },
+    "titleHoverFont": {
       "type": "string"
     },
     "titleHoverFontSize": {
@@ -91,6 +97,9 @@
       "type": "string",
       "default": "#222222"
     },
+    "contentFont": {
+      "type": "string"
+    },
     "contentFontSize": {
       "type": "string"
     },
@@ -120,6 +129,9 @@
     "contentHoverColor": {
       "type": "string",
       "default": ""
+    },
+    "contentHoverFont": {
+      "type": "string"
     },
     "contentHoverFontSize": {
       "type": "string"

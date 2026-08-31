@@ -72,7 +72,6 @@ export default function Edit(props) {
 			isFirstRender.current = false;
 			return;
 		}
-		console.log('heloo there');
 		const event = new CustomEvent( 'WPMozoImageTickerPropsChanged' );
 		window.dispatchEvent( event );
 
@@ -80,7 +79,6 @@ export default function Edit(props) {
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-		console.log(attributes);
 	}, [attributes] );
 
 	const { getBlock, preferredStyle } = useSelect( ( select ) => {

@@ -25,7 +25,7 @@ if ( isset( $attributes['image'] ) && is_array( $attributes['image'] ) && isset(
 	$image = $attributes['image'];
 }
 if ( ! empty( $entrance_animation ) && 'fade' !== $entrance_animation ) {
-	wp_enqueue_style( 'dipl-tippy-animation-style', WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/all-animation.css' );
+	wp_enqueue_style( 'wpmozo-tippy-animation-style', WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/all-animation.css' );
 }
 echo $helpers::get_block_dynamic_style( 'advanced-tooltip', $attributes ); ?>
 <div <?php echo get_block_wrapper_attributes(array('class'=>'wpmozo-wrap-'.$attributes['ID'] . ' ' . 'wpmozo-advanced-tooltip' . ' ' .(isset($attributes['wrapCustomClass']) ? $attributes['wrapCustomClass'] : '' ))); ?> id="block-<?php echo esc_attr($attributes['ID']); ?>">

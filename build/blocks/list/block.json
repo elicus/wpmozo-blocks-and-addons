@@ -89,6 +89,9 @@
     "linkHoverColor": {
       "type": "string"
     },
+    "linkFont": {
+      "type": "string"
+    },
     "linkFontSize": {
       "type": "string"
     },
@@ -115,6 +118,9 @@
       "type": "string"
     },
     "linkLineHeight": {
+      "type": "string"
+    },
+    "linkHoverFont": {
       "type": "string"
     },
     "linkHoverFontSize": {
@@ -152,6 +158,9 @@
     "textHoverColor": {
       "type": "string"
     },
+    "textFont": {
+      "type": "string"
+    },
     "textFontSize": {
       "type": "string"
     },
@@ -178,6 +187,9 @@
       "type": "string"
     },
     "textLineHeight": {
+      "type": "string"
+    },
+    "textHoverFont": {
       "type": "string"
     },
     "textHoverFontSize": {

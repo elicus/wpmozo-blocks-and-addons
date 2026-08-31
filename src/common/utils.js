@@ -19,6 +19,7 @@ export function wpmozo_parse_style(property, style) {
 
 export function wpmozo_get_styleAtts(attributes, stylesKeys) {
 	const stylesTypes = {
+		Font: '',
 		FontSize: '',
 		FontAppearance: {fontStyle: '', fontWeight: ''},
 		LetterSpacing: '',
@@ -63,6 +64,7 @@ export function convertInlineStyle(options = {}, atts = {}) {
 		if (typeof value !== 'undefined' && value !== '') style += `${prop}: ${value};`;
 	};
 
+	append('font-family', options.Font);
 	append('font-size', options.FontSize);
 	append('letter-spacing', options.LetterSpacing);
 	append('text-decoration', options.Decoration);

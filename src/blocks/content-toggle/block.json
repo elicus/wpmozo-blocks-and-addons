@@ -36,6 +36,7 @@
         "titleOneIconSize": { "type": "number" },
         "titleOneIconSpacing": { "type": "number", "default": 5 },
         "titleOneIconColor": { "type": "string" },
+        "titleOneFont": { "type": "string" },
         "titleOneFontSize": { "type": "string" },
         "titleOneFontAppearance": {
             "type": "object",
@@ -55,6 +56,7 @@
         "titleTwoIconSize": { "type": "number" },
         "titleTwoIconSpacing": { "type": "number", "default": 5 },
         "titleTwoIconColor": { "type": "string" },
+        "titleTwoFont": { "type": "string" },
         "titleTwoFontSize": { "type": "string" },
         "titleTwoFontAppearance": {
             "type": "object",
@@ -71,6 +73,7 @@
 
         "contentOneColor": { "type": "string" },
         "contentOneBackground": { "type": "string" },
+        "contentOneFont": { "type": "string" },
         "contentOneFontSize": { "type": "string" },
         "contentOneFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
         "contentOneLetterSpacing": { "type": "string" },
@@ -83,6 +86,7 @@
 
         "contentTwoColor": { "type": "string" },
         "contentTwoBackground": { "type": "string" },
+        "contentTwoFont": { "type": "string" },
         "contentTwoFontSize": { "type": "string" },
         "contentTwoFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
         "contentTwoLetterSpacing": { "type": "string" },
@@ -95,6 +99,7 @@
 
         "titleOneHoverColor": { "type": "string" },
         "titleOneIconHoverColor": { "type": "string" },
+        "titleOneHoverFont": { "type": "string" },
         "titleOneHoverFontSize": { "type": "string" },
         "titleOneHoverLetterSpacing": { "type": "string" },
         "titleOneHoverDecoration": { "type": "string" },
@@ -109,6 +114,7 @@
 
         "titleTwoHoverColor": { "type": "string" },
         "titleTwoIconHoverColor": { "type": "string" },
+        "titleTwoHoverFont": { "type": "string" },
         "titleTwoHoverFontSize": { "type": "string" },
         "titleTwoHoverLetterSpacing": { "type": "string" },
         "titleTwoHoverDecoration": { "type": "string" },
@@ -123,6 +129,7 @@
 
         "contentOneHoverColor": { "type": "string" },
         "contentOneHoverBackground": { "type": "string" },
+        "contentOneHoverFont": { "type": "string" },
         "contentOneHoverFontSize": { "type": "string" },
         "contentOneHoverLetterSpacing": { "type": "string" },
         "contentOneHoverDecoration": { "type": "string" },
@@ -137,6 +144,7 @@
 
         "contentTwoHoverColor": { "type": "string" },
         "contentTwoHoverBackground": { "type": "string" },
+        "contentTwoHoverFont": { "type": "string" },
         "contentTwoHoverFontSize": { "type": "string" },
         "contentTwoHoverLetterSpacing": { "type": "string" },
         "contentTwoHoverDecoration": { "type": "string" },

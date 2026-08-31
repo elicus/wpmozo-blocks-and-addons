@@ -33,6 +33,7 @@
 		"globalTextColor": { "type": "string" },
 		"globalTextHoverColor": { "type": "string" },
 		"globalTextAlignment": { "type": "string" },
+		"globalFont": { "type": "string" },
 		"globalFontSize": { "type": "string" },
 		"globalFontAppearance": {
 			"type": "object",
@@ -49,6 +50,7 @@
 
 		"prePostTextColor": { "type": "string" },
 		"prePostTextHoverColor": { "type": "string" },
+		"prePostFont": { "type": "string" },
 		"prePostFontSize": { "type": "string" },
 		"prePostFontAppearance": {
 			"type": "object",
@@ -66,6 +68,7 @@
 
 		"animatedTextColor": { "type": "string" },
 		"animatedTextHoverColor": { "type": "string" },
+		"animatedFont": { "type": "string" },
 		"animatedFontSize": { "type": "string" },
 		"animatedFontAppearance": {
 			"type": "object",

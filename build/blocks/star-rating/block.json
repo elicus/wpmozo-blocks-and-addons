@@ -37,6 +37,9 @@
     "titleColor": {
       "type": "string"
     },
+    "titleFont": {
+      "type": "string"
+    },
     "titleFontSize": {
       "type": "string"
     },
@@ -66,6 +69,9 @@
       "type": "string"
     },
     "titleHoverColor": {
+      "type": "string"
+    },
+    "titleHoverFont": {
       "type": "string"
     },
     "titleHoverFontSize": {
@@ -106,6 +112,9 @@
     "ratingColor": {
       "type": "string"
     },
+    "ratingFont": {
+      "type": "string"
+    },
     "ratingFontSize": {
       "type": "string"
     },
@@ -135,6 +144,9 @@
       "type": "string"
     },
     "ratingHoverColor": {
+      "type": "string"
+    },
+    "ratingHoverFont": {
       "type": "string"
     },
     "ratingHoverFontSize": {
@@ -188,6 +200,9 @@
     "descriptionColor": {
       "type": "string"
     },
+    "descriptionFont": {
+      "type": "string"
+    },
     "descriptionFontSize": {
       "type": "string"
     },
@@ -217,6 +232,9 @@
       "type": "string"
     },
     "descriptionHoverColor": {
+      "type": "string"
+    },
+    "descriptionHoverFont": {
       "type": "string"
     },
     "descriptionHoverFontSize": {

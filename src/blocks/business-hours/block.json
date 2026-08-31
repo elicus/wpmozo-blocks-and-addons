@@ -27,6 +27,7 @@
 
 		"dayColor": { "type": "string" },
 		"dayFontSize": { "type": "string" },
+		"dayFont": { "type": "string" },
 		"dayLetterSpacing": { "type": "string" },
 		"dayDecoration": { "type": "string" },
 		"dayLetterCase": { "type": "string" },
@@ -39,6 +40,7 @@
 		"dayFontWeight": { "type": "string" },
 
 		"dayHoverColor": { "type": "string" },
+		"dayHoverFont": { "type": "string" },
 		"dayHoverFontSize": { "type": "string" },
 		"dayHoverLetterSpacing": { "type": "string" },
 		"dayHoverDecoration": { "type": "string" },
@@ -52,6 +54,7 @@
 		"dayHoverFontWeight": { "type": "string" },
 
 		"timeColor": { "type": "string" },
+		"timeFont": { "type": "string" },
 		"timeFontSize": { "type": "string" },
 		"timeLetterSpacing": { "type": "string" },
 		"timeDecoration": { "type": "string" },
@@ -65,6 +68,7 @@
 		"timeFontWeight": { "type": "string" },
 
 		"timeHoverColor": { "type": "string" },
+		"timeHoverFont": { "type": "string" },
 		"timeHoverFontSize": { "type": "string" },
 		"timeHoverLetterSpacing": { "type": "string" },
 		"timeHoverDecoration": { "type": "string" },

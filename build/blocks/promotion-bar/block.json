@@ -43,6 +43,9 @@
     "titleColor": {
       "type": "string"
     },
+    "titleFont": {
+      "type": "string"
+    },
     "titleFontSize": {
       "type": "string",
       "default": "26px"
@@ -73,6 +76,9 @@
       "type": "string"
     },
     "titleHoverColor": {
+      "type": "string"
+    },
+    "titleHoverFont": {
       "type": "string"
     },
     "titleHoverFontSize": {
@@ -109,6 +115,9 @@
     "descriptionColor": {
       "type": "string"
     },
+    "descriptionFont": {
+      "type": "string"
+    },
     "descriptionFontSize": {
       "type": "string"
     },
@@ -138,6 +147,9 @@
       "type": "string"
     },
     "descriptionHoverColor": {
+      "type": "string"
+    },
+    "descriptionHoverFont": {
       "type": "string"
     },
     "descriptionHoverFontSize": {
@@ -266,6 +278,9 @@
     "buttonColor": {
       "type": "string"
     },
+    "buttonFont": {
+      "type": "string"
+    },
     "buttonFontSize": {
       "type": "string"
     },
@@ -308,6 +323,9 @@
       "type": "string"
     },
     "buttonHoverColor": {
+      "type": "string"
+    },
+    "buttonHoverFont": {
       "type": "string"
     },
     "buttonHoverFontSize": {
@@ -413,6 +431,9 @@
     "digitsColor": {
       "type": "string"
     },
+    "digitsFont": {
+      "type": "string"
+    },
     "digitsFontSize": {
       "type": "string"
     },
@@ -463,6 +484,9 @@
     "labelsColor": {
       "type": "string"
     },
+    "labelsFont": {
+      "type": "string"
+    },
     "labelsFontSize": {
       "type": "string"
     },
@@ -500,6 +524,9 @@
       "default": ":"
     },
     "separatorColor": {
+      "type": "string"
+    },
+    "separatorFont": {
       "type": "string"
     },
     "separatorFontSize": {

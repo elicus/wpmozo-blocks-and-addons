@@ -38,7 +38,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				onChange={(newValue) => setAttributes({buttonAlign: newValue})}
 				value={attributes.buttonAlign}
 			/>
-						<MozoStates
+			<MozoStates
 				value={hoverState}
 				title={ __( 'Background', 'wpmozo-blocks-and-addons' ) }
 				onChange={ ( isHover ) => (

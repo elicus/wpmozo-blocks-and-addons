@@ -15,7 +15,8 @@ import {
 	WpmozoTypography,
 	WpmozoDimensions,
 	WpmozoRangeSize,
-	WpmozoBorder
+	WpmozoBorder,
+	MozoStates
 } from '../../../common/components';
 
 import { headingLevelsList } from '../../../common/utils.js';
@@ -281,7 +282,65 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				onChange={(newValue) => setAttributes({buttonFontSize: newValue})}
 				min={0} step={1} max={100}
 			/>
-			<BaseControl>
+
+
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={ props }
+						label={ __( 'Button Text', 'wpmozo-blocks-and-addons' ) }
+						ColorKey={ isHover ? "buttonTextHover" : "buttonText" }
+						ColorTypes={ [
+							{key: 'Color', label: __('Button Text Color', 'wpmozo-blocks-and-addons')},
+							{key: 'Background', label: __('Button Background', 'wpmozo-blocks-and-addons')}
+						] }
+					/>
+				) }
+			/>
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={ props }
+						label={ __( 'Button Icon', 'wpmozo-blocks-and-addons' ) }
+						ColorKey={ isHover ? "iconTextHover" : "iconText" }
+						ColorTypes={ [
+							{key: 'Color', label: __('Button Icon Color', 'wpmozo-blocks-and-addons')}
+						] }
+					/>
+				) }
+			/>
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Border', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoBorder props={ props }
+						label={ __( 'Button Border', 'wpmozo-blocks-and-addons' ) }
+						BorderKey={ isHover ? "buttonHover" : "button" }
+						BorderTypes={ { border: true, radius: true } }
+					/>
+				) }
+			/>
+
+
+
+			{/* <BaseControl>
 				<ButtonGroup style={ { display:'flex' } }>
 					<Button style={ { flex: 1, justifyContent: 'center' } }
 						className="wpmozo-button-tabs-btn"
@@ -425,7 +484,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 						/>
 					</>
 				)}
-			</BaseControl>
+			</BaseControl> */}
 			<WpmozoDimensions
 				DimensionKey='borderDimensions'
 				DimensionsTypes={{

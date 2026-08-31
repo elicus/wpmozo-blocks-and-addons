@@ -130,6 +130,9 @@
     "titleColor": {
       "type": "string"
     },
+    "titleFont": {
+      "type": "string"
+    },
     "titleFontSize": {
       "type": "string"
     },
@@ -163,6 +166,9 @@
       "type": "string"
     },
     "titleHoverColor": {
+      "type": "string"
+    },
+    "titleHoverFont": {
       "type": "string"
     },
     "titleHoverFontSize": {
@@ -204,6 +210,9 @@
     "descriptionTextColor": {
       "type": "string"
     },
+    "descriptionTextFont": {
+      "type": "string"
+    },
     "descriptionTextFontSize": {
       "type": "string"
     },
@@ -220,6 +229,9 @@
       "type": "string"
     },
     "descriptionHoverTextColor": {
+      "type": "string"
+    },
+    "descriptionHoverTextFont": {
       "type": "string"
     },
     "descriptionHoverTextFontSize": {
@@ -245,6 +257,9 @@
       "type": "string"
     },
     "contentHoverColor": {
+      "type": "string"
+    },
+    "contentFont": {
       "type": "string"
     },
     "contentFontSize": {
@@ -324,6 +339,9 @@
     "buttonTextAlign": {
       "type": "string",
       "default": "left"
+    },
+    "buttonTextFont": {
+      "type": "string"
     },
     "buttonTextFontSize": {
       "type": "string"

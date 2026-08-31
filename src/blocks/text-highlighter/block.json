@@ -39,6 +39,7 @@
 		"globalTextColor": { "type": "string" },
 		"globalTextHoverColor": { "type": "string" },
 		"globalTextAlignment": { "type": "string" },
+		"globalFont": { "type": "string" },
 		"globalFontSize": { "type": "string" },
 		"globalFontAppearance": {
 			"type": "object",
@@ -56,6 +57,7 @@
 		"preTextColor": { "type": "string" },
 		"preTextHoverColor": { "type": "string" },
 		"preTextAlignment": { "type": "string" },
+		"preFont": { "type": "string" },
 		"preFontSize": { "type": "string" },
 		"preFontAppearance": {
 			"type": "object",
@@ -74,6 +76,7 @@
 		"mainTextColor": { "type": "string" },
 		"mainTextHoverColor": { "type": "string" },
 		"mainTextAlignment": { "type": "string" },
+		"mainFont": { "type": "string" },
 		"mainFontSize": { "type": "string" },
 		"mainFontAppearance": {
 			"type": "object",
@@ -92,6 +95,7 @@
 		"postTextColor": { "type": "string" },
 		"postTextHoverColor": { "type": "string" },
 		"postTextAlignment": { "type": "string" },
+		"postFont": { "type": "string" },
 		"postFontSize": { "type": "string" },
 		"postFontAppearance": {
 			"type": "object",

@@ -52,6 +52,9 @@
       "type": "string",
       "default": "h4"
     },
+    "titleFont": {
+      "type": "string"
+    },
     "titleFontSize": {
       "type": "string",
       "default": "18px"
@@ -91,6 +94,9 @@
       "type": "string"
     },
     "descriptionAlign": {
+      "type": "string"
+    },
+    "descriptionFont": {
       "type": "string"
     },
     "descriptionFontSize": {
@@ -216,6 +222,9 @@
       "type": "string"
     },
     "buttonAlignment": {
+      "type": "string"
+    },
+    "buttonFont": {
       "type": "string"
     },
     "buttonFontSize": {

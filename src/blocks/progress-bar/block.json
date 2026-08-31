@@ -37,6 +37,7 @@
 		"percentageHoverColor": { "type": "string" },
 
 		"percentageColor": { "type": "string" },
+		"percentageFont": { "type": "string" },
 		"percentageFontSize": { "type": "string" },
 		"percentageFontAppearance": {
 			"type": "object",

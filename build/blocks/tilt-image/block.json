@@ -41,6 +41,9 @@
     "titleColor": {
       "type": "string"
     },
+    "titleFont": {
+      "type": "string"
+    },
     "titleFontSize": {
       "type": "string"
     },
@@ -71,6 +74,9 @@
       "type": "string"
     },
     "descriptionColor": {
+      "type": "string"
+    },
+    "descriptionFont": {
       "type": "string"
     },
     "descriptionFontSize": {
@@ -142,6 +148,9 @@
       "type": "string"
     },
     "buttonBackgroundColor": {
+      "type": "string"
+    },
+    "buttonFont": {
       "type": "string"
     },
     "buttonFontSize": {

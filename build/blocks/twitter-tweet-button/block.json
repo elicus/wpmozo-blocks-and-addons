@@ -54,6 +54,9 @@
     "fallbackTextColor": {
       "type": "string"
     },
+    "fallbackTextFont": {
+      "type": "string"
+    },
     "fallbackTextFontSize": {
       "type": "string",
       "default": "16px"

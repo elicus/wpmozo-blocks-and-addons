@@ -43,6 +43,9 @@
     "headingHoverBackground": {
       "type": "string"
     },
+    "headingHoverFont": {
+      "type": "string"
+    },
     "headingHoverFontSize": {
       "type": "string"
     },
@@ -103,6 +106,9 @@
     "preTextDimensionsmargin": {
       "type": "object"
     },
+    "preTextFont": {
+      "type": "string"
+    },
     "preTextFontSize": {
       "type": "string"
     },
@@ -135,6 +141,9 @@
       "type": "string"
     },
     "preTextLineHeight": {
+      "type": "string"
+    },
+    "preTextHoverFont": {
       "type": "string"
     },
     "preTextHoverFontSize": {
@@ -197,6 +206,9 @@
     "mainTextDimensionsmargin": {
       "type": "object"
     },
+    "mainTextFont": {
+      "type": "string"
+    },
     "mainTextFontSize": {
       "type": "string"
     },
@@ -229,6 +241,9 @@
       "type": "string"
     },
     "mainTextLineHeight": {
+      "type": "string"
+    },
+    "mainTextHoverFont": {
       "type": "string"
     },
     "mainTextHoverFontSize": {
@@ -291,6 +306,9 @@
     "postTextDimensionsmargin": {
       "type": "object"
     },
+    "postTextFont": {
+      "type": "string"
+    },
     "postTextFontSize": {
       "type": "string"
     },
@@ -323,6 +341,9 @@
       "type": "string"
     },
     "postTextLineHeight": {
+      "type": "string"
+    },
+    "postTextHoverFont": {
       "type": "string"
     },
     "postTextHoverFontSize": {

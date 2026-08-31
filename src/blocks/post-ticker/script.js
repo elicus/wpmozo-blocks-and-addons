@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { wpmozo_is_empty } from "../../common/utils";
 
 $(document).ready(function (e) {
 
@@ -18,10 +19,16 @@ $(document).ready(function (e) {
 	});
 });
 
+let wpmozoPostTickerSwipers = {};
+
 function initPostTicker($galleryContainer, attributes) {
 	let thisObj = $($galleryContainer),
 		wrapObj = thisObj.find(".wpmozo_post_ticker_wrap"),
 		$orderId   = thisObj.attr('id');
+		// Destroy if already exists.
+		if ( wpmozoPostTickerSwipers[$orderId] && ! wpmozo_is_empty( wpmozoPostTickerSwipers[$orderId] ) ) {
+			wpmozoPostTickerSwipers[$orderId].destroy( true, true );
+		}
 
 	const $orderClass = wrapObj
 		.prop("class")
@@ -85,6 +92,7 @@ function initPostTicker($galleryContainer, attributes) {
 				swipperSlider.autoplay.stop();
 			}
 		} );
+		wpmozoPostTickerSwipers[$orderId] = swipperSlider;
 	}
 }
 

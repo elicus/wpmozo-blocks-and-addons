@@ -45,6 +45,9 @@
     "secondaryTextColor": {
       "type": "string"
     },
+    "secondaryTextFont": {
+      "type": "string"
+    },
     "secondaryTextFontSize": {
       "type": "string"
     },
@@ -72,6 +75,9 @@
       "type": "string"
     },
     "buttonAlign": {
+      "type": "string"
+    },
+    "buttonFont": {
       "type": "string"
     },
     "buttonFontSize": {
@@ -173,6 +179,9 @@
     "gradientBackgroundColorHover": {
       "type": "string"
     },
+    "buttonHoverFont": {
+      "type": "string"
+    },
     "buttonHoverFontSize": {
       "type": "string"
     },
@@ -195,6 +204,9 @@
         "fontStyle": "",
         "fontWeight": ""
       }
+    },
+    "secondaryTextHoverFont": {
+      "type": "string"
     },
     "secondaryTextHoverFontSize": {
       "type": "string"

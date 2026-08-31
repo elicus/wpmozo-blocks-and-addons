@@ -98,6 +98,9 @@
     "nameColor": {
       "type": "string"
     },
+    "nameFont": {
+      "type": "string"
+    },
     "nameFontSize": {
       "type": "string"
     },
@@ -127,6 +130,9 @@
       "type": "string"
     },
     "priceColor": {
+      "type": "string"
+    },
+    "priceFont": {
       "type": "string"
     },
     "priceFontSize": {
@@ -160,6 +166,9 @@
     "currencyColor": {
       "type": "string"
     },
+    "currencyFont": {
+      "type": "string"
+    },
     "currencyFontSize": {
       "type": "string"
     },
@@ -191,6 +200,9 @@
     "descriptionColor": {
       "type": "string"
     },
+    "descriptionFont": {
+      "type": "string"
+    },
     "descriptionFontSize": {
       "type": "string"
     },
@@ -220,6 +232,9 @@
       "type": "string"
     },
     "periodColor": {
+      "type": "string"
+    },
+    "periodFont": {
       "type": "string"
     },
     "periodFontSize": {

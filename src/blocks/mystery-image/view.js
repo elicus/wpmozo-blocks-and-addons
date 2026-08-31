@@ -63,7 +63,7 @@ $(document).ready(function(e) {
 				delegate: 'a.wpmozo-mystery-image-anchor',
 				type: 'image',
 				closeOnContentClick: false,
-				closeBtnInside: true,
+				closeBtnInside: false,
 				mainClass: mainClass,
 				removalDelay: duration,
 				zoom: {
@@ -74,7 +74,7 @@ $(document).ready(function(e) {
 				gallery: { enabled: false },
 				image: {
 					markup: '<div class="mfp-figure">' +
-						'<button type="button" class="mfp-close" aria-label="Close dialog">×</button>' +
+						'<div class="mfp-close"></div>' +
 						'<div class="mfp-img"></div>' +
 						'</div>',
 					tError: '<a href="%url%">The image</a> could not be loaded.',

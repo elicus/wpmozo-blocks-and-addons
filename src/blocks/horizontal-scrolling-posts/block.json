@@ -38,6 +38,7 @@
 		"titleTextAlignment": {"type": "string","default": "left"},
 		"nameHeadingLevel": {"type":"string","default": "h2"},
 		"titleTextColor": {"type":"string"},
+		"titleTextFont": { "type": "string" },
 		"titleTextFontSize": { "type": "string" },
 		"titleTextFontAppearance": {
 			"type": "object",
@@ -55,6 +56,7 @@
 
 		"excerptTextAlignment": {"type": "string","default": "left"},
 		"excerptTextColor": {"type":"string"},
+		"excerptTextFont": { "type": "string" },
 		"excerptTextFontSize": { "type": "string" },
 		"excerptTextFontAppearance": {
 			"type": "object",
@@ -85,6 +87,7 @@
 
 		"catTextColor": {"type": "default"},
 		"catBKColor": {"type": "default"},
+		"catTextFont": { "type": "string" },
 		"catTextFontSize": { "type": "string" },
 		"catTextFontAppearance": {
 			"type": "object",
@@ -116,6 +119,7 @@
 
 		"metaTextColor": {"type": "string"},
 		"metaTextAlign": {"type": "string"},
+		"metaTextFont": { "type": "string" },
 		"metaTextFontSize": { "type": "string" },
 		"metaTextFontAppearance": {
 			"type": "object",

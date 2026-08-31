@@ -214,6 +214,9 @@
       "type": "string",
       "default": ""
     },
+    "textFont": {
+      "type": "string"
+    },
     "textFontSize": {
       "type": "string",
       "default": "1rem"

@@ -4,7 +4,8 @@ import {
 	__experimentalLetterSpacingControl,
 	__experimentalTextTransformControl,
 	__experimentalTextDecorationControl,
-	LineHeightControl
+	LineHeightControl,
+	__experimentalFontFamilyControl
 } from '@wordpress/block-editor';
 
 import {
@@ -17,8 +18,14 @@ import { compose } from '@wordpress/compose';
 import { Fragment } from '@wordpress/element';
 import './style.scss';
 import {wpmozo_is_empty} from '../../utils.js';
+import { useSelect } from '@wordpress/data';
 
 const WpmozoTypography = (args) => {
+
+	const fontFamilies = useSelect((select) => {
+		const settings = select('core/block-editor').getSettings();
+		return settings?.__experimentalFeatures?.typography?.fontFamilies?.theme || [];
+	}, []);
 	const { TypographyKey, props } = args;
 	const preAttributes = props.preAttributes;
 	const label = args.label || __('Typography', 'wpmozo-blocks-and-addons');
@@ -81,6 +88,7 @@ const WpmozoTypography = (args) => {
 			resetAll={() => {
 				if (TypoTypes === null) {
 					TypoTypes = {
+						Font: '',
 						FontSize: '',
 						LetterSpacing: '',
 						Decoration: '',
@@ -101,6 +109,14 @@ const WpmozoTypography = (args) => {
 				}
 			}}
 		>
+			{(!TypoTypes || TypoTypes.Font !== undefined) && (
+				<__experimentalFontFamilyControl
+					fontFamilies={fontFamilies}
+					onChange={(val) => onChange('Font', val)}
+					value={props.attributes[TypographyKey + 'Font']}
+				/>
+			)}
+			
 			{(!TypoTypes || TypoTypes.FontSize !== undefined) && (
 				<__experimentalToolsPanelItem
 					label={__('Font Size', 'wpmozo-blocks-and-addons')}

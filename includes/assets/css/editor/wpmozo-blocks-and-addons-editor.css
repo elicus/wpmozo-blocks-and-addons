@@ -187,11 +187,13 @@
 
 /* Caret icon */
 .wpmozo-repeater-row .wpmozo-repeator-caret:focus, 
-.wpmozo-repeater-row .wpmozo-repeator-caret:active {
+.wpmozo-repeater-row .wpmozo-repeator-caret:active{
 	box-shadow: none;
+	outline:none;
 }
 
 .wpmozo-repeater-row.wpmozo-business-hours-repeator .wpmz-clone-div,
+.wpmozo-feature-row.wpmozo-pricing-table-repeator .wpmz-clone-div,
 .wpmozo-repeater-row.wpmozo-dropdown-item-repeator .wpmz-clone-div{
 	float: right;
 	display: none;
@@ -204,11 +206,16 @@
 	vertical-align: super;
 }
 
-.wpmozo-repeater-row.wpmozo-business-hours-repeator .wpmz-clone-div .wpmz-day-clone{
+.wpmozo-repeater-row.wpmozo-business-hours-repeator .wpmz-clone-div .wpmz-day-clone,
+.wpmozo-repeater-row.wpmozo-pricing-table-repeator .wpmz-clone-div .wpmz-list-clone{
 	margin-right: 10px;
+}
+.wpmozo-repeater-row.wpmozo-pricing-table-repeator .wpmz-clone-div .wpmz-icon-clone{
+	font-size: 16px;
 }
 
 .wpmozo-repeater-row.wpmozo-business-hours-repeator .components-button.wpmozo-repeator-caret,
+.wpmozo-repeater-row.wpmozo-pricing-table-repeator .components-button.wpmozo-repeator-caret,
 .wpmozo-repeater-row.wpmozo-dropdown-item-repeator .components-button.wpmozo-repeator-caret {
 	width: 100%;
 	justify-content: space-between;

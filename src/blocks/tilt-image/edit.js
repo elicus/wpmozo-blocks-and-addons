@@ -86,7 +86,7 @@ export default function Edit( props ) {
 
 	const button = (
 		<div className="wpmozo-bna-tilt-image-button-wrapper">
-			<a href={attributes.buttonUrl} className="wpmozo-bna-tilt-image-button wp-block-button__link wp-element-button" target={linkTarget}>
+			<a href="javascript:void(0)" className="wpmozo-bna-tilt-image-button wp-block-button__link wp-element-button" target={linkTarget}>
 				<RichText
 					value={ attributes.buttonText }
 					onChange={ ( newValue ) => setAttributes( { buttonText: newValue } ) }

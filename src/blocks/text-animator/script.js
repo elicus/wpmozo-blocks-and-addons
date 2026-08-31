@@ -467,13 +467,11 @@ function wpmozoFadeEffect( animatedBlock, words ) {
 		}
 		animatedBlock.removeClass( 'wpmozo-fadeIn' );
 		animatedBlock.addClass( 'wpmozo-fadeOut' );
-		console.log(words.length);
 		setTimeout( function() {
 			animatedBlock.fadeIn( '100', 'swing', function() {
 				animatedBlock.removeClass( 'wpmozo-fadeOut' );
 				animatedBlock.addClass( 'wpmozo-fadeIn' );
 				animatedBlock.html( words[i] );
-				console.log(words[i]);
 			} );
 		}, animationTime );
 	};

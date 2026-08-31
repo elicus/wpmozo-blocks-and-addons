@@ -204,7 +204,7 @@ const Edit = (props) => {
         <Fragment>
             <Inspector attributes={attributes} setAttributes={setAttributes} />
             <style>
-                {generateDynamicStyle({ attributes, clientId })}
+                {generateDynamicStyle({ attributes, clientId, isEdit })}
             </style>
             <div {...blockProps} id={`block-${attributes.ID}`}>
                 <div 

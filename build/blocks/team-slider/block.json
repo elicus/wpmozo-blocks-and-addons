@@ -241,6 +241,9 @@
     "nameColor": {
       "type": "string"
     },
+    "nameFont": {
+      "type": "string"
+    },
     "nameFontSize": {
       "type": "string",
       "default": "22px"
@@ -280,6 +283,9 @@
     "designationColor": {
       "type": "string"
     },
+    "designationFont": {
+      "type": "string"
+    },
     "designationFontSize": {
       "type": "string",
       "default": "18px"
@@ -315,6 +321,9 @@
     "descriptionColor": {
       "type": "string"
     },
+    "descriptionFont": {
+      "type": "string"
+    },
     "descriptionFontSize": {
       "type": "string",
       "default": "16px"
@@ -348,6 +357,9 @@
       "type": "string"
     },
     "skillColor": {
+      "type": "string"
+    },
+    "skillFont": {
       "type": "string"
     },
     "skillFontSize": {
@@ -514,6 +526,9 @@
     "popupNameColor": {
       "type": "string"
     },
+    "popupNameFont": {
+      "type": "string"
+    },
     "popupNameFontSize": {
       "type": "string",
       "default": "24px"
@@ -547,6 +562,9 @@
       "type": "string"
     },
     "popupDesignationColor": {
+      "type": "string"
+    },
+    "popupDesignationFont": {
       "type": "string"
     },
     "popupDesignationFontSize": {
@@ -584,6 +602,9 @@
     "popupDescriptionColor": {
       "type": "string"
     },
+    "popupDescriptionFont": {
+      "type": "string"
+    },
     "popupDescriptionFontSize": {
       "type": "string",
       "default": "16px"
@@ -617,6 +638,9 @@
       "type": "string"
     },
     "popupSkillColor": {
+      "type": "string"
+    },
+    "popupSkillFont": {
       "type": "string"
     },
     "popupSkillFontSize": {
@@ -727,6 +751,9 @@
     "buttonColor": {
       "type": "string"
     },
+    "buttonFont": {
+      "type": "string"
+    },
     "buttonFontSize": {
       "type": "string"
     },
@@ -769,6 +796,9 @@
       "type": "object"
     },
     "buttonHoverColor": {
+      "type": "string"
+    },
+    "buttonHoverFont": {
       "type": "string"
     },
     "buttonHoverFontSize": {

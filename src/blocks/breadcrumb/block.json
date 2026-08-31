@@ -62,6 +62,7 @@
 		"homeLinkIconSizeFontSize": { "type": "string" },
 
 		"textColor": { "type": "string", "default": "" },
+		"textFont": { "type": "string" },
 		"textFontSize": { "type": "string", "default": "1rem" },
 		"textFontAppearance": { "type": "object", "default": { "fontStyle": "", "fontWeight": "" } },
 		"textLetterSpacing": { "type": "string" },

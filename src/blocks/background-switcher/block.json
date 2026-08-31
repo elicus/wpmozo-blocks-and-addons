@@ -26,6 +26,7 @@
 
 		"titleAlign": { "type": "string" },
 		"titleColor": { "type": "string" },
+		"titleFont": { "type": "string" },
 		"titleFontSize": { "type": "string", "default": "22px" },
 		"titleLetterSpacing": { "type": "string" },
 		"titleDecoration": { "type": "string" },
@@ -40,6 +41,7 @@
 
 		"descriptionAlign": { "type": "string" },
 		"descriptionColor": { "type": "string" },
+		"descriptionFont": { "type": "string" },
 		"descriptionFontSize": { "type": "string", "default": "16px" },
 		"descriptionLetterSpacing": { "type": "string" },
 		"descriptionDecoration": { "type": "string" },

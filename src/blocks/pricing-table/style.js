@@ -14,7 +14,9 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 			'features',
 			'featuresDimensions',
 			'borderDimensions',
-			'wrapper'
+			'wrapper',
+			'button',
+			'buttonHover'
 		];
 	let convertedStyle = convertInlineStyleStr(toConvertStyles, attributes);
 
@@ -148,11 +150,8 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 		`.wpmozo-bna-button{
 				${attributes.buttonTextColor ? `color: ${attributes.buttonTextColor};` : ''}
 				${attributes.buttonTextBackground ? `background-color: ${attributes.buttonTextBackground};` : ''}
-				${attributes.borderSelection ? `border-style: ${attributes.borderSelection};` : ''}
-				${attributes.borderWidth ? `border-width: ${attributes.borderWidth};` : ''}
-				${attributes.borderRadius ? `border-radius: ${attributes.borderRadius};` : ''}
-				${attributes.borderColor ? `border-color: ${attributes.borderColor};` : ''}
 				${convertedStyle.borderDimensions || ''}
+				${convertedStyle.button || ''}
 				transition: all 300ms;
 		  }`
 	);
@@ -167,22 +166,13 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 		? `.wpmozo-bna-button:hover${isEditor('.wpmozo-bna-button')}{
 				${attributes.buttonTextHoverColor ? `color: ${attributes.buttonTextHoverColor};` : ''}
 				${attributes.buttonTextHoverBackground ? `background-color: ${attributes.buttonTextHoverBackground};` : ''}
-				${attributes.borderSelectionHover ? `border-style: ${attributes.borderSelectionHover};` : ''}
-				${attributes.borderWidthHover ? `border-width: ${attributes.borderWidthHover};` : ''}
-				${attributes.borderRadiusHover ? `border-radius: ${attributes.borderRadiusHover};` : ''}
-				${attributes.borderHoverColor ? `border-color: ${attributes.borderHoverColor};` : ''}
+				${convertedStyle.buttonHover || ''}
 		  }`
 		: ''
 	);
 
-	normalcss.push(
-		( attributes.iconTextColor || attributes.iconTextBackground )
-		? `.wpmozo-bna-button-icon{
-				${attributes.iconTextColor ? `color: ${attributes.iconTextColor};` : ''}
-				${attributes.iconTextBackground ? `background-color: ${attributes.iconTextBackground};` : ''}
-		  }`
-		: ''
-	);
+	normalcss.push( attributes.iconTextColor ? `.wpmozo-bna-button-icon{ color: ${attributes.iconTextColor}; }` : '' );
+	hovercss.push( attributes.iconTextHoverColor ? `.wpmozo-bna-button:hover .wpmozo-bna-button-icon${isEditor('.wpmozo-bna-button .wpmozo-bna-button-icon')}{ color: ${attributes.iconTextHoverColor};}`: '' );
 
 	normalcss.push( attributes.buttonFontSize ? `.wpmozo-bna-pricing-table-button-wrapper .wpmozo-bna-button{ font-size: ${attributes.buttonFontSize}px; }` : '' );
 

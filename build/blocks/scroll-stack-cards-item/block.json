@@ -97,6 +97,9 @@
     "titleLavel": {
       "type": "string"
     },
+    "titleFont": {
+      "type": "string"
+    },
     "titleFontSize": {
       "type": "string"
     },
@@ -135,6 +138,9 @@
       "type": "string"
     },
     "descriptionAlign": {
+      "type": "string"
+    },
+    "descriptionFont": {
       "type": "string"
     },
     "descriptionFontSize": {
@@ -178,6 +184,9 @@
       "type": "string"
     },
     "buttonAlignment": {
+      "type": "string"
+    },
+    "buttonFont": {
       "type": "string"
     },
     "buttonFontSize": {
