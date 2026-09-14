@@ -234,6 +234,9 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 			: ''
 		);
 	}
+	if(attributes.showProjectUrl || attributes.showReadMore){
+		normalcss.push(attributes.globalTextAlign  ? `.wpmozo_portfolio_slider_button_wrap{justify-content: ${attributes.globalTextAlign}};` : '' );
+	};
 
 	// Portfolio card wrapper.
 	if ( attributes.layout === 'layout2' ) {

@@ -421,8 +421,8 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 							ColorKey={ isHover ? "projectUrlHover" : "projectUrl" }
 							props={ props }
 							ColorTypes={ [
-								{ key: 'Color', label: __( 'Categories Color', 'wpmozo-blocks-and-addons' ) },
-								{ key: 'Background', label: __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
+								{ key: 'Color', label: __( 'Button Color', 'wpmozo-blocks-and-addons' ) },
+								{ key: 'Background', label: __( 'Button Background', 'wpmozo-blocks-and-addons' ) }
 							] }
 						/>
 					) }

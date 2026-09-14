@@ -93,7 +93,7 @@ const Edit = (props) => {
 			let postExcerpt = '';
 			if ( post.content.rendered ) {
 				postExcerpt = <div className="wpmozo_testimonial_desc"
-					dangerouslySetInnerHTML={ {__html: modifiedContent } }
+					dangerouslySetInnerHTML={ {__html: modifiedContent ?? '' } }
 				/>;
 			}
 

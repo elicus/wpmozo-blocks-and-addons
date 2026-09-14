@@ -472,7 +472,6 @@ function wpmozoFadeEffect( animatedBlock, words ) {
 				animatedBlock.removeClass( 'wpmozo-fadeOut' );
 				animatedBlock.addClass( 'wpmozo-fadeIn' );
 				animatedBlock.html( words[i] );
-				console.log(words[i]);
 			} );
 		}, animationTime );
 	};

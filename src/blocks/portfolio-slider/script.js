@@ -122,7 +122,7 @@ function initWPMozoPortfolioSlider( blockObj ) {
 	}
 
 	let autoplay_speed      = ( settings?.autoplay_delay ) ?? 3000,
-		pause_on_hover      = ( settings?.pause_on_hover ) ?? 'true',
+		pause_on_hover      = ( settings?.pause_on_hover ) ?? 'false',
 		transition_duration = ( settings?.trans_duration ) ?? 1000,
 		loop_param          = ( 'true' === settings?.enable_loop ) ? true : false,
 		dynamic_bullets     = ( 'true' === settings?.enable_dynamic_dots ) ? true : false;
@@ -147,7 +147,9 @@ function initWPMozoPortfolioSlider( blockObj ) {
 	if ( 'true' === settings?.autoplay ) {
 		$autoplay_param = {
 			delay: parseInt( autoplay_speed ),
-			disableOnInteraction: ( 'on' === pause_on_hover ) ? true : false,
+			disableOnInteraction: ( 'true' === pause_on_hover ) ? true : false,
+			pauseOnMouseEnter: ( 'true' === pause_on_hover ) ? true : false,
+			stopOnLastSlide: true
 		};
 	}
 	let $slide_setting_cube = false;
@@ -216,22 +218,24 @@ function initWPMozoPortfolioSlider( blockObj ) {
 	} );
 
 	wrapObj.addClass( 'wpmozo-slider-initialized' );
-	if ( 'true' === pause_on_hover && 'true' === settings?.autoplay ) {
-		$( '#' + $orderId + ' .swiper-container' ).on( 'mouseleave', function(e) {
-			if ( typeof swipperSlider?.autoplay?.stop === "function" ) {
-				swipperSlider.autoplay.stop();
-			}
-		} );
-		$( '#' + $orderId + ' .swiper-container' ).on( 'mouseenter', function(e) {
-			if ( typeof swipperSlider?.autoplay?.start === "function" ) {
-				swipperSlider.autoplay.start();
-			}
-		} );
-	}
-	if ( 'true' !== settings?.enable_loop ) {
-		swipperSlider.on( 'reachEnd', function() {
-			swipperSlider.autoplay = false;
-		} );
+	if(window.self !== window.top){
+		if ( 'true' === pause_on_hover && 'true' === settings?.autoplay ) {
+			wrapObj.find('.swiper-container').on( 'mouseenter', function(e) {
+				if ( typeof swipperSlider?.autoplay?.stop === "function" ) {
+					swipperSlider.autoplay.stop();
+				}
+			} );
+			wrapObj.find('.swiper-container').on( 'mouseleave', function(e) {
+				if ( typeof swipperSlider?.autoplay?.start === "function" ) {
+					swipperSlider.autoplay.start();
+				}
+			} );
+		}
+		if ( 'true' !== settings?.enable_loop ) {
+			swipperSlider.on( 'reachEnd', function() {
+				swipperSlider.autoplay = false;
+			} );
+		}
 	}
 
 	// Add the swipers object to global vars.

@@ -13,6 +13,7 @@ import {
 	WpmozoTypography,
 	WpmozoColorPicker,
 	WpmozoTextShadow,
+	WpmozoRangeSize,
 	MozoStates
 } from "../../../common/components";
 import { headingLevelsList } from '../../../common/utils.js';
@@ -28,72 +29,26 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 	}
 
 	return ( <>
-
-	{ attributes.showNumber && (
-		<PanelBody title={__('Percentage Text', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
-			<MozoStates
-				value={hoverState}
-				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
-				onChange={ ( isHover ) => (
-						isHover ? setHoverState(true) : setHoverState(false),
-						setAttributes({wrapIsHover: !hoverState})
-					)
-				}
-				control={ ( isHover ) => (
-					<WpmozoColorPicker props={ props }
-						label={ __( 'Percentage Color', 'wpmozo-blocks-and-addons' ) }
-						ColorKey={ isHover ? "percentageHover" : "percentage" }
-						ColorTypes={ [
-							{key: 'Color', label: __('Percentage Text Color', 'wpmozo-blocks-and-addons')}
-						] }
-					/>
-				) }
-			/>
-
-			{ 'bar' === attributes.layout && (
+		<PanelBody title={ __( `${attributes.layout.replace(/(^|_)([a-z])/g, (_, separator, letter) => { return (separator ? " " : "") + letter.toUpperCase(); })} Styling`, 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
+			{'fixed' !== attributes.position && 
 				<WpmozoAlignment
-					label={ __( 'Percentage Alignment', 'wpmozo-blocks-and-addons' ) }
-					onChange={ (newValue) => setAttributes({percentAlign: newValue } ) }
-					value={ attributes.percentAlign }
+					label={ __( 'Alignment', 'wpmozo-blocks-and-addons' ) }
+					onChange={ (newValue) => setAttributes({barAlign: newValue } ) }
+					value={ attributes.barAlign }
 				/>
-			) }
-			<WpmozoTypography
-				TypographyKey="percentage"
-				props={props}
-			/>
-			<WpmozoTextShadow
-				TextShadowKey="percentageTextShadow"
-				props={props}
-				label={ __( 'Percentage Text Shadow', 'wpmozo-blocks-and-addons' ) }
-			/>
-		</PanelBody>
-	) }
-
-
-		<PanelBody title={ __( 'Bar Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
-			{ 'bar' === attributes.layout && (
-				<RangeControl
-					label={ __( 'Bar Size', 'wpmozo-blocks-and-addons' ) }
-					value={ attributes.barSize }
-					onChange={ (newValue) => setAttributes( { barSize: newValue } ) }
-					min={ 5 }
-					max={ 150 }
-					step={ 1 }
-					__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+			}
+			{ 'bar' === attributes.layout && (<>
+				<WpmozoRangeSize 
+					props={props}
+					label={ __( 'Bar Width', 'wpmozo-blocks-and-addons') }
+					rangeSizeKey='barSize'
 				/>
-			) }
-
-			{ 'bar' === attributes.layout && 'vertical' === attributes.barDirection && (
-				<RangeControl
-					label={ __( 'Bar Height', 'wpmozo-blocks-and-addons' ) }
-					value={ attributes.barHeight }
-					onChange={ (newValue) => setAttributes( { barHeight: newValue } ) }
-					min={ 1 }
-					max={ 1200 }
-					step={ 1 }
-					__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+				<WpmozoRangeSize 
+					props={props}
+					label={ __( 'Bar Height', 'wpmozo-blocks-and-addons') }
+					rangeSizeKey='barHeight'
 				/>
-			) }
+			</>) }
 
 			{ 'bar' !== attributes.layout && (
 				<RangeControl
@@ -170,5 +125,45 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				/>
 			) }
 		</PanelBody>
+
+		{ attributes.showNumber && (
+			<PanelBody title={__('Percentage Text', 'wpmozo-blocks-and-addons')} className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
+				<MozoStates
+					value={hoverState}
+					title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( isHover ) => (
+							isHover ? setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)
+					}
+					control={ ( isHover ) => (
+						<WpmozoColorPicker props={ props }
+							label={ __( 'Percentage Color', 'wpmozo-blocks-and-addons' ) }
+							ColorKey={ isHover ? "percentageHover" : "percentage" }
+							ColorTypes={ [
+								{key: 'Color', label: __('Percentage Text Color', 'wpmozo-blocks-and-addons')}
+							] }
+						/>
+					) }
+				/>
+
+				{ 'bar' === attributes.layout && (
+					<WpmozoAlignment
+						label={ __( 'Percentage Alignment', 'wpmozo-blocks-and-addons' ) }
+						onChange={ (newValue) => setAttributes({percentAlign: newValue } ) }
+						value={ attributes.percentAlign }
+					/>
+				) }
+				<WpmozoTypography
+					TypographyKey="percentage"
+					props={props}
+				/>
+				<WpmozoTextShadow
+					TextShadowKey="percentageTextShadow"
+					props={props}
+					label={ __( 'Percentage Text Shadow', 'wpmozo-blocks-and-addons' ) }
+				/>
+			</PanelBody>
+		) }
 	</> );
 };

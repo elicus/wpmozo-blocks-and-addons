@@ -104,7 +104,7 @@
 }
 .custom-swiper-button-next:after,
 .custom-swiper-button-prev:after{
-	display: none !important;
+	display: none;
 }
 
 /* Bullets. */

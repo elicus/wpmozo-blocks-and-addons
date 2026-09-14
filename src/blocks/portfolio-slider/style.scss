@@ -37,7 +37,7 @@
 }
 .wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_image {
 	width: 100%;
-	height: 100% !important;
+	height: 100%;
 	object-fit: cover;
 }
 .wpmozo_portfolio_layout.layout2 .wpmozo_portfolio_slider_content_wrap {
@@ -104,7 +104,7 @@
 	text-decoration: none;
 	padding: 10px 20px;
 	background-color: #5600b7;
-	color: #ffffff !important;
+	color: #ffffff;
 	border-radius: 4px;
 	font-size: 14px;
 	font-weight: 500;
@@ -114,7 +114,7 @@
 
 .wpmozo_portfolio_slider_btn:hover {
 	background-color: #3c0084;
-	color: #ffffff !important;
+	color: #ffffff;
 	text-decoration: none;
 }
 
@@ -157,7 +157,7 @@
 	transform: none;
 }
 .wpmozo-bna-portfolio-slider-pagination .swiper-pagination {
-	width: auto !important;
+	width: auto;
 }
 
 .wpmozo_swiper_wrapper .swiper-button-next:after,
@@ -250,11 +250,11 @@
 
 .wpmozo_swiper_wrapper .wpmozo_arrow_bg_disabled .swiper-button-next,
 .wpmozo_swiper_wrapper .wpmozo_arrow_bg_disabled .swiper-button-prev {
-	background-color: transparent !important;
-	box-shadow: none !important;
-	border: none !important;
+	background-color: transparent;
+	box-shadow: none ;
+	border: none ;
 }
 .wpmozo_swiper_wrapper .wpmozo_arrow_bg_disabled .swiper-button-next:hover,
 .wpmozo_swiper_wrapper .wpmozo_arrow_bg_disabled .swiper-button-prev:hover {
-	background-color: transparent !important;
+	background-color: transparent ;
 }

@@ -157,7 +157,7 @@ export default function Edit(props) {
 						<div className={`wpmozo_advanced_tooltip_content_wrap tooltip-content`}>
 								<div
 									className="tooltip-inner-blocks"
-									dangerouslySetInnerHTML={{ __html: innerBlocksHTML }}
+									dangerouslySetInnerHTML={{ __html: innerBlocksHTML ?? '' }}
 								/>
 						</div>
 									

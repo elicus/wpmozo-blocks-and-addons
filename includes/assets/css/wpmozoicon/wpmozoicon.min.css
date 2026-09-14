@@ -9,7 +9,7 @@
 }
 
 #wpmozo_bna_panel_general_section .wpmozo_bna_panel_multiple_checkboxes [class*="wpmozo-bna-icon-"] {
-	font-family: wpmozo !important;
+	font-family: wpmozo;
 	speak-as: none;
 	font-style: normal;
 	font-weight: 400;

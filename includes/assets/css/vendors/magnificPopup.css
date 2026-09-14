@@ -22,7 +22,7 @@
     height: 100%;
     z-index: 1043;
     position: fixed;
-    outline: 0 !important;
+    outline: 0;
     -webkit-backface-visibility: hidden;
 }
 .mfp-container {
@@ -87,7 +87,7 @@
     display: none;
 }
 .mfp-hide {
-    display: none !important;
+    display: none;
 }
 .mfp-preloader {
     color: #ccc;

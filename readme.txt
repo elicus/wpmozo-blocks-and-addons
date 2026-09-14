@@ -122,7 +122,11 @@ WPMozo Posts Ticker block displays dynamic post titles in a fully customizable t
 53. [Wavy Gallery](https://wpmozoblocks.com/wavy-gallery/ "Wavy Gallery for Gutenberg")
 WPMozo Wavy Gallery block adds a unique horizontal wave animation to your image gallery, perfect for showcasing portfolios, creative projects, and visual stories.
 54. [Call To Action](https://wpmozoblocks.com/call-to-action/ "Call To Action for Gutenberg")
-WPMozo Call To Action block adds a custom title, description and button..
+WPMozo Call To Action block adds a custom title, description and button.
+55. [Progress Bar](https://wpmozoblocks.com/progress-bar/ "Progress Bar for Gutenberg")
+WPMozo Progress Bar block displays a customizable progress bar with percentage, label, colors and styling options.
+56. [Portfolio Slider](https://wpmozoblocks.com/portfolio-slider/ "Portfolio Slider for Gutenberg")
+WPMozo Portfolio Slider block displays portfolio items in a responsive slider with customizable layouts, navigation, and styling options.
 
 
 This plugin is fully compatible with WordPress block editor, ensuring seamless integration with your website.
@@ -181,6 +185,23 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
+2026-09-07 - Version 1.9.0
+* New: Progress Bar Block.
+* New: Portfolio Slider Block.
+* Fixed: Horizontal Scrolling Posts Block - Scrolling effect not working properly in the editor sometimes.
+* Fixed: Post Ticker Block - Slide/Fade ticker effect not working properly.
+* Fixed: Scrolling Zoom Gallery Block - Preview not working properly in the editor.
+* Fixed: Scroll Text Block - Scroll effects not working properly in the editor.
+* Fixed: Team Slider Block - Designation, Skills Bar, and Social Icons not showing in the lightbox popup when enabled.
+* Fixed: Testimonial Slider Block - Dots pagination style in slider navigation not working properly on the frontend.
+* Fixed: Wavy Gallery Block - Preview not working properly in the editor.
+* Fixed: Sticky posts and sequencing issue in all post-related blocks.
+* IMPROVEMENT: Added hover functionality to the Inspector Controls of all blocks.
+* IMPROVEMENT: List Block - Pressing Enter while adding a list item now creates a new list item.
+* IMPROVEMENT: Added a duplicate item button to all repeater fields.
+* IMPROVEMENT: Improved accordion-style minimization in all repeater fields.
+* IMPROVEMENT: Improved the UI/UX of the Inspector Control for selecting categories.
+
 2026-05-22 - Version 1.8.0
 * New: Call To Action Block.
 * New: Admin Panel to manage blocks enable or disable.
