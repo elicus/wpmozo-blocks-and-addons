@@ -30,13 +30,11 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 
 	return ( <>
 		<PanelBody title={ __( `${attributes.layout.replace(/(^|_)([a-z])/g, (_, separator, letter) => { return (separator ? " " : "") + letter.toUpperCase(); })} Styling`, 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
-			{'fixed' !== attributes.position && 
-				<WpmozoAlignment
-					label={ __( 'Alignment', 'wpmozo-blocks-and-addons' ) }
-					onChange={ (newValue) => setAttributes({barAlign: newValue } ) }
-					value={ attributes.barAlign }
-				/>
-			}
+			<WpmozoAlignment
+				label={ __( 'Alignment', 'wpmozo-blocks-and-addons' ) }
+				onChange={ (newValue) => setAttributes({barAlign: newValue } ) }
+				value={ attributes.barAlign }
+			/>
 			{ 'bar' === attributes.layout && (<>
 				<WpmozoRangeSize 
 					props={props}
@@ -49,6 +47,15 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 					rangeSizeKey='barHeight'
 				/>
 			</>) }
+			<RangeControl
+				label={ __( 'Z-Index', 'wpmozo-blocks-and-addons' ) }
+				value={ attributes.barIndex }
+				onChange={ (newValue) => setAttributes( { barIndex: newValue } ) }
+				step={ 1 }
+				max={ 999 }
+      			min={ -999 }
+				__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
+			/>
 
 			{ 'bar' !== attributes.layout && (
 				<RangeControl

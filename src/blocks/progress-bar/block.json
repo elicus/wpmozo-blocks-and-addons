@@ -20,12 +20,13 @@
 		"barDirection": { "type": "string", "default": "horizontal" },
 		"showStriped": { "type": "boolean", "default": false },
 		"position":{ "type": "string", "default": "default" },
-		"posTop":{ "type": "string" },
-		"posLeft":{ "type": "string" },
+		"posTop":{ "type": "string", "default": "0px" },
+		"posLeft":{ "type": "string", "default": "0px" },
 		"showNumber": { "type": "boolean", "default": true },
 
 		"barSize": { "type": "string", "default": "100%" },
 		"barHeight": { "type": "string", "default": "30px" },
+		"barIndex": { "type": "number", "default": 3 },
 		"barAlign": { "type": "string", "default": "left" },
 		
 		"circleSize": { "type": "number", "default": 150 },

@@ -22,10 +22,13 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 			${attributes.posTop ? `top: ${attributes.posTop};` : ''}
 			${attributes.posLeft ? `left: ${attributes.posLeft};` : ''}
 			display:flex;
-			${('fixed' !== attributes.position && attributes.barAlign) ? `justify-content: ${attributes.barAlign};` : ''}
+			${attributes.barAlign ? `justify-content: ${attributes.barAlign};` : ''}
+			${'fixed' === attributes.position ? `width: 100%;` : ''}
+			${attributes.barIndex ? `z-index: ${attributes.barIndex};` : ''}
 		  `
 		: `	display:flex;
-			${('fixed' !== attributes.position && attributes.barAlign) ? `justify-content: ${attributes.barAlign};` : ''}`
+			${attributes.barAlign ? `justify-content: ${attributes.barAlign};` : ''}
+			${attributes.barIndex ? `z-index: ${attributes.barIndex};` : ''}`
 	);
 
 	normalcss.push(

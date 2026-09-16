@@ -50,7 +50,7 @@ Create stunning before-and-after comparisons with a sleek, responsive slider. Pe
 17. [Content Toggle](https://wpmozoblocks.com/content-toggle/ "Content Toggle for Gutenberg")
 Organize content with collapsible sections using the Content Toggle block. Ideal for FAQs, product details, or lengthy content, this feature enhances readability and user experience.
 18. [Fancy Heading](https://wpmozoblocks.com/fancy-heading/ "Fancy Heading for Gutenberg")
-Craft visually striking headings with the Fancy Heading block. Combine pre-headings, main headings, and sub-headings using custom fonts, vibrant colors, and animation effects. Perfect for creating bold section titles that draw attention and elevate your content presentation.
+Craft visually striking headings with the Fancy Heading block. Combine pre-headings, main headings, and sub-headings using fonts, vibrant colors, and animation effects. Perfect for creating bold section titles that draw attention and elevate your content presentation.
 19. [Fancy Text](https://wpmozoblocks.com/fancy-text/ "Fancy Text for Gutenberg")
 Add engaging animated text with the Fancy Text block. Create typewriter effects, text transitions, and gradient highlights to bring dynamic flair to your content. Ideal for call-to-actions, hero sections, or key messages that need to stand out.
 20. [Flip Box](https://wpmozoblocks.com/flip-box/ "Flip Box for Gutenberg")
@@ -134,7 +134,7 @@ This plugin is fully compatible with WordPress block editor, ensuring seamless i
 == Related Plugins ==
 - [WPMozo Product Grid for WooCommerce](https://wordpress.org/plugins/wpmozo-product-grid-for-woocommerce/) – Gutenberg block plugin to display WooCommerce products grid.
 - [WPMozo Product Carousel for WooCommerce](https://wordpress.org/plugins/wpmozo-product-carousel-for-woocommerce/) – Gutenberg block plugin to display WooCommerce products carousel.
-- [WPMozo Addons Lite for Elementor](https://wordpress.org/plugins/wpmozo-addons-lite-for-elementor/) – 30+ widgets for Elementor page builder.
+- [WPMozo Addons Lite for Elementor](https://wordpress.org/plugins/wpmozo-addons-lite-for-elementor/) – 55+ widgets for Elementor page builder.
 
 
 == Screenshots ==
@@ -185,7 +185,7 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
-2026-09-07 - Version 1.9.0
+2026-09-16 - Version 1.9.0
 * New: Progress Bar Block.
 * New: Portfolio Slider Block.
 * Fixed: Horizontal Scrolling Posts Block - Scrolling effect not working properly in the editor sometimes.
@@ -283,26 +283,63 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * New - Tilt Image block
 
 == Third Party Code Credits ==
+### GSAP
+- File Location: assets/js/vendors/gsap.min.js
+- License: GSAP License
+- License URI: https://gsap.com/community/standard-license/
 #### Images Loaded
-- File Location: assets/js/imagesLoaded/imagesloaded.pkgd.js
+- File Location: assets/js/vendors/imagesloaded.pkgd.js
 - License: MIT
 - License URI: https://desandro.mit-license.org/
+#### Isotope
+- File Location: assets/js/vendors/isotope.pkgd.js
+- License: GPLv3
+- License URI: https://www.gnu.org/licenses/gpl-3.0.html
 ### Event Move
-- File Location: assets/js/jqueryEventMove/jquery_event_move.js
+- File Location: assets/js/vendors/jquery_event_move.js
 - License: WTFPL
 - License URI: https://plugins.jquery.com/event.move/  http://www.wtfpl.net/txt/copying/
 ### Twenty Twenty
-- File Location: assets/js/jqueryTwentyTwenty/jquery_twentytwenty.js
-- File Location: assets/css/twentytwenty/twentytwenty.css
+- File Location: assets/js/vendors/jquery_twentytwenty.js
+- File Location: assets/css/vendors/twentytwenty.css
 - License: ISC License
 - License URI: https://www.isc.org/licenses/
-### Swiper
-- File Location: assets/js/swiper/swiper-bundle.js
-- File Location: assets/css/swiper/swiper-bundle.css
+### Lottie
+- File Location: assets/js/vendors/lottie.min.js
 - License: MIT
 - License URI: https://opensource.org/licenses/MIT
-### Tilt js
-- File Location: assets/js/tilt/tilt-jquery.js
+### Magnific Popup
+- File Location: assets/js/vendors/magnificPopup.js
+- File Location: assets/css/vendors/magnificPopup.css
+- License: MIT
+- License URI: https://opensource.org/licenses/MIT
+### Popper
+- File Location: assets/js/vendors/popper.min.js
+- License: MIT
+- License URI: https://opensource.org/licenses/MIT
+### ScrollTrigger
+- File Location: assets/js/vendors/ScrollTrigger.min.js
+- License: GSAP License
+- License URI: https://gsap.com/community/standard-license/
+### Swiper
+- File Location: assets/js/vendors/swiper-bundle.js
+- File Location: assets/css/vendors/swiper-bundle.css
+- License: MIT
+- License URI: https://opensource.org/licenses/MIT
+### Tilt
+- File Location: assets/js/vendors/tilt-jquery.js
+- License: MIT
+- License URI: https://opensource.org/licenses/MIT
+### Tippy
+- File Location: assets/js/vendors/tippy-bundle.umd.min.js
+- License: MIT
+- License URI: https://opensource.org/licenses/MIT
+### TWBSPagination
+- File Location: assets/js/vendors/twbsPagination.min.js
+- License: Apache
+- License URI: http://www.apache.org/licenses/LICENSE-2.0
+### Waypoints
+- File Location: assets/js/vendors/waypoints.min.js
 - License: MIT
 - License URI: https://opensource.org/licenses/MIT
 
