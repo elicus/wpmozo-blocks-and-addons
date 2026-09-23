@@ -157,6 +157,13 @@ if ( ! function_exists( 'portfolio_slider_generate_dynamic_style' ) ) {
 				$styles .= $block_helpers::get_font_style( 'projectUrlHover', $attrs );
 			$styles .= "}";
 		}
+		if(true === $attrs['showProjectUrl'] || true === $attrs['showReadMore']){
+			if ( ! empty( $attrs['globalTextAlign'] ) ) {
+				$styles .= "{$mainSelector} .wpmozo_portfolio_slider_button_wrap{";
+					$styles .= "justify-content: {$attrs['globalTextAlign']};";
+				$styles .= "}";
+			}
+		};
 
 		// Portfolio card wrapper.
 		$layout = $attrs['layout'] ?? 'layout1';
@@ -164,6 +171,9 @@ if ( ! function_exists( 'portfolio_slider_generate_dynamic_style' ) ) {
 			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_content_wrap{";
 				$styles .= ( ! empty( $attrs['overlayBGGradient'] ) ? "background: {$attrs['overlayBGGradient']};" : '' );
 				$styles .= ( ! empty( $attrs['overlayBackground'] ) ? "background-color: {$attrs['overlayBackground']};" : '' );
+			$styles .= "}";
+			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_item_card .wpmozo_portfolio_slider_content_wrap{";
+				$styles .= $block_helpers::get_padding_style( 'portfoliocontent', $attrs );
 			$styles .= "}";
 			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_item_card{";
 				$styles .= $block_helpers::get_border_style( 'portfolio', $attrs, true );
@@ -175,6 +185,9 @@ if ( ! function_exists( 'portfolio_slider_generate_dynamic_style' ) ) {
 			$styles .= "}";
 			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_item_card:hover{";
 				$styles .= $block_helpers::get_border_style( 'portfolioHover', $attrs, true );
+			$styles .= "}";
+			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_item_card .wpmozo_portfolio_slider_content_wrap:hover{";
+				$styles .= $block_helpers::get_padding_style( 'portfoliocontentHover', $attrs, true );
 			$styles .= "}";
 		} else {
 			$styles .= "{$mainSelector} .wpmozo_portfolio_slider_item_card{";

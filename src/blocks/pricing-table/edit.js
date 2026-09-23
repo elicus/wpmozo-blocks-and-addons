@@ -51,6 +51,14 @@ const Edit = ( props ) => {
 			setAttributes( updates );
 		}
 	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+	useEffect(() => {
+		const event = new CustomEvent('WPMozoPricingTableChanged');
+		window.dispatchEvent(event);
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
+		}
+	}, [JSON.stringify(attributes), props]);
 
 	return (
 		<Fragment>

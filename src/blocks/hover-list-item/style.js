@@ -11,6 +11,7 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 		'button',
 		'buttonHover',
 		'block',
+		'innerblock'
 	];
 	// Get title align.
 	let titleAlign = attributes.titleAlign || '';
@@ -30,6 +31,14 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 		${attributes.blockBackground ? `background:`+ attributes.blockBackground + `;` : ''}`
 	);
 
+	normalcss.push(
+		( convertedStyle.innerblock ) 
+		? `.wpmozo-bna-hover-list-item-inner{
+				${ convertedStyle.innerblock || '' }
+			}`
+		: ''
+	);
+	
 	normalcss.push(
 		( titleAlign || attributes.titleWidth ) 
 		? `.wpmozo_bna_hover_list_title_wrapper{

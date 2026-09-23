@@ -18,7 +18,7 @@
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
 		"isLastChild": { "type": "boolean", "default": false },
-		"blockpadding": { "type": "object", "default": { "top": "15px", "bottom": "15px", "left": "15px", "right": "15px" } },
+		"innerblockpadding": { "type": "object", "default": { "top": "15px", "bottom": "15px", "left": "15px", "right": "15px" } },
 		"blockmargin": { "type": "object" },
 		"blockBackground": { "type": "string", "default": "" },
 		"blockBGGradient": { "type": "string" },

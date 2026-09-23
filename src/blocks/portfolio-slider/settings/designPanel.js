@@ -621,7 +621,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 					<WpmozoDimensions
 						label={ __( 'Portfolio Dimensions', 'wpmozo-blocks-and-addons' ) }
 						props={props}
-						DimensionKey={ isHover ? "portfolioHover" : "portfolio" }
+						DimensionKey={ isHover ? "portfoliocontentHover" : "portfoliocontent" }
 						DimensionsTypes={{padding: true}}
 					/>
 				) }

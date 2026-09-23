@@ -11,7 +11,8 @@
 	"supports": {
 		"html": false,
 		"anchor": false,
-		"customClassName": false
+		"customClassName": false,
+		"additionalCss": false
 	},
     "attributes": {
 		"ID": { "type": "string" },

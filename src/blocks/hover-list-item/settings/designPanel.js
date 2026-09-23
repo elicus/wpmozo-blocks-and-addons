@@ -153,7 +153,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			</PanelBody>
 		</> ) }
 		{/* Button. */}
-		{ attributes.showButton && ( <>
+		{ attributes.showButton && 
 			<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
 				<MozoStates
 					value={hoverState}
@@ -226,21 +226,26 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 					</> ) }
 				/>
 			</PanelBody>
-			{/* Block. */}
-			<PanelBody title={ __( 'Block', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel6'} onToggle={()=> handleToggle('panel6')}>
-				<ColorGradientControl colors={[]} gradients={[]}
-					label={ __( 'Background', 'wpmozo-blocks-and-addons' ) }
-					colorValue={ attributes.blockBackground }
-					gradientValue={ attributes.blockBGGradient }
-					onColorChange={ (newValue) => setAttributes( { blockBackground: newValue } ) }
-					onGradientChange={ (newValue) => setAttributes( { blockBGGradient: newValue } ) }
-				/>
-				<WpmozoDimensions props={ props }
-					label={ __( 'Dimensions', 'wpmozo-blocks-and-addons' ) }
-					DimensionKey='block'
-					DimensionsTypes={ { padding: true, margin: true } }
-				/>
-			</PanelBody>
-		</> ) }
+		}
+		{/* Block. */}
+		<PanelBody title={ __( 'Block', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel6'} onToggle={()=> handleToggle('panel6')}>
+			<ColorGradientControl colors={[]} gradients={[]}
+				label={ __( 'Background', 'wpmozo-blocks-and-addons' ) }
+				colorValue={ attributes.blockBackground }
+				gradientValue={ attributes.blockBGGradient }
+				onColorChange={ (newValue) => setAttributes( { blockBackground: newValue } ) }
+				onGradientChange={ (newValue) => setAttributes( { blockBGGradient: newValue } ) }
+			/>
+			<WpmozoDimensions props={ props }
+				label={ __( 'Dimensions', 'wpmozo-blocks-and-addons' ) }
+				DimensionKey='innerblock'
+				DimensionsTypes={ { padding: true } }
+			/>
+			<WpmozoDimensions props={ props }
+				label=' '
+				DimensionKey='block'
+				DimensionsTypes={ { margin: true } }
+			/>
+		</PanelBody>
 	</> );
 };

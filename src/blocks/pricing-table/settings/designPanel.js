@@ -49,6 +49,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 					key: 'Color',
 					label: __( 'Background Color', 'wpmozo-blocks-and-addons' ),
 				} ] }
+				responsive
 			/>
 			<WpmozoDimensions
 				DimensionKey='mainDimensions'

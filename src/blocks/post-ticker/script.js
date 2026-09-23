@@ -6,7 +6,7 @@ $(document).ready(function (e) {
 	window.addEventListener('WPMozoPostTickerPropsChanged', () => {
 		$('.wp-block-wpmozo-post-ticker').each(function () {
 			let wrapObj = $(this).find(".wpmozo_post_ticker_wrap");
-			let newAttributes = JSON.parse(wrapObj.attr('data-attr'));
+			let newAttributes = JSON.parse($(this).find(".wpmozo_post_ticker_wrap").attr('data-attr'));
 			initPostTicker($(this), newAttributes);
 		});
 	});
@@ -14,7 +14,7 @@ $(document).ready(function (e) {
 	// Initial post ticker setup
 	$('.wp-block-wpmozo-post-ticker').each(function () {
 		let wrapObj = $(this).find(".wpmozo_post_ticker_wrap");
-		let newAttributes = JSON.parse(wrapObj.attr('data-attr'));
+		let newAttributes = JSON.parse($(this).find(".wpmozo_post_ticker_wrap").attr('data-attr'));
 		initPostTicker($(this), newAttributes);
 	});
 });
@@ -22,17 +22,14 @@ $(document).ready(function (e) {
 let wpmozoPostTickerSwipers = {};
 
 function initPostTicker($galleryContainer, attributes) {
-	let thisObj = $($galleryContainer),
+	const thisObj = $($galleryContainer),
 		wrapObj = thisObj.find(".wpmozo_post_ticker_wrap"),
-		$orderId   = thisObj.attr('id');
+		$orderId = thisObj.attr('id'),
+		clientId = wrapObj.attr( 'data-clientid' );
 		// Destroy if already exists.
-		if ( wpmozoPostTickerSwipers[$orderId] && ! wpmozo_is_empty( wpmozoPostTickerSwipers[$orderId] ) ) {
-			wpmozoPostTickerSwipers[$orderId].destroy( true, true );
+		if ( wpmozoPostTickerSwipers[clientId] && ! wpmozo_is_empty( wpmozoPostTickerSwipers[clientId] ) && wpmozoPostTickerSwipers[clientId].el && wpmozoPostTickerSwipers[clientId].el.children ) {
+			wpmozoPostTickerSwipers[clientId].destroy( true, true );
 		}
-
-	const $orderClass = wrapObj
-		.prop("class")
-		.match('wpmozo_post_ticker');
 
 	const tickerEffect = attributes.ticker_effect;
 	// Scroll effect.
@@ -50,8 +47,8 @@ function initPostTicker($galleryContainer, attributes) {
 		let arrows = false;
 		if (true === showArrow) {
 			arrows = {
-				nextEl: "." + $orderClass + " .swiper-button-next",
-				prevEl: "." + $orderClass + " .swiper-button-prev",
+				nextEl: '#' + $orderId + " .swiper-button-next",
+				prevEl: '#' + $orderId + " .swiper-button-prev",
 			};
 		}
 
@@ -82,16 +79,21 @@ function initPostTicker($galleryContainer, attributes) {
 				observeParents: true,
 			}
 		);
-		jQuery( '#' + $orderId + ' .swiper-container' ).on( 'mouseleave', function(e) {
-			if ( typeof swipperSlider?.autoplay?.stop === "function" ) {
-				swipperSlider.autoplay.start();
-			}
-		} );
-		jQuery( '#' + $orderId + ' .swiper-container' ).on( 'mouseenter', function(e) {
-			if ( typeof swipperSlider?.autoplay?.start === "function" ) {
-				swipperSlider.autoplay.stop();
-			}
-		} );
+
+
+		if(window.self !== window.top){
+			wrapObj.find('.swiper-container').on( 'mouseenter', function(e) {
+				if ( typeof swipperSlider?.autoplay?.stop === "function" ) {
+					swipperSlider.autoplay.stop();
+				}
+			} );
+			wrapObj.find('.swiper-container').on( 'mouseleave', function(e) {
+				if ( typeof swipperSlider?.autoplay?.start === "function" ) {
+					swipperSlider.autoplay.start();
+				}
+			} );
+		}
+
 		wpmozoPostTickerSwipers[$orderId] = swipperSlider;
 	}
 }

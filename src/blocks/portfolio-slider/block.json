@@ -126,7 +126,7 @@
 
 		"containerpadding": { "type": "object" },
 
-		"portfoliopadding": { "type": "object" },
+		"portfoliocontentpadding": { "type": "object" },
 		"portfolioBackground": { "type": "string" },
 		"portfolioBGGradient": { "type": "string" },
 		"portfolioborder": { "type": "object" },

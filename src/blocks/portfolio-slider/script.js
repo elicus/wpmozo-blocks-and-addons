@@ -52,7 +52,15 @@ function initWPMozoPortfolioSlider( blockObj ) {
 
 	// Destroy if already exists.
 	if ( wpmozoPortfolioSwipers[clientId] && ! wpmozo_is_empty( wpmozoPortfolioSwipers[clientId] ) ) {
-		wpmozoPortfolioSwipers[clientId].destroy( true, true );
+		try {
+			if ( wpmozoPortfolioSwipers[clientId].params.loop ) {
+				wpmozoPortfolioSwipers[clientId].loopDestroy();
+			}
+			wpmozoPortfolioSwipers[clientId].destroy( true, true );
+			wpmozoPortfolioSwipers[clientId] = null; 
+		} catch(e) {
+			console.error('Swiper destroy error:', e);
+		}
 	}
 
 	// Get the settings.
@@ -122,7 +130,7 @@ function initWPMozoPortfolioSlider( blockObj ) {
 	}
 
 	let autoplay_speed      = ( settings?.autoplay_delay ) ?? 3000,
-		pause_on_hover      = ( settings?.pause_on_hover ) ?? 'false',
+		pause_on_hover      = ( settings?.pause_on_hover ) ?? false,
 		transition_duration = ( settings?.trans_duration ) ?? 1000,
 		loop_param          = ( 'true' === settings?.enable_loop ) ? true : false,
 		dynamic_bullets     = ( 'true' === settings?.enable_dynamic_dots ) ? true : false;
@@ -232,11 +240,15 @@ function initWPMozoPortfolioSlider( blockObj ) {
 			} );
 		}
 		if ( 'true' !== settings?.enable_loop ) {
-			swipperSlider.on( 'reachEnd', function() {
-				swipperSlider.autoplay = false;
-			} );
+			if ( typeof swipperSlider?.autoplay?.start === "function" ) {
+				swipperSlider.on( 'reachEnd', function() {
+					swipperSlider.autoplay = false;
+					
+				} );
+			}
 		}
 	}
+	
 
 	// Add the swipers object to global vars.
 	wpmozoPortfolioSwipers[clientId] = swipperSlider;

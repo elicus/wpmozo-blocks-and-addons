@@ -18,8 +18,6 @@ function wpmozoInitScrollTextBlock($thisObj) {
 
 	let $wrapObj = $thisObj.find('.wpmozo-scroll-text-wrap');
 	const blockId = $thisObj.attr('data-block');
-	ScrollTrigger.getById(`tl-${blockId}`) ? ScrollTrigger.getById(`tl-${blockId}`).kill(true) : '';
-	ScrollTrigger.getById(`tl-${blockId}-2`) ? ScrollTrigger.getById(`tl-${blockId}-2`).kill(true) : '';
 
 	// Get variables from data attrs.
 	let $innerWrap = $wrapObj.find('.wpmozo-scroll-text-inner'),

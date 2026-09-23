@@ -148,11 +148,11 @@ if ( ! function_exists( 'post_ticker_render_callback' ) ) {
 				}
 				if ( true === $attributes['showArrows'] ) {
 					$slider_end = '</div></div><div class="wpmozo_swiper_navigation wpmozo_arrows_position">
-						<span class="swiper-button-prev wpmozo_swiper_icon_prev">
-							<i class="' . esc_attr( $attributes['previousArrow'] ) . '"></i>
+						<span class="wpmozo_swiper_icon_prev">
+							<i class="swiper-button-prev ' . esc_attr( $attributes['previousArrow'] ) . '"></i>
 						</span>
-						<span class="swiper-button-next wpmozo_swiper_icon_next">
-							<i class="' . esc_attr( $attributes['nextArrow'] ) . '"></i>
+						<span class="wpmozo_swiper_icon_next">
+							<i class="swiper-button-next ' . esc_attr( $attributes['nextArrow'] ) . '"></i>
 						</span>
 					</div>';
 				} else {
@@ -167,7 +167,7 @@ if ( ! function_exists( 'post_ticker_render_callback' ) ) {
 						<div class="wpmozo_post_ticker_wrap wpmozo_ticker_effect_%3$s" data-attr=\'%4$s\'>
 							%5$s
 							<div class="wpmozo_post_ticker_items">
-								<div class="wpmozo_post_ticker_bar" style="animation-duration:11.89s;">
+								<div class="wpmozo_swiper_wrapper wpmozo_post_ticker_bar" style="animation-duration:11.89s;">
 									%6$s
 									%7$s
 									%8$s
@@ -190,7 +190,7 @@ if ( ! function_exists( 'post_ticker_render_callback' ) ) {
 			$render_output = sprintf(
 				'<div id="block-%1$s" %2$s>
 					<div class="wpmozo_post_ticker">
-						<div class="wpmozo_post_ticker_wrap wpmozo_ticker_effect_%3$s" data-attr=\'%4$s\'>
+						<div class="wpmozo_post_ticker_wrap wpmozo_ticker_effect_%3$s" data-attr=\'%4$s\' data-clientid=\'%1$s\'>
 							<div className="wpmozo_post_ticker_items">
 								<span className="no_result">
 									%5$s

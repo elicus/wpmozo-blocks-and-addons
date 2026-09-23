@@ -48,12 +48,11 @@ export default function Edit(props) {
 
 	useEffect(() => {
 		const event = new CustomEvent('WPMozoPostTickerPropsChanged');
-		window.dispatchEvent(event);
 		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [props]);
+	}, [JSON.stringify(attributes), props]);
 
 	const postsToShow = parseInt(attributes.postsToShow) ?? 5;
 	const postOrder = attributes.postOrder ?? 'DESC';
@@ -141,12 +140,12 @@ export default function Edit(props) {
 				<div className='wpmozo_post_ticker'>
 					<div
 						className={`wpmozo_post_ticker_wrap wpmozo_ticker_effect_${attributes.tickerEffect}`}
-						data-attr={JSON.stringify(dataAttr)}
+						data-attr={JSON.stringify(dataAttr)} data-clientid={attributes.ID}
 					>
 						{postTitles.length > 0 ? (<>
 							{'' !== attributes.tickerLabel && <div className="wpmozo_post_ticker_label">{attributes.tickerLabel}</div>}
 							<div className="wpmozo_post_ticker_items">
-								<div className="wpmozo_post_ticker_bar" style={{ animationDuration: "11.89s" }}>
+								<div className="wpmozo_swiper_wrapper wpmozo_post_ticker_bar" style={{ animationDuration: "11.89s" }}>
 									{ 'scroll' === attributes.tickerEffect ? (
 										postTitles && postTitles.length > 0 && postTitles.some(title => title) ? (
 											postTitles.map((title, idx) =>
@@ -185,11 +184,11 @@ export default function Edit(props) {
 											</div>
 											{attributes.showArrows && (
 												<div className="wpmozo_swiper_navigation wpmozo_arrows_position">
-													<span className="swiper-button-prev wpmozo_swiper_icon_prev">
-														<i className={`${attributes.previousArrow}`}></i>
+													<span className="wpmozo_swiper_icon_prev">
+														<i className={`swiper-button-prev ${attributes.previousArrow}`}></i>
 													</span>
-													<span className="swiper-button-next wpmozo_swiper_icon_next">
-														<i className={`${attributes.nextArrow}`}></i>
+													<span className="wpmozo_swiper_icon_next">
+														<i className={`swiper-button-next ${attributes.nextArrow}`}></i>
 													</span>
 												</div>
 											)}
