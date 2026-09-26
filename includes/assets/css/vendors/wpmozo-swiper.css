@@ -161,3 +161,29 @@
 	margin-top: 20px;
 	position: relative;
 }
+@media only screen and (max-width: 480px) {
+    .wpmozo_swiper_wrapper  .wpmozo_swiper_navigation[class*="wpmozo_arrows"]{
+		flex-direction: row-reverse;
+		order: -1;
+		margin-bottom: 15px;
+		margin-top: 15px;
+		justify-content: center;
+    }
+    
+	.wpmozo_swiper_wrapper  .wpmozo_swiper_navigation[class*="wpmozo_arrows"] .swiper-button-next, 
+	.wpmozo_swiper_wrapper  .wpmozo_swiper_navigation[class*="wpmozo_arrows"] .swiper-button-prev{
+		position: relative;
+		top: auto;
+		transform: none;
+    }
+	
+	.wpmozo_swiper_wrapper  .wpmozo_swiper_navigation[class*="wpmozo_arrows"] .swiper-button-next{
+		margin-left: 15px;
+    }
+}
+
+
+
+
+
+

@@ -10,7 +10,8 @@
 	"example": {},
 	"supports": {
 		"html": false,
-		"customClassName": false
+		"customClassName": false,
+		"customCSS": false
 	},
 	"attributes": {
 		"ID": { "type": "string" },
@@ -121,6 +122,8 @@
 		"arrowIconSize": { "type": "number", "default": 24 },
 		"arrowColor": { "type": "string", "default": "" },
 		"arrowBackground": { "type": "string", "default": "" },
+		"arrowHoverColor": { "type": "string", "default": "" },
+		"arrowHoverBackground": { "type": "string", "default": "" },
 		"arrowborder": { "type": "object" },
 		"arrowborderRadius": { "type": "object" },
 

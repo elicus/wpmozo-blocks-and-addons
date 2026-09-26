@@ -8,7 +8,6 @@ const Save = ({ attributes }) => {
 		showIconOnHover = ( attributes.showIconOnHover ) ? ' show-on-hover' : '',
 		buttonIconPosition = ( attributes.buttonIconPosition ) ? attributes.buttonIconPosition : ' icon-after';
 
-
 	const ID = attributes.ID,
 		wrapArgs = attributes?.ID && mergeWrapperProps( { 
 			className: 'wpmozo-pricing-table' ,

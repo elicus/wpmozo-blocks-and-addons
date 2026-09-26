@@ -23,17 +23,23 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 		animation-direction: alternate;
 		${(attributes.animationRepeat) ? `animation-iteration-count: ${attributes.animationRepeat};` : ''}
 		${(attributes.speedCurve) ? `animation-timing-function: ${attributes.speedCurve};` : ''}
-		${(attributes.speedCurve) ? `animation-delay: ${attributes.animationDelay}ms;` : ''}`
+		${(attributes.speedCurve) ? `animation-delay: ${attributes.animationDelay}ms;` : ''}
+		${ (attributes.imagewidth) ? `width:${ attributes.imagewidth};` : '' } 
+		${ (attributes.imageheight) ? `height:${ attributes.imageheight};` : '' } `
 	);
 
 	normalcss.push(
 		(attributes.imagewidth || attributes.imageheight || convertedStyle.image)
         ? `.floating-image{
-				${ (attributes.imagewidth) ? `width:${ attributes.imagewidth};` : '' } 
-				${ (attributes.imageheight) ? `height:${ attributes.imageheight};` : '' } 
 				${convertedStyle.image || ''} 
 			}`
 		: ''
+	);
+	
+	normalcss.push(
+		`.floating-image{
+			width: 100%;
+		}`
 	);
 
 	hovercss.push(
@@ -41,16 +47,6 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 		? `.floating-image:hover${isEditor('.floating-image')}{
 			${convertedStyle.imageHover || ''}
 		}`
-		: ''
-	);
-	
-	normalcss.push(
-		(attributes.containerHeight) 
-		? `.wpmozo-bna-floating-image-wrapper { 
-				height:${ attributes.containerHeight}; 
-			}.floating-image-item img {
-				max-height:${ attributes.containerHeight}; 
-			}` 
 		: ''
 	);
 	

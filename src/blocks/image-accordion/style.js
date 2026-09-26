@@ -125,10 +125,19 @@ const generateDynamicStyle = ({ attributes }) => {
 		} else {
 			normalcss.push(
 				accordionSpacing
-					? `.wp-block-wpmozo-image-accordion-item{ margin-bottom: ${accordionSpacing} !important; }.wp-block-wpmozo-image-accordion-item:last-of-type, .block-editor-block-list__layout .wp-block-wpmozo-image-accordion-item:not(:has(~ .wp-block-wpmozo-image-accordion-item)){ margin-bottom: 0px !important; }`
+					? `.wp-block-wpmozo-image-accordion-item{ margin-bottom: ${accordionSpacing} !important; }
+					.wp-block-wpmozo-image-accordion-item:last-of-type, .block-editor-block-list__layout .wp-block-wpmozo-image-accordion-item:not(:has(~ .wp-block-wpmozo-image-accordion-item)){ margin-bottom: 0px !important; }`
 					: ''
 			);
 		}
+		normalcss.push(
+			`@media only screen and (max-width: 980px) {
+				.wp-block-wpmozo-image-accordion-item{
+					margin-bottom: ${accordionSpacing} !important;
+					margin-right: 0px !important;
+				}
+			}`
+		);
 	}
 
 	if ( ! wpmozo_is_empty( inactiveState ) ) {

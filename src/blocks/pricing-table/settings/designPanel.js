@@ -19,6 +19,7 @@ import {
 	MozoStates
 } from '../../../common/components';
 
+
 import { headingLevelsList } from '../../../common/utils.js';
 import { useState } from 'react';
 
@@ -49,7 +50,6 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 					key: 'Color',
 					label: __( 'Background Color', 'wpmozo-blocks-and-addons' ),
 				} ] }
-				responsive
 			/>
 			<WpmozoDimensions
 				DimensionKey='mainDimensions'

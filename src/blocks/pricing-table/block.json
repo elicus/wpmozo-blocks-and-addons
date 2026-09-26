@@ -175,7 +175,11 @@
 		"borderHoverColor": { "type": "string" },
 		"borderDimensionspadding": { "type": "object" },
 		"borderDimensionsmargin": { "type": "object" },
-		"buttonFontSize": {"type": "number"}
+		"buttonFontSize": {"type": "number"},
+		"style": {
+			"type": "object",
+			"default": {}
+		}
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

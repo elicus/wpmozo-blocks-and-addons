@@ -109,7 +109,6 @@
         "descriptionLetterCase": { "type": "string" },
         "descriptionLineHeight": { "type": "string" },
 
-        "dividerColor": { "type": "string" },
         "dividerWidth": { "type": "string", "default": "1px" },
 
         "periodColor": { "type": "string" },

@@ -506,15 +506,25 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 					min={20} max={150} step={1}
 				/>
 			) }
-			<WpmozoColorPicker props={props}
-				label={ __( 'Arrows Color', 'wpmozo-blocks-and-addons' ) }
-				ColorKey="arrow"
-				ColorTypes={ attributes.arrowEnableBg ? [
-					{ key: 'Color', label: __( 'Arrow Color', 'wpmozo-blocks-and-addons' ) },
-					{ key: 'Background', label: __( 'Arrow Background Color', 'wpmozo-blocks-and-addons' ) }
-				] : [
-					{ key: 'Color', label: __( 'Arrow Color', 'wpmozo-blocks-and-addons' ) }
-				] }
+			<MozoStates
+				value = {hoverState}
+				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) =>  (
+						isHover ?  setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)	
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker
+						label={__( 'Arrows Color', 'wpmozo-blocks-and-addons' )}
+						ColorKey={ isHover ? "arrowHover" : "arrow" }
+						props={ props }
+						ColorTypes={ [
+							{ key: 'Color', label: __( 'Button Color', 'wpmozo-blocks-and-addons' ) },
+							{ key: 'Background', label: __( 'Button Background', 'wpmozo-blocks-and-addons' ) }
+						] }
+					/>
+				) }
 			/>
 			{ attributes.arrowEnableBg && (
 				<WpmozoBorder props={ props }

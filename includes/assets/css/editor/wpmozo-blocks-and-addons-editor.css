@@ -1,3 +1,11 @@
+/* remove gutenberg advanced controls from wpmozo-general and wpmozo-design tabs */
+.block-editor-block-inspector:has(.wpmozo-settings-tab-panel) div:has( > .components-panel__body.block-editor-block-inspector__advanced){
+	display: none;
+}
+.block-editor-block-inspector:has(.wpmozo-settings-tab-panel .wpmozo-inspector-tab-advanced.is-active[aria-selected="true"]) div:has( > .components-panel__body.block-editor-block-inspector__advanced){
+	display: block;
+}
+
 .wpmozo-same-as-carousel {
 	margin-top: 10px;
 }

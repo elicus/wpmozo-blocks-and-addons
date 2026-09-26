@@ -20,6 +20,7 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 		'projectUrlHover',
 		'featuredImage',
 		'arrow',
+		'arrowHover',
 		'portfoliocontent',
 		'portfoliocontentHover',
 		'portfolio',
@@ -304,6 +305,20 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 						height: ${finalBgSize}px;
 						${attributes.arrowBackground ? `background-color: ${attributes.arrowBackground};` : ''}
 						${convertedStyle.arrow || ''}
+					` : ''}
+				}`
+			: ''
+		);
+		
+		hovercss.push(
+			( attributes.arrowHoverIconSize || attributes.arrowHoverColor || ( enableBg && ( finalBgSize || attributes.arrowHoverBackground || convertedStyle.arrowHover ) ) )
+			? `.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-next:hover${isEditor('.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-next')},
+				.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-prev:hover${isEditor('.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-prev')}{
+					${attributes.arrowHoverIconSize ? `font-size: ${attributes.arrowHoverIconSize}px;`: ''}
+					${attributes.arrowHoverColor ?`color: ${attributes.arrowHoverColor};`: ''}
+					${enableBg ?`
+						${attributes.arrowHoverBackground ? `background-color: ${attributes.arrowHoverBackground};` : ''}
+						${convertedStyle.arrowHover || ''}
 					` : ''}
 				}`
 			: ''

@@ -60,6 +60,7 @@ const Edit = ( props ) => {
 		}
 	}, [JSON.stringify(attributes), props]);
 
+
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />

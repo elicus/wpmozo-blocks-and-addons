@@ -21,8 +21,10 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 	const hasBorderConfig = attributes.itemBorderWidth || (attributes.itemBorderType && 'none' !== attributes.itemBorderType) || attributes.borderColor || attributes.borderHoverColor;
 
 	normalcss.push(
-		( hasBorderConfig || attributes.itemBorderRadius || convertedStyle.item )
+		( hasBorderConfig || attributes.itemBorderRadius || attributes.stackItemSize || convertedStyle.item )
 		? `.wpmozo-image-stack-item{
+				${attributes.stackItemSize ? `width: ${attributes.stackItemSize}; height: ${attributes.stackItemSize};` : ''}
+				height: ${attributes.stackItemSize || "40px"};
 				${hasBorderConfig ? `border-width: ${borderWidth}px; border-style: ${borderType};` : ''}
 				${attributes.borderColor ? `border-color: ${attributes.borderColor};` : ''}
 				${attributes.itemBorderRadius ? `border-radius: ${attributes.itemBorderRadius}%;` : ''}
@@ -40,32 +42,33 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 	);
 
 	normalcss.push(`
-		.wpmozo-image-stack-item .stack-item-type-icon {
-			width: ${attributes.stackItemSize || 40}px;
-			height: ${attributes.stackItemSize || 40}px;
-			line-height: ${attributes.stackItemSize || 40}px !important;
+		.wpmozo-image-stack-item .stack-item-type-icon{
+			width:100%;
+			height:100%;
+		}
+		.wpmozo-image-stack-item .stack-item-type-icon,
+		.wpmozo-image-stack-item .stack-item-type-icon i{
 			display: flex;
 			align-items: center;
 			justify-content: center;
 		}
 		.wpmozo-image-stack-inner .wpmozo-image-stack-item:not(:first-child) {
-			margin-left: -${attributes.stackItemShrink || 10}px;
+			margin-left: -${attributes.stackItemShrink || "10px"};
 			transition: margin 300ms, border-color 300ms, border-radius 300ms, background-color 300ms;
 		}
 		.wpmozo-image-stack-inner .wpmozo-image-stack-item:not(:last-child) {
-			margin-right: ${attributes.stackItemSpacing || 10}px;
+			margin-right: ${attributes.stackItemSpacing || "10px"};
 			transition: margin 300ms, border-color 300ms, border-radius 300ms, background-color 300ms;
 		}
 		.wpmozo-image-stack-inner .wpmozo-image-stack-item:nth-last-child(2) {
 			margin-right: 0;
 		}
 		.wpmozo-stack-item-wrapper i {
-			font-size: ${attributes.iconSize || 18}px !important;
+			font-size: ${attributes.iconSize || "18px"} !important;
 			color: ${attributes.iconColor || "#333"} !important;
 		}
 		.wpmozo-stack-item-img {
-			width: ${attributes.stackItemSize || 40}px !important;
-			height: ${attributes.stackItemSize || 40}px !important;
+			width: 100%;
 			object-fit: cover;
 			display: block;
 		}

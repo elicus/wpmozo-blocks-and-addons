@@ -33,12 +33,12 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 			}`
 			: ''
 		);
-		// Content box width.
-		if ( attributes.layout && 'layout1' !== attributes.layout && attributes.contentBoxWidth ) {
-			normalcss.push(`.wpmozo-promotion-bar-wrap.layout2 .wpmozo-promotion-bar-content, .wpmozo-promotion-bar-wrap.layout3 .wpmozo-promotion-bar-content{
-				width: ${attributes.contentBoxWidth}%;
-			}`);
-		}
+	}
+	// Content box width.
+	if ( attributes.layout && 'layout1' !== attributes.layout && attributes.contentBoxWidth ) {
+		normalcss.push(`.wpmozo-promotion-bar-wrap.layout2 .wpmozo-promotion-bar-content, .wpmozo-promotion-bar-wrap.layout3 .wpmozo-promotion-bar-content{
+			width: ${attributes.contentBoxWidth}%;
+		}`);
 	}
 
 	// Timer box align.
@@ -169,7 +169,26 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 			: ''
 		);
 	}
-
+	normalcss.push(
+		( attributes.buttonBGGradient || attributes.buttonBackground || attributes.buttonColor || convertedStyle.button )
+		? `@media screen and (max-width: 768px) {
+				.wpmozo-promotion-bar-inner{ flex-wrap: wrap; }
+				.wpmozo-promotion-bar-wrap.layout2 .wpmozo-promotion-bar-content{
+					width: 100%;
+				}
+				.wpmozo-promotion-bar-wrap.layout3 .wpmozo-promotion-bar-inner,
+				.wpmozo-promotion-bar-wrap.layout3 .wpmozo-promotion-bar-content{
+					flex-direction: column;
+				}
+				.wpmozo-promotion-bar-wrap.layout3 .wpmozo-image-wrap{
+					margin-right: 0;
+				}
+				.wpmozo-promotion-bar-wrap.layout3 .wpmozo-button-wrap{
+					width: 100%;
+				}
+			}`
+		: ''
+	);
 	const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);
 	
 	let styles = hasStyles ? `#block-${attributes.ID}{${normalcss.filter(Boolean).join('\n')} ${hovercss.filter(Boolean).join('\n')}}` : '';
