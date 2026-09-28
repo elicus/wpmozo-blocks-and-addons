@@ -342,7 +342,10 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 - File Location: assets/js/vendors/waypoints.min.js
 - License: MIT
 - License URI: https://opensource.org/licenses/MIT
-
+### Chart JS
+- File Location: assets/js/vendors/chart.min.js
+- License: MIT
+- License URI: https://opensource.org/licenses/MIT
 
 == Documentation and Support ==
 - For detailed usage instructions, check out the [plugin documentation](https://wpmozo.com/documentation/wpmozo-blocks-and-addons/).
