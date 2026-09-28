@@ -65,7 +65,7 @@
 		"percentageTextShadowOpacity": { "type": "number" },
 		
 		"barborder": { "type": "object" },
-		"barborderRadius": { "type": "string" }
+		"barborderRadius": { "type": "object" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

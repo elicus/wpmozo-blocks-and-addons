@@ -1,9 +1,19 @@
 @font-face {
   font-family: 'wpmozo';
   src:
-    url('../../fonts/wpmozo.ttf?e66p2x') format('truetype'),
-    url('../../fonts/wpmozo.woff?e66p2x') format('woff'),
-    url('../../fonts/wpmozo.svg?e66p2x#wpmozo') format('svg');
+    url('fonts/wpmozo.ttf?mrtc69') format('truetype'),
+    url('fonts/wpmozo.woff?mrtc69') format('woff'),
+    url('fonts/wpmozo.svg?mrtc69#wpmozo') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'wpmozo';
+  src:
+    url('../../fonts/wpmozo.ttf?mrtc69') format('truetype'),
+    url('../../fonts/wpmozo.woff?mrtc69') format('woff'),
+    url('../../fonts/wpmozo.svg?mrtc69#wpmozo') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -22,6 +32,12 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.wpmozo-bna-icon-woo-products-accordion:before {
+  content: "\e975";
+}
+.wpmozo-bna-icon-woo-brands-carousel:before {
+  content: "\e977";
+}
 .wpmozo-bna-icon-call-to-action:before {
   content: "\e972";
 }
@@ -49,7 +65,7 @@
 .wpmozo-bna-icon-advanced-counter:before {
   content: "\e96a";
 }
-.wpmozo-bna-icon-comparison:before {
+.wpmozo-bna-icon-comparison-list:before {
   content: "\e96b";
 }
 .wpmozo-bna-icon-coupon:before {
@@ -70,13 +86,13 @@
 .wpmozo-bna-icon-audio-player:before {
   content: "\e961";
 }
-.wpmozo-bna-icon-blog-category:before {
+.wpmozo-bna-icon-blog-categories:before {
   content: "\e962";
 }
 .wpmozo-bna-icon-sticky-video:before {
   content: "\e963";
 }
-.wpmozo-bna-icon-slider-accordion:before {
+.wpmozo-bna-icon-accordion-slider:before {
   content: "\e964";
 }
 .wpmozo-bna-icon-tile-scroll:before {
@@ -91,7 +107,7 @@
 .wpmozo-bna-icon-wavy-gallery:before {
   content: "\e95b";
 }
-.wpmozo-bna-icon-table-of-content:before {
+.wpmozo-bna-icon-table-of-contents:before {
   content: "\e95a";
 }
 .wpmozo-bna-icon-split-image:before {
@@ -365,7 +381,7 @@
   content: "\e901";
 }
 .wpmozo-bna-icon-brandicon:before {
-  	font-size:22px;
+  font-size:22px;
 	content:"\e900";
 	color:#00de7c;
 	position:absolute;
