@@ -17,6 +17,21 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
 
 	normalcss.push(
+		'default' !== attributes.position 
+		? ` position : ${attributes.position};
+			${attributes.posTop ? `top: ${attributes.posTop};` : ''}
+			${attributes.posLeft ? `left: ${attributes.posLeft};` : ''}
+			display:flex;
+			${attributes.barAlign ? `justify-content: ${attributes.barAlign};` : ''}
+			${'fixed' === attributes.position ? `width: 100%;` : ''}
+			${attributes.barIndex ? `z-index: ${attributes.barIndex};` : ''}
+		  `
+		: `	display:flex;
+			${attributes.barAlign ? `justify-content: ${attributes.barAlign};` : ''}
+			${attributes.barIndex ? `z-index: ${attributes.barIndex};` : ''}`
+	);
+
+	normalcss.push(
 		( attributes.percentageColor || percentShadow || convertedStyle.percentage )
 		? `.wpmozo-bna-progress-bar-percent{
 				${attributes.percentageColor ? `color: ${attributes.percentageColor};` : ''}
@@ -34,7 +49,8 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 		( attributes.barEmptyColor || attributes.barSize || convertedStyle.bar )
 			? `.wpmozo-bna-progress-bar-wrapper.wpmozo-bna-progress-bar-layout-bar {
 					background-color: ${attributes.barEmptyColor || '#eeeeee'};
-					${sizeProp}: ${attributes.barSize || 30}px;
+					width: ${attributes.barSize || '30px'};
+					height: ${attributes.barHeight || `${'horizontal' === attributes.barDirection ? '30px' : '500px'}`};
 					${convertedStyle.bar || ''}
 				}`
 			: ''
@@ -65,13 +81,6 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 		);
 
 		hovercss.push( attributes.barFilledHoverColor ? `.wpmozo-bna-progress-bar-layout-bar:hover .wpmozo-bna-progress-bar-inner${isEditor('.wpmozo-bna-progress-bar-layout-bar .wpmozo-bna-progress-bar-inner')} { background-color: ${attributes.barFilledHoverColor};}` : '' );
-		
-		
-		
-		
-        if ('vertical' === attributes.barDirection) {
-			normalcss.push( attributes.barHeight ? `.wpmozo-bna-progress-bar-wrapper[data-bar_direction="vertical"]{ height: ${attributes.barHeight || 500}px;}` : '' );
-        }
     } else {
 		normalcss.push( attributes.circleSize ? `.wpmozo-bna-progress-bar-wrapper {
 			width: ${attributes.circleSize }px;

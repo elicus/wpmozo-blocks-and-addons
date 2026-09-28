@@ -175,10 +175,15 @@
 		"borderHoverColor": { "type": "string" },
 		"borderDimensionspadding": { "type": "object" },
 		"borderDimensionsmargin": { "type": "object" },
-		"buttonFontSize": {"type": "number"}
+		"buttonFontSize": {"type": "number"},
+		"style": {
+			"type": "object",
+			"default": {}
+		}
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",
 	"editorStyle": ["wpmozo-blocks-and-addons-fontawesome-style","file:./index.css"],
-	"style": ["wpmozo-blocks-and-addons-fontawesome-style","file:./style-index.css"]
+	"style": ["wpmozo-blocks-and-addons-fontawesome-style","file:./style-index.css"],
+	"script": ["file:./script.js"]
 }

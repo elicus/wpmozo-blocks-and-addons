@@ -54,11 +54,6 @@
 	animation-timing-function: linear;
 	animation-duration: 35.00s;
 }
-.wp-block-wpmozo-post-ticker .wpmozo_post_ticker_wrap.wpmozo_ticker_effect_scroll,
-.wp-block-wpmozo-post-ticker .wpmozo_post_ticker_wrap.wpmozo_ticker_effect_fade,
-.wp-block-wpmozo-post-ticker .wpmozo_post_ticker_wrap.wpmozo_ticker_effect_slide{
-	align-items: center;
-}
 .wp-block-wpmozo-post-ticker .wpmozo_ticker_effect_scroll:hover .wpmozo_post_ticker_bar{
 	animation-play-state: paused;
 }
@@ -166,7 +161,6 @@
 .wp-block-wpmozo-post-ticker .wpmozo_arrows_position i{
 	font-size:18px;
 	margin-top: 0;
-	margin-right:10px;
 }
 .wp-block-wpmozo-post-ticker .wpmozo_arrows_position .swiper-button-next{
 	right: 0;
@@ -194,7 +188,7 @@
 		height: auto !important;
 	}
 	.wp-block-wpmozo-post-ticker .wpmozo_post_ticker_wrap.wpmozo_ticker_effect_scroll,
-	.wp-block-wpmozo-post-ticker .wpmozo__ticker_wrap.wpmozo_ticker_effect_slide,
+	.wp-block-wpmozo-post-ticker .wpmozo_post_ticker_wrap.wpmozo_ticker_effect_slide,
 	.wp-block-wpmozo-post-ticker .wpmozo_post_ticker_wrap.wpmozo_ticker_effect_fade{
 		flex-direction: column;
 	}

@@ -3,7 +3,7 @@ import {
 	PanelBody,
 	TextControl,
 } from '@wordpress/components';
-import { WpmozoMediaUploader } from '../../../common/components/index';
+import { WpmozoMediaUploader, WpmozoRangeSize } from '../../../common/components/index';
 import { useState } from "@wordpress/element";
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
@@ -15,7 +15,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const [ contentType, setContentType ] = useState('front');
 
 	return ( <>
-		<PanelBody title={ __( 'General Settings', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+		<PanelBody title={ __( 'General Settings', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
 			<WpmozoMediaUploader
 				attrKye="image"
 				props={props}
@@ -28,6 +28,22 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				__nextHasNoMarginBottom = {true}
 				value={ attributes.altText }
 				onChange={ ( newValue ) => setAttributes( { altText: newValue } ) }
+			/>
+		</PanelBody>
+		<PanelBody title={ __( 'Image Position', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+			<WpmozoRangeSize props={props}
+				label={ __( 'Horizontal Align', 'wpmozo-blocks-and-addons') }
+				rangeSizeKey='horizontalAlign'
+				min={0}
+				max={1500}
+				step={1}
+			/>
+			<WpmozoRangeSize props={props}
+				label={ __( 'Vertical Align', 'wpmozo-blocks-and-addons') }
+				rangeSizeKey='verticalAlign'
+				min={0}
+				max={1500}
+				step={1}
 			/>
 		</PanelBody>
 	</> );

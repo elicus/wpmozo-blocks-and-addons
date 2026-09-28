@@ -111,7 +111,7 @@ const V1 = {
                     let key   = ( scalIcons.includes( rateIcon ) ) ? `${rateIcon}/${mood}_filled` : `${rateIcon}-filled`;
                     const svg = attributes.iconSVGs?.[key]?.[mood] || '';
                     stars.push(
-                        <span dangerouslySetInnerHTML={ { __html: svg } }
+                        <span dangerouslySetInnerHTML={ { __html: svg ?? '' } }
                             className={`wpmozo_star_rating_star wpmozo-rating-icon-custom wpmozo_star_rating_filled wpmozo-rating-icon-${rateIcon}`}
                         />
                     );
@@ -124,7 +124,7 @@ const V1 = {
                 if ( 'default' !== rateIcon ) {
                     let key   = ( scalIcons.includes( rateIcon ) ) ? `${rateIcon}/${mood}_half_filled` : `${rateIcon}-half_filled`;
                     const svg = attributes.iconSVGs?.[key]?.[mood] || '';
-                    stars.push( <span dangerouslySetInnerHTML={ { __html: svg } }
+                    stars.push( <span dangerouslySetInnerHTML={ { __html: svg ?? '' } }
                         className={`wpmozo_star_rating_star wpmozo-rating-icon-custom wpmozo_star_rating_half_filled wpmozo-rating-icon-${rateIcon}`}
                     /> );
                 } else {
@@ -139,7 +139,7 @@ const V1 = {
                 if ( 'default' !== rateIcon ) {
                     let key   = ( scalIcons.includes( rateIcon ) ) ? `${rateIcon}/${mood}_empty` : `${rateIcon}-empty`;
                     const svg = attributes.iconSVGs?.[key]?.[mood] || '';
-                    stars.push( <span dangerouslySetInnerHTML={ { __html: svg } }
+                    stars.push( <span dangerouslySetInnerHTML={ { __html: svg ?? '' } }
                         className={`wpmozo_star_rating_star wpmozo-rating-icon-custom wpmozo_star_rating_empty wpmozo-rating-icon-${rateIcon}`}
                     /> );
                 } else {

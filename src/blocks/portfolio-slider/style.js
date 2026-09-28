@@ -20,6 +20,9 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 		'projectUrlHover',
 		'featuredImage',
 		'arrow',
+		'arrowHover',
+		'portfoliocontent',
+		'portfoliocontentHover',
 		'portfolio',
 		'portfolioHover',
 		'container',
@@ -234,6 +237,9 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 			: ''
 		);
 	}
+	if(attributes.showProjectUrl || attributes.showReadMore){
+		normalcss.push(attributes.globalTextAlign  ? `.wpmozo_portfolio_slider_button_wrap{justify-content: ${attributes.globalTextAlign}};` : '' );
+	};
 
 	// Portfolio card wrapper.
 	if ( attributes.layout === 'layout2' ) {
@@ -253,6 +259,9 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 				}`
 			: ''
 		);
+		
+		normalcss.push( convertedStyle.portfoliocontent ? `.wpmozo_portfolio_slider_item_card .wpmozo_portfolio_slider_content_wrap{${convertedStyle.portfoliocontent}}` : '' );
+		hovercss.push( convertedStyle.portfoliocontentHover ? `.wpmozo_portfolio_slider_item_card .wpmozo_portfolio_slider_content_wrap:hover${isEditor('.wpmozo_portfolio_slider_item_card')}{${convertedStyle.portfoliocontentHover}}` : '' );
 		
 		normalcss.push( convertedStyle.portfolio ? `.wpmozo_portfolio_slider_item_card{${convertedStyle.portfolio}}` : '' );
 		hovercss.push( convertedStyle.portfolioHover ? `.wpmozo_portfolio_slider_item_card:hover${isEditor('.wpmozo_portfolio_slider_item_card')}{${convertedStyle.portfolioHover}}` : '' );
@@ -296,6 +305,20 @@ const generateDynamicStyle = ( { attributes, clientId, isEdit } ) => {
 						height: ${finalBgSize}px;
 						${attributes.arrowBackground ? `background-color: ${attributes.arrowBackground};` : ''}
 						${convertedStyle.arrow || ''}
+					` : ''}
+				}`
+			: ''
+		);
+		
+		hovercss.push(
+			( attributes.arrowHoverIconSize || attributes.arrowHoverColor || ( enableBg && ( finalBgSize || attributes.arrowHoverBackground || convertedStyle.arrowHover ) ) )
+			? `.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-next:hover${isEditor('.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-next')},
+				.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-prev:hover${isEditor('.wpmozo_swiper_wrapper .wpmozo_portfolio_layout .swiper-button-prev')}{
+					${attributes.arrowHoverIconSize ? `font-size: ${attributes.arrowHoverIconSize}px;`: ''}
+					${attributes.arrowHoverColor ?`color: ${attributes.arrowHoverColor};`: ''}
+					${enableBg ?`
+						${attributes.arrowHoverBackground ? `background-color: ${attributes.arrowHoverBackground};` : ''}
+						${convertedStyle.arrowHover || ''}
 					` : ''}
 				}`
 			: ''

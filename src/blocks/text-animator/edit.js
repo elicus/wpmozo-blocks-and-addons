@@ -13,8 +13,9 @@ const Edit = (props) => {
 			className: `wpmozo-text-animator${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
 			style: {}
 		}, attributes ),
-		wrapProps = wrapArgs?.wrapprops,
-		blockProps = useBlockProps(wrapProps),
+		wrapProps = wrapArgs?.wrapprops;
+
+		const blockProps = useBlockProps(wrapProps),
 		wrapStyle = wrapArgs?.wrapStyle,
 		isEdit = true;
 	// Ensure ID is set once (no render-time mutation).

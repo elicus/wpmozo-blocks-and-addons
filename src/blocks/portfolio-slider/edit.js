@@ -13,7 +13,7 @@ import { renderPortfolioLayoutOne, renderPortfolioLayoutTwo } from './layouts';
 const Edit = (props) => {
 
 	const {attributes, setAttributes, clientId} = props,
-	wrapArgs = attributes?.ID && mergeWrapperProps( { 
+	wrapArgs = attributes?.ID && mergeWrapperProps( {
 		className: `wpmozo-portfolio-slider${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
 		style: {}
 	}, attributes ),
@@ -101,7 +101,7 @@ const Edit = (props) => {
 					portfolioContent = (
 						<div 
 							className="wpmozo_portfolio_slider_content"
-							dangerouslySetInnerHTML={ { __html: contentText } }
+							dangerouslySetInnerHTML={ { __html: contentText ?? '' } }
 						/>
 					);
 				}

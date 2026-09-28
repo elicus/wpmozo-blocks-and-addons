@@ -1,3 +1,11 @@
+/* remove gutenberg advanced controls from wpmozo-general and wpmozo-design tabs */
+.block-editor-block-inspector:has(.wpmozo-settings-tab-panel) div:has( > .components-panel__body.block-editor-block-inspector__advanced){
+	display: none;
+}
+.block-editor-block-inspector:has(.wpmozo-settings-tab-panel .wpmozo-inspector-tab-advanced.is-active[aria-selected="true"]) div:has( > .components-panel__body.block-editor-block-inspector__advanced){
+	display: block;
+}
+
 .wpmozo-same-as-carousel {
 	margin-top: 10px;
 }
@@ -52,7 +60,7 @@
 
 .wpmozo-background-img-selction-wrap img {
 	width: 100%;
-	height: 140px !important;
+	height: 140px;
 	object-fit: cover;
 	border-radius: 2px;
 }
@@ -62,7 +70,7 @@
 }
 
 .wpmozo-bna-flip-box-edit-control {
-	margin-bottom: 0px !important;
+	margin-bottom: 0px;
 }
 
 .wpmozo-bna-flip-box-wrap.edit-front .wpmozo-bna-flip-box-back {
@@ -70,10 +78,10 @@
 }
 
 .wpmozo-bna-flip-box-wrap.edit-front .wpmozo-bna-flip-box-front {
-	-webkit-transform: none !important;
-	-moz-transform: none !important;
-	-ms-transform: none !important;
-	transform: none !important;
+	-webkit-transform: none;
+	-moz-transform: none;
+	-ms-transform: none;
+	transform: none;
 }
 
 .wpmozo-bna-flip-box-wrap.edit-back .wpmozo-bna-flip-box-front {
@@ -81,21 +89,21 @@
 }
 
 .wpmozo-bna-flip-box-wrap.edit-back .wpmozo-bna-flip-box-back {
-	-webkit-transform: none !important;
-	-moz-transform: none !important;
-	-ms-transform: none !important;
-	transform: none !important;
+	-webkit-transform: none;
+	-moz-transform: none;
+	-ms-transform: none;
+	transform: none;
 }
 
 .is-selected.wpmozo-bna-flip-box-main .wpmozo-bna-flip-box-wrap {
-	-webkit-transform: none !important;
-	-moz-transform: none !important;
-	-ms-transform: none !important;
-	transform: none !important;
+	-webkit-transform: none;
+	-moz-transform: none;
+	-ms-transform: none;
+	transform: none;
 }
 
 .wpmozo-bna-fancy-text-inner.clipping {
-	color: transparent !important;
+	color: transparent;
 }
 
 /* Settings tabs. */
@@ -110,7 +118,7 @@
 	color: #666666;
 	font-size: 14px;
 	letter-spacing: 0.5px;
-	height: 42px !important;
+	height: 42px;
 }
 
 .wpmozo-settings-tab-panel .wpmozo-inspector-tab-general:hover,
@@ -133,7 +141,7 @@
 .wpmozo-settings-tab-panel .components-datetime__time-field-hours-input,
 .wpmozo-settings-tab-panel .components-datetime__time-field,
 .wpmozo-settings-tab-panel .components-datetime__date h3 {
-	margin-bottom: 0 !important;
+	margin-bottom: 0;
 }
 .wpmozo-settings-tab-panel .wpmozo-settings-tab-panel-content .components-panel__body.is-opened .components-panel__body-title{
 	background: #EBEBEB;
@@ -262,17 +270,17 @@
 
 /* Multi checkboxes. */
 .wpmozo-inpector-multi-checkboxes .components-base-control {
-	margin-bottom: 8px !important;
+	margin-bottom: 8px;
 }
 
 /* Hide the time picker, in date time picker. */
 /* Used date time picker as have a date changes inputs. */
 .wpmozo-hide-time-picker-control fieldset:first-child {
-	display: none !important;
+	display: none;
 }
 
 [class*="wp-block-wpmozo-"] a {
-	pointer-events: none !important;
+	pointer-events: none;
 }
 
 .block-editor-inserter__panel-title, .block-editor-inserter__panel-title button{

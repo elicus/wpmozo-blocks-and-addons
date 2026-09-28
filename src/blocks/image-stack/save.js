@@ -21,7 +21,7 @@ export default function save( { attributes } ) {
 		<>
 			<style>{ generateDynamicStyle( { attributes, ID } ) }</style>
 
-			<div {...innerBlocksProps} id={`block-${attributes.ID}`} className={ `wpmozo-bna-image-stack ` + attributes.className } data-tooltip-enable={attributes.showTooltip}>
+			<div {...innerBlocksProps} id={`block-${attributes.ID}`} className={ `wpmozo-bna-image-stack `} data-tooltip-enable={attributes.showTooltip} data-show-arrow={attributes.showArrow} data-trigger={attributes.tooltipTrigger}>
 				<div className={`wpmozo-image-stack-wrap`}>
 					<div className={`wpmozo-image-stack-inner`}>
 						{/*<InnerBlocks.Content />*/}

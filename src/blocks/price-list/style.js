@@ -112,6 +112,14 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 			}` 
 		: ''
 	);
+	cssExtras.push(
+		`@media only screen and (max-width: 980px) {
+			html:not(.block-editor-iframe__html) #block-${clientId}, 
+			.editor-styles-wrapper #block-${clientId}.wpmozo-bna-price-list .block-editor-inner-blocks > div{ 
+				grid-template-columns: repeat(1, 1fr) !important;
+			}
+		}`
+	);
 
 	cssExtras.push( ! wpmozo_is_empty(attributes.textAlignment) ? `#block-${clientId}{ text-align: ${attributes.textAlignment}; }` : '' );
 

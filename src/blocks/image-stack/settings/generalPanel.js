@@ -10,6 +10,7 @@ import {
 } from "@wordpress/components";
 import {
 	WpmozoAlignment,
+	WpmozoRangeSize
 } from "../../../common/components";
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
@@ -18,22 +19,19 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	return ( <>
 		{/* Configuration. */}
 		<PanelBody title={ __( 'Configuration', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
-			<RangeControl
-				label={ __( 'Image/Icon Size', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.stackItemSize }
-				onChange={ ( newValue ) => setAttributes( { stackItemSize: newValue } ) }
+			<WpmozoRangeSize props={props}
+				label={ __( 'Image/Icon Size', 'wpmozo-blocks-and-addons') }
+				rangeSizeKey='stackItemSize'
 				min={ 1 } step={ 1 } max={ 500 }
 			/>
-			<RangeControl
+			<WpmozoRangeSize props={props}
 				label={ __( 'Image/Icon Shrink', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.stackItemShrink }
-				onChange={ ( newValue ) => setAttributes( { stackItemShrink: newValue } ) }
+				rangeSizeKey='stackItemShrink'
 				min={ 1 } step={ 1 } max={ 250 }
 			/>
-			<RangeControl
+			<WpmozoRangeSize props={props}
 				label={ __( 'Image/Icon Spacing', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.stackItemSpacing }
-				onChange={ ( newValue ) => setAttributes( { stackItemSpacing: newValue } ) }
+				rangeSizeKey='stackItemSpacing'
 				min={ 0 } step={ 1 } max={ 150 }
 			/>
 			<WpmozoAlignment

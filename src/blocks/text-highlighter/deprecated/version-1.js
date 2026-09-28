@@ -96,10 +96,10 @@ const V1 = {
     },
 	migrate(attributes) {
         return {
-            ...attributes,
-            "pre": { "type": "string", "default": "WPMozo" },
-			"post": { "type": "string", "default": "Block" },
-        };
+			...attributes,
+			pre: "WPMozo",
+			post: "Block",
+		};
     },
     save( { attributes } ) {
         const heighlighterShape = attributes.textHighlighterShape,

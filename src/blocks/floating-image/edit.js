@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { 
+import {
     InnerBlocks,
     useBlockProps,
     MediaPlaceholder

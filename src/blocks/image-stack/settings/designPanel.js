@@ -7,7 +7,8 @@ import {
 import {
 	WpmozoColorPicker,
 	WpmozoDimensions,
-	MozoStates
+	MozoStates,
+	WpmozoRangeSize
 } from "../../../common/components";
 import { useState } from "react";
 
@@ -31,11 +32,10 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 	return ( <>
 		{/* Icon styling. */}
 		<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
-			<RangeControl
-				label={ __( 'Icon Size', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.iconSize }
-				onChange={ ( newValue ) => setAttributes( { iconSize: newValue } ) }
-				min={ 1 } step={ 1 } max={ 150 }
+			<WpmozoRangeSize props={props}
+				label={ __( 'Icon Size', 'wpmozo-blocks-and-addons') }
+				rangeSizeKey='iconSize'
+				min={ 1 } step={ 1 } max={ 500 }
 			/>
 			<MozoStates
 				value={hoverState}

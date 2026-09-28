@@ -119,7 +119,7 @@ export default function Edit(props) {
 
 			let postExcerpt = '';
 			if ( post.content.rendered ) {
-				postExcerpt = <div dangerouslySetInnerHTML={{__html: truncateToWords(rawContent, attributes.excerptLength)}}/>
+				postExcerpt = <div dangerouslySetInnerHTML={{__html: truncateToWords(rawContent, attributes.excerptLength) ?? ''}}/>
 			}
 
 			let showFeaturedImage = '';

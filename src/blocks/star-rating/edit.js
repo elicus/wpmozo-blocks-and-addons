@@ -150,7 +150,6 @@ const Edit = ( props ) => {
 			</div>
 		);
 	}
-	// console.log(stars);
 
 	return (
 		<Fragment>

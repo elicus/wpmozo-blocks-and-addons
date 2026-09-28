@@ -126,19 +126,25 @@
 .wp-block-wpmozo-pricing-table .wpmozo-bna-button.icon-after .wpmozo-bna-button-icon{
     order: -1;
 }
+.wp-block-wpmozo-pricing-table .wpmozo-bna-button.icon-after.show-on-hover,
+.wp-block-wpmozo-pricing-table .wpmozo-bna-button.icon-before.show-on-hover{
+    gap: 0px;
+}
+.wp-block-wpmozo-pricing-table .wpmozo-bna-button.icon-after.show-on-hover:hover,
+.wp-block-wpmozo-pricing-table .wpmozo-bna-button.icon-before.show-on-hover:hover{
+    gap: 5px;
+}
 .wp-block-wpmozo-pricing-table .show-on-hover .wpmozo-bna-button-image,
 .wp-block-wpmozo-pricing-table .show-on-hover .wpmozo-bna-button-icon{
 	opacity: 0;
-	transform: scale(0);
 	transition: all 0.3s ease;
-	position: absolute;
 }
 
 /* Show the icon when hovering over the button */
 .wp-block-wpmozo-pricing-table .show-on-hover:hover .wpmozo-bna-button-image,
 .wp-block-wpmozo-pricing-table .show-on-hover:hover .wpmozo-bna-button-icon{
 	opacity: 1;
-	transform: scale(1);
 	display: inline-block;
-	position: relative;
+    margin-left:0 !important;
+    margin-right:0 !important;
 }

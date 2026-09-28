@@ -7,7 +7,7 @@ const Save = ( { attributes } ) => {
 
 	const clientId = attributes.ID,
 		wrapArgs = attributes?.ID && mergeWrapperProps( { 
-			className: 'wpmozo-text-animator' ,
+			className: 'wpmozo-text-animator',
 			style: {}
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,

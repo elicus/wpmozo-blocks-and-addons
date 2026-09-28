@@ -46,14 +46,31 @@ function initHorizontalScrollPost($section){
 				end: () => `+=${totalScroll}`
 			}
 		} );
-		ScrollTrigger.getAll().forEach(trigger => {
-			if ( trigger.trigger === $scroller[0] ) {
-				trigger.refresh();
+	});
+	const loggedElements = new WeakSet();
+  
+ 	// Create an Intersection Observer
+  	const observer = new IntersectionObserver(function(entries) {
+		entries.forEach(function(entry) {
+		if (entry.isIntersecting) {
+			// Element is entering or is in viewport
+			if (!loggedElements.has(entry.target)) {
+			loggedElements.add(entry.target);
+			ScrollTrigger.getAll().forEach(trigger => {
+					trigger.refresh();
+			});
 			}
+		} else {
+			// Element is leaving viewport - remove from logged set 
+			// so it logs again when it re-enters
+			loggedElements.delete(entry.target);
+		}
 		});
 	});
+	
+	// Observe each element individually
+	$container.each(function() {
+		$(this).data('inViewport', false);
+		observer.observe(this);
+	});
 }
-
-
-
-

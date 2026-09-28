@@ -234,6 +234,15 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			'1.4.2',
 			true
 		);
+		
+		// Chart.
+		wp_register_script(
+			$this->plugin_name . '-chartjs-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . "js/vendors/chart.min.js",
+			array('jquery'),
+			WPMOZO_BNA_VERSION,
+			true
+		);
 	}
 
 	/**

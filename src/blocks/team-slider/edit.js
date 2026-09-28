@@ -183,7 +183,7 @@ const Edit = (props) => {
 					<div className={"wpmozo_bna_team_slider_container wpmozo_swiper_inner_wrap " + layout}>
 						{$postItems.length > 0 ? (
 							<div className="swiper swiper-container">
-								<div className="swiper-wrapper" dangerouslySetInnerHTML={{__html: $postItems}}/>
+								<div className="swiper-wrapper" dangerouslySetInnerHTML={{__html: $postItems ?? ''}}/>
 							</div>
 						) : (
 							<Notice status="warning" isDismissible={false}>

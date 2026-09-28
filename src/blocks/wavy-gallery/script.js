@@ -25,7 +25,9 @@ $(document).ready(function () {
 function initWavyGallery( thisObj ) {
 	const blockId = thisObj.attr('data-block');
 	gsap.registerPlugin( ScrollTrigger );
-	ScrollTrigger.getById(`stwg-${blockId}`) ? ScrollTrigger.getById(`stwg-${blockId}`).kill(true) : '';
+	if(window.self !== window.top){
+		ScrollTrigger.getById(`stwg-${blockId}`) ? ScrollTrigger.getById(`stwg-${blockId}`).kill(true) : '';
+	}
 	ScrollTrigger.normalizeScroll( true );
 
 	const orderClass = thisObj.attr('id');

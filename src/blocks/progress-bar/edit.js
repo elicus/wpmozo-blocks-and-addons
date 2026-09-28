@@ -9,10 +9,7 @@ import { mergeWrapperProps } from '../../common/utils.js';
 const Edit = (props) => {
     const { attributes, clientId, setAttributes } = props;
 
-	let linkTarget = ( 'external' === attributes.buttonLinkTarget ) ? '_blank' : '_self',
-		showIconOnHover = ( attributes.showIconOnHover ) ? ' show-on-hover' : '',
-		buttonIconPosition = ( attributes.buttonIconPosition ) ? attributes.buttonIconPosition : ' icon-after',
-		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+	let wrapArgs = attributes?.ID && mergeWrapperProps( { 
 			className: `wpmozo-pricing-table${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
 			style: {}
 		}, attributes ),

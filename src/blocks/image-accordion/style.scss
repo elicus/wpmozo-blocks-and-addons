@@ -208,3 +208,10 @@
 .wp-block-wpmozo-image-accordion-item.wpmozo-item-animation-bottom:hover .wpmozo-item-animation {
     animation-name: wpmozoBottomToTop;
 }
+@media only screen and (max-width: 980px) {
+    .wpmozo-bna-image-accordion-wrapper .block-editor-block-list__layout,
+    .wpmozo-bna-image-accordion-wrapper{
+        height: 600px !important;
+        flex-direction: column !important;
+    }
+}

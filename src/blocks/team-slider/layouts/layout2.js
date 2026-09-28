@@ -51,7 +51,7 @@ const Layout1 = ( { post, attributes } ) => {
 					{/* Short Description. */}
 					{ ( attributes.showShortDesc && post.short_description ) &&
 						<div className="wpmozo_bna_team_member_short_desc"
-							dangerouslySetInnerHTML={ { __html: post.short_description } }
+							dangerouslySetInnerHTML={ { __html: post.short_description ?? '' } }
 						/>
 					}
 

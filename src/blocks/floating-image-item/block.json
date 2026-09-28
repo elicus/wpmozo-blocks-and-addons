@@ -20,12 +20,12 @@
 		"className": { "type": "string" },
 
         "image": { "type": "object" },
-        "imagewidth": { "type": "string", "default": "200px" },
+        "imagewidth": { "type": "string", "default": "20%" },
         "imageheight": { "type": "string" },
         "altText": { "type": "string", "default": "" },
 
-        "horizontalAlign": { "type": "string" },
-        "verticalAlign": { "type": "string" },
+        "horizontalAlign": { "type": "string", "default": "%" },
+        "verticalAlign": { "type": "string", "default": "%" },
 
         "animationEffect": { "type": "string", "default": "up_down" },
         "animationDelay": { "type": "number", "default": 0 },

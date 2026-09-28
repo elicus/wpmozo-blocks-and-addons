@@ -184,10 +184,10 @@ const V1 = {
             <div { ...blockProps }>
                 <div className={`wpmozo_bna_blog_timeline_wrapper ${layout} wpmozo_bna_blog_timeline_${orientation}`}
                     dangerouslySetInnerHTML={ {
-                        __html: ( attributes.postItemsDB || '' ) +
+                        __html: (( attributes.postItemsDB || '' ) +
                         renderToString( <div className={`wpmozo_bna_stem_wrapper wpmozo_bna_blog_timeline_${orientation}_stem`}>
                             <div className="wpmozo_bna_blog_stem"></div>
-                        </div> )
+                        </div> )) ?? ''
                     } }
                 />
             </div>

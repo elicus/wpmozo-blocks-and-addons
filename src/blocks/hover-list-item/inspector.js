@@ -43,7 +43,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 						<DesignPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState} />
 					}
 					{ tab.name === 'advanced' &&
-						<AdvancedPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState}/>
+						<AdvancedPanel attributes={attributes} setAttributes={setAttributes} exclude={{spacing:true}} hoverState={hoverState} setHoverState={setHoverState}/>
 					}
 				</div> ) }
 			</TabPanel>

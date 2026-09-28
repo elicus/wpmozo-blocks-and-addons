@@ -24,7 +24,7 @@ function wpmozo_bna_init_hover_list( thisObj ) {
 		} );
 	} );
 
-	let $overlays = thisObj.find( '.wpmozo-bna-hover-list-item-overlay' );
+	let $overlays = thisObj.find( '.wpmozo-bna-hover-list-item-inner' );
 	$overlays.on( 'mousemove', function (e) {
 		TweenLite.to( $cursor, 0.3, { scale: 1, autoAlpha: 1 } );
 		TweenLite.to( $cursor, 0.5, {

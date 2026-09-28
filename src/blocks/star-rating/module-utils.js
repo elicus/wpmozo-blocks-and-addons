@@ -39,7 +39,7 @@ export const renderSVGIcon = (
 	const key = getIconKey( icon, type, mood );
 	const svg = attributes.iconSVGs?.[key]?.[mood];
 	return svg ? (
-		<span dangerouslySetInnerHTML={ { __html: svg } }
+		<span dangerouslySetInnerHTML={ { __html: svg ?? '' } }
 			className={`wpmozo_star_rating_star wpmozo-rating-icon-custom wpmozo_star_rating_${type} wpmozo-rating-icon-${icon}`}
 			key={`${icon}-${type}-${mood}`}
 		/>
