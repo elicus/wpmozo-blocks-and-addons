@@ -20,7 +20,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 		'default' !== attributes.position 
 		? ` position : ${attributes.position};
 			${attributes.posTop ? `top: ${attributes.posTop};` : ''}
-			${attributes.posLeft ? `left: ${attributes.posLeft};` : ''}
+			${('fixed' === attributes.position && attributes.posLeft) ? `left: ${attributes.posLeft};` : `left: 0;`}
 			display:flex;
 			${attributes.barAlign ? `justify-content: ${attributes.barAlign};` : ''}
 			${'fixed' === attributes.position ? `width: 100%;` : ''}
@@ -30,6 +30,16 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 			${attributes.barAlign ? `justify-content: ${attributes.barAlign};` : ''}
 			${attributes.barIndex ? `z-index: ${attributes.barIndex};` : ''}`
 	);
+	if('sticky' === attributes.position){
+		if('bar' === attributes.layout){
+			normalcss.push(`height: ${attributes.barHeight};`);
+			normalcss.push(`width: ${attributes.barSize};`);
+		} else if('circle' === attributes.layout){
+			normalcss.push(`height: ${attributes.circleSize }px;`);
+		} else {
+			normalcss.push(`height: ${attributes.circleSize/2 }px;`);
+		}
+	}
 
 	normalcss.push(
 		( attributes.percentageColor || percentShadow || convertedStyle.percentage )

@@ -155,6 +155,9 @@
 		}
 	}
 }
+.wp-block-wpmozo-progress-bar.fixed-header .wpmozo-bna-progress-bar-wrapper {
+	position: fixed;
+}
 
 @keyframes wpmozo-stripe-slide {
 	from { background-position: 40px 0; }

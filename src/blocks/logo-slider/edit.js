@@ -8,6 +8,9 @@ import {
 import Inspector from './inspector';
 import generateDynamicStyle from "./style";
 import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils';
+import { useSelect, useDispatch } from '@wordpress/data';
+import { createBlock } from '@wordpress/blocks';
+
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -77,6 +80,7 @@ export default function Edit(props) {
 	) {
 		paginationClass = '';
 	}
+    
 
 	const innerBlocks = !wpmozo_is_empty(attributes.images)
 	? attributes.images.map((logo) => [
@@ -90,10 +94,34 @@ export default function Edit(props) {
 		},
 	])
 	: [];
+	const { insertBlocks } = useDispatch('core/block-editor');
+	const addChildBlock = () => {
+        const newBlock = createBlock('wpmozo/logo-slider-item', { 
+			logo:{url: typeof wpmozo_bna_editor_object !== 'undefined' ? wpmozo_bna_editor_object.placeholderImg : ''},
+			lock: {
+				remove: true,
+				move: false,
+		}});
+        insertBlocks( newBlock, innerBlocks.length, clientId );
+    };
 
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
 		allowedBlocks: [ 'wpmozo/logo-slider-item' ],
 		template: innerBlocks,
+		templateLock:false,
+		renderAppender:() => (
+			<button
+				onClick={addChildBlock} // Custom handler to add a new child button
+				type="button"
+				className="wpmozo-bna-appender components-button block-editor-button-block-appender" // Default Gutenberg button style
+				title={ __('Add List Item', 'wpmozo-blocks-and-addons') } // Tooltip text
+			>
+				{/* Plus (+) icon inside button */}
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+					<path d="M11 12.5V17.5H12.5V12.5H17.5V11H12.5V6H11V11H6V12.5H11Z"></path>
+				</svg>
+			</button>
+		)
 	});
 
 	let autoplay = 'false';

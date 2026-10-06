@@ -13,6 +13,7 @@
 .wp-block-wpmozo-text-animator .post_text_wrapper,
 .wp-block-wpmozo-text-animator .pre_text_wrapper{
     transition: all 300ms;
+    word-break: keep-all;
 }
 
 .wpmozo-flip{

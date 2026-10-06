@@ -116,9 +116,7 @@ export default function Edit(props) {
 	return ( <>
 		{ isSelected && ( <Inspector attributes={attributes} setAttributes={setAttributes} /> ) }
 
-		<div {...blockProps} onClick={handleClick}
-			className={ classnames( 'wpmozo-image-stack-item', attributes.className ) }
-		>
+		<div {...blockProps}>
 			<span className={`wpmozo-stack-item-wrapper stack-item-type-` + attributes.stackType}>
 				{ 'image' === attributes.stackType && (
 					<img className="wpmozo-stack-item-img"

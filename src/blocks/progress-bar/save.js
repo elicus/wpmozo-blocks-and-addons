@@ -57,7 +57,7 @@ const Save = ({ attributes }) => {
         <>
             <style>{ generateDynamicStyle({ attributes }) }</style>
 
-            <div {...blockProps} id={`block-${ID}`}>
+            <div {...blockProps} data-position={attributes.position} id={`block-${ID}`}>
                 <div 
                     className={`wpmozo-bna-progress-bar-wrapper wpmozo-bna-progress-bar-layout-${attributes.layout} ${attributes.showStriped ? 'wpmozo-bna-progress-bar-striped' : ''}`}
                     data-bar_direction={'bar' === attributes.layout ? attributes.barDirection : undefined}

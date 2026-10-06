@@ -72,14 +72,14 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 		<PanelBody title={ __( 'Image Sizing', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<WpmozoRangeSize props={props}
 				label={ __( 'Width', 'wpmozo-blocks-and-addons') }
-				rangeSizeKey='imagewidth'
+				rangeSizeKey='imageWidth'
 				min={0}
 				max={1500}
 				step={1}
 			/>
 			<WpmozoRangeSize props={props}
 				label={ __( 'Height', 'wpmozo-blocks-and-addons') }
-				rangeSizeKey='imageheight'
+				rangeSizeKey='imageHeight'
 				min={0}
 				max={1500}
 				step={1}

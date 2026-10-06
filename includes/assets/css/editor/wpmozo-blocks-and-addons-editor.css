@@ -5,7 +5,12 @@
 .block-editor-block-inspector:has(.wpmozo-settings-tab-panel .wpmozo-inspector-tab-advanced.is-active[aria-selected="true"]) div:has( > .components-panel__body.block-editor-block-inspector__advanced){
 	display: block;
 }
-
+.wp-block .wpmozo-bna-appender{
+	display: none;
+}
+.wp-block.is-selected[class*="wpmozo"] .wpmozo-bna-appender{
+	display: flex;
+}
 .wpmozo-same-as-carousel {
 	margin-top: 10px;
 }
@@ -247,16 +252,14 @@
  from { transform: rotatex(180deg); }
  to { transform: rotateX(0deg); }
 }
-
-
-
-
-
 .wpmozo-block-icon path {
 	fill: #3D3EED;
 }
 .is-primary .wpmozo-block-icon path {
     fill: white;
+}
+.block-editor-list-view-leaf.is-selected .wpmozo-block-icon path{
+	fill: white;
 }
 
 /* Custom field warning. */

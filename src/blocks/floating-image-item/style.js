@@ -24,23 +24,11 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 		${(attributes.animationRepeat) ? `animation-iteration-count: ${attributes.animationRepeat};` : ''}
 		${(attributes.speedCurve) ? `animation-timing-function: ${attributes.speedCurve};` : ''}
 		${(attributes.speedCurve) ? `animation-delay: ${attributes.animationDelay}ms;` : ''}
-		${ (attributes.imagewidth) ? `width:${ attributes.imagewidth};` : '' } 
-		${ (attributes.imageheight) ? `height:${ attributes.imageheight};` : '' } `
+		${ (attributes.imageWidth) ? `width:${ attributes.imageWidth};` : '' } 
+		${ (attributes.imageHeight) ? `height:${ attributes.imageHeight};` : '' } `
 	);
 
-	normalcss.push(
-		(attributes.imagewidth || attributes.imageheight || convertedStyle.image)
-        ? `.floating-image{
-				${convertedStyle.image || ''} 
-			}`
-		: ''
-	);
-	
-	normalcss.push(
-		`.floating-image{
-			width: 100%;
-		}`
-	);
+	normalcss.push( convertedStyle.image ? `.floating-image{ ${convertedStyle.image} }` : '' );
 
 	hovercss.push(
 		(attributes.imageborderHover || convertedStyle.imageHover)

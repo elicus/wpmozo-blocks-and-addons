@@ -8,6 +8,13 @@ import Inspector from './inspector';
 import generateDynamicStyle from './style';
 import { Fragment, useMemo, useEffect } from "@wordpress/element";
 import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils.js';
+/**
+ * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
+ * Those files can contain any CSS code that gets applied to the editor.
+ *
+ * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
+ */
+import './editor.scss';
 
 export default function Edit(props) {
     const { attributes, setAttributes, clientId } = props;
