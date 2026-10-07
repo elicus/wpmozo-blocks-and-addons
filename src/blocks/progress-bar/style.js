@@ -33,7 +33,6 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	if('sticky' === attributes.position){
 		if('bar' === attributes.layout){
 			normalcss.push(`height: ${attributes.barHeight};`);
-			normalcss.push(`width: ${attributes.barSize};`);
 		} else if('circle' === attributes.layout){
 			normalcss.push(`height: ${attributes.circleSize }px;`);
 		} else {

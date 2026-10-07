@@ -33,24 +33,30 @@ $(document).ready(function () {
 function initProgressBarSticky($bar) {
     const position = $($bar).attr('data-position'),
         posTop = $bar.css('top'),
-        width = $bar.css('width'),
-        widthpx = $($bar).width(),
-        scrollTop = ($bar.offset().top + parseFloat($bar.css('border-top-width'))
-        + parseFloat($bar.css('padding-top'))) - $(window).scrollTop(),
-        leftpx = $bar.offset().left + parseFloat($bar.css('border-left-width'))
-        + parseFloat($bar.css('padding-left'));
+        width = $bar.find('.wpmozo-bna-progress-bar-wrapper').css('width'),
+        widthpx = $($bar).find('.wpmozo-bna-progress-bar-wrapper').width(),
+        scrollTop = ($bar.offset().top + parseFloat($bar.css('border-top-width')) + parseFloat($bar.css('padding-top'))) - $(window).scrollTop(),
+        leftpx = $bar.find('.wpmozo-bna-progress-bar-wrapper').offset().left;
     if('sticky' === position){
         if (scrollTop <= 0 + parseInt(posTop)) {
             $($bar).addClass('fixed-header');
             $bar.find('.wpmozo-bna-progress-bar-wrapper').css('top',posTop);
             $bar.find('.wpmozo-bna-progress-bar-wrapper').css('left',leftpx);
-            $bar.find('.wpmozo-bna-progress-bar-wrapper').css('width',widthpx);
+            if($bar.find('.wpmozo-bna-progress-bar-wrapper').hasClass('wpmozo-bna-progress-bar-layout-bar')){
+                $bar.find('.wpmozo-bna-progress-bar-wrapper').css('width',widthpx);
+            } else{
+                $bar.find('.wpmozo-bna-progress-bar-wrapper').css('width','');
+            }
         }
         else {
             $($bar).removeClass('fixed-header');
             $bar.find('.wpmozo-bna-progress-bar-wrapper').css('top','auto');
             $bar.find('.wpmozo-bna-progress-bar-wrapper').css('left','auto');
-            $bar.find('.wpmozo-bna-progress-bar-wrapper').css('width',width);
+            if($bar.find('.wpmozo-bna-progress-bar-wrapper').hasClass('wpmozo-bna-progress-bar-layout-bar')){
+                $bar.find('.wpmozo-bna-progress-bar-wrapper').css('width',width);
+            }else{
+                $bar.find('.wpmozo-bna-progress-bar-wrapper').css('width','');
+            }
         }
     }
 }
