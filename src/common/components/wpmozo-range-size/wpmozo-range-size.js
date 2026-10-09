@@ -8,7 +8,6 @@ import {
 	BaseControl,
 	Button,
 } from '@wordpress/components';
-import  './style.scss';
 import {wpmozo_is_empty} from '../../utils.js';
 
 const WpmozoRangeSize = (args) => {

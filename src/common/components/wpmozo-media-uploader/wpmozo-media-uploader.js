@@ -2,7 +2,6 @@ import { Button, BaseControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { MediaUpload, MediaUploadCheck } from "@wordpress/block-editor";
 import { Fragment } from "@wordpress/element";
-import './style.scss';
 import { useState } from "@wordpress/element";
 
 

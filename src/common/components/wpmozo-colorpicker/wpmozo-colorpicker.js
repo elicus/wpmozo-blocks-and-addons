@@ -11,7 +11,6 @@ import {
 import { __experimentalUseMultipleOriginColorsAndGradients } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
-import './style.scss';
 
 const defaultGradientColor = 'linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)';
 

@@ -16,7 +16,6 @@ import {
 import { __ } from '@wordpress/i18n';
 import { compose } from '@wordpress/compose';
 import { Fragment } from '@wordpress/element';
-import './style.scss';
 import {wpmozo_is_empty} from '../../utils.js';
 import { useSelect } from '@wordpress/data';
 

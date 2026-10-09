@@ -1,6 +1,5 @@
 import { ComboboxControl } from '@wordpress/components';
 import { useMemo } from '@wordpress/element';
-import './style.scss';
 
 
 const WpmozoIconpicker = (args) => {
