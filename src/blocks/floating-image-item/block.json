@@ -20,8 +20,8 @@
 		"className": { "type": "string" },
 
         "image": { "type": "object" },
-        "imagewidth": { "type": "string", "default": "20%" },
-        "imageheight": { "type": "string" },
+        "imageWidth": { "type": "string", "default": "20%" },
+        "imageHeight": { "type": "string" },
         "altText": { "type": "string", "default": "" },
 
         "horizontalAlign": { "type": "string", "default": "%" },

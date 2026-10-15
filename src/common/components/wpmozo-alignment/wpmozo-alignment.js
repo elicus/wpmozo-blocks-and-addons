@@ -6,7 +6,6 @@ import {
     SVG,
     Path
 } from '@wordpress/components';
-import './style.scss';
 
 const WpmozoAlignment = (args) => {
     const {

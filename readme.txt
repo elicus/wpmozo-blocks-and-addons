@@ -185,7 +185,7 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
-2026-09-16 - Version 1.9.0
+2026-10-07 - Version 1.9.0
 * New: Progress Bar Block.
 * New: Portfolio Slider Block.
 * Fixed: Horizontal Scrolling Posts Block - Scrolling effect not working properly in the editor sometimes.

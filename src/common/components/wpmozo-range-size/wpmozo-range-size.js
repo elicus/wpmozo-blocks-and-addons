@@ -8,7 +8,6 @@ import {
 	BaseControl,
 	Button,
 } from '@wordpress/components';
-import  './style.scss';
 import {wpmozo_is_empty} from '../../utils.js';
 
 const WpmozoRangeSize = (args) => {
@@ -103,6 +102,48 @@ const WpmozoRangeSize = (args) => {
 				sizeSetValue('unit', unit);
 				updateColSpacingRange(newSpacing + unit);
 			}}
+			units={[
+				{
+				label: 'px',
+				value: 'px'
+				},
+				{
+				label: '%',
+				value: '%'
+				},
+				{
+				label: 'em',
+				value: 'em'
+				},
+				{
+				label: 'rem',
+				value: 'rem'
+				},
+				{
+				label: 'vw',
+				value: 'vw'
+				},
+				{
+				label: 'vh',
+				value: 'vh'
+				},
+				{
+				label: 'cqw',
+				value: 'cqw'
+				},
+				{
+				label: 'cqh',
+				value: 'cqh'
+				},
+				{
+				label: 'cqmin',
+				value: 'cqmin'
+				},
+				{
+				label: 'cqmax',
+				value: 'cqmax'
+				}
+			]}
 		/>
 	);
 

@@ -189,6 +189,16 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 			}`
 		: ''
 	);
+	normalcss.push(
+		( 'layout2' === attributes.layout || 'layout3' === attributes.layout )
+		? `@media screen and (max-width: 480px) {
+			.wpmozo-promotion-bar-wrap.layout2 .wpmozo-promotion-bar-content,
+			.wpmozo-promotion-bar-wrap.layout3 .wpmozo-promotion-bar-content{
+				width: 50%;
+			}
+		}`
+		: ''
+	);
 	const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);
 	
 	let styles = hasStyles ? `#block-${attributes.ID}{${normalcss.filter(Boolean).join('\n')} ${hovercss.filter(Boolean).join('\n')}}` : '';

@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import Inspector from './inspector';
 import { useSelect, useDispatch  } from '@wordpress/data';
-import { Fragment,useEffect } from "@wordpress/element";
+import { Fragment, useEffect } from "@wordpress/element";
 import generateDynamicStyle from './style';
 import { getIdByClientid, mergeWrapperProps } from '../../common/utils.js';
 import { createBlock } from '@wordpress/blocks';
@@ -12,6 +12,7 @@ import { createBlock } from '@wordpress/blocks';
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
+import './editor.scss';
 
 export default function Edit(props) {
 	const attributes = props.attributes,
@@ -83,7 +84,7 @@ export default function Edit(props) {
 						<button
 							onClick={addChildBlock} // Custom handler to add a new child button
 							type="button"
-							className="components-button block-editor-button-block-appender" // Default Gutenberg button style
+							className="wpmozo-bna-appender components-button block-editor-button-block-appender" // Default Gutenberg button style
 							title={ __('Add Button Item', 'wpmozo-blocks-and-addons') } // Tooltip text
 						>
 							{/* Plus (+) icon inside button */}

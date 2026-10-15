@@ -38,97 +38,16 @@ const Edit = (props) => {
 			setAttributes( updates );
 		}
 	}, [ clientId, JSON.stringify( attributes ) ] );
-    const [scrollPercent, setScrollPercent] = useState(attributes.percentage);
-    useEffect(() => {
+    const [scrollPercent, setScrollPercent] = useState(0);
 
-        const updateProgress = () => {
-    
-            const iframe = document.querySelector('.editor-visual-editor iframe');
-    
-            // WordPress 7+
-            if (iframe && iframe.contentDocument && iframe.contentWindow) {
-    
-                const doc = iframe.contentDocument;
-                const win = iframe.contentWindow;
-    
-                const scrollTop =
-                    win.scrollY ||
-                    doc.documentElement.scrollTop;
-    
-                const scrollHeight =
-                    doc.documentElement.scrollHeight -
-                    win.innerHeight;
-    
-                const percent =
-                    scrollHeight > 0
-                        ? (scrollTop / scrollHeight) * 100
-                        : 0;
-    
-                setScrollPercent(percent);
-    
-                return;
-            }
-    
-            // Older editors
-            const scrollTop =
-                window.scrollY ||
-                document.documentElement.scrollTop;
-    
-            const scrollHeight =
-                document.documentElement.scrollHeight -
-                window.innerHeight;
-    
-            const percent =
-                scrollHeight > 0
-                    ? (scrollTop / scrollHeight) * 100
-                    : 0;
-    
-            setScrollPercent(percent);
-        };
-    
-        updateProgress();
-    
-        window.addEventListener('scroll', updateProgress);
-    
-        const iframe = document.querySelector('.editor-visual-editor iframe');
-    
-        if (iframe) {
-    
-            iframe.addEventListener('load', () => {
-    
-                iframe.contentWindow?.addEventListener(
-                    'scroll',
-                    updateProgress
-                );
-    
-                updateProgress();
-            });
-    
-            if (iframe.contentWindow) {
-                iframe.contentWindow.addEventListener(
-                    'scroll',
-                    updateProgress
-                );
-            }
-        }
-    
-        return () => {
-    
-            window.removeEventListener(
-                'scroll',
-                updateProgress
-            );
-    
-            if (iframe?.contentWindow) {
-    
-                iframe.contentWindow.removeEventListener(
-                    'scroll',
-                    updateProgress
-                );
-            }
-        };
-    
-    }, []);
+    useEffect(() => {
+		const event = new CustomEvent('WPMozoProgressBarPropsChanged');
+		window.dispatchEvent(event);
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
+		}
+	}, [JSON.stringify(attributes), props]);
 
     // SVG length offset for static preview inside editor
     const displayPercent = scrollPercent;
@@ -203,7 +122,7 @@ const Edit = (props) => {
             <style>
                 {generateDynamicStyle({ attributes, clientId, isEdit })}
             </style>
-            <div {...blockProps} id={`block-${attributes.ID}`}>
+            <div {...blockProps} data-position={attributes.position} id={`block-${attributes.ID}`}>
                 <div 
                     className={`wpmozo-bna-progress-bar-wrapper wpmozo-bna-progress-bar-layout-${attributes.layout} ${attributes.showStriped ? 'wpmozo-bna-progress-bar-striped' : ''}`}
                     data-bar_direction={'bar' === attributes.layout ? attributes.barDirection : undefined}

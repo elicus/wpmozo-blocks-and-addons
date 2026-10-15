@@ -6,4 +6,8 @@
 
 .wp-block-wpmozo-advanced-button {
     line-height:0;
+    min-height:50px;
+}
+.wp-block-wpmozo-advanced-button.is-hovered:not(:has(.wpmozo-advanced-button-child)) {
+    box-shadow:0px 0px 0px 1px;
 }

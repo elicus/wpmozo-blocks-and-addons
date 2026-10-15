@@ -1,6 +1,5 @@
 import { ComboboxControl } from '@wordpress/components';
 import { useMemo } from '@wordpress/element';
-import './style.scss';
 
 
 const WpmozoIconpicker = (args) => {
@@ -9,10 +8,8 @@ const WpmozoIconpicker = (args) => {
 	const { attributes, setAttributes } = props;
 
 	const value = args.value !== '' ? args.value : '';
-	const icon =
-		typeof attributes[iconPickerKey] !== 'undefined' && attributes[iconPickerKey] !== ''
-			? attributes[iconPickerKey]
-			: 'fas fa-ban';
+	// Preview the controlled value first (e.g. an icon stored inside a repeater item).
+	const icon = value || attributes[iconPickerKey] || 'fas fa-ban';
 
 	const iconSetValue = (value = null) => {
 		setAttributes({ [iconPickerKey]: value });

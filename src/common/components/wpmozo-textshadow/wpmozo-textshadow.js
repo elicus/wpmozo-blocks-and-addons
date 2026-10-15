@@ -8,7 +8,6 @@ import { __ } from '@wordpress/i18n';
 
 import WpmozoColorPicker from '../wpmozo-colorpicker/wpmozo-colorpicker';
 
-import './style.scss';
 
 const WpmozoTextShadow = ( args ) => {
 

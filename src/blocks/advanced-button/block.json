@@ -10,9 +10,7 @@
     "example": {},
 	"supports": {
 		"html": false,
-		"anchor": false,
-		"customClassName": false,
-		"additionalCss": false
+		"customClassName": false
 	},
     "attributes": {
 		"ID": { "type": "string" },
