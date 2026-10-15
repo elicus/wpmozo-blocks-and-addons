@@ -1,4 +1,4 @@
-/* remove gutenberg advanced controls from wpmozo-general and wpmozo-design tabs */
+/* css for wpmozo custom controls */
 .wpmozo-typography-panel .components-tools-panel{
 	padding: 10px 0px;
 }
@@ -17,7 +17,133 @@
 .wpmozo-typography-panel .wpmozo-color-tools-panel .components-tools-panel-header{
 	margin-bottom: 10px;
 }
+.wpmozo-alignment-compo{
+	justify-content: space-between;
+}
+.wpmozo-alignment-compo > div{
+	flex: unset !important;
+}
+.components-base-control:has( .wpmozo-alignment-compo.separator-after){
+	border-bottom: 1px solid #dddddd;
+	padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.components-base-control:has( .wpmozo-alignment-compo.separator-before){
+	border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+.wpmozo-color-dropdown-container{
+	width: 100%;
+}
+.wpmozo-color-dropdown-container .components-button{
+	width: 100%;
+	border: 1px solid rgb(0 0 0 / 57%);
+}
+.wpmozo-color-dropdown-container .components-button .component-color-indicator{
+	margin-right: 8px;
+}
+.wpmozo-color-combo-wrap .components-button-group{
+	display: flex;
+	margin-bottom: 10px;
+}
+.wpmozo-color-combo-wrap button.wpmozo-color-combo-type{
+	align-items: center;
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	padding-bottom: 6px;
+	padding-top: 6px;
+	text-align: center;
+}
+.wpmozo-color-tabs .components-tab-panel__tab-content{
+	padding: 15px;
+}
+.wpmozo-icon-picker{
+	position: relative;
+	margin-bottom: 24px;
+}
+.wpmozo-icon-picker > div{
+	width: 85%;
+}
+.wpmozo-icon-picker .wpmozo-icon-wraper{
+	width: 15%;
+	position: absolute;
+	top: 23px;
+	right: 0;
+	border: solid 1px;
+	border-radius: 2px;
+	padding: 9px;
+	text-align: center;
+	font-size: 18px;
+}
+.wpmozo-icon-picker .components-combobox-control__suggestions-container{
+	padding: 4px;
+}
+.wpmozo-media-uploader{
+	width: 100%;
+	display: block;
+	max-height: 100px;
+	object-fit: cover;
+}
+.components-button.wpmozo-media-uploader-button:focus:not(:active) {
+    box-shadow: none;
+}
+.components-button.wpmozo-media-uploader-button {
+    height: auto;
+	width: 100%;
+	padding:0;
+}
+.wpmozo-range-size-basecontrol-inner{
+	display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+.wpmozo-range-size-basecontrol-inner .components-range-control{
+	width: 40%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.wpmozo-range-size-basecontrol-inner .components-range-control .components-base-control__field{
+	margin-top: 0px;
+    margin-bottom: 0px;
+}
+.wpmozo-range-size-basecontrol-inner .components-unit-control{
+	width: 35%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.wpmozo-range-size-basecontrol-inner .components-button{
+	width: 25%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.wpmozo-text-shadow-panel {
+	.components-range-control {
+		margin-bottom: 16px;
+	}
+}
 
+.wpmozo-text-shadow-color {
+	margin-top: 12px;
+}
+.wpmozo-video-uploader-wrap {
+	border: 1px solid #ddd;
+	padding: 10px;
+	background: #fafafa;
+}
+
+.wpmozo-video-placeholder {
+	padding: 40px;
+	text-align: center;
+	color: #777;
+	border: 1px dashed #ccc;
+	margin-bottom: 10px;
+}
+
+/* ------------------ */
+
+/* remove gutenberg advanced controls from wpmozo-general and wpmozo-design tabs */
 .block-editor-block-inspector:has(.wpmozo-settings-tab-panel) div:has( > .components-panel__body.block-editor-block-inspector__advanced){
 	display: none;
 }

@@ -8,21 +8,24 @@ import { useState } from "@wordpress/element";
 const WpmozoMediaUploader = ( {
     props,
     attrKye,
+    attrKey = attrKye, // Correctly spelled alias of `attrKye`.
     edit,
     select,
     allowedTypes,
     accept,
     imageSrc: customImageSrc,
+    mediaId, // Optional attachment ID, so the media modal preselects the image.
     onSelect: customOnSelect,
+    onRemove: customOnRemove, // Optional, for images not stored in a top-level attribute.
     label = '', // ← Default label
 } ) => {
     const editImage = edit || __("Edit Image", "wpmozo-blocks-and-addons");
     const selectImage = select || __("Select Image", "wpmozo-blocks-and-addons");
     const allowed = allowedTypes || ["image"];
     const accepted = accept || "image/*";
-    const imageSrc = customImageSrc || props.attributes[attrKye];
+    const imageSrc = customImageSrc || props.attributes[attrKey];
     const defaultOnSelect = (media) => {
-        props.setAttributes( { [attrKye]: media.url } );
+        props.setAttributes( { [attrKey]: media.url } );
     };
 
     const handleSelect = ( media ) => {
@@ -34,7 +37,11 @@ const WpmozoMediaUploader = ( {
     };
 
     const handleRemove = () => {
-        props.setAttributes( { [attrKye]: '' } );
+        if ( customOnRemove ) {
+            customOnRemove();
+        } else {
+            props.setAttributes( { [attrKey]: '' } );
+        }
     };
 
     return (
@@ -43,7 +50,7 @@ const WpmozoMediaUploader = ( {
                 onSelect={handleSelect}
                 allowedTypes={allowed}
                 accept={accepted}
-                value={imageSrc}
+                value={ mediaId || imageSrc }
                 render={({ open }) => (
                     <Fragment>
                         <BaseControl label={ label }>
