@@ -17,7 +17,7 @@
 		"className": { "type": "string" },
 
 		"wrapperborder":{"type": "object"},
-		"wrapperborderRadius":{"type": "string"},
+		"wrapperborderRadius":{"type": "object"},
 
 		"title": { "type": "string", "default": "WPMozo Pricing" },
 		"titleLeval": { "type": "string", "default": "h2" },
