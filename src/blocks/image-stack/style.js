@@ -12,7 +12,7 @@ const generateDynamicStyle = ({attributes, clientId, isEdit}) => {
 	cssExtras = [];
 
 	normalcss.push(
-		alignment 
+		alignment
 		? `.wpmozo-image-stack-wrap{justify-content: ${alignment};}` : ''
 	);
 

@@ -16,6 +16,13 @@
 .wpmozo-animation.wpmozo-animation-bottom:hover {
 	animation-name: wpmozoBottomToTop;
 }
+[class^="wp-block-wpmozo-woo"] .woocommerce ul.products li.product .onsale {
+    top: 10px !important;
+    right: 10px !important;
+    left: auto;
+    margin: 0 !important;
+    font-size: 12px;
+}
 @keyframes wpmozoTopToBottom {
 	from { opacity: 0; transform: translateY(-50px); }
 	to { opacity: 1; transform: translateY(0); }
