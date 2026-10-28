@@ -31,9 +31,6 @@ if ( ! function_exists( 'portfolio_slider_render_callback' ) ) {
 		if ( $offset_number > 0 ) {
 			$query_args['offset'] = $offset_number;
 		}
-		if ( is_user_logged_in() ) {
-			$query_args['post_status'] = array( 'publish', 'private' );
-		}
 		if ( ! empty( $includes_categories ) ) {
 			$query_args['tax_query'] = array( array(
 				'taxonomy' => 'wpmozo-ae-portfolio-category',

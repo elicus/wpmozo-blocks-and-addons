@@ -301,7 +301,7 @@ const Edit = (props) => {
 					data-enable_loop={ attributes.enableLoop || 'false' }
 					data-auto_height={ autoHeight || 'false' }
 					data-autoplay={ attributes.autoplay ? 'true' : 'false' }
-					data-autoplay_delay={ attributes.autoplayDelay || '3000' }
+					data-autoplay_delay={ '' !== attributes.autoplayDelay ? attributes.autoplayDelay : '3000' }
 					data-pause_on_hover={ attributes.pauseOnHover ? 'true' : 'false' }
 					data-enable_linear_trans={ attributes.enableLinearTrans || 'false' }
 					data-trans_duration={ attributes.transDuration || '1000' }

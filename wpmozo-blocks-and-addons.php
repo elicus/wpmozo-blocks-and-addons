@@ -9,7 +9,7 @@
  * Plugin Name:       WPMozo Blocks and Addons
  * Plugin URI:        https://wpmozo.com/product/wpmozo-blocks-and-addons
  * Description:       WPMozo Blocks and Addons is a plugin designed to extend the functionality of the Block editor.
- * It provides a variety of blocks to help you create stunning and interactive content in WordPress effortlessly.
+ * It provides a variety of blocks to help you create interactive content in WordPress.
  * Version:           1.9.0
  * Requires at least: 5.0
  * Requires PHP:      7.3
