@@ -392,7 +392,7 @@ if ( ! function_exists( 'traverse_breadcrumbs' ) ) {
 				$breadcrumb[] = array( 'Error 404' => '#' );
 			}
 		} else {
-			$breadcrumb = '';
+			$breadcrumb = array();
 		}
 
 		return $breadcrumb;

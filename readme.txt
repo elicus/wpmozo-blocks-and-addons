@@ -1,7 +1,7 @@
 === WPMozo Blocks and Addons ===
 Contributors: elicus
 Tags: gutenberg, blocks, gutenberg blocks, gutenberg editor, wordpress blocks
-Tested up to: 7.0
+Tested up to: 7.1
 Stable tag: 1.9.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -284,66 +284,66 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 
 == Third Party Code Credits ==
 ### GSAP
-- File Location: assets/js/vendors/gsap.min.js
+- File Location: includes/assets/js/vendors/gsap.min.js
 - License: GSAP License
 - License URI: https://gsap.com/community/standard-license/
 #### Images Loaded
-- File Location: assets/js/vendors/imagesloaded.pkgd.js
+- File Location: includes/assets/js/vendors/imagesloaded.pkgd.js
 - License: MIT
 - License URI: https://desandro.mit-license.org/
 #### Isotope
-- File Location: assets/js/vendors/isotope.pkgd.js
+- File Location: includes/assets/js/vendors/isotope.pkgd.js
 - License: GPLv3
 - License URI: https://www.gnu.org/licenses/gpl-3.0.html
 ### Event Move
-- File Location: assets/js/vendors/jquery_event_move.js
+- File Location: includes/assets/js/vendors/jquery_event_move.js
 - License: WTFPL
 - License URI: https://plugins.jquery.com/event.move/  http://www.wtfpl.net/txt/copying/
 ### Twenty Twenty
-- File Location: assets/js/vendors/jquery_twentytwenty.js
-- File Location: assets/css/vendors/twentytwenty.css
+- File Location: includes/assets/js/vendors/jquery_twentytwenty.js
+- File Location: includes/assets/css/vendors/twentytwenty.css
 - License: ISC License
 - License URI: https://www.isc.org/licenses/
 ### Lottie
-- File Location: assets/js/vendors/lottie.min.js
+- File Location: includes/assets/js/vendors/lottie.min.js
 - License: MIT
 - License URI: https://opensource.org/licenses/MIT
 ### Magnific Popup
-- File Location: assets/js/vendors/magnificPopup.js
-- File Location: assets/css/vendors/magnificPopup.css
+- File Location: includes/assets/js/vendors/magnificPopup.js
+- File Location: includes/assets/css/vendors/magnificPopup.css
 - License: MIT
 - License URI: https://opensource.org/licenses/MIT
 ### Popper
-- File Location: assets/js/vendors/popper.min.js
+- File Location: includes/assets/js/vendors/popper.min.js
 - License: MIT
 - License URI: https://opensource.org/licenses/MIT
 ### ScrollTrigger
-- File Location: assets/js/vendors/ScrollTrigger.min.js
+- File Location: includes/assets/js/vendors/ScrollTrigger.min.js
 - License: GSAP License
 - License URI: https://gsap.com/community/standard-license/
 ### Swiper
-- File Location: assets/js/vendors/swiper-bundle.js
-- File Location: assets/css/vendors/swiper-bundle.css
+- File Location: includes/assets/js/vendors/swiper-bundle.js
+- File Location: includes/assets/css/vendors/swiper-bundle.css
 - License: MIT
 - License URI: https://opensource.org/licenses/MIT
 ### Tilt
-- File Location: assets/js/vendors/tilt-jquery.js
+- File Location: includes/assets/js/vendors/tilt-jquery.js
 - License: MIT
 - License URI: https://opensource.org/licenses/MIT
 ### Tippy
-- File Location: assets/js/vendors/tippy-bundle.umd.min.js
+- File Location: includes/assets/js/vendors/tippy-bundle.umd.min.js
 - License: MIT
 - License URI: https://opensource.org/licenses/MIT
 ### TWBSPagination
-- File Location: assets/js/vendors/twbsPagination.min.js
+- File Location: includes/assets/js/vendors/twbsPagination.min.js
 - License: Apache
 - License URI: http://www.apache.org/licenses/LICENSE-2.0
 ### Waypoints
-- File Location: assets/js/vendors/waypoints.min.js
+- File Location: includes/assets/js/vendors/waypoints.min.js
 - License: MIT
 - License URI: https://opensource.org/licenses/MIT
 ### Chart JS
-- File Location: assets/js/vendors/chart.min.js
+- File Location: includes/assets/js/vendors/chart.min.js
 - License: MIT
 - License URI: https://opensource.org/licenses/MIT
 

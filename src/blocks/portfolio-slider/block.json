@@ -6,7 +6,7 @@
 	"title": "Portfolio Slider",
 	"category": "wpmozo",
 	"icon": "portfolio",
-	"description": "Showcase portfolio projects beautifully with an interactive portfolio slider.",
+	"description": "Show your portfolio projects in a slider with arrows and autoplay.",
 	"example": {},
 	"supports": {
 		"html": false,
@@ -23,7 +23,7 @@
 		"postOrder": { "type": "string", "default": "desc" },
 		"postOrderBy": { "type": "string", "default": "date" },
 		"includesCategories": { "type": "array", "default": [] },
-		"noResultText": { "type": "string", "default": "The portfolios you requested could not be found. Try changing your module settings or create some new portfolios." },
+		"noResultText": { "type": "string", "default": "The portfolios you requested could not be found. Try changing your block's settings or create some new portfolios." },
 
 		"showTitle": { "type": "boolean", "default": true },
 		"showContent": { "type": "boolean", "default": false },

@@ -8,6 +8,7 @@
 .wpmozo-typography-panel .single-column{
 	grid-column: span 1;
 }
+.wpmozo-form-token{margin-bottom:10px;}
 .wpmozo-typography-panel .components-font-size-picker__controls{
 	margin-bottom: 0px;
 }

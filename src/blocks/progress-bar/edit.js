@@ -10,7 +10,7 @@ const Edit = (props) => {
     const { attributes, clientId, setAttributes } = props;
 
 	let wrapArgs = attributes?.ID && mergeWrapperProps( { 
-			className: `wpmozo-pricing-table${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			className: `wpmozo-portfolio-slider${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
 			style: {}
 		}, attributes ),
 		wrapProps = wrapArgs?.wrapprops,
