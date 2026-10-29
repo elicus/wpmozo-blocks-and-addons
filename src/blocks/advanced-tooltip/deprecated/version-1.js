@@ -94,7 +94,7 @@ const V1 = {
 
 		"showTooltip": {"type": "boolean","default": true}
     },
-    save( { attributes } ) {
+    save( attributes ) {
         return (
             <>
                 <style>
