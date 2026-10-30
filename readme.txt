@@ -351,6 +351,10 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 - For detailed usage instructions, check out the [plugin documentation](https://wpmozo.com/documentation/wpmozo-blocks-and-addons/).
 - Need help or have questions? Visit the [plugin support forum](https://wordpress.org/support/plugin/wpmozo-blocks-and-addons/).
 
+== Source Code ==
+- The complete source code and build instructions are available on GitHub : [GitHub Repository](https://github.com/elicus/wpmozo-blocks-and-addons).
+- Source code for this release : [Version 1.9.0](https://github.com/elicus/wpmozo-blocks-and-addons).
+
 ### Like our Plugin?
 Do you like our plugin?
 - Connect with us on [Facebook](https://www.facebook.com/helloelicus "Facebook")!
