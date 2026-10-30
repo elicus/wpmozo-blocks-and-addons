@@ -12,6 +12,7 @@ import WpmozoRangeSize from './wpmozo-range-size/wpmozo-range-size';
 import WpmozoVideoUploader from './wpmozo-video-uploader/wpmozo-video-uploader';
 import WpmozoTextShadow from './wpmozo-textshadow/wpmozo-textshadow';
 import MozoStates from './mozo-states/mozo-states';
+import WpmozoFeaturesRepeater from './wpmozo-features-repeater/wpmozo-features-repeater';
 
 export {
 	WpmozoTypography,
@@ -26,7 +27,8 @@ export {
 	WpmozoRangeSize,
 	WpmozoVideoUploader,
 	WpmozoTextShadow,
-	MozoStates
+	MozoStates,
+	WpmozoFeaturesRepeater
 }
 
 // Export them globally for pro plugin.
@@ -45,6 +47,7 @@ if ( typeof window !== 'undefined' ) {
 		WpmozoRangeSize,
 		WpmozoVideoUploader,
 		WpmozoTextShadow,
-		MozoStates
+		MozoStates,
+		WpmozoFeaturesRepeater
 	} );
 }
