@@ -344,3 +344,16 @@
 .wpmozo-bna-logo-slider-main .wpmozo-swiper-navigation .swiper-button-prev:after {
     display: none;
 }
+
+.wpmozo-bna-logo-slider-inner-wrap,
+.wpmozo-bna-logo-slider-main .swiper-button-next,
+.wpmozo-bna-logo-slider-main .swiper-button-prev,
+.wpmozo-bna-logo-slider-main .swiper-button-next:after,
+.wpmozo-bna-logo-slider-main .swiper-button-prev:after,
+.wpmozo-bna-logo-slider-main .swiper-pagination-bullet,
+.wpmozo-logo-slider-item .logo-wrap {
+	transition: color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out, border-radius 300ms ease-in-out, font-size 300ms ease-in-out;
+}
+.wpmozo-logo-slider-item .logo-wrap {
+	overflow: hidden;
+}

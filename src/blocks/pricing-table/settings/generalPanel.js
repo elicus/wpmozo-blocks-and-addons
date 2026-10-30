@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+import $ from 'jquery';
 import {
 	PanelBody,
 	TextControl,
@@ -9,6 +10,8 @@ import {
 	SelectControl,
 	Icon
 } from "@wordpress/components";
+import { reusableBlock, trash, chevronUp, link, external } from '@wordpress/icons';
+import { useState } from 'react';
 import {
 	WpmozoMediaUploader,
 	WpmozoIconpicker, WpmozoColorPicker,
@@ -16,6 +19,7 @@ import {
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [toggled, setToggled] = useState([]);
 
 	let currencySymbol = [
 		{ value: '', label: __( 'None', 'wpmozo-blocks-and-addons' ) },
@@ -120,48 +124,105 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Features', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+			<ToggleControl
+				label={__('Show Icon', 'wpmozo-blocks-and-addons')}
+				checked={attributes.showFeaturesIcon || false}
+				onChange={(newValue) => setAttributes({showFeaturesIcon: newValue})}
+			/>
 			{ ( attributes.features || [] ).map( ( feature, index ) => (
 				<div
 					key={index}
-					className="wpmozo-feature-row"
-					style={{gridTemplateColumns: '1fr auto auto', gap: '12px', alignItems: 'center', marginBottom: '12px', background: '#f8f9fa', padding: '12px 16px', borderRadius: '6px', boxShadow: '0 1px 2px rgba(0,0,0,0.03)'}}
+					className="wpmozo-feature-row wpmozo-repeater-row wpmozo-pricing-table-repeator"
 				>
+					
+					
+					
+					<Button className='wpmozo-repeator-caret wpmz_open' icon={chevronUp} iconPosition='right'
+						label={__( `Feature ${index + 1}`, 'wpmozo-blocks-and-addons' ) }
+						showTooltip={false}
+						onClick={ (e) => {
+							e.target === 'button' ? $(e.target).toggleClass('wpmz_open wpmz_close') : $(e.target).closest('button').toggleClass('wpmz_open wpmz_close');
+
+							const feature = e.target === 'button' ? $(e.target).siblings('.wpmz-pricing-table-feature') : $(e.target).closest('.wpmozo-feature-row').find('.wpmz-pricing-table-feature');
+							
+							const icon = e.target === 'button' ? $(e.target).siblings('.wpmz-business-hours-time') : $(e.target).closest('.wpmozo-feature-row').find('.wpmz-pricing-table-feature-icon');
+							
+							const clone = e.target === 'button' ? $(e.target).siblings('.wpmz-clone-div') : $(e.target).closest('.wpmozo-feature-row').find('.wpmz-clone-div');
+
+							feature.toggle("fast");
+							toggled.includes(`${index}`) ? '' : icon.toggle("fast");
+							clone.toggle("fast");
+							setToggled(prev => prev.includes(`${index}`) ? prev.filter(item => item !== `${index}`) :[...prev, `${index}`]);
+
+						} }
+						text={__( `Feature ${index + 1}`, 'wpmozo-blocks-and-addons' )}
+					>
+					</Button>
+
 					<TextControl
-						label={__(`Feature ${index + 1}`, 'wpmozo-blocks-and-addons')}
 						value={feature['list'] || ''}
 						onChange={(value) => {
 							const newFeatures = [...(attributes.features || [])];
 							newFeatures[index] = {...newFeatures[index], list: value};
 							setAttributes({features: newFeatures});
 						}}
+						className='wpmz-pricing-table-feature'
 						__next40pxDefaultSize={true}
 						__nextHasNoMarginBottom={true}
 						style={{minWidth: 0}}
 					/>
-					<div>
-						<WpmozoIconpicker
-							label={__(`Icon ${index + 1}`, 'wpmozo-blocks-and-addons')}
-							value={feature['icon'] || ''}
-							props={props}
-							onChange={(value) => {
-								const newFeatures = [...(attributes.features || [])];
-								newFeatures[index] = {...newFeatures[index], icon: value};
-								setAttributes({features: newFeatures});
-							}}
-						/>
+					{ attributes.showFeaturesIcon && !toggled.includes(`${index}`) &&
+						<div className='wpmz-pricing-table-feature-icon'>
+							<WpmozoIconpicker
+								label={__(`Icon ${index + 1}`, 'wpmozo-blocks-and-addons')}
+								value={feature['icon'] || ''}
+								props={props}
+								onChange={(value) => {
+									const newFeatures = [...(attributes.features || [])];
+									newFeatures[index] = {...newFeatures[index], icon: value};
+									setAttributes({features: newFeatures});
+								}}
+							/>
+						</div>
+					}
+					<div className='wpmz-clone-div'>
+						<span className="wpmz-clones wpmz-list-clone">{ feature['list'] || '' }</span>
+						{ attributes.showFeaturesIcon &&
+							<>
+								<Icon icon={feature['icon']} className={ ` ${feature['icon']} wpmz-icon-clone` }/>
+							</>
+						}
 					</div>
 					<Button
 						isDestructive
+						className='wpmozo-repeator-trash'
+						size='small'
 						variant="secondary"
-						icon="trash"
+						icon={trash}
+						iconSize={20}
 						label={__('Remove', 'wpmozo-blocks-and-addons')}
 						onClick={() => {
 							const newFeatures = (attributes.features || []).filter((_, innerIndex) => innerIndex !== index);
 							setAttributes({features: newFeatures});
 						}}
-						style={{marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', justifyContent: 'center'}}
 					>
 						<span className="screen-reader-text">{__('Remove', 'wpmozo-blocks-and-addons')}</span>
+					</Button>
+					<Button className='wpmozo-repeator-duplicate' variant="secondary" size='small' icon={reusableBlock} iconSize={20}
+						label={ __( 'Duplicate', 'wpmozo-blocks-and-addons' ) }
+						onClick={ () => {
+							const items = attributes.features || [];
+
+							const newFeatures = [
+								...items.slice(0, index + 1),
+								{ ...items[index] }, // duplicate object
+								...items.slice(index + 1),
+							];
+
+							setAttributes({features: newFeatures});
+						} }
+					>
+						<span className="screen-reader-text">{ __( 'Duplicate', 'wpmozo-blocks-and-addons' ) }</span>
 					</Button>
 				</div>
 			))}
@@ -176,11 +237,6 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 			>
 				{__('Add Item', 'wpmozo-blocks-and-addons')}
 			</Button>
-			<ToggleControl
-				label={__('Show Icon', 'wpmozo-blocks-and-addons')}
-				checked={attributes.showFeaturesIcon || false}
-				onChange={(newValue) => setAttributes({showFeaturesIcon: newValue})}
-			/>
 		</PanelBody>
 		<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
 			<ToggleControl
@@ -212,18 +268,18 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 							label={ __( 'Same Window', 'wpmozo-blocks-and-addons' ) }
 							isPressed={ ( 'same' === attributes.buttonLinkTarget) ? true : false }
 							onClick={ () => setAttributes( { buttonLinkTarget: 'same' } ) }
-							icon={ <Icon icon="admin-links" /> }
+							icon={link}
 						/>
 						<Button className="wpmozo-button-tabs-btn"
 							label={ __( 'External', 'wpmozo-blocks-and-addons' ) }
 							isPressed={ ( 'external' === attributes.buttonLinkTarget) ? true : false }
 							onClick={ () => setAttributes( { buttonLinkTarget: 'external' } ) }
-							icon={ <Icon icon="external" /> }
+							icon={external}
 						/>
 					</ButtonGroup>
 				</BaseControl>
 				<SelectControl
-					label={ __( 'Button Icon Type', 'wpmozo-blocks-and-addons' ) }
+					label={ __( 'Button Media Type', 'wpmozo-blocks-and-addons' ) }
 					value={attributes.buttonIconType}
 					options={ [
 						{ value: 'none', label: __( 'None', 'wpmozo-blocks-and-addons' ) },
@@ -249,7 +305,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 						/>
 					}
 					<BaseControl
-						label={ __( 'Button Icon Position', 'wpmozo-blocks-and-addons' ) }
+						label={ __( 'Button Media Position', 'wpmozo-blocks-and-addons' ) }
 						className="wpmozo-button-tabs-wrap"
 					>
 						<ButtonGroup>
@@ -266,7 +322,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 						</ButtonGroup>
 					</BaseControl>
 					<ToggleControl
-						label={ __( 'Show Icon On Hover', 'wpmozo-blocks-and-addons' ) }
+						label={ __( 'Show Media On Hover', 'wpmozo-blocks-and-addons' ) }
 						checked={ attributes.showIconOnHover }
 						onChange={ (newValue) => setAttributes( { showIconOnHover: newValue } ) }
 					/>

@@ -1,8 +1,16 @@
 import { useBlockProps } from "@wordpress/block-editor";
 import generateDynamicStyle from './style';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function save({attributes}) {
-	const ID = attributes.ID;
+	const ID = attributes.ID,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-bna-image-hover-effect' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 	let image = (attributes.image) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,
 		hoverEffect = attributes.hoverEffect;
 
@@ -25,9 +33,7 @@ export default function save({attributes}) {
 	return ( <>
 		<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-		<div { ...useBlockProps.save( {className: 'wpmozo-bna-image-hover-effect ' + ( attributes.className || '' ) } ) }
-			id={`block-${ID}`}
-		>
+		<div {...blockProps} id={`block-${ID}`}>
 			<div className={`wpmozo-bna-image-hover-effect-wrapper wpmozo-bna-effect-${hoverEffect}`}>
 				<div className={classes}>
 					<img src={image} alt="" />

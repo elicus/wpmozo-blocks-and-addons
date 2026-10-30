@@ -1,15 +1,15 @@
 === WPMozo Blocks and Addons ===
 Contributors: elicus
 Tags: gutenberg, blocks, gutenberg blocks, gutenberg editor, wordpress blocks
-Tested up to: 7.0
-Stable tag: 1.8.0
+Tested up to: 7.1
+Stable tag: 1.9.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-WPMozo Blocks and Addons is a plugin that enhances the Gutenberg editor with a collection of powerful and customizable blocks.
+WPMozo Blocks and Addons is a plugin that enhances the Block editor with a collection of powerful and customizable blocks.
 
 == Description ==
-WPMozo Blocks and Addons is a plugin designed to extend the functionality of the Gutenberg editor. It provides a variety of blocks to help you create stunning and interactive content in WordPress effortlessly.
+WPMozo Blocks and Addons is a plugin designed to extend the functionality of the Block editor. It provides a variety of blocks to help you create stunning and interactive content in WordPress effortlessly.
 
 ### [View Demo](https://wpmozoblocks.com "View Demo")
 
@@ -50,7 +50,7 @@ Create stunning before-and-after comparisons with a sleek, responsive slider. Pe
 17. [Content Toggle](https://wpmozoblocks.com/content-toggle/ "Content Toggle for Gutenberg")
 Organize content with collapsible sections using the Content Toggle block. Ideal for FAQs, product details, or lengthy content, this feature enhances readability and user experience.
 18. [Fancy Heading](https://wpmozoblocks.com/fancy-heading/ "Fancy Heading for Gutenberg")
-Craft visually striking headings with the Fancy Heading block. Combine pre-headings, main headings, and sub-headings using custom fonts, vibrant colors, and animation effects. Perfect for creating bold section titles that draw attention and elevate your content presentation.
+Craft visually striking headings with the Fancy Heading block. Combine pre-headings, main headings, and sub-headings using fonts, vibrant colors, and animation effects. Perfect for creating bold section titles that draw attention and elevate your content presentation.
 19. [Fancy Text](https://wpmozoblocks.com/fancy-text/ "Fancy Text for Gutenberg")
 Add engaging animated text with the Fancy Text block. Create typewriter effects, text transitions, and gradient highlights to bring dynamic flair to your content. Ideal for call-to-actions, hero sections, or key messages that need to stand out.
 20. [Flip Box](https://wpmozoblocks.com/flip-box/ "Flip Box for Gutenberg")
@@ -122,15 +122,19 @@ WPMozo Posts Ticker block displays dynamic post titles in a fully customizable t
 53. [Wavy Gallery](https://wpmozoblocks.com/wavy-gallery/ "Wavy Gallery for Gutenberg")
 WPMozo Wavy Gallery block adds a unique horizontal wave animation to your image gallery, perfect for showcasing portfolios, creative projects, and visual stories.
 54. [Call To Action](https://wpmozoblocks.com/call-to-action/ "Call To Action for Gutenberg")
-WPMozo Call To Action block adds a custom title, description and button..
+WPMozo Call To Action block adds a custom title, description and button.
+55. [Progress Bar](https://wpmozoblocks.com/progress-bar/ "Progress Bar for Gutenberg")
+WPMozo Progress Bar block displays a customizable progress bar with percentage, label, colors and styling options.
+56. [Portfolio Slider](https://wpmozoblocks.com/portfolio-slider/ "Portfolio Slider for Gutenberg")
+WPMozo Portfolio Slider block displays portfolio items in a responsive slider with customizable layouts, navigation, and styling options.
 
 
-This plugin is fully compatible with Gutenberg and WordPress block editor, ensuring seamless integration with your website.
+This plugin is fully compatible with WordPress block editor, ensuring seamless integration with your website.
 
 == Related Plugins ==
 - [WPMozo Product Grid for WooCommerce](https://wordpress.org/plugins/wpmozo-product-grid-for-woocommerce/) – Gutenberg block plugin to display WooCommerce products grid.
 - [WPMozo Product Carousel for WooCommerce](https://wordpress.org/plugins/wpmozo-product-carousel-for-woocommerce/) – Gutenberg block plugin to display WooCommerce products carousel.
-- [WPMozo Addons Lite for Elementor](https://wordpress.org/plugins/wpmozo-addons-lite-for-elementor/) – 30+ widgets for Elementor page builder.
+- [WPMozo Addons Lite for Elementor](https://wordpress.org/plugins/wpmozo-addons-lite-for-elementor/) – 55+ widgets for Elementor page builder.
 
 
 == Screenshots ==
@@ -181,7 +185,24 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
-2026-05-22 - Version 1.8.0
+2026-10-30 - Version 1.9.0
+* New: Progress Bar Block.
+* New: Portfolio Slider Block.
+* Fixed: Horizontal Scrolling Posts Block - Scrolling effect not working properly in the editor sometimes.
+* Fixed: Post Ticker Block - Slide/Fade ticker effect not working properly.
+* Fixed: Scrolling Zoom Gallery Block - Preview not working properly in the editor.
+* Fixed: Scroll Text Block - Scroll effects not working properly in the editor.
+* Fixed: Team Slider Block - Designation, Skills Bar, and Social Icons not showing in the lightbox popup when enabled.
+* Fixed: Testimonial Slider Block - Dots pagination style in slider navigation not working properly on the frontend.
+* Fixed: Wavy Gallery Block - Preview not working properly in the editor.
+* Fixed: Sticky posts and sequencing issue in all post-related blocks.
+* IMPROVEMENT: Added hover functionality to the Inspector Controls of all blocks.
+* IMPROVEMENT: List Block - Pressing Enter while adding a list item now creates a new list item.
+* IMPROVEMENT: Added a duplicate item button to all repeater fields.
+* IMPROVEMENT: Improved accordion-style minimization in all repeater fields.
+* IMPROVEMENT: Improved the UI/UX of the Inspector Control for selecting categories.
+
+2026-06-05 - Version 1.8.0
 * New: Call To Action Block.
 * New: Admin Panel to manage blocks enable or disable.
 * Fixed: Alignment issue in post ticker.
@@ -262,33 +283,77 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * New - Tilt Image block
 
 == Third Party Code Credits ==
+### GSAP
+- File Location: includes/assets/js/vendors/gsap.min.js
+- License: GSAP License
+- License URI: https://gsap.com/community/standard-license/
 #### Images Loaded
-- File Location: assets/js/imagesLoaded/imagesloaded.pkgd.js
+- File Location: includes/assets/js/vendors/imagesloaded.pkgd.js
 - License: MIT
 - License URI: https://desandro.mit-license.org/
+#### Isotope
+- File Location: includes/assets/js/vendors/isotope.pkgd.js
+- License: GPLv3
+- License URI: https://www.gnu.org/licenses/gpl-3.0.html
 ### Event Move
-- File Location: assets/js/jqueryEventMove/jquery_event_move.js
+- File Location: includes/assets/js/vendors/jquery_event_move.js
 - License: WTFPL
 - License URI: https://plugins.jquery.com/event.move/  http://www.wtfpl.net/txt/copying/
 ### Twenty Twenty
-- File Location: assets/js/jqueryTwentyTwenty/jquery_twentytwenty.js
-- File Location: assets/css/twentytwenty/twentytwenty.css
+- File Location: includes/assets/js/vendors/jquery_twentytwenty.js
+- File Location: includes/assets/css/vendors/twentytwenty.css
 - License: ISC License
 - License URI: https://www.isc.org/licenses/
+### Lottie
+- File Location: includes/assets/js/vendors/lottie.min.js
+- License: MIT
+- License URI: https://opensource.org/licenses/MIT
+### Magnific Popup
+- File Location: includes/assets/js/vendors/magnificPopup.js
+- File Location: includes/assets/css/vendors/magnificPopup.css
+- License: MIT
+- License URI: https://opensource.org/licenses/MIT
+### Popper
+- File Location: includes/assets/js/vendors/popper.min.js
+- License: MIT
+- License URI: https://opensource.org/licenses/MIT
+### ScrollTrigger
+- File Location: includes/assets/js/vendors/ScrollTrigger.min.js
+- License: GSAP License
+- License URI: https://gsap.com/community/standard-license/
 ### Swiper
-- File Location: assets/js/swiper/swiper-bundle.js
-- File Location: assets/css/swiper/swiper-bundle.css
+- File Location: includes/assets/js/vendors/swiper-bundle.js
+- File Location: includes/assets/css/vendors/swiper-bundle.css
 - License: MIT
 - License URI: https://opensource.org/licenses/MIT
-### Tilt js
-- File Location: assets/js/tilt/tilt-jquery.js
+### Tilt
+- File Location: includes/assets/js/vendors/tilt-jquery.js
 - License: MIT
 - License URI: https://opensource.org/licenses/MIT
-
+### Tippy
+- File Location: includes/assets/js/vendors/tippy-bundle.umd.min.js
+- License: MIT
+- License URI: https://opensource.org/licenses/MIT
+### TWBSPagination
+- File Location: includes/assets/js/vendors/twbsPagination.min.js
+- License: Apache
+- License URI: http://www.apache.org/licenses/LICENSE-2.0
+### Waypoints
+- File Location: includes/assets/js/vendors/waypoints.min.js
+- License: MIT
+- License URI: https://opensource.org/licenses/MIT
+### Chart JS
+- File Location: includes/assets/js/vendors/chart.min.js
+- License: MIT
+- License URI: https://opensource.org/licenses/MIT
 
 == Documentation and Support ==
 - For detailed usage instructions, check out the [plugin documentation](https://wpmozo.com/documentation/wpmozo-blocks-and-addons/).
 - Need help or have questions? Visit the [plugin support forum](https://wordpress.org/support/plugin/wpmozo-blocks-and-addons/).
+
+== Source Code ==
+- The complete source code and build instructions are available on GitHub : [GitHub Repository](https://github.com/elicus/wpmozo-blocks-and-addons).
+- Source code for this release : [Version 1.9.0](https://github.com/elicus/wpmozo-blocks-and-addons).
 
 ### Like our Plugin?
 Do you like our plugin?

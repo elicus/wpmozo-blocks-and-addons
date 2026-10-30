@@ -24,8 +24,8 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				label={ __( 'Layout', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.layoutType }
 				options={ [
-					{ value: 'layout1', label: __( 'Layout 1', 'wpmozo-blocks-and-addons' ) },
-					{ value: 'layout2', label: __( 'Layout 2', 'wpmozo-blocks-and-addons' ) }
+					{ value: 'layout1', label: __( 'Bar', 'wpmozo-blocks-and-addons' ) },
+					{ value: 'layout2', label: __( 'Chunks', 'wpmozo-blocks-and-addons' ) }
 				] }
 				onChange={ (newValue) => setAttributes( { layoutType: newValue } ) }
 				__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
@@ -45,7 +45,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
 			/>
 			<ToggleControl
-				label={ __( 'Display Empty Bar/Chunks', 'wpmozo-blocks-and-addons' ) }
+				label={ __( `Display Empty ${'layout1' === attributes.layoutType ? 'Bar' : 'Chunks'}`, 'wpmozo-blocks-and-addons' ) }
 				checked={ attributes.displayEmptyBar }
 				onChange={ (newValue) => setAttributes( { displayEmptyBar: newValue } ) }
 				__nextHasNoMarginBottom={true}
@@ -69,7 +69,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 							label={ __( 'Animation Speed', 'wpmozo-blocks-and-addons' ) }
 							value={ attributes.stripeAnimationSpeed }
 							onChange={ (newValue) => setAttributes( {stripeAnimationSpeed: newValue } ) }
-							min={0} max={10} step={1} allowReset={true}
+							min={0} max={10} step={0.1} allowReset={true}
 							__next40pxDefaultSize={true} __nextHasNoMarginBottom={true}
 						/>
 					) }

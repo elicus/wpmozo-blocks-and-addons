@@ -16,6 +16,7 @@
 	overflow: hidden;
 	transform-style: preserve-3d;
 	background: inherit;
+	transition: border 300ms ease-in-out, border-radius 300ms ease-in-out;
 }
 .wpmozo_image_card_ticker_inner {
 	display: flex;

@@ -1,12 +1,20 @@
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import generateDynamicStyle from './style';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function save( { attributes } ) {
 
 	const { anchor, className } = attributes;
 
 	const ID = attributes.ID;
-	const clientId = ID;
+	const clientId = ID,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-bna-content-toggle-main' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	const toggleSwitchTypeClass = ' wpmozo_'+attributes.toggleSwitchType;
 	const titleWrapClass        = ( 'toggle' === attributes.toggleSwitchType ) ? ' wpmozo_switch_trigger' : '';
@@ -41,7 +49,7 @@ export default function save( { attributes } ) {
 	return ( <>
 		<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
 
-		<div { ...useBlockProps.save( { id: anchor || `block-${ID}`, className: 'wpmozo-bna-content-toggle-main ' + className } ) }>
+		<div { ...blockProps} id={anchor || `block-${ID}`}>
 			<div className={`wpmozo-bna-toggle-button-wrap${toggleSwitchTypeClass}`}>
 				{ 'toggle' === attributes.toggleSwitchType && ( <>
 					<input className="wpmozo-bna-toggle-field" type="checkbox" value="" />

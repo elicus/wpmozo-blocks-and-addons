@@ -39,6 +39,7 @@
 
 		"tickerLabelColor": {"type": "string"},
 		"tickerLabelBackground": {"type": "string"},
+		"tickerLabelFont": { "type": "string" },
 		"tickerLabelFontSize": { "type": "string" },
 		"tickerLabelFontAppearance": {
 			"type": "object",
@@ -60,6 +61,7 @@
 
 		"tickerLabelHoverColor": {"type": "string"},
 		"tickerLabelHoverBackground": {"type": "string"},
+		"tickerLabelHoverFont": { "type": "string" },
 		"tickerLabelHoverFontSize": { "type": "string" },
 		"tickerLabelHoverFontAppearance": {
 			"type": "object",
@@ -92,6 +94,7 @@
 		"postItemsHovermargin": { "type": "object" },
 
 		"postItemColor": {"type": "string"},
+		"postItemFont": { "type": "string" },
 		"postItemFontSize": { "type": "string" },
 		"postItemFontAppearance": {
 			"type": "object",
@@ -110,6 +113,7 @@
 		"postItemmargin": { "type": "object" },
 
 		"postItemHoverColor": {"type": "string"},
+		"postItemHoverFont": { "type": "string" },
 		"postItemHoverFontSize": { "type": "string" },
 		"postItemHoverFontAppearance": {
 			"type": "object",

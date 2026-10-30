@@ -1,11 +1,18 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import generateDynamicStyle from './style';
-import {wpmozo_is_empty} from '../../common/utils.js';
+import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils.js';
 
 export default function save({ attributes }) {
 
 	const clientId = attributes.ID,
-	layoutType = ( 'flip' === attributes.animationType ) ? ' layout1' : ' layout2';
+		layoutType = ( 'flip' === attributes.animationType ) ? ' layout1' : ' layout2',
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-bna-flip-box-main' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	let backBtnIcon = (
 		<i className={ attributes.backBtnIcon }></i>
@@ -29,7 +36,7 @@ export default function save({ attributes }) {
 	return ( <>
 		<style>{ generateDynamicStyle({ attributes, clientId }) }</style>
 
-		<div id={`block-${clientId}`} { ...useBlockProps.save( { className: 'wpmozo-bna-flip-box-main ' + attributes.className } ) }>
+		<div id={`block-${clientId}`} { ...blockProps}>
 			<div className={`wpmozo-bna-flip-box-wrap${layoutType}`} flip-direction={ attributes.flipDirection }>
 				<div className="wpmozo-bna-flip-box-side wpmozo-bna-flip-box-front">
 					<div className="wpmozo-bna-flip-box-inner">

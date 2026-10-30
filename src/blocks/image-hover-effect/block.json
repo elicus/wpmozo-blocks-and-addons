@@ -19,7 +19,9 @@
 		"image": { "type": "string" },
 		"hoverEffect": { "type": "string", "default": "radial" },
 		"imageborder": { "type": "object" },
-        "imageborderRadius": { "type": "string" },
+		"imageHoverborder": { "type": "object" },
+		"imageborderRadius": { "type": "object" },
+		"imageHoverborderRadius": { "type": "object" },
         "forceFullwidth": { "type": "boolean", "default": false }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",

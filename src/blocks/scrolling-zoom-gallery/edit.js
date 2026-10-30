@@ -28,6 +28,7 @@ import generateDynamicStyle from './style';
  */
 import './editor.scss';
 import {pickRelevantMediaFiles} from "../../common/components/wpmozo-block-gallery/shared-helpers";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
 const PLACEHOLDER_TEXT = Platform.isNative
@@ -42,19 +43,41 @@ export default function Edit(props) {
 		clientId,
 		noticeOperations,
 		isSelected,
-	} = props;
-
-	const {
-		replaceInnerBlocks,
-		updateBlockAttributes,
-	} = useDispatch( blockEditorStore );
-
+	} = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-scrolling-zoom-gallery${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit = true;
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
 		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
 		}
-	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+
+	const {
+		replaceInnerBlocks,
+		updateBlockAttributes,
+	} = useDispatch( blockEditorStore );
 
 	useEffect(() => {
 		const event = new CustomEvent('WPMozoScrollZoomGalleryPropsChanged');
@@ -63,7 +86,7 @@ export default function Edit(props) {
 		if (iframe?.contentWindow) {
 			iframe.contentWindow.dispatchEvent(event);
 		}
-	}, [props]);
+	}, [JSON.stringify(attributes)]);
 
 
 	const { getBlock, preferredStyle } = useSelect( ( select ) => {
@@ -250,16 +273,19 @@ export default function Edit(props) {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, isEdit } ) }</style>
 
-			<div {...useBlockProps()} id={`block-${attributes.ID}`}>
+			<div {...blockProps} id={`block-${attributes.ID}`}>
 				<div className="wpmozo_scroll_zoom_gallery_scroller" data-start_opacity={attributes.onLoadVisibility}>
 					<div className="wpmozo_scroll_zoom_gallery_wrapper">
 						<div className="wpmozo_scroll_zoom_gallery_inner">
-							{attributes.images_data && (
-								<Notice status="warning" isDismissible={false}>
-									{ __( "The scroll zoom gallery should only be displayed on the frontend side, so please make sure it runs only there.", "wpmozo-blocks-and-addons" ) }
-								</Notice>
+							{attributes.images_data && attributes.images_data.length > 0 && (
+								attributes.images_data.map((image, idx) => (
+									<div className="wpmozo_scroll_zoom_gallery_item">
+										<img className={`wpmozo_scroll_zoom_gallery_image`} src={image.url}
+												alt={image.alt || ''}/>
+									</div>
+								))
 							)}
 							{!attributes.images_data && (
 								<div className="wpmozo_scroll_zoom_gallery_no_item">

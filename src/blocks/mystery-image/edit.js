@@ -22,7 +22,7 @@ import { createBlobURL } from '@wordpress/blob';
 import { createBlock } from '@wordpress/blocks';
 import { store as blockEditorStore, MediaPlaceholder, useBlockProps } from '@wordpress/block-editor';
 import { withNotices } from '@wordpress/components';
-import { Platform, useEffect, useMemo } from '@wordpress/element';
+import { Platform, useEffect, useMemo, useState } from '@wordpress/element';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { View } from '@wordpress/primitives';
 
@@ -32,6 +32,7 @@ import { View } from '@wordpress/primitives';
 import Inspector from './inspector';
 import { pickRelevantMediaFiles } from '../../common/components/wpmozo-block-gallery/shared-helpers';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps, getMainEl } from '../../common/utils.js';
 
 
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
@@ -86,13 +87,46 @@ function Edit( props ) {
 		clientId,
 		noticeOperations,
 		isSelected,
-	} = props;
+	} = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: [
+				className,
+				'wpmozo-mystery-image',
+				attributes?.showLightbox && 'wpmozo-mystery-image-lightbox',
+				attributes?.enableOverlay && 'wpmozo-mystery-image-overlay',
+				attributes?.wrapIsHover && 'is_hover'
+			].filter(Boolean).join(' '),
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
+
+		// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	const {
 		replaceInnerBlocks,
 	} = useDispatch( blockEditorStore );
-
-	attributes.ID = clientId;
 
 
 	const innerBlockImages = useSelect(
@@ -114,8 +148,21 @@ function Edit( props ) {
 		[ innerBlockImages ]
 	);
 
-	const blockProps = useBlockProps( {
-		className: classnames( className)} );
+	const [ randomIndex, setRandomIndex ] = useState( 0 );
+
+	const imagesDataKey = useMemo( () => {
+		if ( ! Array.isArray( images ) || images.length === 0 ) {
+			return '';
+		}
+		return images.map( ( img ) => img.url || img.id || '' ).join( '|' );
+	}, [ images ] );
+
+	useEffect( () => {
+		if ( Array.isArray( images ) && images.length > 0 ) {
+			const newIndex = Math.floor( Math.random() * images.length );
+			setRandomIndex( newIndex );
+		}
+	}, [ imagesDataKey ] );
 
 	const hasImages = !! images.length;
 	const hasImageIds = hasImages && images.some( ( image ) => !! image.id );
@@ -179,6 +226,55 @@ function Edit( props ) {
 		}
 	}, [images]);
 
+	useEffect(() => {
+		if (attributes.showLightbox && clientId) {
+			const $ = window.jQuery;
+			if ($ && $.fn.magnificPopup) {
+				const $container = getMainEl(clientId);
+				if ($container && $container.length) {
+					const mainClass = 'block-block-' + clientId + '_lightbox';
+					$container.find('.wpmozo-mystery-image-anchor').off('click.editorLightbox').on('click.editorLightbox', function(e) {
+						e.preventDefault();
+						e.stopPropagation();
+						$.magnificPopup.open({
+							items: {
+								src: $(this).attr('href') || $(this).find('img').attr('src')
+							},
+							type: 'image',
+							closeOnContentClick: false,
+							closeBtnInside: false,
+							mainClass: mainClass,
+							callbacks: {
+								open: function() {
+									if (attributes.lightboxBackgroundColor) {
+										$('.' + mainClass + '.mfp-bg').css({
+											'background-color': attributes.lightboxBackgroundColor,
+											'opacity': '1'
+										});
+									}
+									if (attributes.lightboxCloseIconColor) {
+										$('.' + mainClass + ' .mfp-close').css({
+											'color': attributes.lightboxCloseIconColor,
+											'opacity': '1'
+										});
+									}
+								}
+							},
+							image: {
+								markup: '<div class="mfp-figure">' +
+									'<div class="mfp-close"></div>' +
+									'<div class="mfp-img"></div>' +
+									'</div>',
+								tError: '<a href="%url%">The image</a> could not be loaded.',
+							}
+						});
+					});
+				}
+			}
+		}
+	}, [attributes.showLightbox, attributes.lightboxBackgroundColor, attributes.lightboxCloseIconColor, attributes.images_data, clientId]);
+
+
 	const mediaPlaceholder = (
 		<MediaPlaceholder
 			accept="image/*"
@@ -210,28 +306,42 @@ function Edit( props ) {
 			<style>
 				{generateDynamicStyle({attributes, clientId})}
 			</style>
-			<div {...useBlockProps({ id: `block-${clientId}` })}>
+			<div {...blockProps} id={`block-${clientId}`}>
 			{images && Array.isArray(images) && images.length > 0 && (() => {
-				const randomIndex = Math.floor(Math.random() * images.length);
-				const randomImage = images[randomIndex];
+				const validIndex = randomIndex < images.length ? randomIndex : 0;
+				const randomImage = images[validIndex] || images[0];
 				return (
 					<figure className="wp-block-image mystery-show">
-						<a href="#" className="wpmozo-mystery-image-anchor">
-							<img
-								src={randomImage.url}
-								alt={randomImage.alt || ''}
-								className="wpmozo-mystery-image-img"
-								loading="lazy"
-							/>
-							{true === attributes.enableOverlay && (
-								<>
+						{true === attributes.showLightbox ? (
+							<a href={randomImage.url} className="wpmozo-mystery-image-anchor" onClick={(e) => e.preventDefault()}>
+								<img
+									src={randomImage.url}
+									alt={randomImage.alt || ''}
+									className="wpmozo-mystery-image-img"
+									loading="lazy"
+								/>
+								{true === attributes.enableOverlay && (
 									<span className="wpmozo-overlay-icon">
 										<i className={attributes.overlayIcon}></i>
 									</span>
-								</>
-
-							)}
-						</a>
+								)}
+							</a>
+						) : 
+ 
+							<div className="wpmozo-mystery-image-anchor">
+								<img
+									src={randomImage.url}
+									alt={randomImage.alt || ''}
+									className="wpmozo-mystery-image-img"
+									loading="lazy"
+								/>
+								{true === attributes.enableOverlay && (
+									<span className="wpmozo-overlay-icon">
+										<i className={attributes.overlayIcon}></i>
+									</span>
+								)}
+							</div>
+						}
 					</figure>
 				);
 

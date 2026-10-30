@@ -18,17 +18,23 @@ import {
 	WpmozoRangeSize,
 	WpmozoBorder,
 	WpmozoDimensions,
-	WpmozoIconpicker
+	WpmozoIconpicker,
+	MozoStates
 } from '../../../common/components/index';
 import { headingLevelsList } from '../../../common/utils.js';
 
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+		
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	};
 
 	return ( <>
-		<PanelBody title={ __( 'Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel"  initialOpen={false}>
+		<PanelBody title={ __( 'Text', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel"  opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<WpmozoAlignment
 				label={__( 'Text Alignment', 'wpmozo-blocks-and-addons')}
 				onChange={ ( newValue ) => setAttributes( { textAlignment: newValue } ) }
@@ -50,12 +56,23 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				onChange={ ( newValue ) => setAttributes( { textColor: newValue } ) }
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			<WpmozoColorPicker props={props}
-				ColorKey="title"
-				ColorTypes={ [
-					{ key: 'Color', label: __( 'Title Color', 'wpmozo-blocks-and-addons' ) }
-				] }
+		<PanelBody title={ __( 'Title', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={props}
+						ColorKey={ isHover ? "titleHover" : "title" }
+						ColorTypes={ [
+							{ key: 'Color', label: isHover ? __( 'Title Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Title Color', 'wpmozo-blocks-and-addons' ) }
+						] }
+					/>
+				) }
 			/>
 			<BaseControl label={ __( 'Heading Lavel', 'wpmozo-blocks-and-addons' ) }>
 				<ButtonGroup>
@@ -73,42 +90,86 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				onChange={(newValue) => setAttributes({titleAlign: newValue})}
 				value={attributes.titleAlign}
 			/>
-			<WpmozoTypography
-				TypographyKey="title"
-				props={props}
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Typography', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoTypography
+						TypographyKey={ isHover ? "titleHover" : "title" }
+						props={props}
+					/>
+				) }
 			/>
 			<WpmozoDimensions props={props}
 				DimensionKey='title'
 				DimensionsTypes={ { padding: true, margin: true } }
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Description', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			<WpmozoColorPicker props={props}
-				ColorKey="description"
-				ColorTypes={ [
-					{ key: 'Color', label: __( 'Description Color', 'wpmozo-blocks-and-addons' ) }
-				] }
+		<PanelBody title={ __( 'Description', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={props}
+						ColorKey={ isHover ? "descriptionHover" : "description" }
+						ColorTypes={ [
+							{ key: 'Color', label: isHover ? __( 'Description Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Description Color', 'wpmozo-blocks-and-addons' ) }
+						] }
+					/>
+				) }
 			/>
 			<WpmozoAlignment
 				label={__('Description Alignment', 'wpmozo-blocks-and-addons')}
 				onChange={(newValue) => setAttributes({descriptionAlign: newValue})}
 				value={attributes.descriptionAlign}
 			/>
-			<WpmozoTypography
-				TypographyKey="description"
-				props={props}
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Typography', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoTypography
+						TypographyKey={ isHover ? "descriptionHover" : "description" }
+						props={props}
+					/>
+				) }
 			/>
 			<WpmozoDimensions props={props}
 				DimensionKey='description'
 				DimensionsTypes={ { padding: true, margin: true } }
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			<WpmozoColorPicker props={props}
-				ColorKey="icon"
-				ColorTypes={ [
-					{ key: 'Color', label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ) },
-				] }
+		<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={props}
+						ColorKey={ isHover ? "iconHover" : "icon" }
+						ColorTypes={ [
+							{ key: 'Color', label: isHover ? __( 'Icon Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Icon Color', 'wpmozo-blocks-and-addons' ) },
+						] }
+					/>
+				) }
 			/>
 			<WpmozoTypography
 				TypographyKey="icon"
@@ -122,21 +183,43 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				DimensionsTypes={ { padding: true, margin: true } }
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			<WpmozoColorPicker props={props}
-				ColorKey="button"
-				ColorTypes={[
-					{ key: 'TextColor', label: __( 'Text Color', 'wpmozo-blocks-and-addons' ) },
-					{ key: 'BackgroundColor', label: __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
-				] }
+		<PanelBody title={ __( 'Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={props}
+						ColorKey={ isHover ? "buttonHover" : "button" }
+						ColorTypes={[
+							{ key: isHover ? 'HoverTextColor' : 'TextColor', label: isHover ? __( 'Text Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Text Color', 'wpmozo-blocks-and-addons' ) },
+							{ key: isHover ? 'HoverBackgroundColor' : 'BackgroundColor', label: isHover ? __( 'Background Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
+						] }
+					/>
+				) }
 			/>
 			<WpmozoAlignment
 				label={__( 'Button Alignment', 'wpmozo-blocks-and-addons')}
 				onChange={ ( newValue ) => setAttributes( { buttonAlignment: newValue } ) }
 				value={ attributes.buttonAlignment }
 			/>
-			<WpmozoTypography props={props}
-				TypographyKey="button"
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Typography', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoTypography props={props}
+						TypographyKey={ isHover ? "buttonHover" : "button" }
+					/>
+				) }
 			/>
 			<ToggleControl
 				label={ __( 'Use Button Icon', 'wpmozo-blocks-and-addons' ) }
@@ -171,8 +254,19 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					onChange={ ( newValue ) => setAttributes( { buttonIconHover: newValue } ) }
 				/>
 			</> ) }
-			<WpmozoBorder props={props}
-				BorderKey="button"
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Border', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoBorder props={props}
+						BorderKey={ isHover ? "buttonHover" : "button" }
+					/>
+				) }
 			/>
 			<WpmozoDimensions props={props}
 				DimensionKey='button'

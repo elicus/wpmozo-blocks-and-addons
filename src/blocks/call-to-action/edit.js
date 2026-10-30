@@ -4,17 +4,41 @@ import { useBlockProps, RichText } from "@wordpress/block-editor";
 
 import Inspector from "./inspector";
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Edit = (props) => {
 
-	const { attributes, setAttributes, clientId } = props;
+	const { attributes, setAttributes, clientId } = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-call-to-action${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit = true;
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
 		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
 		}
-	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	// Get the title.
 	let $title = '';
@@ -66,9 +90,9 @@ const Edit = (props) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, isEdit } ) }</style>
 
-			<div { ...useBlockProps() } id={`block-${attributes.ID}`}>
+			<div { ...blockProps} id={`block-${attributes.ID}`}>
 				<div className="wpmozo-bna-cta-wrap">
 					<div className="wpmozo-bna-cta-inner">
 						<div className="wpmozo-bna-cta-content-wrap">

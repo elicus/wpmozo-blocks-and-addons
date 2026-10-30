@@ -17,19 +17,7 @@ const generateDynamicStyle = ( { attributes } ) => {
 		alignment = '';
 	}
 
-	let styles = `#block-${attributes.ID} {
-		${alignment}
-		.wpmozo_split_image_portion {
-			background-image: url(${attributes.splitImg});
-			${convertedStyle.image}
-			
-		}
-		.wpmozo_split_image_wrapper {
-			aspect-ratio: 1/1;
-			gap: ${attributes.gap}px;
-			${convertedStyle.imageContainer}
-		}
-	`;
+	let styles = `#block-${attributes.ID} { ${alignment || ''}.wpmozo_split_image_portion { ${attributes.splitImg ? `background-image: url(${attributes.splitImg});` : ''}${convertedStyle.image || ''} } .wpmozo_split_image_wrapper { aspect-ratio: 1/1; ${attributes.gap ? `gap: ${attributes.gap}px;` : ''} ${convertedStyle.imageContainer || ''} }`;
 
 	styles += `}`;
 	return styles;

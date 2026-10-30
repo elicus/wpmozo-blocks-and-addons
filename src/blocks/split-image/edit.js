@@ -11,17 +11,39 @@ import generateDynamicStyle from "./style";
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function Edit(props) {
 
-	const {attributes, setAttributes, clientId} = props;
-
+	const {attributes, setAttributes, clientId} = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-split-image${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 	// Ensure ID is set once (no render-time mutation).
-	useEffect(() => {
-		if (attributes.ID !== clientId) {
-			setAttributes({ID: clientId});
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
 		}
-	}, [clientId]); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	useEffect( () => {
 		const event = new CustomEvent( 'WPMozoSplitImagePropsChanged' );
@@ -48,8 +70,7 @@ export default function Edit(props) {
 			<style>{generateDynamicStyle({attributes})}</style>
 
 			<div
-				{...useBlockProps()}
-				id={`block-${attributes.ID}`}
+				{...blockProps} id={`block-${attributes.ID}`}
 			>
 				<div className={`wpmozo_split_image_wrapper`} data-rows={`${attributes.rows}`}
 					 data-columns={`${attributes.columns}`}>

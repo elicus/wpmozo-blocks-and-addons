@@ -6,9 +6,10 @@ import {
 import {
 	WpmozoBorder,
 	WpmozoAlignment,
+	MozoStates,
 } from '../../../common/components';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
 	return ( <>
@@ -19,10 +20,22 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				value={ attributes.videoAlign }
 				onChange={ ( newValue ) => setAttributes( { videoAlign: newValue } ) }
 			/>
-			<WpmozoBorder props={props}
-				label={ __( 'Video Border', 'wpmozo-blocks-and-addons' ) }
-				BorderKey="video"
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Video Border', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoBorder props={props}
+						BorderKey={ isHover ? "videoHover" : "video" }
+						BorderTypes={ { border: true, radius: true } }
+					/>
+				) }
 			/>
 		</PanelBody>
 	</> );
 };
+

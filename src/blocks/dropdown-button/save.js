@@ -1,10 +1,18 @@
 import { __ } from "@wordpress/i18n";
 import { useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ( { attributes } ) => {
 
-    const clientId = attributes.ID;
+    const clientId = attributes.ID,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-dropdown-button' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	// Dropdown button.
 	let $buttonIcon = '';
@@ -38,7 +46,7 @@ const Save = ( { attributes } ) => {
     return ( <>
 		<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-		<div id={`block-${clientId}`} { ...useBlockProps.save( { className: attributes.className } ) }>
+		<div id={`block-${clientId}`} { ...blockProps}>
 			<div className="wpmozo_dropdown_button_wrap"
 				data-trigger-type={ attributes.triggerType || 'click' }
 				data-direction={ attributes.dropdownDirection || 'bottom' }

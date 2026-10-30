@@ -1,24 +1,8 @@
+// deprecated/version-1.js
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
-
-const deprecatedSave = ({ attributes }) => {
-    const ID = attributes.ID;
-
-    return (
-        <div {...useBlockProps.save({className: 'wpmozo-bna-fancy-text-wrap'})} id={`block-${ID}`}>
-            <div
-                className={`wpmozo-bna-fancy-text-inner ${attributes.textStyle}`}
-            >
-            <RichText.Content
-                tagName=''
-                value={ attributes.fancyText }
-            />
-            </div>
-        </div>
-    );
-};
-export default {
+const V1 = {
     attributes: {
         // Same as old v1.0.0 attributes
         ID: { type: "string", }, fancyText: { type: "string", default: __('Here you can set text.', 'wpmozo-blocks-and-addons'), },
@@ -39,5 +23,22 @@ export default {
         textLetterCase: { type: "string", },
         textLineHeight: { type: "string", },
     },
-    save: deprecatedSave,
+    save( { attributes } ) {
+        const ID = attributes.ID;
+
+        return (
+            <div {...useBlockProps.save({className: 'wpmozo-bna-fancy-text-wrap'})} id={`block-${ID}`}>
+                <div
+                    className={`wpmozo-bna-fancy-text-inner ${attributes.textStyle}`}
+                >
+                <RichText.Content
+                    tagName=''
+                    value={ attributes.fancyText }
+                />
+                </div>
+            </div>
+        );
+    },
 };
+
+export default V1;

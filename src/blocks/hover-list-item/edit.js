@@ -12,17 +12,57 @@ import Inspector from './inspector';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Edit = ( props ) => {
 
-	const { attributes, setAttributes, clientId } = props;
+	const { attributes, setAttributes, clientId } = props,
+	// Check if this is the first child.
+		isLastChild = useSelect( ( select ) => {
+		const { getBlockRootClientId, getBlockOrder } = select( 'core/block-editor' );
+		const parentId = getBlockRootClientId( clientId );
+		const siblings = getBlockOrder( parentId );
+
+		return siblings[ siblings.length - 1 ] === clientId;
+		}, [ clientId ] ),
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-hover-list-item${ attributes?.wrapIsHover ? ' is_hover' : '' } ${isLastChild ? ' wpmozo-is-last-child' : ''}` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit = true;
+	
+	
+
+	useEffect( () => {
+		if ( attributes.isLastChild !== isLastChild ) {
+			setAttributes( { isLastChild } );
+		}
+	}, [ isLastChild ] );
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
 		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
 		}
-	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	// Re-init the js.
 	useEffect( () => {
@@ -101,32 +141,12 @@ const Edit = ( props ) => {
 		</div>;
 	}
 
-	// Check if this is the first child.
-	const isLastChild = useSelect( ( select ) => {
-		const { getBlockRootClientId, getBlockOrder } = select( 'core/block-editor' );
-		const parentId = getBlockRootClientId( clientId );
-		const siblings = getBlockOrder( parentId );
-
-		return siblings[ siblings.length - 1 ] === clientId;
-	}, [ clientId ] );
-
-	useEffect( () => {
-		if ( attributes.isLastChild !== isLastChild ) {
-			setAttributes( { isLastChild } );
-		}
-	}, [ isLastChild ] );
-
-	const blockProps = useBlockProps( {
-		id: `block-${attributes.ID}`,
-		className: isLastChild ? 'wpmozo-is-last-child' : ''
-	} );
-
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, isEdit } ) }</style>
 
-			<div { ...blockProps }>
+			<div { ...blockProps } id={`block-${clientId}`}>
 				<div className="wpmozo-bna-hover-list-item-wrapper"
 					data-image={ attributes.hoverImage || wpmozo_bna_editor_object.placeholderImg }
 				>

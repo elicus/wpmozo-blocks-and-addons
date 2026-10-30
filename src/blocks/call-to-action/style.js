@@ -1,81 +1,151 @@
 import { convertInlineStyleStr } from '../../common/utils.js';
 
-const generateDynamicStyle = ( { attributes } ) => {
+const generateDynamicStyle = ( { attributes, isEdit } ) => {
 	const toConvertStyles = [
 		'block',
+		'blockHover',
 		'title',
+		'titleHover',
 		'description',
+		'descriptionHover',
 		'button',
 		'buttonHover'
 	];
 	let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes );
 
-    let styles = `#block-${attributes.ID} {`;
+    let normalcss = [],
+	hovercss = [],
+	cssExtras = [];
+	const isEditor = (selector) => {return isEdit ? `,&.is_hover ${selector}` : ''};
 
-	// Default block.
-	styles += `.wpmozo-bna-cta-wrap{
-		${attributes.blockBGGradient ? `background:`+ attributes.blockBGGradient + `;` : ''}
-		${attributes.blockBackground ? `background:`+ attributes.blockBackground + `;` : ''}
-		${convertedStyle.block}
-	}`;
+
+	normalcss.push(
+		(attributes.blockBGGradient || attributes.blockBackground || convertedStyle.block) 
+		? `.wpmozo-bna-cta-wrap{
+				${attributes.blockBGGradient ? `background:`+ attributes.blockBGGradient + `;` : ''}
+				${attributes.blockBackground ? `background:`+ attributes.blockBackground + `;` : ''}
+				${convertedStyle.block || ''}
+				transition: all 300ms;
+			}`
+		: ''
+	);
+	hovercss.push(
+		(attributes.blockHoverBGGradient || attributes.blockHoverBackground || convertedStyle.blockHover) 
+		? `.wpmozo-bna-cta-wrap:hover${isEditor('.wpmozo-bna-cta-wrap')}{
+				${attributes.blockHoverBGGradient ? `background:`+ attributes.blockHoverBGGradient + `;` : ''}
+				${attributes.blockHoverBackground ? `background:`+ attributes.blockHoverBackground + `;` : ''}
+				${convertedStyle.blockHover || ''}
+			}`
+		: ''
+	);
 
 	// Inner alignment.
-	styles += `.wpmozo-bna-cta-inner{
-		${attributes.blockVerticleAlign ? `align-items:`+ attributes.blockVerticleAlign + `;` : ''}
-	}`;
+	normalcss.push(
+		attributes.blockVerticleAlign 
+		? `.wpmozo-bna-cta-inner{ align-items: ${attributes.blockVerticleAlign}; }` : ''
+	);
 
 	// Title.
-	styles += `.wpmozo-bna-cta-title{
-		${attributes.titleAlign ? `text-align: ${attributes.titleAlign};` : ''}
-		${attributes.titleColor ? `color: ${attributes.titleColor};` : ''}
-		${convertedStyle.title}
-	}`
+	normalcss.push(
+		(attributes.titleAlign || attributes.titleColor || convertedStyle.title) 
+		? `.wpmozo-bna-cta-title{
+				${attributes.titleAlign ? `text-align: ${attributes.titleAlign};` : ''}
+				${attributes.titleColor ? `color: ${attributes.titleColor};` : ''}
+				${convertedStyle.title || ''}
+				transition: all 300ms;
+			}`
+		: ''
+	);
+	hovercss.push(
+		(attributes.titleHoverColor || convertedStyle.titleHover) 
+		? `.wpmozo-bna-cta-title:hover${isEditor('.wpmozo-bna-cta-title')}{
+				${attributes.titleHoverColor ? `color: ${attributes.titleHoverColor};` : ''}
+				${convertedStyle.titleHover || ''}
+			}`
+		: ''
+	);
+
 	// Description.
-	styles += `.wpmozo-bna-cta-desc{
-		${attributes.descriptionAlign ? `text-align: ${attributes.descriptionAlign};` : ''}
-		${attributes.descriptionColor ? `color: ${attributes.descriptionColor};` : ''}
-		${convertedStyle.description}
-	}`
+	normalcss.push(
+		(attributes.descriptionAlign || attributes.descriptionColor || convertedStyle.description) 
+		? `.wpmozo-bna-cta-desc{
+				${attributes.descriptionAlign ? `text-align: ${attributes.descriptionAlign};` : ''}
+				${attributes.descriptionColor ? `color: ${attributes.descriptionColor};` : ''}
+				${convertedStyle.description || ''}
+				transition: all 300ms;
+			}`
+		: ''
+	);
+	hovercss.push(
+		(attributes.descriptionHoverColor || convertedStyle.descriptionHover) 
+		? `.wpmozo-bna-cta-desc:hover${isEditor('.wpmozo-bna-cta-desc')}{
+				${attributes.descriptionHoverColor ? `color: ${attributes.descriptionHoverColor};` : ''}
+				${convertedStyle.descriptionHover || ''}
+			}`
+		: ''
+	);
 
 	// Button.
-	if ( attributes.showButton ) {
-		styles += `.wpmozo-bna-button-wrap{
-			${attributes.buttonAlign ? `text-align: ${attributes.buttonAlign}!important;` : ''}
-			${attributes.buttonContainerSize ? `width: ${attributes.buttonContainerSize}%;` : ''}
-		}`;
-		styles += `.wpmozo-bna-button-wrap .wpmozo-bna-button{
-			${attributes.buttonBGGradient ? `background:`+ attributes.buttonBGGradient + `;` : ''}
-			${attributes.buttonBackground ? `background:`+ attributes.buttonBackground + `;` : ''}
-			${attributes.buttonColor ? `color: ${attributes.buttonColor};` : ''}
-			${convertedStyle.button}
-		}`;
-		styles += `.wpmozo-bna-button-wrap .wpmozo-bna-button:hover{
-			${attributes.buttonHoverBGGradient ? `background:`+ attributes.buttonHoverBGGradient + `;` : ''}
-			${attributes.buttonHoverBackground ? `background:`+ attributes.buttonHoverBackground + `;` : ''}
-			${attributes.buttonHoverColor ? `color: ${attributes.buttonHoverColor};` : ''}
-			${convertedStyle.buttonHover}
-		}`;
+	if ( attributes.showButton ) { 
+		normalcss.push(
+			(attributes.buttonAlign || attributes.buttonContainerSize) 
+			? `.wpmozo-bna-button-wrap{
+					${attributes.buttonAlign ? `text-align: ${attributes.buttonAlign}!important;` : ''}
+					${attributes.buttonContainerSize ? `width: ${attributes.buttonContainerSize}%;` : ''}
+				}`
+			: ''
+		);
+
+		normalcss.push(
+			`.wpmozo-bna-button-wrap .wpmozo-bna-button{
+				${attributes.buttonBGGradient ? `background:`+ attributes.buttonBGGradient + `;` : ''}
+				${attributes.buttonBackground ? `background:`+ attributes.buttonBackground + `;` : ''}
+				${attributes.buttonColor ? `color: ${attributes.buttonColor};` : ''}
+				${convertedStyle.button || ''}
+				transition: all 300ms;
+			}`
+		);
+		hovercss.push(
+			(attributes.buttonHoverBGGradient || attributes.buttonHoverBackground || attributes.buttonHoverColor || convertedStyle.buttonHover) 
+			? `.wpmozo-bna-button-wrap .wpmozo-bna-button:hover${isEditor('.wpmozo-bna-button-wrap .wpmozo-bna-button')}{
+					${attributes.buttonHoverBGGradient ? `background:`+ attributes.buttonHoverBGGradient + `;` : ''}
+					${attributes.buttonHoverBackground ? `background:`+ attributes.buttonHoverBackground + `;` : ''}
+					${attributes.buttonHoverColor ? `color: ${attributes.buttonHoverColor};` : ''}
+					${convertedStyle.buttonHover || ''}
+				}`
+			: ''
+		);
 	}
 
 	// Stack on.
-	if ( attributes.buttonStackOn && 'desktop' === attributes.buttonStackOn ) {
-		styles += `.wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; }`;
-		styles += `.wpmozo-bna-button-wrap{ width: 100% !important; text-align: center; }`;
-	}
-	if ( attributes.buttonStackOn && 'tablet' === attributes.buttonStackOn ) {
-		styles += `@media only screen and (max-width: 976px) {`;
-			styles += `.wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; }`;
-			styles += `.wpmozo-bna-button-wrap{ width: 100% !important; text-align: center; }`;
-		`}`;
-	}
-	if ( attributes.buttonStackOn && 'mobile' === attributes.buttonStackOn ) {
-		styles += `@media only screen and (max-width: 767px) {`;
-			styles += `.wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; }`;
-			styles += `.wpmozo-bna-button-wrap{ width: 100% !important; text-align: center; }`;
-		`}`;
+	if ( attributes.buttonStackOn.length > 0){
+
+		if( attributes.buttonStackOn.includes('desktop') ) {
+			normalcss.push(`@media only screen and (min-width: 978px) { .wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; } .wpmozo-bna-button-wrap{ width: 100%; text-align: center; }}`
+			);
+		}
+		if ( attributes.buttonStackOn.includes('tablet') ) {
+			normalcss.push(`@media only screen and (max-width: 976px) and (min-width: 768px) { .wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; } .wpmozo-bna-button-wrap{ width: 100%; text-align: center; }}`
+			);
+		}
+		if ( attributes.buttonStackOn.includes('mobile') ) {
+			normalcss.push(`@media only screen and (max-width: 767px) { .wpmozo-bna-cta-wrap{ flex-direction: column; text-align: center; } .wpmozo-bna-button-wrap{ width: 100%; text-align: center; }}`
+			);
+		} 
 	}
 
-    styles += `}`;
+	const hasStyles = normalcss.some(Boolean) || hovercss.some(Boolean);
+	
+	let styles = hasStyles ? `#block-${attributes.ID}{${normalcss.filter(Boolean).join('\n')} ${hovercss.filter(Boolean).join('\n')}}` : '';
+	
+	styles += cssExtras.some(Boolean) ? cssExtras.filter(Boolean).join('\n') : '';
+	styles = styles.replace(/\s+/g, ' ')
+    .replace(/\s*{\s*/g, '{')
+    .replace(/\s*}\s*/g, '}')
+    .replace(/\s*:\s*/g, ':')
+    .replace(/\s*;\s*/g, ';')
+    .replace(/\s*,\s*/g, ',')    
+    .trim();
 	return styles;
 }
 

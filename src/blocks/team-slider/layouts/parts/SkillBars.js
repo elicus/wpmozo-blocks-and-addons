@@ -10,13 +10,16 @@ const SkillBars = ( { post, attributes } ) => {
 		return null; // no data, return nothing.
 	}
 
+	let skills = post.member_skills.split(','),
+		values = post.member_skills_values.split(',');
+
 	return (
 		<div className="wpmozo_bna_skill_bar_wrapper">
-			{ ( post.member_skills ).map( ( skill, index ) => (
+			{ ( skills ).map( ( skill, index ) => (
 				<div className="wpmozo_bna_skill_bar_wrapper_inner" key={index}>
-					<div className="wpmozo_bna_skill_name">{ skill.title }</div>
+					<div className="wpmozo_bna_skill_name">{ skill }</div>
 					<div className="wpmozo_bna_empty_bar">
-						<div className="wpmozo_bna_filled_bar" data-skill={ skill.value + "%" } />
+						<div className="wpmozo_bna_filled_bar" data-skill={ values[index].trim() + "%" } />
 					</div>
 				</div>
 			) ) }

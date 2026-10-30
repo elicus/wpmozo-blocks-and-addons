@@ -9,45 +9,92 @@ import generateDynamicStyle from "./style";
 
 import Layout1 from './layouts/layout1';
 import Layout2 from './layouts/layout2';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Edit = (props) => {
 
-	const { attributes, setAttributes, clientId } = props;
+	const { attributes, setAttributes, clientId } = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-blog-timeline${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit    = true;
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
 		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
 		}
-	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	const postsNumber        = attributes.postsNumber ?? 10;
 	const offsetNumber       = attributes.offsetNumber ?? 0;
 	const postOrder          = attributes.postOrder ?? 'DESC';
 	const postOrderBy        = attributes.postOrderBy ?? 'date';
 	const includesCategories = attributes.includesCategories ?? [];
-	let ignoreStickyPosts  = attributes.ignoreStickyPosts ?? false;
+	let ignoreStickyPosts    = attributes.ignoreStickyPosts ?? false;
+	const stickyQuery = {
+		per_page: -1,
+		offset: offsetNumber,
+		order: postOrder,
+		orderby: postOrderBy,
+		categories: includesCategories,
+		_embed: true,
+		sticky: true
+	};
+	const stickyPosts = useSelect(
+		(select) =>
+			select('core').getEntityRecords('postType', 'post', stickyQuery),
+		[stickyQuery]
+	);
 
 	const queryArgs = {
-		per_page: postsNumber,
 		offset: offsetNumber,
 		order: postOrder,
 		orderby: postOrderBy,
 		categories: includesCategories,
 		_embed: true
 	};
-
-	if(true === attributes.ignoreStickyPosts){
+	if(stickyPosts){
+		queryArgs.per_page= postsNumber - (stickyPosts?.length || 0);
+	}
+	if(ignoreStickyPosts){
+		queryArgs.per_page = postsNumber;
+	}else{
 		queryArgs.sticky = false;
 	}
-
-	// Get the posts.
+				
 	const posts = useSelect(
 		(select) =>
 			select('core').getEntityRecords('postType', 'post', queryArgs),
-		[postsNumber, offsetNumber, postOrder, postOrderBy, includesCategories, ignoreStickyPosts]
+		[queryArgs]
 	);
-
+	let allPosts = {};
+	if(posts){
+		allPosts = [...posts];
+		if(!ignoreStickyPosts && stickyPosts){
+			allPosts = [...stickyPosts, ...posts];
+		}
+	}
+	
 	// Props change event.
 	useEffect( () => {
 		const event = new CustomEvent( 'WPMozoBlogTimelinePropsChanged', {
@@ -59,7 +106,7 @@ const Edit = (props) => {
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [ props ] );
+	}, [ props, JSON.stringify(attributes) ] );
 
 	// Get attrs.
 	const layout      = attributes.layout ?? 'layout1';
@@ -68,8 +115,8 @@ const Edit = (props) => {
 	// Render post items based on layout.
 	let postItems = '';
 	useEffect( () => {
-		if ( posts && posts.length > 0 ) {
-			postItems = posts.map( ( post ) => {
+		if ( allPosts && allPosts.length > 0 ) {
+			postItems = allPosts.map( ( post ) => {
 				if ( 'layout2' === layout ) {
 					return renderToString( <Layout2 key={ post.id } post={ post } attributes={ attributes } /> );
 				}
@@ -80,20 +127,20 @@ const Edit = (props) => {
 			// Save items html to db.
 			setAttributes( { postItemsDB: postItems } );
 		}
-	}, [ posts, props ] );
+	}, [ posts, allPosts, props ] );
 
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, isEdit } ) }</style>
 
-			<div { ...useBlockProps() } id={`block-${attributes.ID}`}>
+			<div { ...blockProps} id={`block-${attributes.ID}`}>
 				<div className={`wpmozo_bna_blog_timeline_wrapper ${layout} wpmozo_bna_blog_timeline_${orientation}`}
 					dangerouslySetInnerHTML={ {
-						__html: ( attributes.postItemsDB || '' ) +
+						__html: (( attributes.postItemsDB || '' ) +
 						renderToString( <div className={`wpmozo_bna_stem_wrapper wpmozo_bna_blog_timeline_${orientation}_stem`}>
 							<div className="wpmozo_bna_blog_stem"></div>
-						</div> )
+						</div> )) ?? ''
 					} }
 				/>
 			</div>

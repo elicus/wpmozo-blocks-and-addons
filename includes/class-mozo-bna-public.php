@@ -21,6 +21,31 @@ class Mozo_Bna_Public {
 	public function __construct() {
 		add_action( 'wp_ajax_wpmozo_bna_get_team_detail', array( __class__, 'wpmozo_bna_get_team_detail' ) );
 		add_action( 'wp_ajax_nopriv_wpmozo_bna_get_team_detail', array( __class__, 'wpmozo_bna_get_team_detail' ) );
+		add_action( 'wp_enqueue_scripts', array( __class__, 'wpmozo_inject_wrap_styles' ) );
+		add_action('rest_api_init', function () {
+			register_rest_route('wpmozo/v1', '/image-sizes', array(
+				'methods'  => 'GET',
+				'callback' => array(__class__,'wpmozo_get_image_sizes'),
+				'permission_callback' => '__return_true',
+			));
+		});
+	}
+
+	public static function wpmozo_get_image_sizes() {
+		global $_wp_additional_image_sizes;
+
+		$sizes = [];
+
+		// Default sizes
+		foreach (get_intermediate_image_sizes() as $size) {
+			$sizes[$size] = [
+				'width'  => isset($_wp_additional_image_sizes[$size]['width']) ? $_wp_additional_image_sizes[$size]['width'] : get_option("{$size}_size_w"),
+				'height' => isset($_wp_additional_image_sizes[$size]['height']) ? $_wp_additional_image_sizes[$size]['height'] : get_option("{$size}_size_h"),
+				'crop'   => isset($_wp_additional_image_sizes[$size]['crop']) ? $_wp_additional_image_sizes[$size]['crop'] : false,
+			];
+		}
+
+		return $sizes;
 	}
 
 	/**
@@ -74,20 +99,21 @@ class Mozo_Bna_Public {
 		$values         = get_post_custom( $id );
 
 		$meta_keys = [
-			'short_description',
-			'designation',
-			'email_address',
-			'phone_number',
-			'website',
-			'facebook',
-			'twitter',
-			'linkedin',
-			'instagram',
-			'youtube',
-			'member_skills',
+			'wpmozo_ae_team_member_short_desc',
+			'wpmozo_ae_team_member_designation',
+			'wpmozo_ae_team_member_email',
+			'wpmozo_ae_team_member_phone',
+			'wpmozo_ae_team_member_website',
+			'wpmozo_ae_team_member_facebook',
+			'wpmozo_ae_team_member_twitter',
+			'wpmozo_ae_team_member_linkedin',
+			'wpmozo_ae_team_member_instagram',
+			'wpmozo_ae_team_member_youtube',
+			'wpmozo_ae_team_member_skills',
+			'wpmozo_ae_team_member_skills_value',
 		];
 		foreach ( $meta_keys as $key ) {
-			${$key} = isset( $values["_{$key}"][0] ) ? $values["_{$key}"][0] : '';
+			${$key} = isset( $values[$key][0] ) ? $values[$key][0] : '';
 		}
 
 		$thumbnail = '';
@@ -109,19 +135,28 @@ class Mozo_Bna_Public {
 			$linkTarget = $_POST['props']['social_icons_target'];
 		}
 		if ( 'on' === $show_social_icons ) {
-			$social_icons .= $helpers::get_team_member_social( 'website', $website, 'fas fa-globe', $linkTarget );
-			$social_icons .= $helpers::get_team_member_social( 'facebook', $facebook, 'fab fa-facebook-f', $linkTarget );
-			$social_icons .= $helpers::get_team_member_social( 'twitter', $twitter, 'fab fa-x-twitter', $linkTarget );
-			$social_icons .= $helpers::get_team_member_social( 'linkedin', $linkedin, 'fab fa-linkedin-in', $linkTarget );
-			$social_icons .= $helpers::get_team_member_social( 'instagram', $instagram, 'fab fa-instagram', $linkTarget );
-			$social_icons .= $helpers::get_team_member_social( 'youtube', $youtube, 'fab fa-youtube', $linkTarget );
-			$social_icons .= $helpers::get_team_member_social( 'email', $email_address, 'fas fa-envelope', $linkTarget );
-			$social_icons .= $helpers::get_team_member_social( 'phone', $phone_number, 'fas fa-phone', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'website', $wpmozo_ae_team_member_website, 'fas fa-globe', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'facebook', $wpmozo_ae_team_member_facebook, 'fab fa-facebook-f', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'twitter', $wpmozo_ae_team_member_twitter, 'fab fa-x-twitter', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'linkedin', $wpmozo_ae_team_member_linkedin, 'fab fa-linkedin-in', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'instagram', $wpmozo_ae_team_member_instagram, 'fab fa-instagram', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'youtube', $wpmozo_ae_team_member_youtube, 'fab fa-youtube', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'email', $wpmozo_ae_team_member_email, 'fas fa-envelope', $linkTarget );
+			$social_icons .= $helpers::get_team_member_social( 'phone', $wpmozo_ae_team_member_phone, 'fas fa-phone', $linkTarget );
 		}
+		$wpmozo_ae_team_member_skills = explode(',',$wpmozo_ae_team_member_skills);
+		$wpmozo_ae_team_member_skills_value = explode(',',$wpmozo_ae_team_member_skills_value);
 
 		// Skill bars.
+		$member_skills = [];
+
+		foreach ($wpmozo_ae_team_member_skills as $index => $skill) {
+			$member_skills[] = [
+				'title' => $skill,
+				'value' => $wpmozo_ae_team_member_skills_value[$index] ?? null
+			];
+		}
 		$skill_bars    = '';
-		$member_skills = maybe_unserialize( $member_skills );
 		if ( 'on' === $show_skills_bars && ! empty( $member_skills ) ) {
 			foreach ( $member_skills as $key => $skill ) {
 				if ( 'layout2' === $bar_layout ) {
@@ -180,11 +215,63 @@ class Mozo_Bna_Public {
 		$member_output .= '</div>';
 
 		wp_send_json_success( array(
-			'html' => $member_output,
+			'html' => wp_kses_post( $member_output )
 		) );
 		wp_die();
 	}
 
+	/**
+	 * Frontend par saare wpmozo blocks ke wrapStyle ek saath inject karo.
+	 */
+	public static function wpmozo_inject_wrap_styles() {
+		// Sirf frontend par
+		if ( is_admin() ) {
+			return;
+		}
+
+		global $post;
+		if ( ! $post || ! has_blocks( $post->post_content ) ) {
+			return;
+		}
+
+		$blocks      = parse_blocks( $post->post_content );
+		$all_css     = self::wpmozo_collect_wrap_styles( $blocks );
+
+		if ( empty( trim( $all_css ) ) ) {
+			return;
+		}
+
+		// Plugin ke kisi bhi registered style handle ke saath attach karo
+		wp_add_inline_style( 'wpmozo-blocks-and-addons-blocks-style', $all_css );
+	}
+
+
+	/**
+	 * Recursively sabhi blocks (aur inner blocks) se wrapStyle collect karo.
+	 *
+	 * @param array $blocks parse_blocks() ka output
+	 * @return string       Combined CSS string
+	 */
+	public static function wpmozo_collect_wrap_styles( array $blocks ): string {
+		$css = '';
+
+		foreach ( $blocks as $block ) {
+			// Sirf wpmozo blocks
+			if ( isset( $block['blockName'] ) && str_starts_with( $block['blockName'], 'wpmozo/' ) ) {
+				$wrap_style = $block['attrs']['wrapStyle'] ?? '';
+				if ( ! empty( trim( $wrap_style ) ) ) {
+					$css .= $wrap_style . "\n";
+				}
+			}
+
+			// InnerBlocks recursively handle karo
+			if ( ! empty( $block['innerBlocks'] ) ) {
+				$css .= self::wpmozo_collect_wrap_styles( $block['innerBlocks'] );
+			}
+		}
+
+		return $css;
+	}
 }
 
 return new Mozo_Bna_Public();

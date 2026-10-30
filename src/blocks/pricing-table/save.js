@@ -1,5 +1,6 @@
 import {RichText, useBlockProps} from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ({ attributes }) => {
 
@@ -7,13 +8,19 @@ const Save = ({ attributes }) => {
 		showIconOnHover = ( attributes.showIconOnHover ) ? ' show-on-hover' : '',
 		buttonIconPosition = ( attributes.buttonIconPosition ) ? attributes.buttonIconPosition : ' icon-after';
 
-
-	const ID = attributes.ID;
+	const ID = attributes.ID,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-pricing-table' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 	return (
 		<>
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-			<div {...useBlockProps.save( { className: attributes.className } ) } id={`block-${ID}`}>
+			<div {...blockProps} id={`block-${ID}`}>
 				<div className="wpmozo-bna-pricing-table">
 					<div className="wpmozo-bna-pricing-table-wrapper">
 						<div className="wpmozo-bna-pricing-table-header-graphic">

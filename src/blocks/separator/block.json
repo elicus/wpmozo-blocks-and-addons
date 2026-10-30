@@ -23,12 +23,14 @@
 		"separatorText": { "type": "string", "default": "Add text here" },
 		"textNormalColor": { "type": "string", "default": "#222222" },
 		"textHoverColor": { "type": "string", "default": "#000000" },
+		"textNormalFont": { "type": "string" },
 		"textNormalFontSize": { "type": "string" },
 		"textNormalFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
 		"textNormalLetterSpacing": { "type": "string" },
 		"textNormalDecoration": { "type": "string" },
 		"textNormalLetterCase": { "type": "string" },
 		"textNormalLineHeight": { "type": "string" },
+		"textHoverFont": { "type": "string" },
 		"textHoverFontSize": { "type": "string" },
 		"textHoverFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
 		"textHoverLetterSpacing": { "type": "string" },
@@ -54,8 +56,7 @@
 
 		"separatorThickness": { "type": "number", "default": 3 },
 		"separatorGradient": { "type": "string" },
-		"separatorColor": { "type": "string", "default": "#2b87da" },
-		"shadowColor": { "type": "string", "default": "#2b87da" }
+		"separatorColor": { "type": "string", "default": "#2b87da" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

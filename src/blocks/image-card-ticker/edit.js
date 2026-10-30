@@ -1,5 +1,5 @@
 import { concat, find } from 'lodash';
-import {Fragment} from "@wordpress/element";
+import {Fragment, useRef} from "@wordpress/element";
 import { View } from '@wordpress/primitives';
 import { toHTMLString } from '@wordpress/rich-text';
 
@@ -23,6 +23,7 @@ import generateDynamicStyle from "./style";
  */
 import './editor.scss';
 import {pickRelevantMediaFiles} from "../../common/components/wpmozo-block-gallery/shared-helpers";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
 
@@ -32,7 +33,14 @@ const PLACEHOLDER_TEXT = Platform.isNative
 
 export default function Edit(props) {
 
-	const {setAttributes, attributes, clientId, noticeOperations, isSelected} = props;
+	const {setAttributes, attributes, clientId, noticeOperations, isSelected} = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-image-card-ticker${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	const {replaceInnerBlocks, updateBlockAttributes} = useDispatch( blockEditorStore );
 
@@ -41,9 +49,29 @@ export default function Edit(props) {
 		if (attributes.ID !== clientId) {
 			setAttributes({ID: clientId});
 		}
-	}, [clientId]); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
 
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+
+	const isFirstRender = useRef(true);
 	useEffect( () => {
+		if (isFirstRender.current) {
+			isFirstRender.current = false;
+			return;
+		}
 		const event = new CustomEvent( 'WPMozoImageTickerPropsChanged' );
 		window.dispatchEvent( event );
 
@@ -51,7 +79,7 @@ export default function Edit(props) {
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [props] );
+	}, [attributes] );
 
 	const { getBlock, preferredStyle } = useSelect( ( select ) => {
 		const settings = select( blockEditorStore ).getSettings();
@@ -243,9 +271,9 @@ export default function Edit(props) {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes}/>
-			<style>{generateDynamicStyle({attributes})}</style>
+			<style>{generateDynamicStyle({attributes, isEdit: true})}</style>
 
-			<div {...useBlockProps()} >
+			<div {...blockProps}>
 				{'curve' === attributes.tickerLayout && (
 					<svg width="0" height="0">
 						<defs>

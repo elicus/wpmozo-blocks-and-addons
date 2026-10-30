@@ -19,9 +19,11 @@
 		"ID": { "type": "string" },
 		"className": { "type": "string" },
 
-		"logo": { "type": "object" },
-		"logoborderRadius": { "type": "string" },
+    "logo": { "type": "object" },
+    "logoborderRadius": { "type": "object" },
+		"logoHoverborderRadius": { "type": "object" },
 		"logoborder": { "type": "object" },
+		"logoHoverborder": { "type": "object" },
 
 		"altText": { "type": "string" },
 
@@ -29,6 +31,7 @@
 		"linkTarget": { "type": "string", "default": "same" },
 
 		"logoBackground": { "type": "string" },
+		"logoHoverBackground": { "type": "string" },
 		"logopadding": { "type": "object" }
 
 	},

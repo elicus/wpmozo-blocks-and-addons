@@ -1,5 +1,5 @@
 import {__} from "@wordpress/i18n";
-import {Fragment, createElement} from "@wordpress/element";
+import {Fragment, createElement, useEffect} from "@wordpress/element";
 import {useBlockProps, RichText, BlockControls} from "@wordpress/block-editor";
 import {useState} from "@wordpress/element";
 /**
@@ -10,14 +10,42 @@ import {useState} from "@wordpress/element";
  */
 import Inspector from "./inspector";
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function Edit(props) {
 
-	const { attributes, setAttributes, clientId, isSelected } = props;
+	const { attributes, setAttributes, clientId, isSelected } = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-fancy-heading${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit = true;
 
 	const ID = clientId;
+		// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
 
-	attributes.ID = ID;
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] );
 
 	const [currentHeadingType, setcurrentHeadingType] = useState('');
 	const isActiveType = (type) => {
@@ -58,9 +86,9 @@ export default function Edit(props) {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, clientId, isEdit } ) }</style>
 
-			<div id={`block-${ID}`} { ...useBlockProps() }>
+			<div id={`block-${ID}`} { ...blockProps}>
 				<div className="wpmozo-bna-fancy-heading-wrap">
 					{heading}
 				</div>

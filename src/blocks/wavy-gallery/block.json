@@ -40,12 +40,13 @@
 		"containermargin": {"type": "object"},
 		"containerpadding": {"type": "object"},
 		"containerborder": {"type": "object"},
-		"containerborderRadius": {"type": "string"},
+		"containerborderRadius": {"type": "object"},
 
 		"lightboxBackgroundColor": {"type": "string"},
 
 		"textAlign": {"type": "string","default": "left"},
 		"lightboxTitleColor": {"type": "string"},
+		"lightboxTitleFont": { "type": "string" },
 		"lightboxTitleFontSize": { "type": "string" },
 		"lightboxTitleFontAppearance": {
 			"type": "object",
@@ -61,5 +62,5 @@
     "editorScript": "file:./index.js",
     "editorStyle": "file:./index.css",
     "style": "file:./style-index.css",
-    "viewScript": [ "wpmozo-blocks-and-addons-scroll-trigger-script", "wpmozo-blocks-and-addons-gsap-script", "file:./script.js"]
+    "script": [ "wpmozo-blocks-and-addons-scroll-trigger-script", "wpmozo-blocks-and-addons-gsap-script", "file:./script.js"]
 }

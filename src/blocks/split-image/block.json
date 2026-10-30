@@ -25,7 +25,7 @@
 
 		"imageAlignment": {"type": "string","default": "center"},
 		"imageborder": { "type": "object" },
-		"imageborderRadius": { "type": "string" },
+		"imageborderRadius": { "type": "object" },
 		"imagepadding": { "type": "object" },
 		"imagemargin": { "type": "object" },
 		"imageContainermargin": {"type": "object"},

@@ -7,8 +7,9 @@ const Thumbnail = ( { post, attributes } ) => {
 		return null;
 	}
 
+	const imageSize     = attributes.featuredImageSize;
 	const featuredMedia = post?._embedded?.['wp:featuredmedia']?.[0];
-	const imageUrl      = featuredMedia?.source_url ?? '';
+	const imageUrl      = featuredMedia?.media_details?.sizes?.[imageSize]?.source_url ?? '';
 	const altText       = featuredMedia?.alt_text ?? '';
 
 	// If no image url found.

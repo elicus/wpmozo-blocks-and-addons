@@ -15,17 +15,8 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	return ( <>
 		{/* Display settings. */}
 		<PanelBody title={ __( 'Display', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
-			{ 'Divi' === themeName && 
-				<Notice
-					className="wpmozo-scroll-stack-notice"
-					isDismissible={false} 
-					status="warning"
-				>
-					{ __( 'Cards scrolling does not work in the Visual Builder. Please check the frontend to see the effect correctly.', 'wpmozo-blocks-and-addons' ) }
-				</Notice>
-			}
 			<SelectControl
-				label={ __( 'Accordion Orientation', 'wpmozo-blocks-and-addons' ) }
+				label={ __( 'Scroll Direction', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.layout }
 				options={[
 					{

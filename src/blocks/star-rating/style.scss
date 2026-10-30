@@ -8,6 +8,14 @@
 	max-width: 100%;
 	height: auto;
 }
+.wp-block-wpmozo-star-rating .wpmozo_star_rating_wrapper{
+    overflow:hidden;
+}
+.wpmozo_star_rating_title_container .wpmozo_star_rating_title,
+.wpmozo_star_rating_description,
+.wpmozo_star_rating_number{
+    transition: all 300ms;
+}
 .wpmozo_star_rating_image_container{
     margin-bottom: 20px;
     line-height: 0;
@@ -49,10 +57,10 @@
     font-feature-settings: normal;
     speak-as: none;
 }
-.wpmozo_star_rating_star:not( .dipl-rating-icon-custom ):after{
+.wpmozo_star_rating_star:not( .wpmozo-rating-icon-custom ):after{
     content: '\2606';
 }
-.wpmozo_star_rating_filled_star:not( .dipl-rating-icon-custom ):after{
+.wpmozo_star_rating_filled_star:not( .wpmozo-rating-icon-custom ):after{
     content: '\2605';
 }
 .wpmozo_star_rating_star svg{

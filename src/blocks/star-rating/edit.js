@@ -16,24 +16,47 @@ import {
 	renderSVGIcon,
 	preloadSVGs,
 } from "./module-utils"; // import utils.
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Edit = ( props ) => {
 
-	const { attributes, setAttributes, clientId } = props;
-
+	const { attributes, setAttributes, clientId } = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-star-rating${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit = true;
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
 		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
 		}
-	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	const imageUrl    = ( attributes.image ) ? attributes.image : '';
 	const rateIcon    = ( attributes.rateIcon ) ?? 'default';
 	const showRateNum = ( attributes.showRateNum ) ?? true;
-
-	// Track previous rateIcon to force reload even if "same" is chosen.
+	// Track previous rateIcon and ratingOutOf to manage cache clearing.
 	const prevRateIcon = useRef( null );
+	const prevRatingOutOf = useRef( null );
 
 	// ratingOutOf (force 5 for smiley).
 	let ratingOutOf = ( attributes.ratingOutOf && '' !== attributes.ratingOutOf ) ? attributes.ratingOutOf : 5;
@@ -54,23 +77,26 @@ const Edit = ( props ) => {
 			rating = mid;
 		}
 	}
-
+	
 	// Preload required SVGs.
 	useEffect( () => {
-		// If first load OR reselecting same icon → reset cache.
-		if ( prevRateIcon.current === rateIcon ) {
-			// reselect same icon, force clear.
-			setAttributes( { iconSVGs: {} } );
-		}
+		let active = true;
+		// Detect if the icon type changed
+		const isIconChanged = prevRateIcon.current && prevRateIcon.current !== rateIcon;
 		prevRateIcon.current = rateIcon;
-
+		prevRatingOutOf.current = ratingOutOf;
 		// Define moods (1..ratingOutOf) and icon types.
 		const moods = Array.from( { length: ratingOutOf }, (_, i) => i + 1 );
 		const types = [ 'filled', 'half_filled', 'empty' ];
-
-		// Load all SVGs for this icon set.
-		preloadSVGs( rateIcon, moods, types, attributes, setAttributes );
-
+		// Load all SVGs for this icon set, using active state wrapper to prevent race conditions.
+		preloadSVGs( rateIcon, moods, types, attributes, ( updates ) => {
+			if ( active ) {
+				setAttributes( updates );
+			}
+		}, isIconChanged );
+		return () => {
+			active = false;
+		};
 		// eslint-disable-line react-hooks/exhaustive-deps.
 	}, [ rateIcon, ratingOutOf ] );
 
@@ -89,7 +115,6 @@ const Edit = ( props ) => {
 			}
 			mood++;
 		}
-
 		if ( rating !== Math.abs(parseInt( rating ) ) ) {
 			if ('default' !== rateIcon) {
 				stars.push( renderSVGIcon( rateIcon, 'half_filled', mood, null, attributes ) );
@@ -129,13 +154,13 @@ const Edit = ( props ) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, isEdit } ) }</style>
 
-			<div {...useBlockProps()} id={`block-${clientId}`}>
+			<div {...blockProps} id={`block-${clientId}`}>
 				<div className="wpmozo_star_rating_wrapper">
 					{ ( imageUrl && '' !== imageUrl ) && (
 						<div className="wpmozo_star_rating_image_container">
-							<img src={ imageUrl } alt={ attributes?.imageAlt || '' } className="wpmozo_star_rating_image" />
+							<img src={ imageUrl } alt={ attributes?.imageCustomAlt || attributes?.imageAlt || '' } className="wpmozo_star_rating_image" />
 						</div>
 					) }
 					<div className="wpmozo_star_rating_title_container">

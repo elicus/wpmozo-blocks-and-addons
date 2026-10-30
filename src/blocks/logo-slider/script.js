@@ -20,13 +20,6 @@ $(document).on('change', '.wpmozo-bna-logo-slider-wrap', function(e) {
 	    swiperInstances[clientId] = initSwiper( $(this), newAttributes );
 	
 	}
-	$(this).find('.wp-block-wpmozo-logo-slider-item').on('click', function () {
-
-		// Trigger block selection in the editor (only works in editor context)
-		if ( window.wp && wp.data && wp.data.dispatch ) {
-			wp.data.dispatch('core/block-editor').selectBlock(clientId);
-		}
-	});
 });
 
 $(document).ready(function(e) {

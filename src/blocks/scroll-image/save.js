@@ -1,8 +1,16 @@
 import { useBlockProps } from "@wordpress/block-editor";
 import generateDynamicStyle from './style';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function save({attributes}) {
-	const ID = attributes.ID;
+	const ID = attributes.ID,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-bna-scroll-image' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	let image = (attributes.image) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,
 		title = attributes.imageTitle;
@@ -10,8 +18,7 @@ export default function save({attributes}) {
 	return ( <>
 		<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-		<div { ...useBlockProps.save( {className: 'wpmozo-bna-scroll-image ' + ( attributes.className || '' ) } ) }
-			id={`block-${ID}`}
+		<div { ...blockProps} id={`block-${ID}`}
 		>
 			<div className="wpmozo-bna-scroll-image-wrapper">
 				<div className="wpmozo-bna-scroll-image-inner-wrap" data-direction={`${attributes.scrollDirection}`}>

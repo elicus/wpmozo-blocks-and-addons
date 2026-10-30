@@ -6,7 +6,6 @@ import {
     SVG,
     Path
 } from '@wordpress/components';
-import './style.scss';
 
 const WpmozoAlignment = (args) => {
     const {
@@ -17,7 +16,9 @@ const WpmozoAlignment = (args) => {
         label = __( 'Alignment', 'wpmozo-blocks-and-addons' ),
         className = `wpmozo-alignment-compo ${type}`,
         alignments,
-        showJustify = false
+        showJustify = false,
+        separatorAfter,
+        separatorBefore
     } = args;
 
     const horizontalAlignments = {
@@ -106,8 +107,9 @@ const WpmozoAlignment = (args) => {
 
     return (
         <__experimentalToggleGroupControl
+            __next40pxDefaultSize
             key={`wpmozo-alignment-${type}-${alignmentKey}`}
-            className={className}
+            className={`${className} ${separatorAfter && 'separator-after'} ${separatorBefore && 'separator-before'}`}
             onChange={onChange}
             label={label}
             isDeselectable={true}

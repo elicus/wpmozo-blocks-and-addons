@@ -10,7 +10,6 @@
     "example": {},
 	"supports": {
 		"html": false,
-		"anchor": false,
 		"customClassName": false
 	},
     "attributes": {

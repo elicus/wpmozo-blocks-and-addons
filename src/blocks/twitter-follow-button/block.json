@@ -24,6 +24,7 @@
 		"buttonAlign": { "type": "string" },
 		
 		"fallbackTextColor": { "type": "string" },
+		"fallbackTextFont": { "type": "string" },
 		"fallbackTextFontSize": { "type": "string", "default": "14px" },
 		"fallbackTextLetterSpacing": { "type": "string" },
 		"fallbackTextDecoration": { "type": "string" },

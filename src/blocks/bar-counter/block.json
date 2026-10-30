@@ -27,7 +27,9 @@
 		"stripeAnimationSpeed": { "type": "number" },
 
 		"titleColor": { "type": "string" },
+		"titleHoverColor": { "type": "string" },
 		"titleAlign": { "type": "string" },
+		"titleFont": { "type": "string" },
 		"titleFontSize": { "type": "string" },
 		"titleFontAppearance": {
 			"type": "object",
@@ -44,7 +46,9 @@
 		"titleLineHeight": { "type": "string" },
 
 		"percentageColor": { "type": "string" },
+		"percentageHoverColor": { "type": "string" },
 		"percentageAlign": { "type": "string" },
+		"percentageFont": { "type": "string" },
 		"percentageFontSize": { "type": "string" },
 		"percentageFontAppearance": {
 			"type": "object",
@@ -73,7 +77,7 @@
 			"default": "linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)"
 		},
 		"barborder": { "type": "object" },
-		"barborderRadius": { "type": "string" },
+		"barborderRadius": { "type": "object" },
 
 		"useCustomChunksSize": { "type": "boolean", "default": false },
 		"useChunksWidth": { "type": "string" },

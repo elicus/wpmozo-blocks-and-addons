@@ -1,4 +1,4 @@
-import { wpmozo_is_empty } from "../../common/utils";
+import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils';
 import {useBlockProps} from '@wordpress/block-editor';
 import generateDynamicStyle from './style';
 
@@ -8,7 +8,14 @@ export default function save({ attributes }) {
 		altText = !wpmozo_is_empty( attributes.altText )
 			? attributes.altText
 			: 'alt',
-		linkTarget = ( 'external' === attributes.linkTarget ) ? '_blank' : '_self';
+		linkTarget = ( 'external' === attributes.linkTarget ) ? '_blank' : '_self',
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-logo-slider-item swiper-slide' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 
 	let logo = '';
@@ -34,7 +41,7 @@ export default function save({ attributes }) {
 			<style>
 					{generateDynamicStyle({attributes, clientId})}
 				</style>
-			<div className="swiper-slide" id={`block-${clientId}`}>
+			<div {...blockProps} id={`block-${clientId}`}>
 				{ logo }
 			</div>
 		</>

@@ -5,14 +5,19 @@ import {
 	SelectControl,
 	__experimentalUnitControl
 } from '@wordpress/components';
-import { WpmozoBorder, WpmozoSize } from '../../../common/components/index';
+import { WpmozoBorder, MozoStates, WpmozoRangeSize } from '../../../common/components/index';
 import { useState } from "@wordpress/element";
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const WPMozoEditorObj = wpmozo_bna_editor_object;
 
 	let props = { attributes, setAttributes };
 	props = Object.assign({}, props, {preAttributes: {}});
+	const [openPanel, setOpenPanel] = useState('panel1');
+		
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	};
 
 	const [ contentType, setContentType ] = useState('front');
 
@@ -64,21 +69,23 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 	];
 
 	return ( <>
-		<PanelBody title={ __( 'Image Position', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
-			<__experimentalUnitControl
-				label={ __( 'Horizontal Align', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.horizontalAlign }
-				onChange={ ( newValue ) => setAttributes( { horizontalAlign: newValue } ) }
-				__next40pxDefaultSize = {true}
+		<PanelBody title={ __( 'Image Sizing', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
+			<WpmozoRangeSize props={props}
+				label={ __( 'Width', 'wpmozo-blocks-and-addons') }
+				rangeSizeKey='imageWidth'
+				min={0}
+				max={1500}
+				step={1}
 			/>
-			<__experimentalUnitControl
-				label={ __( 'Vertical Align', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.verticalAlign }
-				onChange={ ( newValue ) => setAttributes( { verticalAlign: newValue } ) }
-				__next40pxDefaultSize = {true}
+			<WpmozoRangeSize props={props}
+				label={ __( 'Height', 'wpmozo-blocks-and-addons') }
+				rangeSizeKey='imageHeight'
+				min={0}
+				max={1500}
+				step={1}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Image Animation', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
+		<PanelBody title={ __( 'Image Animation', 'wpmozo-blocks-and-addons' ) } opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			<SelectControl
 				label={ __( 'Floating Effect', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.animationEffect }
@@ -124,18 +131,21 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				__nextHasNoMarginBottom = {true}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Image Sizing', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			<WpmozoSize
-				SizeKey="image"
-				props={props}
-				__next40pxDefaultSize = {true}
-				__nextHasNoMarginBottom = {true}
-			/>
-		</PanelBody>
-		<PanelBody title={ __( 'Image Border', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			<WpmozoBorder
-				BorderKey="image"
-				props={props}
+		<PanelBody title={ __( 'Image Border', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Image Border', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoBorder props={ props }
+						label={ isHover ? __( 'Image Hover Border', 'wpmozo-blocks-and-addons' ) : __( 'Image Border', 'wpmozo-blocks-and-addons' ) }
+						BorderKey={ isHover ? "imageHover" : "image" }
+					/>
+				) }
 			/>
 		</PanelBody>
 	</> );

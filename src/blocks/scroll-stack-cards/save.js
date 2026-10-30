@@ -1,5 +1,6 @@
 import { InnerBlocks, useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import generateDynamicStyle from './style';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function save({ attributes }) {
     
@@ -7,13 +8,14 @@ export default function save({ attributes }) {
         ID, 
         layout,
         animationStartViewportPos
-    } = attributes;
-
-    // Only add ID attribute if it exists
-    const blockProps = useBlockProps.save( {
-        className: attributes.className,
-        ...( ID ? { id: `block-${ ID }` } : {} ),
-    } );
+    } = attributes,
+        wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-scroll-stack-cards' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
     let dataCollapsedWidth = ( 'horizontal' === attributes.layout ) 
         ? { 'data-collapsed_width': `${attributes.collapsedWidth}px` } 
@@ -25,7 +27,7 @@ export default function save({ attributes }) {
             { ( ID && '' !== ID ) && (
                 <style>{ generateDynamicStyle( { attributes } ) }</style>
             ) }
-            <div { ...blockProps }>
+            <div { ...blockProps} id={`block-${ ID }`}>
                 <div 
                     className={`wpmozo-bna-scroll-stack-cards-wrapper layout-${layout}`}
                     data-layout={layout}
