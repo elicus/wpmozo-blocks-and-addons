@@ -1,5 +1,5 @@
 import {convertInlineStyleStr} from '../../common/utils.js';
-const generateDynamicStyle = ({attributes}) => {
+const generateDynamicStyle = ({attributes, isEdit}) => {
 
     const toConvertStyles = [
             'button',

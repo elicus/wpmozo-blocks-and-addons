@@ -106,7 +106,7 @@ export default function Edit(props) {
 			<Fragment>
 				<Inspector attributes={attributes} setAttributes={setAttributes}/>
 				<style>
-					{generateDynamicStyle({attributes})}
+					{generateDynamicStyle({attributes, isEdit: true})}
 				</style>
 				<div {...blockProps} id={`block-${clientId}`}>
 					<div className={`wpmozo_advanced_tooltip icon_`}>

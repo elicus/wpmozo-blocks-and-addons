@@ -185,7 +185,7 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
-2026-10-07 - Version 1.9.0
+2026-10-30 - Version 1.9.0
 * New: Progress Bar Block.
 * New: Portfolio Slider Block.
 * Fixed: Horizontal Scrolling Posts Block - Scrolling effect not working properly in the editor sometimes.
@@ -202,7 +202,7 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * IMPROVEMENT: Improved accordion-style minimization in all repeater fields.
 * IMPROVEMENT: Improved the UI/UX of the Inspector Control for selecting categories.
 
-2026-05-22 - Version 1.8.0
+2026-06-05 - Version 1.8.0
 * New: Call To Action Block.
 * New: Admin Panel to manage blocks enable or disable.
 * Fixed: Alignment issue in post ticker.
