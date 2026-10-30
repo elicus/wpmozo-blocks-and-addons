@@ -31,7 +31,9 @@
 		"animateOnlyOnce": { "type": "boolean", "default": false },
 
 		"globalTextColor": { "type": "string" },
+		"globalTextHoverColor": { "type": "string" },
 		"globalTextAlignment": { "type": "string" },
+		"globalFont": { "type": "string" },
 		"globalFontSize": { "type": "string" },
 		"globalFontAppearance": {
 			"type": "object",
@@ -47,6 +49,8 @@
 		"globalLineHeight": { "type": "string" },
 
 		"prePostTextColor": { "type": "string" },
+		"prePostTextHoverColor": { "type": "string" },
+		"prePostFont": { "type": "string" },
 		"prePostFontSize": { "type": "string" },
 		"prePostFontAppearance": {
 			"type": "object",
@@ -63,6 +67,8 @@
 		"prePostLineHeight": { "type": "string" },
 
 		"animatedTextColor": { "type": "string" },
+		"animatedTextHoverColor": { "type": "string" },
+		"animatedFont": { "type": "string" },
 		"animatedFontSize": { "type": "string" },
 		"animatedFontAppearance": {
 			"type": "object",
@@ -83,14 +89,18 @@
 		"useBackgroundAnimated": { "type": "boolean", "default": false },
 		"prePostBackgroundType": { "type": "string", "default": "classic" },
 		"prePostBackgroundColor": { "type": "string" },
+		"prePostBackgroundHoverColor": { "type": "string" },
 		"prePostBackgroundGradient": { "type": "string" },
 		"animatedBackgroundType": { "type": "string", "default": "classic" },
 		"animatedBackgroundColor": { "type": "string" },
+		"animatedBackgroundHoverColor": { "type": "string" },
 		"animatedBackgroundGradient": { "type": "string" },
 
 		"prePostpadding": { "type": "object" },
+		"prePostHoverpadding": { "type": "object" },
 		"prePostmargin": { "type": "object" },
 		"animatedpadding": { "type": "object" },
+		"animatedHoverpadding": { "type": "object" },
 		"animatedmargin": { "type": "object" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",

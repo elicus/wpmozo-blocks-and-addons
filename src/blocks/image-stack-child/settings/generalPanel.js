@@ -44,15 +44,11 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					onSelect={ ( media ) => setAttributes( { image: media } ) }
 				/>
 			) }
-			<TextControl
+			{ (attributes.parentAtts.showTooltip && 'custom' === attributes.parentAtts.tooltipType) && (<TextControl
 				label={ __( 'Tooltip Text', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.tooltipText }
 				onChange={ ( newValue ) => setAttributes( { tooltipText: newValue } ) }
-				help={ __(
-					"Note: Above tooltip setting will only take effect once you are on the live page, and not while you're editing.",
-					'wpmozo-blocks-and-addons'
-				) }
-			/>
+			/>) }
 		</PanelBody>
 	</> );
 };

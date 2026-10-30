@@ -36,6 +36,7 @@
         "titleOneIconSize": { "type": "number" },
         "titleOneIconSpacing": { "type": "number", "default": 5 },
         "titleOneIconColor": { "type": "string" },
+        "titleOneFont": { "type": "string" },
         "titleOneFontSize": { "type": "string" },
         "titleOneFontAppearance": {
             "type": "object",
@@ -55,6 +56,7 @@
         "titleTwoIconSize": { "type": "number" },
         "titleTwoIconSpacing": { "type": "number", "default": 5 },
         "titleTwoIconColor": { "type": "string" },
+        "titleTwoFont": { "type": "string" },
         "titleTwoFontSize": { "type": "string" },
         "titleTwoFontAppearance": {
             "type": "object",
@@ -71,6 +73,7 @@
 
         "contentOneColor": { "type": "string" },
         "contentOneBackground": { "type": "string" },
+        "contentOneFont": { "type": "string" },
         "contentOneFontSize": { "type": "string" },
         "contentOneFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
         "contentOneLetterSpacing": { "type": "string" },
@@ -83,6 +86,7 @@
 
         "contentTwoColor": { "type": "string" },
         "contentTwoBackground": { "type": "string" },
+        "contentTwoFont": { "type": "string" },
         "contentTwoFontSize": { "type": "string" },
         "contentTwoFontAppearance": { "type": "object", "fontStyle": { "type": "string" }, "fontWeight": { "type": "string" }, "default": { "fontStyle": "", "fontWeight": "" } },
         "contentTwoLetterSpacing": { "type": "string" },
@@ -91,7 +95,67 @@
         "contentTwoLineHeight": { "type": "string" },
         "contentTwoDimensionspadding": { "type": "object", "default": { "bottom": "20px", "left": "20px", "right": "20px", "top": "20px" } },
         "contentTwoDimensionsmargin": { "type": "object" },
-        "contentTwoAlignment": { "type": "string" }
+        "contentTwoAlignment": { "type": "string" },
+
+        "titleOneHoverColor": { "type": "string" },
+        "titleOneIconHoverColor": { "type": "string" },
+        "titleOneHoverFont": { "type": "string" },
+        "titleOneHoverFontSize": { "type": "string" },
+        "titleOneHoverLetterSpacing": { "type": "string" },
+        "titleOneHoverDecoration": { "type": "string" },
+        "titleOneHoverLetterCase": { "type": "string" },
+        "titleOneHoverLineHeight": { "type": "string" },
+        "titleOneHoverFontAppearance": {
+            "type": "object",
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
+        "titleOneHoverFontStyle": { "type": "string" },
+        "titleOneHoverFontWeight": { "type": "string" },
+
+        "titleTwoHoverColor": { "type": "string" },
+        "titleTwoIconHoverColor": { "type": "string" },
+        "titleTwoHoverFont": { "type": "string" },
+        "titleTwoHoverFontSize": { "type": "string" },
+        "titleTwoHoverLetterSpacing": { "type": "string" },
+        "titleTwoHoverDecoration": { "type": "string" },
+        "titleTwoHoverLetterCase": { "type": "string" },
+        "titleTwoHoverLineHeight": { "type": "string" },
+        "titleTwoHoverFontAppearance": {
+            "type": "object",
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
+        "titleTwoHoverFontStyle": { "type": "string" },
+        "titleTwoHoverFontWeight": { "type": "string" },
+
+        "contentOneHoverColor": { "type": "string" },
+        "contentOneHoverBackground": { "type": "string" },
+        "contentOneHoverFont": { "type": "string" },
+        "contentOneHoverFontSize": { "type": "string" },
+        "contentOneHoverLetterSpacing": { "type": "string" },
+        "contentOneHoverDecoration": { "type": "string" },
+        "contentOneHoverLetterCase": { "type": "string" },
+        "contentOneHoverLineHeight": { "type": "string" },
+        "contentOneHoverFontAppearance": {
+            "type": "object",
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
+        "contentOneHoverFontStyle": { "type": "string" },
+        "contentOneHoverFontWeight": { "type": "string" },
+
+        "contentTwoHoverColor": { "type": "string" },
+        "contentTwoHoverBackground": { "type": "string" },
+        "contentTwoHoverFont": { "type": "string" },
+        "contentTwoHoverFontSize": { "type": "string" },
+        "contentTwoHoverLetterSpacing": { "type": "string" },
+        "contentTwoHoverDecoration": { "type": "string" },
+        "contentTwoHoverLetterCase": { "type": "string" },
+        "contentTwoHoverLineHeight": { "type": "string" },
+        "contentTwoHoverFontAppearance": {
+            "type": "object",
+            "default": { "fontStyle": "", "fontWeight": "" }
+        },
+        "contentTwoHoverFontStyle": { "type": "string" },
+        "contentTwoHoverFontWeight": { "type": "string" }
     },
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",

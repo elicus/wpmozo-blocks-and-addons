@@ -1,5 +1,4 @@
 import { __ } from "@wordpress/i18n";
-
 import {
 	PanelBody,
 	RangeControl,
@@ -7,11 +6,19 @@ import {
 } from "@wordpress/components";
 import {
 	WpmozoColorPicker,
-	WpmozoDimensions
+	WpmozoDimensions,
+	MozoStates,
+	WpmozoRangeSize
 } from "../../../common/components";
+import { useState } from "react";
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+					
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
 
 	let itemBorderType = [
 		{ value: 'none', label: __( 'None', 'wpmozo-blocks-and-addons' ) },
@@ -24,23 +31,33 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 
 	return ( <>
 		{/* Icon styling. */}
-		<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={open}>
-			<RangeControl
-				label={ __( 'Icon Size', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.iconSize }
-				onChange={ ( newValue ) => setAttributes( { iconSize: newValue } ) }
-				min={ 1 } step={ 1 } max={ 150 }
+		<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
+			<WpmozoRangeSize props={props}
+				label={ __( 'Icon Size', 'wpmozo-blocks-and-addons') }
+				rangeSizeKey='iconSize'
+				min={ 1 } step={ 1 } max={ 500 }
 			/>
-			<WpmozoColorPicker props={props}
-				label={ __( 'Icon Color', 'wpmozo-blocks-and-addons' ) }
-				ColorKey="icon"
-				ColorTypes={ [
-					{ key: 'Color', label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ) }
-				] }
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Icon Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={props}
+						label=""
+						ColorKey={ isHover ? "iconHover" : "icon" }
+						ColorTypes={ [
+							{ key: 'Color', label: isHover ? __( 'Icon Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Icon Color', 'wpmozo-blocks-and-addons' ) }
+						] }
+					/>
+				) }
 			/>
 		</PanelBody>
 		{/* Item Styling. */}
-		<PanelBody title={ __( 'Item', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Item', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			<WpmozoDimensions props={props}
 				label={ __( 'Item Dimensions', 'wpmozo-blocks-and-addons' ) }
 				DimensionKey='item'
@@ -59,12 +76,23 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					onChange={ ( newValue ) => setAttributes( { itemBorderWidth: newValue } ) }
 					min={ 0 } step={ 1 } max={ 100 }
 				/>
-				<WpmozoColorPicker props={props}
-					label={ __( 'Item Border Color', 'wpmozo-blocks-and-addons' ) }
-					ColorKey="border"
-					ColorTypes={ [
-						{ key: 'Color', label: __( 'Border Color', 'wpmozo-blocks-and-addons' ) }
-					] }
+				<MozoStates
+					value={hoverState}
+					title={ __( 'Border Color', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( isHover ) => (
+							isHover ? setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)
+					}
+					control={ ( isHover ) => (
+						<WpmozoColorPicker props={props}
+							label=""
+							ColorKey={ isHover ? "borderHover" : "border" }
+							ColorTypes={ [
+								{ key: 'Color', label: isHover ? __( 'Border Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Border Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+					) }
 				/>
 			</> ) }
 			<RangeControl
@@ -75,14 +103,27 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		{/* Tooltip Styling. */}
-		<PanelBody title={ __( 'Tooltip', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-			<WpmozoColorPicker props={props}
-				ColorKey="tooltip"
-				ColorTypes={ [
-					{ key: 'Color', label: __( 'Tooltip Text Color', 'wpmozo-blocks-and-addons' ) },
-					{ key: 'BackgroundColor', label: __( 'Tooltip Background Color', 'wpmozo-blocks-and-addons' ) }
-				] }
-			/>
-		</PanelBody>
+		{ attributes.showTooltip && (
+			<PanelBody title={ __( 'Tooltip', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
+				<MozoStates
+					value={hoverState}
+					title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( isHover ) => (
+							isHover ? setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)
+					}
+					control={ ( isHover ) => (
+						<WpmozoColorPicker props={props}
+							ColorKey={ isHover ? "tooltipHover" : "tooltip" }
+							ColorTypes={ [
+								{ key: 'Color', label: isHover ? __( 'Tooltip Hover Text Color', 'wpmozo-blocks-and-addons' ) : __( 'Tooltip Text Color', 'wpmozo-blocks-and-addons' ) },
+								{ key: 'BackgroundColor', label: isHover ? __( 'Tooltip Hover Background Color', 'wpmozo-blocks-and-addons' ) : __( 'Tooltip Background Color', 'wpmozo-blocks-and-addons' ) }
+							] }
+						/>
+					) }
+				/>
+			</PanelBody>
+		) }
 	</> );
 };

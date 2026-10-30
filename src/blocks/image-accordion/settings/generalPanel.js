@@ -5,11 +5,16 @@ import {
 	SelectControl,
 	CheckboxControl,
 	BaseControl,
-	RangeControl
+	RangeControl,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+    __experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from '@wordpress/components';
 import {
 	WpmozoRangeSize
 } from '../../../common/components/index';
+
+import {store as blockEditorStore } from '@wordpress/block-editor';
+import { useSelect } from '@wordpress/data';
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
@@ -18,6 +23,11 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
         'title': __( 'Title', 'wpmozo-blocks-and-addons' ),
         'icon': __( 'Icon', 'wpmozo-blocks-and-addons' ),
     };
+
+	const childCount = useSelect(
+		( select ) => select( blockEditorStore ).getBlockOrder( attributes.ID ).length,
+		[ attributes.ID ]
+	);
 
     const toggleOption = (key) => {
         const newInactiveState = attributes.inactiveState.includes(key)
@@ -30,36 +40,22 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	return ( <>
 		{/* Configuration settings. */}
 		<PanelBody title={ __( 'Configuration', 'wpmozo-blocks-and-addons' ) } initialOpen={true}>
-			<SelectControl
+			<ToggleGroupControl
 				label={ __( 'Accordion Trigger', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.accordionTrigger }
-				options={[
-					{
-						value: 'hover',
-						label: __( 'Hover', 'wpmozo-blocks-and-addons' ),
-					},
-					{
-						value: 'click',
-						label: __( 'Click', 'wpmozo-blocks-and-addons' ),
-					},
-				]}
 				onChange={ ( newValue ) => setAttributes( { accordionTrigger: newValue } ) }
-			/>
-			<SelectControl
+			>
+				<ToggleGroupControlOption value="hover" label="Hover" />
+				<ToggleGroupControlOption value="click" label="Click" />
+			</ToggleGroupControl>
+			<ToggleGroupControl
 				label={ __( 'Accordion Orientation', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.accordionOrientation }
-				options={[
-					{
-						value: 'horizontal',
-						label: __( 'Horizontal', 'wpmozo-blocks-and-addons' ),
-					},
-					{
-						value: 'vertical',
-						label: __( 'Vertical', 'wpmozo-blocks-and-addons' ),
-					},
-				]}
 				onChange={ ( newValue ) => setAttributes( { accordionOrientation: newValue } ) }
-			/>
+			>
+				<ToggleGroupControlOption value="horizontal" label="Horizontal" />
+				<ToggleGroupControlOption value="vertical" label="Vertical" />
+			</ToggleGroupControl>
 			<SelectControl
 				label={ __( 'Content Alignment', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.contentAlignment }
@@ -131,6 +127,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 				value={ attributes.activeAccordion }
 				onChange={ ( newValue ) => setAttributes( { activeAccordion: newValue } ) }
 				min={ 0 }
+				max={childCount}
 				step={ 1 }
 				__next40pxDefaultSize = {true}
 				__nextHasNoMarginBottom = {true}

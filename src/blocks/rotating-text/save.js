@@ -1,9 +1,17 @@
 import { useBlockProps } from "@wordpress/block-editor";
 import generateDynamicStyle from './style';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function save({attributes}) {
 
-	const { ID, className } = attributes;
+	const { ID, className } = attributes,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-bna-rotating-text' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	let image = ( attributes.image ) ? attributes.image : wpmozo_bna_editor_object.placeholderImg,
 		useImage = attributes.useImage,
@@ -26,19 +34,13 @@ export default function save({attributes}) {
 		);
 	}
 
-	// Only add ID attribute if it exists
-	const blockProps = useBlockProps.save( {
-		className: 'wpmozo-bna-rotating-text ' + ( className || '' ),
-		...( ID ? { id: `block-${ ID }` } : {} ),
-	} );
-
 	return ( <>
 		{/* Only output <style> if ID exists. */}
 		{ ( ID && '' !== ID ) && (
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 		) }
-		<div {...blockProps}>
-			<div className="wpmozo-bna-rotating-text-wrap">
+		<div {...blockProps} id={`block-${ ID }`}>
+			<div className="wpmozo-bna-rotating-text-wrap" data-pause={attributes?.pauseOnHover ? '1': '0'}>
 				<div className="wpmozo-bna-rotating-text-inner">
 					<p>{text}</p>
 				</div>

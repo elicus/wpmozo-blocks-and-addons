@@ -4,7 +4,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import Inspector from './inspector';
 
-import { wpmozo_is_empty } from "../../common/utils";
+import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils';
 import generateDynamicStyle from "./style";
 
 import {
@@ -16,10 +16,36 @@ const Edit = (props) => {
 
 	const attributes    = props.attributes;
 	const setAttributes = props.setAttributes;
-	const clientId      = props.clientId;
+	const clientId      = props.clientId,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-testimonial-slider${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit = true;
+	// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
 
-	attributes.ID = clientId;
-	setAttributes( { ID: clientId } );
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	const postsToShow        = parseInt( attributes.postsToShow ) ?? 5;
 	const postOrder          = attributes.postOrder ?? 'DESC';
@@ -33,7 +59,6 @@ const Edit = (props) => {
 			order: postOrder,
 			orderby: postOrderBy,
 			categories: includesCategories.join( ',' ),
-			// author: 1,
 			_embed: true
 		} ),
 	[ postsToShow, postOrder, postOrderBy, includesCategories.join(',') ] );
@@ -68,7 +93,7 @@ const Edit = (props) => {
 			let postExcerpt = '';
 			if ( post.content.rendered ) {
 				postExcerpt = <div className="wpmozo_testimonial_desc"
-					dangerouslySetInnerHTML={ {__html: modifiedContent } }
+					dangerouslySetInnerHTML={ {__html: modifiedContent ?? '' } }
 				/>;
 			}
 
@@ -131,7 +156,7 @@ const Edit = (props) => {
 			if ( attributes.showCompany && post.author_company ) {
 				companyName = post.author_company;
 				if ( post.author_company_url ) {
-					companyName = <a href={ post.author_company_url } target="_blank" rel="nofollow">{ companyName }</a>;
+					companyName = <a href="javascript:void(0)" target="_blank" rel="nofollow">{ companyName }</a>;
 				}
 				companyName = <div className="wpmozo_testimonial_author_company">{ companyName }</div>
 			}
@@ -201,13 +226,11 @@ const Edit = (props) => {
 
 	useEffect( () => {
 		const event = new CustomEvent( 'WPMozoTestimonialPropsChanged' );
-		window.dispatchEvent( event );
-
 		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
 		if ( iframe?.contentWindow ) {
 			iframe.contentWindow.dispatchEvent( event );
 		}
-	}, [props] );
+	}, [JSON.stringify(attributes), posts] );
 
 	// Equal height testimonial class.
 	const equalHeightClass = ( attributes.equalHeight ) ? ' wpmozo_equal_testimonial_height' : '';
@@ -219,11 +242,11 @@ const Edit = (props) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes} />
-			<style>{ generateDynamicStyle( { attributes, clientId } ) }</style>
+			<style>{ generateDynamicStyle( { attributes, clientId, isEdit } ) }</style>
 
-			<div {...useBlockProps()} onClick={selectBlock}>
+			<div {...blockProps} onClick={selectBlock}>
 				<div className={"wpmozo_swiper_wrapper" + equalHeightClass}
-					data-clientId={ clientId }
+					data-clientid={ clientId }
 					data-slide_effect={ attributes.slideEffect || 'slide' }
 					data-slides_per_view={ attributes.slidesPerView || '1' }
 					data-slides_per_view_tablet={ attributes.slidesPerViewTablet || '1' }
@@ -231,23 +254,29 @@ const Edit = (props) => {
 					data-slides_per_group={ attributes.slidesPerGroup || '1' }
 					data-slides_per_group_tablet={ attributes.slidesPerGroupTablet || '1' }
 					data-slides_per_group_mobile={ attributes.slidesPerGroupMobile || '1' }
+					
 					data-space_between_slides={ attributes.spaceBetweenSlides || '20' }
 					data-space_between_slides_tablet={ attributes.spaceBetweenSlidesTablet || '20' }
 					data-space_between_slides_mobile={ attributes.spaceBetweenSlidesMobile || '20' }
-
+					
+					data-coverflow_rotate={attributes.coverflowRotate || '40'}
+					data-coverflow_depth={attributes.coverflowDepth || '100'}
 					data-enable_coverflow_shadow={ attributes.enableCoverflowShadow ?? 'false' }
-					data-enable_loop={ attributes.enableLoop || 'false' }
-					data-auto_height={ autoHeight || 'false' }
-					data-autoplay={ attributes.autoplay || 'true' }
-					data-autoplay_delay={ attributes.autoplayDelay || '3000' }
-					data-pause_on_hover={ attributes.pauseOnHover || 'true' }
-					data-enable_linear_trans={ attributes.enableLinearTrans || 'false' }
+
+					data-enable_loop={ attributes.enableLoop ?? 'false' }
+					data-auto_height={ autoHeight ?? 'false' }
+					data-autoplay={ attributes.autoplay ?? 'false' }
+					data-autoplay_delay={ attributes.autoplayDelay ?? '3000' }
+					data-pause_on_hover={ attributes.pauseOnHover ?? 'false' }
+					// data-mousewheel={ attributes.enableMouse ?? 'false' }
+					// data-free-mode={ attributes.enableFree ?? 'false' }
+					data-enable_linear_trans={ attributes.enableLinearTrans ?? 'false' }
 					data-trans_duration={ attributes.transDuration || '1000' }
 
-					data-show_arrows={ attributes.showArrows || 'false' }
-					data-show_control_dot={ attributes.showControlDot || 'false' }
+					data-show_arrows={ attributes.showArrows ?? 'false' }
+					data-show_control_dot={ attributes.showControlDot ?? 'false' }
 					data-control_dot_style={ attributes.controlDotStyle || 'solid_dot' }
-					data-enable_dynamic_dots={ attributes.enableDynamicDots || 'false' }
+					data-enable_dynamic_dots={ attributes.enableDynamicDots ?? 'false' }
 				>
 					<div className={"wpmozo_testimonial_layout wpmozo_swiper_inner_wrap " + layout}>
 						<div className="swiper swiper-container">

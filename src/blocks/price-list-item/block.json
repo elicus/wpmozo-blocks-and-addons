@@ -47,6 +47,7 @@
 
         "nameHeadingLavel": { "type": "string", "default": "h4" },
         "nameColor": { "type": "string" },
+        "nameFont": { "type": "string" },
         "nameFontSize": { "type": "string" },
         "nameFontAppearance": {
             "type": "object",
@@ -63,6 +64,7 @@
         "nameLineHeight": { "type": "string" },
 
         "priceColor": { "type": "string" },
+        "priceFont": { "type": "string" },
         "priceFontSize": { "type": "string" },
         "priceFontAppearance": {
             "type": "object",
@@ -79,6 +81,7 @@
         "priceLineHeight": { "type": "string" },
 
         "currencyColor": { "type": "string" },
+        "currencyFont": { "type": "string" },
         "currencyFontSize": { "type": "string" },
         "currencyFontAppearance": {
             "type": "object",
@@ -95,6 +98,7 @@
         "currencyLineHeight": { "type": "string" },
 
         "descriptionColor": { "type": "string" },
+        "descriptionFont": { "type": "string" },
         "descriptionFontSize": { "type": "string" },
         "descriptionFontAppearance": {
             "type": "object",
@@ -111,6 +115,7 @@
         "descriptionLineHeight": { "type": "string" },
 
         "periodColor": { "type": "string" },
+        "periodFont": { "type": "string" },
         "periodFontSize": { "type": "string" },
         "periodFontAppearance": {
             "type": "object",

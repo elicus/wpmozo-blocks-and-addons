@@ -1,14 +1,22 @@
 import { useBlockProps } from "@wordpress/block-editor";
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ( { attributes } ) => {
 
-	const clientId = attributes.ID;
+	const clientId = attributes.ID,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-scroll-text' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	return ( <>
 		<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-		<div id={`block-${clientId}`} { ...useBlockProps.save( { className: attributes.className } ) }>
+		<div id={`block-${clientId}`} { ...blockProps}>
 			<div className="wpmozo-scroll-text-wrap"
 				data-scroll_effect={ attributes.scrollEffect || 'fade' }
 				data-split={ attributes.splitBy || 'word' }

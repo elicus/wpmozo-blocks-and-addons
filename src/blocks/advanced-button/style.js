@@ -24,17 +24,17 @@ const generateDynamicStyle = ({attributes}) => {
 			align-self:${frontVerticalAlign};
 		}
 		.block-editor-block-list__layout[data-is-drop-zone="true"] {
-			display: flex !important;
-			flex-wrap: wrap !important;
-			justify-content: ${alignment} !important;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: ${alignment};
 			gap: 0.5rem;
 		}`
 	} else {
 		styles +=`
 		.block-editor-block-list__layout[data-is-drop-zone="true"] {
-			display: flex !important;
-			flex-direction: column !important;
-  			align-items: ${alignment} !important;
+			display: flex;
+			flex-direction: column;
+  			align-items: ${alignment};
   			gap: 0.5rem;
 		}`
 	}

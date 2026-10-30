@@ -20,6 +20,7 @@
 		"imageAlignment": { "type": "string" },
 		"imageTitle": { "type": "string" },
 		"imageAlt": { "type": "string" },
+		"imageCustomAlt": { "type": "string" },
 
 		"scrollDirection": { "type": "string", "default": "top" },
 		"scrollSpeed": { "type": "number", "default": 5 },

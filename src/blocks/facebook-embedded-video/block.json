@@ -27,7 +27,9 @@
 
 		"videoAlign": { "type": "string" },
 		"videoborder": { "type": "object" },
-		"videoborderRadius": { "type": "string" }
+		"videobborderRadius": { "type": "object" },
+		"videoHoverborder": { "type": "object" },
+		"videoHoverborderRadius": { "type": "object" }
 	},
 	"textdomain": "wpmozo-blocks-and-addons",
 	"editorScript": "file:./index.js",

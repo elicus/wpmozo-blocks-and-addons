@@ -1,15 +1,17 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from './style';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function save({ attributes }) {
 
-	const { ID, className } = attributes;
-
-	// Only add ID attribute if it exists.
-	const blockProps = useBlockProps.save( {
-		className: className,
-		...( ID ? { id: `block-${ ID }` } : {} ),
-	} );
+	const { ID, className } = attributes,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-wavy-gallery' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	return (<>
 		{attributes.images_data && (
@@ -19,7 +21,7 @@ export default function save({ attributes }) {
 					<style>{ generateDynamicStyle( { attributes } ) }</style>
 				) }
 
-				<div {...blockProps}>
+				<div {...blockProps} id={`block-${ ID }`}>
 					<div className="wpmozo_wavy_gallery_wrapper" data-show_overlay_title={`${attributes.showOverlayTitle}`}>
 						<div className="wpmozo_wavy_gallery_items">
 							<div className="wpmozo_wavy_gallery_items">

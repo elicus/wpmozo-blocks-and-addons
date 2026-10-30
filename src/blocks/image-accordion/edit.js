@@ -4,7 +4,7 @@ import Inspector from './inspector';
 import { useSelect, useDispatch  } from '@wordpress/data';
 import { Fragment, useEffect } from "@wordpress/element";
 import generateDynamicStyle from './style';
-import {getIdByClientid} from '../../common/utils.js';
+import { getIdByClientid, mergeWrapperProps } from '../../common/utils.js';
 import { createBlock } from '@wordpress/blocks';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -15,14 +15,36 @@ import { createBlock } from '@wordpress/blocks';
 
 export default function Edit(props) {
    
-   const { attributes, setAttributes, clientId } = props;
+   const { attributes, setAttributes, clientId } = props,
+    wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-image-accordion${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
     // Ensure ID is set once (no render-time mutation).
     useEffect( () => {
         if ( attributes.ID !== clientId ) {
             setAttributes( { ID: clientId } );
         }
-    }, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
     const childBlocks = useSelect((select) => {
         return select('core/block-editor').getBlocks(clientId);
@@ -31,6 +53,7 @@ export default function Edit(props) {
     const childAttributes = childBlocks.map(block => block.attributes);
 
     const TEMPLATE = [
+        [ 'wpmozo/image-accordion-item', { text: childAttributes.text} ], // Prefills a child block when parent is inserted
         [ 'wpmozo/image-accordion-item', { text: childAttributes.text} ] // Prefills a child block when parent is inserted
     ];
 
@@ -52,7 +75,7 @@ export default function Edit(props) {
         if ( iframe?.contentWindow ) {
             iframe.contentWindow.dispatchEvent( event );
         }
-    }, [props]);
+    }, [props, JSON.stringify(attributes)]);
 
     let ID = clientId;
 
@@ -62,7 +85,7 @@ export default function Edit(props) {
             <style>
                 { generateDynamicStyle({ attributes }) }
             </style>  
-            <div {...useBlockProps()} id={`block-${attributes.ID}`}>
+            <div {...blockProps} id={`block-${attributes.ID}`}>
                 <div 
                     className={`wpmozo-bna-image-accordion-wrapper wpmozo-bna-image-accordion-content-${attributes.contentAlignment} ${attributes.accordionOrientation}`}
                     data-trigger={attributes.accordionTrigger}

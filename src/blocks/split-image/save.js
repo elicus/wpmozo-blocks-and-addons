@@ -1,16 +1,18 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 
 export default function save({ attributes }) {
 
-	const { ID, className } = attributes;
-
-	// Only add ID attribute if it exists.
-	const blockProps = useBlockProps.save( {
-		className: className,
-		...( ID ? { id: `block-${ ID }` } : {} ),
-	} );
+	const { ID, className } = attributes,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-split-image' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	const number = attributes.rows * attributes.columns;
 	const gridBoxes = Array.from({length: number}).map((_, i) => (
@@ -29,7 +31,7 @@ export default function save({ attributes }) {
 
 			{url ? (
 				<a
-					{...blockProps}
+					{...blockProps} id={`block-${ ID }`}
 					href={url}
 					target={linkTarget}
 					rel={linkTarget === '_blank' ? 'noopener noreferrer' : undefined}
@@ -40,7 +42,7 @@ export default function save({ attributes }) {
 					</div>
 				</a>
 			) : (
-				<div {...blockProps}>
+				<div {...blockProps} id={`block-${ ID }`}>
 					<div className="wpmozo_split_image_wrapper" data-rows={`${attributes.rows}`}
 						data-columns={`${attributes.columns}`}>
 						{gridBoxes}

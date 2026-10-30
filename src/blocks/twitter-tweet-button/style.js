@@ -20,13 +20,15 @@ const generateDynamicStyle = ( { attributes } ) => {
 	styles += `.wpmozo_twitter_embedded_tweet_button{
 		text-decoration: none;
 		border: 0 solid #000000;
-		${convertedStyle.button}
+		${convertedStyle.button || ''}
 	}`;
 
-	styles += `.wpmozo_twitter_embed_tweet_button{
+	styles += (attributes.fallbackTextColor || convertedStyle.fallbackText)
+	? `.wpmozo_twitter_embed_tweet_button{
 		${attributes.fallbackTextColor ? `color: ${attributes.fallbackTextColor};` : ''}
-		${convertedStyle.fallbackText}
-	}`;
+		${convertedStyle.fallbackText || ''}
+	}`
+	: '';
 
 	styles += `}`;
 	return styles;

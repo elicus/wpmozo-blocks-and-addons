@@ -12,47 +12,44 @@ import {
 	WpmozoBorder,
 	WpmozoAlignment,
 	WpmozoTypography,
-	WpmozoColorPicker, WpmozoIconpicker, WpmozoDimensions, WpmozoMediaUploader
+	WpmozoColorPicker,
+	WpmozoIconpicker,
+	WpmozoDimensions,
+	WpmozoMediaUploader,
+	MozoStates
 } from "../../../common/components";
 
-export const DesignPanel = ({attributes, setAttributes}) => {
+export const DesignPanel = ({ attributes, setAttributes, hoverState, setHoverState }) => {
 	const props = {attributes, setAttributes, preAttributes: {}};
+	const [openPanel, setOpenPanel] = useState('panel1');
+									
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
 
 	const [buttonType, setButtonType] = useState('normal');
 
 	return (
 		<>
-			<PanelBody title={ __( 'Image Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
-				<>
-					<BaseControl className="wpmozo-button-tabs-wrap">
-						<ButtonGroup>
-							<Button
-								className="wpmozo-button-tabs-btn"
-								isPressed={('normal' === buttonType) ? true : false}
-								onClick={() => setButtonType('normal')}
-							>{__('Normal', 'wpmozo-blocks-and-addons')}</Button>
-							<Button
-								className="wpmozo-button-tabs-btn"
-								isPressed={('hover' === buttonType) ? true : false}
-								onClick={() => setButtonType('hover')}
-							>{__('Hover', 'wpmozo-blocks-and-addons')}</Button>
-						</ButtonGroup>
-						{'normal' === buttonType && <>
-							<WpmozoBorder
-								props={props}
-								BorderKey="normal"
-							/>
-						</>}
-						{'hover' === buttonType && <>
-							<WpmozoBorder
-								props={props}
-								BorderKey="hover"
-							/>
-						</>}
-					</BaseControl>
-				</>
+			<PanelBody title={ __( 'Image Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
+				<MozoStates
+					value = {hoverState}
+					title={ __( 'Border', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( isHover ) =>  (
+							isHover ?  setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)	
+					}
+					control={ ( isHover ) => (
+						<WpmozoBorder
+							label=''
+							props={props}
+							BorderKey={isHover ? "hover":"normal"}
+						/>
+					) }
+				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Background', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Background', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 				<>
 					<BaseControl
 						label={__('Background Type', 'wpmozo-blocks-and-addons')}

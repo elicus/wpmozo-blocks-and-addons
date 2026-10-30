@@ -5,7 +5,13 @@ import {
 	RangeControl,
 	SelectControl,
     TextareaControl,
+	ToggleControl,
+	BaseControl,
 	__experimentalUnitControl as UnitControl,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
+	__experimentalHeading as Heading,
+	__experimentalDivider as Divider
 } from "@wordpress/components";
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
@@ -47,7 +53,7 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 		<PanelBody title={ __( 'Animation', 'wpmozo-blocks-and-addons' ) } initialOpen={false}>
 			{ ( 'slide' === attributes.scrollEffect ) && (
 				<RangeControl
-					label={ __( 'Slide Effect Start Position (in px)', 'wpmozo-blocks-and-addons' ) }
+					label={ __( 'Slide Distance (in px)', 'wpmozo-blocks-and-addons' ) }
 					value={ attributes.slideEffectStart }
 					onChange={ ( newValue ) => setAttributes( { slideEffectStart: newValue } ) }
 					min={1} step={1} max={100} allowReset={true}
@@ -61,46 +67,108 @@ export const GeneralPanel = ( { attributes, setAttributes } ) => {
 					min={1} step={1} max={100} allowReset={true}
 				/>
 			) }
-			<UnitControl
-				label={ __( 'Start Element Position', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.animationStartElementPos }
-				onChange={ ( newValue ) => setAttributes( { animationStartElementPos: newValue } ) }
-				units={ [
-					{ value: 'px', label: 'px' },
-					{ value: '%', label: '%' },
-				] }
-				isResetValue={ true } __nextHasNoMarginBottom
+			<ToggleControl
+				label={ __( 'Use Custom Positioning', 'wpmozo-blocks-and-addons' ) }
+				checked={ attributes.customPos }
+				onChange={ ( newValue ) => setAttributes( { customPos: newValue } ) }
 			/>
-			<UnitControl
-				label={ __( 'Start Viewport Position', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.animationStartViewportPos }
-				onChange={ ( newValue ) => setAttributes( { animationStartViewportPos: newValue } ) }
-				units={ [
-					{ value: '%', label: '%' },
-					{ value: 'px', label: 'px' },
-				] }
-				isResetValue={ true } __nextHasNoMarginBottom
-			/>
-			<UnitControl
-				label={ __( 'End Element Position', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.animationEndElementPos }
-				onChange={ ( newValue ) => setAttributes( { animationEndElementPos: newValue } ) }
-				units={ [
-					{ value: '%', label: '%' },
-					{ value: 'px', label: 'px' },
-				] }
-				isResetValue={ true } __nextHasNoMarginBottom
-			/>
-			<UnitControl
-				label={ __( 'End Viewport Position', 'wpmozo-blocks-and-addons' ) }
-				value={ attributes.animationEndViewportPos }
-				onChange={ ( newValue ) => setAttributes( { animationEndViewportPos: newValue } ) }
-				units={ [
-					{ value: '%', label: '%' },
-					{ value: 'px', label: 'px' },
-				] }
-				isResetValue={ true } __nextHasNoMarginBottom
-			/>
+			<Divider />
+			{ !attributes.customPos &&  <>
+				<BaseControl label={ __( 'Animation Start', 'wpmozo-blocks-and-addons' ) }
+				help={ __( 'Choose when the animation should start — for example, ( Element :Top, Viewport :Center ) means the animation starts when the Top of this Element/Block reaches the Center of the Viewport.', 'wpmozo-blocks-and-addons' ) }>
+					<ToggleGroupControl
+						label={ __( 'Element', 'wpmozo-blocks-and-addons' ) }
+						isBlock
+						value={ attributes.animationStartElementPos }
+						onChange={ ( newValue ) => setAttributes( { animationStartElementPos: newValue } ) }
+					>
+						<ToggleGroupControlOption value="top" label="Top" />
+						<ToggleGroupControlOption value="center" label="Center" />
+						<ToggleGroupControlOption value="bottom" label="Bottom" />
+					</ToggleGroupControl>
+					<ToggleGroupControl
+						label={ __( 'ViewPort', 'wpmozo-blocks-and-addons' ) }
+						isBlock
+						value={ attributes.animationStartViewportPos }
+						onChange={ ( newValue ) => setAttributes( { animationStartViewportPos: newValue } ) }
+					>
+						<ToggleGroupControlOption value="top" label="Top" />
+						<ToggleGroupControlOption value="center" label="Center" />
+						<ToggleGroupControlOption value="bottom" label="Bottom" />
+					</ToggleGroupControl>
+				</BaseControl>
+				<Divider />
+				<BaseControl label={ __( 'Animation End', 'wpmozo-blocks-and-addons' ) } help={ __('Choose when the animation should end — for example, ( Element :Bottom, Viewport :Center ) means the animation ends when the Bottom of this Element/Widget reaches the Center of the Viewport.', 'wpmozo-blocks-and-addons')}>
+					<ToggleGroupControl
+						label={ __( 'Element', 'wpmozo-blocks-and-addons' ) }
+						isBlock
+						value={ attributes.animationEndElementPos }
+						onChange={ ( newValue ) => setAttributes( { animationEndElementPos: newValue } ) }
+					>
+						<ToggleGroupControlOption value="top" label="Top" />
+						<ToggleGroupControlOption value="center" label="Center" />
+						<ToggleGroupControlOption value="bottom" label="Bottom" />
+					</ToggleGroupControl>
+					<ToggleGroupControl
+						label={ __( 'ViewPort', 'wpmozo-blocks-and-addons' ) }
+						isBlock
+						value={ attributes.animationEndViewportPos }
+						onChange={ ( newValue ) => setAttributes( { animationEndViewportPos: newValue } ) }
+					>
+						<ToggleGroupControlOption value="top" label="Top" />
+						<ToggleGroupControlOption value="center" label="Center" />
+						<ToggleGroupControlOption value="bottom" label="Bottom" />
+					</ToggleGroupControl>
+				</BaseControl>
+				
+			</> }
+			{ attributes.customPos &&  <>
+				<BaseControl label={ __( 'Animation Start', 'wpmozo-blocks-and-addons' ) }>
+					<UnitControl
+						label={ __( 'Element', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.animationStartElementPos }
+						onChange={ ( newValue ) => setAttributes( { animationStartElementPos: newValue } ) }
+						units={ [
+							{ value: 'px', label: 'px' },
+							{ value: '%', label: '%' },
+						] }
+						isResetValue={ true } __nextHasNoMarginBottom
+					/>
+					<UnitControl
+						label={ __( 'Viewport', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.animationStartViewportPos }
+						onChange={ ( newValue ) => setAttributes( { animationStartViewportPos: newValue } ) }
+						units={ [
+							{ value: '%', label: '%' },
+							{ value: 'px', label: 'px' },
+						] }
+						isResetValue={ true } __nextHasNoMarginBottom
+					/>
+				</BaseControl>
+				<Divider />
+				<BaseControl label={ __( 'Animation End', 'wpmozo-blocks-and-addons' ) }>
+					<UnitControl
+						label={ __( 'Element', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.animationEndElementPos }
+						onChange={ ( newValue ) => setAttributes( { animationEndElementPos: newValue } ) }
+						units={ [
+							{ value: '%', label: '%' },
+							{ value: 'px', label: 'px' },
+						] }
+						isResetValue={ true } __nextHasNoMarginBottom
+					/>
+					<UnitControl
+						label={ __( 'Viewport', 'wpmozo-blocks-and-addons' ) }
+						value={ attributes.animationEndViewportPos }
+						onChange={ ( newValue ) => setAttributes( { animationEndViewportPos: newValue } ) }
+						units={ [
+							{ value: '%', label: '%' },
+							{ value: 'px', label: 'px' },
+						] }
+						isResetValue={ true } __nextHasNoMarginBottom
+					/>
+				</BaseControl>
+			</> }
 		</PanelBody>
 	</> );
 };

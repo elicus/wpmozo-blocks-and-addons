@@ -20,12 +20,12 @@
 		"className": { "type": "string" },
 
         "image": { "type": "object" },
-        "imagewidth": { "type": "string", "default": "200px" },
-        "imageheight": { "type": "string" },
+        "imageWidth": { "type": "string", "default": "20%" },
+        "imageHeight": { "type": "string" },
         "altText": { "type": "string", "default": "" },
 
-        "horizontalAlign": { "type": "string" },
-        "verticalAlign": { "type": "string" },
+        "horizontalAlign": { "type": "string", "default": "%" },
+        "verticalAlign": { "type": "string", "default": "%" },
 
         "animationEffect": { "type": "string", "default": "up_down" },
         "animationDelay": { "type": "number", "default": 0 },
@@ -34,8 +34,12 @@
 
         "speedCurve": { "type": "string" },
 
-        "imageborderRadius": { "type": "string" },
-        "imageborder": { "type": "object" }
+        "imageborderRadius": { "type": "object" },
+        "imageborder": { "type": "object" },
+
+        "imageHoverborder": { "type": "object" },
+        "imageHoverborderRadius": { "type": "object" },
+        "wrapIsHover": { "type": "boolean", "default": false }
     },
     "textdomain": "wpmozo-blocks-and-addons",
     "editorScript": "file:./index.js",

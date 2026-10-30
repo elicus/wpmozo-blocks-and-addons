@@ -1,10 +1,18 @@
 
 import { useBlockProps } from "@wordpress/block-editor";
 import generateDynamicStyle from './style';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ( { attributes } ) => {
 
-	const ID = attributes.ID;
+	const ID = attributes.ID,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-bna-separator' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 	
 	let position = '';
 	if ( 'line' === attributes.separatorType ) {
@@ -22,7 +30,7 @@ const Save = ( { attributes } ) => {
 	return ( <>
 		<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-		<div id={`block-${ID}`} { ...useBlockProps.save( { className: 'wpmozo-bna-separator ' + attributes.className } ) }>
+		<div id={`block-${ID}`} { ...blockProps}>
 			{ "line" === attributes.separatorType && (
 				<div className={`wpmozo-bna-separator-container ${position}`}>
 					<div className="wpmozo-bna-line wpmozo-bna-line-before"></div>

@@ -18,8 +18,13 @@ import {
 import { headingLevelsList } from '../../../common/utils.js';
 
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+							
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	}
 	const [ deviceType, setDeviceType ] = useState('tablet'),
 		[ textType, setTextType ] = useState('text'),
 		dividerStyle = [
@@ -58,14 +63,14 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 	];
 
 	return ( <>
-		<PanelBody title={ __( 'Alignment', 'wpmozo-blocks-and-addons' ) }  initialOpen={false}>
+		<PanelBody title={ __( 'Alignment', 'wpmozo-blocks-and-addons' ) }  opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<WpmozoAlignment
 				label={__( 'Text Alignment', 'wpmozo-blocks-and-addons')}
 				onChange={ ( newValue ) => setAttributes( { textAlignment: newValue } ) }
 				value={ attributes.textAlignment }
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Price Item', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Price Item', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			<WpmozoColorPicker props={props}
 				ColorKey=""
 				ColorTypes={ [
@@ -77,7 +82,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				BorderTypes={ { border: true,radius: true } }
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Icon', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 			<WpmozoColorPicker props={props}
 				ColorKey="icon"
 				ColorTypes={ [
@@ -93,7 +98,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				}}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Thumbnail', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Thumbnail', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 			<WpmozoRangeSize props={props}
 				label={ __( 'Thumbnail Width', 'wpmozo-blocks-and-addons') }
 				rangeSizeKey='thumbnailWidth'
@@ -103,7 +108,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				BorderTypes={ { border: true,radius: true } }
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Name', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Name', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
 			<WpmozoColorPicker props={props}
 				ColorKey="name"
 				ColorTypes={ [
@@ -126,7 +131,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				props={props}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Price', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Price', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel6'} onToggle={()=> handleToggle('panel6')}>
 			<WpmozoColorPicker props={props}
 				ColorKey="price"
 				ColorTypes={ [
@@ -138,7 +143,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				props={props}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Currency', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Currency', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel7'} onToggle={()=> handleToggle('panel7')}>
 			<SelectControl
 				label={ __( 'Currency Symbol Position', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.currencySymbolPosition }
@@ -160,7 +165,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				props={props}
 			/>
 		</PanelBody>
-		<PanelBody title={ __( 'Description', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Description', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel8'} onToggle={()=> handleToggle('panel8')}>
 			<WpmozoColorPicker props={props}
 				ColorKey="description"
 				ColorTypes={ [
@@ -173,7 +178,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			/>
 		</PanelBody>
 		{ 'layout1' === attributes.layout && ( <>
-			<PanelBody title={ __( 'Divider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+			<PanelBody title={ __( 'Divider', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel9'} onToggle={()=> handleToggle('panel9')}>
 				<WpmozoColorPicker props={props}
 					ColorKey="divider"
 					ColorTypes={ [
@@ -193,7 +198,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				/>
 			</PanelBody>
 		</> ) }
-		<PanelBody title={ __( 'Period', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'Period', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel10'} onToggle={()=> handleToggle('panel10')}>
 			<WpmozoColorPicker props={props}
 				ColorKey="period"
 				ColorTypes={ [

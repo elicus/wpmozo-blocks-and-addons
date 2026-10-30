@@ -4,10 +4,11 @@ import {
 	ToggleControl
 } from "@wordpress/components";
 import {
-	WpmozoBorder
+	WpmozoBorder,
+	MozoStates
 } from '../../../common/components/index';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
 
 	return ( <>
@@ -17,9 +18,20 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				checked={ attributes.forceFullwidth }
 				onChange={ ( newValue ) => setAttributes( { forceFullwidth: newValue } ) }
 			/>
-			<WpmozoBorder
-				props={props}
-				BorderKey="image"
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Border', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoBorder
+						props={props}
+						BorderKey={ isHover ? "imageHover" : "image" }
+					/>
+				) }
 			/>
 		</PanelBody>
 	</> );

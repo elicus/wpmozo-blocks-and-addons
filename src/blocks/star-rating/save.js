@@ -1,9 +1,17 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ( { attributes } ) => {
 
-	const clientId = attributes.ID;
+	const clientId = attributes.ID,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-star-rating' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	const imageUrl    = ( attributes.image ) ? attributes.image : '';
 	const rateIcon    = ( attributes.rateIcon ) ?? 'default';
@@ -42,8 +50,8 @@ const Save = ( { attributes } ) => {
 				let key   = ( scalIcons.includes( rateIcon ) ) ? `${rateIcon}/${mood}_filled` : `${rateIcon}-filled`;
 				const svg = attributes.iconSVGs?.[key]?.[mood] || '';
 				stars.push(
-					<span dangerouslySetInnerHTML={ { __html: svg } }
-						className={`wpmozo_star_rating_star dipl-rating-icon-custom wpmozo_star_rating_filled dipl-rating-icon-${rateIcon}`}
+					<span dangerouslySetInnerHTML={ { __html: svg ?? '' } }
+						className={`wpmozo_star_rating_star wpmozo-rating-icon-custom wpmozo_star_rating_filled wpmozo-rating-icon-${rateIcon}`}
 					/>
 				 );
 			} else {
@@ -55,8 +63,8 @@ const Save = ( { attributes } ) => {
 			if ( 'default' !== rateIcon ) {
 				let key   = ( scalIcons.includes( rateIcon ) ) ? `${rateIcon}/${mood}_half_filled` : `${rateIcon}-half_filled`;
 				const svg = attributes.iconSVGs?.[key]?.[mood] || '';
-				stars.push( <span dangerouslySetInnerHTML={ { __html: svg } }
-					className={`wpmozo_star_rating_star dipl-rating-icon-custom wpmozo_star_rating_half_filled dipl-rating-icon-${rateIcon}`}
+				stars.push( <span dangerouslySetInnerHTML={ { __html: svg ?? '' } }
+					className={`wpmozo_star_rating_star wpmozo-rating-icon-custom wpmozo_star_rating_half_filled wpmozo-rating-icon-${rateIcon}`}
 				/> );
 			} else {
 				stars.push( <span className="wpmozo_star_rating_star wpmozo_star_rating_half_filled_star"></span> );
@@ -70,8 +78,8 @@ const Save = ( { attributes } ) => {
 			if ( 'default' !== rateIcon ) {
 				let key   = ( scalIcons.includes( rateIcon ) ) ? `${rateIcon}/${mood}_empty` : `${rateIcon}-empty`;
 				const svg = attributes.iconSVGs?.[key]?.[mood] || '';
-				stars.push( <span dangerouslySetInnerHTML={ { __html: svg } }
-					className={`wpmozo_star_rating_star dipl-rating-icon-custom wpmozo_star_rating_empty dipl-rating-icon-${rateIcon}`}
+				stars.push( <span dangerouslySetInnerHTML={ { __html: svg ?? '' } }
+					className={`wpmozo_star_rating_star wpmozo-rating-icon-custom wpmozo_star_rating_empty wpmozo-rating-icon-${rateIcon}`}
 				/> );
 			} else {
 				stars.push( <span className="wpmozo_star_rating_star wpmozo_star_rating_empty_star"></span> );
@@ -96,11 +104,11 @@ const Save = ( { attributes } ) => {
 		<>
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 
-			<div {...useBlockProps.save( { className: attributes.className } )} id={`block-${clientId}`}>
+			<div {...blockProps} id={`block-${clientId}`}>
 				<div className="wpmozo_star_rating_wrapper">
 					{ ( imageUrl && '' !== imageUrl ) && (
 						<div className="wpmozo_star_rating_image_container">
-							<img src={ imageUrl } alt={ attributes?.imageAlt || '' } class="wpmozo_star_rating_image" />
+							<img src={ imageUrl } alt={ attributes?.imageCustomAlt || attributes?.imageAlt || '' } class="wpmozo_star_rating_image" />
 						</div>
 					) }
 					<div className="wpmozo_star_rating_title_container">

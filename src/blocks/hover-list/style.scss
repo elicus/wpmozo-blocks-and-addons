@@ -2,7 +2,8 @@
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
-	z-index: 2;
+	z-index: 5;
+	position: relative;
 }
 
 /* Cursor. */
@@ -20,13 +21,14 @@
 	background-size: cover;
 	pointer-events: none;
 	transition: transform 0.3s ease, opacity 0.3s ease;
+	z-index: 1;
 }
 
 /* Item. */
 .wp-block-wpmozo-hover-list .wpmozo-bna-hover-list-wrapper .wp-block-wpmozo-hover-list-item{
 	position: relative;
 	margin-bottom: 0;
-	padding: 15px;
+	padding: 0;
 }
 .wpmozo_bna_hover_list_title_wrapper{
 	display: flex;
@@ -38,16 +40,20 @@
 }
 .wpmozo_bna_hover_list_title_wrapper .wpmozo_bna_hover_list_title{
 	padding: 0;
+	transition: all 300ms;
 }
 .wpmozo_bna_hover_list_title_wrapper .wpmozo_bna_hover_list_icon{
 	font-size: 40px;
 	margin-right: 15px;
+	transition: all 300ms;
 }
 .wpmozo_bna_hover_list_description{
 	flex: 0 0 40%;
+	transition: all 300ms;
 }
 .wpmozo_bna_hover_list_subtitle{
 	flex: 1;
+	transition: all 300ms;
 }
 .wpmozo-bna-hover-list-item-overlay {
 	position: absolute;
@@ -55,7 +61,7 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	z-index: 1;
+	z-index: 4;
 }
 
 .wp-block-wpmozo-hover-list-item .wpmozo-bna-button-wrap .wpmozo-bna-button{
@@ -91,9 +97,6 @@
 .wpmozo-bna-hover-list-item-wrapper {
 	position: relative;
 	z-index: 9;
-}
-.wpmozo-bna-hover-list-cursor {
-	z-index: 7;
 }
 .wp-block-wpmozo-scroll-stack-cards{
 	overflow: hidden;

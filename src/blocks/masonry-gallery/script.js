@@ -27,7 +27,7 @@ function initMasonryGallery($galleryContainer) {
 			gutter: '.wpmozo_masonry_gallery_item_gutter'
 		}
 	});
-	$gallery.imagesLoaded(function () {
+	$this.imagesLoaded(function () {
 		$gallery.isotope('layout');
 		$gallery.isotope('reloadItems');
 	});

@@ -8,6 +8,7 @@ import {
 	renderTestimonialLayoutOne,
 	renderTestimonialLayoutTwo
 } from './layouts';
+import $, { post } from 'jquery'
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -16,39 +17,85 @@ import {
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 export default function Edit(props) {
 
-	const { attributes, setAttributes, clientId } = props;
+	const { attributes, setAttributes, clientId } = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-horizontal-scrolling-posts${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
 		if ( attributes.ID !== clientId ) {
 			setAttributes( { ID: clientId } );
 		}
-	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	const postsToShow        = parseInt( attributes.postsToShow ) ?? 5;
 	const postOrder          = attributes.postOrder ?? 'DESC';
 	const postOrderBy        = attributes.postOrderBy ?? 'date';
-	const sticky        = attributes.ignoreStickyPosts ?? false;
+	let sticky               = attributes.ignoreStickyPosts ?? false;
+
+	const stickyQuery = {
+		per_page: -1,
+		order: postOrder,
+		orderby: postOrderBy,
+		_embed: true,
+		sticky: true
+	};
+	const stickyPosts = useSelect(
+		(select) =>
+			select('core').getEntityRecords('postType', 'post', stickyQuery),
+		[stickyQuery]
+	);
 
 	const queryArgs = {
-		per_page: postsToShow,
 		order: postOrder,
 		orderby: postOrderBy,
 		_embed: true
 	};
-
-	if(true === attributes.ignoreStickyPosts){
+	if(stickyPosts){
+		queryArgs.per_page= postsToShow - (stickyPosts?.length || 0);
+	}
+	if(sticky){
+		queryArgs.per_page = postsToShow;
+	}else{
 		queryArgs.sticky = false;
 	}
 
 	const posts = useSelect(
 		(select) =>
 			select('core').getEntityRecords('postType', 'post', queryArgs),
-		[postsToShow, postOrder, postOrderBy, sticky]
+		[queryArgs]
 	);
+	let allPosts = {};
+	if(posts){
+		allPosts = [...posts];
+		if(!sticky && stickyPosts){
+			allPosts = [...stickyPosts, ...posts];
+		}
+	}
 
 	// Get props.
 	const layout = attributes.layout ?? 'layout1';
@@ -62,8 +109,8 @@ export default function Edit(props) {
 
 
 	let postData = [];
-	if ( posts && posts.length > 0 ) {
-		posts.map( ( post ) => {
+	if ( allPosts && allPosts.length > 0 ) {
+		allPosts.map( ( post ) => {
 			const rawContent      = post.content?.rendered || '';
 			let postTitle      = post.title?.rendered || '';
 			let date = post.date;
@@ -72,7 +119,7 @@ export default function Edit(props) {
 
 			let postExcerpt = '';
 			if ( post.content.rendered ) {
-				postExcerpt = <div dangerouslySetInnerHTML={{__html: truncateToWords(rawContent, attributes.excerptLength)}}/>
+				postExcerpt = <div dangerouslySetInnerHTML={{__html: truncateToWords(rawContent, attributes.excerptLength) ?? ''}}/>
 			}
 
 			let showFeaturedImage = '';
@@ -93,7 +140,7 @@ export default function Edit(props) {
 
 			if ( attributes.showFeaturedImage && imageUrl ) {
 				showFeaturedImage = <div className="wpmozo_horizontal_scrolling_post_image_wrapper">
-					<a href={post.link}>
+					<a href="javascript:void(0)">
 						<img src={imageUrl} alt={altText} className="wpmozo_horizontal_scrolling_post_image"/>
 					</a>
 				</div>;
@@ -157,13 +204,22 @@ export default function Edit(props) {
 			postData.push( <div className={`wpmozo_horizontal_scrolling_post_item item_${attributes.layout}`}>{ $thisSlide }</div> );
 		} );
 	}
+	useEffect( () => {
+		if ( ! attributes.ID ) return;
+		if ( null === posts) return;
+		const event = new CustomEvent( 'WPMozoScrollPostsPropsChanged', {
+			detail: { clientId: attributes.ID }
+		} );
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		iframe?.contentWindow?.dispatchEvent( event );
+	}, [ posts, attributes ] );
 
     return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes}/>
 			<style>{generateDynamicStyle({attributes})}</style>
 
-			<div {...useBlockProps()} id={`block-${attributes.ID}`}>
+			<div {...blockProps} id={`block-${attributes.ID}`}>
 				<div className={`wpmozo-sticky-posts-scroller`}>
 					<div className={`wpmozo-sticky-posts-wrapper ${attributes.layout}`}>
 						<div className={`wpmozo-sticky-posts-inner`}>

@@ -39,6 +39,9 @@ if ( ! function_exists( 'advanced_tooltip_generate_dynamic_style' ) ) {
 			$styles .= "}";
 			$styles .= "{$mainSelector} .wpmozo-bna-button:hover{";
 			$styles .= ( ! empty( $attrs['buttonHoverColor'] ) ? "color: {$attrs['buttonHoverColor']};" : '' );
+			$styles .= $block_helpers::get_font_style( 'buttonHover', $attrs );
+			$styles .= $block_helpers::get_border_style( 'buttonHover', $attrs );
+			$styles .= $block_helpers::get_padding_style( 'buttonHover', $attrs );
 			$styles .= ( ! empty( $attrs['buttonHoverBackground'] ) ? "background-color: {$attrs['buttonHoverBackground']};" : '' );
 			$styles .= "}";
 		}
@@ -70,7 +73,7 @@ if ( ! function_exists( 'advanced_tooltip_generate_dynamic_style' ) ) {
 
 		//Text
 		if ( 'text' === $attrs['trigerElement'] ) {
-			$styles .= "{$mainSelector} .trigger_type_text{";
+			$styles .= "{$mainSelector} .trigger_type_text{transition:all 300ms;";
 			$styles .= ( ! empty( $attrs['TriggerTextAlign'] ) ? "text-align: {$attrs['TriggerTextAlign']};" : '' );
 			$styles .= ( ! empty( $attrs['TriggerTextColor'] ) ? "color: {$attrs['TriggerTextColor']};" : '' );
 			$styles .= $block_helpers::get_font_style( 'TriggerText', $attrs );

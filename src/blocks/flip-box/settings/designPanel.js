@@ -14,13 +14,19 @@ import {
     WpmozoDimensions, 
     WpmozoColorPicker, 
     WpmozoTypography,
+    MozoStates,
 } from '../../../common/components/index';
 import { useState } from "@wordpress/element";
 
 import { headingLevelsList } from '../../../common/utils.js';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+		
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	};
 
 	const [ typographyType, setTypographyType ]               = useState( 'title' );
 	const [ flipBoxType, setFlipBoxType ]                     = useState( 'front' );
@@ -32,10 +38,13 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 	const [ flipboxDimensionsType, setFlipboxDimensionsType ] = useState( 'front' );
 
 	return ( <>
-		<PanelBody title={ __( 'Global Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
+		<PanelBody title={ __( 'Global Styling', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={()=> handleToggle('panel1')}>
 			<WpmozoRangeSize props={props}
 				label={ __( 'Content Width', 'wpmozo-blocks-and-addons') }
 				rangeSizeKey='flipboxWidth'
+				min={0}
+				max={100}
+				step={1}
 			/>
 			<WpmozoColorPicker props={props}
 				ColorKey="global"
@@ -67,7 +76,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				}
 			</BaseControl>
 		</PanelBody>
-		<PanelBody title={ __( 'FlipBox Style', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'FlipBox Style', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={()=> handleToggle('panel2')}>
 			<BaseControl className="wpmozo-button-tabs-wrap">    
 				<ButtonGroup>
 					<Button className="wpmozo-button-tabs-btn"
@@ -134,13 +143,24 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 							) ) }
 						</ButtonGroup>
 					</BaseControl>
-					<WpmozoColorPicker props={props}
-						ColorKey="back"
-						ColorTypes={ [ 
-							{ key: 'TitleColor', label: __( 'Title Color', 'wpmozo-blocks-and-addons' ) },
-							{ key: 'ContentColor', label: __( 'Content Color', 'wpmozo-blocks-and-addons' ) },
-							{ key: 'BackgroundColor', label: __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
-						] }
+					<MozoStates
+						value={hoverState}
+						title={ __( 'Back Card Colors', 'wpmozo-blocks-and-addons' ) }
+						onChange={ ( isHover ) => (
+								isHover ? setHoverState(true) : setHoverState(false),
+								setAttributes({wrapIsHover: !hoverState})
+							)
+						}
+						control={ ( isHover ) => (
+							<WpmozoColorPicker props={props}
+								ColorKey="back"
+								ColorTypes={ [ 
+									{ key: isHover ? 'TitleHoverColor' : 'TitleColor', label: isHover ? __( 'Hover Title Color', 'wpmozo-blocks-and-addons' ) : __( 'Title Color', 'wpmozo-blocks-and-addons' ) },
+									{ key: isHover ? 'ContentHoverColor' : 'ContentColor', label: isHover ? __( 'Hover Content Color', 'wpmozo-blocks-and-addons' ) : __( 'Content Color', 'wpmozo-blocks-and-addons' ) },
+									{ key: isHover ? 'FlipboxHoverBackground' : 'BackgroundColor', label: isHover ? __( 'Hover Background Color', 'wpmozo-blocks-and-addons' ) : __( 'Background Color', 'wpmozo-blocks-and-addons' ) }
+								] }
+							/>
+						) }
 					/>
 					<BaseControl className="wpmozo-button-tabs-wrap">    
 						<ButtonGroup>
@@ -156,20 +176,42 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 							>{ __( 'Content', 'wpmozo-blocks-and-addons' ) }</Button>
 						</ButtonGroup>
 						{ 'title' === backTypographyType &&
-							<WpmozoTypography props={props}
-								TypographyKey="backTitle"
+							<MozoStates
+								value={hoverState}
+								title={ __( 'Back Title Typography', 'wpmozo-blocks-and-addons' ) }
+								onChange={ ( isHover ) => (
+										isHover ? setHoverState(true) : setHoverState(false),
+										setAttributes({wrapIsHover: !hoverState})
+									)
+								}
+								control={ ( isHover ) => (
+									<WpmozoTypography props={props}
+										TypographyKey={ isHover ? "backTitleHover" : "backTitle" }
+									/>
+								) }
 							/>
 						}
 						{ 'content' === backTypographyType &&
-							<WpmozoTypography props={props}
-								TypographyKey="backContent"
+							<MozoStates
+								value={hoverState}
+								title={ __( 'Back Content Typography', 'wpmozo-blocks-and-addons' ) }
+								onChange={ ( isHover ) => (
+										isHover ? setHoverState(true) : setHoverState(false),
+										setAttributes({wrapIsHover: !hoverState})
+									)
+								}
+								control={ ( isHover ) => (
+									<WpmozoTypography props={props}
+										TypographyKey={ isHover ? "backContentHover" : "backContent" }
+									/>
+								) }
 							/>
 						}
 					</BaseControl>
 				</> }
 			</BaseControl>
 		</PanelBody>
-		<PanelBody title={ __( 'FlipBox Image/Icon Style', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'FlipBox Image/Icon Style', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={()=> handleToggle('panel3')}>
 			<BaseControl className="wpmozo-button-tabs-wrap">    
 				<ButtonGroup>
 					<Button className="wpmozo-button-tabs-btn"
@@ -205,16 +247,18 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 							value={ attributes.frontImageAlignment }
 						/>
 					</> }
-					<SelectControl
-						label={ __( 'Image/Icon Placment', 'wpmozo-blocks-and-addons' ) }
-						value={ attributes.frontElementAlign }
-						options={ [
-							{ value: 'top', label: __( 'Top', 'wpmozo-blocks-and-addons' ) },
-							{ value: 'left', label: __( 'Left', 'wpmozo-blocks-and-addons' ) },
-							{ value: 'right', label: __( 'Right', 'wpmozo-blocks-and-addons' ) }
-						] }
-						onChange={ ( newValue ) => setAttributes( { frontElementAlign: newValue } ) }
-					/>
+					{ ('image' === attributes.frontElType || 'icon' === attributes.frontElType) ? <> 
+						<SelectControl
+							label={ __( `${('image' === attributes.frontElType ? 'Image' : 'Icon')} Placement`, 'wpmozo-blocks-and-addons' ) }
+							value={ attributes.frontElementAlign }
+							options={ [
+								{ value: 'top', label: __( 'Top', 'wpmozo-blocks-and-addons' ) },
+								{ value: 'left', label: __( 'Left', 'wpmozo-blocks-and-addons' ) },
+								{ value: 'right', label: __( 'Right', 'wpmozo-blocks-and-addons' ) }
+							] }
+							onChange={ ( newValue ) => setAttributes( { frontElementAlign: newValue } ) }
+						/>
+					</> : "Select an element." }
 					{ 'icon' === attributes.frontElType && <>
 						<ToggleControl
 							label={ __( 'Style Icon', 'wpmozo-blocks-and-addons' ) }
@@ -268,11 +312,22 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				</> }
 				{ 'back' === elementStyleType && <>
 					{ 'icon' === attributes.backElType && <>
-						<WpmozoColorPicker props={props} 
-							ColorKey="back"
-							ColorTypes={[ 
-								{ key: 'IconColor', label: __( 'Icon Color', 'wpmozo-blocks-and-addons' ) },
-							] }
+						<MozoStates
+							value={hoverState}
+							title={ __( 'Back Icon Color', 'wpmozo-blocks-and-addons' ) }
+							onChange={ ( isHover ) => (
+									isHover ? setHoverState(true) : setHoverState(false),
+									setAttributes({wrapIsHover: !hoverState})
+								)
+							}
+							control={ ( isHover ) => (
+								<WpmozoColorPicker props={props}
+									ColorKey={ isHover ? "backIconHover" : "back" }
+									ColorTypes={ [ 
+										{ key: isHover ? 'Color' : 'IconColor', label: isHover ? __( 'Hover Icon Color', 'wpmozo-blocks-and-addons' ) : __( 'Icon Color', 'wpmozo-blocks-and-addons' ) },
+									] }
+								/>
+							) }
 						/>
 						<WpmozoRangeSize props={props}
 							label={ __( 'Icon Size', 'wpmozo-blocks-and-addons') }
@@ -290,16 +345,18 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 							value={ attributes.backImageAlignment }
 						/>                                        
 					</> }
-					<SelectControl
-						label={ __( 'Image/Icon Placment', 'wpmozo-blocks-and-addons' ) }
-						value={ attributes.backElementAlign }
-						options={ [
-							{ value: 'top', label: __( 'Top', 'wpmozo-blocks-and-addons' ) },
-							{ value: 'left', label: __( 'Left', 'wpmozo-blocks-and-addons' ) },
-							{ value: 'right', label: __( 'Right', 'wpmozo-blocks-and-addons' ) }
-						] }
-						onChange={ ( newValue ) => setAttributes( { backElementAlign: newValue } ) }
-					/>
+					{('image' === attributes.backElType || 'icon' === attributes.backElType) ? <>
+						<SelectControl
+							label={ __( `${'image' === attributes.backElType ? 'Image' : 'Icon'} Placement`, 'wpmozo-blocks-and-addons' ) }
+							value={ attributes.backElementAlign }
+							options={ [
+								{ value: 'top', label: __( 'Top', 'wpmozo-blocks-and-addons' ) },
+								{ value: 'left', label: __( 'Left', 'wpmozo-blocks-and-addons' ) },
+								{ value: 'right', label: __( 'Right', 'wpmozo-blocks-and-addons' ) }
+							] }
+							onChange={ ( newValue ) => setAttributes( { backElementAlign: newValue } ) }
+						/>
+					</> : "Select an element." }
 					{ 'icon' === attributes.backElType && <>
 						<ToggleControl
 							label={ __( 'Style Icon', 'wpmozo-blocks-and-addons' ) }
@@ -325,11 +382,22 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 									setAttributes( { backIconShape: newValue } ) 
 								}}
 							/>
-							<WpmozoColorPicker props={props}
-								ColorKey="back"
-								ColorTypes={[ 
-									{ key: 'IconShapeBackground', label: __( 'Shape Background Color', 'wpmozo-blocks-and-addons' ) },
-								] }
+							<MozoStates
+								value={hoverState}
+								title={ __( 'Back Icon Shape Background', 'wpmozo-blocks-and-addons' ) }
+								onChange={ ( isHover ) => (
+										isHover ? setHoverState(true) : setHoverState(false),
+										setAttributes({wrapIsHover: !hoverState})
+									)
+								}
+								control={ ( isHover ) => (
+									<WpmozoColorPicker props={props}
+										ColorKey={ isHover ? "backIconShapeHover" : "back" }
+										ColorTypes={ [ 
+											{ key: isHover ? 'Background' : 'IconShapeBackground', label: isHover ? __( 'Hover Shape Background Color', 'wpmozo-blocks-and-addons' ) : __( 'Shape Background Color', 'wpmozo-blocks-and-addons' ) },
+										] }
+									/>
+								) }
 							/>
 							{ attributes.backIconHasShapeBorder && 'hexagon' !== attributes.backIconShape && 
 								<WpmozoBorder
@@ -353,7 +421,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				</> }
 			</BaseControl>
 		</PanelBody>
-		<PanelBody title={ __( 'FlipBox Content Alignment', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'FlipBox Content Alignment', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={()=> handleToggle('panel4')}>
 			<BaseControl className="wpmozo-button-tabs-wrap">    
 				<ButtonGroup>
 					<Button className="wpmozo-button-tabs-btn"
@@ -393,7 +461,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				</> }
 			</BaseControl>
 		</PanelBody>
-		<PanelBody title={ __( 'FlipBox Border', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'FlipBox Border', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
 			<BaseControl className="wpmozo-button-tabs-wrap">    
 				<ButtonGroup>
 					<Button className="wpmozo-button-tabs-btn"
@@ -417,7 +485,7 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				}
 			</BaseControl>
 		</PanelBody>
-		<PanelBody title={ __( 'FlipBox Padding', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
+		<PanelBody title={ __( 'FlipBox Padding', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel6'} onToggle={()=> handleToggle('panel6')}>
 			<BaseControl className="wpmozo-button-tabs-wrap">    
 				<ButtonGroup>
 					<Button className="wpmozo-button-tabs-btn"
@@ -444,19 +512,30 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 			</BaseControl>
 		</PanelBody>
 		{ attributes.backHasButton && <>
-			<PanelBody title={ __( 'FlipBox Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={false}>
-				<WpmozoColorPicker props={props}
-					ColorKey="back"
-					ColorTypes={ [ 
-						{ key: 'BtnColor', label: __( 'Color', 'wpmozo-blocks-and-addons' ) },
-						{ key: 'BtnBackground', label: __( 'Background', 'wpmozo-blocks-and-addons' ) },
-					] }
+			<PanelBody title={ __( 'FlipBox Button', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel7'} onToggle={()=> handleToggle('panel7')}>
+				<MozoStates
+					value={hoverState}
+					title={ __( 'Button Style', 'wpmozo-blocks-and-addons' ) }
+					onChange={ ( isHover ) => (
+							isHover ? setHoverState(true) : setHoverState(false),
+							setAttributes({wrapIsHover: !hoverState})
+						)
+					}
+					control={ ( isHover ) => ( <>
+						<WpmozoColorPicker props={props}
+							ColorKey="backBtn"
+							ColorTypes={ [ 
+								{ key: isHover ? 'HoverColor' : 'Color', label: isHover ? __( 'Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Color', 'wpmozo-blocks-and-addons' ) },
+								{ key: isHover ? 'HoverBackground' : 'Background', label: isHover ? __( 'Hover Background', 'wpmozo-blocks-and-addons' ) : __( 'Background', 'wpmozo-blocks-and-addons' ) },
+							] }
+						/>
+						<WpmozoBorder props={props}
+							BorderKey={ isHover ? "backBtnHover" : "backBtn" }
+						/>
+					</> ) }
 				/>
 				<WpmozoTypography props={props}
 					TypographyKey="backBtn"
-				/>
-				<WpmozoBorder props={props}
-					BorderKey="backBtn"
 				/>
 				<WpmozoDimensions props={props}
 					DimensionKey='backBtnDimensions'

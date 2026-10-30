@@ -37,14 +37,20 @@
 		"controlDotStyle": { "type": "string", "default": "solid_dot" },
 		"enableDynamicDots": { "type": "boolean", "default": false },
 
-		"containerbackground": { "type": "string" },
+		"containerBackground": { "type": "string" },
+		"containerHoverBackground": { "type": "string" },
 		"containerpadding": { "type": "object" },
 
 		"sliderArrowColor": { "type": "string" },
+		"sliderArrowHoverColor": { "type": "string" },
 		"sliderArrowBackground": { "type": "string" },
+		"sliderArrowHoverBackground": { "type": "string" },
 		"sliderActiveDoteColor": { "type": "string" },
+		"sliderActiveDoteHoverColor": { "type": "string" },
 		"sliderInactiveDoteColor": { "type": "string" },
+		"sliderInactiveDoteHoverColor": { "type": "string" },
 		"arrowFontSize": { "type": "string" },
+		"arrowHoverFontSize": { "type": "string" },
 		"arrowpadding": { "type": "object" },
 
 		"logoWidth": { "type": "number", "default": 150 },

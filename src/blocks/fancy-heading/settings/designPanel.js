@@ -8,30 +8,60 @@ import {
 	Button
 } from "@wordpress/components";
 import {
-	WpmozoColorCombo,
 	WpmozoAlignment,
 	WpmozoDimensions,
 	WpmozoColorPicker,
-	WpmozoTypography
+	WpmozoTypography,
+	MozoStates,
 } from '../../../common/components/index';
+import {useState} from "@wordpress/element"
 
 import { headingLevelsList } from '../../../common/utils.js';
 
-export const DesignPanel = ( { attributes, setAttributes } ) => {
+export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
+	const [openPanel, setOpenPanel] = useState('panel1');
+		
+	const handleToggle = (panelId) => {
+		setOpenPanel(prev => prev === panelId ? null : panelId);
+	};
 
 	return ( <>
 		{/* Global Text Settings. */}
 		<PanelBody title={ __( 'Global Text Settings', 'wpmozo-blocks-and-addons' ) }
-			className="wpmozo-typography-panel" initialOpen={true}
+			className="wpmozo-typography-panel" opened={openPanel === 'panel1'} onToggle={() => handleToggle('panel1')}
 		>
-			<WpmozoColorPicker
-				ColorKey="heading"
-				props={props}
-				ColorTypes={[
-					{ key: 'Color', label: __( 'Color', 'wpmozo-blocks-and-addons' ) },
-					{ key: 'Background', label: __('Background', 'wpmozo-blocks-and-addons') },
-				] }
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Global Text Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={ props }
+						ColorKey={ isHover ? "headingHover" : "heading" }
+						ColorTypes={ [
+							{ key: 'Color', label: isHover ? __( 'Global Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Global Color', 'wpmozo-blocks-and-addons' ) },
+							{ key: 'Background', label: isHover ? __( 'Global Hover Background', 'wpmozo-blocks-and-addons' ) : __( 'Global Background', 'wpmozo-blocks-and-addons' ) },
+						] }
+					/>
+				) }
+			/>
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Global Typography', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoTypography props={props}
+						TypographyKey={ isHover ? "headingHover" : "heading" }
+					/>
+				) }
 			/>
 			<WpmozoAlignment
 				label={ __( 'Heading Alignment', 'wpmozo-blocks-and-addons' ) }
@@ -49,28 +79,28 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 				</ButtonGroup>
 			</BaseControl>
 		</PanelBody>
+
 		{/* Pre Text Settings. */}
 		<PanelBody title={ __( 'Pre Text Settings', 'wpmozo-blocks-and-addons' ) }
-			className="wpmozo-typography-panel" initialOpen={false}
+			className="wpmozo-typography-panel" opened={openPanel === 'panel2'} onToggle={() => handleToggle('panel2')}
 		>
-			<WpmozoColorCombo
-				label={ __( 'Pre Text Color', 'wpmozo-blocks-and-addons' ) }
-				normal={ {
-					ColorKey: "preText",
-					props: props,
-					ColorTypes: [
-						{ key: 'Color', label: __( 'Color', 'wpmozo-blocks-and-addons' ) },
-						{ key: 'Background', label: __( 'Background', 'wpmozo-blocks-and-addons' ) },
-					]
-				} }
-				hover={ {
-					ColorKey: "preTextHover",
-					props: props,
-					ColorTypes: [
-						{ key: 'Color', label: __( 'Color', 'wpmozo-blocks-and-addons' ) },
-						{ key: 'Background', label: __( 'Background', 'wpmozo-blocks-and-addons' ) },
-					]
-				} }
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Pre Text Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={ props }
+						ColorKey={ isHover ? "preTextHover" : "preText" }
+						ColorTypes={ [
+							{ key: 'Color', label: isHover ? __( 'Pre Text Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Pre Text Color', 'wpmozo-blocks-and-addons' ) },
+							{ key: 'Background', label: isHover ? __( 'Pre Text Hover Background', 'wpmozo-blocks-and-addons' ) : __( 'Pre Text Background', 'wpmozo-blocks-and-addons' ) },
+						] }
+					/>
+				) }
 			/>
 			{ attributes.displayInStack && (
 				<WpmozoAlignment
@@ -79,36 +109,47 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					value={ attributes.preTextAlignment }
 				/>
 			) }
-			<WpmozoTypography props={props}
-				TypographyKey="preText"
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Pre Text Typography', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoTypography props={props}
+						TypographyKey={ isHover ? "preTextHover" : "preText" }
+					/>
+				) }
 			/>
 			<WpmozoDimensions props={props}
 				DimensionKey='preTextDimensions'
 				DimensionsTypes={ { padding: true, margin: true } }
 			/>
 		</PanelBody>
+
 		{/* Main Text Settings. */}
 		<PanelBody title={ __( 'Main Text Settings', 'wpmozo-blocks-and-addons' ) }
-			className="wpmozo-typography-panel" initialOpen={false}
+			className="wpmozo-typography-panel" opened={openPanel === 'panel3'} onToggle={() => handleToggle('panel3')}
 		>
-			<WpmozoColorCombo
-				label={ __( 'Main Text Color', 'wpmozo-blocks-and-addons' ) }
-				normal={ {
-					ColorKey: "mainText",
-					props: props,
-					ColorTypes: [
-						{ key: 'Color', label: __( 'Color', 'wpmozo-blocks-and-addons' ) },
-						{ key: 'Background', label: __( 'Background', 'wpmozo-blocks-and-addons' ) },
-					]
-				} }
-				hover={ {
-					ColorKey: "mainTextHover",
-					props: props,
-					ColorTypes: [
-						{ key: 'Color', label: __( 'Color', 'wpmozo-blocks-and-addons' ) },
-						{ key: 'Background', label: __( 'Background', 'wpmozo-blocks-and-addons' ) },
-					]
-				} }
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Main Text Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={ props }
+						ColorKey={ isHover ? "mainTextHover" : "mainText" }
+						ColorTypes={ [
+							{ key: 'Color', label: isHover ? __( 'Main Text Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Main Text Color', 'wpmozo-blocks-and-addons' ) },
+							{ key: 'Background', label: isHover ? __( 'Main Text Hover Background', 'wpmozo-blocks-and-addons' ) : __( 'Main Text Background', 'wpmozo-blocks-and-addons' ) },
+						] }
+					/>
+				) }
 			/>
 			{ attributes.displayInStack && (
 				<WpmozoAlignment
@@ -117,36 +158,47 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					value={ attributes.mainTextAlignment }
 				/>
 			) }
-			<WpmozoTypography props={props}
-				TypographyKey="mainText"
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Main Text Typography', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoTypography props={props}
+						TypographyKey={ isHover ? "mainTextHover" : "mainText" }
+					/>
+				) }
 			/>
 			<WpmozoDimensions props={props}
 				DimensionKey='mainTextDimensions'
 				DimensionsTypes={ { padding: true, margin: true } }
 			/>
 		</PanelBody>
+
 		{/* Post Text Settings. */}
 		<PanelBody title={ __( 'Post Text Settings', 'wpmozo-blocks-and-addons' ) }
-			className="wpmozo-typography-panel" initialOpen={false}
+			className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={() => handleToggle('panel4')}
 		>
-			<WpmozoColorCombo
-				label={ __( 'Post Text Color', 'wpmozo-blocks-and-addons' ) }
-				normal={ {
-					ColorKey: "postText",
-					props: props,
-					ColorTypes: [
-						{ key: 'Color', label: __( 'Color', 'wpmozo-blocks-and-addons' ) },
-						{ key: 'Background', label: __( 'Background', 'wpmozo-blocks-and-addons' ) },
-					]
-				} }
-				hover={{
-					ColorKey: "postTextHover",
-					props: props,
-					ColorTypes: [
-						{ key: 'Color', label: __( 'Color', 'wpmozo-blocks-and-addons' ) },
-						{ key: 'Background', label: __( 'Background', 'wpmozo-blocks-and-addons' ) },
-					]
-				} }
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Post Text Color', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoColorPicker props={ props }
+						ColorKey={ isHover ? "postTextHover" : "postText" }
+						ColorTypes={ [
+							{ key: 'Color', label: isHover ? __( 'Post Text Hover Color', 'wpmozo-blocks-and-addons' ) : __( 'Post Text Color', 'wpmozo-blocks-and-addons' ) },
+							{ key: 'Background', label: isHover ? __( 'Post Text Hover Background', 'wpmozo-blocks-and-addons' ) : __( 'Post Text Background', 'wpmozo-blocks-and-addons' ) },
+						] }
+					/>
+				) }
 			/>
 			{ attributes.displayInStack && (
 				<WpmozoAlignment
@@ -155,8 +207,19 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 					value={ attributes.postTextAlignment }
 				/>
 			) }
-			<WpmozoTypography props={props}
-				TypographyKey="postText"
+			<MozoStates
+				value={hoverState}
+				title={ __( 'Post Text Typography', 'wpmozo-blocks-and-addons' ) }
+				onChange={ ( isHover ) => (
+						isHover ? setHoverState(true) : setHoverState(false),
+						setAttributes({wrapIsHover: !hoverState})
+					)
+				}
+				control={ ( isHover ) => (
+					<WpmozoTypography props={props}
+						TypographyKey={ isHover ? "postTextHover" : "postText" }
+					/>
+				) }
 			/>
 			<WpmozoDimensions props={props}
 				DimensionKey='postTextDimensions'
@@ -165,3 +228,4 @@ export const DesignPanel = ( { attributes, setAttributes } ) => {
 		</PanelBody>
 	</> );
 };
+

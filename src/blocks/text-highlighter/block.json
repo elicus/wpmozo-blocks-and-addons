@@ -18,12 +18,15 @@
 
 		"pre": { "type": "string", "default": "WPMozo" },
 		"main": { "type": "string", "default": "Text Highlighter" },
-		"post": { "type": "string", "default": "Addon For Blocks" },
+		"post": { "type": "string", "default": "Block" },
 
 		"textHighlighterShape": { "type": "string", "default": "zig_zag" },
 		"highlighterColor": { "type": "string" },
+		"highlighterHoverColor": { "type": "string" },
 		"stockWidth": { "type": "number", "default": 2 },
+		"stockWidthHover": { "type": "number" },
 		"stockPaintAnimationDelay": { "type": "number", "default": 2 },
+		"strokePaintAnimationDuration": { "type": "number", "default": 3 },
 		"customPositionForHighlighter": { "type": "boolean", "default": false },
 		"customVerticalPosition": { "type": "number" },
 		"customHorizontalPosition": { "type": "number" },
@@ -34,7 +37,9 @@
 
 		"typeTextSettings": { "type": "string", "default": "global" },
 		"globalTextColor": { "type": "string" },
+		"globalTextHoverColor": { "type": "string" },
 		"globalTextAlignment": { "type": "string" },
+		"globalFont": { "type": "string" },
 		"globalFontSize": { "type": "string" },
 		"globalFontAppearance": {
 			"type": "object",
@@ -50,7 +55,9 @@
 		"globalLineHeight": { "type": "string" },
 
 		"preTextColor": { "type": "string" },
+		"preTextHoverColor": { "type": "string" },
 		"preTextAlignment": { "type": "string" },
+		"preFont": { "type": "string" },
 		"preFontSize": { "type": "string" },
 		"preFontAppearance": {
 			"type": "object",
@@ -67,7 +74,9 @@
 		"prepadding": {"type": "object"},
 
 		"mainTextColor": { "type": "string" },
+		"mainTextHoverColor": { "type": "string" },
 		"mainTextAlignment": { "type": "string" },
+		"mainFont": { "type": "string" },
 		"mainFontSize": { "type": "string" },
 		"mainFontAppearance": {
 			"type": "object",
@@ -84,7 +93,9 @@
 		"mainpadding": {"type": "object"},
 
 		"postTextColor": { "type": "string" },
+		"postTextHoverColor": { "type": "string" },
 		"postTextAlignment": { "type": "string" },
+		"postFont": { "type": "string" },
 		"postFontSize": { "type": "string" },
 		"postFontAppearance": {
 			"type": "object",

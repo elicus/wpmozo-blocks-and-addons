@@ -10,6 +10,12 @@ const Layout1 = ( { post, attributes } ) => {
 	const postLink   = 'javascript:void(0)';
 	const classLists = new Set( post.class_list ?? [] );
 		classLists.add( 'wpmozo_bna_team_member_card' );
+		
+	if ( 'item' === attributes.linkType ) {
+		if ( attributes.usePopup ) {
+			classLists.add('wpmozo_bna_team_popup');
+		} 
+	}
 
 	const NameLevel        = attributes.nameLevel ?? 'h2';
 	const DesignationLevel = attributes.designationLevel ?? 'h4';
@@ -51,7 +57,7 @@ const Layout1 = ( { post, attributes } ) => {
 					{/* Short Description. */}
 					{ ( attributes.showShortDesc && post.short_description ) &&
 						<div className="wpmozo_bna_team_member_short_desc"
-							dangerouslySetInnerHTML={ { __html: post.short_description } }
+							dangerouslySetInnerHTML={ { __html: post.short_description ?? '' } }
 						/>
 					}
 

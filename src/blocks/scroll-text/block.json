@@ -18,6 +18,7 @@
 
         "scrollText": { "type": "string", "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non augue eget est vestibulum ultrices eu in leo. Quisque sem diam, finibus ac condimentum eu, finibus id arcu." },
         "textColor": { "type": "string" },
+		"textFont": { "type": "string" },
 		"textFontSize": { "type": "string", "default": "55px" },
 		"textLetterSpacing": { "type": "string" },
 		"textDecoration": { "type": "string" },
@@ -31,6 +32,7 @@
 		"textFontWeight": { "type": "string" },
 
         "textHoverColor": { "type": "string" },
+		"textHoverFont": { "type": "string" },
 		"textHoverFontSize": { "type": "string" },
 		"textHoverLetterSpacing": { "type": "string" },
 		"textHoverDecoration": { "type": "string" },
@@ -48,9 +50,10 @@
 
         "slideEffectStart": { "type": "number", "default": 40 },
         "skewEffectStart": { "type": "number", "default": 35 },
+        "customPos": { "type": "boolean", "default": true },
         "animationStartElementPos": { "type": "string", "default": "0%" },
         "animationStartViewportPos": { "type": "string", "default": "80%" },
-        "animationEndElementPos": { "type": "string", "default": "0%" },
+        "animationEndElementPos": { "type": "string", "default": "80%" },
         "animationEndViewportPos": { "type": "string", "default": "40%" },
 
         "activeTextColor": { "type": "string", "default": "#543EC4" },
@@ -59,7 +62,7 @@
         "blockpadding": { "type": "object" },
 		"blockmargin": { "type": "object" },
         "blockborder": { "type": "object" },
-		"blockborderRadius": { "type": "string" },
+		"blockborderRadius": { "type": "object" },
 
 		"textAlign": {"type": "string","default": "left"}
     },

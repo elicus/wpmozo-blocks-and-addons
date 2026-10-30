@@ -1,15 +1,22 @@
 import { InnerBlocks, useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
-import {wpmozo_is_empty} from '../../common/utils.js';
+import { wpmozo_is_empty, mergeWrapperProps } from '../../common/utils.js';
 import generateDynamicStyle from './style';
 
 export default function save({ attributes }) {
 
-    const clientId = attributes.ID;
+    const clientId = attributes.ID,
+        wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: 'wpmozo-bna-floating-image' ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
     
     return (
         <>
-            <div {...useBlockProps.save({ className: 'wpmozo-bna-floating-image', ID:`block-${clientId}` })}>
+            <div {...blockProps} id={`block-${clientId}`}>
                 <div className="wpmozo-bna-floating-image-wrapper">
                     <InnerBlocks.Content/>
                 </div>

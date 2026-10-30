@@ -28,6 +28,10 @@
     -o-transition: 0.3s;
     transition: 0.3s;
 }
+.floating-image{
+    transition: all 300ms;
+    width: 100%;
+}
 @-webkit-keyframes wpmozo_float_up_down {
     from {
         -webkit-transform: translateY(10px);

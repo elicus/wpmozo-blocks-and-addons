@@ -2,20 +2,20 @@ import { __ } from "@wordpress/i18n";
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 import generateDynamicStyle from "./style";
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Save = ( { attributes } ) => {
 
-    const clientId = attributes.ID;
+    const clientId = attributes.ID
 
-	const { ID, className, isFirstChild } = attributes;
-
-	// Only add ID attribute if it exists.
-	const blockProps = useBlockProps.save( {
-		className: [
-			className,
-		].filter( Boolean ).join( ' ' ),
-		...( ID ? { id: `block-${ ID }` } : {} ),
-	} );
+	const { ID, className } = attributes,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-call-to-action`,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps.save(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
 	// Get the title.
 	let $title = '';
@@ -38,7 +38,7 @@ const Save = ( { attributes } ) => {
 	}
 
 	// Button.
-	const showButton = attributes.showButton ?? false;
+	const showButton = attributes.showButton ?? true;
 	const buttonUrl  = attributes.buttonUrl ?? '';
 
 	let $button = '';
@@ -68,7 +68,7 @@ const Save = ( { attributes } ) => {
 			<style>{ generateDynamicStyle( { attributes } ) }</style>
 		) }
 
-		<div { ...blockProps }>
+		<div { ...blockProps } id={`block-${clientId}`}>
 			<div className="wpmozo-bna-cta-wrap">
 				<div className="wpmozo-bna-cta-inner">
 					<div className="wpmozo-bna-cta-content-wrap">

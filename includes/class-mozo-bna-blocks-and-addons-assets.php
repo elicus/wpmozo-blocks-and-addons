@@ -94,6 +94,13 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			array(),
 			WPMOZO_BNA_VERSION
 		);
+		
+		wp_register_style(
+			$this->plugin_name . '-tippy-style',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/tippy.min.css',
+			array(),
+			WPMOZO_BNA_VERSION
+		);
 
 		wp_register_style(
 			$this->plugin_name . '-tippy-animation-style',
@@ -227,6 +234,15 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			'1.4.2',
 			true
 		);
+		
+		// Chart.
+		wp_register_script(
+			$this->plugin_name . '-chartjs-script',
+			WPMOZO_BNA_ASSETS_DIR_URL . "js/vendors/chart.min.js",
+			array('jquery'),
+			WPMOZO_BNA_VERSION,
+			true
+		);
 	}
 
 	/**
@@ -294,6 +310,7 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 	 */
 	public function enqueue_block_assets() {
 		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
+		wp_enqueue_style( 'wpmozo-blocks-style' );
 
 		// Load frontend localize variables.
 		$this->load_block_localize_variables();
@@ -345,6 +362,13 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 
 		// Register styles.
 		wp_register_style(
+			$this->plugin_name . '-plugins',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'css/wpmozo-admin-plugins.css',
+			array(),
+			WPMOZO_BNA_VERSION
+		);
+		// Register styles.
+		wp_register_style(
 			$this->plugin_name . '-metaboxes',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'css/wpmozo-admin-metaboxes.css',
 			array(),
@@ -360,9 +384,12 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 		);
 
 		// Check if we're on post edit/add screen for a specific CPT
+		if ( isset( $screen->base ) && ( $screen->base === 'plugins') )
+		{
+			wp_enqueue_style( $this->plugin_name . '-plugins' );
+		}
 		if ( isset( $screen->post_type ) && ( $screen->base === 'post' || $screen->base === 'upload' ) &&
-			( $screen->post_type === 'wpmozoae-testimonial' || $screen->post_type === 'wpmozoae-team-member' ||
-			$screen->post_type === 'attachment' )
+			( $screen->post_type === 'wpmozoae-testimonial' || $screen->post_type === 'wpmozoae-team-member' || $screen->post_type === 'wpmozoae-portfolio' || $screen->post_type === 'attachment' )
 		) {
 			wp_enqueue_script( $this->plugin_name . '-metaboxes' );
 			wp_enqueue_style( $this->plugin_name . '-metaboxes' );

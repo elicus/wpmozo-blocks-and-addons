@@ -31,6 +31,11 @@
 	text-align: center;
 	min-width: 90px;
 }
+
+.wpmozo-promotion-bar-wrap .wpmozo-pb-title,
+.wpmozo-promotion-bar-wrap .wpmozo-pb-desc{
+	transition: all 300ms;
+}
 .wpmozo-promotion-bar-content .wpmozo-promotion-bar-image{
 	border: 0 solid #000;
 }
@@ -119,7 +124,9 @@
 		width: 100%;
 	}
 	.wpmozo-promotion-bar-wrap.layout3 .wpmozo-promotion-bar-inner,
-	.wpmozo-promotion-bar-wrap.layout3 .wpmozo-promotion-bar-content{
+	.wpmozo-promotion-bar-wrap.layout3 .wpmozo-promotion-bar-content,
+	.wpmozo-promotion-bar-wrap.layout2 .wpmozo-promotion-bar-inner,
+	.wpmozo-promotion-bar-wrap.layout2 .wpmozo-promotion-bar-content{
 		flex-direction: column;
 	}
 	.wpmozo-promotion-bar-wrap.layout3 .wpmozo-image-wrap{

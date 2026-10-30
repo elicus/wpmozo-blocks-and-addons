@@ -24,6 +24,11 @@ class Mozo_Bna_Admin {
 		// Save metaboxes.
 		add_action( 'save_post', array( __class__, 'save_testimonial_meta_fields' ) );
 		add_action( 'save_post', array( __class__, 'save_team_member_meta_fields' ) );
+		add_action( 'save_post', array( __class__, 'save_portfolio_meta_fields' ) );
+		add_filter( 'plugin_action_links_' . WPMOZO_BNA_BASENAME,  array( __class__, 'plugin_action_links' ) );
+		if(defined('WPMOZO_BNA_PRO_BASENAME')){
+			add_filter( 'plugin_action_links_' . WPMOZO_BNA_BASENAME, array( __class__,  'wpmozo_remove_upgrade_action_links' ), 50 );
+		}
 	}
 
 	/**
@@ -54,6 +59,17 @@ class Mozo_Bna_Admin {
 				'high'
 			);
 		}
+
+		if ( ! self::meta_box_exists( 'wpmozo_ae_portfolio_metabox', 'wpmozoae-portfolio', 'normal' ) ) {
+			add_meta_box(
+				'wpmozo_ae_portfolio_metabox',
+				'<img class="wpmozo_ae_meta_image" src="'.WPMOZO_BNA_ASSETS_DIR_URL.'images/favicon-for-wpmozo-addons-for-blocks.png'.'"/>Portfolio Details',
+				array( __class__, 'portfolio_metabox_callback' ),
+				'wpmozoae-portfolio',
+				'normal',
+				'high'
+			);
+		}
 	}
 
 	/**
@@ -72,6 +88,15 @@ class Mozo_Bna_Admin {
 	 */
 	public static function team_member_metabox_callback() {
 		require_once WPMOZO_BNA_INC_DIR_PATH . 'admin/metaboxes/mozo-bna-team-member.php';
+	}
+
+	/**
+	 * Portfolio metaboxes form/fields.
+	 *
+	 * @since  1.8.0
+	 */
+	public static function portfolio_metabox_callback() {
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'admin/metaboxes/mozo-bna-portfolio.php';
 	}
 
 	/**
@@ -202,6 +227,31 @@ class Mozo_Bna_Admin {
 	}
 
 	/**
+	 * Save portfolio metaboxes.
+	 *
+	 * @since  1.8.0
+	 */
+	public static function save_portfolio_meta_fields( $post_id ) {
+		// doing an auto save.
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+		// verify nonce.
+		if ( ! isset( $_POST['wpmozo_portfolio_metabox_nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['wpmozo_portfolio_metabox_nonce'] ) ), 'wpmozo_metaboxes_nonce' ) ) {
+			return;
+		}
+		// if current user can not edit the post.
+		if ( ! current_user_can( 'edit_posts', $post_id ) ) {
+			return;
+		}
+
+		if ( isset( $_POST['wpmozo_ae_portfolio_project_url'] ) ) {
+			$project_url = esc_url_raw( wp_unslash( $_POST['wpmozo_ae_portfolio_project_url'] ) );
+			update_post_meta( $post_id, 'wpmozo_ae_portfolio_project_url', $project_url );
+		}
+	}
+
+	/**
 	 * Check metabox exists.
 	 *
 	 * @since  1.6.1
@@ -217,6 +267,36 @@ class Mozo_Bna_Admin {
 		       || isset( $wp_meta_boxes[ $screen ][ $context ]['high'][ $id ] )
 		       || isset( $wp_meta_boxes[ $screen ][ $context ]['core'][ $id ] )
 		       || isset( $wp_meta_boxes[ $screen ][ $context ]['low'][ $id ] );
+	}
+	/**
+	 * Displays Settings link on plugin page
+	 *
+	 * @since    1.6.1
+	 */
+	public static function plugin_action_links( $links ) {
+		$links['wpmozo_settings'] = '<a href="' . esc_url( admin_url( 'admin.php?page=wpmozo-blocks-and-addons' ) ) . '">' . esc_html__( 'Settings', 'wpmozo-blocks-and-addons' ) . '</a>';
+		
+		$upgrade_text = esc_html__( 'Upgrade To Pro', 'wpmozo-blocks-and-addons' );
+
+		$links['wpmozo_upgrade_to_pro'] = sprintf( '<a href="%1$s" target="_blank" class="wpmozo_bna_upgrade">%2$s</a>', 'https://wpmozoblocks.com/pricing/', $upgrade_text );
+		
+		return $links;
+	}
+	/**
+	 * Remove Plugin action links.
+	 *
+	 * Removew upgrade action links from the plugin list table
+	 *
+	 * @since 2.0.0
+	 * @access public
+	 *
+	 * @param array $links An array of plugin action links.
+	 *
+	 * @return array An array of plugin action links.
+	 */
+	public static function wpmozo_remove_upgrade_action_links( $links ) {
+		unset($links['wpmozo_upgrade_to_pro']);
+		return $links;
 	}
 }
 

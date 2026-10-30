@@ -9,17 +9,40 @@ import generateDynamicStyle from "./style";
 
 import Layout1 from './layouts/layout1';
 import Layout2 from './layouts/layout2';
+import { mergeWrapperProps } from '../../common/utils.js';
 
 const Edit = (props) => {
 
-	const {attributes, setAttributes, clientId} = props;
-
+	const {attributes, setAttributes, clientId} = props,
+		wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-team-slider${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle,
+		isEdit = true;
 	// Ensure ID is set once (no render-time mutation).
-	useEffect(() => {
-		if (attributes.ID !== clientId) {
-			setAttributes({ID: clientId});
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
 		}
-	}, [clientId]); // eslint-disable-line react-hooks/exhaustive-deps.
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
 	const postsNumber = parseInt(attributes.postsNumber) ?? 10;
 	const postOrder = attributes.postOrder ?? 'desc';
@@ -33,7 +56,6 @@ const Edit = (props) => {
 				order: postOrder,
 				orderby: postOrderBy,
 				categories: includesCategories.join(','),
-				// author: 1,
 				_embed: true
 			}),
 		[postsNumber, postOrder, postOrderBy, includesCategories.join(',')]);
@@ -81,7 +103,7 @@ const Edit = (props) => {
 			)) {
 				paginationClass = (attributes.enableDynamicDots) ? ' swiper-pagination-bullets-dynamic' : ' swiper-pagination-bullets';
 			}
-			$paginationDots = <div className="wpmozo-bna-testimonial-slider-pagination">
+			$paginationDots = <div className="wpmozo-bna-team-slider-pagination">
 				<div className={`swiper-pagination ${attributes.controlDotStyle} ${paginationClass}`}></div>
 			</div>;
 		}
@@ -96,18 +118,16 @@ const Edit = (props) => {
 
 	useEffect(() => {
 		const event = new CustomEvent('WPMozoTeamSliderPropsChanged');
-		window.dispatchEvent(event);
-
 		const iframe = document.querySelector('iframe[name="editor-canvas"]');
 		if (iframe?.contentWindow) {
 			iframe.contentWindow.dispatchEvent(event);
 		}
-	}, [props]);
+	}, [JSON.stringify(attributes), posts]);
 
 	// Get attrs.
 	const displayInPopup = attributes.displayInPopup ?? ["image", "designation", "social_icons", "content", "skills_bars"];
 
-	// Equal height testimonial class.
+	// Equal height team class.
 	const equalHeightClass = (attributes.equalHeight) ? ' wpmozo_equal_team_member_height' : '';
 
 	let autoHeight = (attributes.autoHeight) ?? 'false';
@@ -116,9 +136,9 @@ const Edit = (props) => {
 	return (
 		<Fragment>
 			<Inspector attributes={attributes} setAttributes={setAttributes}/>
-			<style>{generateDynamicStyle({attributes, clientId})}</style>
+			<style>{generateDynamicStyle({attributes, clientId, isEdit})}</style>
 
-			<div {...useBlockProps()} id={`block-${attributes.ID}`} onClick={selectBlock}>
+			<div {...blockProps} id={`block-${attributes.ID}`} onClick={selectBlock}>
 				<div className={`wpmozo_swiper_wrapper ${equalHeightClass}`}
 					 data-clientId={clientId}
 					 data-slide_effect={attributes.slideEffect || 'slide'}
@@ -135,18 +155,18 @@ const Edit = (props) => {
 					 data-coverflow_depth={attributes.coverflowDepth || '100'}
 
 					 data-enable_coverflow_shadow={attributes.enableCoverflowShadow ?? 'false'}
-					 data-enable_loop={attributes.enableLoop || 'false'}
-					 data-auto_height={autoHeight || 'false'}
-					 data-autoplay={attributes.autoplay || 'true'}
-					 data-autoplay_delay={attributes.autoplayDelay || '3000'}
-					 data-pause_on_hover={attributes.pauseOnHover || 'true'}
-					 data-enable_linear_trans={attributes.enableLinearTrans || 'false'}
+					 data-enable_loop={attributes.enableLoop ?? 'false'}
+					 data-auto_height={autoHeight ?? 'false'}
+					 data-autoplay={attributes.autoplay ?? 'false'}
+					 data-autoplay_delay={attributes.autoplayDelay ?? '3000'}
+					 data-pause_on_hover={attributes.pauseOnHover ?? 'false'}
+					 data-enable_linear_trans={attributes.enableLinearTrans ?? 'false'}
 					 data-trans_duration={attributes.transDuration || '1000'}
 
-					 data-show_arrows={attributes.showArrows || 'false'}
-					 data-show_control_dot={attributes.showControlDot || 'false'}
+					 data-show_arrows={attributes.showArrows ?? 'false'}
+					 data-show_control_dot={attributes.showControlDot ?? 'false'}
 					 data-control_dot_style={attributes.controlDotStyle || 'solid_dot'}
-					 data-enable_dynamic_dots={attributes.enableDynamicDots || 'false'}
+					 data-enable_dynamic_dots={attributes.enableDynamicDots ?? 'false'}
 					 data-social_icons_target={attributes.socialIconTarget || 'same'}
 
 					 data-show_designation={displayInPopup.includes('designation') ? 'on' : 'off'}
@@ -156,12 +176,14 @@ const Edit = (props) => {
 					 data-show_image={displayInPopup.includes('image') ? 'on' : 'off'}
 					 data-bar_layout={attributes.popupBarLayout ?? 'layout1'}
 					 data-use_stripes={attributes.popupBarUseStripe ? 'on' : 'off'}
+					 data-use_animated_stripes={attributes.popupBarStripeUseAnim ? 'on' : 'off'}
 					 data-popup_name_level={attributes.popupNameLevel ?? 'h2'}
+					 data-close_icon_position={attributes.popupCloseIconPos ?? 'outside'}
 				>
 					<div className={"wpmozo_bna_team_slider_container wpmozo_swiper_inner_wrap " + layout}>
 						{$postItems.length > 0 ? (
 							<div className="swiper swiper-container">
-								<div className="swiper-wrapper" dangerouslySetInnerHTML={{__html: $postItems}}/>
+								<div className="swiper-wrapper" dangerouslySetInnerHTML={{__html: $postItems ?? ''}}/>
 							</div>
 						) : (
 							<Notice status="warning" isDismissible={false}>

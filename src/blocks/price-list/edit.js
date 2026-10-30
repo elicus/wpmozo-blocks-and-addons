@@ -2,9 +2,9 @@ import { __ } from '@wordpress/i18n';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import Inspector from './inspector';
 import { useSelect, useDispatch  } from '@wordpress/data';
-import { Fragment } from "@wordpress/element";
+import { Fragment, useEffect } from "@wordpress/element";
 import generateDynamicStyle from './style';
-import {getIdByClientid} from '../../common/utils.js';
+import { getIdByClientid, mergeWrapperProps } from '../../common/utils.js';
 import { createBlock } from '@wordpress/blocks';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -15,9 +15,29 @@ import { createBlock } from '@wordpress/blocks';
 
 export default function Edit(props) {
     const attributes = props.attributes,
-    setAttributes = props.setAttributes,
-    clientId = props.clientId,
-    blockProps = useBlockProps({ className: 'wpmozo-bna-list' });
+        setAttributes = props.setAttributes,
+        clientId = props.clientId;
+// Ensure ID is set once (no render-time mutation).
+	useEffect( () => {
+		if ( attributes.ID !== clientId ) {
+			setAttributes( { ID: clientId } );
+		}
+		const updates = {};
+		if ( attributes.ID !== clientId ) {
+			updates.ID = clientId;
+		}
+
+		// wrapStyle recalculate karke attribute mein store karo
+		if ( attributes.ID ) {
+			if ( wrapStyle && wrapStyle !== attributes.wrapStyle ) {
+				updates.wrapStyle = wrapStyle;
+			}
+		}
+
+		if ( Object.keys( updates ).length ) {
+			setAttributes( updates );
+		}
+	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
     const childBlocks = useSelect((select) => {
         return select('core/block-editor').getBlocks(clientId);
@@ -40,9 +60,16 @@ export default function Edit(props) {
         insertBlocks( newBlock, innerBlocks.length, clientId );
     };
 
-    attributes.ID = clientId;
 
     let currencyPosition = ( 'right' === attributes.currencySymbolPosition ) ? ' wpmozo-bna-currency-pos-right' : '';
+
+    const wrapArgs = attributes?.ID && mergeWrapperProps( { 
+			className: `wpmozo-bna-price-list${currencyPosition}${ attributes?.wrapIsHover ? ' is_hover' : '' }` ,
+			style: {}
+		}, attributes ),
+		wrapProps = wrapArgs?.wrapprops,
+		blockProps = useBlockProps(wrapProps),
+		wrapStyle = wrapArgs?.wrapStyle;
 
     return (
         <Fragment>
@@ -50,7 +77,7 @@ export default function Edit(props) {
             <style>
                 { generateDynamicStyle({ attributes, clientId }) }
             </style>  
-            <div {...useBlockProps({ className: `wpmozo-bna-price-list${currencyPosition}` })}>
+            <div {...blockProps}>
                 <InnerBlocks 
                     templateLock={false} 
                     template={ TEMPLATE }
