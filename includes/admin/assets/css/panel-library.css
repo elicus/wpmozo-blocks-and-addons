@@ -1,0 +1,80 @@
+/* Pattern Library switch on the settings page (see panel-library.js). */
+.wpmozo_bna_panel_library_field {
+	margin: 0 0 24px;
+	padding: 16px 20px;
+	border-radius: 3px;
+	box-shadow: 0 0 5px 1px #6563631c;
+}
+
+.wpmozo_bna_library_switch {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+/* Visually hidden, but still focusable and announced. */
+.wpmozo_bna_library_switch .wpmozo_bna_library_checkbox {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+}
+
+.wpmozo_bna_library_switch label {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	font-size: 16px;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.wpmozo_bna_library_toggle {
+	position: relative;
+	flex-shrink: 0;
+	width: 30px;
+	height: 15px;
+	border: 1px solid #aab1c0;
+	border-radius: 10px;
+}
+
+.wpmozo_bna_library_toggle .wpmozo_toggle_dot {
+	position: absolute;
+	top: 50%;
+	left: 7px;
+	width: 10px;
+	height: 10px;
+	border-radius: 40px;
+	background: #aab1c0;
+	transform: translate(-50%, -50%);
+	transition: left 100ms ease;
+}
+
+.wpmozo_bna_library_checkbox:checked + label .wpmozo_bna_library_toggle {
+	border-color: #3d3eed;
+	background: #3d3eed;
+}
+
+.wpmozo_bna_library_checkbox:checked + label .wpmozo_toggle_dot {
+	left: calc(50% + 7px);
+	background: #fff;
+}
+
+.wpmozo_bna_library_checkbox:focus-visible + label .wpmozo_bna_library_toggle {
+	outline: 2px solid #3d3eed;
+	outline-offset: 2px;
+}
+
+.wpmozo_bna_library_info {
+	margin: 8px 0 0;
+	color: #50575e;
+	font-size: 14px;
+}
+
+/* The placeholder block has no glyph in the block icon font. */
+.wpmozo_bna_panel_multiple_checkboxes .wpmozo-bna-icon-pattern-library::before {
+	font-family: dashicons, sans-serif;
+	content: "\f538";
+}

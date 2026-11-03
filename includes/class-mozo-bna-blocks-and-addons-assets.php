@@ -323,13 +323,12 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 	/**
 	 * Enqueue the Pattern Library editor UI (post editor only, users who can use the library).
 	 *
+	 * The same conditions decide whether the placeholder block appears in the inserter: the
+	 * script shows it, so the Site Editor, widgets and Customizer never offer it.
+	 *
 	 * @since n.e.x.t
 	 */
 	public function enqueue_library_editor_script() {
-		// LPL-UX prototype gate: only harness sites that define this constant load the UI until the prototype is approved.
-		if ( ! defined( 'WPMOZO_BNA_LIBRARY_PROTOTYPE' ) || ! WPMOZO_BNA_LIBRARY_PROTOTYPE ) {
-			return;
-		}
 		if ( ! Mozo_Bna_Library::is_enabled() || ! current_user_can( Mozo_Bna_Library::capability() ) ) {
 			return;
 		}

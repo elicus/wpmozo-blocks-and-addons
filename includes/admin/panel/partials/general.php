@@ -13,6 +13,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Pattern Library switch. Saved with the panel's Save button (see panel-library.js).
+$library_enabled = Mozo_Bna_Library::is_enabled();
+?>
+<div class="wpmozo_bna_panel_field wpmozo_bna_panel_library_field">
+	<div class="wpmozo_bna_library_switch">
+		<input type="checkbox" id="wpmozo_pattern_library_switch" class="wpmozo_bna_library_checkbox" aria-describedby="wpmozo_pattern_library_info" <?php checked( $library_enabled ); ?> />
+		<label for="wpmozo_pattern_library_switch">
+			<span class="wpmozo_bna_library_toggle" aria-hidden="true"><span class="wpmozo_toggle_dot"></span></span>
+			<?php esc_html_e( 'Pattern Library', 'wpmozo-blocks-and-addons' ); ?>
+		</label>
+	</div>
+	<p id="wpmozo_pattern_library_info" class="wpmozo_bna_library_info">
+		<?php esc_html_e( 'Lets users who can edit posts browse ready-made sections and insert them in the post editor. Turning it off doesn’t change sections already on your pages.', 'wpmozo-blocks-and-addons' ); ?>
+	</p>
+	<input type="hidden" id="wpmozo_pattern_library" name="wpmozo_pattern_library" value="<?php echo esc_attr( $library_enabled ? 'on' : 'off' ); ?>" />
+</div>
+<?php
+
 // Get blocks.
 $blocks = glob( WPMOZO_BNA_PLUGIN_DIR_PATH . 'build/blocks/*', GLOB_ONLYDIR );
 if ( is_array( $blocks ) && ! empty( $blocks ) ) {

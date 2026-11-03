@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpmozo/pattern-library",
+	"version": "0.1.0",
+	"title": "Pattern Library",
+	"category": "wpmozo",
+	"description": "Opens the Pattern Library and is replaced by the section you choose. Shows nothing on your site.",
+	"keywords": [ "patterns", "sections", "templates", "layouts", "design" ],
+	"example": {},
+	"supports": {
+		"html": false,
+		"className": false,
+		"customClassName": false,
+		"reusable": false,
+		"inserter": false
+	},
+	"textdomain": "wpmozo-blocks-and-addons",
+	"editorScript": "file:./index.js"
+}

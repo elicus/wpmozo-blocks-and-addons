@@ -139,6 +139,10 @@ class Mozo_Bna_Panel {
 			'ajaxurl'    => admin_url( 'admin-ajax.php' ),
 			'ajax_nonce' => wp_create_nonce( 'wpmozo-bna-admin-panel-nonce' ),
 		) );
+
+		// Pattern Library switch in the General section.
+		wp_enqueue_style( 'wpmozo-bna-admin-panel-library', WPMOZO_BNA_PLUGIN_DIR_URL . 'includes/admin/assets/css/panel-library.css', array( 'wpmozo-bna-admin-panel' ), WPMOZO_BNA_VERSION );
+		wp_enqueue_script( 'wpmozo-bna-admin-panel-library', WPMOZO_BNA_PLUGIN_DIR_URL . 'includes/admin/assets/js/panel-library.js', array( 'jquery', 'wpmozo-bna-admin-panel' ), WPMOZO_BNA_VERSION, true );
 	}
 
 }

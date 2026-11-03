@@ -46,8 +46,8 @@ final class Mozo_Bna_Library_Validator {
 	const MAX_DEPTH = 10;
 
 	/**
-	 * Core blocks that patterns may not use (site-specific references, raw HTML,
-	 * shortcodes or third-party embeds).
+	 * Blocks that patterns may not use (site-specific references, raw HTML, shortcodes,
+	 * third-party embeds, and the library's own placeholder).
 	 *
 	 * @var array
 	 */
@@ -62,6 +62,7 @@ final class Mozo_Bna_Library_Validator {
 		'core/widget-group',
 		'core/embed',
 		'core/post-content',
+		'wpmozo/pattern-library',
 	);
 
 	/**
