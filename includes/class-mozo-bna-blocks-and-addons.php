@@ -186,6 +186,15 @@ class Mozo_Bna_Blocks_And_Addons {
 		require_once WPMOZO_BNA_INC_DIR_PATH . 'class-mozo-bna-integration.php';
 		require_once WPMOZO_BNA_INC_DIR_PATH . 'mozo-bna-integration-functions.php';
 
+		/**
+		 * The Pattern Library (classes only; the registry is built on library REST requests).
+		 */
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'library/class-mozo-bna-library-registry.php';
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'library/class-mozo-bna-library-resolver.php';
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'library/class-mozo-bna-library-validator.php';
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'library/class-mozo-bna-library-rest.php';
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'library/class-mozo-bna-library.php';
+
 		$wpmozo_i18n   = new Mozo_Bna_Blocks_And_Addons_I18n();
 		$wpmozo_assets = new Mozo_Bna_Blocks_And_Addons_Assets();
 
@@ -232,6 +241,9 @@ class Mozo_Bna_Blocks_And_Addons {
 
 		// Load all script.js file in footer.
 		add_action( 'wp_enqueue_scripts', array( $this->classes['astreg'], 'enqueue_block_script_in_footer' ), 20 );
+
+		// Pattern Library REST routes.
+		Mozo_Bna_Library::instance()->init_hooks();
 
 		// Use a higher priority to ensure our filter runs after others.
 		add_filter( 'upload_mimes', array( $this, 'wpmozo_custom_upload_mimes' ), 999 );

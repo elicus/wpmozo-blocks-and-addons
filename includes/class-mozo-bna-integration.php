@@ -91,6 +91,11 @@ if ( ! class_exists( 'Mozo_Bna_Integration' ) ) {
 				$features['shared-js'] = 1;
 			}
 
+			// Pattern Library sources (wpmozo_bna_library_register_sources).
+			if ( class_exists( 'Mozo_Bna_Library' ) ) {
+				$features['library'] = Mozo_Bna_Library::FEATURE_VERSION;
+			}
+
 			return $features;
 		}
 
