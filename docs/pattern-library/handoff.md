@@ -14,17 +14,18 @@ Pro `dev/ayush` is off-limits.
 | Stage A, LPL-1: integration contract + shared editor script | **Done** (tested; see [testing.md](testing.md)) |
 | Stage C, LPL-2: registry, resolver, maps, validator, REST | **Done** (tested; see [testing.md](testing.md)). No patterns ship yet; Lite's `media` map is empty until the pilot |
 | Pro preparatory task | Done (tracked in the Pro repository) |
-| Stage B, PPL-1: Pro adopts the contract | In progress on Pro |
+| Stage B, PPL-1: Pro adopts the contract | **Done** (tracked in the Pro repository) |
 | LPL-UX: UI prototype | **Approved as is** 2026-11-03 (PL-D17) |
 | Stage D, LPL-3: UI, importer, placeholder block, entry points, library switch | **Done** (tested on WordPress 6.8.11 and 7.1.3; see [testing.md](testing.md)). Docs: [editor-ui.md](editor-ui.md), [import-workflow.md](import-workflow.md) |
-| Stage E, PPL-2: Pro source + entitlement | After PPL-1 |
+| Stage E, PPL-2: Pro source + entitlement | **Done** (tracked in the Pro repository). The Pro source registers with no patterns yet |
 | LPL-T + pilot (2 free + 2 Pro) | After Stage E. **Owner review checkpoint**; no catalog expansion before approval |
 | Stage F, X-1, release | Not started |
 
 ## Next step: LPL-T + pilot
 Lite has nothing left before LPL-T. LPL-T needs:
-- Stage E (PPL-2) for its Pro half (in progress on Pro);
 - the pilot designs, which **the owner will supply** (answered 2026-11-03).
+
+Stage E (PPL-2), which the Pro half needs, is done.
 
 **Scope:**
 - the authoring and thumbnail pipeline: export helper, thumbnail capture, validity gate;
@@ -41,7 +42,7 @@ Checked on 2026-11-03 on WordPress 6.8.11 and 7.1.3.
 
 ## Open questions
 1. Destination page for the Lite-to-Pro card. Configured in `includes/library/data/links.php` (`pro-upgrade`, empty for now). Until it is set, the card shows no link.
-2. ~~Who supplies the pilot pattern designs.~~ **Answered 2026-11-03: the owner supplies them.** LPL-T starts when they arrive and PPL-2 is done.
+2. ~~Who supplies the pilot pattern designs.~~ **Answered 2026-11-03: the owner supplies them.** LPL-T starts when they arrive.
 
 ## Known limitations and observations
 - `n.e.x.t` in `@since` tags is replaced with the real Lite version at release.
