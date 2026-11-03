@@ -2,7 +2,12 @@
 
 The Pattern Library lets editors browse ready-made sections and insert them into the block editor. Lite (`wpmozo-blocks-and-addons`) owns the library: catalog, REST routes, validation, import and UI. The Pro plugin adds its patterns through a documented contract.
 
-**Status:** in development. The integration contract (Stage A) and the server side (Stage C: registry, validator, REST) are implemented; the editor UI isn't yet. See [handoff.md](handoff.md).
+**Status:** in development. Implemented:
+- the integration contract (Stage A);
+- the server side (Stage C: registry, validator, REST);
+- the editor UI, importer, placeholder block and library switch (Stage D).
+
+No patterns ship yet; the pilot (LPL-T) comes next. See [handoff.md](handoff.md).
 
 ## Documents
 
@@ -11,6 +16,8 @@ The Pattern Library lets editors browse ready-made sections and insert them into
 | [handoff.md](handoff.md) | Current status, last verified state and the exact next step. Start here |
 | [architecture.md](architecture.md) | Components, ownership, data flow |
 | [registry-and-contract.md](registry-and-contract.md) | The Lite–add-on integration contract (implemented) and the pattern registry contract (planned) |
+| [editor-ui.md](editor-ui.md) | Where the library loads, entry points, the placeholder block, the library switch, the window |
+| [import-workflow.md](import-workflow.md) | How a pattern is checked, rebuilt and inserted |
 | [decisions.md](decisions.md) | Approved decisions, with their reasons |
 | [rest-api.md](rest-api.md) | REST routes, responses, status codes, availability reasons |
 | [security.md](security.md) | Access rules, validation rules, restricted-HTML handling |
@@ -21,7 +28,6 @@ The Pattern Library lets editors browse ready-made sections and insert them into
 | [architecture-readiness-review.md](architecture-readiness-review.md) | Historical record of the pre-implementation review (2026-10-31 / 2026-11-03) |
 
 Created by the stage that implements their content:
-- Stage D: `editor-ui.md`, `import-workflow.md`.
 - LPL-T: `pattern-authoring.md`.
 - Release preparation: `release-and-upgrade.md`.
 

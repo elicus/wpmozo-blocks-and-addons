@@ -106,3 +106,60 @@ Target was ≤ 300 ms warm at 500 patterns. A generated metadata index stays def
 - the Site Editor;
 - PHP 7.3 at runtime (no runtime available);
 - WordPress versions other than 6.8.11 and 7.1.3.
+
+## LPL-UX (UI prototype, owner review checkpoint), 2026-11-03
+
+**Setup:** a demo catalog of 12 free and 6 Pro wireframe patterns, registered by a harness-only test plugin, with entitlement states set through options. WordPress 7.1.3 / PHP 8.2, Chrome. Approved as is (PL-D17).
+
+| Check | Result |
+|---|---|
+| Lint (JS, styles) and 7 Jest tests for search, filters and sort | Passed |
+| Existing block build output | Byte-identical |
+| Entry points; focus on search when opening; search, filters, category, sort; result announcements | Passed |
+| Preview; Escape back to the grid; focus returns to the card | Passed |
+| Insert: valid blocks, tokens resolved, one-step Undo/Redo, valid after save and reload | Passed |
+| Lite block inserted twice: unique IDs; front end correct | Passed |
+| Locked (expiry cutoff), unavailable (missing WooCommerce), empty, and error with retry | Passed |
+| Lite-to-Pro card: placement and dismissal persist | Passed |
+| 360, 768, 1440 px; keyboard order | Passed |
+
+## LPL-3 (Stage D: UI enabled, placeholder block, library switch), 2026-11-03
+
+**Setup:**
+- Lite working tree copied into the harness;
+- the demo catalog;
+- WordPress 7.1.3 / PHP 8.2 and WordPress 6.8.11 / PHP 7.4, Chrome.
+- Suite: `sessions/lpl-1/test_lpl3.cjs` in the harness (32 checks per site).
+
+| Check | Result |
+|---|---|
+| Lint (JS, styles); `php -l` 8.0/8.1/8.2/8.4; PHPCompatibilityWP 7.3+; PHPCS WordPress on changed lines | Passed |
+| Build: existing block output | Byte-identical. Changed only: the block manifest, the new block, the library bundle |
+| Post editor: library loads; placeholder offered in the inserter; inserter search finds it | Passed on both |
+| Placeholder: inserted after the selection; instructions and button shown; opens the library with itself as target | Passed on both |
+| Pattern replaces the placeholder in place; snackbar Undo restores the placeholder in one step; Redo restores the pattern | Passed on both |
+| Options menu: inserts after the selected block. Header launcher with nothing selected: inserts at the end | Passed on both |
+| Same pattern twice: distinct `ID`s | Passed on both |
+| Save and reload: all 16 blocks valid, none missing | Passed on both |
+| Front end: both headings with distinct ids, the features section, no placeholder output | Passed on both |
+| Unused placeholder: saves `<!-- wp:wpmozo/pattern-library /-->`, renders nothing | Passed on both |
+| Library switch off: no script or store; placeholder hidden from the inserter; a saved placeholder explains itself without a button; no Options menu item | Passed on both |
+| Settings page: switch on by default, labelled and described; placeholder block listed with an icon | Passed on both |
+| Settings: Space toggles the switch; Save sends the block list and the switch together; the library REST then returns 404; the setting survives a reload; other block settings unchanged; clicking the label and saving turns it back on | Passed on both |
+| Placeholder turned off in the block panel: block unregistered, library still loads | Passed on both |
+| Site Editor: no library; placeholder hidden from the inserter | Passed on both |
+| Validator rejects the placeholder inside pattern content | Passed on both |
+| 360 px: placeholder button visible | Passed on both |
+
+**Console and network, not caused by LPL-3:**
+- Core's block-directory search returns 500 offline when the inserter is searched: it calls api.wordpress.org, which the harness blocks.
+- The settings page logo is loaded from wpmozoblocks.com; the harness blocks it.
+- A `2x` 404 comes from the harness's local avatar replacement.
+- Requests were aborted when the test navigated away.
+- No JavaScript errors.
+
+**Not tested in LPL-3:**
+- a screen reader (keyboard and focus behaviour only);
+- a user without the library capability (the capability check is the same function the REST routes use, tested in LPL-2);
+- the widgets editor and Customizer (the harness theme is a block theme);
+- multisite.

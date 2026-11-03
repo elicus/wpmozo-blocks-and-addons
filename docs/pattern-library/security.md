@@ -18,7 +18,7 @@ Protections built into the library. Content is never trusted because it ships wi
 |---|---|
 | Size | Content over 256 KB, over 400 blocks, or nested deeper than 10 |
 | Structure | Content outside blocks (classic content); no blocks at all |
-| Block allowlist | Anything outside `core/*` and `wpmozo/*`. Also these core blocks: `html`, `freeform`, `shortcode`, `block` (synced pattern references), `pattern`, `template-part`, `legacy-widget`, `widget-group`, `embed` (and `core-embed/*`), `post-content`, and `navigation` with a `ref` |
+| Block allowlist | Anything outside `core/*` and `wpmozo/*`. Also these core blocks: `html`, `freeform`, `shortcode`, `block` (synced pattern references), `pattern`, `template-part`, `legacy-widget`, `widget-group`, `embed` (and `core-embed/*`), `post-content`, and `navigation` with a `ref`. The library's own placeholder block, `wpmozo/pattern-library`, is also rejected |
 | HTML elements | `script`, `iframe`, `frame(set)`, `object`, `embed`, `applet`, `link`, `base`, `form`, `noscript`; `meta` with `http-equiv` (microdata `meta itemprop` is allowed) |
 | HTML attributes | Any `on*` event handler. Any attribute value whose scheme is `javascript:`, `vbscript:` or `data:`, checked **after decoding entities and removing whitespace and control characters**, so `jav&#x61;script:` and `java⇥script:` are caught. Exception: the exact no-op `javascript:void(0)` that WPMozo buttons save |
 | `<style>` content | `expression(`, `@import`, `javascript:`, `behavior:`, `-moz-binding` |
