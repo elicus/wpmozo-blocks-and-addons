@@ -72,6 +72,24 @@
 		overflow: hidden;
 	}
 
+	// The editor wraps the window's children in one element: a classed
+	// container in newer editors, a plain div in older ones. Without a height
+	// limit the layout grows past the window and the grid can't scroll.
+	// Two rules, so a browser without :has() still applies the first.
+	.components-modal__children-container {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		min-height: 0;
+	}
+
+	.components-modal__content > :has(> .wpmozo-library__layout) {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		min-height: 0;
+	}
+
 	.components-modal__header {
 		border-block-end: 1px solid var(--wpmozo-lib-border);
 	}
