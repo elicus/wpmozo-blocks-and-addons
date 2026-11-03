@@ -12,5 +12,6 @@ module.exports = {
 	entry: () => ( {
 		...defaultConfig.entry(),
 		'shared/index': path.resolve( __dirname, 'src/shared/index.js' ),
+		'library/index': path.resolve( __dirname, 'src/library/index.js' ),
 	} ),
 };

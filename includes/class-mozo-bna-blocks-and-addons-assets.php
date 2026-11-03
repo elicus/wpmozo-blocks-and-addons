@@ -321,6 +321,38 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 	}
 
 	/**
+	 * Enqueue the Pattern Library editor UI (post editor only, users who can use the library).
+	 *
+	 * @since n.e.x.t
+	 */
+	public function enqueue_library_editor_script() {
+		// LPL-UX prototype gate: only harness sites that define this constant load the UI until the prototype is approved.
+		if ( ! defined( 'WPMOZO_BNA_LIBRARY_PROTOTYPE' ) || ! WPMOZO_BNA_LIBRARY_PROTOTYPE ) {
+			return;
+		}
+		if ( ! Mozo_Bna_Library::is_enabled() || ! current_user_can( Mozo_Bna_Library::capability() ) ) {
+			return;
+		}
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+		if ( ! $screen || 'post' !== $screen->base ) {
+			return;
+		}
+		$asset_file = WPMOZO_BNA_PLUGIN_DIR_PATH . 'build/library/index.asset.php';
+		if ( ! file_exists( $asset_file ) ) {
+			return;
+		}
+
+		$asset  = require $asset_file;
+		$handle = $this->plugin_name . '-library';
+		wp_enqueue_script( $handle, WPMOZO_BNA_PLUGIN_DIR_URL . 'build/library/index.js', $asset['dependencies'], $asset['version'], true );
+		wp_set_script_translations( $handle, 'wpmozo-blocks-and-addons' );
+		if ( file_exists( WPMOZO_BNA_PLUGIN_DIR_PATH . 'build/library/style-index.css' ) ) {
+			wp_enqueue_style( $handle, WPMOZO_BNA_PLUGIN_DIR_URL . 'build/library/style-index.css', array( 'wp-components' ), $asset['version'] );
+			wp_style_add_data( $handle, 'rtl', 'replace' );
+		}
+	}
+
+	/**
 	 * Get font awesome icons array.
 	 * @return array $icons All icons.
 	 * @since 1.0.0

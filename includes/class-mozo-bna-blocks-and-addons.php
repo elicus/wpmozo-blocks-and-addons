@@ -237,6 +237,7 @@ class Mozo_Bna_Blocks_And_Addons {
 		// Early priority: the shared script must print before any block editor script.
 		add_action( 'enqueue_block_editor_assets', array( $this->classes['astreg'], 'enqueue_shared_editor_script' ), 1 );
 		add_action( 'enqueue_block_editor_assets', array( $this->classes['astreg'], 'enqueue_block_editor_assets' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this->classes['astreg'], 'enqueue_library_editor_script' ) );
 		add_action( 'wp_enqueue_scripts', array( $this->classes['astreg'], 'enqueue_block_assets' ) );
 
 		// Load all script.js file in footer.
