@@ -66,6 +66,8 @@ So the block appears only where the library loads. If the editor lacks `reapplyB
 
 ## The library window
 - **Window:** a `Modal` (`size="fill"`); full screen below 782 px.
+  - The grid scrolls inside the window; the category column fills the height and scrolls separately.
+  - The modal's wrapper around the content differs between editor versions (a classed container in 7.1, a plain `div` in 6.8). `style.scss` styles both.
 - **Navigation:** categories with counts on the left; a select on small screens.
 - **Toolbar:** search, a Free/Pro filter, "Available only", and sort (Recommended, Newest, A–Z). Search runs on the client over the catalog metadata (`src/library/search.js`).
 - **Grid:** 24 cards at a time, more on scroll, plus a "Load more" button for keyboard users.

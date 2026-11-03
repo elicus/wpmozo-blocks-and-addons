@@ -22,7 +22,9 @@ Pro `dev/ayush` is off-limits.
 | Stage F, X-1, release | Not started |
 
 ## Next step: LPL-T + pilot
-Lite has nothing left before LPL-T. LPL-T needs Stage E (PPL-2) for its Pro half, and open question 2 answered.
+Lite has nothing left before LPL-T. LPL-T needs:
+- Stage E (PPL-2) for its Pro half (in progress on Pro);
+- the pilot designs, which **the owner will supply** (answered 2026-11-03).
 
 **Scope:**
 - the authoring and thumbnail pipeline: export helper, thumbnail capture, validity gate;
@@ -31,11 +33,15 @@ Lite has nothing left before LPL-T. LPL-T needs Stage E (PPL-2) for its Pro half
 
 **Then stop for the owner's design review.** Readiness review section G, row 7.
 
-**Not yet checked:** how the window looks with a completely empty catalog (every test so far used fixture or demo sources). Check it at the start of LPL-T.
+**With no patterns** (Lite's own catalog is empty until the pilot):
+- the window shows "No patterns yet" and a zero count, with no errors;
+- the Lite-to-Pro card appears only after free patterns, so it is not shown.
+
+Checked on 2026-11-03 on WordPress 6.8.11 and 7.1.3.
 
 ## Open questions
 1. Destination page for the Lite-to-Pro card. Configured in `includes/library/data/links.php` (`pro-upgrade`, empty for now). Until it is set, the card shows no link.
-2. Who supplies the pilot pattern designs. **Needed before LPL-T.**
+2. ~~Who supplies the pilot pattern designs.~~ **Answered 2026-11-03: the owner supplies them.** LPL-T starts when they arrive and PPL-2 is done.
 
 ## Known limitations and observations
 - `n.e.x.t` in `@since` tags is replaced with the real Lite version at release.

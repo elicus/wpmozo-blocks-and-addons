@@ -30,4 +30,5 @@ Newest first. "Unreleased" entries move into `readme.txt` when a Lite release is
 - Build: `webpack.config.js` adds the shared script entry (LPL-1) and the library entry (LPL-UX). Existing block build output is unchanged.
 
 ### Fixed
+- In the library window, patterns below the first rows couldn't be reached with the mouse wheel (the layout grew past the window), on WordPress 6.8 and 7.1. The grid now scrolls inside the window. (LPL-3)
 - With every Lite block disabled, Pro blocks failed in the editor because the shared globals were missing. Fixed from the Lite side. (LPL-1)

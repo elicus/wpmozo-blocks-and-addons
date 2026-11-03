@@ -151,6 +151,22 @@ Target was ≤ 300 ms warm at 500 patterns. A generated metadata index stays def
 | Validator rejects the placeholder inside pattern content | Passed on both |
 | 360 px: placeholder button visible | Passed on both |
 
+**Follow-up fix (`e4912df`): scrolling in the library window.**
+
+*The bug.* Found while checking the empty catalog. With the 18-pattern demo catalog, the layout grew to 1809 px inside a 714 px window. The content area hides its overflow, so the mouse wheel couldn't reach patterns below the first rows. The cause: the modal wraps its children in an extra element (a classed container in 7.1, a plain `div` in 6.8) that had no height limit. The prototype review screenshots never scrolled, so they didn't show it.
+
+*The fix,* checked with the harness suite `sessions/lpl-1/test_lpl3_scroll.cjs`: 10 checks per site, at 1440 and 360 px.
+
+| Check | Result |
+|---|---|
+| The layout fits the window and the grid is the scroller | Passed on both |
+| The mouse wheel scrolls the grid | Passed on both |
+| The last card can be scrolled into view | Passed on both |
+| Back from a preview restores the grid scroll position and focus | Passed on both |
+| Empty catalog: "No patterns yet" shown, the category column fills the window | Passed on both |
+| No page errors | Passed on both |
+| The full LPL-3 suite after the fix | 32/32 on both |
+
 **Console and network, not caused by LPL-3:**
 - Core's block-directory search returns 500 offline when the inserter is searched: it calls api.wordpress.org, which the harness blocks.
 - The settings page logo is loaded from wpmozoblocks.com; the harness blocks it.
