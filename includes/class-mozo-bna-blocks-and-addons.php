@@ -180,6 +180,12 @@ class Mozo_Bna_Blocks_And_Addons {
 		 */
 		require_once WPMOZO_BNA_INC_DIR_PATH . 'class-mozo-bna-public.php';
 
+		/**
+		 * The integration contract used by add-ons.
+		 */
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'class-mozo-bna-integration.php';
+		require_once WPMOZO_BNA_INC_DIR_PATH . 'mozo-bna-integration-functions.php';
+
 		$wpmozo_i18n   = new Mozo_Bna_Blocks_And_Addons_I18n();
 		$wpmozo_assets = new Mozo_Bna_Blocks_And_Addons_Assets();
 
@@ -218,6 +224,9 @@ class Mozo_Bna_Blocks_And_Addons {
 	public function add_hooks() {
 		add_action( 'plugins_loaded', array( $this->classes['i18n'], 'load_plugin_textdomain' ) );
 		add_action( 'init', array( $this->classes['astreg'], 'wpmozo_register_scripts_and_styles' ) );
+
+		// Early priority: the shared script must print before any block editor script.
+		add_action( 'enqueue_block_editor_assets', array( $this->classes['astreg'], 'enqueue_shared_editor_script' ), 1 );
 		add_action( 'enqueue_block_editor_assets', array( $this->classes['astreg'], 'enqueue_block_editor_assets' ) );
 		add_action( 'wp_enqueue_scripts', array( $this->classes['astreg'], 'enqueue_block_assets' ) );
 
@@ -255,6 +264,15 @@ class Mozo_Bna_Blocks_And_Addons {
 			$this->load_admin_dependencies();
 			$this->add_admin_hooks();
 		}
+
+		/**
+		 * Fires once the plugin has loaded (plugins_loaded, priority 20).
+		 * Add-ons hooked later can check did_action( 'wpmozo_bna_loaded' ).
+		 *
+		 * @since n.e.x.t
+		 * @param Mozo_Bna_Integration $integration The integration contract.
+		 */
+		do_action( 'wpmozo_bna_loaded', wpmozo_bna_integration() );
 	}
 
 	/**

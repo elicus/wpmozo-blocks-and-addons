@@ -275,6 +275,52 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 	}
 
 	/**
+	 * Register and enqueue the shared editor script in every block editor.
+	 *
+	 * It sets the global components and utilities that add-ons read, even when
+	 * every block of this plugin is disabled, and prints the integration contract
+	 * as `window.WPMozoBNA`. It is printed in the head so it runs before block
+	 * editor scripts.
+	 *
+	 * @since n.e.x.t
+	 */
+	public function enqueue_shared_editor_script() {
+		$asset_file = WPMOZO_BNA_PLUGIN_DIR_PATH . 'build/shared/index.asset.php';
+		if ( ! file_exists( $asset_file ) ) {
+			return;
+		}
+
+		$asset  = require $asset_file;
+		$handle = $this->plugin_name . '-shared';
+
+		wp_register_script(
+			$handle,
+			WPMOZO_BNA_PLUGIN_DIR_URL . 'build/shared/index.js',
+			$asset['dependencies'],
+			$asset['version'],
+			false
+		);
+
+		$integration = wpmozo_bna_integration();
+		wp_add_inline_script(
+			$handle,
+			sprintf(
+				'window.WPMozoBNA = Object.assign( window.WPMozoBNA || {}, %s );',
+				wp_json_encode(
+					array(
+						'contractVersion' => $integration->contract_version(),
+						'version'         => $integration->version(),
+						'features'        => $integration->features(),
+					)
+				)
+			),
+			'before'
+		);
+
+		wp_enqueue_script( $handle );
+	}
+
+	/**
 	 * Get font awesome icons array.
 	 * @return array $icons All icons.
 	 * @since 1.0.0
