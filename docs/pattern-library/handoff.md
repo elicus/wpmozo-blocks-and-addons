@@ -11,38 +11,40 @@ Pro `dev/ayush` is off-limits.
 | Step | State |
 |---|---|
 | Baseline decisions | Approved 2026-11-03 ([decisions.md](decisions.md)) |
-| Stage A, LPL-1: integration contract + shared editor script | **Done.** Tested ([testing.md](testing.md)); commit hashes in the git log |
+| Stage A, LPL-1: integration contract + shared editor script | **Done** (tested; see [testing.md](testing.md)) |
+| Stage C, LPL-2: registry, resolver, maps, validator, REST | **Done** (tested; see [testing.md](testing.md)). No patterns ship yet; Lite's `media` map is empty until the pilot |
 | Pro preparatory task | In progress (tracked in the Pro repository) |
 | Stage B, PPL-1: Pro adopts the contract | Next on Pro, after its preparatory task |
-| Stage C, LPL-2: registry, resolver, maps, validator, REST | **Next on Lite** |
-| LPL-UX: UI prototype | After Stage C starts; **owner review checkpoint** |
-| Stage D–F, LPL-T pilot, X-1, release | Not started. The LPL-T pilot (2 free + 2 Pro) is an **owner review checkpoint**; no catalog expansion before approval |
+| **LPL-UX: UI prototype** | **Next on Lite. Owner review checkpoint:** the real UI shell built with `@wordpress/components` against mock catalog data, in a harness copy, not committed until approved |
+| Stage D, LPL-3: UI, importer, placeholder block, entry points, library on/off setting | After LPL-UX approval |
+| Stage E, PPL-2: Pro source + entitlement | After PPL-1 |
+| LPL-T + pilot (2 free + 2 Pro) | After Stages D and E. **Owner review checkpoint**; no catalog expansion before approval |
+| Stage F, X-1, release | Not started |
 
-## Next step: Stage C (LPL-2)
+## Next step: LPL-UX prototype
 
-Start with the experiment that finalises the restricted-HTML list (decision PL-D05):
-- save and reload per block type for Author, Contributor, Editor and Admin;
-- the same for a multisite site admin and under `DISALLOW_UNFILTERED_HTML`;
-- on WordPress 6.8.11 / PHP 7.4 and 7.1.3 / PHP 8.2 in the harness.
+The prototype must show the whole primary flow:
+- opening the library;
+- searching, filtering by source and availability, choosing a category;
+- previewing;
+- a Pro-locked pattern;
+- an unavailable pattern (with its reason);
+- inserting (mock);
+- loading, empty and error states.
 
-Then implement:
-- the registry and asset resolver;
-- the central maps;
-- the validator;
-- `GET /wpmozo/v1/library/catalog` and `GET /wpmozo/v1/library/patterns/<source>/<slug>`;
-- advertising the `library` feature.
+It runs at 360, 768 and 1440 px, with keyboard and screen-reader checks. Design basis: readiness review section D and decision PL-D10. Present it for review before Stage D.
 
-Design: readiness review sections A2–A8.
-
-## Open questions (none blocks Stage C)
-1. Destination page for the Lite-to-Pro card. Needed before Stage D; until then it is a configurable value.
+## Open questions (none blocks the prototype)
+1. Destination page for the Lite-to-Pro card. Configured in `includes/library/data/links.php` (`pro-upgrade`, empty for now).
 2. Who supplies the pilot pattern designs. Needed before LPL-T.
 
 ## Known limitations and observations
 - `n.e.x.t` in `@since` tags is replaced with the real Lite version at release.
-- Lite blocks reset their `ID` to the editor's client ID on every load, so opening a post marks it as changed. This is existing behaviour, not caused by the library. Aligning it with Pro's stable-ID approach is a separate block task.
-- Lite registers its text-domain loader on `plugins_loaded` priority 10 from code that itself runs at priority 20. It probably never runs (not verified at runtime; WordPress 6.7+ loads translations just in time anyway). A separate task.
-- The editor receives a `wpmozo/v1/save-dynamic-style` REST URL for a route Lite doesn't register. The library doesn't use it.
+- **Catalog performance** in the WebAssembly harness: 500 patterns take about 0.2–0.35 s warm and 1 s cold (target 0.3 s; native PHP not measured). A generated metadata index is deferred until the real catalog grows.
+- **Validator strictness:** a text attribute starting with "Data:" is rejected ([security.md](security.md)).
+- **Lite blocks reset their `ID`** to the editor's client ID on every load, so opening a post marks it changed. Existing behaviour; aligning it with Pro's stable-ID approach is a separate block task.
+- **Text-domain loader:** Lite registers it on `plugins_loaded` priority 10 from code that itself runs at priority 20. It probably never runs (not verified at runtime; WordPress 6.7+ loads translations just in time). A separate task.
+- **Stale REST URL:** the editor receives a `wpmozo/v1/save-dynamic-style` URL for a route Lite doesn't register. The library doesn't use it.
 
 ## Release-only items (not implementation blockers)
 - Lite requirement headers (real minimum WordPress 6.8);

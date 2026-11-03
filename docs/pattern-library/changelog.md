@@ -5,6 +5,14 @@ Newest first. "Unreleased" entries move into `readme.txt` when a Lite release is
 ## Unreleased
 
 ### Added
+- Pattern Library server side (LPL-2):
+  - a source registry with the `wpmozo_bna_library_register_sources` hook and the `library` contract feature;
+  - an asset resolver;
+  - central maps (categories, tags, media, links, icons, demo text) with content tokens;
+  - a content validator;
+  - per-user availability, including the restricted-HTML rule;
+  - read-only REST routes `wpmozo/v1/library/catalog` and `wpmozo/v1/library/patterns/<source>/<slug>`.
+- The library can be switched off with the `wpmozo_pattern_library` plugin option (settings UI follows in Stage D). (LPL-2)
 - Integration contract for add-ons:
   - `wpmozo_bna_integration()` with `version()`, `contract_version()`, `features()` and `supports()`;
   - the `wpmozo_bna_loaded` action.

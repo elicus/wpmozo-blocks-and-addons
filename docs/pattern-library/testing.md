@@ -41,6 +41,65 @@ Results are recorded only for checks that were actually run. Anything not run is
 - Pro `ef1909d` `interactive-circle/script.js` MutationObserver error: also present before LPL-1 (Lite `b91a5ec`).
 - Pro May build `timeline/script.js` "reading 'top'" when a Timeline block is inserted: identical with Lite `b91a5ec` (before LPL-1), so it predates LPL-1.
 
+## LPL-2 (registry, resolver, maps, validator, REST), 2026-11-03
+
+**Setup:**
+- Harness-only test plugins provide:
+  - a free fixture source with 19 patterns (good ones, plus deliberately broken metadata, content, tokens and requirements);
+  - a premium fixture source with an entitlement callback driven by an option;
+  - a 500-pattern source for performance;
+  - bad source registrations.
+- REST routes are called internally as each user: admin, editor, author, contributor, subscriber, anonymous.
+- Suites: `sessions/lpl-1/test_lpl2.py` and `test_lpl2_env.py` in the harness.
+
+| Check | Result |
+|---|---|
+| `php -l` 8.0/8.1/8.2/8.4, PHPCompatibilityWP 7.3+, PHPCS WordPress (new files whole; changed lines of existing files) | Passed |
+| **Restricted-HTML experiment** (before coding): 108 WPMozo blocks with default attributes, through the Author save filter, then parsed in the editor | WordPress 7.1.3 and 6.8.11 identical: 44 changed, 43 invalid afterwards; Content Wrapper changed but valid; 64 unchanged all valid (2 child blocks can't be parsed standalone, unrelated). Detail in [security.md](security.md) |
+| Detection method vs experiment (67 Lite blocks) | **Same 33 flagged**, none missed |
+| Validator vs our own blocks | All 67 Lite blocks' default markup accepted |
+| Validator vs attack probes | 13/13 rejected: `javascript:` plain/entity/tab, `void(0);alert`, `onclick`, `svg onload`, `data:` URL, `iframe`, http-equiv `meta`, `expression()` in style, attribute `javascript:`/brace/`onerror` markup. 5/6 harmless controls accepted; the 6th (text attribute starting "Data:") is the documented strictness |
+| Full suite, WordPress 7.1.3 / PHP 8.2 | **81/81** (with performance) |
+| Full suite, WordPress 6.8.11 / PHP 7.4 | **80/80** |
+| `DISALLOW_UNFILTERED_HTML`, WordPress 7.1.3 | **8/8:** admin and editor are role-locked from restricted patterns (403 on content), core-only stays available |
+| Lite + Pro `ef1909d` active, WordPress 7.1.3 | **6/6:** catalog works; Pro reported active and installed with no source yet (PPL-2 pending); 108 blocks registered; features `integration`, `shared-js`, `library` |
+| Real block | Fancy Heading markup from the editor: Author and Contributor role-locked (403); Editor and Admin available; delivered content parses valid |
+| PHP notices | None in any run |
+| Network | All runs: 0 external connections, 0 non-loopback listeners |
+
+**What the suite covers:**
+- registration refusals (7 cases);
+- metadata problems reported to administrators only;
+- the newer-schema count;
+- no content or markup in the catalog;
+- thumbnail URL (empty when the file is missing);
+- each availability reason;
+- category added by a source;
+- Pro context;
+- cache headers and ETag → 304;
+- 401/403 for anonymous and subscriber;
+- tokens resolved in delivered content;
+- `no-store`;
+- 404/409/422 codes;
+- deprecated (fetchable) and hidden (404) patterns;
+- disabled block;
+- seven entitlement states, including expiry with and without a cutoff, a throwing callback and a garbage answer;
+- the library switch → 404.
+
+**Performance** (WebAssembly PHP in the harness; usually much slower than native PHP, but native is not measured):
+
+| Catalog | Server time |
+|---|---|
+| 19 fixture patterns | 44–92 ms cold, 16–20 ms warm |
+| 517 patterns | 972–1008 ms cold, 186–350 ms warm; JSON 272 KB (synthetic, 6 KB gzipped) |
+
+Target was ≤ 300 ms warm at 500 patterns. A generated metadata index stays deferred until a real catalog approaches that size; launch is 4–24 patterns.
+
+**Not tested in LPL-2:**
+- multisite (core grants `unfiltered_html` only to super admins there; verified in WordPress source, not at runtime);
+- WooCommerce-dependent Pro blocks (WooCommerce not available offline);
+- non-default attribute values.
+
 **Not tested in LPL-1:**
 - multisite;
 - roles other than administrator;

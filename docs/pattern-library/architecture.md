@@ -8,8 +8,9 @@ Approved design: [decisions.md](decisions.md) (PL-D04). Full reasoning: [archite
 |---|---|---|---|
 | Integration contract (`wpmozo_bna_integration()`, `wpmozo_bna_loaded`) | Lite | `includes/class-mozo-bna-integration.php`, `includes/mozo-bna-integration-functions.php` | **Implemented** (LPL-1) |
 | Shared editor script (`wpmozo-blocks-and-addons-shared`) | Lite | `src/shared/index.js` → `build/shared/` | **Implemented** (LPL-1) |
-| Source registry, asset resolver, central maps | Lite | `includes/library/` | Planned (LPL-2) |
-| Validator and REST routes (`wpmozo/v1/library/*`) | Lite | `includes/library/` | Planned (LPL-2) |
+| Library service, source registry, asset resolver | Lite | `includes/library/class-mozo-bna-library*.php` | **Implemented** (LPL-2) |
+| Central maps (categories, tags, media, links, icons, demo text) | Lite | `includes/library/data/` | **Implemented** (LPL-2; media empty until the pilot) |
+| Validator and REST routes (`wpmozo/v1/library/*`) | Lite | `includes/library/` | **Implemented** (LPL-2): [rest-api.md](rest-api.md), [security.md](security.md) |
 | Library UI, importer, entry points, placeholder block | Lite | `src/library/`, `src/blocks/pattern-library/` | Planned (LPL-UX, LPL-3) |
 | Free patterns, shared demo media | Lite | `includes/library/patterns/`, `media/` | Planned (LPL-T, LPL-4) |
 | Pro source registration and entitlement callback | Pro | Pro repository | Planned (PPL-2) |
@@ -17,7 +18,7 @@ Approved design: [decisions.md](decisions.md) (PL-D04). Full reasoning: [archite
 
 Everything shipped lives under `build/` or `includes/`; release zips contain only those, the main PHP file and the readme.
 
-## Data flow (planned)
+## Data flow (server side implemented; editor side planned)
 
 ```
 Editor (Lite UI) ──GET /wpmozo/v1/library/catalog──▶ Lite REST ──▶ registry (sources: lite, pro…)

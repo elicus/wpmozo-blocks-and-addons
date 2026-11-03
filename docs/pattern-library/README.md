@@ -2,7 +2,7 @@
 
 The Pattern Library lets editors browse ready-made sections and insert them into the block editor. Lite (`wpmozo-blocks-and-addons`) owns the library: catalog, REST routes, validation, import and UI. The Pro plugin adds its patterns through a documented contract.
 
-**Status:** in development. Stage A (integration contract) is implemented; the library itself isn't yet. See [handoff.md](handoff.md).
+**Status:** in development. The integration contract (Stage A) and the server side (Stage C: registry, validator, REST) are implemented; the editor UI isn't yet. See [handoff.md](handoff.md).
 
 ## Documents
 
@@ -12,6 +12,8 @@ The Pattern Library lets editors browse ready-made sections and insert them into
 | [architecture.md](architecture.md) | Components, ownership, data flow |
 | [registry-and-contract.md](registry-and-contract.md) | The Lite–add-on integration contract (implemented) and the pattern registry contract (planned) |
 | [decisions.md](decisions.md) | Approved decisions, with their reasons |
+| [rest-api.md](rest-api.md) | REST routes, responses, status codes, availability reasons |
+| [security.md](security.md) | Access rules, validation rules, restricted-HTML handling |
 | [compatibility.md](compatibility.md) | WordPress, PHP and Lite/Pro version combinations |
 | [testing.md](testing.md) | Test procedure, harness, and recorded results |
 | [changelog.md](changelog.md) | Pattern Library changes, newest first |
@@ -19,7 +21,6 @@ The Pattern Library lets editors browse ready-made sections and insert them into
 | [architecture-readiness-review.md](architecture-readiness-review.md) | Historical record of the pre-implementation review (2026-10-31 / 2026-11-03) |
 
 Created by the stage that implements their content:
-- Stage C: `rest-api.md`, `security.md`.
 - Stage D: `editor-ui.md`, `import-workflow.md`.
 - LPL-T: `pattern-authoring.md`.
 - Release preparation: `release-and-upgrade.md`.

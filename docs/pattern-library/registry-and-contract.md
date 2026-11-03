@@ -6,7 +6,7 @@ Lite (`wpmozo-blocks-and-addons`) owns this contract. Add-ons, currently WPMozo 
 |---|---|
 | 1. Integration contract (PHP) | **Implemented** (Stage A, LPL-1) |
 | 2. Shared editor script (JS) | **Implemented** (Stage A, LPL-1) |
-| 3. Pattern registry | Planned (Stage C, LPL-2) |
+| 3. Pattern registry and sources | **Implemented** (Stage C, LPL-2) |
 
 ## 1. Integration contract (PHP)
 
@@ -39,7 +39,7 @@ add_action( 'plugins_loaded', function () {
 |---|---|---|---|
 | `integration` | 1 | Always (with the contract) | n.e.x.t |
 | `shared-js` | 1 | `build/shared/index.asset.php` exists | n.e.x.t |
-| `library` | 1 | Planned, Stage C | — |
+| `library` | 1 | Always (with the library code) | n.e.x.t |
 
 `n.e.x.t` is replaced with the real Lite version at release.
 
@@ -78,20 +78,80 @@ add_action( 'plugins_loaded', function () {
   - `wp-block-editor`, `wp-components`, `wp-compose`, `wp-data`, `wp-element`;
   - `wp-i18n`, `wp-preferences`, `wp-primitives`.
 
-## 3. Pattern registry (planned, Stage C)
+## 3. Pattern registry and sources
 
-Planned design, from the approved architecture (readiness review, sections A2–A5). Not implemented yet.
+**When sources are registered:** the registry is built lazily. Only a library REST request triggers it, never front-end or ordinary admin requests. Lite registers its own source (`lite`), then fires:
 
-- **Sources:**
-  - `do_action( 'wpmozo_bna_library_register_sources', $registry )` fires lazily, only when a library request needs it.
-  - An add-on calls `$registry->register_source( $id, $args )`, passing:
-    - `contract`;
-    - `label`, `version`;
-    - `path`, `url` (its own base);
-    - `access`;
-    - a server-side `entitlement` callback;
-    - `links`;
-    - optional `categories`.
-- **Fail closed:** Lite refuses a source that claims premium access without a working entitlement callback.
-- **Contents:** an add-on supplies data and one callback only; no UI, routes or JS for the library.
-- **Advertising:** the `library` feature is advertised only once this exists.
+```php
+do_action( 'wpmozo_bna_library_register_sources', $registry ); // Mozo_Bna_Library_Registry
+```
+
+**An add-on registers its source** (check `supports( 'library', 1 )` first):
+
+```php
+add_action( 'wpmozo_bna_library_register_sources', function ( $registry ) {
+	$registry->register_source( 'pro', array(
+		'contract'    => 1,                                   // source contract this code was written for
+		'label'       => __( 'Pro', 'my-text-domain' ),
+		'version'     => MY_PLUGIN_VERSION,                   // part of the analysis cache key
+		'path'        => MY_PLUGIN_DIR . 'includes/library/', // folder with patterns/, data/, previews/, media/
+		'url'         => MY_PLUGIN_URL . 'includes/library/', // the same folder's URL (development base)
+		'access'      => 'pro',                               // 'free' or 'pro'
+		'entitlement' => 'my_entitlement_callback',          // required for 'pro'
+		'links'       => array( 'license' => admin_url( '…' ) ),
+		'categories'  => array( 'woocommerce' => __( 'WooCommerce', 'my-text-domain' ) ),
+	) );
+} );
+```
+
+`register_source()` returns `true` or a `WP_Error`.
+
+**Refusals:**
+
+| Code | When |
+|---|---|
+| `invalid_id` | The id isn't lowercase letters, digits and hyphens (max 32) |
+| `duplicate` | The id is already registered (including `lite`) |
+| `contract_unsupported` | The contract is not 1 |
+| `invalid_path` | The path is not an existing folder |
+| `invalid_url` | No URL |
+| `invalid_access` | Access is neither `free` nor `pro` |
+| `entitlement_missing` | A `pro` source has no callable entitlement callback |
+
+**Entitlement callback:**
+- **Called with:** `array( 'user_id' => int )`.
+- **Returns:** `array( 'state' => 'entitled'|'license_inactive'|'license_expired'|'license_revoked', 'cutoff' => 'YYYY-MM-DD'|null, 'manage' => bool )`.
+- **Called once per request.** Anything else, or an exception, locks the source (`entitlement_unavailable`).
+- **Expired licences:** with `license_expired` and a `cutoff`, patterns whose `published` date is on or before the cutoff stay available.
+
+**Source folder:**
+
+```
+patterns/<slug>/pattern.php    metadata (schema 1), returns an array
+patterns/<slug>/content.php    block markup, returns a string (use a nowdoc); file starts with an ABSPATH guard
+previews/<slug>.<revision>.webp
+media/<key>.<revision>.webp
+data/media.php, links.php, icons.php, demo-text.php   central maps for tokens
+```
+
+Lite's own folder is `includes/library/`. Its central maps also hold the categories and tags shared by every source (`data/categories.php`, `data/tags.php`). Sources can add categories but never override them.
+
+**Metadata, schema 1:**
+- **Required:** `schema`, `slug` (equals the folder name), `revision`, `title`, `category`, `access` (must equal the source's), `thumbnail { file, width, height }`, `since`. `published` is also required for `pro`.
+- **Optional:** `description`, `tags`, `keywords`, `preview`, `requires { plugins, lite, wp }`, `layout`, `order`, `status` (`active`/`deprecated`/`hidden`), `replaced_by`, `type`.
+- **Invalid metadata** skips the pattern and is reported in the catalog's `issues` (administrators only).
+- **Newer schemas** are counted in `newer_schema` and hidden.
+
+**Tokens in content** (resolved on the server, fail closed):
+- **Syntax:** `{{wpmozo:media|link|icon|text:<source>/<key>}}`.
+- **Lookup:** each value comes from the source's map file.
+- **Safe values:** a value must match its type's safe character set, so it is valid unchanged in block JSON and HTML.
+- **Media URLs** come from the asset resolver: `Mozo_Bna_Library_Resolver::asset_url()` is the only place that builds library asset URLs, and the future CDN setting changes only that method.
+
+**What the library computes** (never authored):
+- id, blocks used;
+- whether the content is valid;
+- whether it needs `unfiltered_html` (security.md);
+- availability per user (rest-api.md).
+
+The content analysis is cached in a transient per source. The cache key includes the source version and the modification times of the central maps. An entry is reused only while the pattern's revision and its `content.php` modification time are unchanged.
