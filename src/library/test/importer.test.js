@@ -37,12 +37,20 @@ jest.mock(
 	() => ( { parse: () => mockRaw } ),
 	{ virtual: true }
 );
-jest.mock( '@wordpress/data', () => ( { select: jest.fn(), dispatch: jest.fn() } ), {
-	virtual: true,
-} );
-jest.mock( '@wordpress/block-editor', () => ( { store: 'core/block-editor' } ), {
-	virtual: true,
-} );
+jest.mock(
+	'@wordpress/data',
+	() => ( { select: jest.fn(), dispatch: jest.fn() } ),
+	{
+		virtual: true,
+	}
+);
+jest.mock(
+	'@wordpress/block-editor',
+	() => ( { store: 'core/block-editor' } ),
+	{
+		virtual: true,
+	}
+);
 
 const raw = ( blockName, attrs = {}, extra = {} ) => ( {
 	blockName,
@@ -71,12 +79,16 @@ describe( 'prepareBlocks', () => {
 	} );
 
 	test( 'accepts older attributes that a deprecation declares (authored on WordPress 6.8)', () => {
-		mockRaw.push( raw( 'core/heading', { content: 'Hi', textAlign: 'center' } ) );
+		mockRaw.push(
+			raw( 'core/heading', { content: 'Hi', textAlign: 'center' } )
+		);
 		expect( () => prepareBlocks( 'markup' ) ).not.toThrow();
 	} );
 
 	test( 'refuses attributes that neither the type nor a deprecation declares', () => {
-		mockRaw.push( raw( 'core/heading', { content: 'Hi', fromTheFuture: true } ) );
+		mockRaw.push(
+			raw( 'core/heading', { content: 'Hi', fromTheFuture: true } )
+		);
 		expect( () => prepareBlocks( 'markup' ) ).toThrow(
 			'unknown_attribute:core/heading.fromTheFuture'
 		);
@@ -103,8 +115,12 @@ describe( 'prepareBlocks', () => {
 			'missing:wpmozo/not-installed'
 		);
 		mockRaw.length = 0;
-		mockRaw.push( raw( 'core/heading', { content: 'Hi' }, { valid: false } ) );
-		expect( () => prepareBlocks( 'markup' ) ).toThrow( 'invalid:core/heading' );
+		mockRaw.push(
+			raw( 'core/heading', { content: 'Hi' }, { valid: false } )
+		);
+		expect( () => prepareBlocks( 'markup' ) ).toThrow(
+			'invalid:core/heading'
+		);
 	} );
 
 	test( 'rebuilds blocks and sets ID to the new client ID where the type has one', () => {
@@ -116,7 +132,9 @@ describe( 'prepareBlocks', () => {
 		const blocks = prepareBlocks( 'markup' );
 		expect( blocks[ 0 ].attributes.ID ).toBe( blocks[ 0 ].clientId );
 		expect( blocks[ 1 ].attributes.ID ).toBe( blocks[ 1 ].clientId );
-		expect( blocks[ 0 ].attributes.ID ).not.toBe( blocks[ 1 ].attributes.ID );
+		expect( blocks[ 0 ].attributes.ID ).not.toBe(
+			blocks[ 1 ].attributes.ID
+		);
 		expect( blocks[ 2 ].attributes.ID ).toBeUndefined();
 	} );
 } );
