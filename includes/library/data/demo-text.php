@@ -15,6 +15,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 return array(
 	'company' => 'Northwind Studio',
+	'product' => 'Northwind',
 	'email'   => 'hello@example.com',
 	'phone'   => '+1 (555) 010-0100',
 	'address' => '123 Example Street, Springfield',

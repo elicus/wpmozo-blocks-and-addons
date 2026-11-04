@@ -20,4 +20,8 @@ return array(
 	'phone'       => 'fas fa-phone',
 	'email'       => 'fas fa-envelope',
 	'location'    => 'fas fa-location-dot',
+	'compass'     => 'fas fa-compass',
+	'pen-ruler'   => 'fas fa-pen-ruler',
+	'code'        => 'fas fa-code',
+	'rocket'      => 'fas fa-rocket',
 );
