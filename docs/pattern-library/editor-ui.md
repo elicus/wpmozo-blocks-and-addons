@@ -79,13 +79,13 @@ So the block appears only where the library loads. If the editor lacks `reapplyB
   - large image, description, category, blocks used;
   - an availability box;
   - **Insert**, or **Manage licence** for locked Pro patterns;
-  - a note that colours and fonts follow the theme;
+  - a note: the preview shows the pattern in a default theme; after inserting, fonts follow the user's theme, and every colour, text and image can be edited;
   - previous and next.
 - **States:** a skeleton while loading, an empty state with a reset, and an error with a retry.
 - **Lite-to-Pro card:**
   - shown once, after the free patterns, only when no premium source is registered;
   - dismissible; the dismissal is stored in core preferences (`wpmozo/library` → `upsellDismissed`);
-  - its link is the `pro-upgrade` entry in `includes/library/data/links.php`. It is empty for now, so the card has no link (open question in [handoff.md](handoff.md)).
+  - its link is the `pro-upgrade` entry in `includes/library/data/links.php`: for now a clearly marked placeholder on the reserved `example.com` domain, until the final page is confirmed (release blocker, PL-D21).
   - If Pro is installed but inactive, or active without a library source, the card says so instead.
 - **Licence wording:** patterns are locked or available. The UI never says a licence is "valid".
 

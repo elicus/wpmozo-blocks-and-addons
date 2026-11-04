@@ -1,6 +1,6 @@
 # Pattern Library handoff
 
-**Updated:** 2026-11-03.
+**Updated:** 2026-11-04.
 **Branches:**
 - Lite `dev/sunil` → `origin/dev/sunil`;
 - Pro `release/pattern-lib` → `origin/release/pattern-lib`.
@@ -12,37 +12,34 @@ Pro `dev/ayush` is off-limits.
 |---|---|
 | Baseline decisions | Approved 2026-11-03 ([decisions.md](decisions.md)) |
 | Stage A, LPL-1: integration contract + shared editor script | **Done** (tested; see [testing.md](testing.md)) |
-| Stage C, LPL-2: registry, resolver, maps, validator, REST | **Done** (tested; see [testing.md](testing.md)). No patterns ship yet; Lite's `media` map is empty until the pilot |
+| Stage C, LPL-2: registry, resolver, maps, validator, REST | **Done** (tested; see [testing.md](testing.md)) |
 | Pro preparatory task | Done (tracked in the Pro repository) |
 | Stage B, PPL-1: Pro adopts the contract | **Done** (tracked in the Pro repository) |
 | LPL-UX: UI prototype | **Approved as is** 2026-11-03 (PL-D17) |
 | Stage D, LPL-3: UI, importer, placeholder block, entry points, library switch | **Done** (tested on WordPress 6.8.11 and 7.1.3; see [testing.md](testing.md)). Docs: [editor-ui.md](editor-ui.md), [import-workflow.md](import-workflow.md) |
-| Stage E, PPL-2: Pro source + entitlement | **Done** (tracked in the Pro repository). The Pro source registers with no patterns yet |
-| LPL-T + pilot (2 free + 2 Pro) | After Stage E. **Owner review checkpoint**; no catalog expansion before approval |
+| Stage E, PPL-2: Pro source + entitlement | **Done** (tracked in the Pro repository) |
+| LPL-T + pilot (2 free + 2 Pro) | **Built and gated; waiting for the owner's design review.** No catalog expansion before approval. Tools and procedure: [pattern-authoring.md](pattern-authoring.md) |
 | Stage F, X-1, release | Not started |
 
-## Next step: LPL-T + pilot
-Lite has nothing left before LPL-T. LPL-T needs:
-- the pilot designs, which **the owner will supply** (answered 2026-11-03).
+## Next step: owner review of the pilot (LPL-T checkpoint)
+The owner asked on 2026-11-04 for temporary pilot designs made here instead of supplied ones (PL-D20).
 
-Stage E (PPL-2), which the Pro half needs, is done.
+**What exists:**
+- Lite: `hero-product-launch` (hero: Fancy Heading, Star Rating) and `pricing-three-plans` (pricing: Pricing Table cards).
+- The Pro repository has two Pro pilot patterns.
+- Original local illustrations, 800 × 600 thumbnails and full previews.
+- Authoring tools in `tools/pattern-library/`.
 
-**Scope:**
-- the authoring and thumbnail pipeline: export helper, thumbnail capture, validity gate;
-- `pattern-authoring.md`;
-- 2 free and 2 Pro patterns end to end.
+**Verified:** the quality gate passes for all four on WordPress 6.8.11 and 7.1.3; roles and licence states were checked ([testing.md](testing.md)).
 
-**Then stop for the owner's design review.** Readiness review section G, row 7.
+**For the review:** design quality, choice of sections, copy. The patterns are temporary; the owner will replace or refine them later.
 
-**With no patterns** (Lite's own catalog is empty until the pilot):
-- the window shows "No patterns yet" and a zero count, with no errors;
-- the Lite-to-Pro card appears only after free patterns, so it is not shown.
+**After approval:** Stage F (remaining patterns, up to 10 free + 14 Pro, each through the gate). If the owner wants changes, revise the pilot first.
 
-Checked on 2026-11-03 on WordPress 6.8.11 and 7.1.3.
+**Block issues found in the pilot** (separate tasks, not started): Advanced Button links, block scripts that use jQuery without declaring it, Pricing Table details. See [testing.md](testing.md).
 
 ## Open questions
-1. Destination page for the Lite-to-Pro card. Configured in `includes/library/data/links.php` (`pro-upgrade`, empty for now). Until it is set, the card shows no link.
-2. ~~Who supplies the pilot pattern designs.~~ **Answered 2026-11-03: the owner supplies them.** LPL-T starts when they arrive.
+1. Destination page for the Lite-to-Pro card. Until it is confirmed, `includes/library/data/links.php` (`pro-upgrade`) points to a clearly marked placeholder on `example.com` (PL-D21). **Release blocker.**
 
 ## Known limitations and observations
 - `n.e.x.t` in `@since` tags is replaced with the real Lite version at release.
@@ -53,6 +50,8 @@ Checked on 2026-11-03 on WordPress 6.8.11 and 7.1.3.
 - **Stale REST URL:** the editor receives a `wpmozo/v1/save-dynamic-style` URL for a route Lite doesn't register. The library doesn't use it.
 
 ## Release-only items (not implementation blockers)
+- the final Lite-to-Pro card link (replace the `example.com` placeholder);
+- pattern `since` values (provisional `1.10.0` in the pilot) and, for Pro, `published` dates;
 - Lite requirement headers (real minimum WordPress 6.8);
 - the next Lite version and its readme entry;
 - replacing `n.e.x.t`;

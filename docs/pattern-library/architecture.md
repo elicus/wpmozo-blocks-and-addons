@@ -12,9 +12,10 @@ Approved design: [decisions.md](decisions.md) (PL-D04). Full reasoning: [archite
 | Central maps (categories, tags, media, links, icons, demo text) | Lite | `includes/library/data/` | **Implemented** (LPL-2; media empty until the pilot) |
 | Validator and REST routes (`wpmozo/v1/library/*`) | Lite | `includes/library/` | **Implemented** (LPL-2): [rest-api.md](rest-api.md), [security.md](security.md) |
 | Library UI, importer, entry points, placeholder block, library switch | Lite | `src/library/`, `src/blocks/pattern-library/`, `includes/admin/` | **Implemented** (LPL-3): [editor-ui.md](editor-ui.md), [import-workflow.md](import-workflow.md) |
-| Free patterns, shared demo media | Lite | `includes/library/patterns/`, `media/` | Planned (LPL-T, LPL-4) |
-| Pro source registration and entitlement callback | Pro | Pro repository | Planned (PPL-2) |
-| Pro patterns | Pro | Pro repository | Planned (PPL-3) |
+| Free patterns, shared demo media, previews | Lite | `includes/library/patterns/`, `media/`, `previews/` | **Pilot** (LPL-T, 2 patterns; review pending). Full catalog: Stage F |
+| Authoring tools | Lite (not shipped) | `tools/pattern-library/` | **Implemented** (LPL-T): [pattern-authoring.md](pattern-authoring.md) |
+| Pro source registration and entitlement callback | Pro | Pro repository | **Implemented** (PPL-2) |
+| Pro patterns | Pro | Pro repository | **Pilot** (2 patterns; review pending). Full catalog: Stage F |
 
 Everything shipped lives under `build/` or `includes/`; release zips contain only those, the main PHP file and the readme.
 

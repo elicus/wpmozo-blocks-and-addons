@@ -17,6 +17,7 @@ The response is sent with `Cache-Control: no-store`. A refused request returns i
 ### 2. Parse
 - The client parses the markup with `parse()` from `@wordpress/blocks`.
 - It also checks the raw attributes: an attribute that the installed block doesn't know means the pattern needs a newer block plugin.
+- An attribute that one of the block's deprecations declares is older markup. Parsing migrates it, so it is accepted (PL-D18). Patterns are authored on the oldest supported WordPress, and newer versions, such as 7.1 for core Heading `textAlign`, move such attributes into deprecations.
 - `lock`, `metadata`, `className`, `style`, `align` and `anchor` are accepted on every block.
 
 ### 3. Check every block (recursively)
@@ -64,7 +65,7 @@ Nothing is inserted, and the library shows a specific message:
 - A licence change never touches content that is already inserted.
 - Block plugins may add extra undo steps when they change attributes on mount. Fixing that is a per-block task.
 
-## Verified (2026-11-03, WordPress 6.8.11 and 7.1.3, see [testing.md](testing.md))
+## Verified (2026-11-03 and, with the pilot patterns, 2026-11-04; WordPress 6.8.11 and 7.1.3; see [testing.md](testing.md))
 - Insertion at all three targets: the placeholder, after the selection, and the end.
 - One Undo restores the placeholder; Redo restores the pattern.
 - The same pattern inserted twice gets two distinct `ID`s.

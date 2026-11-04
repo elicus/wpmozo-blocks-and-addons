@@ -179,3 +179,43 @@ Target was ≤ 300 ms warm at 500 patterns. A generated metadata index stays def
 - a user without the library capability (the capability check is the same function the REST routes use, tested in LPL-2);
 - the widgets editor and Customizer (the harness theme is a block theme);
 - multisite.
+
+## LPL-T (authoring tools and pilot patterns), 2026-11-04
+
+**Setup:**
+- Offline harness sites on WordPress 6.8.11 / PHP 7.4 (authoring and previews) and 7.1.3 / PHP 8.2.
+- Lite and Pro working-tree copies.
+- Library on; a Pro licence activated (harness test value).
+- Blocks the pilot doesn't use are switched off through the plugin's own block setting. With every Lite and Pro block active, the WebAssembly server can't serve the editor's ~1,300 asset requests before Chrome reports `ERR_INSUFFICIENT_RESOURCES`, and core scripts then fail to load. This is a harness limit, not a plugin error.
+- Harness suites: `sessions/lpl-t/` (design runner, prep, role test). The gate and export are the repository tools in `tools/pattern-library/`.
+
+| Check | Result |
+|---|---|
+| Lint (JS, tools); PHPCS WordPress on the new PHP; PHPCompatibilityWP 7.3+; `php -l` 8.0/8.1/8.2/8.4; 7 Jest tests | Passed |
+| Content builder: every image, demo link, icon and the demo product name tokenized; round trip exact; no site URL left | Passed (4 patterns) |
+| Quality gate, 4 pilot patterns × WordPress 6.8.11 and 7.1.3: catalog available with no issue; inserted through the library; valid; valid after save and reload; WPMozo blocks used; 1440/768/360 px without overflow; images load with alt text; no page errors | Passed on both (logs `lplt-gate-68-final-…`, `lplt-gate-71-final-…`) |
+| Roles, licence activated: administrators and editors get every pilot pattern (content 200); subscribers and visitors never get content (401/403) | Passed |
+| Authors and Contributors: the two free patterns are unavailable (`role_unfiltered_html`; their WPMozo blocks save `<style>`); the two Pro patterns are available. Catalog and content route agree | Passed (policy D3 as designed) |
+| Pro licence not activated: Pro patterns locked, content 403 with no content; free patterns unaffected | Passed |
+| Free patterns use no Pro block | Passed |
+| Thumbnails 800 × 600, 16–23 KB; previews 1200 px wide, 25–34 KB; content images 32–38 KB | Within the 60 KB thumbnail budget |
+
+**Found and fixed during the pilot:**
+- The importer refused 6.8-authored markup on 7.1 (`core/heading.textAlign`, `core/button.width` moved into deprecations). It now accepts attributes that a block's deprecations declare (`1d66bf2`); both versions were retested.
+- The export kept `wrapStyle`, a Lite attribute holding CSS with the editor ID (braces, which the validator rejects). The export now removes it and fails on any leftover client ID.
+
+**Block issues found, not fixed (separate tasks; worked around in the pilot):**
+- Advanced Button saves `href="javascript:void(0)"` and never outputs its URL, so its links don't work on the front end. The pilot uses core Buttons.
+- Thirteen Lite block scripts use jQuery without declaring it, so they fail on pages where nothing else loads jQuery:
+  - before-after-slider, facebook-comments, facebook-embedded-video, facebook-share;
+  - hover-list, image-accordion, image-magnifier, scroll-image, scroll-stack-cards, scroll-text;
+  - twitter-embedded-tweet, twitter-follow-button, twitter-tweet-button.
+- Pricing Table:
+  - its button can't drop the theme's link underline (no decoration attribute);
+  - `price` is declared as a string with a numeric default;
+  - price and period share one colour;
+  - the divider is always black.
+  The pilot puts each table in a card with a core button.
+- Star Rating rounds to half stars (4.9 shows as 5).
+
+**Not tested in LPL-T:** a screen reader, multisite, themes other than the default theme, and an expired or revoked licence (phase 2 data).
