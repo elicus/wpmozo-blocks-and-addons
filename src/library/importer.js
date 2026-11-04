@@ -22,7 +22,9 @@ export class ImportError extends Error {
 
 /**
  * Names of attributes in the raw block comments that the installed block type
- * doesn't know (content saved by a newer plugin version).
+ * doesn't know (content saved by a newer plugin version). Attributes that one of
+ * the block's deprecations declares are older markup: parsing migrates them, so
+ * they are accepted (patterns are authored on the oldest supported WordPress).
  *
  * @param {Array} rawBlocks Raw parsed blocks.
  * @param {Array} problems  Problems (mutated).
@@ -36,6 +38,9 @@ function checkRawAttributes( rawBlocks, problems ) {
 					// Core-only helpers such as "lock" and "metadata" are known to every block.
 					if (
 						! type.attributes?.[ key ] &&
+						! ( type.deprecated || [] ).some(
+							( deprecation ) => deprecation.attributes?.[ key ]
+						) &&
 						! [
 							'lock',
 							'metadata',

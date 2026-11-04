@@ -162,7 +162,7 @@ export default function Preview( {
 						{ sprintf(
 							/* translators: %s: pattern title. */
 							__(
-								'The preview shows the design of “%s”. After inserting, colours and fonts follow your theme, and every text and image can be edited.',
+								'The preview shows “%s” in a default theme. After inserting, fonts follow your theme, and every colour, text and image can be edited.',
 								'wpmozo-blocks-and-addons'
 							),
 							pattern.title
