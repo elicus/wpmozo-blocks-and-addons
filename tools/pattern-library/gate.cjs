@@ -17,7 +17,10 @@
  * 5. with --previews: the section is captured at 1440 px and written as
  *    previews/<slug>.<revision>.webp (800 × 600: the top of a tall section, or a short one fitted
  *    whole) and
- *    previews/<slug>.<revision>-full.webp (1200 px wide), encoded with cwebp.
+ *    previews/<slug>.<revision>-full.webp (1200 px wide), encoded with cwebp;
+ * 6. editability, on a second page: every block type's Inspector renders on all its tabs without
+ *    page errors, and a marker typed into each inline text field (up to ten) survives saving,
+ *    reloading and the front end.
  *
  * The log records every check; the exit code is 1 if any check failed. Thumbnails show the design in
  * the site's active theme. Network: only the site's host resolves. Not shipped (tools/ is not in
@@ -110,6 +113,224 @@ const allBlocks = ( page ) =>
 		walk( wp.data.select( 'core/block-editor' ).getBlocks() );
 		return out;
 	} );
+
+async function openInspector( page, clientId ) {
+	await page.evaluate( ( id ) => {
+		wp.data.dispatch( 'core/block-editor' ).selectBlock( id );
+		const area = wp.data.dispatch( 'core/interface' );
+		area.enableComplementaryArea( 'core', 'edit-post/block' );
+		area.enableComplementaryArea( 'core/edit-post', 'edit-post/block' );
+	}, clientId );
+	await page.waitForSelector( '.block-editor-block-inspector', {
+		timeout: 20000,
+	} );
+	await page.waitForTimeout( 300 );
+}
+
+// Open every visible collapsed Inspector panel (some editors keep hidden panels there).
+async function openVisiblePanels( page ) {
+	const closed = page.locator(
+		'.block-editor-block-inspector .components-panel__body:not(.is-opened) > .components-panel__body-title button'
+	);
+	for ( let round = 0; round < 40; round++ ) {
+		const count = await closed.count();
+		let opened = false;
+		for ( let i = 0; i < count && ! opened; i++ ) {
+			if ( await closed.nth( i ).isVisible() ) {
+				await closed.nth( i ).click();
+				await page.waitForTimeout( 80 );
+				opened = true;
+			}
+		}
+		if ( ! opened ) {
+			return;
+		}
+	}
+}
+
+// 6. Editability, on a separate page so the previews stay clean: every block type's Inspector
+// renders on all its tabs, and a marker typed into each inline text field survives saving,
+// reloading and the front end.
+async function checkEditability( browser, item, errors, check ) {
+	const page = await newPage(
+		browser,
+		{ width: 1440, height: 1000 },
+		errors
+	);
+	await openEditor( page, '/wp-admin/post-new.php?post_type=page' );
+	await page.evaluate( () => wp.data.dispatch( 'wpmozo/library' ).open() );
+	await page
+		.locator(
+			`.wpmozo-library button[aria-label="Insert ${ item.title }"]`
+		)
+		.click();
+	await page.waitForSelector( '.wpmozo-library', {
+		state: 'detached',
+		timeout: 90000,
+	} );
+	await page.waitForTimeout( 5000 );
+	const list = await page.evaluate( () => {
+		const out = [];
+		const walk = ( blocks ) =>
+			blocks.forEach( ( b ) => {
+				out.push( { clientId: b.clientId, name: b.name } );
+				walk( b.innerBlocks );
+			} );
+		walk( wp.data.select( 'core/block-editor' ).getBlocks() );
+		return out;
+	} );
+
+	const errorsBefore = errors.length;
+	const inspected = [];
+	for ( const name of [ ...new Set( list.map( ( b ) => b.name ) ) ] ) {
+		await openInspector(
+			page,
+			list.find( ( b ) => b.name === name ).clientId
+		);
+		const tabs = page.locator(
+			'.block-editor-block-inspector [role="tablist"] [role="tab"]'
+		);
+		const tabCount = await tabs.count();
+		let controls = 0;
+		for ( let t = 0; t < Math.max( 1, tabCount ); t++ ) {
+			if ( tabCount ) {
+				await tabs.nth( t ).click();
+				await page.waitForTimeout( 150 );
+			}
+			await openVisiblePanels( page );
+			controls += await page
+				.locator(
+					'.block-editor-block-inspector :is(input,select,textarea,button)'
+				)
+				.count();
+		}
+		inspected.push( { name, tabs: Math.max( 1, tabCount ), controls } );
+	}
+	check(
+		"editing: every block type's Inspector renders on all its tabs",
+		errors.length === errorsBefore &&
+			inspected.every( ( i ) => i.controls > 0 ),
+		inspected.map( ( i ) => `${ i.name }: ${ i.tabs } tab(s)` )
+	);
+
+	const canvas = ( await page
+		.locator( 'iframe[name="editor-canvas"]' )
+		.count() )
+		? page.frameLocator( 'iframe[name="editor-canvas"]' )
+		: page;
+	const markers = [];
+	for ( const block of list ) {
+		if ( markers.length >= 10 ) {
+			break;
+		}
+		const element = canvas.locator( `[data-block="${ block.clientId }"]` );
+		// The block's own rich-text field: the block itself, or its first editable
+		// that doesn't belong to a nested block.
+		const index = await element
+			.evaluate( ( node ) => {
+				if ( node.getAttribute( 'contenteditable' ) === 'true' ) {
+					return -1;
+				}
+				const all = [
+					...node.querySelectorAll( '[contenteditable="true"]' ),
+				];
+				const own = all.findIndex(
+					( e ) =>
+						e.closest( '[data-block]' ) === node &&
+						e.getBoundingClientRect().width > 0
+				);
+				// -1: the block itself is the field; -2: it has no field of its own.
+				return own === -1 ? -2 : own;
+			} )
+			.catch( () => -2 );
+		if ( index < -1 ) {
+			continue;
+		}
+		const field =
+			index === -1
+				? element
+				: element.locator( '[contenteditable="true"]' ).nth( index );
+		if ( index === -1 && ! ( await field.isVisible() ) ) {
+			continue;
+		}
+		const marker = `qz${ markers.length }mark`;
+		await field.scrollIntoViewIfNeeded();
+		// Focus instead of clicking: editor popovers (the between-blocks inserter) can sit over the field.
+		await field.focus();
+		await field.evaluate( ( el ) => {
+			const range = el.ownerDocument.createRange();
+			range.selectNodeContents( el );
+			range.collapse( false );
+			const selection = el.ownerDocument.getSelection();
+			selection.removeAllRanges();
+			selection.addRange( range );
+		} );
+		await page.keyboard.type( ' ' + marker, { delay: 10 } );
+		await page.waitForTimeout( 300 );
+		markers.push( { marker, name: block.name } );
+	}
+	const typed = await page.evaluate(
+		() => wp.data.select( 'core/editor' ).getEditedPostContent(),
+		null
+	);
+	check(
+		`editing: ${ markers.length } inline text field(s) edited`,
+		markers.length > 0 &&
+			markers.every( ( m ) => typed.includes( m.marker ) ),
+		markers.map( ( m ) => m.name )
+	);
+
+	const saved = await page.evaluate( async ( title ) => {
+		wp.data
+			.dispatch( 'core/editor' )
+			.editPost( { title, status: 'publish' } );
+		await wp.data.dispatch( 'core/editor' ).savePost();
+		return {
+			id: wp.data.select( 'core/editor' ).getCurrentPostId(),
+			link: wp.data.select( 'core/editor' ).getPermalink(),
+		};
+	}, `Gate editing: ${ item.id }` );
+	await page.waitForFunction(
+		() => ! wp.data.select( 'core/editor' ).isSavingPost(),
+		null,
+		{ timeout: 60000 }
+	);
+	await openEditor(
+		page,
+		`/wp-admin/post.php?post=${ saved.id }&action=edit`
+	);
+	const blocks = await allBlocks( page );
+	const content = await page.evaluate( () =>
+		wp.data.select( 'core/editor' ).getEditedPostContent()
+	);
+	check(
+		'editing: after save and reload, all valid and every edit kept',
+		blocks.every( ( b ) => b.valid ) &&
+			markers.every( ( m ) => content.includes( m.marker ) ),
+		{
+			invalid: blocks.filter( ( b ) => ! b.valid ).map( ( b ) => b.name ),
+			lost: markers
+				.filter( ( m ) => ! content.includes( m.marker ) )
+				.map( ( m ) => m.name ),
+		}
+	);
+	await page.goto( saved.link );
+	const text = await page.evaluate(
+		// Lower case: some fields are shown with text-transform (innerText applies it).
+		() =>
+			document
+				.querySelector( '.wp-block-post-content' )
+				.innerText.toLowerCase()
+	);
+	check(
+		'editing: the front end shows every edit',
+		markers.every( ( m ) => text.includes( m.marker ) ),
+		markers
+			.filter( ( m ) => ! text.includes( m.marker ) )
+			.map( ( m ) => m.name )
+	);
+	await page.context().close();
+}
 
 // Crop a PNG (rect in source pixels, or the whole image), scale it to a target width in the
 // browser, then encode WebP with cwebp.
@@ -443,6 +664,7 @@ function thumbnailRect( width, height ) {
 			}
 			await fp.context().close();
 		}
+		await checkEditability( browser, item, errors, check );
 		check( 'headings', true, front.desktop.headings );
 		check( 'no page errors', ! errors.length, errors );
 		report.patterns.push( {
