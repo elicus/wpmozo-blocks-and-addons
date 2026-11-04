@@ -61,7 +61,10 @@ Requirements: Node with this plugin's `node_modules` (Playwright, Google Chrome)
 - inserts through the library window;
 - valid blocks, still valid after saving and reloading;
 - uses at least one WPMozo block;
-- at 1440, 768 and 360 px: no horizontal overflow, images load and have alt text, no page errors (the page is scrolled through first, so scroll animations run).
+- at 1440, 768 and 360 px: no horizontal overflow, images load and have alt text, no page errors (the page is scrolled through first, so scroll animations run);
+- editability, on a second page:
+  - every block type's Inspector renders on all its tabs without page errors;
+  - a marker typed into each inline text field (up to ten) survives saving, reloading and the front end.
 
 Each run writes a log, never overwriting an earlier one. Check headings and the design visually as well: the gate only lists the headings, and design quality needs a person.
 

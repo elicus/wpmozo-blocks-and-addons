@@ -219,3 +219,42 @@ Target was ≤ 300 ms warm at 500 patterns. A generated metadata index stays def
 - Star Rating rounds to half stars (4.9 shows as 5).
 
 **Not tested in LPL-T:** a screen reader, multisite, themes other than the default theme, and an expired or revoked licence (phase 2 data).
+
+## LPL-T editability, roles and protection, 2026-11-04
+
+**Setup:** WordPress 6.8.11 / PHP 7.4 and 7.1.3 / PHP 8.2, as for LPL-T. Harness suites `sessions/lpl-t/test_editability.cjs` and `test_roles.py`; the repository gate `tools/pattern-library/gate.cjs`.
+
+**Editing test** (136 checks per version; **136/136 on 6.8.11 and 7.1.3**). Each pattern is inserted through the library, then:
+- the Inspector of every block type in it renders on all its tabs without page errors (core blocks, Fancy Heading, Star Rating, Pricing Table, Advanced Counter, Timeline and Timeline item);
+- edits are made three ways:
+  - **typed inline** in the canvas: paragraphs, headings, the Fancy Heading pre-text, the Pricing Table title, a Timeline item title;
+  - **through Inspector controls** found by label: Fancy Heading "Main Heading", Star Rating "Description", Pricing Table "Price" and "Period", Advanced Counter "Counter Number" and "Title", Timeline item "Timeline Content" and "Enter Custom Time";
+  - **through block attributes**, as the pickers do: links and button text, a replaced image with new alt text, colours (section and card backgrounds, Fancy Heading, Pricing Table title, counter number, Timeline line), a Timeline icon, a Pricing Table feature-list item (nested data), a star rating;
+- after each edit: the block is valid and applied, and **no other block changed** (comparing every block's attributes, except the ID-derived `ID` and `wrapStyle`);
+- after saving and reloading: every block valid, every edit kept, no other block changed, no page errors;
+- on the front end at 1440 and 360 px: every edited text, link, image, colour and icon is shown; no overflow; no page errors.
+
+**Repository gate with editability (PL-D22):** passed for all four patterns on both versions. It typed into 7, 10, 9 and 7 inline fields, and all were kept through save, reload and the front end.
+
+**Roles, licence and protection** (49 checks per version; **49/49 on 6.8.11 and 7.1.3**):
+- the role and licence matrix of the LPL-T section;
+- each pattern's `content.php` and `pattern.php`, and the map files, requested directly over HTTP: empty response;
+- the catalog for administrators, editors and authors contains no block markup or content;
+- a refused Pro content request (no activated licence) carries no content.
+
+**Importer unit tests:** `src/library/test/importer.test.js` (6 tests; 13 library tests in all). Covered:
+- older attributes declared by a deprecation are accepted;
+- unknown attributes are refused;
+- core helper attributes are accepted;
+- missing and invalid blocks are refused;
+- the rebuild gives a fresh `ID` per block.
+
+Checked against the bug: with the deprecation rule removed, the deprecation test fails.
+
+**Findings:** no defect in the pilot patterns or the library. Problems were in the tests only:
+- an icon renders as `<span>`, not `<i>`;
+- 7.1 keeps hidden panels in the Inspector;
+- a between-blocks popover can cover a field, so the gate focuses fields instead of clicking;
+- `innerText` applies `text-transform`.
+
+**Not tested:** a screen reader, multisite, other themes, image replacement through the Media Library dialog (the test sets the image attribute directly, as the dialog does), and expired or revoked licences (phase 2).

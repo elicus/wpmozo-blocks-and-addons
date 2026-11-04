@@ -32,6 +32,8 @@ Each entry: ID, date approved, decision, reason. Proposed or open items are not 
 | PL-D20 | 2026-11-04 | **Pilot content:**<ul><li>2 free (hero, pricing) + 2 Pro (features, process), temporary designs;</li><li>WPMozo blocks are the featured elements;</li><li>CTAs use core Buttons;</li><li>blocks with front-end defects are avoided;</li><li>fonts follow the theme, colours come from one token set;</li><li>original local illustrations.</li></ul> | Owner asked for production-quality temporary designs without supplying them (2026-11-04). The block issues are listed in [testing.md](testing.md) |
 | PL-D21 | 2026-11-04 | **Temporary Lite-to-Pro card link** on the reserved `example.com` domain, marked in `data/links.php`. | Owner: use a clearly marked temporary value until the destination is confirmed; never invent a production URL. Replacing it is a release blocker |
 
+| PL-D22 | 2026-11-04 | **Editability is part of the quality gate:** every block type's Inspector must render on all its tabs, and inline text edits must survive save, reload and the front end. It runs on a separate page, so previews stay clean | Owner asked for full Gutenberg editability, not only insertion. A generic check covers replacement and future patterns without pattern-specific scripts |
+
 **Process (approved 2026-11-03):**
 - Lite Pattern Library work goes on `dev/sunil`; Pro Pattern Library work on `release/pattern-lib`.
 - Approved work is committed and pushed automatically in small verified units, code and docs in separate commits. No force-push, reset or merge of other branches.

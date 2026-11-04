@@ -30,7 +30,10 @@ The owner asked on 2026-11-04 for temporary pilot designs made here instead of s
 - Original local illustrations, 800 × 600 thumbnails and full previews.
 - Authoring tools in `tools/pattern-library/`.
 
-**Verified:** the quality gate passes for all four on WordPress 6.8.11 and 7.1.3; roles and licence states were checked ([testing.md](testing.md)).
+**Verified (2026-11-04) on WordPress 6.8.11 and 7.1.3** ([testing.md](testing.md)):
+- the quality gate passes for all four, including editability;
+- a full editing test passes 136/136 on each version: inline text, Inspector controls, links, images, colours, icons and nested data, kept through save and reload with no other block changed, and shown on the front end;
+- roles, licence states and premium-content protection: 49/49 on each version.
 
 **For the review:** design quality, choice of sections, copy. The patterns are temporary; the owner will replace or refine them later.
 
