@@ -10,6 +10,7 @@ import { inspectorPanelTabs } from '../../common/utils.js';
 import { GeneralPanel } from './settings/generalPanel';
 import { DesignPanel } from './settings/designPanel';
 import { AdvancedPanel } from '../../common/components/advanced-panel/advanced-panel';
+import { CommonDesignPanel } from '../../common/components/common-design-panel/common-design-panel';
 import { useSelect } from '@wordpress/data';
 import { useState, useEffect } from "@wordpress/element";
 
@@ -41,8 +42,9 @@ const Inspector = ( { attributes, setAttributes } ) => {
 					{ tab.name === 'design' &&
 						<DesignPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState} />
 					}
+					{ tab.name === 'design' && <CommonDesignPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState} writeHoverAttribute /> }
 					{ tab.name === 'advanced' &&
-						<AdvancedPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState}/>
+						<AdvancedPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState} writeHoverAttribute />
 					}
 				</div> ) }
 			</TabPanel>

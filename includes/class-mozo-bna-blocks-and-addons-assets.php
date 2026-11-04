@@ -272,6 +272,58 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 
 		// Load frontend localize variables.
 		$this->load_block_localize_variables();
+
+		// Pro plugin state for the pro controls in the Advanced tab.
+		$this->pro_status_data();
+	}
+
+	/**
+	 * Pro plugin state for the pro controls in every block's Advanced tab
+	 * (src/common/components/advanced-panel/pro-controls.js reads `window.wpmozoBnaPro`).
+	 *
+	 * status: active | inactive (installed) | missing. A control unlocks only when pro is active and at least the
+	 * control's `since` version, so controls from later pro releases stay locked on sites that didn't update pro.
+	 *
+	 * @since 1.9.1
+	 */
+	public function pro_status_data() {
+		$pro_file = 'wpmozo-blocks-and-addons-pro/wpmozo-blocks-and-addons-pro.php';
+
+		if ( defined( 'WPMOZO_BNA_PRO_VERSION' ) ) {
+			$status = 'active';
+		} elseif ( file_exists( WP_PLUGIN_DIR . '/' . $pro_file ) ) {
+			$status = 'inactive';
+		} else {
+			$status = 'missing';
+		}
+
+		$roles = array();
+		foreach ( wp_roles()->get_names() as $slug => $name ) {
+			$roles[] = array(
+				'slug' => $slug,
+				'name' => translate_user_role( $name ),
+			);
+		}
+
+		$data = array(
+			'status'      => $status,
+			'version'     => defined( 'WPMOZO_BNA_PRO_VERSION' ) ? WPMOZO_BNA_PRO_VERSION : '',
+			'upgradeUrl'  => 'https://wpmozoblocks.com/pricing/',
+			'activateUrl' => ( 'inactive' === $status && current_user_can( 'activate_plugins' ) )
+				? add_query_arg(
+					array(
+						'action'   => 'activate',
+						'plugin'   => rawurlencode( $pro_file ),
+						'_wpnonce' => wp_create_nonce( 'activate-plugin_' . $pro_file ),
+					),
+					self_admin_url( 'plugins.php' )
+				)
+				: '',
+			'updateUrl'   => current_user_can( 'update_plugins' ) ? self_admin_url( 'plugins.php' ) : '',
+			'roles'       => $roles,
+		);
+
+		wp_add_inline_script( 'wp-blocks', 'window.wpmozoBnaPro = ' . wp_json_encode( $data ) . ';', 'before' );
 	}
 
 	/**

@@ -24,6 +24,7 @@ import { inspectorPanelTabs } from '../../common/utils.js';
 import { GeneralPanel } from './settings/generalPanel';
 import { DesignPanel } from './settings/designPanel';
 import { AdvancedPanel } from '../../common/components/advanced-panel/advanced-panel';
+import { CommonDesignPanel } from '../../common/components/common-design-panel/common-design-panel';
 
 export default function Inspector( props ) {
 
@@ -58,8 +59,9 @@ export default function Inspector( props ) {
 						{ tab.name === 'design' &&
 							<DesignPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState} />
 						}
+						{ tab.name === 'design' && <CommonDesignPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState} writeHoverAttribute /> }
 						{ tab.name === 'advanced' &&
-                        	<AdvancedPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState}/>
+                        	<AdvancedPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState} writeHoverAttribute />
                     	}
 					</div> ) }
 				</TabPanel>

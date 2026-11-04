@@ -16,21 +16,24 @@ import {
     __experimentalToolsPanelItem as ToolsPanelItem,
 	__experimentalDivider as Divider
 } from '@wordpress/components';
-import { MozoStates, WpmozoDimensions, WpmozoBorder, WpmozoAlignment } from '../../../common/components';
+import MozoStates from '../mozo-states/mozo-states';
 import {skew, translate, scale, rotate, origin} from './icon';
+import ProAdvancedControls from './pro-controls';
 import { useState, useEffect } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 
-export const AdvancedPanel = ( { attributes, setAttributes, exclude = {}, hoverState, setHoverState } ) => {
+/**
+ * Advanced tab shared by every block (lite and pro): Transform, Additional Class(es) and, at the end,
+ * the pro controls (Visibility, Animation, Display Conditions; see ./pro-controls.js).
+ *
+ * @param {Object}  props
+ * @param {Object}  props.exclude             Sections to hide: transform, additionalClass, proControls.
+ * @param {boolean} props.writeHoverAttribute Also store the Hover chip state in the `wrapIsHover` attribute.
+ *                                            Only for lite blocks, whose edit.js reads it for the editor hover preview.
+ * @param {string}  props.classAttribute      Attribute the Additional Class(es) field writes. Pro blocks pass `className`.
+ */
+export const AdvancedPanel = ( { attributes, setAttributes, exclude = {}, hoverState, setHoverState, writeHoverAttribute = false, classAttribute = 'wrapCustomClass' } ) => {
 	const {
-		wrapBackground,
-		wrapBackgroundHover,
-		wrappadding,
-		wrapHoverpadding,
-		wrapborderRadius,
-		wrapHoverborderRadius,
-		wrapborder,
-		wrapHoverborder,
 		wrapTransform,
 		wrapCustomClass,
 		wrapTranslate,
@@ -46,12 +49,20 @@ export const AdvancedPanel = ( { attributes, setAttributes, exclude = {}, hoverS
 		wrapIsHover
 	} = attributes;
 	const props = {attributes, setAttributes, preAttributes: {}};
+	const onHoverChange = ( isHover ) => {
+		if ( typeof setHoverState === 'function' ) {
+			setHoverState( isHover );
+		}
+		if ( writeHoverAttribute ) {
+			setAttributes( { wrapIsHover: isHover } );
+		}
+	};
 	// const [ hoverState, setHoverState ] = useState( false );
 	const isSaving = useSelect(select =>
 		select('core/editor').isSavingPost()
 	);
 	// Track which panel is open — null matlab koi nahi
-    const [openPanel, setOpenPanel] = useState('panel1');
+    const [openPanel, setOpenPanel] = useState('panel4');
 
     // Toggle helper: same panel dobara click karo to band ho
     const handleToggle = (panelId) => {
@@ -59,85 +70,6 @@ export const AdvancedPanel = ( { attributes, setAttributes, exclude = {}, hoverS
     };
 
 	return ( <>
-		{ !exclude?.background && <PanelBody
-			title={ __( 'Background', 'wpmozo-blocks-and-addons' ) }
-			opened={openPanel === 'panel1'}
-            onToggle={() => handleToggle('panel1')}
-		>
-			<MozoStates
-				value = {hoverState}
-				title={ __( 'Color', 'wpmozo-blocks-and-addons' ) }
-				onChange={ ( isHover ) =>  (
-					isHover ?  setHoverState(true) : setHoverState(false),
-					setAttributes({wrapIsHover: !hoverState})
-				)
-					 
-				}
-				control={ ( isHover ) => (
-					<ColorPalette
-						value={ isHover ? wrapBackgroundHover : wrapBackground }
-						onChange={ ( color ) => setAttributes(
-							isHover
-								? { wrapBackgroundHover: color || '' }
-								: { wrapBackground: color || '' }
-						) }
-						enableAlpha
-					/>
-				) }
-			/>
-		</PanelBody> }
-
-		{ !exclude?.spacing && <PanelBody
-			title={ __( 'Spacing', 'wpmozo-blocks-and-addons' ) }
-			opened={openPanel === 'panel2'}
-            onToggle={() => handleToggle('panel2')}
-		>
-			<MozoStates
-				value = {hoverState}
-				onChange={ ( isHover ) =>  (
-					isHover ?  setHoverState(true) : setHoverState(false),
-					setAttributes({wrapIsHover: !hoverState})
-				)
-					 
-				}
-				title={ __( 'Padding', 'wpmozo-blocks-and-addons' ) }
-				control={ ( isHover ) => (
-					<WpmozoDimensions
-						DimensionKey={ isHover ? 'wrapHover' : 'wrap' }
-						DimensionsTypes={{
-							padding: true
-						}}
-						label={__( ' ', 'wpmozo-blocks-and-addons' )}
-						props={props}
-					/>
-				) }
-			/>
-		</PanelBody>}
-
-		{ !exclude?.border && <PanelBody
-			title={ __( 'Border', 'wpmozo-blocks-and-addons' ) }
-			opened={openPanel === 'panel3'}
-            onToggle={() => handleToggle('panel3')}
-		>
-			<MozoStates
-				value = {hoverState}
-				onChange={ ( isHover ) =>  (
-					isHover ?  setHoverState(true) : setHoverState(false),
-					setAttributes({wrapIsHover: !hoverState})
-				)
-					 
-				}
-				title={ __( 'Border', 'wpmozo-blocks-and-addons' ) }
-				control={ ( isHover ) => (
-					<WpmozoBorder
-						label= " "
-						props={props}
-						BorderKey={ isHover ? 'wrapHover' : 'wrap' }
-					/>
-				) }
-			/>
-		</PanelBody>}
-
 		{ !exclude?.transform && <PanelBody
 			title={ __( 'Transform', 'wpmozo-blocks-and-addons' ) }
 			opened={openPanel === 'panel4'}
@@ -158,12 +90,7 @@ export const AdvancedPanel = ( { attributes, setAttributes, exclude = {}, hoverS
 			{'translate' === attributes.wrapTransform && (
 				<MozoStates
 					value = {hoverState}
-					onChange={ ( isHover ) =>  (
-						isHover ?  setHoverState(true) : setHoverState(false),
-						setAttributes({wrapIsHover: !hoverState})
-					)
-						
-					}
+					onChange={ onHoverChange }
 					title={ __( 'Transform Translate', 'wpmozo-blocks-and-addons' ) }
 					control={ ( isHover ) => (
 						<>
@@ -205,12 +132,7 @@ export const AdvancedPanel = ( { attributes, setAttributes, exclude = {}, hoverS
 			{'scale' === attributes.wrapTransform && (
 				<MozoStates
 					value = {hoverState}
-					onChange={ ( isHover ) =>  (
-						isHover ?  setHoverState(true) : setHoverState(false),
-						setAttributes({wrapIsHover: !hoverState})
-					)
-						
-					}
+					onChange={ onHoverChange }
 					title={ __( 'Transform Scale', 'wpmozo-blocks-and-addons' ) }
 					control={ ( isHover ) => (
 						<>
@@ -250,12 +172,7 @@ export const AdvancedPanel = ( { attributes, setAttributes, exclude = {}, hoverS
 			{'rotate' === attributes.wrapTransform && (
 				<MozoStates
 					value = {hoverState}
-					onChange={ ( isHover ) =>  (
-						isHover ?  setHoverState(true) : setHoverState(false),
-						setAttributes({wrapIsHover: !hoverState})
-					)
-						
-					}
+					onChange={ onHoverChange }
 					title={ __( 'Transform Rotate', 'wpmozo-blocks-and-addons' ) }
 					control={ ( isHover ) => (
 						<>
@@ -312,12 +229,7 @@ export const AdvancedPanel = ( { attributes, setAttributes, exclude = {}, hoverS
 			{'skew' === attributes.wrapTransform && (
 				<MozoStates
 					value = {hoverState}
-					onChange={ ( isHover ) =>  (
-						isHover ?  setHoverState(true) : setHoverState(false),
-						setAttributes({wrapIsHover: !hoverState})
-					)
-						
-					}
+					onChange={ onHoverChange }
 					title={ __( 'Transform Skew', 'wpmozo-blocks-and-addons' ) }
 					control={ ( isHover ) => (
 						<>
@@ -355,12 +267,7 @@ export const AdvancedPanel = ( { attributes, setAttributes, exclude = {}, hoverS
 			{'transform-origin' === attributes.wrapTransform && (
 				<MozoStates
 					value = {hoverState}
-					onChange={ ( isHover ) =>  (
-						isHover ?  setHoverState(true) : setHoverState(false),
-						setAttributes({wrapIsHover: !hoverState})
-					)
-						
-					}
+					onChange={ onHoverChange }
 					title={ __( 'Transform Origin', 'wpmozo-blocks-and-addons' ) }
 					control={ ( isHover ) => (
 						<>
@@ -407,11 +314,12 @@ export const AdvancedPanel = ( { attributes, setAttributes, exclude = {}, hoverS
 		>
 			<TextControl
 				label={ __( 'Additional CSS Class(es)', 'wpmozo-blocks-and-addons' ) }
-				value={ wrapCustomClass }
-				onChange={ ( value ) => setAttributes( { wrapCustomClass: value } ) }
+				value={ attributes[ classAttribute ] || '' }
+				onChange={ ( value ) => setAttributes( { [ classAttribute ]: value } ) }
 				help={ __( 'Separate multiple classes with spaces.', 'wpmozo-blocks-and-addons' ) }
 			/>
 		</PanelBody>}
+		{ !exclude?.proControls && <ProAdvancedControls attributes={ attributes } setAttributes={ setAttributes } /> }
 	</> );
 };
 

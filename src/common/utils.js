@@ -412,6 +412,25 @@ export function addDynamicCSS(id, css, blockId) {
 }
 
 /**
+ * Build a `box-shadow` declaration from a { x, y, blur, spread, color, inset } object.
+ * Returns '' when no colour is set.
+ */
+export function wpmozo_get_box_shadow( shadow ) {
+	if ( ! shadow || wpmozo_is_empty( shadow.color ) ) {
+		return '';
+	}
+	const parts = [
+		shadow.inset ? 'inset' : '',
+		shadow.x || '0px',
+		shadow.y || '0px',
+		shadow.blur || '0px',
+		shadow.spread || '0px',
+		shadow.color,
+	].filter( Boolean );
+	return `box-shadow:${ parts.join( ' ' ) };`;
+}
+
+/**
  * Build wrapper-level className + inline style from shared advanced attributes.
  * Empty strings collapse to `undefined` so block-specific CSS is not overridden.
  *
@@ -439,7 +458,10 @@ export function getWrapperProps( attributes = {} ) {
 		wrapSkew,
 		wrapSkewHover,
 		wrapTransformOrigin,
-		wrapTransformOriginHover
+		wrapTransformOriginHover,
+		wrapBoxShadow,
+		wrapBoxShadowHover,
+		wrapTransitionDuration
 	} = attributes;
 	const toConvertStyles = [
 		'wrap',
@@ -470,7 +492,9 @@ export function getWrapperProps( attributes = {} ) {
 	const hoverBg = wrapBackgroundHover ? `background:${wrapBackgroundHover};` : '';
 	const hoverConvertedStyle = convertedStyle.wrapHover ? `${convertedStyle.wrapHover};` : '';
 
-	const hoverContent = [hoverBg, hoverConvertedStyle, hoverTransform, hoverOrigin]
+	const hoverShadow = wpmozo_get_box_shadow( wrapBoxShadowHover );
+
+	const hoverContent = [hoverBg, hoverConvertedStyle, hoverShadow, hoverTransform, hoverOrigin]
 		.filter(Boolean).join('\n');
 
 	const normalTransform = buildTransform(wrapScale, wrapRotate, wrapTranslate, wrapSkew);
@@ -480,9 +504,12 @@ export function getWrapperProps( attributes = {} ) {
 	const normalBg = wrapBackground ? `background:${wrapBackground};` : '';
 	const normalConvertedStyle = convertedStyle.wrap ? `${convertedStyle.wrap};` : '';
 
-	const normalContent = [ normalBg, normalConvertedStyle, normalTransform, normalOrigin]
+	const normalShadow = wpmozo_get_box_shadow( wrapBoxShadow );
+
+	const normalContent = [ normalBg, normalConvertedStyle, normalShadow, normalTransform, normalOrigin]
 		.filter(Boolean).join('\n');
-	let	style = normalContent ?  `body .${uniqueClass}#block-${ID} { ${normalContent} transition:all 300ms;}` : `body .${uniqueClass}#block-${ID} {transition:all 300ms;}`;
+	const duration = wpmozo_is_empty( wrapTransitionDuration ) ? 300 : parseInt( wrapTransitionDuration, 10 ) || 0;
+	let	style = normalContent ?  `body .${uniqueClass}#block-${ID} { ${normalContent} transition:all ${duration}ms;}` : `body .${uniqueClass}#block-${ID} {transition:all ${duration}ms;}`;
 	if (hoverContent) {
 		style += `body .${uniqueClass}#block-${ID}:hover,body .${uniqueClass}#block-${ID}.is_hover {${hoverContent}}`;
 	}

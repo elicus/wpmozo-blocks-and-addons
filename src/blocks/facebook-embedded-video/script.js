@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 jQuery( document ).ready( function($) {
 	// Each elements loop.
 	$( '.wp-block-wpmozo-facebook-embedded-video' ).each( function() {

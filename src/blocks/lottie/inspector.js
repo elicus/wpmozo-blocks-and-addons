@@ -10,6 +10,7 @@ import { inspectorPanelTabs } from '../../common/utils.js';
 import { GeneralPanel } from './settings/generalPanel';
 import { DesignPanel } from './settings/designPanel';
 import { AdvancedPanel } from '../../common/components/advanced-panel/advanced-panel';
+import { CommonDesignPanel } from '../../common/components/common-design-panel/common-design-panel';
 import { useSelect } from '@wordpress/data';
 import { useState, useEffect } from "@wordpress/element";
 
@@ -32,14 +33,15 @@ const Inspector = ( { attributes, setAttributes } ) => {
 			<TabPanel
 				className="wpmozo-settings-tab-panel"
 				activeClass="is-active"
-				tabs={ inspectorPanelTabs({ showDesign: false }) }
+				tabs={ inspectorPanelTabs() }
 			>
 				{ ( tab ) => ( <div className="wpmozo-settings-tab-panel-content">
 					{ tab.name === 'general' &&
 						<GeneralPanel attributes={attributes} setAttributes={setAttributes} />
 					}
+					{ tab.name === 'design' && <CommonDesignPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState} writeHoverAttribute /> }
 					{ tab.name === 'advanced' &&
-						<AdvancedPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState}/>
+						<AdvancedPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState} writeHoverAttribute />
 					}
 				</div> ) }
 			</TabPanel>

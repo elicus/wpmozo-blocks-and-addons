@@ -13,6 +13,8 @@ import WpmozoVideoUploader from './wpmozo-video-uploader/wpmozo-video-uploader';
 import WpmozoTextShadow from './wpmozo-textshadow/wpmozo-textshadow';
 import MozoStates from './mozo-states/mozo-states';
 import WpmozoFeaturesRepeater from './wpmozo-features-repeater/wpmozo-features-repeater';
+import CommonDesignPanel from './common-design-panel/common-design-panel';
+import AdvancedPanel from './advanced-panel/advanced-panel';
 
 export {
 	WpmozoTypography,
@@ -28,7 +30,9 @@ export {
 	WpmozoVideoUploader,
 	WpmozoTextShadow,
 	MozoStates,
-	WpmozoFeaturesRepeater
+	WpmozoFeaturesRepeater,
+	CommonDesignPanel,
+	AdvancedPanel
 }
 
 // Export them globally for pro plugin.
@@ -48,6 +52,8 @@ if ( typeof window !== 'undefined' ) {
 		WpmozoVideoUploader,
 		WpmozoTextShadow,
 		MozoStates,
-		WpmozoFeaturesRepeater
+		WpmozoFeaturesRepeater,
+		CommonDesignPanel,
+		AdvancedPanel
 	} );
 }

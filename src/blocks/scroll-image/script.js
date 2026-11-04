@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 var wpmozo_init_scroll_image = function( $, element = null ) {
 
     var $el = ( null !== element ) ? element : $('body').find('.wpmozo-bna-scroll-image');

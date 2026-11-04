@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 var wpmozo_init_image_accor = function( $, element = null ) {
 
     element.each(function(){

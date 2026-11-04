@@ -2,7 +2,7 @@
 Contributors: elicus
 Tags: gutenberg, blocks, gutenberg blocks, gutenberg editor, wordpress blocks
 Tested up to: 7.1
-Stable tag: 1.9.0
+Stable tag: 1.9.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -185,6 +185,12 @@ For support, visit the [plugin support forum](https://wordpress.org/support/plug
 * Initial release of the plugin.
 
 == Changelog ==
+2026-11-04 - Version 1.9.1
+* New: Design tab > Block panel (background, padding, margin, border, box shadow, transition duration) shared by every block.
+* Updated: Block background, padding and border moved from the Advanced tab to the Design tab. Existing settings are kept.
+* New: Design tab for Advanced Button, Lottie and Scroll Image blocks.
+* New: Advanced tab > Visibility, Animation and Display Conditions on every block, powered by WPMozo Blocks and Addons Pro (shown locked without Pro).
+
 2026-10-30 - Version 1.9.0
 * New: Progress Bar Block.
 * New: Portfolio Slider Block.

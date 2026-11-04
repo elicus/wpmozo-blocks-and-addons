@@ -3,10 +3,14 @@ const advancedAttributes = {
 	wrapBackgroundHover:      { type: 'string', default: '' },
 	wrappadding:              { type: 'object' },
 	wrapHoverpadding:         { type: 'object' },
+	wrapmargin:               { type: 'object' },
 	wrapborder:               { type: 'object' },
 	wrapHoverborder:          { type: 'object' },
 	wrapborderRadius:         { type: 'object' },
 	wrapHoverborderRadius:    { type: 'object' },
+	wrapBoxShadow:            { type: 'object' },
+	wrapBoxShadowHover:       { type: 'object' },
+	wrapTransitionDuration:   { type: 'string', default: '' },
 	wrapTransform:            { type: 'string', default: 'translate' },
 	wrapTranslate:            { type: 'object', default: { X:'', Y:'' }},
 	wrapScale:                { type: 'object', default: { X:'', Y:'' }},
@@ -20,6 +24,15 @@ const advancedAttributes = {
 	wrapTransformOriginHover: { type: 'object', default: { X:'', Y:'' }  },
 	wrapCustomClass:          { type: 'string', default: '' },
 	wrapStyle:                { type: 'string', default: '' },
+	// Pro controls (./pro-controls.js). Declared here so saved values persist while pro is inactive; pro adds the behaviour.
+	wrapHideOn:               { type: 'object' },
+	wrapAnimation:            { type: 'string', default: '' },
+	wrapAnimationDuration:    { type: 'string', default: '' },
+	wrapAnimationDelay:       { type: 'string', default: '' },
+	wrapDisplayLogin:         { type: 'string', default: '' },
+	wrapDisplayRoles:         { type: 'array', default: [] },
+	wrapDisplayStart:         { type: 'string', default: '' },
+	wrapDisplayEnd:           { type: 'string', default: '' },
 	wrapIsHover:              {type:'boolean',default: false }
 };
 

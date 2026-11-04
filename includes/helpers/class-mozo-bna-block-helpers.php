@@ -67,6 +67,12 @@ class Mozo_Bna_Block_Helpers {
 		);
 
 		$styles = '';
+
+		// Font family (a theme.json font stack, as the editor's convertInlineStyle() outputs it); strip anything that could end the declaration.
+		if ( ! empty( $props[ $pre . 'Font' ] ) && is_string( $props[ $pre . 'Font' ] ) ) {
+			$styles .= sprintf( 'font-family: %s%s;', str_replace( array( '<', '>', '{', '}', ';' ), '', wp_strip_all_tags( $props[ $pre . 'Font' ] ) ), $imp );
+		}
+
 		foreach ( $map as $key => $css_prop ) {
 			if ( ! empty( $props[ $pre . $key ] ) ) {
 				$styles .= sprintf( '%s: %s%s;', $css_prop, $props[ $pre . $key ], $imp );
@@ -104,11 +110,19 @@ class Mozo_Bna_Block_Helpers {
 		if ( isset( $props[ $border_key ] ) && is_array( $props[ $border_key ] ) ) {
 			$border = $props[ $border_key ];
 
-			// Directional (top, right, etc.)
-			if ( isset( $border['top'], $border['right'], $border['bottom'], $border['left'] ) ) {
+			// Directional (top, right, etc.): width, style and color per side, with a solid style by default, as the editor's convertInlineStyle() outputs them.
+			if ( isset( $border['top'] ) || isset( $border['right'] ) || isset( $border['bottom'] ) || isset( $border['left'] ) ) {
 				foreach ( array( 'top', 'right', 'bottom', 'left' ) as $side ) {
-					if ( isset( $border[ $side ]['width'] ) ) {
-						$styles .= sprintf( 'border-%s-width: %s%s;', $side, $border[ $side ]['width'], $imp );
+					if ( ! isset( $border[ $side ] ) || ! is_array( $border[ $side ] ) ) {
+						continue;
+					}
+					foreach ( array( 'width', 'style', 'color' ) as $prop ) {
+						if ( isset( $border[ $side ][ $prop ] ) && '' !== $border[ $side ][ $prop ] ) {
+							$styles .= sprintf( 'border-%s-%s: %s%s;', $side, $prop, $border[ $side ][ $prop ], $imp );
+						}
+					}
+					if ( ! isset( $border[ $side ]['style'] ) ) {
+						$styles .= sprintf( 'border-%s-style: solid%s;', $side, $imp );
 					}
 				}
 			} // Shorthand (single width)
