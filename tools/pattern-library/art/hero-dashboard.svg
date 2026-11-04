@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1000" viewBox="0 0 1200 1000" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+	<!-- Original illustration for the "Product launch hero" pilot pattern. Rendered to media/hero-dashboard.<revision>.webp by render-art.cjs. -->
+	<defs>
+		<filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+			<feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#1e1b4b" flood-opacity="0.16"/>
+		</filter>
+		<filter id="shadow-sm" x="-20%" y="-30%" width="140%" height="170%">
+			<feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#1e1b4b" flood-opacity="0.18"/>
+		</filter>
+		<clipPath id="window">
+			<rect x="60" y="90" width="1000" height="760" rx="24"/>
+		</clipPath>
+		<linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#6366f1" stop-opacity="0.32"/>
+			<stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
+		</linearGradient>
+		<linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+			<stop offset="0" stop-color="#6366f1"/>
+			<stop offset="1" stop-color="#8b5cf6"/>
+		</linearGradient>
+	</defs>
+
+	<!-- App window -->
+	<g filter="url(#shadow)">
+		<rect x="60" y="90" width="1000" height="760" rx="24" fill="#ffffff"/>
+	</g>
+	<rect x="60" y="90" width="1000" height="56" rx="24" fill="#f8fafc"/>
+	<rect x="60" y="122" width="1000" height="24" fill="#f8fafc"/>
+	<line x1="60" y1="146" x2="1060" y2="146" stroke="#e2e8f0"/>
+	<circle cx="96" cy="118" r="7" fill="#f87171"/>
+	<circle cx="120" cy="118" r="7" fill="#fbbf24"/>
+	<circle cx="144" cy="118" r="7" fill="#34d399"/>
+	<rect x="420" y="105" width="280" height="26" rx="13" fill="#eef2f7"/>
+	<text x="560" y="123" text-anchor="middle" font-size="13" fill="#64748b">app.northwind.studio</text>
+
+	<!-- Sidebar -->
+	<rect x="60" y="146" width="200" height="704" fill="#f8fafc" clip-path="url(#window)"/>
+	<rect x="84" y="172" width="34" height="34" rx="10" fill="url(#brand)"/>
+	<text x="130" y="195" font-size="17" font-weight="700" fill="#0f172a">Northwind</text>
+	<rect x="80" y="236" width="160" height="40" rx="10" fill="#eef2ff"/>
+	<rect x="96" y="250" width="12" height="12" rx="3" fill="#4f46e5"/>
+	<text x="120" y="261" font-size="14" font-weight="600" fill="#4338ca">Overview</text>
+	<rect x="96" y="298" width="12" height="12" rx="3" fill="#cbd5e1"/>
+	<text x="120" y="309" font-size="14" fill="#475569">Campaigns</text>
+	<rect x="96" y="346" width="12" height="12" rx="3" fill="#cbd5e1"/>
+	<text x="120" y="357" font-size="14" fill="#475569">Audience</text>
+	<rect x="96" y="394" width="12" height="12" rx="3" fill="#cbd5e1"/>
+	<text x="120" y="405" font-size="14" fill="#475569">Reports</text>
+	<rect x="96" y="442" width="12" height="12" rx="3" fill="#cbd5e1"/>
+	<text x="120" y="453" font-size="14" fill="#475569">Settings</text>
+	<rect x="80" y="726" width="160" height="96" rx="14" fill="#eef2ff"/>
+	<text x="98" y="756" font-size="13" font-weight="700" fill="#312e81">Invite your team</text>
+	<text x="98" y="778" font-size="12" fill="#4f46e5">Share dashboards</text>
+	<text x="98" y="796" font-size="12" fill="#4f46e5">in one click</text>
+
+	<!-- Header -->
+	<text x="292" y="198" font-size="24" font-weight="700" fill="#0f172a">Overview</text>
+	<text x="292" y="222" font-size="14" fill="#64748b">Last 30 days</text>
+	<rect x="836" y="176" width="124" height="36" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+	<text x="898" y="199" text-anchor="middle" font-size="13" fill="#334155">Export</text>
+	<circle cx="1004" cy="194" r="20" fill="#fde68a"/>
+	<text x="1004" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">MJ</text>
+
+	<!-- KPI cards -->
+	<g>
+		<rect x="292" y="248" width="236" height="118" rx="16" fill="#ffffff" stroke="#e2e8f0"/>
+		<text x="314" y="282" font-size="13" fill="#64748b">Revenue</text>
+		<text x="314" y="322" font-size="28" font-weight="700" fill="#0f172a">$48.2k</text>
+		<rect x="314" y="336" width="62" height="20" rx="10" fill="#dcfce7"/>
+		<text x="345" y="350" text-anchor="middle" font-size="11" font-weight="700" fill="#15803d">+12.4%</text>
+	</g>
+	<g>
+		<rect x="548" y="248" width="236" height="118" rx="16" fill="#ffffff" stroke="#e2e8f0"/>
+		<text x="570" y="282" font-size="13" fill="#64748b">Active users</text>
+		<text x="570" y="322" font-size="28" font-weight="700" fill="#0f172a">8,431</text>
+		<rect x="570" y="336" width="56" height="20" rx="10" fill="#dcfce7"/>
+		<text x="598" y="350" text-anchor="middle" font-size="11" font-weight="700" fill="#15803d">+8.1%</text>
+	</g>
+	<g>
+		<rect x="804" y="248" width="232" height="118" rx="16" fill="#ffffff" stroke="#e2e8f0"/>
+		<text x="826" y="282" font-size="13" fill="#64748b">Conversion</text>
+		<text x="826" y="322" font-size="28" font-weight="700" fill="#0f172a">4.6%</text>
+		<rect x="826" y="336" width="56" height="20" rx="10" fill="#dcfce7"/>
+		<text x="854" y="350" text-anchor="middle" font-size="11" font-weight="700" fill="#15803d">+1.2%</text>
+	</g>
+
+	<!-- Area chart -->
+	<rect x="292" y="386" width="492" height="300" rx="16" fill="#ffffff" stroke="#e2e8f0"/>
+	<text x="314" y="420" font-size="15" font-weight="700" fill="#0f172a">Sign-ups</text>
+	<text x="314" y="442" font-size="12" fill="#64748b">Daily, all channels</text>
+	<rect x="676" y="404" width="88" height="26" rx="8" fill="#f1f5f9"/>
+	<text x="720" y="421" text-anchor="middle" font-size="12" fill="#334155">Monthly</text>
+	<line x1="314" y1="500" x2="762" y2="500" stroke="#f1f5f9"/>
+	<line x1="314" y1="560" x2="762" y2="560" stroke="#f1f5f9"/>
+	<line x1="314" y1="620" x2="762" y2="620" stroke="#f1f5f9"/>
+	<path d="M314 640 C360 628 382 600 424 604 C470 608 486 566 532 560 C578 554 596 584 640 556 C684 528 704 494 762 478 L762 664 L314 664 Z" fill="url(#area)"/>
+	<path d="M314 640 C360 628 382 600 424 604 C470 608 486 566 532 560 C578 554 596 584 640 556 C684 528 704 494 762 478" fill="none" stroke="#4f46e5" stroke-width="4" stroke-linecap="round"/>
+	<circle cx="640" cy="556" r="8" fill="#ffffff" stroke="#4f46e5" stroke-width="4"/>
+	<rect x="600" y="506" width="80" height="30" rx="8" fill="#0f172a"/>
+	<text x="640" y="526" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">1,284</text>
+	<text x="314" y="680" font-size="11" fill="#94a3b8">Week 1</text>
+	<text x="462" y="680" font-size="11" fill="#94a3b8">Week 2</text>
+	<text x="610" y="680" font-size="11" fill="#94a3b8">Week 3</text>
+	<text x="724" y="680" font-size="11" fill="#94a3b8">Week 4</text>
+
+	<!-- Bar chart -->
+	<rect x="804" y="386" width="232" height="300" rx="16" fill="#ffffff" stroke="#e2e8f0"/>
+	<text x="826" y="420" font-size="15" font-weight="700" fill="#0f172a">Channels</text>
+	<rect x="834" y="560" width="26" height="100" rx="6" fill="#c7d2fe"/>
+	<rect x="874" y="500" width="26" height="160" rx="6" fill="#818cf8"/>
+	<rect x="914" y="470" width="26" height="190" rx="6" fill="#4f46e5"/>
+	<rect x="954" y="530" width="26" height="130" rx="6" fill="#a5b4fc"/>
+	<rect x="994" y="590" width="26" height="70" rx="6" fill="#e0e7ff"/>
+
+	<!-- Table rows -->
+	<rect x="292" y="706" width="744" height="120" rx="16" fill="#ffffff" stroke="#e2e8f0"/>
+	<circle cx="326" cy="744" r="14" fill="#e0e7ff"/>
+	<rect x="352" y="736" width="160" height="10" rx="5" fill="#cbd5e1"/>
+	<rect x="352" y="752" width="100" height="8" rx="4" fill="#e2e8f0"/>
+	<rect x="900" y="734" width="112" height="22" rx="11" fill="#dcfce7"/>
+	<text x="956" y="749" text-anchor="middle" font-size="11" font-weight="700" fill="#15803d">Live</text>
+	<circle cx="326" cy="794" r="14" fill="#fde68a"/>
+	<rect x="352" y="786" width="200" height="10" rx="5" fill="#cbd5e1"/>
+	<rect x="352" y="802" width="120" height="8" rx="4" fill="#e2e8f0"/>
+	<rect x="900" y="784" width="112" height="22" rx="11" fill="#fef3c7"/>
+	<text x="956" y="799" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">Scheduled</text>
+
+	<!-- Floating result card -->
+	<g filter="url(#shadow-sm)">
+		<rect x="840" y="760" width="300" height="164" rx="20" fill="#ffffff"/>
+	</g>
+	<circle cx="896" cy="842" r="34" fill="none" stroke="#e0e7ff" stroke-width="10"/>
+	<path d="M896 808 A34 34 0 1 1 864.3 854.4" fill="none" stroke="#4f46e5" stroke-width="10" stroke-linecap="round"/>
+	<text x="896" y="848" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">82%</text>
+	<text x="948" y="826" font-size="13" fill="#64748b">Spring launch</text>
+	<text x="948" y="856" font-size="24" font-weight="700" fill="#0f172a">+38%</text>
+	<text x="948" y="878" font-size="13" fill="#15803d">more sign-ups</text>
+
+	<!-- Floating notification -->
+	<g filter="url(#shadow-sm)">
+		<rect x="760" y="30" width="320" height="76" rx="18" fill="#ffffff"/>
+	</g>
+	<circle cx="800" cy="68" r="20" fill="url(#brand)"/>
+	<text x="800" y="74" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">AR</text>
+	<text x="832" y="62" font-size="14" font-weight="700" fill="#0f172a">Ava shared a report</text>
+	<text x="832" y="84" font-size="12" fill="#64748b">Q2 campaign results · just now</text>
+</svg>
