@@ -17,6 +17,9 @@ const REPOS = {
 	pro: { repo: () => env.PRO_REPO, folder: 'wpmozo-blocks-and-addons-pro' },
 };
 
+// Raise when the way copies are made changes, so cached copies are rebuilt.
+const COPY_FORMAT = 2;
+
 const git = ( repo, args, options = {} ) =>
 	execFileSync( 'git', [ '-C', repo, ...args ], {
 		maxBuffer: 256 * 1024 * 1024,
@@ -24,13 +27,29 @@ const git = ( repo, args, options = {} ) =>
 	} );
 
 function build( dir, repo, log ) {
-	if ( fs.existsSync( path.join( dir, 'build', 'blocks' ) ) ) {
+	const tracked = fs.existsSync( path.join( dir, 'build', 'blocks' ) );
+	if (
+		tracked &&
+		fs.existsSync( path.join( dir, 'build', 'blocks-manifest.php' ) )
+	) {
 		return;
 	}
 	const modules = path.join( dir, 'node_modules' );
 	fs.symlinkSync( path.join( repo, 'node_modules' ), modules );
 	try {
-		execFileSync( 'npm', [ 'run', 'build' ], {
+		// Older releases track build/ but not the generated manifest (a release build writes it):
+		// generate only the manifest, so the copy matches the shipped plugin.
+		const args = tracked
+			? [
+					'exec',
+					'--',
+					'wp-scripts',
+					'build-blocks-manifest',
+					'--input=build/blocks',
+					'--output=build/blocks-manifest.php',
+			  ]
+			: [ 'run', 'build' ];
+		execFileSync( 'npm', args, {
 			cwd: dir,
 			stdio: [
 				'ignore',
@@ -89,7 +108,7 @@ function pluginCopy( which, spec ) {
 		] )
 			.toString()
 			.trim();
-		key = `${ which }-${ sha.slice( 0, 12 ) }`;
+		key = `${ which }-${ sha.slice( 0, 12 ) }-v${ COPY_FORMAT }`;
 		fill = ( dir ) =>
 			execFileSync( 'tar', [ '-x', '-C', dir ], {
 				input: git( repo, [ 'archive', sha ] ),

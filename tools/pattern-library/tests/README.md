@@ -39,12 +39,26 @@ Exit code 0 when every check passed, 1 when any failed. Each run writes a JSON r
 |---|---|---|
 | `robustness` | Library robustness (roadmap R1): the catalog cache follows Lite, WordPress, allowed-HTML and other sources' map changes; a missing Lite map key reports `lite_outdated`; broken pattern, content and map files are isolated and reported; catalog and content route agree for every pattern and role; protection without a licence; no PHP notices; no network | ~5 min |
 | `editor` | Every available pattern through the repository's quality gate (`tools/pattern-library/gate.cjs`): insert through the library, valid after save and reload, front end at three widths, editability (PL-D22) | ~10 min |
+| `rest` | REST permissions per role, licence lock, links and issues only for the right users, no markup or licence value in the catalog, cache headers and ETag, the library switch, real HTTP (no nonce, query-string route, JSONP, direct requests to pattern and map files, the editor's nonce) | ~4 min |
+| `matrix` | Lite/Pro combinations, one site each, with expected outcomes (`--only=<name,…>`; `--older-lite=`, `--oldest-lite=`, `--older-pro=` choose the old copies, defaults `b91a5ec`, `release/1.8.0`, `ef1909d`) | ~20 min |
+| `upgrade` | In-place updates in both orders on one running site, licence and plugin deactivation, Lite deactivated under Pro (`--from-lite=`, `--from-pro=`; `--mutation=1` adds the saved-output mutation proof; `--only=lite-first` or `pro-first`) | ~15 min |
+| `contract` | Every shared surface in `lib/surface.cjs` exists (runtime, editor, source); Pro uses no other Lite surface | ~3 min |
+| `php-parse` | Every PHP file of both plugins parses on the minimum PHP (`--floor=7.4`), with php-wasm from the Playground CLI's `node_modules`; no site | ~1 min |
+| `team-grid` | Pro Team Grid (roadmap R3): every layout with every click trigger renders on the minimum PHP and on PHP 8.2, with markup identical to a baseline Pro commit (`--baseline-pro=`, default `85390bb`; `--baseline-php=`, default `8.2`; `--floor=`, default `7.4`) | Not run yet (R3) |
+| `wp-editor` | Editor compatibility (roadmap R6), with and without the canvas iframe: no WPMozo stylesheet "added to the iframe incorrectly"; Lite's editor stylesheet once in the editor document and once in the canvas, never on the front end; every `__experimental` / `__unstable` export Lite and Pro import still resolves; a Lite and a Pro block mount, save and reload | Not run yet (R6) |
 
-Run browser suites (`editor`) one at a time: several Playground sites and Chrome on one machine can slow the editor enough to stop the gate.
+Run browser suites (`editor`, `matrix`, `upgrade`, `contract`, `wp-editor`) one at a time: several Playground sites and Chrome on one machine can slow the editor enough to stop the gate.
 
-A mutation proof: the same suite against code from before a fix must fail:
+Typical runs:
 
 ```bash
+# Everything for a change in Lite, against the current Pro:
+node tools/pattern-library/tests/run.cjs php-parse robustness rest contract editor
+# Version combinations and updates (slow):
+node tools/pattern-library/tests/run.cjs matrix upgrade
+# The minimum supported WordPress and PHP:
+node tools/pattern-library/tests/run.cjs robustness rest editor --wp=6.8.11 --php=7.4
+# A mutation proof: the same suite against code from before a fix must fail:
 node tools/pattern-library/tests/run.cjs robustness --lite=<commit before the fix>
 ```
 
