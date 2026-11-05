@@ -13,6 +13,15 @@ Protections built into the library. Content is never trusted because it ships wi
 - **Content responses** are `Cache-Control: no-store`.
 - **Limits of what server-side checks protect:** plugin files installed on a server can be read by whoever controls that server. These checks protect delivery through the site's endpoints.
 
+## Isolation of broken files (PL-D24)
+Pattern, content and map files are loaded through one safe include. A file that throws or fails to parse never takes the library down:
+- a broken `pattern.php` skips that pattern (`metadata_error`);
+- a broken `content.php` makes that pattern unavailable (`invalid_content`; the content route answers 422);
+- a broken map fails closed: its tokens are unknown, so the patterns using them are unavailable;
+- output printed by a file is discarded, so it can't corrupt a REST response.
+
+Each problem is listed in the catalog's `issues`, shown only to administrators.
+
 ## Validation rules (every pattern, every user)
 | Rule | Rejects |
 |---|---|

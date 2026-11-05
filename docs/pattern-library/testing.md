@@ -299,25 +299,44 @@ Checked against the bug: with the deprecation rule removed, the deprecation test
 - The same warning for core's `global-styles-css-custom-properties` (it also appears with no WPMozo plugin active).
 - On 6.8.11: deprecation warnings for 36 px controls and bottom margins (R-11).
 
-## Automated test plan (proposed, roadmap R5)
+## R1: library robustness, 2026-11-05
 
-Today the suites live in the offline harness, outside both repositories, so only this machine can run them (R-13). Proposal: move the site-independent parts into `tools/pattern-library/tests/` (not shipped); each takes a site URL, and the harness keeps only booting and network isolation. No `package.json` change: they run with `node` and `python3` like the existing tools.
+**Code:** `includes/library/` (library service, registry, resolver, validator, REST), Lite `98d4013`. Suites: `56dbfcb`. Decisions PL-D23 to PL-D26 in [decisions.md](decisions.md).
 
-| Suite | What it proves | Runs against | Exists today as |
-|---|---|---|---|
-| Contract conformance | Lite exposes every documented contract item and every surface in [registry-and-contract.md](registry-and-contract.md) section 4 (functions, classes, methods, action, features, handles, globals) | Each Lite build | Planned (R4) |
-| Add-on usage scan | Pro uses no Lite symbol outside that list | Pro source | One-off grep in this audit (R4) |
-| Version combinations | Supported combinations pass; notice combinations show their notice and never a fatal | Lite × Pro × WordPress × PHP matrix | `combo.py` |
-| Upgrade and state changes | Saved pages survive updates, licence changes, deactivation; cache follows changes; one bad file doesn't take the library down | One running site | `upgrade.py` |
-| Licence and protection | Locked without an activated licence; no content in refusals; direct file requests empty | Lite + Pro | `test_roles.py`, `combo.py` HTTP checks |
-| REST permissions | 401/403 per role; cookie without nonce; query-string route; JSONP | Any site | `test_lpl2.py`, `combo.py` |
-| Import and editability | Every pattern inserts, edits inline and in the Inspector, saves, reloads and shows on the front end | Each WordPress version | `gate.cjs` (in the repository), `test_editability.cjs` |
-| Save/reload of existing content | Pages saved by older versions stay valid after updating | Old → new copies | `upgrade.py` S1–S3, S10 |
-| PHP floor | Every file parses on the oldest supported PHP | Both repositories | `lint-all-74.cjs` |
-| Unit tests | Importer and search logic | Jest | `src/library/test/` (13 tests) |
+**Suites:** `tools/pattern-library/tests/` (this repository; [README](../../tools/pattern-library/tests/README.md)). They replace the audit's harness scripts for these checks.
+
+| Run | Result |
+|---|---|
+| `robustness` on Lite working tree (R1) + Pro `85390bb`, WordPress 7.1.3 / PHP 8.2 | **25/25 passed** |
+| `robustness` on Lite `ec97921` (before R1) + Pro `85390bb`, same site set-up (**mutation proof**) | **10/25:** every R1 check fails as expected. Cache entries unchanged after WordPress, allowed-HTML and Lite version changes; the missing Lite key still "available" in the catalog while the content route answers 422; every broken-file case takes the catalog down (500, or corrupted JSON for printed output); the changed content is delivered to an author |
+| `editor` (gate with editability, every available pattern), WordPress 7.1.3 / PHP 8.2 | **10/10 passed:** 4 patterns × 18 gate checks, no PHP log entries |
+| `rest`, WordPress 7.1.3 / PHP 8.2 | **All passed** except the first version of the network check, which also counted WordPress's own blocked update checks; the check was split (below) |
+| `robustness`, `rest`, `editor` on WordPress 6.8.11 / PHP 7.4 (the minimum) | **26/26, 17/17, 10/10 passed** (4 patterns × 18 gate checks; no PHP log entries) |
+
+**What `robustness` checks:** a different WordPress version, allowed HTML and Lite version each get new cache entries; a Pro pattern without a Lite icon key is `unavailable: lite_outdated` at once and the content route answers 409 with that reason; a missing key in Lite's own pattern stays `invalid_content`; a parse error, an exception, printed output and broken content each affect only their own pattern and are reported; a broken Pro media map fails closed only for the patterns that use it; content changed behind the cache is refused to an author by the content route, and the catalog then agrees; without a licence every Pro pattern is locked and refused; visitor 401, subscriber 403; no markup in the catalog; no PHP log entries, fatal errors or network.
+
+**Test problems found and fixed (not product defects):**
+- The first fresh-analysis check looked for a nowdoc terminator named `HTML`; the pattern files use `WPMOZO_PATTERN`, so its edit never applied. The check now finds the terminator by pattern and fails if its edit doesn't apply.
+- The network check counted WordPress's own update checks (`api.wordpress.org`) and Pro's updater (`cdn.wpmozo.com`), which the driver blocks. Now: anything that tries to leave the Playground process fails; a library request that makes an outbound call fails; other blocked calls are listed.
+- One `editor` run stopped inside the gate while two other sites were running on the same machine; it passed when run alone. Run browser suites one at a time.
+- Two runs started at the same time shared copy folders; copies are now per run.
+
+## Automated suites (R5, 2026-11-05)
+
+R1 added the framework with `robustness` and `editor` (`56dbfcb`); R5 adds the others. The reusable suites live in this repository, in `tools/pattern-library/tests/` (not shipped: `wp-scripts plugin-zip` packs only `build/`, `includes/`, the main file and readme files). Setup, options and commands: its [README](../../tools/pattern-library/tests/README.md). They run against copies of the real plugins built from a commit or from the working tree, on offline WordPress Playground sites; no mocks.
+
+| Suite | What it proves | Replaces |
+|---|---|---|
+| `robustness` | R1: cache follows every input; broken files isolated; `lite_outdated`; catalog and content route agree; protection without a licence | Audit `upgrade.py` S9, S11 |
+| `rest` | Roles × patterns, licence lock, links and issues only for the right users, no markup or licence value in the catalog, cache headers, ETag/304, library switch, real HTTP (no nonce, query-string route, JSONP, direct file requests, nonce path) | `test_lpl2.py`, `test_roles.py`, audit `combo.py` HTTP checks |
+| `editor` | Every available pattern through the repository gate with editability | Manual gate runs |
+| `matrix` | Lite/Pro combinations with expected outcomes: supported ones work (catalog, card text, blocks mount, save/reload, front end); unsupported ones show a notice, never a fatal error or a block crash | Audit `combo.py` c01–c10 |
+| `upgrade` | In-place updates in both orders (Lite first, Pro first) on one running site; saved pages byte-identical and valid; Pro pattern inserted after updating; licence and plugin deactivation; Lite deactivated while Pro is active; `--mutation=1` proves the validity check catches a saved-output change | Audit `upgrade.py` S1–S8, S10 |
+| `contract` | R4: Lite provides every shared surface (`lib/surface.cjs`) at runtime, in the editor and in its source; Pro uses nothing else (static scan) | One-off greps in the audit |
+| `php-parse` | R3: every PHP file of both plugins parses on the declared minimum PHP (php-wasm) | `lint-all-74.cjs` |
 
 **Rules for every suite:**
-- Each check has a mutation proof: break the behaviour on purpose and confirm the check fails.
+- Each check has a mutation proof: break the behaviour on purpose (or run the code before the fix) and confirm the check fails. The proofs are recorded with each stage below.
 - A failing check is fixed in the product, never by changing the expectation, unless the expectation itself was wrong; that is then recorded here.
 - Record the exact WordPress, PHP and plugin commits of each run.
 

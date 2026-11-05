@@ -63,8 +63,8 @@ Checks per run: front end, Plugins screen notices, post editor (handles printed)
 | S6 Pro deactivated | Pro patterns leave the catalog; saved markup unchanged on the front end (Pro styles and scripts no longer load); the editor shows Pro blocks as unsupported, as WordPress does for any missing block |
 | S7 Pro reactivated | Everything valid again; front end byte-identical to S4 |
 | S8 Lite inactive, Pro active | No fatal; Pro notice; saved pages still serve their markup |
-| S9 A Lite icon key removed (simulates a Lite update without it) | **KI-01:** the catalog still lists the Pro pattern as available, the content route answers 422; correct only after the cache is flushed |
-| S11 A malformed Pro `pattern.php` | **KI-02:** the catalog and the free patterns' content route fail with a critical error |
+| S9 A Lite icon key removed (simulates a Lite update without it) | **KI-01:** the catalog still lists the Pro pattern as available, the content route answers 422; correct only after the cache is flushed. **Fixed in R1:** now `lite_outdated` at once (`robustness` suite) |
+| S11 A malformed Pro `pattern.php` | **KI-02:** the catalog and the free patterns' content route fail with a critical error. **Fixed in R1:** only that pattern is skipped and reported (`robustness` suite) |
 | S10 Mutation proof: one class added to Fancy Heading's saved output | The reopen check reports the block invalid, so this test catches saved-output regressions |
 
 ## Earlier runs (kept as recorded)

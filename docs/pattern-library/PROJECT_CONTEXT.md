@@ -93,7 +93,8 @@ Detail: [handoff.md](handoff.md).
 
 - **Done:** contract (LPL-1), server side (LPL-2), UI and importer (LPL-3); in Pro: security port, contract adoption, Pro source and entitlement.
 - **Pilot (LPL-T):** 2 free + 2 Pro patterns, built and verified on WordPress 6.8.11 and 7.1.3. **Waiting for the owner's design review. Add no patterns before approval.**
-- **Compatibility audit (2026-11-05):** findings and the proposed roadmap are in [roadmap.md](roadmap.md) and [known-issues.md](known-issues.md). **Code changes wait for the owner's approval of that roadmap.**
+- **Compatibility audit (2026-11-05):** findings in [known-issues.md](known-issues.md); stages R1–R6 in [roadmap.md](roadmap.md), **approved 2026-11-05**. R1 (library robustness) is done; the others are in progress.
+- **Regression suites:** `tools/pattern-library/tests/` (not shipped); run them for every library change ([testing.md](testing.md)).
 - **Release blockers:** the `example.com` placeholder for the Lite-to-Pro card link; provisional pattern `since` values; requirement headers; `n.e.x.t` tags; Pro's minimum-Lite handling (Pro repository).
 
 ## 10. Key decisions (with reasons)

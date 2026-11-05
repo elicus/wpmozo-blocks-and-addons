@@ -33,6 +33,10 @@ Newest first. "Unreleased" entries move into `readme.txt` when a Lite release is
 - Build: `webpack.config.js` adds the shared script entry (LPL-1) and the library entry (LPL-UX). Existing block build output is unchanged.
 
 ### Fixed
+- One broken pattern, content or map file (from Lite or an add-on) no longer takes the whole library down; only the affected patterns become unavailable, and administrators see the problem in the catalog's issues. (R1)
+- The catalog no longer shows a stale state after a Lite or WordPress update, a change to the HTML allowed in posts, or a change to another source's maps. (R1)
+- A pattern from another source that needs a Lite map key the installed Lite lacks now says it needs a newer WPMozo Blocks, instead of "can't be used right now". (R1)
+- The catalog and the content route now always give the same answer: the content route analyses the pattern afresh and updates the catalog's cache. (R1)
 - Patterns authored on WordPress 6.8 were refused on 7.1 because core blocks moved some attributes into deprecations. The importer now accepts attributes that a block's deprecations declare. (LPL-T)
 - In the library window, patterns below the first rows couldn't be reached with the mouse wheel (the layout grew past the window), on WordPress 6.8 and 7.1. The grid now scrolls inside the window. (LPL-3)
 - With every Lite block disabled, Pro blocks failed in the editor because the shared globals were missing. Fixed from the Lite side. (LPL-1)

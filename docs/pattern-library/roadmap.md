@@ -15,13 +15,15 @@ Issue IDs (KI-…, R-…) refer to [known-issues.md](known-issues.md).
 | PPL-2 (Stage E) | Pro source and phase-1 entitlement | Pro repository |
 | LPL-T | Authoring tools; pilot 2 free + 2 Pro patterns; editability gate | [pattern-authoring.md](pattern-authoring.md) |
 | Audit (2026-11-05) | Compatibility and future-proofing audit; project context and topic files | [compatibility.md](compatibility.md), [testing.md](testing.md), [known-issues.md](known-issues.md), this file |
+| R1 (2026-11-05) | Library robustness: cache key, isolation of broken files, `lite_outdated` for missing Lite keys, fresh analysis on the content route (Lite `98d4013`) | [testing.md](testing.md) R1, decisions PL-D23–PL-D26 |
 
 ## Waiting for the owner
 1. **Pilot design review** (LPL-T checkpoint). Blocks Stage F only.
-2. **Approval of stages R1 to R6 below**, and the open decisions in [handoff.md](handoff.md).
 
-## Proposed stages (pending approval)
-The stages are independent unless "Needs" says otherwise. R1 and R2 are the most valuable before any release; none of them changes saved block output.
+**Stages R1 to R6 were approved on 2026-11-05**, in the order R1, R5, R2, R3, R4, R6, with five decisions: Lite PHP floor only as verified by runtime tests; Team Grid rewritten for PHP 7.4 rather than raising Pro's minimum; Pro must never crash with an older Lite and disables only what depends on the missing contract; the reusable suites move into `tools/pattern-library/tests/`; the upgrade URL stays one central, clearly marked release-blocking setting, and no licence-server behaviour is invented.
+
+## Approved stages (2026-11-05)
+Implemented in the order R1, R5, R2, R3, R4, R6. None of them changes saved block output.
 
 | Stage | Repo | Work | Needs | Acceptance criteria | Regression tests |
 |---|---|---|---|---|---|

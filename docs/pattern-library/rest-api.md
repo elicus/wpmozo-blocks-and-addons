@@ -59,11 +59,13 @@ Metadata for every active pattern, with availability for the **current user**. N
 | `locked` | Premium source not entitled | `license_inactive`, `license_expired`, `license_revoked`, `entitlement_unavailable` |
 | `unavailable` | Can't be used here | `invalid_content`, `block_missing:<name>`, `block_disabled:<name>`, `plugin_missing:<key>`, `lite_outdated`, `wp_outdated`, `role_unfiltered_html` |
 
+`lite_outdated` comes from a pattern's `requires.lite`, or from a pattern of another source that uses a Lite map key the installed Lite doesn't have (PL-D25). A missing key in one of Lite's own patterns is `invalid_content`.
+
 A pattern can carry several reasons; `locked` wins over `unavailable`.
 
 ## GET `/wpmozo/v1/library/patterns/<source>/<slug>`
 
-`<source>` and `<slug>` are lowercase letters, digits and hyphens. Every check from the catalog is repeated on the server. The content that is sent is validated again, not taken from cache.
+`<source>` and `<slug>` are lowercase letters, digits and hyphens. Every check from the catalog is repeated on the server, on a fresh analysis that ignores the cache; the fresh result also updates the cache, so the next catalog gives the same answer (PL-D26). The content that is sent is validated again, including the `unfiltered_html` rule.
 
 | Outcome | Status | Code |
 |---|---|---|
