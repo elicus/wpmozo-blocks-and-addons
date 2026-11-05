@@ -1,6 +1,6 @@
 # Pattern Library decisions (approved only)
 
-Each entry: ID, date approved, decision, reason. Proposed or open items are not listed here; they live in [handoff.md](handoff.md). The full reasoning and alternatives are in [architecture-readiness-review.md](architecture-readiness-review.md) (section in brackets). Licence and Pro-security details are recorded in the private Pro repository.
+Each entry: ID, date approved, decision, reason. Proposed or open items are not listed here; they live in [handoff.md](handoff.md) (open questions) and [roadmap.md](roadmap.md) (proposed stages from the 2026-11-05 audit). An approved change to a decision is added as a new entry that names the entry it replaces; old entries are never rewritten. The full reasoning and alternatives are in [architecture-readiness-review.md](architecture-readiness-review.md) (section in brackets). Licence and Pro-security details are recorded in the private Pro repository.
 
 | ID | Approved | Decision | Reason |
 |---|---|---|---|

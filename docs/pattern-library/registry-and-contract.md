@@ -7,6 +7,7 @@ Lite (`wpmozo-blocks-and-addons`) owns this contract. Add-ons, currently WPMozo 
 | 1. Integration contract (PHP) | **Implemented** (Stage A, LPL-1) |
 | 2. Shared editor script (JS) | **Implemented** (Stage A, LPL-1) |
 | 3. Pattern registry and sources | **Implemented** (Stage C, LPL-2) |
+| 4. Other Lite surfaces add-ons use | **Inventory** (2026-11-05); not yet versioned |
 
 ## 1. Integration contract (PHP)
 
@@ -155,3 +156,27 @@ Lite's own folder is `includes/library/`. Its central maps also hold the categor
 - availability per user (rest-api.md).
 
 The content analysis is cached in a transient per source. The cache key includes the source version and the modification times of the central maps. An entry is reused only while the pattern's revision and its `content.php` modification time are unchanged.
+
+**Rules for sources, learned in the 2026-11-05 audit** ([known-issues.md](known-issues.md)):
+- **Map keys are shared contract.** Another source may use Lite's map keys (Pro patterns use Lite icons). Released keys are never removed or renamed; a pattern that needs a key added in a newer Lite declares `requires.lite`.
+- **Block attributes follow the same rule:** a pattern that uses a block attribute added in a newer Lite declares `requires.lite`, because the catalog can't see attributes (the importer refuses unknown ones at insert).
+- **Contract and schema negotiation:** an add-on that needs a newer source contract or metadata schema checks `supports( 'library', N )` first and otherwise registers with what Lite supports. `pattern.php` is PHP, so it can choose its `schema` the same way. Lite refuses a contract it doesn't know and hides patterns with a newer schema.
+- **Entitlement states:** only the four documented states. Anything else locks the source on that Lite version.
+
+## 4. Other Lite surfaces add-ons use (inventory, 2026-11-05)
+
+Measured in Pro on `release/pattern-lib` (`362daba`). These are **not** versioned by `supports()` yet, but Pro depends on them, often on the front end, so a change to any of them can break Pro. Until the contract covers them (roadmap stage R4), treat them as frozen: no rename, removal or signature change without a deprecation that follows the rules in section 1.
+
+| Surface | Where in Lite | Used by add-ons for |
+|---|---|---|
+| PHP classes `WPMOZO\BNA\Helpers\Mozo_Bna_Helpers` and `Mozo_Bna_Block_Helpers` (not `final`) | `includes/helpers/` | Add-on helper classes extend them; templates create them |
+| Static methods `esc_previously()`, `truncate_content()`, `get_block_dynamic_style()`, `get_font_style()`, `get_border_style()`, `get_padding_style()`, `get_margin_style()` | Same | Render callbacks and templates (hundreds of calls) |
+| `get_block_dynamic_style()` loading the add-on's `includes/templates/block-<slug>/dynamic-style.php` when `WPMOZO_BNA_PRO_PLUGIN_DIR` is defined | `class-mozo-bna-block-helpers.php` | Pro block styles on the front end (Lite knows the Pro layout) |
+| JS components on `window.WPMozoBNAComponents`: `WpmozoTypography`, `WpmozoColorPicker`, `WpmozoDimensions`, `WpmozoSize`, `WpmozoBorder`, `WpmozoMediaUploader`, `WpmozoIconpicker`, `WpmozoAlignment`, `WpmozoColorCombo`, `WpmozoRangeSize`, `WpmozoVideoUploader`, `MozoStates` | `src/common/components/` | Every add-on block's Inspector |
+| JS utilities on `window.WPMozoBNAUtils`: `headingLevelsList`, `inspectorPanelTabs`, `convertInlineStyleStr`, `truncateContent`, `getWrapperProps`, `mergeWrapperProps` | `src/common/utils.js` | Add-on block editors |
+| Script and style handles for Swiper, Isotope, imagesLoaded, Magnific Popup, twbs-pagination and Font Awesome | `includes/class-mozo-bna-blocks-and-addons-assets.php` | Add-on `block.json` asset references |
+| Settings hooks `wpmozo_bna_settings_tabs`, `wpmozo_bna_settings_tab_content`, `wpmozo_bna_add_pro_blocks_to_panel`; option name `WPMOZO_BNA_OPTION` | `includes/admin/panel/` | Add-on settings tabs and block list |
+| Post type `wpmozoae-team-member` | `includes/class-mozo-bna-post-types.php` | Add-on team blocks |
+
+Several of these are built on WordPress `__experimental*` components; see [known-issues.md](known-issues.md) R-02.
+

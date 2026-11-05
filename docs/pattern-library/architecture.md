@@ -29,6 +29,11 @@ Editor ──GET /wpmozo/v1/library/patterns/<source>/<slug>──▶ Lite REST
           ──▶ validated content with tokens resolved ──▶ client rebuilds blocks ──▶ one insert action
 ```
 
+## Integration surfaces
+- **Documented contract:** the accessor, `wpmozo_bna_loaded`, the shared editor script and the source registry ([registry-and-contract.md](registry-and-contract.md) sections 1–3).
+- **Used by Pro but not yet versioned:** Lite's PHP helper classes, JS component and utility names, asset handles, settings hooks and a post type (section 4 there). Treat them as frozen; roadmap stage R4.
+- **Cross-source data:** Pro pattern content may use Lite's map keys, so released keys are permanent.
+
 ## Principles
 - **Lite works alone.** Pro adds a source; nothing in Lite depends on Pro files or classes.
 - **Feature detection over version numbers** ([registry-and-contract.md](registry-and-contract.md)).

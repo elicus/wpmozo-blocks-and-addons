@@ -1,6 +1,6 @@
 # Pattern Library handoff
 
-**Updated:** 2026-11-04.
+**Updated:** 2026-11-05 (compatibility audit). Read [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) first.
 **Branches:**
 - Lite `dev/sunil` → `origin/dev/sunil`;
 - Pro `release/pattern-lib` → `origin/release/pattern-lib`.
@@ -19,9 +19,20 @@ Pro `dev/ayush` is off-limits.
 | Stage D, LPL-3: UI, importer, placeholder block, entry points, library switch | **Done** (tested on WordPress 6.8.11 and 7.1.3; see [testing.md](testing.md)). Docs: [editor-ui.md](editor-ui.md), [import-workflow.md](import-workflow.md) |
 | Stage E, PPL-2: Pro source + entitlement | **Done** (tracked in the Pro repository) |
 | LPL-T + pilot (2 free + 2 Pro) | **Built and gated; waiting for the owner's design review.** No catalog expansion before approval. Tools and procedure: [pattern-authoring.md](pattern-authoring.md) |
+| Compatibility and future-proofing audit | **Done 2026-11-05** (docs only, no code changed). Findings: [known-issues.md](known-issues.md); results: [compatibility.md](compatibility.md), [testing.md](testing.md); proposed stages R1–R6: [roadmap.md](roadmap.md). **Waiting for the owner's approval of the roadmap** |
 | Stage F, X-1, release | Not started |
 
-## Next step: owner review of the pilot (LPL-T checkpoint)
+## Next steps (both wait for the owner)
+1. **Approve, change or reorder roadmap stages R1–R6** ([roadmap.md](roadmap.md)) and answer the open decisions below. No code changes before that.
+2. **Review the pilot designs** (below). Stage F waits for it.
+
+## Audit summary (2026-11-05)
+- **Holds:** Lite alone, Lite + Pro, Pro inactive or older, Pro without Lite (notice), licence lock, role rules, real-HTTP protections, and saved pages through in-place Lite and Pro updates, licence and plugin deactivation. WordPress 6.8.11 and 7.1.3; PHP 7.4, 8.0, 8.2 and 8.5.
+- **Confirmed library issues:** the catalog cache misses changes outside a source (KI-01); one malformed add-on file takes the library down (KI-02); a missing cross-source map key gives a generic message (KI-03).
+- **Confirmed compatibility issues:** wrong requirement headers, and WordPress 6.5/6.7 with Pro fails on activation (KI-04); Lite's editor stylesheet uses a path newer WordPress may drop (KI-05); Pro with Lite 1.8.0 crashes Pro blocks in the editor; Pro Team Grid needs PHP 8.0 (details in the Pro repository).
+- **Main risk:** Pro depends on Lite surfaces the contract doesn't version yet ([registry-and-contract.md](registry-and-contract.md) section 4).
+
+## Pilot review (LPL-T checkpoint)
 The owner asked on 2026-11-04 for temporary pilot designs made here instead of supplied ones (PL-D20).
 
 **What exists:**
@@ -43,6 +54,10 @@ The owner asked on 2026-11-04 for temporary pilot designs made here instead of s
 
 ## Open questions
 1. Destination page for the Lite-to-Pro card. Until it is confirmed, `includes/library/data/links.php` (`pro-upgrade`) points to a clearly marked placeholder on `example.com` (PL-D21). **Release blocker.**
+2. **Lite PHP requirement:** declare 7.4 (recommended: WordPress 7.x needs it, 7.3 can't be tested) or keep 7.3.
+3. **Pro PHP requirement** (Pro repository): rewrite Team Grid for 7.4 (recommended) or declare PHP 8.0.
+4. **Below Pro's Lite floor:** notice only, blocks stay registered (recommended), or stop loading Pro's editor scripts.
+5. **Where the reusable test suites live:** `tools/pattern-library/tests/` in this repository (recommended, not shipped) or outside both repositories as now.
 
 ## Known limitations and observations
 - `n.e.x.t` in `@since` tags is replaced with the real Lite version at release.

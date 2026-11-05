@@ -6,7 +6,8 @@ Results are recorded only for checks that were actually run. Anything not run is
 | Check | Command / tool |
 |---|---|
 | PHP syntax | `php -l` with PHP 8.0, 8.1, 8.2 (Local's bundled binaries) and 8.4 (Homebrew) |
-| PHP 7.3 compatibility (static) | PHPCompatibilityWP 2.1.8 (`testVersion 7.3-`), installed inside the test harness only |
+| PHP 7.3 compatibility (static) | PHPCompatibilityWP 2.1.8 (`testVersion 7.3-`), installed inside the test harness only. **Limit found 2026-11-05:** it is built on PHPCompatibility 9.3.5, which reports nothing on PHP 8.0 `match` or 7.4 arrow functions, so it only proves what it knows |
+| PHP 7.4 parse (runtime) | Every PHP file of both plugins parsed on real PHP 7.4 (php-wasm, `token_get_all( …, TOKEN_PARSE )`), harness script `sessions/audit/lint-all-74.cjs` (added 2026-11-05) |
 | Coding standards | PHPCS `WordPress` standard: whole file for new files, changed lines for existing files (existing files have older violations) |
 | JS lint | `npx wp-scripts lint-js <files>` |
 | Build | `npm run build` (`wp-scripts build --blocks-manifest`); compare SHA-256 of every file in `build/` before and after |
@@ -258,3 +259,67 @@ Checked against the bug: with the deprecation rule removed, the deprecation test
 - `innerText` applies `text-transform`.
 
 **Not tested:** a screen reader, multisite, other themes, image replacement through the Media Library dialog (the test sets the image attribute directly, as the dialog does), and expired or revoked licences (phase 2).
+
+## Compatibility audit, 2026-11-05
+
+**Setup:**
+- Harness folder `sessions/audit/`:
+  - `combo.py <spec> [--browser]` boots one combination and runs HTTP, REST-as-role and real-HTTP checks;
+  - `editor_smoke.cjs` is the browser part: globals, a Lite and a Pro block mounted, the library window, insert, save, reload, front end;
+  - `upgrade.py [--mutation]` replaces plugin folders while one site runs, then checks licence, deactivation, cache and malformed-file cases;
+  - `make_post.cjs` saves a page with the installed versions' own block output;
+  - `lint-all-74.cjs` is the PHP 7.4 parse;
+  - plugin `plugins/audit/audit-driver` (loopback only) is the helper. It also writes fatal errors to the harness log folder, because a site that can't boot loses its debug log.
+- Copies built from exact commits: Lite `1e8db93`, Pro `362daba`, plus the older copies listed in [compatibility.md](compatibility.md).
+- Rebuilding Lite and Pro from those commits in a new folder gave the same files as the LPL-T copies except webpack module ids (8 characters per bundle). Those ids come from the build folder's path to the symlinked `node_modules`, so byte comparisons of builds must be made in the same folder.
+
+**Results:** every combination, WordPress and PHP run, and the in-place update steps are in [compatibility.md](compatibility.md). Summary:
+
+| Check | Result |
+|---|---|
+| Supported combinations (c01–c05, w68, p85) | Passed: catalog and content per role, licence lock, browser save/reload valid, front end, no PHP log entries |
+| Notice combinations (c06, c09, c10) | Notice shown, no fatal |
+| Lite 1.8.0 + Pro HEAD (c07) | Pro block crashes in the editor; Plugins notice only (Pro roadmap R2) |
+| WordPress 6.5.13 / 6.7.10 with Pro | Critical error on activation (KI-04) |
+| PHP 7.4 parse, both plugins | Lite 63/63 files parse. Pro: 4 Team Grid templates fail (`match`), and a Team Grid page returns 500 on PHP 7.4; renders on 8.0 |
+| PHP 8.5.10 | No notices or deprecations from either plugin |
+| Real HTTP (p74, p80 and later runs) | A logged-in cookie without a REST nonce → 401; `?rest_route=` → 401; JSONP → 401. Pro `content.php`, `pattern.php`, `data/media.php` and the patterns folder → empty body. Previews are public images (by design). With the editor's nonce → 200 and `Cache-Control` containing `no-store` |
+| In-place updates (S1–S8) | Saved pages byte-identical through Lite update, Pro update, licence deactivation, Pro deactivation and reactivation; valid in the editor whenever their plugins are active |
+| Cache across sources (S9) | **Fails:** stale catalog (KI-01) |
+| Malformed add-on file (S11) | **Fails:** whole library down (KI-02) |
+| Multisite (m01) | Not run: Playground's multisite step contacted `playground.wordpress.net`, the guard blocked it, and the site didn't boot |
+| Network | 0 external connections in every run; the one attempt (multisite step) was blocked |
+
+**The tests catch real regressions:**
+- S10 changed one class in Fancy Heading's saved output (in the running copy) → the reopen check reported the block invalid with "Block contains unexpected or invalid content".
+- S9 and S11 fail today because of KI-01 and KI-02. They are the acceptance checks for roadmap stage R1, and must not be changed to pass.
+
+**Console output seen, not caused by the library:**
+- `wpmozo-blocks-and-addons-editor-style-css was added to the iframe incorrectly` (KI-05).
+- The same warning for core's `global-styles-css-custom-properties` (it also appears with no WPMozo plugin active).
+- On 6.8.11: deprecation warnings for 36 px controls and bottom margins (R-11).
+
+## Automated test plan (proposed, roadmap R5)
+
+Today the suites live in the offline harness, outside both repositories, so only this machine can run them (R-13). Proposal: move the site-independent parts into `tools/pattern-library/tests/` (not shipped); each takes a site URL, and the harness keeps only booting and network isolation. No `package.json` change: they run with `node` and `python3` like the existing tools.
+
+| Suite | What it proves | Runs against | Exists today as |
+|---|---|---|---|
+| Contract conformance | Lite exposes every documented contract item and every surface in [registry-and-contract.md](registry-and-contract.md) section 4 (functions, classes, methods, action, features, handles, globals) | Each Lite build | Planned (R4) |
+| Add-on usage scan | Pro uses no Lite symbol outside that list | Pro source | One-off grep in this audit (R4) |
+| Version combinations | Supported combinations pass; notice combinations show their notice and never a fatal | Lite × Pro × WordPress × PHP matrix | `combo.py` |
+| Upgrade and state changes | Saved pages survive updates, licence changes, deactivation; cache follows changes; one bad file doesn't take the library down | One running site | `upgrade.py` |
+| Licence and protection | Locked without an activated licence; no content in refusals; direct file requests empty | Lite + Pro | `test_roles.py`, `combo.py` HTTP checks |
+| REST permissions | 401/403 per role; cookie without nonce; query-string route; JSONP | Any site | `test_lpl2.py`, `combo.py` |
+| Import and editability | Every pattern inserts, edits inline and in the Inspector, saves, reloads and shows on the front end | Each WordPress version | `gate.cjs` (in the repository), `test_editability.cjs` |
+| Save/reload of existing content | Pages saved by older versions stay valid after updating | Old → new copies | `upgrade.py` S1–S3, S10 |
+| PHP floor | Every file parses on the oldest supported PHP | Both repositories | `lint-all-74.cjs` |
+| Unit tests | Importer and search logic | Jest | `src/library/test/` (13 tests) |
+
+**Rules for every suite:**
+- Each check has a mutation proof: break the behaviour on purpose and confirm the check fails.
+- A failing check is fixed in the product, never by changing the expectation, unless the expectation itself was wrong; that is then recorded here.
+- Record the exact WordPress, PHP and plugin commits of each run.
+
+**Not available offline:** newer WordPress or Gutenberg builds, multisite, the licence server, MySQL (the harness uses SQLite) and CI. Run those before release elsewhere (R-12 adds a native-PHP run with every block active).
+
