@@ -299,7 +299,13 @@ final class Mozo_Bna_Library_Registry {
 		if ( false === $file ) {
 			return new WP_Error( 'wpmozo_library_invalid_content', __( 'Pattern content is missing.', 'wpmozo-blocks-and-addons' ) );
 		}
-		$content = self::include_file( $file );
+		$content = self::safe_include( $file, $error );
+		if ( 'load_error' === $error ) {
+			return new WP_Error( 'wpmozo_library_content_error', __( 'Pattern content could not be loaded.', 'wpmozo-blocks-and-addons' ) );
+		}
+		if ( null !== $error ) {
+			$this->issue( $source . '/' . $slug, 'content_' . $error );
+		}
 		if ( ! is_string( $content ) || '' === trim( $content ) ) {
 			return new WP_Error( 'wpmozo_library_invalid_content', __( 'Pattern content is empty or not a string.', 'wpmozo-blocks-and-addons' ) );
 		}
@@ -357,8 +363,17 @@ final class Mozo_Bna_Library_Registry {
 				$this->issue( $id, 'invalid_slug' );
 				continue;
 			}
-			$file = $this->safe_file( $source['path'], 'patterns/' . $slug . '/pattern.php' );
-			$meta = false === $file ? null : self::include_file( $file );
+			$file  = $this->safe_file( $source['path'], 'patterns/' . $slug . '/pattern.php' );
+			$error = null;
+			$meta  = false === $file ? null : self::safe_include( $file, $error );
+			if ( 'load_error' === $error ) {
+				// One broken file (a parse error, for example) skips only this pattern.
+				$this->issue( $id, 'metadata_error' );
+				continue;
+			}
+			if ( null !== $error ) {
+				$this->issue( $id, 'metadata_' . $error );
+			}
 			if ( ! is_array( $meta ) ) {
 				$this->issue( $id, 'metadata_missing' );
 				continue;
@@ -526,13 +541,42 @@ final class Mozo_Bna_Library_Registry {
 	}
 
 	/**
-	 * Include a pattern file in an isolated scope and return its value.
+	 * Include a library file (pattern, content or map) in an isolated scope and return its value.
 	 *
-	 * @param string $file Absolute path.
+	 * Library files come from add-ons too, so a file that throws or fails to parse must never
+	 * take the library down: it returns null and sets $error to 'load_error'. Anything the file
+	 * prints is discarded (it would corrupt the REST response) and sets $error to
+	 * 'unexpected_output'; the value is still returned.
+	 *
+	 * @param string      $file  Absolute path.
+	 * @param string|null $error Set to the problem code, or null.
 	 * @return mixed
 	 */
-	private static function include_file( $file ) {
-		return include $file;
+	public static function safe_include( $file, &$error = null ) {
+		$error = null;
+		ob_start();
+		try {
+			$value = include $file;
+		} catch ( Throwable $e ) {
+			$value = null;
+			$error = 'load_error';
+		}
+		$output = ob_get_clean();
+		if ( null === $error && is_string( $output ) && '' !== $output ) {
+			$error = 'unexpected_output';
+		}
+		return $value;
+	}
+
+	/**
+	 * Record a problem found outside the registry (a central map, for example). Shown in the
+	 * catalog's `issues` to administrators only.
+	 *
+	 * @param string $item Item id, such as "map:lite/icons".
+	 * @param string $code Problem code.
+	 */
+	public function add_issue( $item, $code ) {
+		$this->issue( (string) $item, (string) $code );
 	}
 
 	/**

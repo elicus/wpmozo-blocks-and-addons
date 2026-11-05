@@ -25,6 +25,14 @@ if ( ! defined( 'WPINC' ) ) {
 final class Mozo_Bna_Library_Validator {
 
 	/**
+	 * Version of the validation rules and of the analysis result. Raise it whenever either
+	 * changes, so cached analyses are rebuilt (it is part of the cache key).
+	 *
+	 * @var int
+	 */
+	const RULES_VERSION = 2;
+
+	/**
 	 * Maximum content size in bytes.
 	 *
 	 * @var int

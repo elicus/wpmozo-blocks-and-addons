@@ -205,7 +205,9 @@ final class Mozo_Bna_Library_Rest {
 			return new WP_Error( 'wpmozo_library_not_found', __( 'Pattern not found.', 'wpmozo-blocks-and-addons' ), array( 'status' => 404 ) );
 		}
 
-		$analysis     = $this->library->analyse( $pattern );
+		// Analyse again rather than trusting the cache, so this answer always matches the content
+		// sent; the fresh result also updates the cache the catalog reads.
+		$analysis     = $this->library->analyse( $pattern, true );
 		$availability = $this->library->availability( $pattern, $analysis );
 		$this->library->save_analysis_cache();
 
@@ -246,6 +248,9 @@ final class Mozo_Bna_Library_Rest {
 		// Delivery re-validates the exact content that is sent, not the cached analysis.
 		$content = $this->library->resolved_content( $pattern );
 		$check   = is_wp_error( $content ) ? array( 'valid' => false ) : $this->library->validator()->validate( $content );
+		if ( ! empty( $check['requires_unfiltered_html'] ) && ! current_user_can( 'unfiltered_html' ) ) {
+			return new WP_Error( 'wpmozo_library_role', __( 'Your role cannot save this pattern without breaking it.', 'wpmozo-blocks-and-addons' ), array( 'status' => 403 ) );
+		}
 		if ( empty( $check['valid'] ) ) {
 			return new WP_Error( 'wpmozo_library_invalid', __( 'This pattern failed validation.', 'wpmozo-blocks-and-addons' ), array( 'status' => 422 ) );
 		}

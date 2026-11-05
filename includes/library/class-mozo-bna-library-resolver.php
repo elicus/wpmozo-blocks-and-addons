@@ -114,7 +114,11 @@ final class Mozo_Bna_Library_Resolver {
 			if ( null !== $data && in_array( $map, $allowed, true ) ) {
 				$file = $data['path'] . 'data/' . $map . '.php';
 				if ( is_file( $file ) ) {
-					$value = self::include_file( $file );
+					$value = Mozo_Bna_Library_Registry::safe_include( $file, $error );
+					if ( null !== $error ) {
+						// A broken map fails closed: its tokens are unknown, so patterns using them are unavailable.
+						$this->registry->add_issue( 'map:' . $source . '/' . $map, 'map_' . $error );
+					}
 					if ( is_array( $value ) ) {
 						$this->maps[ $cache_key ] = $value;
 					}
@@ -164,7 +168,15 @@ final class Mozo_Bna_Library_Resolver {
 	private function token_value( $type, $source, $key ) {
 		$map = $this->get_map( $source, self::MAPS[ $type ] );
 		if ( ! isset( $map[ $key ] ) ) {
-			return new WP_Error( 'wpmozo_library_unknown_token', sprintf( 'Unknown %s token: %s/%s', $type, $source, $key ) );
+			return new WP_Error(
+				'wpmozo_library_unknown_token',
+				sprintf( 'Unknown %s token: %s/%s', $type, $source, $key ),
+				array(
+					'type'   => $type,
+					'source' => $source,
+					'key'    => $key,
+				)
+			);
 		}
 		$entry = $map[ $key ];
 		if ( 'media' === $type ) {
@@ -176,15 +188,5 @@ final class Mozo_Bna_Library_Resolver {
 			return new WP_Error( 'wpmozo_library_unsafe_token', sprintf( 'Unsafe value for %s token: %s/%s', $type, $source, $key ) );
 		}
 		return $value;
-	}
-
-	/**
-	 * Include a map file in an isolated scope.
-	 *
-	 * @param string $file Absolute path.
-	 * @return mixed
-	 */
-	private static function include_file( $file ) {
-		return include $file;
 	}
 }

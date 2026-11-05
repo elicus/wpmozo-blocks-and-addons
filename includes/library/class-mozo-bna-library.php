@@ -81,6 +81,13 @@ final class Mozo_Bna_Library {
 	private $entitlements = array();
 
 	/**
+	 * Everything outside a source that its cached analysis depends on, built once per request.
+	 *
+	 * @var string|null
+	 */
+	private $environment = null;
+
+	/**
 	 * Main instance.
 	 *
 	 * @return Mozo_Bna_Library
@@ -174,17 +181,18 @@ final class Mozo_Bna_Library {
 
 	/**
 	 * Content analysis of one pattern (validation after token resolution), cached
-	 * per source until the plugin version, a central map or the content file changes.
+	 * per source until anything it depends on changes (see load_analysis_cache()).
 	 *
 	 * @param array $pattern Pattern metadata.
-	 * @return array Validator result, plus 'errors' for token problems.
+	 * @param bool  $fresh   Analyse again even when a cached result exists (the content route).
+	 * @return array Validator result, plus 'errors' for token problems and 'lite_outdated'.
 	 */
-	public function analyse( $pattern ) {
+	public function analyse( $pattern, $fresh = false ) {
 		$source = $pattern['source'];
 		$this->load_analysis_cache( $source );
 		$mtime = $this->registry()->get_content_mtime( $source, $pattern['slug'] );
 		$items = $this->analysis[ $source ]['items'];
-		if ( isset( $items[ $pattern['slug'] ] ) && $items[ $pattern['slug'] ]['revision'] === $pattern['revision'] && $items[ $pattern['slug'] ]['mtime'] === $mtime ) {
+		if ( ! $fresh && isset( $items[ $pattern['slug'] ] ) && $items[ $pattern['slug'] ]['revision'] === $pattern['revision'] && $items[ $pattern['slug'] ]['mtime'] === $mtime ) {
 			return $items[ $pattern['slug'] ]['result'];
 		}
 
@@ -192,6 +200,11 @@ final class Mozo_Bna_Library {
 		if ( is_wp_error( $content ) ) {
 			$result           = $this->validator()->validate( '' );
 			$result['errors'] = array( $content->get_error_code() );
+			// A key missing from Lite's maps, used by another source: an older Lite, fixed by updating it.
+			$data = $content->get_error_data();
+			if ( 'wpmozo_library_unknown_token' === $content->get_error_code() && is_array( $data ) && isset( $data['source'] ) && 'lite' === $data['source'] && 'lite' !== $source ) {
+				$result['lite_outdated'] = true;
+			}
 		} else {
 			$result = $this->validator()->validate( $content );
 		}
@@ -250,7 +263,9 @@ final class Mozo_Bna_Library {
 			}
 		}
 
-		if ( ! $analysis['valid'] ) {
+		if ( ! empty( $analysis['lite_outdated'] ) ) {
+			$reasons[] = 'lite_outdated';
+		} elseif ( ! $analysis['valid'] ) {
 			$reasons[] = 'invalid_content';
 		}
 
@@ -272,7 +287,7 @@ final class Mozo_Bna_Library {
 				$reasons[] = 'plugin_missing:' . $plugin;
 			}
 		}
-		if ( '' !== $pattern['requires']['lite'] && ! self::satisfies( WPMOZO_BNA_VERSION, $pattern['requires']['lite'] ) ) {
+		if ( '' !== $pattern['requires']['lite'] && ! self::satisfies( WPMOZO_BNA_VERSION, $pattern['requires']['lite'] ) && ! in_array( 'lite_outdated', $reasons, true ) ) {
 			$reasons[] = 'lite_outdated';
 		}
 		if ( '' !== $pattern['requires']['wp'] && ! self::satisfies( get_bloginfo( 'version' ), $pattern['requires']['wp'] ) ) {
@@ -392,6 +407,9 @@ final class Mozo_Bna_Library {
 	private function register_lite_source( $registry ) {
 		$path = WPMOZO_BNA_INC_DIR_PATH . 'library/';
 		foreach ( self::include_file( $path . 'data/categories.php' ) as $id => $category ) {
+			if ( ! is_array( $category ) || ! isset( $category['label'], $category['order'] ) ) {
+				continue;
+			}
 			$registry->add_category( $id, $category['label'], 'lite', $category['order'] );
 		}
 		foreach ( self::include_file( $path . 'data/tags.php' ) as $id => $label ) {
@@ -413,19 +431,16 @@ final class Mozo_Bna_Library {
 	/**
 	 * Load the cached analysis of one source.
 	 *
+	 * The key holds the source id and the environment (see environment()), so a cached
+	 * result is never reused after any input of the analysis changed.
+	 *
 	 * @param string $source Source id.
 	 */
 	private function load_analysis_cache( $source ) {
 		if ( isset( $this->analysis[ $source ] ) ) {
 			return;
 		}
-		$data   = $this->registry()->get_source( $source );
-		$stamps = array( $source, $data ? $data['version'] : '' );
-		foreach ( array( 'media', 'links', 'icons', 'demo-text' ) as $map ) {
-			$file     = $data ? $data['path'] . 'data/' . $map . '.php' : '';
-			$stamps[] = '' !== $file && is_file( $file ) ? filemtime( $file ) : 0;
-		}
-		$key                       = 'wpmozo_bna_lib_' . md5( implode( '|', $stamps ) );
+		$key                       = 'wpmozo_bna_lib_' . md5( $source . '|' . $this->environment() );
 		$items                     = get_transient( $key );
 		$this->analysis[ $source ] = array(
 			'key'   => $key,
@@ -435,13 +450,43 @@ final class Mozo_Bna_Library {
 	}
 
 	/**
-	 * Include a data file in an isolated scope; arrays only.
+	 * Everything outside a source's own pattern files that the analysis depends on:
+	 * - the Lite version and the validator rules version;
+	 * - the WordPress version and the HTML allowed for posts (the restricted-HTML check);
+	 * - every registered source's version and central maps, because a pattern may use
+	 *   another source's map keys (Pro patterns use Lite icons).
+	 *
+	 * @return string
+	 */
+	private function environment() {
+		if ( null === $this->environment ) {
+			$parts = array(
+				WPMOZO_BNA_VERSION,
+				Mozo_Bna_Library_Validator::RULES_VERSION,
+				get_bloginfo( 'version' ),
+				md5( (string) wp_json_encode( wp_kses_allowed_html( 'post' ) ) ),
+			);
+			foreach ( $this->registry()->get_sources() as $id => $data ) {
+				$parts[] = $id . ':' . $data['version'];
+				foreach ( array( 'media', 'links', 'icons', 'demo-text' ) as $map ) {
+					$file    = $data['path'] . 'data/' . $map . '.php';
+					$parts[] = is_file( $file ) ? (int) filemtime( $file ) : 0;
+				}
+			}
+			$this->environment = implode( '|', $parts );
+		}
+		return $this->environment;
+	}
+
+	/**
+	 * Include a data file in an isolated scope; arrays only. A file that fails to load
+	 * (a parse error, for example) yields an empty array instead of a fatal error.
 	 *
 	 * @param string $file Absolute path.
 	 * @return array
 	 */
 	private static function include_file( $file ) {
-		$value = is_file( $file ) ? include $file : array();
+		$value = is_file( $file ) ? Mozo_Bna_Library_Registry::safe_include( $file ) : array();
 		return is_array( $value ) ? $value : array();
 	}
 }
