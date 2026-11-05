@@ -174,9 +174,11 @@ Measured in Pro on `release/pattern-lib` (`362daba`). These are **not** versione
 | `get_block_dynamic_style()` loading the add-on's `includes/templates/block-<slug>/dynamic-style.php` when `WPMOZO_BNA_PRO_PLUGIN_DIR` is defined | `class-mozo-bna-block-helpers.php` | Pro block styles on the front end (Lite knows the Pro layout) |
 | JS components on `window.WPMozoBNAComponents`: `WpmozoTypography`, `WpmozoColorPicker`, `WpmozoDimensions`, `WpmozoSize`, `WpmozoBorder`, `WpmozoMediaUploader`, `WpmozoIconpicker`, `WpmozoAlignment`, `WpmozoColorCombo`, `WpmozoRangeSize`, `WpmozoVideoUploader`, `MozoStates` | `src/common/components/` | Every add-on block's Inspector |
 | JS utilities on `window.WPMozoBNAUtils`: `headingLevelsList`, `inspectorPanelTabs`, `convertInlineStyleStr`, `truncateContent`, `getWrapperProps`, `mergeWrapperProps` | `src/common/utils.js` | Add-on block editors |
-| Script and style handles for Swiper, Isotope, imagesLoaded, Magnific Popup, twbs-pagination and Font Awesome | `includes/class-mozo-bna-blocks-and-addons-assets.php` | Add-on `block.json` asset references |
-| Settings hooks `wpmozo_bna_settings_tabs`, `wpmozo_bna_settings_tab_content`, `wpmozo_bna_add_pro_blocks_to_panel`; option name `WPMOZO_BNA_OPTION` | `includes/admin/panel/` | Add-on settings tabs and block list |
-| Post type `wpmozoae-team-member` | `includes/class-mozo-bna-post-types.php` | Add-on team blocks |
+| Script and style handles for Swiper, Isotope, imagesLoaded, Magnific Popup, twbs-pagination, Font Awesome, GSAP, ScrollTrigger and Tippy, and Lite's blocks stylesheet (exact handles in `lib/surface.cjs`) | `includes/class-mozo-bna-blocks-and-addons-assets.php` | Add-on `block.json` asset references |
+| Settings actions `wpmozo_bna_settings_tabs`, `wpmozo_bna_settings_tab_content`; filter `wpmozo_bna_add_pro_blocks_to_panel` (the list of add-on blocks in the block panel); option name `WPMOZO_BNA_OPTION` | `includes/admin/panel/` | Add-on settings tabs and block list |
+| Post types `wpmozoae-team-member`, `wpmozoae-testimonial`; taxonomies `wpmozo-ae-team-member-category`, `wpmozo-ae-testimonial-category` | `includes/class-mozo-bna-post-types.php` | Add-on team and testimonial blocks |
+
+**The list is machine-checked:** `tools/pattern-library/tests/lib/surface.cjs` holds the same items, and the `contract` suite fails when Lite stops providing one or when Pro starts using a Lite surface that isn't listed ([testing.md](testing.md)).
 
 Several of these are built on WordPress `__experimental*` components; see [known-issues.md](known-issues.md) R-02.
 

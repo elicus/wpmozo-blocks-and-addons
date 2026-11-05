@@ -279,7 +279,7 @@ Checked against the bug: with the deprecation rule removed, the deprecation test
 |---|---|
 | Supported combinations (c01–c05, w68, p85) | Passed: catalog and content per role, licence lock, browser save/reload valid, front end, no PHP log entries |
 | Notice combinations (c06, c09, c10) | Notice shown, no fatal |
-| Lite 1.8.0 + Pro HEAD (c07) | Pro block crashes in the editor; Plugins notice only (Pro roadmap R2) |
+| Lite 1.8.0 + Pro HEAD (c07) | Pro block crashes in the editor; Plugins notice only (Pro roadmap R2). **Corrected in R5:** the crash came from an incomplete 1.8.0 copy; see "R5 results" below |
 | WordPress 6.5.13 / 6.7.10 with Pro | Critical error on activation (KI-04) |
 | PHP 7.4 parse, both plugins | Lite 63/63 files parse. Pro: 4 Team Grid templates fail (`match`), and a Team Grid page returns 500 on PHP 7.4; renders on 8.0 |
 | PHP 8.5.10 | No notices or deprecations from either plugin |
@@ -334,6 +334,8 @@ R1 added the framework with `robustness` and `editor` (`56dbfcb`); R5 adds the o
 | `upgrade` | In-place updates in both orders (Lite first, Pro first) on one running site; saved pages byte-identical and valid; Pro pattern inserted after updating; licence and plugin deactivation; Lite deactivated while Pro is active; `--mutation=1` proves the validity check catches a saved-output change | Audit `upgrade.py` S1–S8, S10 |
 | `contract` | R4: Lite provides every shared surface (`lib/surface.cjs`) at runtime, in the editor and in its source; Pro uses nothing else (static scan) | One-off greps in the audit |
 | `php-parse` | R3: every PHP file of both plugins parses on the declared minimum PHP (php-wasm) | `lint-all-74.cjs` |
+| `team-grid` | R3: Pro Team Grid renders every layout and click trigger on the minimum PHP and on 8.2, with markup identical to a baseline Pro commit. Written in R5; first run in R3 | Audit `combo.py` p74/p80 Team Grid pages |
+| `wp-editor` | R6: Lite's editor stylesheet in the right documents with and without the canvas iframe, no "added to the iframe incorrectly" warning for WPMozo handles, experimental exports resolve. Written in R5; first run in R6 | Audit console checks (KI-05) |
 
 **Rules for every suite:**
 - Each check has a mutation proof: break the behaviour on purpose (or run the code before the fix) and confirm the check fails. The proofs are recorded with each stage below.
@@ -342,3 +344,23 @@ R1 added the framework with `robustness` and `editor` (`56dbfcb`); R5 adds the o
 
 **Not available offline:** newer WordPress or Gutenberg builds, multisite, the licence server, MySQL (the harness uses SQLite) and CI. Run those before release elsewhere (R-12 adds a native-PHP run with every block active).
 
+### R5 results, 2026-11-05
+**Suites:** `4ca209f`. Every run on WordPress 7.1.3 / PHP 8.2 with Lite `0f13330` (R1) and Pro `85390bb` (before R2 and R3). These are the baselines for the later stages: a failure marked "expected" is a defect that its stage fixes, and the check must not be changed to pass. `rest` results are under R1 above.
+
+| Run | Result | Notes |
+|---|---|---|
+| `upgrade --mutation=1` (from Lite `b91a5ec`, Pro `ef1909d`) | **30/30** | Both orders. Mutation proof: a changed Fancy Heading save output is reported as an invalid block |
+| `php-parse` | Lite **65/65** files parse on PHP 7.4. Pro **fails:** the 4 Team Grid templates (`layout1.php`–`layout4.php`, PHP 8.0 `match`); its other 94 files parse | Expected before R3 |
+| `contract`, first run | **10/12** | Both failures were test or inventory problems (below) |
+| `contract`, after the fixes | **12/12** | |
+| `matrix`, the 8 cases of the first run (`current`, `lite-only`, `pro-installed-inactive`, `older-pro`, `lite-before-contract`, `lite-1.8.0`, `pro-lite-inactive`, `pro-lite-missing`) | **71/75** | `lite-before-contract`: no editor notice (expected before R2). `lite-1.8.0`: a Pro block crash, no editor notice, PHP notices; the crash and the notices came from the Lite 1.8.0 copy (below) |
+| `matrix --only=lite-1.8.0,lite-without-helper,pro-renamed-inactive`, after the copy fix | **22/26** | `lite-1.8.0`: no editor notice (expected before R2); no crash, no PHP notices. `lite-without-helper` (Lite with one helper method Pro calls renamed): no Plugins-screen notice and the Pro source still registered (expected before R2). `pro-renamed-inactive` (Pro installed, inactive, in another folder): the card doesn't say "Activate WPMozo Pro" (expected before R2: Lite looks for the folder name, R-09) |
+| `matrix --only=lite-1.8.0`, with the inserted blocks in the crash check's detail | **7/8** | Lite Fancy Heading and Pro Advanced Counter were both registered and inserted; no crash, no page error. Only failure: no editor notice (expected before R2) |
+
+**Test problems found and fixed (not product defects):**
+- `contract` looked for `wpmozo_bna_add_pro_blocks_to_panel` as an action. Lite applies it as a filter; the check accepts either, and section 4 of [registry-and-contract.md](registry-and-contract.md) now names it as a filter.
+- Pro also uses the taxonomy `wpmozo-ae-testimonial-category`, which the inventory missed. It is now in `lib/surface.cjs` and section 4.
+- **The Lite 1.8.0 copy was incomplete.** `release/1.8.0` tracks `build/` but not the generated `build/blocks-manifest.php`, which a release build writes. Lite 1.8.0 registers its blocks only from that manifest, so the copy registered no Lite block and logged "manifest file does not exist" notices. `lib/copies.cjs` now generates the manifest for such copies (copy format 2, so cached copies are rebuilt). The new copy differs from the old one only by that file.
+- The crash check passes when a block isn't registered in the editor (nothing to crash), so its detail now lists the inserted blocks.
+
+**Correction to the audit's c07 result** ([compatibility.md](compatibility.md)): the audit's Lite 1.8.0 copy had the same gap; its run results contain the same manifest notices. With no Lite block registered, no Lite script sets `WPMozoBNAComponents` and `WPMozoBNAUtils`, and Pro's Advanced Counter crashed (`TypeError: d is not a function`). With the manifest, Lite 1.8.0's block editor scripts set both globals (all 61 set `WPMozoBNAUtils`, 60 set `WPMozoBNAComponents`), and the Pro block mounts, as in c06 ("Pro blocks work while Lite blocks that set the globals are enabled"). What stays true for Lite 1.8.0: no editor notice, and Pro's editors depend on globals that a Lite without the contract sets only through its block scripts. Not tested: Lite 1.8.0 with those blocks switched off, other Pro blocks, WordPress 6.8, and the WordPress.org zip of 1.8.0 (no copy offline).

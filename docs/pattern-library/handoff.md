@@ -1,6 +1,6 @@
 # Pattern Library handoff
 
-**Updated:** 2026-11-05 (compatibility audit). Read [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) first.
+**Updated:** 2026-11-05 (R5 test suites). Read [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) first.
 **Branches:**
 - Lite `dev/sunil` → `origin/dev/sunil`;
 - Pro `release/pattern-lib` → `origin/release/pattern-lib`.
@@ -21,17 +21,29 @@ Pro `dev/ayush` is off-limits.
 | LPL-T + pilot (2 free + 2 Pro) | **Built and gated; waiting for the owner's design review.** No catalog expansion before approval. Tools and procedure: [pattern-authoring.md](pattern-authoring.md) |
 | Compatibility and future-proofing audit | **Done 2026-11-05** (docs `ec97921`). Findings: [known-issues.md](known-issues.md); results: [compatibility.md](compatibility.md), [testing.md](testing.md); stages R1–R6: [roadmap.md](roadmap.md). **Approved 2026-11-05** |
 | R1: library robustness | **Done 2026-11-05:** code `98d4013`, suites `56dbfcb`. Passed on WordPress 6.8.11 / PHP 7.4 and 7.1.3 / PHP 8.2 ([testing.md](testing.md)) |
-| R5, R2, R3, R4, R6 | In progress, in that order |
+| R5: reusable test suites | **Done 2026-11-05:** suites `4ca209f`. Baselines before R2 and R3 recorded in [testing.md](testing.md) (R5 results) |
+| R2, R3, R4, R6 | Pending, in that order; each starts after the owner's go-ahead |
 | Stage F, X-1, release | Not started |
 
+## Session handover (2026-11-05, R5 done; waiting for the owner before R2)
+**The next stage starts only after the owner approves it.**
+- **Committed and pushed:** R1 (`98d4013`, suites `56dbfcb`, docs `0f13330`); R5 (suites `4ca209f`, docs in the commit after it).
+- **For the owner before R2:** R5 corrected the audit's c07 result. The Lite 1.8.0 crash came from a test copy without its generated block manifest; with a complete copy the Pro block mounts and only the editor notice is missing ([testing.md](testing.md), R5 results). This changes what R2 has to protect against with an older Lite.
+- **Not committed yet (kept in the maintainer's checkout, untested):**
+  - R2 Lite part: `includes/library/class-mozo-bna-library-rest.php` finds Pro by file name or text domain (R-09);
+  - R6: the editor stylesheet moved to `enqueue_block_assets` (assets class and main class);
+  - the R4 classification in `registry-and-contract.md` section 4.
+- **Pending, in order:** R2 → R3 → R4 → R6 → final validation, each after the owner's go-ahead. The detailed checklist is in the session handover note kept outside the repositories (project memory points to it).
+
 ## Next steps
-1. **Continue the approved stages** in the order R5, R2, R3, R4, R6 ([roadmap.md](roadmap.md)).
-2. **Owner: review the pilot designs** (below). Stage F waits for it.
+1. **Owner:** review the c07 correction above, then approve R2 (or change it) ([roadmap.md](roadmap.md)).
+2. Then R3, R4, R6 in that order, each after approval.
+3. **Owner: review the pilot designs** (below). Stage F waits for it.
 
 ## Audit summary (2026-11-05)
 - **Holds:** Lite alone, Lite + Pro, Pro inactive or older, Pro without Lite (notice), licence lock, role rules, real-HTTP protections, and saved pages through in-place Lite and Pro updates, licence and plugin deactivation. WordPress 6.8.11 and 7.1.3; PHP 7.4, 8.0, 8.2 and 8.5.
 - **Confirmed library issues:** the catalog cache misses changes outside a source (KI-01); one malformed add-on file takes the library down (KI-02); a missing cross-source map key gives a generic message (KI-03).
-- **Confirmed compatibility issues:** wrong requirement headers, and WordPress 6.5/6.7 with Pro fails on activation (KI-04); Lite's editor stylesheet uses a path newer WordPress may drop (KI-05); Pro with Lite 1.8.0 crashes Pro blocks in the editor; Pro Team Grid needs PHP 8.0 (details in the Pro repository).
+- **Confirmed compatibility issues:** wrong requirement headers, and WordPress 6.5/6.7 with Pro fails on activation (KI-04); Lite's editor stylesheet uses a path newer WordPress may drop (KI-05); Pro with Lite 1.8.0 crashes Pro blocks in the editor (corrected in R5: an incomplete test copy; with a complete one only the editor notice is missing); Pro Team Grid needs PHP 8.0 (details in the Pro repository).
 - **Main risk:** Pro depends on Lite surfaces the contract doesn't version yet ([registry-and-contract.md](registry-and-contract.md) section 4).
 
 ## Pilot review (LPL-T checkpoint)

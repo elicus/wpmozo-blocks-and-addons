@@ -16,6 +16,7 @@ Issue IDs (KI-…, R-…) refer to [known-issues.md](known-issues.md).
 | LPL-T | Authoring tools; pilot 2 free + 2 Pro patterns; editability gate | [pattern-authoring.md](pattern-authoring.md) |
 | Audit (2026-11-05) | Compatibility and future-proofing audit; project context and topic files | [compatibility.md](compatibility.md), [testing.md](testing.md), [known-issues.md](known-issues.md), this file |
 | R1 (2026-11-05) | Library robustness: cache key, isolation of broken files, `lite_outdated` for missing Lite keys, fresh analysis on the content route (Lite `98d4013`) | [testing.md](testing.md) R1, decisions PL-D23–PL-D26 |
+| R5 (2026-11-05) | Reusable test suites in `tools/pattern-library/tests/` (not shipped): REST, combinations, in-place updates, contract surfaces, PHP parse, plus `team-grid` (R3) and `wp-editor` (R6), first run in their stages (Lite `4ca209f`) | [testing.md](testing.md) R5 results |
 
 ## Waiting for the owner
 1. **Pilot design review** (LPL-T checkpoint). Blocks Stage F only.

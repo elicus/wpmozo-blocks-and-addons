@@ -19,7 +19,7 @@ Header changes are release tasks ([roadmap.md](roadmap.md), stage H) and are nev
 | Lite with the library + Pro installed but inactive | **Supported** | Free patterns; the card says "Activate WPMozo Pro" |
 | Lite with the library + an older Pro without a pattern source | **Supported** | Free patterns; the card says "Update WPMozo Pro"; Pro blocks unchanged |
 | Lite with the library + Pro, licence not activated | **Supported** | Pro patterns locked; their content is refused |
-| An older Lite without the contract + current Pro | **Notice only (unsupported)** | No library. A Plugins-screen notice asks to update Lite. With Lite 1.8.0 Pro blocks crash in the editor; an editor notice and a stated floor are proposed (roadmap R2) |
+| An older Lite without the contract + current Pro | **Notice only (unsupported)** | No library. A Plugins-screen notice asks to update Lite. Pro blocks work while Lite blocks that set the shared globals are enabled (c06; Lite 1.8.0 too, corrected in R5); no editor notice yet. An editor notice and a stated floor are proposed (roadmap R2) |
 | Pro active, Lite inactive or missing | **Notice only** | "requires … to be activated / installed"; Pro does nothing; no fatal |
 | WordPress below 6.8 | **Unsupported** | Lite: no blocks, library shows every pattern unavailable. Lite + Pro: critical error on WordPress 6.5 and 6.7 (Pro start-up calls `is_plugin_active()`, which core loads on the front end only from 6.8). The headers are the fix |
 | PHP 7.4 with Pro Team Grid | **Unsupported today** | A page with a Team Grid block and at least one member returns HTTP 500 (PHP 8.0 syntax in Pro templates); open decision in roadmap R3 |
@@ -39,7 +39,7 @@ Checks per run: front end, Plugins screen notices, post editor (handles printed)
 | c04 | Lite HEAD + Pro `ef1909d` (older Pro) | 7.1.3 / 8.2 | **Passed.** Card: "Update WPMozo Pro"; Pro blocks mount, save, reload valid |
 | c05 | Lite HEAD + Pro May build | 6.8.11 / 7.4 | **Passed.** As c04 |
 | c06 | Lite `b91a5ec` (no contract) + Pro HEAD | 7.1.3 / 8.2 | **Notice.** Plugins screen: "Update WPMozo Blocks and Addons …"; no library routes (404); Pro blocks work while Lite blocks that set the globals are enabled |
-| c07 | Lite 1.8.0 + Pro HEAD | 7.1.3 / 8.2 | **Fails in the editor.** Pro Advanced Counter: "This block has encountered an error" (`TypeError: d is not a function`); only the Plugins-screen notice explains it. Front end fine |
+| c07 | Lite 1.8.0 + Pro HEAD | 7.1.3 / 8.2 | **Fails in the editor.** Pro Advanced Counter: "This block has encountered an error" (`TypeError: d is not a function`); only the Plugins-screen notice explains it. Front end fine. **Corrected in R5 (2026-11-05):** the 1.8.0 copy lacked the generated `build/blocks-manifest.php`, so no Lite block registered. With it (Pro `85390bb`), the Pro block mounts and only the editor notice is missing ([testing.md](testing.md), R5 results) |
 | c08 | LPL-2-stage Lite + Pro HEAD | 7.1.3 / 8.2 | **Partly.** `pro/about-process-timeline` is `invalid_content` because that Lite's icon map lacks the keys it uses (KI-03); the other Pro pattern is available |
 | c09 | Pro HEAD active, Lite inactive | 7.1.3 / 8.2 | **Notice.** "requires … to be activated"; no fatal; no WPMozo scripts |
 | c10 | Pro HEAD active, Lite folder missing | 7.1.3 / 8.2 | **Notice.** "requires … to be installed"; no fatal |
@@ -97,4 +97,4 @@ The pilot runs (LPL-T, 2026-11-04, WordPress 6.8.11 / PHP 7.4 and 7.1.3 / PHP 8.
 - An expired or revoked licence (needs licence-server data; Pro repository).
 - The editor with every Lite and Pro block active (harness limit, R-12).
 - WordPress versions newer than 7.1.3 and Gutenberg plugin releases (no offline copies).
-- Lite 1.8.0 as distributed on WordPress.org (the harness copy is a `git archive`).
+- Lite 1.8.0 as distributed on WordPress.org (the harness copy is a `git archive`; since R5 it gets the generated block manifest a release build contains).
