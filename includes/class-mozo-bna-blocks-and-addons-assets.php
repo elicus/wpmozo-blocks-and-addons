@@ -263,7 +263,7 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 
 		wp_localize_script( $this->plugin_name . '-editor-script', 'wpmozo_bna_editor_object', $all_options );
 
-		wp_enqueue_style( $this->plugin_name . '-editor-style' );
+		// The editor stylesheet is enqueued in enqueue_editor_style() for the editor and its canvas.
 		wp_enqueue_script( $this->plugin_name . '-editor-script' );
 		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
 		wp_enqueue_script( $this->plugin_name . '-tilt-script' );
@@ -272,6 +272,22 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 
 		// Load frontend localize variables.
 		$this->load_block_localize_variables();
+	}
+
+	/**
+	 * Enqueue the editor stylesheet in the block editor: in the editor page (Inspector controls)
+	 * and in the editor canvas (block placeholders and appenders).
+	 *
+	 * Hooked to enqueue_block_assets, which WordPress fires for both. Enqueued on
+	 * enqueue_block_editor_assets instead, the canvas only got a copy WordPress makes with a
+	 * warning that it may stop doing so. Never loaded on the front end.
+	 *
+	 * @since n.e.x.t
+	 */
+	public function enqueue_editor_style() {
+		if ( is_admin() ) {
+			wp_enqueue_style( $this->plugin_name . '-editor-style' );
+		}
 	}
 
 	/**
