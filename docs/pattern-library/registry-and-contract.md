@@ -7,7 +7,7 @@ Lite (`wpmozo-blocks-and-addons`) owns this contract. Add-ons, currently WPMozo 
 | 1. Integration contract (PHP) | **Implemented** (Stage A, LPL-1) |
 | 2. Shared editor script (JS) | **Implemented** (Stage A, LPL-1) |
 | 3. Pattern registry and sources | **Implemented** (Stage C, LPL-2) |
-| 4. Other Lite surfaces add-ons use | **Inventory** (2026-11-05); not yet versioned |
+| 4. Other Lite surfaces add-ons use | **Frozen and machine-checked** (R4, 2026-11-06); not versioned by `supports()` |
 
 ## 1. Integration contract (PHP)
 
@@ -163,22 +163,47 @@ The content analysis is cached in a transient per source. The cache key includes
 - **Contract and schema negotiation:** an add-on that needs a newer source contract or metadata schema checks `supports( 'library', N )` first and otherwise registers with what Lite supports. `pattern.php` is PHP, so it can choose its `schema` the same way. Lite refuses a contract it doesn't know and hides patterns with a newer schema.
 - **Entitlement states:** only the four documented states. Anything else locks the source on that Lite version.
 
-## 4. Other Lite surfaces add-ons use (inventory, 2026-11-05)
+## 4. Other Lite surfaces add-ons use (frozen, R4)
 
-Measured in Pro on `release/pattern-lib` (`362daba`). These are **not** versioned by `supports()` yet, but Pro depends on them, often on the front end, so a change to any of them can break Pro. Until the contract covers them (roadmap stage R4), treat them as frozen: no rename, removal or signature change without a deprecation that follows the rules in section 1.
+Measured in Pro on `release/pattern-lib` (first inventory 2026-11-05 on `362daba`; completed in R4 on 2026-11-06 on `db225e4`). These are **not** versioned by `supports()`, but Pro depends on them, often on the front end, so a change to any of them can break Pro. **Since R4 they are frozen and machine-checked** (PL-D27): no rename, removal or signature change without a deprecation that follows the rules in section 1.
 
 | Surface | Where in Lite | Used by add-ons for |
 |---|---|---|
-| PHP classes `WPMOZO\BNA\Helpers\Mozo_Bna_Helpers` and `Mozo_Bna_Block_Helpers` (not `final`) | `includes/helpers/` | Add-on helper classes extend them; templates create them |
+| PHP classes `WPMOZO\BNA\Helpers\Mozo_Bna_Helpers` and `Mozo_Bna_Block_Helpers`: not `final`, not abstract, created with `new` without arguments | `includes/helpers/` | Add-on helper classes extend them; render callbacks and templates create them |
 | Static methods `esc_previously()`, `truncate_content()`, `get_block_dynamic_style()`, `get_font_style()`, `get_border_style()`, `get_padding_style()`, `get_margin_style()` | Same | Render callbacks and templates (hundreds of calls) |
-| `get_block_dynamic_style()` loading the add-on's `includes/templates/block-<slug>/dynamic-style.php` when `WPMOZO_BNA_PRO_PLUGIN_DIR` is defined | `class-mozo-bna-block-helpers.php` | Pro block styles on the front end (Lite knows the Pro layout) |
+| `get_block_dynamic_style( $slug, $attributes )` loading the add-on's `includes/templates/block-<slug>/dynamic-style.php` when `WPMOZO_BNA_PRO_PLUGIN_DIR` is defined, then calling `<slug with underscores>_generate_dynamic_style( $attributes )` | `class-mozo-bna-block-helpers.php` | Pro block styles on the front end (Lite knows the Pro layout) |
 | JS components on `window.WPMozoBNAComponents`: `WpmozoTypography`, `WpmozoColorPicker`, `WpmozoDimensions`, `WpmozoSize`, `WpmozoBorder`, `WpmozoMediaUploader`, `WpmozoIconpicker`, `WpmozoAlignment`, `WpmozoColorCombo`, `WpmozoRangeSize`, `WpmozoVideoUploader`, `MozoStates` | `src/common/components/` | Every add-on block's Inspector |
 | JS utilities on `window.WPMozoBNAUtils`: `headingLevelsList`, `inspectorPanelTabs`, `convertInlineStyleStr`, `truncateContent`, `getWrapperProps`, `mergeWrapperProps` | `src/common/utils.js` | Add-on block editors |
-| Script and style handles for Swiper, Isotope, imagesLoaded, Magnific Popup, twbs-pagination, Font Awesome, GSAP, ScrollTrigger and Tippy, and Lite's blocks stylesheet (exact handles in `lib/surface.cjs`) | `includes/class-mozo-bna-blocks-and-addons-assets.php` | Add-on `block.json` asset references |
-| Settings actions `wpmozo_bna_settings_tabs`, `wpmozo_bna_settings_tab_content`; filter `wpmozo_bna_add_pro_blocks_to_panel` (the list of add-on blocks in the block panel); option name `WPMOZO_BNA_OPTION` | `includes/admin/panel/` | Add-on settings tabs and block list |
-| Post types `wpmozoae-team-member`, `wpmozoae-testimonial`; taxonomies `wpmozo-ae-team-member-category`, `wpmozo-ae-testimonial-category` | `includes/class-mozo-bna-post-types.php` | Add-on team and testimonial blocks |
+| Editor object `wpmozo_bna_editor_object` (printed for Lite's editor script), member `placeholderImg`: the URL of `includes/assets/images/placeholder.webp` | `includes/class-mozo-bna-blocks-and-addons-assets.php` | An add-on block's editor and its **saved markup**, which can contain that URL; so the file is permanent, like released media (PL-D03) |
+| Script and style handles for Swiper, Isotope, imagesLoaded, Magnific Popup, twbs-pagination, Font Awesome, GSAP, ScrollTrigger, Tippy and Chart.js, and Lite's blocks stylesheet (exact handles in `lib/surface.cjs`). Lite registers them on `init` and is their only owner: add-ons reference them and never register them (PL-D28). The major version of the library behind a handle is part of the freeze: add-on scripts call its API (Pro's charts are written for Chart.js 4) | `includes/class-mozo-bna-blocks-and-addons-assets.php` | Add-on `block.json` asset references |
+| Settings actions `wpmozo_bna_settings_tabs`, `wpmozo_bna_settings_tab_content`, and the panel markup an add-on tab uses (`li.wpmozo_bna_panel_menu_item` with `data-href="#<section id>"`, `div.wpmozo_bna_panel_section`, switched by Lite's panel script); filter `wpmozo_bna_add_pro_blocks_to_panel` (the add-on's blocks for the block panel, `slug => label`); option name `WPMOZO_BNA_OPTION` | `includes/admin/panel/` | Add-on settings tabs and block list |
+| Block on/off list `WPMOZO_BNA_OPTION['wpmozo_inactive_blocks']` (block slugs, comma-separated). On `init` at priority 50 Lite unregisters every listed `wpmozo/<slug>` block, add-on blocks included, so add-ons register their blocks before that (default priority 10) and have no on/off setting of their own | `wpmozo-blocks-and-addons.php`, `includes/admin/panel/` | Switching add-on blocks on and off (owner decision, 2026-11-06: block on/off stays Lite's) |
+| Block `wpmozo/content-wraper` (internal: not in the inserter and never listed in the block panel, so always registered) and its saved markup | `src/blocks/content-wraper/` | Pro's Advanced Tabs Item template inserts it, so saved pages contain it |
+| Post types `wpmozoae-team-member`, `wpmozoae-testimonial`; taxonomies `wpmozo-ae-team-member-category`, `wpmozo-ae-testimonial-category`; the post meta Lite's meta boxes write for them (12 team-member and 6 testimonial keys, listed in `lib/surface.cjs`) | `includes/class-mozo-bna-post-types.php`, `includes/admin/` | Add-on team and testimonial blocks |
+| **The other direction**, names Lite reads from an add-on: `WPMOZO_BNA_PRO_VERSION` (Lite's settings page then enables the add-on's block switches and shows its tabs), `WPMOZO_BNA_PRO_PLUGIN_DIR` (dynamic-style path), `WPMOZO_BNA_PRO_BASENAME` (Plugins-screen links). Lite also ships its own list of Pro block names for the block panel (`includes/data/pro-blocks.php`); the filter above replaces it | `includes/admin/`, `includes/helpers/` | Lite's settings page and front-end styles of add-on blocks |
 
-**The list is machine-checked:** `tools/pattern-library/tests/lib/surface.cjs` holds the same items, and the `contract` suite fails when Lite stops providing one or when Pro starts using a Lite surface that isn't listed ([testing.md](testing.md)).
+**The list is machine-checked:** `tools/pattern-library/tests/lib/surface.cjs` holds the same items, and the `contract` suite ([testing.md](testing.md), R4) fails when:
+- Lite stops providing one: at runtime (classes, methods, constants, post types, taxonomies, handles, blocks, block on/off for an add-on block, an add-on's dynamic-style file), in the editor (globals, the editor object, saved markup of `wpmozo/content-wraper`), on the settings page (add-on block switches and tab) or in its source (settings hooks, post meta keys);
+- Pro starts using a Lite surface that isn't listed, registers a handle under a Lite name, or stops defining a name Lite reads;
+- Pro's editor guard (R2) or start-up helper check (Pro repository) misses a Lite global or helper method Pro uses.
 
 Several of these are built on WordPress `__experimental*` components; see [known-issues.md](known-issues.md) R-02.
 
+### Which surfaces are intended (R4, 2026-11-06)
+| Surface | Kind | How it stays stable |
+|---|---|---|
+| Accessor, `wpmozo_bna_loaded`, features, the source registry, released map keys | **Contract** (designed for add-ons) | Versioned features; additive rules in section 1; the `contract` suite also checks that no add-on pattern misses a Lite map key |
+| Shared editor script and the `WPMozoBNAComponents` / `WPMozoBNAUtils` globals | **Intended** (Lite's shared UI layer, exposed as globals from the start) | Listed names frozen; checked in the editor |
+| Settings hooks, the block-panel filter and the panel markup of add-on tabs | **Intended** extension points | Frozen; checked in Lite's source and on its settings page |
+| Block on/off list for add-on blocks | **Intended:** Lite owns block on/off for every WPMozo block | Frozen (option key, `init` priority 50); checked at runtime and on the settings page |
+| Vendor script and style handles, Chart.js included | **Intended** sharing of bundled libraries; Lite is their only owner (PL-D28) | Frozen; checked at runtime; the usage scan fails if Pro registers one |
+| Team and testimonial post types, taxonomies and post meta | **Shared data model** of Lite and Pro blocks | Frozen; types and taxonomies checked at runtime, meta keys in the source |
+| Helper classes `Mozo_Bna_Helpers`, `Mozo_Bna_Block_Helpers` and their static methods | **Accidental:** internal utilities Pro extends, creates and calls | Frozen and checked (exists, not `final`, can be created without arguments, public static). Pro also checks them at start-up and stays off with a notice if one is missing, instead of failing on every request |
+| Lite loading an add-on's `dynamic-style.php` by path and calling its `_generate_dynamic_style()` function | **Accidental:** Lite knows Pro's folder layout | Kept for existing Pro versions; checked in the source and at runtime |
+| Editor object `wpmozo_bna_editor_object` (`placeholderImg`) and the placeholder image | **Accidental:** Lite's editor settings, read by an add-on block that also saves the URL | Frozen with the file; checked in the editor (member present, file loads) |
+| `wpmozo/content-wraper` | **Accidental:** a Lite-internal block an add-on inserts | Frozen name; can't be switched off; every saved form stays valid and the newest is the current save output (checked in the editor) |
+| Names Lite reads from an add-on (`WPMOZO_BNA_PRO_*` constants) | **Accidental** (the other direction) | Pro keeps defining them; checked at runtime |
+
+**Not done, on purpose:** no new interface layer or rename for the accidental surfaces. Their behaviour is already relied on by released Pro versions, so moving them would need the deprecation rules anyway; freezing and testing them protects both plugins without a rewrite. A future version can add a documented replacement (for example a filter for add-on style templates, or a `helpers` feature) and keep the old path working. R4 changed no Lite plugin code.
+
+**Recorded, not changed** (Pattern Library work leaves block issues to a separate developer, PL-D29; [known-issues.md](known-issues.md)): `wpmozo/content-wraper` is kept out of the inserter by naming a parent block that doesn't exist, and since Lite `52a8293` (after 1.8.0, not released yet) its saved markup carries a stray `wrapstyle` attribute. Both saved forms are frozen as they are.

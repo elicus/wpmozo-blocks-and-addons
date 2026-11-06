@@ -2,7 +2,7 @@
 
 **Start here.** Every Pattern Library task, by a person or an AI session, begins by reading this file, then [handoff.md](handoff.md) (current state and the exact next step), then the topic files the task touches. Nothing here replaces a topic file: each section names the file that holds the detail.
 
-**Updated:** 2026-11-06 (R2). **Pro side:** the private Pro repository keeps its own `docs/pattern-library/PROJECT_CONTEXT.md` (Pro architecture, entitlement, licence and Pro security). This public file never repeats private Pro details.
+**Updated:** 2026-11-06 (R4). **Pro side:** the private Pro repository keeps its own `docs/pattern-library/PROJECT_CONTEXT.md` (Pro architecture, entitlement, licence and Pro security). This public file never repeats private Pro details.
 
 ## 1. Objective and scope
 The Pattern Library lets editors browse ready-made sections in the block editor and insert them as normal, fully editable blocks.
@@ -24,6 +24,7 @@ The Pattern Library lets editors browse ready-made sections in the block editor 
 - **Public repository:** describe protections, never unfixed security issues or private licensing details. Those live in the Pro repository.
 - Record verified facts only, with how they were verified and on which versions. Mark anything planned as planned.
 - Never silently rewrite a decision: a changed decision gets a new entry that names the one it replaces ([decisions.md](decisions.md)).
+- **Block code is out of bounds for Pattern Library work** (PL-D29): never modify `src/blocks/` or any block folder in Lite or Pro; record block issues in [known-issues.md](known-issues.md) (block, issue, cause, impact, recommended fix) for a separate developer.
 - Update [handoff.md](handoff.md) at every milestone, and this file when scope, architecture, requirements or status change.
 
 ## 3. Lite architecture (summary)
@@ -50,7 +51,7 @@ Detail: [registry-and-contract.md](registry-and-contract.md).
 - **Shared editor script** `wpmozo-blocks-and-addons-shared`, registered and printed in the head of every block editor (`enqueue_block_editor_assets` priority 1). It sets `window.WPMozoBNAComponents`, `window.WPMozoBNAUtils` and `window.WPMozoBNA`.
 - **Sources:** `wpmozo_bna_library_register_sources` fires lazily (library REST requests only); add-ons call `$registry->register_source( $id, $args )` with `contract` 1.
 - **Rules:** additive only; a breaking change gets a new feature name; deprecation needs 2 Lite minor releases, 6 months and no supported Pro still using it.
-- **Other Lite surfaces add-ons use today** (PHP helper classes, JS component names, script and style handles, settings hooks, a post type) are listed in [registry-and-contract.md](registry-and-contract.md) section 4. They are not versioned yet; treat them as frozen until the contract covers them ([roadmap.md](roadmap.md)).
+- **Other Lite surfaces add-ons use** (PHP helper classes, JS component and utility names, the editor object, script and style handles, settings hooks and panel markup, block on/off, the internal content wrapper, post types, taxonomies and post meta, and the Pro constants Lite reads) are listed and classified in [registry-and-contract.md](registry-and-contract.md) section 4. **Since R4 they are frozen and checked by the `contract` suite** (PL-D27); they are still not versioned by `supports()`. Lite is the only owner of the shared script and style handles (PL-D28).
 
 ## 5. Flows
 | Flow | Detail |
@@ -88,17 +89,17 @@ Detail and the tested matrix: [compatibility.md](compatibility.md).
 4. Saved content never depends on licence state, plugin state or a CDN, and plugin updates never change it.
 5. Every contract change is additive and documented here and in registry-and-contract.md.
 
-## 9. Current status (2026-11-05)
+## 9. Current status (2026-11-06)
 Detail: [handoff.md](handoff.md).
 
 - **Done:** contract (LPL-1), server side (LPL-2), UI and importer (LPL-3); in Pro: security port, contract adoption, Pro source and entitlement.
 - **Pilot (LPL-T):** 2 free + 2 Pro patterns, built and verified on WordPress 6.8.11 and 7.1.3. **Waiting for the owner's design review. Add no patterns before approval.**
-- **Compatibility audit (2026-11-05):** findings in [known-issues.md](known-issues.md); stages R1–R6 in [roadmap.md](roadmap.md), **approved 2026-11-05**. R1 (library robustness) and R5 (reusable test suites) are done; R2 (Pro with an older Lite) is done (Lite `ee18c89`, `23d89d6`; Pro `b7cc761`); R3 (PHP floor and requirement headers) is done (Lite `28d184c`, `afc5e91`); R4 and R6 follow in that order, each after the owner's go-ahead.
+- **Compatibility audit (2026-11-05):** findings in [known-issues.md](known-issues.md); stages R1–R6 in [roadmap.md](roadmap.md), **approved 2026-11-05**. R1 (library robustness) and R5 (reusable test suites) are done; R2 (Pro with an older Lite) is done (Lite `ee18c89`, `23d89d6`; Pro `b7cc761`); R3 (PHP floor and requirement headers) is done (Lite `28d184c`, `afc5e91`); R4 (contract surface freeze) is done (Lite tests `62a9bbf`; Pro `e79e4aa`); R6 follows after the owner's go-ahead.
 - **Regression suites:** `tools/pattern-library/tests/` (not shipped): library robustness, REST, editor gate, Lite/Pro combinations, in-place updates, contract surfaces, PHP parse; run them for every library change ([testing.md](testing.md)).
 - **Release blockers:** the `example.com` placeholder for the Lite-to-Pro card link; provisional pattern `since` values; `n.e.x.t` tags; Pro's minimum-Lite handling (Pro repository).
 
 ## 10. Key decisions (with reasons)
-Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D22).
+Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D29).
 
 | ID | Decision | Why |
 |---|---|---|
@@ -110,6 +111,8 @@ Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D22).
 | PL-D15 | The placeholder block is always registered and saves nothing | Saved placeholders must never break |
 | PL-D18, PL-D19 | Author on WordPress 6.8; export strips editor-ID attributes | Newer WordPress migrates older markup, not the reverse |
 | PL-D22 | Editability is part of the quality gate | Patterns must stay fully editable, not just insertable |
+| PL-D27, PL-D28 | Add-on surfaces frozen and machine-checked without a new layer; Lite is the only owner of shared handles | Released Pro already relies on them; one owner per handle (R4) |
+| PL-D29 | Pattern Library work never changes block code; block issues are recorded for a separate developer | Owner rule: no unrelated block changes |
 
 ## 11. Known issues and pending work
 - Known issues (library and blocks): [known-issues.md](known-issues.md).

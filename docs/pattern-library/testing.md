@@ -332,7 +332,7 @@ R1 added the framework with `robustness` and `editor` (`56dbfcb`); R5 adds the o
 | `editor` | Every available pattern through the repository gate with editability | Manual gate runs |
 | `matrix` | Lite/Pro combinations with expected outcomes: supported ones work (catalog, card text, blocks mount, save/reload, front end); unsupported ones show a notice, never a fatal error or a block crash | Audit `combo.py` c01–c10 |
 | `upgrade` | In-place updates in both orders (Lite first, Pro first) on one running site; saved pages byte-identical and valid; Pro pattern inserted after updating; licence and plugin deactivation; Lite deactivated while Pro is active; `--mutation=1` proves the validity check catches a saved-output change | Audit `upgrade.py` S1–S8, S10 |
-| `contract` | R4: Lite provides every shared surface (`lib/surface.cjs`) at runtime, in the editor and in its source; Pro uses nothing else (static scan) | One-off greps in the audit |
+| `contract` | R4: Lite provides every shared surface (`lib/surface.cjs`) at runtime, in the editor, on its settings page and in its source, including the blocks add-ons insert and their saved markup, block on/off for add-on blocks and an add-on's dynamic-style file; Pro uses nothing else (static scan), registers no Lite handle and defines the names Lite reads | One-off greps in the audit |
 | `php-parse` | R3: every PHP file of both plugins parses on the declared minimum PHP (php-wasm) | `lint-all-74.cjs` |
 | `team-grid` | R3: Pro Team Grid renders every layout and click trigger on the minimum PHP and on 8.2, with markup identical to a baseline Pro commit. Written in R5; first run in R3 | Audit `combo.py` p74/p80 Team Grid pages |
 | `wp-editor` | R6: Lite's editor stylesheet in the right documents with and without the canvas iframe, no "added to the iframe incorrectly" warning for WPMozo handles, experimental exports resolve. Written in R5; first run in R6 | Audit console checks (KI-05) |
@@ -451,3 +451,63 @@ Also not covered by a committed suite: the site and widget editors and the repea
 - The WordPress 6.5 and 6.7 checks: before R2 and R3, the same activation ended in a critical error (audit runs w65, w67).
 
 **Not tested:** PHP 7.3 (no runtime here; nothing declares it any more); a WordPress.org update offered to a site below the new minimums (WordPress decides that from the headers).
+
+## R4: contract surface freeze, 2026-11-06
+
+**Scope (approved 2026-11-06):** freeze and machine-check every Lite surface add-ons use ([registry-and-contract.md](registry-and-contract.md) section 4, PL-D27), including the R2 findings R-14 and R-15. PKI-07 (Chart.js) decided as option B′: Lite is the only owner of the handle, and Pro drops its own registration (PL-D28). Owner rule given before R4: Pattern Library work changes no block code (PL-D29).
+
+**Commits:** Lite tests `62a9bbf`; Pro `e79e4aa`. No Lite plugin code changed.
+
+### Audit (Lite `eb9b289`, Pro `db225e4`)
+Every surface in the 2026-11-05 inventory still exists in Lite and is still used by Pro. Missing from the inventory or the checks were R-14 and R-15, plus:
+- Lite's editor object `wpmozo_bna_editor_object.placeholderImg`, which a Pro block reads in its editor and writes into its saved markup;
+- the 18 team-member and testimonial post meta keys Pro reads;
+- the helper classes must stay creatable with `new` (Pro does so in 26 places);
+- the `<slug>_generate_dynamic_style()` function name behind the dynamic-style path;
+- the Pro constants Lite reads (the other direction);
+- the settings-panel markup Pro's tab relies on.
+
+The old usage scan would also have missed helper calls through Pro's subclasses, editor objects, Lite block names and meta keys.
+
+### Suite changes
+- `lib/surface.cjs`: the Chart.js handle, post meta, the editor object and the file it points to, the blocks add-ons insert with their saved markup (the Lite 1.8.0 form and the current form), block on/off, the panel markup, the Pro constants Lite reads.
+- `driver`: the `contract` endpoint also reports block registration, whether the helper classes can be created without arguments, a dynamic-style probe (errors are caught and reported) and the add-on constants.
+- `contract`: 26 checks with Pro (13 before R4), 16 without. New runtime, editor, settings-page and source checks; a wider usage scan; Pro must not register a Lite handle; Pro's start-up helper list must cover Pro's calls; no add-on pattern may report `lite_outdated`. The Pro block kept on is the first with its own `dynamic-style.php` (Accordion Slider today); the switched-off one is the first that only Pro's panel filter adds to Lite's block panel (Text Hover Effect today), so the panel check proves the filter.
+- **Made stricter during R4 (test problems, not product defects):** the first mutation run showed that several runtime checks passed when the driver returned nothing (its request had crashed); every runtime check now compares against the expected list. The first meta-key check passed on a key that survived only as a form field name; it now looks in Lite's meta-saving functions.
+
+**Content wrapper, measured in the editor (WordPress 7.1.3):** the shipped Lite 1.8.0 saves `<div class="wp-block-wpmozo-content-wraper …">`; Lite HEAD saves the same with an added `wrapstyle` attribute (block issue B-R4-4, [known-issues.md](known-issues.md)). Lite HEAD accepts the 1.8.0 markup through its deprecation and re-saves its own markup byte for byte; an extra attribute is reported invalid (the check's negative control).
+
+### Results (Lite plugin: HEAD; Pro: HEAD + the R4 change; suites from the working tree)
+| Run | WordPress 7.1.3 / PHP 8.2 | WordPress 6.8.11 / PHP 7.4 |
+|---|---|---|
+| `contract` | **26/26** | **26/26** |
+| `contract --pro=none` | **16/16** (Pro checks skipped with a note) | **16/16** |
+| `php-parse` (PHP 7.4) | **2/2:** Lite 65 and Pro 98 files parse | — |
+| `rest` | **17/17** | — |
+| `robustness` | **26/26** | — |
+| `editor` | **10/10** | — |
+| `upgrade --mutation=1` | **30/30** | — |
+| `matrix` (all 10 cases) | **109/109** | — |
+
+### Mutation proofs (WordPress 7.1.3 / PHP 8.2; throwaway copies outside both repositories, no block folder edited)
+| Copy | Breaks | Result |
+|---|---|---|
+| M1: Lite HEAD | `get_margin_style()` renamed | **20/26.** The helper-class check fails, naming `get_margin_style`. Pro then stays off (its start-up check), so the five checks that need Pro running fail too; no fatal error |
+| M2: Lite HEAD | 11 breaks, all outside block folders: Chart.js handle renamed; content wrapper dropped from the block manifest; block on/off applied to Lite's own blocks only; editor object renamed; a meta key renamed in the save code; add-on dynamic-style path changed; settings-tab action renamed; panel filter renamed; `Mozo_Bna_Helpers` made abstract; a Lite icon key Pro patterns use removed; the panel no longer skips the content wrapper | **12/26:** every break fails its check (14 failing checks) |
+| M3: Pro HEAD + the R4 change | 8 breaks in non-block files: a Lite helper method called through Pro's subclass, an unlisted meta key, a Lite-named handle registered, a Lite block name, an unlisted Lite editor object and an unlisted member, `truncate_content` dropped from Pro's start-up list, `truncateContent` dropped from the R2 guard list, a constant Lite reads renamed | **21/26:** the usage, Lite-handle, start-up list, guard list and constants checks fail, each naming its breaks |
+| M4: Pro `db225e4` | The code before B′ | **25/26:** only "Pro registers no handle under a Lite name" fails (`wpmozo-blocks-and-addons-chartjs-script`) |
+
+### PKI-07 option B′ (one-off script outside the repositories)
+A page with Pro's Bar Chart and Pie Chart, in the editor and on the front end:
+
+| Lite / Pro | Result |
+|---|---|
+| HEAD / HEAD + R4, WordPress 7.1.3 / PHP 8.2 and 6.8.11 / PHP 7.4 | Both charts drawn in the editor canvas and on the front end; Chart.js loaded from Lite's file; no page errors |
+| Shipped 1.8.0 / HEAD + R4, 7.1.3 / 8.2 | Not drawn; "Chart is not defined" in the editor and on the front end; no request for a Pro Chart.js file |
+| Shipped 1.8.0 / `db225e4` (before), 7.1.3 / 8.2 | The same errors, plus 404 requests for Pro's missing `includes/assets/js/chartjs.min.js` |
+
+With Lite 1.8.0 or older, Pro's charts can't draw either way; the check that would avoid the error belongs to the chart blocks (Pro repository, a block task).
+
+**Block code untouched:** checksums of `src/blocks`, `includes/templates` and `build/` in both checkouts were identical before and after every R4 run.
+
+**Not covered:** the props of each shared component (only names are checked); WordPress 6.8.11 for the regression suites (run on 7.1.3 in R4, on both versions in R2 and R3); the site and widget editors and repeated saves (one-off scripts in R2).

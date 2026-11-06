@@ -19,6 +19,7 @@ Issue IDs (KI-…, R-…) refer to [known-issues.md](known-issues.md).
 | R5 (2026-11-05) | Reusable test suites in `tools/pattern-library/tests/` (not shipped): REST, combinations, in-place updates, contract surfaces, PHP parse, plus `team-grid` (R3) and `wp-editor` (R6), first run in their stages (Lite `4ca209f`) | [testing.md](testing.md) R5 results |
 | R2 (2026-11-06) | With a Lite without the contract, Pro checks Lite's editor globals in the editor and switches its block editing off only when they are missing; Lite finds Pro by file name or text domain (R-09); suites use the shipped Lite 1.8.0 zip (Lite tests `ee18c89`, code `23d89d6`; Pro `b7cc761`) | [testing.md](testing.md) R2 |
 | R3 (2026-11-06) | PHP floor: Pro's Team Grid without PHP 8.0 syntax (every file of both plugins parses on 7.4); `Requires at least: 6.8` and `Requires PHP: 7.4` for Lite and Pro; Team Grid attribute defaults and output escaping (Lite suite `28d184c`, headers `afc5e91`; Pro in its repository) | [testing.md](testing.md) R3 |
+| R4 (2026-11-06) | Contract surface freeze: every Lite surface add-ons use is inventoried, classified and machine-checked by the `contract` suite, including the R2 findings (the internal content wrapper, block on/off for add-on blocks, the Chart.js handle) and the editor object, post meta and names Lite reads from Pro found in R4. Lite is the only owner of the shared handles; Pro no longer registers Chart.js. No Lite plugin code changed (Lite tests `62a9bbf`; Pro `e79e4aa`) | [registry-and-contract.md](registry-and-contract.md) section 4, [testing.md](testing.md) R4, decisions PL-D27–PL-D29 |
 
 ## Waiting for the owner
 1. **Pilot design review** (LPL-T checkpoint). Blocks Stage F only.
@@ -53,3 +54,4 @@ Implemented in the order R1, R5, R2, R3, R4, R6. None of them changes saved bloc
 - The library in the Site Editor, widgets editor and Customizer (decision D8).
 - Future CDN for thumbnails and previews ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md), U1–U6).
 - Multisite runtime test: Playground's multisite step needs the network, which the offline harness blocks; run it on another environment before release.
+- Block issues found by Pattern Library work ([known-issues.md](known-issues.md), blocks; Pro block issues in the Pro repository): left to a separate developer after the Pattern Library is complete (PL-D29).
