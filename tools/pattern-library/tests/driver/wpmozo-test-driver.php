@@ -254,18 +254,27 @@ add_action(
 				wp_set_current_user( 1 );
 				rest_do_request( new WP_REST_Request( 'GET', '/wpmozo/v1/library/catalog' ) );
 				$seen = array(
-					'functions'   => array(),
-					'actions'     => array(),
-					'classes'     => array(),
-					'constants'   => array(),
-					'post_types'  => array(),
-					'taxonomies'  => array(),
-					'scripts'     => array(),
-					'styles'      => array(),
-					'integration' => array(),
-					'features'    => function_exists( 'wpmozo_bna_integration' ) ? wpmozo_bna_integration()->features() : null,
-					'registry'    => array(),
+					'functions'       => array(),
+					'actions'         => array(),
+					'classes'         => array(),
+					'constants'       => array(),
+					'post_types'      => array(),
+					'taxonomies'      => array(),
+					'scripts'         => array(),
+					'styles'          => array(),
+					'integration'     => array(),
+					'features'        => function_exists( 'wpmozo_bna_integration' ) ? wpmozo_bna_integration()->features() : null,
+					'registry'        => array(),
+					'blocks'          => array(),
+					'addon_constants' => array(),
+					'dynamic_style'   => null,
 				);
+				foreach ( isset( $want['blocks'] ) ? (array) $want['blocks'] : array() as $name ) {
+					$seen['blocks'][ $name ] = WP_Block_Type_Registry::get_instance()->is_registered( $name );
+				}
+				foreach ( isset( $want['addon_constants'] ) ? (array) $want['addon_constants'] : array() as $name ) {
+					$seen['addon_constants'][ $name ] = defined( $name );
+				}
 				foreach ( isset( $want['functions'] ) ? (array) $want['functions'] : array() as $name ) {
 					$seen['functions'][ $name ] = function_exists( $name );
 				}
@@ -289,13 +298,16 @@ add_action(
 				}
 				foreach ( isset( $want['classes'] ) ? (array) $want['classes'] : array() as $class => $methods ) {
 					$item = array(
-						'exists'  => class_exists( $class ),
-						'final'   => null,
-						'methods' => array(),
+						'exists'       => class_exists( $class ),
+						'final'        => null,
+						'instantiable' => null,
+						'methods'      => array(),
 					);
 					if ( $item['exists'] ) {
-						$reflection    = new ReflectionClass( $class );
-						$item['final'] = $reflection->isFinal();
+						$reflection           = new ReflectionClass( $class );
+						$constructor          = $reflection->getConstructor();
+						$item['final']        = $reflection->isFinal();
+						$item['instantiable'] = $reflection->isInstantiable() && ( null === $constructor || 0 === $constructor->getNumberOfRequiredParameters() );
 						foreach ( (array) $methods as $method ) {
 							$item['methods'][ $method ] = $reflection->hasMethod( $method ) && $reflection->getMethod( $method )->isPublic() && $reflection->getMethod( $method )->isStatic();
 						}
@@ -310,6 +322,36 @@ add_action(
 				if ( class_exists( 'Mozo_Bna_Library_Registry' ) ) {
 					foreach ( isset( $want['registryMethods'] ) ? (array) $want['registryMethods'] : array() as $method ) {
 						$seen['registry'][ $method ] = method_exists( 'Mozo_Bna_Library_Registry', $method );
+					}
+				}
+				if ( ! empty( $want['dynamic_style'] ) && class_exists( 'WPMOZO\\BNA\\Helpers\\Mozo_Bna_Block_Helpers' ) ) {
+					// Lite's helper must load the add-on's dynamic-style.php for this slug and call its callback.
+					$slug     = sanitize_key( $want['dynamic_style'] );
+					$callback = str_replace( '-', '_', $slug ) . '_generate_dynamic_style';
+					$type     = WP_Block_Type_Registry::get_instance()->get_registered( 'wpmozo/' . $slug );
+					$attrs    = array( 'ID' => 'wpmozo-test-probe' );
+					$attrs    = $type ? $type->prepare_attributes_for_render( $attrs ) : $attrs;
+					$before   = function_exists( $callback );
+					try {
+						$output = WPMOZO\BNA\Helpers\Mozo_Bna_Block_Helpers::get_block_dynamic_style( $slug, $attrs );
+						$after  = function_exists( $callback );
+						$file   = $after ? wp_normalize_path( ( new ReflectionFunction( $callback ) )->getFileName() ) : '';
+
+						$seen['dynamic_style'] = array(
+							'slug'       => $slug,
+							'before'     => $before,
+							'after'      => $after,
+							'from_addon' => '' !== $file && defined( 'WPMOZO_BNA_PRO_PLUGIN_DIR' ) && 0 === strpos( $file, wp_normalize_path( WPMOZO_BNA_PRO_PLUGIN_DIR ) ),
+							'file'       => $file ? basename( dirname( $file ) ) . '/' . basename( $file ) : '',
+							'string'     => is_string( $output ),
+							'same'       => $after && call_user_func( $callback, $attrs ) === $output,
+						);
+					} catch ( Throwable $e ) {
+						// For example the add-on loaded but not started: its template needs classes it didn't load.
+						$seen['dynamic_style'] = array(
+							'slug'  => $slug,
+							'error' => get_class( $e ) . ': ' . $e->getMessage(),
+						);
 					}
 				}
 				$out['seen'] = $seen;
