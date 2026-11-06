@@ -27,7 +27,7 @@ node tools/pattern-library/tests/run.cjs robustness
 Options (all suites):
 | Option | Default | Meaning |
 |---|---|---|
-| `--lite=<spec>` | `worktree` | Lite copy: `worktree` (tracked and untracked files, built), a commit, branch or tag, an absolute plugin folder, or `none` |
+| `--lite=<spec>` | `worktree` | Lite copy: `worktree` (tracked and untracked files, built), a commit, branch or tag, `zip:<commit, branch or tag>` (the release zip that commit tracks, unpacked as shipped), an absolute plugin folder, or `none` |
 | `--pro=<spec>` | `worktree` | The same for Pro |
 | `--wp=<version>` | `7.1.3` | WordPress version (a zip must exist) |
 | `--php=<version>` | `8.2` | PHP version (7.4 to 8.5) |
@@ -40,9 +40,9 @@ Exit code 0 when every check passed, 1 when any failed. Each run writes a JSON r
 | `robustness` | Library robustness (roadmap R1): the catalog cache follows Lite, WordPress, allowed-HTML and other sources' map changes; a missing Lite map key reports `lite_outdated`; broken pattern, content and map files are isolated and reported; catalog and content route agree for every pattern and role; protection without a licence; no PHP notices; no network | ~5 min |
 | `editor` | Every available pattern through the repository's quality gate (`tools/pattern-library/gate.cjs`): insert through the library, valid after save and reload, front end at three widths, editability (PL-D22) | ~10 min |
 | `rest` | REST permissions per role, licence lock, links and issues only for the right users, no markup or licence value in the catalog, cache headers and ETag, the library switch, real HTTP (no nonce, query-string route, JSONP, direct requests to pattern and map files, the editor's nonce) | ~4 min |
-| `matrix` | Lite/Pro combinations, one site each, with expected outcomes (`--only=<name,…>`; `--older-lite=`, `--oldest-lite=`, `--older-pro=` choose the old copies, defaults `b91a5ec`, `release/1.8.0`, `ef1909d`) | ~20 min |
+| `matrix` | Lite/Pro combinations, one site each, with expected outcomes. With a Lite that has no shared editor script (`lite-before-contract`, `lite-1.8.0`): Pro blocks work while Lite's blocks are on, then the same site with every Lite block off must show Pro blocks as unsupported, warn, and save edits without changing them (`--only=<name,…>`; `--older-lite=`, `--oldest-lite=`, `--older-pro=` choose the old copies, defaults `b91a5ec`, `zip:release/1.8.0`, `ef1909d`) | ~20 min |
 | `upgrade` | In-place updates in both orders on one running site, licence and plugin deactivation, Lite deactivated under Pro (`--from-lite=`, `--from-pro=`; `--mutation=1` adds the saved-output mutation proof; `--only=lite-first` or `pro-first`) | ~15 min |
-| `contract` | Every shared surface in `lib/surface.cjs` exists (runtime, editor, source); Pro uses no other Lite surface | ~3 min |
+| `contract` | Every shared surface in `lib/surface.cjs` exists (runtime, editor, source); Pro uses no other Lite surface; Pro's editor guard lists every Lite global its blocks use | ~3 min |
 | `php-parse` | Every PHP file of both plugins parses on the minimum PHP (`--floor=7.4`), with php-wasm from the Playground CLI's `node_modules`; no site | ~1 min |
 | `team-grid` | Pro Team Grid (roadmap R3): every layout with every click trigger renders on the minimum PHP and on PHP 8.2, with markup identical to a baseline Pro commit (`--baseline-pro=`, default `85390bb`; `--baseline-php=`, default `8.2`; `--floor=`, default `7.4`) | Not run yet (R3) |
 | `wp-editor` | Editor compatibility (roadmap R6), with and without the canvas iframe: no WPMozo stylesheet "added to the iframe incorrectly"; Lite's editor stylesheet once in the editor document and once in the canvas, never on the front end; every `__experimental` / `__unstable` export Lite and Pro import still resolves; a Lite and a Pro block mount, save and reload | Not run yet (R6) |

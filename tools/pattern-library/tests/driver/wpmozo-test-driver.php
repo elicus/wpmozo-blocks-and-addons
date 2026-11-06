@@ -180,10 +180,11 @@ add_action(
 				$option = is_array( $option ) ? $option : array();
 				if ( isset( $_GET['keep'] ) ) {
 					// Switch off every WPMozo block except these (the WebAssembly server can't serve every editor asset).
+					// Blocks Lite's block panel never lists stay on: the placeholder and the internal content wrapper.
 					$keep = array_filter( explode( ',', sanitize_text_field( wp_unslash( $_GET['keep'] ) ) ) );
 					$all  = array();
 					foreach ( array_keys( WP_Block_Type_Registry::get_instance()->get_all_registered() ) as $name ) {
-						if ( 0 === strpos( $name, 'wpmozo/' ) && ! in_array( substr( $name, 7 ), $keep, true ) && 'wpmozo/pattern-library' !== $name ) {
+						if ( 0 === strpos( $name, 'wpmozo/' ) && ! in_array( substr( $name, 7 ), $keep, true ) && ! in_array( $name, array( 'wpmozo/pattern-library', 'wpmozo/content-wraper' ), true ) ) {
 							$all[] = substr( $name, 7 );
 						}
 					}

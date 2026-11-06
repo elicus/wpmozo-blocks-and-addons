@@ -6,6 +6,8 @@
  *    the editor (JS globals and their members, the shared script before block scripts) and in its
  *    source (settings hooks, the legacy dynamic-style path).
  * 2. Pro uses nothing of Lite outside that list (a static scan of the Pro source).
+ * 3. Pro's editor guard (roadmap R2) lists every Lite global a Pro block uses without a fallback,
+ *    and Lite provides each one.
  *
  * A change that breaks an add-on makes one of these fail. The list grows, it never shrinks.
  */
@@ -144,6 +146,58 @@ function proUsage( pro ) {
 	);
 	usage.utils = names( read( path.join( common, 'utils.js' ) ) );
 	return usage;
+}
+
+/**
+ * The Lite editor globals Pro's guard checks (Mozo_Bna_Pro_Integration::LITE_EDITOR_GLOBALS), or
+ * null for a Pro without the guard.
+ *
+ * @param {string} pro Pro plugin folder.
+ * @return {string[]|null} Names.
+ */
+function proGuardList( pro ) {
+	const file = path.join(
+		pro,
+		'includes',
+		'class-mozo-bna-pro-integration.php'
+	);
+	const source = fs.existsSync( file ) ? fs.readFileSync( file, 'utf8' ) : '';
+	const block = ( source.match(
+		/const LITE_EDITOR_GLOBALS = array\(([\s\S]*?)\n\t\);/
+	) || [] )[ 1 ];
+	return block
+		? ( block.match( /'([A-Za-z]+)'/g ) || [] )
+				.map( ( s ) => s.slice( 1, -1 ) )
+				.filter( ( n ) => n !== 'components' && n !== 'utils' )
+		: null;
+}
+
+/**
+ * Lite globals Pro blocks use without a fallback: names re-exported by src/common that appear in
+ * a block's source, minus those src/common gives a fallback (`liteComponents.X ||`).
+ *
+ * @param {string} pro   Pro plugin folder.
+ * @param {Object} usage proUsage() result.
+ * @return {string[]} Names.
+ */
+function proBlockGlobals( pro, usage ) {
+	const common = path.join( pro, 'src', 'common', 'components', 'index.js' );
+	const withFallback = (
+		( fs.existsSync( common )
+			? fs.readFileSync( common, 'utf8' )
+			: ''
+		).match( /liteComponents\.([A-Za-z]+)\s*\|\|/g ) || []
+	).map( ( m ) => m.replace( /liteComponents\.|\s*\|\|/g, '' ) );
+	const blocks = files( path.join( pro, 'src', 'blocks' ), ( n ) =>
+		n.endsWith( '.js' )
+	)
+		.map( ( f ) => fs.readFileSync( f, 'utf8' ) )
+		.join( '\n' );
+	return [ ...new Set( usage.components.concat( usage.utils ) ) ].filter(
+		( name ) =>
+			! withFallback.includes( name ) &&
+			new RegExp( `\\b${ name }\\b` ).test( blocks )
+	);
 }
 
 async function run( { cli, report } ) {
@@ -366,6 +420,24 @@ async function run( { cli, report } ) {
 				! Object.keys( extra ).length,
 				extra
 			);
+			const guard = proGuardList( pro );
+			if ( guard ) {
+				const used = proBlockGlobals( pro, usage );
+				const unlisted = used.filter( ( n ) => ! guard.includes( n ) );
+				const notProvided = guard.filter(
+					( n ) =>
+						! F.components.includes( n ) && ! F.utils.includes( n )
+				);
+				report.check(
+					"usage: Pro's editor guard lists every Lite global its blocks use without a fallback, and Lite provides each one",
+					used.length && ! unlisted.length && ! notProvided.length,
+					{ used, guard, unlisted, notProvided }
+				);
+			} else {
+				report.note(
+					'Pro has no editor guard list (a Pro from before roadmap R2): guard list check skipped'
+				);
+			}
 		}
 		report.check(
 			'no fatal errors',

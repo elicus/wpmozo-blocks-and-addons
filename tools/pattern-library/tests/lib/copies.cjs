@@ -5,6 +5,9 @@
  * A copy spec is one of:
  * - "worktree": the repository's tracked and untracked (not ignored) files, built;
  * - a commit, branch or tag: `git archive` of it, built unless its build/ is tracked;
+ * - "zip:<commit, branch or tag>": the release zip that commit tracks (`<plugin folder>.zip`),
+ *   unpacked as shipped. Release branches keep the shipped build there; their tracked build/ can
+ *   be older than the release (release/1.8.0 is);
  * - an absolute path to an existing plugin folder, used as it is.
  */
 const fs = require( 'fs' );
@@ -98,6 +101,30 @@ function pluginCopy( which, spec ) {
 					} );
 					fs.copyFileSync( from, path.join( dir, file ) );
 				}
+			}
+		};
+	} else if ( spec.startsWith( 'zip:' ) ) {
+		const blob = git( repo, [
+			'rev-parse',
+			'--verify',
+			`${ spec.slice( 4 ) }:${ folder }.zip`,
+		] )
+			.toString()
+			.trim();
+		key = `${ which }-zip-${ blob.slice( 0, 12 ) }-v${ COPY_FORMAT }`;
+		fill = ( dir ) => {
+			const zip = `${ dir }.zip`;
+			fs.writeFileSync( zip, git( repo, [ 'cat-file', 'blob', blob ] ) );
+			try {
+				// The zip holds the plugin folder itself.
+				execFileSync( 'unzip', [
+					'-q',
+					zip,
+					'-d',
+					path.dirname( dir ),
+				] );
+			} finally {
+				fs.unlinkSync( zip );
 			}
 		};
 	} else {
