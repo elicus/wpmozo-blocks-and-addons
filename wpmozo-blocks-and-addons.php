@@ -11,8 +11,8 @@
  * Description:       WPMozo Blocks and Addons is a plugin designed to extend the functionality of the Block editor.
  * It provides a variety of blocks to help you create interactive content in WordPress.
  * Version:           1.9.0
- * Requires at least: 5.0
- * Requires PHP:      7.3
+ * Requires at least: 6.8
+ * Requires PHP:      7.4
  * Author:            Elicus
  * Author URI:        https://elicus.com
  * License:           GPL-2.0-or-later
