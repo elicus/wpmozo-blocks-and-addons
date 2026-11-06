@@ -1,7 +1,8 @@
 /**
  * Pro Team Grid on the minimum PHP (R3; Pro known issue PKI-03). Renders every layout with every
  * click trigger on the front end and compares the markup with a baseline Pro commit, so a
- * compatibility rewrite must give byte-identical output.
+ * compatibility rewrite must give byte-identical output. A page whose block attributes contain
+ * quotes (image, button and pagination texts) must render them escaped.
  *
  * Options: --baseline-pro=<spec> (default 85390bb, before R3), --baseline-php=<version>
  * (default 8.2: the baseline needs PHP 8), --floor=<version> (default 7.4).
@@ -13,6 +14,9 @@ const { startSite } = require( '../lib/site.cjs' );
 const { Client } = require( '../lib/client.cjs' );
 
 const LAYOUTS = [ 'layout1', 'layout2', 'layout3', 'layout4' ];
+// A value that adds an attribute when printed unescaped inside a double-quoted attribute.
+const HOSTILE = 'x" data-wpmozo-injected="1';
+const INJECTED = /\sdata-wpmozo-injected="/;
 const TRIGGERS = [ 'openpopup', 'openlink', '' ];
 
 async function render( cli, pro, php ) {
@@ -59,9 +63,10 @@ async function render( cli, pro, php ) {
 				const main = ( page.text.match( /<main[\s\S]*?<\/main>/ ) || [
 					'',
 				] )[ 0 ]
-					// Nonces and post ids differ between sites.
+					// Nonces, post ids and the site's address (its port) differ between sites.
 					.replace( /nonce[^"]*"[^"]*"/gi, 'nonce=""' )
-					.replace( /\/\?p=\d+|page_id=\d+/g, '' );
+					.replace( /\/\?p=\d+|page_id=\d+/g, '' )
+					.replace( /127\.0\.0\.1(?::|%3A|\\u003A)\d+/gi, 'SITE' );
 				pages[ `${ layout }/${ trigger || 'none' }` ] = {
 					status: page.status,
 					fatal: /critical error|Fatal error|Parse error/.test(
@@ -75,12 +80,40 @@ async function render( cli, pro, php ) {
 						.update( main )
 						.digest( 'hex' )
 						.slice( 0, 16 ),
+					main,
 				};
 			}
 		}
+		// Hostile values, with pagination on (one member per page) so its container renders too.
+		const hostileAttrs = JSON.stringify( {
+			layout: 'layout1',
+			ID: 'tg-hostile',
+			showPagination: true,
+			postsNumber: 1,
+			defaultMemberImage: HOSTILE,
+			buttonText: HOSTILE,
+			nextLinkText: HOSTILE,
+			prevLinkText: HOSTILE,
+			memberLinkTarget: HOSTILE,
+		} ).replace( /\\"/g, '\\u0022' );
+		const hostilePost = await client.driver(
+			{ wpmozo_test: 'post', title: 'Team hostile' },
+			`<!-- wp:wpmozo/team-grid ${ hostileAttrs } /-->`
+		);
+		const hostilePage = await client.request( hostilePost.link );
+		const hostileMain = ( hostilePage.text.match(
+			/<main[\s\S]*?<\/main>/
+		) || [ '' ] )[ 0 ];
+		const hostile = {
+			status: hostilePage.status,
+			image: /dipl_team_member_image/.test( hostileMain ),
+			pagination: /dipl_team_grid_pagination_wrapper/.test( hostileMain ),
+			injected: INJECTED.test( hostileMain ),
+		};
 		const probe = await client.driver( { wpmozo_test: 'probe' } );
 		return {
 			pages,
+			hostile,
 			log: probe.debug_log || [],
 			fatals: site.fatals(),
 			php: probe.php,
@@ -97,6 +130,12 @@ async function run( { cli, report } ) {
 		pluginCopy( 'pro', cli[ 'baseline-pro' ] || '85390bb' ),
 		cli[ 'baseline-php' ] || '8.2'
 	);
+	// The baseline's result shows whether the escaping check can fail (a mutation proof).
+	report.note(
+		`baseline ${
+			cli[ 'baseline-pro' ] || '85390bb'
+		}: hostile values injected an attribute: ${ baseline.hostile.injected }`
+	);
 	const candidate = pluginCopy( 'pro', cli.pro );
 	for ( const php of [ floor, cli[ 'baseline-php' ] || '8.2' ] ) {
 		const got = await render( cli, candidate, php );
@@ -111,6 +150,17 @@ async function run( { cli, report } ) {
 		const different = Object.keys( baseline.pages ).filter(
 			( k ) => baseline.pages[ k ].hash !== got.pages[ k ].hash
 		);
+		// Where each difference starts, so a failure shows what changed.
+		const at = ( a, b ) => {
+			let i = 0;
+			while ( i < a.length && a[ i ] === b[ i ] ) {
+				i++;
+			}
+			return {
+				baseline: a.slice( Math.max( 0, i - 60 ), i + 60 ),
+				got: b.slice( Math.max( 0, i - 60 ), i + 60 ),
+			};
+		};
 		report.check(
 			`PHP ${ got.php }: markup identical to the baseline (${
 				cli[ 'baseline-pro' ] || '85390bb'
@@ -118,7 +168,18 @@ async function run( { cli, report } ) {
 				Object.keys( baseline.pages ).length
 			} cases`,
 			! different.length,
-			different
+			different.map( ( k ) => ( {
+				case: k,
+				...at( baseline.pages[ k ].main, got.pages[ k ].main ),
+			} ) )
+		);
+		report.check(
+			`PHP ${ got.php }: hostile block attribute values are printed escaped (image, pagination container)`,
+			got.hostile.status === 200 &&
+				got.hostile.image &&
+				got.hostile.pagination &&
+				! got.hostile.injected,
+			got.hostile
 		);
 		report.check(
 			`PHP ${ got.php }: no PHP notices, warnings or errors`,
