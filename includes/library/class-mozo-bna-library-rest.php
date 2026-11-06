@@ -318,7 +318,17 @@ final class Mozo_Bna_Library_Rest {
 	private function pro_context( $registry ) {
 		$installed = null;
 		if ( current_user_can( 'activate_plugins' ) ) {
-			$installed = file_exists( WP_PLUGIN_DIR . '/wpmozo-blocks-and-addons-pro/wpmozo-blocks-and-addons-pro.php' );
+			// Found by its file name or text domain, so a renamed plugin folder still counts.
+			if ( ! function_exists( 'get_plugins' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/plugin.php';
+			}
+			$installed = false;
+			foreach ( get_plugins() as $file => $plugin ) {
+				if ( 'wpmozo-blocks-and-addons-pro.php' === basename( $file ) || ( isset( $plugin['TextDomain'] ) && 'wpmozo-blocks-and-addons-pro' === $plugin['TextDomain'] ) ) {
+					$installed = true;
+					break;
+				}
+			}
 		}
 		return array(
 			'active'    => defined( 'WPMOZO_BNA_PRO_VERSION' ),
