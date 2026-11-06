@@ -511,3 +511,35 @@ With Lite 1.8.0 or older, Pro's charts can't draw either way; the check that wou
 **Block code untouched:** checksums of `src/blocks`, `includes/templates` and `build/` in both checkouts were identical before and after every R4 run.
 
 **Not covered:** the props of each shared component (only names are checked); WordPress 6.8.11 for the regression suites (run on 7.1.3 in R4, on both versions in R2 and R3); the site and widget editors and repeated saves (one-off scripts in R2).
+
+## R6: WordPress-future hardening, 2026-11-06
+
+**Scope (approved 2026-11-06), within the rule that Pattern Library work changes no block code (PL-D29):** KI-05 fixed by moving Lite's editor stylesheet to `enqueue_block_assets` (PL-D30). R-02 is covered by the `wp-editor` suite, not by a compatibility module; R-03 checked; R-11 recorded. The block follow-ups (Advanced Button link, undeclared jQuery) and the block issues found in R6 (B-R6-1, B-R6-2) are recorded for a separate developer ([known-issues.md](known-issues.md)).
+
+**Commits:** Lite code `a54216c` (`includes/class-mozo-bna-blocks-and-addons-assets.php`, `includes/class-mozo-bna-blocks-and-addons.php`), tests `4e9f12d`. No Pro change.
+
+### Suite change
+`wp-editor` had never run. Its first runs showed that a classic meta box no longer turns the canvas iframe off: on WordPress 6.8.11 and 7.1.3 the meta box is active and the editor stays iframed, so the planned check without the iframe never ran. The suite now adds a third editor where the test driver registers a block on API version 2: WordPress 6.8.11 then loads the editor without the iframe; 7.1.3 kept the iframe anyway. Each case records whether it had the iframe and which meta-box locations were active.
+
+### Results (Lite: HEAD + R6; Pro HEAD `7e05e3b`)
+| Run | WordPress 7.1.3 / PHP 8.2 | WordPress 6.8.11 / PHP 7.4 |
+|---|---|---|
+| `wp-editor` | **14/17** | **14/17** |
+| `contract` | **26/26** | **26/26** |
+| `editor` | **10/10** (see the note below) | **10/10** |
+| `matrix` | **109/109** (all 10 cases) | `current`: **12/12** |
+| `upgrade --mutation=1` | **30/30** | — |
+| `rest` | **17/17** | — |
+| `robustness` | **26/26** | — |
+
+**`wp-editor` in detail:** in all three editors on both versions, Lite's editor stylesheet is in the editor document once and in the canvas once (only once in the document when there is no iframe), with no "added to the iframe incorrectly" warning and no page errors; no PHP notices; the stylesheet is not loaded on the front end. In the default editor, a Lite and a Pro block mount, save and reload valid. **The 3 failures are one block issue:** the check "all 22 experimental WordPress exports Lite and Pro import still exist" fails in each editor because Call To Action imports `__experimentalStack`, which exists in neither version; it is never used (B-R6-2). The check stays strict; it passes once the block is fixed.
+
+**Mutation proof (the code before R6, Lite `6668ac0`):** `wp-editor` **12/17** on 6.8.11 and **11/17** on 7.1.3. On top of the B-R6-2 failures, "no WPMozo stylesheet added to the iframe incorrectly" fails in every iframed editor (the default and meta-box editors on both versions, and the API version 2 editor on 7.1.3), with WordPress's warning for `wpmozo-blocks-and-addons-editor-style-css`.
+
+**`editor` on 7.1.3, a timing flake (not a product issue):** the first run was 5/6: the gate's editability step waited 30 s (Playwright's default) for a pattern's insert button in the library window and timed out after every earlier check had passed. Two reruns with R6 and a control run without R6 all passed 10/10. The gate's main insert step waits 60 s; giving the editability step the same wait would remove the flake (a test-tool change, not made in R6).
+
+**R-03 check:** the only component that sets `defaultProps` (`src/common/components/wpmozo-block-gallery/gallery.js`) is never imported (only `shared-helpers.js` from that folder is) and not in any build; Pro sets none. React's own runtime code does appear in two block builds, which led to B-R6-1.
+
+**Block code untouched:** checksums of `src/blocks`, `includes/templates` and `build/` in both checkouts were identical before and after every R6 run.
+
+**Not covered:** an editor without the canvas iframe on WordPress 7.1.3 (it kept the iframe in all three editors); the site and widget editors (the stylesheet change was verified in the post editor); Inspector rendering of every block type on the newest WordPress (the roadmap's broader R6 idea; the editability gate covers the blocks the patterns use).

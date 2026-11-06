@@ -2,7 +2,7 @@
 
 **Start here.** Every Pattern Library task, by a person or an AI session, begins by reading this file, then [handoff.md](handoff.md) (current state and the exact next step), then the topic files the task touches. Nothing here replaces a topic file: each section names the file that holds the detail.
 
-**Updated:** 2026-11-06 (R4). **Pro side:** the private Pro repository keeps its own `docs/pattern-library/PROJECT_CONTEXT.md` (Pro architecture, entitlement, licence and Pro security). This public file never repeats private Pro details.
+**Updated:** 2026-11-06 (R6). **Pro side:** the private Pro repository keeps its own `docs/pattern-library/PROJECT_CONTEXT.md` (Pro architecture, entitlement, licence and Pro security). This public file never repeats private Pro details.
 
 ## 1. Objective and scope
 The Pattern Library lets editors browse ready-made sections in the block editor and insert them as normal, fully editable blocks.
@@ -94,12 +94,12 @@ Detail: [handoff.md](handoff.md).
 
 - **Done:** contract (LPL-1), server side (LPL-2), UI and importer (LPL-3); in Pro: security port, contract adoption, Pro source and entitlement.
 - **Pilot (LPL-T):** 2 free + 2 Pro patterns, built and verified on WordPress 6.8.11 and 7.1.3. **Waiting for the owner's design review. Add no patterns before approval.**
-- **Compatibility audit (2026-11-05):** findings in [known-issues.md](known-issues.md); stages R1–R6 in [roadmap.md](roadmap.md), **approved 2026-11-05**. R1 (library robustness) and R5 (reusable test suites) are done; R2 (Pro with an older Lite) is done (Lite `ee18c89`, `23d89d6`; Pro `b7cc761`); R3 (PHP floor and requirement headers) is done (Lite `28d184c`, `afc5e91`); R4 (contract surface freeze) is done (Lite tests `62a9bbf`; Pro `e79e4aa`); R6 follows after the owner's go-ahead.
+- **Compatibility audit (2026-11-05):** findings in [known-issues.md](known-issues.md); stages R1–R6 in [roadmap.md](roadmap.md), **approved 2026-11-05**. R1 (library robustness) and R5 (reusable test suites) are done; R2 (Pro with an older Lite) is done (Lite `ee18c89`, `23d89d6`; Pro `b7cc761`); R3 (PHP floor and requirement headers) is done (Lite `28d184c`, `afc5e91`); R4 (contract surface freeze) is done (Lite tests `62a9bbf`; Pro `e79e4aa`); R6 (WordPress-future hardening: editor stylesheet, editor without the canvas iframe) is done (Lite `a54216c`, tests `4e9f12d`). Final validation follows after the owner's go-ahead.
 - **Regression suites:** `tools/pattern-library/tests/` (not shipped): library robustness, REST, editor gate, Lite/Pro combinations, in-place updates, contract surfaces, PHP parse; run them for every library change ([testing.md](testing.md)).
 - **Release blockers:** the `example.com` placeholder for the Lite-to-Pro card link; provisional pattern `since` values; `n.e.x.t` tags; Pro's minimum-Lite handling (Pro repository).
 
 ## 10. Key decisions (with reasons)
-Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D29).
+Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D30).
 
 | ID | Decision | Why |
 |---|---|---|
