@@ -18,6 +18,7 @@ Issue IDs (KI-…, R-…) refer to [known-issues.md](known-issues.md).
 | R1 (2026-11-05) | Library robustness: cache key, isolation of broken files, `lite_outdated` for missing Lite keys, fresh analysis on the content route (Lite `98d4013`) | [testing.md](testing.md) R1, decisions PL-D23–PL-D26 |
 | R5 (2026-11-05) | Reusable test suites in `tools/pattern-library/tests/` (not shipped): REST, combinations, in-place updates, contract surfaces, PHP parse, plus `team-grid` (R3) and `wp-editor` (R6), first run in their stages (Lite `4ca209f`) | [testing.md](testing.md) R5 results |
 | R2 (2026-11-06) | With a Lite without the contract, Pro checks Lite's editor globals in the editor and switches its block editing off only when they are missing; Lite finds Pro by file name or text domain (R-09); suites use the shipped Lite 1.8.0 zip (Lite tests `ee18c89`, code `23d89d6`; Pro `b7cc761`) | [testing.md](testing.md) R2 |
+| R3 (2026-11-06) | PHP floor: Pro's Team Grid without PHP 8.0 syntax (every file of both plugins parses on 7.4); `Requires at least: 6.8` and `Requires PHP: 7.4` for Lite and Pro; Team Grid attribute defaults and output escaping (Lite suite `28d184c`, headers `afc5e91`; Pro in its repository) | [testing.md](testing.md) R3 |
 
 ## Waiting for the owner
 1. **Pilot design review** (LPL-T checkpoint). Blocks Stage F only.

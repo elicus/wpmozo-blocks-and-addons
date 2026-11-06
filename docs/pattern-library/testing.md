@@ -422,3 +422,32 @@ The guard ran beside the shipped Lite 1.8.0 and Pro `85390bb`, on WordPress 6.8.
 - `contract` with Pro's guard list missing `truncateContent`: **12/13**, the guard-list check fails with `unlisted: truncateContent`. With a name Lite doesn't provide added: **12/13**, it fails with `notProvided: WpmozoNotInLite`.
 
 Also not covered by a committed suite: the site and widget editors and the repeated-save sequence (verified with the one-off scripts above); WooCommerce and Gravity Forms blocks; multisite; Lite 1.7.0 at runtime.
+
+## R3: PHP floor and requirement headers, 2026-11-06
+
+**Scope (approved 2026-11-05):** Pro's Team Grid without PHP 8.0 syntax; requirement headers `Requires at least: 6.8` and `Requires PHP: 7.4` for Lite (main file and `readme.txt`) and Pro. The R3 Team Grid runs also logged Pro's known Team Grid notices (attributes without a default), so those attributes now get defaults. At the owner's request (2026-11-06), R3 also hardens Team Grid's output escaping (details in the Pro repository).
+
+**Commits:** Lite suite `28d184c`, headers `afc5e91`; Pro in its repository.
+
+**Suite change:** `team-grid` had never run before R3. Its first run reported every case different from the baseline, on PHP 8.2 as well: the two sites have different ports, so every absolute URL differed. The suite now replaces the site address before comparing, reports where each difference starts, and adds a page with hostile attribute values (a value that would add an attribute if printed unescaped) that must render escaped.
+
+### Results (Lite: plugin code of HEAD + R3 headers; Pro: `55ff81e` + R3 files)
+| Run | Result |
+|---|---|
+| `php-parse` (PHP 7.4) | **Lite 65/65, Pro 98/98:** every file of both plugins parses (before R3, Pro's 4 Team Grid templates didn't) |
+| `team-grid` (baseline Pro `85390bb` on PHP 8.2), WordPress 7.1.3: PHP 7.4 and 8.2 | **8/8:** every layout and click trigger renders both members; markup identical to the baseline in all 12 cases; hostile values printed escaped; no PHP notices |
+| `team-grid`, WordPress 6.8.11: PHP 7.4 and 8.2 | **8/8** |
+| `team-grid`, WordPress 7.1.3: PHP 8.5 and 8.2 | **8/8** |
+| WordPress 6.7.10 and 6.5.13 (one-off script): activate Lite and Pro | **4/4 each:** WordPress refuses both (`plugin_wp_incompatible`); front end, Plugins screen and editor load without a fatal error; with both forced active anyway, still no fatal error |
+| `matrix` (`current`, `lite-only`, `lite-before-contract`, `lite-1.8.0`, `pro-lite-inactive`, `pro-lite-missing`) | **70/70** on WordPress 6.8.11 / PHP 7.4 and **70/70** on 7.1.3 / PHP 8.2 (both plugins activate at the declared minimums) |
+| `upgrade --mutation=1`, `contract`, WordPress 7.1.3 / PHP 8.2 | **30/30, 13/13** |
+| `robustness`, `rest`, `editor`, WordPress 6.8.11 / PHP 7.4 | **26/26, 17/17, 10/10** |
+
+`matrix`, `upgrade`, `robustness`, `rest` and `editor` ran on the R3 code just before the Team Grid escaping change; none of them renders a Team Grid. `php-parse`, `contract` and every `team-grid` run above used the final code.
+
+**Mutation proofs:**
+- `team-grid` against a copy whose layout1 swaps the popup and link classes: the comparison fails for the affected cases and shows the swapped class.
+- The hostile-value check: its mutation proof is recorded in the Pro repository.
+- The WordPress 6.5 and 6.7 checks: before R2 and R3, the same activation ended in a critical error (audit runs w65, w67).
+
+**Not tested:** PHP 7.3 (no runtime here; nothing declares it any more); a WordPress.org update offered to a site below the new minimums (WordPress decides that from the headers).

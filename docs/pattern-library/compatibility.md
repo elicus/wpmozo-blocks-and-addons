@@ -3,13 +3,13 @@
 Lite and Pro are released independently. This page records requirements, the support policy and the combinations that were actually tested, with the versions they ran on. "Expected" means designed but not tested. Issue IDs refer to [known-issues.md](known-issues.md).
 
 ## Requirements
-| | Header says | Real minimum (evidence) | Proposed |
+| | Header says | Real minimum (evidence) | Status |
 |---|---|---|---|
-| WordPress | 5.0 | **6.8.** On 6.5.13 and 6.7.10 Lite activates but registers no blocks (its pre-6.8 fallback passes paths that don't exist; 41 "Block type names must contain a namespace prefix" notices); the library then marks every pattern `block_missing` (runs w65, w67, 2026-11-05). Built scripts also need the `react-jsx-runtime` handle (6.6+) | `Requires at least: 6.8` at release |
-| PHP | 7.3 | **7.4 tested, 7.3 untestable.** Every Lite PHP file parses on PHP 7.4 (php-wasm, 2026-11-05). PHP 7.3 can't be run in the harness. WordPress 7.1.3 itself requires PHP 7.4 (`$required_php_version`); 6.8.11 requires 7.2.24 | `Requires PHP: 7.4` (open decision) |
+| WordPress | **6.8** (since R3; was 5.0) | **6.8.** On 6.5.13 and 6.7.10 Lite activates but registers no blocks (its pre-6.8 fallback passes paths that don't exist; 41 "Block type names must contain a namespace prefix" notices); the library then marks every pattern `block_missing` (runs w65, w67, 2026-11-05). Built scripts also need the `react-jsx-runtime` handle (6.6+) | Declared in R3 (2026-11-06): the main file and `readme.txt` |
+| PHP | **7.4** (since R3; was 7.3) | **7.4 tested, 7.3 untestable.** Every Lite PHP file parses on PHP 7.4 (php-wasm, 2026-11-05). PHP 7.3 can't be run in the harness. WordPress 7.1.3 itself requires PHP 7.4 (`$required_php_version`); 6.8.11 requires 7.2.24 | Declared in R3 (owner decision, 2026-11-05: declare only what runs) |
 | Highest tested | — | WordPress 7.1.3; PHP 8.5.10 (no notices or deprecations from either plugin) | — |
 
-Header changes are release tasks ([roadmap.md](roadmap.md), stage H) and are never made silently. Pro's own requirements (it declares none, and its Team Grid needs PHP 8.0) are recorded in the Pro repository.
+The headers were set in roadmap stage R3 (approved 2026-11-05); WordPress now refuses to activate Lite below them. Pro declares the same minimums since R3 and needs no newer PHP: its Team Grid no longer uses PHP 8.0 syntax (details in the Pro repository).
 
 ## Support policy (proposed with the 2026-11-05 audit)
 | Combination | Status | What the user sees |
@@ -21,8 +21,8 @@ Header changes are release tasks ([roadmap.md](roadmap.md), stage H) and are nev
 | Lite with the library + Pro, licence not activated | **Supported** | Pro patterns locked; their content is refused |
 | An older Lite without the contract + current Pro | **Limited, safe (R2)** | No library. A Plugins-screen notice asks to update Lite. Pro blocks work while Lite blocks that set the shared editor globals are switched on, with an information notice in the editor. With every Lite block switched off, Pro switches its block editing off: Pro blocks show as unsupported (their markup is kept, the front end is unchanged) and a warning explains it ([testing.md](testing.md), R2) |
 | Pro active, Lite inactive or missing | **Notice only** | "requires … to be activated / installed"; Pro does nothing; no fatal |
-| WordPress below 6.8 | **Unsupported** | Lite: no blocks, library shows every pattern unavailable. Lite + Pro: critical error on WordPress 6.5 and 6.7 (Pro start-up calls `is_plugin_active()`, which core loads on the front end only from 6.8). The headers are the fix |
-| PHP 7.4 with Pro Team Grid | **Unsupported today** | A page with a Team Grid block and at least one member returns HTTP 500 (PHP 8.0 syntax in Pro templates); open decision in roadmap R3 |
+| WordPress below 6.8 | **Unsupported; refused (R3)** | WordPress refuses to activate Lite and Pro (`plugin_wp_incompatible`; verified on 6.5.13 and 6.7.10). If both are active anyway (forced, as after a WordPress downgrade), the front end, Plugins screen and editor load without a fatal error: Pro's start-up no longer calls `is_plugin_active()` (R2). Before R2 and R3, Pro made 6.5 and 6.7 fail with a critical error |
+| PHP 7.4 with Pro Team Grid | **Supported (R3)** | Every Team Grid layout and click trigger renders on PHP 7.4, 8.2 and 8.5 with the same markup as before the change ([testing.md](testing.md), R3). Before R3, such a page returned HTTP 500 (PHP 8.0 syntax in Pro templates) |
 
 Principles: Lite works without Pro; Pro must never break Lite; behaviour follows `supports()`, versions only drive notices; unsupported combinations show a notice, never a fatal error; saved content never changes because of plugin or licence state.
 

@@ -73,10 +73,10 @@ Detail: [pattern-authoring.md](pattern-authoring.md), [cdn-and-asset-requirement
 ## 7. WordPress and PHP requirements
 Detail and evidence: [compatibility.md](compatibility.md).
 
-| | Header today | Real (evidence) | Proposed (open decision) |
+| | Header | Real (evidence) | Status |
 |---|---|---|---|
-| WordPress | 5.0 | 6.8: below it no blocks register; built scripts need 6.6+ handles | Declare 6.8 at release |
-| PHP | 7.3 | All Lite PHP parses on 7.4 (runtime check); 7.3 can't be run here; WordPress 7.x itself needs 7.4 | Declare 7.4 |
+| WordPress | 6.8 (R3) | 6.8: below it no blocks register; built scripts need 6.6+ handles | Declared 2026-11-06; older WordPress refuses activation |
+| PHP | 7.4 (R3) | Every Lite and Pro PHP file parses on 7.4 (runtime check); 7.3 can't be run here; WordPress 7.x itself needs 7.4 | Declared 2026-11-06 (Pro too) |
 | Tested | — | WordPress 6.8.11 / PHP 7.4.33 and 8.0, WordPress 7.1.3 / PHP 8.2.33 and 8.5 (see compatibility.md) | — |
 
 ## 8. Compatibility requirements
@@ -93,9 +93,9 @@ Detail: [handoff.md](handoff.md).
 
 - **Done:** contract (LPL-1), server side (LPL-2), UI and importer (LPL-3); in Pro: security port, contract adoption, Pro source and entitlement.
 - **Pilot (LPL-T):** 2 free + 2 Pro patterns, built and verified on WordPress 6.8.11 and 7.1.3. **Waiting for the owner's design review. Add no patterns before approval.**
-- **Compatibility audit (2026-11-05):** findings in [known-issues.md](known-issues.md); stages R1–R6 in [roadmap.md](roadmap.md), **approved 2026-11-05**. R1 (library robustness) and R5 (reusable test suites) are done; R2 (Pro with an older Lite) is done (Lite `ee18c89`, `23d89d6`; Pro `b7cc761`); R3, R4 and R6 follow in that order, each after the owner's go-ahead.
+- **Compatibility audit (2026-11-05):** findings in [known-issues.md](known-issues.md); stages R1–R6 in [roadmap.md](roadmap.md), **approved 2026-11-05**. R1 (library robustness) and R5 (reusable test suites) are done; R2 (Pro with an older Lite) is done (Lite `ee18c89`, `23d89d6`; Pro `b7cc761`); R3 (PHP floor and requirement headers) is done (Lite `28d184c`, `afc5e91`); R4 and R6 follow in that order, each after the owner's go-ahead.
 - **Regression suites:** `tools/pattern-library/tests/` (not shipped): library robustness, REST, editor gate, Lite/Pro combinations, in-place updates, contract surfaces, PHP parse; run them for every library change ([testing.md](testing.md)).
-- **Release blockers:** the `example.com` placeholder for the Lite-to-Pro card link; provisional pattern `since` values; requirement headers; `n.e.x.t` tags; Pro's minimum-Lite handling (Pro repository).
+- **Release blockers:** the `example.com` placeholder for the Lite-to-Pro card link; provisional pattern `since` values; `n.e.x.t` tags; Pro's minimum-Lite handling (Pro repository).
 
 ## 10. Key decisions (with reasons)
 Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D22).

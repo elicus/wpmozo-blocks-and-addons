@@ -29,6 +29,7 @@ Newest first. "Unreleased" entries move into `readme.txt` when a Lite release is
 - Shared editor script `wpmozo-blocks-and-addons-shared`. It sets the global components and utilities used by add-ons in every block editor, even when all Lite blocks are disabled, and exposes `window.WPMozoBNA`. (LPL-1)
 
 ### Changed
+- Requires WordPress 6.8 and PHP 7.4, the versions the plugin actually needs and was tested on (WordPress below 6.8 registers none of its blocks; PHP 7.3 could not be tested). WordPress refuses to activate it on older versions. (R3)
 - The preview note now says the preview uses a default theme and that fonts (not colours) follow the user's theme. (LPL-T)
 - Build: `webpack.config.js` adds the shared script entry (LPL-1) and the library entry (LPL-UX). Existing block build output is unchanged.
 
