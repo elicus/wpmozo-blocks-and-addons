@@ -99,6 +99,16 @@ if ( ! empty( $_GET['wpmozo_test_metabox'] ) ) {
 	);
 }
 
+// A block on API version 2 (WordPress 6.8 then loads the post editor without the canvas iframe).
+if ( ! empty( $_GET['wpmozo_test_api2'] ) ) {
+	add_action(
+		'enqueue_block_editor_assets',
+		function () {
+			wp_add_inline_script( 'wp-blocks', "wp.blocks.registerBlockType( 'wpmozo-test/api-two', { apiVersion: 2, title: 'API 2 test block', edit: function () { return null; }, save: function () { return null; } } );" );
+		}
+	);
+}
+
 /**
  * User id for a role keyword; test users are created on first use.
  *

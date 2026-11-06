@@ -1,7 +1,8 @@
 /**
  * Editor compatibility with current and future WordPress (R6; known issues KI-05, R-02, R-03).
  *
- * In the post editor, with and without the canvas iframe (a classic meta box can turn it off):
+ * In the post editor, with and without the canvas iframe (a block on API version 2 turns it off on
+ * WordPress 6.8; a classic meta box no longer does):
  * - no WPMozo stylesheet is "added to the iframe incorrectly" (WordPress copies such styles today
  *   but warns that it may stop);
  * - Lite's editor stylesheet is present exactly once in the editor document and once in the
@@ -85,9 +86,12 @@ async function run( { cli, report } ) {
 			flush: '1',
 		} );
 		const imports = experimentalImports( [ lite, pro ].filter( Boolean ) );
+		// A classic meta box no longer turns the canvas iframe off on WordPress 6.8 and 7.1; a block on
+		// API version 2 does where WordPress still supports editing without the iframe.
 		for ( const [ label, query ] of [
 			[ 'default editor', '' ],
 			[ 'editor with a classic meta box', '&wpmozo_test_metabox=1' ],
+			[ 'editor with an API version 2 block', '&wpmozo_test_api2=1' ],
 		] ) {
 			const {
 				page,
@@ -104,14 +108,30 @@ async function run( { cli, report } ) {
 					'iframe[name="editor-canvas"]'
 				);
 				const canvas = frame ? frame.contentDocument : document;
+				const editPost = wp.data.select( 'core/edit-post' );
 				return {
 					iframe: !! frame,
 					outer: document.querySelectorAll( `#${ id }` ).length,
 					canvas: frame
 						? canvas.querySelectorAll( `#${ id }` ).length
 						: null,
+					metaBoxes:
+						editPost && editPost.getActiveMetaBoxLocations
+							? editPost.getActiveMetaBoxLocations()
+							: null,
+					apiTwo: !! wp.blocks.getBlockType( 'wpmozo-test/api-two' ),
 				};
 			}, STYLE_ID );
+			report.context[ label ] = placement;
+			if ( query && placement.iframe ) {
+				report.note(
+					`${ label }: WordPress ${
+						cli.wp
+					} kept the canvas iframe (meta boxes ${ JSON.stringify(
+						placement.metaBoxes
+					) }, API version 2 block registered: ${ placement.apiTwo })`
+				);
+			}
 			report.check(
 				`${ label }: Lite's editor stylesheet once in the editor document${
 					placement.iframe ? ' and once in the canvas iframe' : ''
