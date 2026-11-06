@@ -19,7 +19,7 @@ Header changes are release tasks ([roadmap.md](roadmap.md), stage H) and are nev
 | Lite with the library + Pro installed but inactive | **Supported** | Free patterns; the card says "Activate WPMozo Pro" |
 | Lite with the library + an older Pro without a pattern source | **Supported** | Free patterns; the card says "Update WPMozo Pro"; Pro blocks unchanged |
 | Lite with the library + Pro, licence not activated | **Supported** | Pro patterns locked; their content is refused |
-| An older Lite without the contract + current Pro | **Notice only (unsupported)** | No library. A Plugins-screen notice asks to update Lite. Pro blocks work while Lite blocks that set the shared globals are enabled (c06; Lite 1.8.0 too, corrected in R5); no editor notice yet. An editor notice and a stated floor are proposed (roadmap R2) |
+| An older Lite without the contract + current Pro | **Limited, safe (R2)** | No library. A Plugins-screen notice asks to update Lite. Pro blocks work while Lite blocks that set the shared editor globals are switched on, with an information notice in the editor. With every Lite block switched off, Pro switches its block editing off: Pro blocks show as unsupported (their markup is kept, the front end is unchanged) and a warning explains it ([testing.md](testing.md), R2) |
 | Pro active, Lite inactive or missing | **Notice only** | "requires … to be activated / installed"; Pro does nothing; no fatal |
 | WordPress below 6.8 | **Unsupported** | Lite: no blocks, library shows every pattern unavailable. Lite + Pro: critical error on WordPress 6.5 and 6.7 (Pro start-up calls `is_plugin_active()`, which core loads on the front end only from 6.8). The headers are the fix |
 | PHP 7.4 with Pro Team Grid | **Unsupported today** | A page with a Team Grid block and at least one member returns HTTP 500 (PHP 8.0 syntax in Pro templates); open decision in roadmap R3 |
@@ -97,4 +97,5 @@ The pilot runs (LPL-T, 2026-11-04, WordPress 6.8.11 / PHP 7.4 and 7.1.3 / PHP 8.
 - An expired or revoked licence (needs licence-server data; Pro repository).
 - The editor with every Lite and Pro block active (harness limit, R-12).
 - WordPress versions newer than 7.1.3 and Gutenberg plugin releases (no offline copies).
-- Lite 1.8.0 as distributed on WordPress.org (the harness copy is a `git archive`; since R5 it gets the generated block manifest a release build contains).
+- Lite 1.8.0 downloaded from WordPress.org itself: the suites use the release zip tracked on `release/1.8.0`, which is code-identical to a 1.8.0 zip saved under WordPress.org's file name (only the readme's release date differs); not compared online.
+- Lite 1.7.0 and older at runtime (1.7.0 checked statically: it has no block on/off, so Lite's editor globals are always set).

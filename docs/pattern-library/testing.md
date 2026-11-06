@@ -364,3 +364,61 @@ R1 added the framework with `robustness` and `editor` (`56dbfcb`); R5 adds the o
 - The crash check passes when a block isn't registered in the editor (nothing to crash), so its detail now lists the inserted blocks.
 
 **Correction to the audit's c07 result** ([compatibility.md](compatibility.md)): the audit's Lite 1.8.0 copy had the same gap; its run results contain the same manifest notices. With no Lite block registered, no Lite script sets `WPMozoBNAComponents` and `WPMozoBNAUtils`, and Pro's Advanced Counter crashed (`TypeError: d is not a function`). With the manifest, Lite 1.8.0's block editor scripts set both globals (all 61 set `WPMozoBNAUtils`, 60 set `WPMozoBNAComponents`), and the Pro block mounts, as in c06 ("Pro blocks work while Lite blocks that set the globals are enabled"). What stays true for Lite 1.8.0: no editor notice, and Pro's editors depend on globals that a Lite without the contract sets only through its block scripts. Not tested: Lite 1.8.0 with those blocks switched off, other Pro blocks, WordPress 6.8, and the WordPress.org zip of 1.8.0 (no copy offline).
+
+**Correction (R2, 2026-11-06):** the R5 copy above was still not the shipped 1.8.0. `release/1.8.0` tracks a `build/` last changed on 2026-04-27 (61 blocks; 229 built files differ from the release), and also tracks the shipped plugin as `wpmozo-blocks-and-addons.zip` (65 blocks, with its block manifest). That zip is code-identical to the 1.8.0 zip downloaded under WordPress.org's file name (only the readme's release date differs). In the shipped build, 64 of the 65 block editor scripts set `WPMozoBNAUtils` and 63 set `WPMozoBNAComponents`. Suites now use the zip (`zip:release/1.8.0`); the R2 results below use it.
+
+## R2: Pro with a Lite that has no shared editor script, 2026-11-05 and 2026-11-06
+
+**Question:** what Pro does with Lite 1.8.0 (and any Lite without the integration contract) when Lite's own blocks are switched off, and how Pro should protect the editor. Owner decisions (2026-11-06): gate Pro block editing on the editor globals actually available, not on the Lite version; keep editing that works; warning only when editing is switched off, information notice otherwise; Plugins-screen notice only on the Plugins screen; Lite keeps block on/off.
+
+### Investigation (Pro `85390bb`, no R2 code)
+Shipped Lite 1.8.0; every top-level Pro block that registers here (33 of 40; the 7 WooCommerce blocks need WooCommerce): inserted, selected, every Inspector tab clicked, saved, reloaded.
+
+| Run | One Lite block on | Every Lite block off: page saved earlier | Every Lite block off: new blocks | Other edits |
+|---|---|---|---|---|
+| Lite 1.8.0, WordPress 7.1.3 / PHP 8.2 | 33/33 mount, every tab renders, valid after reload | 9 crash, 23 "invalid content", 1 clean | 33/33 crash; 30 of 33 insertions throw in a Pro `save()`; the saved page keeps only the 3 blocks inserted before the first throw | — |
+| Lite 1.8.0, WordPress 6.8.11 / PHP 7.4 | Same | Same | Same | A paragraph added after a Pro block is **not saved**, without any message |
+| Control: Lite with the contract (`0f13330`), every Lite block off | All pass | All valid | All mount, nothing throws | Saved |
+
+**Why:** Pro's block editors read Lite's globals when they load. A Lite without the shared editor script sets them only from the editor scripts of its blocks that are switched on (a switched-off block is unregistered, so its script doesn't load). Lite 1.8.0's block panel has "Deselect All", and its internal content wrapper (always on, never listed) sets no globals. Lite 1.7.0 (release zip, checked statically) has no block on/off, so the globals are always set there.
+
+Other findings: Pro's Advanced Tabs Item template inserts Lite's internal `wpmozo/content-wraper` block; Lite and Pro both register a Chart.js handle with the same name (known-issues R-14, R-15).
+
+### Prototype verification (a separate test plugin; no change to either plugin)
+The guard ran beside the shipped Lite 1.8.0 and Pro `85390bb`, on WordPress 6.8.11 / PHP 7.4 and 7.1.3 / PHP 8.2: **17/17 checks each.**
+- **Working (one Lite block on):** post, site and widget editors: guard inactive, information notice only, Pro blocks registered and valid.
+- **Switched off (every Lite block off):** in all three editors the guard ran while the document was still loading and before any block was parsed; Pro blocks showed as unsupported, none invalid or crashed, none in the inserter; warning notice only; edits and saves worked with no `save()` error.
+- **Round trip:** the page saved while switched off opens with every Pro block valid once the globals are back; its front end is equivalent.
+- **Markup:** Pro blocks without inner blocks stay byte-identical. Nested Pro blocks (Timeline, Advanced Tabs) re-saved while switched off keep their attributes and HTML, but newlines change: WordPress re-serializes every unsupported block with `serializeRawBlock()`, which joins inner content with newlines and collapses repeated ones. No approach that still lets users save avoids it; pages not re-saved are untouched.
+- **Found by the prototype:** `headingLevelsList` is a list, not a function, so the guard checks presence only.
+
+### Suite changes
+- `lib/copies.cjs`: `zip:<commit>` copies the release zip a commit tracks; `matrix` uses `zip:release/1.8.0` by default.
+- `driver`: `keep` never switches off `wpmozo/content-wraper`, which Lite's panel never lists.
+- `matrix`: `lite-1.8.0` and `lite-before-contract` now expect Pro blocks to work with Lite blocks on (information notice), then switch every Lite block off on the same site and expect the Pro block unsupported (not crashed or invalid), no Pro block in the inserter, the warning, an edit saved with the stored blocks byte-identical, the front end, and no page errors. `current` expects no compatibility notice and no guard.
+- `contract`: Pro's guard list must cover every Lite global its blocks use without a fallback, and name only globals Lite provides.
+
+**Commits:** Lite suites `ee18c89`, `rest.php` `23d89d6`; Pro `b7cc761`.
+
+### Results (Lite: plugin code of HEAD + R2 `rest.php`; Pro: `85390bb` + R2 files; R3 and R6 changes excluded)
+| Run | WordPress 7.1.3 / PHP 8.2 | WordPress 6.8.11 / PHP 7.4 |
+|---|---|---|
+| `matrix`, all 10 cases | 107/109 on the first run: the switched-off phase then kept every Pro block on, and Interactive Circle's script threw its known page error (`MutationObserver`, seen in every configuration, also with current Lite). The phase now keeps the case's own blocks; re-run of the 2 cases: 34/34 | — |
+| `matrix`: `current`, `lite-before-contract`, `lite-1.8.0` | 46/46 (final code) | 46/46, and 46/46 again on the final code |
+| `upgrade --mutation=1` (from `b91a5ec` and Pro `ef1909d`) | 30/30 | 28/28 (without `--mutation`) |
+| `upgrade --from-lite=zip:release/1.8.0` (shipped 1.8.0 updated in place) | 28/28 | — |
+| `contract` (with the guard-list check) | 13/13 | 13/13 |
+| `rest` | 17/17 | 17/17 |
+| `robustness` | 26/26 | 26/26 |
+| `editor` | 10/10 | 10/10 |
+| `php-parse` (PHP 7.4) | Lite 65/65. Pro: every R2 file parses; the 4 Team Grid templates still don't (R3, not part of R2) | — |
+| Production guard in the post, site and widget editors (one-off script outside the repository; shipped Lite 1.8.0) | 17/17 | 17/17 |
+| Repeated saves (one-off script): three saves with Pro editing switched off, then one with it working | 10/10 | 10/10 |
+
+**Repeated saves, in detail:** every saved version keeps the same Pro block tree (names, attributes, HTML ignoring whitespace); the first save while switched off changes only newlines in nested Pro blocks, later ones change nothing more; the front end is equivalent after every save; once Pro editing works again, the next save restores Pro's own markup byte for byte.
+
+**Mutation proofs:**
+- `matrix --only=lite-1.8.0` with Pro `85390bb` (no guard): **13/17.** The four R2 checks fail: no notice; with Lite blocks off the Pro block is still registered, "invalid content", and in the inserter; no warning; the added paragraph is not saved (`d is not a function`, stored page unchanged).
+- `contract` with Pro's guard list missing `truncateContent`: **12/13**, the guard-list check fails with `unlisted: truncateContent`. With a name Lite doesn't provide added: **12/13**, it fails with `notProvided: WpmozoNotInLite`.
+
+Also not covered by a committed suite: the site and widget editors and the repeated-save sequence (verified with the one-off scripts above); WooCommerce and Gravity Forms blocks; multisite; Lite 1.7.0 at runtime.
