@@ -26,6 +26,16 @@ The headers were set in roadmap stage R3 (approved 2026-11-05); WordPress now re
 
 Principles: Lite works without Pro; Pro must never break Lite; behaviour follows `supports()`, versions only drive notices; unsupported combinations show a notice, never a fatal error; saved content never changes because of plugin or licence state.
 
+## Final validation (2026-11-11)
+Lite `044cd2b` + Pro `9d4647b`, every regression suite ([testing.md](testing.md), final validation):
+
+| WordPress / PHP | Result |
+|---|---|
+| 7.1.3 / 8.2 (Team Grid also on PHP 7.4) | 245 of 248 checks pass; the 3 failures are one unused block import (B-R6-2) |
+| 6.8.11 / 7.4 (Team Grid also on PHP 8.2) | 245 of 248, the same 3 |
+
+Combinations covered on both: Lite alone; Lite + Pro; Pro installed but inactive, or in a renamed folder; an older Pro; Lite before the contract and the shipped Lite 1.8.0 with current Pro (with Lite blocks on, then all off); Lite with a helper method missing; Pro without Lite or with Lite inactive; in-place updates in both orders.
+
 ## Tested combinations: compatibility audit (2026-11-05)
 Offline harness, `sessions/audit/combo.py` and `upgrade.py`. Plugin copies built from exact commits: Lite `1e8db93` ("HEAD") and Pro `362daba` ("Pro HEAD"); older copies `b91a5ec` (Lite 1.9.0 development, before the contract), Lite 1.8.0 (`git archive release/1.8.0`, not byte-compared with the WordPress.org zip), an LPL-2-stage Lite (library server, older maps), Pro `ef1909d` (before the contract) and the Pro May build `1d01924`. Blocks the pilot doesn't use were switched off (harness limit). Every run: 0 external connections.
 

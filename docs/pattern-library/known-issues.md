@@ -4,7 +4,7 @@ Confirmed issues were reproduced; each names the run that shows it. Potential ri
 
 Issues specific to Pro (licence flow, Pro blocks, Pro requirements) are tracked in the private Pro repository; this public file names them only where they affect compatibility with Lite.
 
-**Updated:** 2026-11-06 (R6). Harness runs: `sessions/audit/` ([testing.md](testing.md), "Compatibility audit").
+**Updated:** 2026-11-11 (final validation: no new issue). Harness runs: `sessions/audit/` ([testing.md](testing.md), "Compatibility audit").
 
 ## Confirmed: Pattern Library
 

@@ -1,6 +1,6 @@
 # Pattern Library handoff
 
-**Updated:** 2026-11-06 (R6). Read [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) first.
+**Updated:** 2026-11-11 (final validation). Read [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) first.
 **Branches:**
 - Lite `dev/sunil` → `origin/dev/sunil`;
 - Pro `release/pattern-lib` → `origin/release/pattern-lib`.
@@ -26,22 +26,35 @@ Pro `dev/ayush` is off-limits.
 | R3: PHP floor and requirement headers | **Done 2026-11-06:** suite `28d184c`, headers `afc5e91` (`Requires at least: 6.8`, `Requires PHP: 7.4`); Pro Team Grid without `match` (Pro repository). Passed on WordPress 6.5–7.1.3 and PHP 7.4, 8.2 and 8.5 ([testing.md](testing.md) R3) |
 | R4: contract surface freeze | **Done 2026-11-06:** tests `62a9bbf`; Pro stops registering Chart.js `e79e4aa` (Pro repository). `contract` 26/26 on WordPress 6.8.11 / PHP 7.4 and 7.1.3 / PHP 8.2, every new check with a mutation proof ([testing.md](testing.md) R4) |
 | R6: WordPress-future hardening | **Done 2026-11-06:** editor stylesheet on `enqueue_block_assets` `a54216c` (KI-05, PL-D30), tests `4e9f12d`. `wp-editor` 14/17 on WordPress 6.8.11 / PHP 7.4 and 7.1.3 / PHP 8.2: every R6 check passes; the 3 failures are one block issue (B-R6-2) ([testing.md](testing.md) R6) |
-| Final validation | Pending; starts after the owner's go-ahead |
+| Final validation | **Done 2026-11-11:** every suite on WordPress 7.1.3 / PHP 8.2 and 6.8.11 / PHP 7.4 with Lite `044cd2b` and Pro `9d4647b`: 245 of 248 checks on each; the 3 failures are block issue B-R6-2 ([testing.md](testing.md)) |
 | Stage F, X-1, release | Not started |
 
-## Session handover (2026-11-06, R6 done; waiting for the owner before final validation)
-**The next stage starts only after the owner approves it.**
-- **Committed and pushed:** R1 (`98d4013`, suites `56dbfcb`, docs `0f13330`); R5 (suites `4ca209f`, docs `c562ec4`); R2 (suites `ee18c89`, `rest.php` `23d89d6`, docs `758f242`; Pro `b7cc761` and its docs); R3 (suite `28d184c`, headers `afc5e91`, docs `eb9b289`; Pro in its repository); R4 (tests `62a9bbf`, docs `6668ac0`; Pro `e79e4aa` and its docs); R6 (code `a54216c`, tests `4e9f12d`, docs in the commit after them).
-- **R6 in short:** Lite's editor stylesheet is enqueued on `enqueue_block_assets` in the editor only (PL-D30), so WordPress no longer warns that it was "added to the iframe incorrectly" (KI-05 fixed). The `wp-editor` suite checks the default editor, the editor with a classic meta box and, on WordPress 6.8, the editor without the canvas iframe. R-02 is covered by that suite, R-03 is moot for the components, R-11 is recorded. No Pro change.
-- **Open from R6:** `wp-editor` reports 14/17 until block issue B-R6-2 is fixed (an unused import of a WordPress component that doesn't exist); block issues B-R6-1 and B-R6-2 join B-R4-3 and B-R4-4 for the separate developer (PL-D29). The gate's editability step can time out on a slow test server (30 s wait; [testing.md](testing.md) R6).
-- **Limits to know:** R2's newline-only re-serialization of nested Pro blocks on saves while Pro editing is switched off; the site and widget editors and repeated saves were checked by one-off scripts, not committed suites; with Lite 1.8.0 or older Pro's charts can't draw. The `contract` suite checks names and the listed behaviours, not the props of each shared component.
+## Session handover (2026-11-11, final validation done; R1–R6 complete)
+- **Committed and pushed:** R1 (`98d4013`, suites `56dbfcb`, docs `0f13330`); R5 (suites `4ca209f`, docs `c562ec4`); R2 (suites `ee18c89`, `rest.php` `23d89d6`, docs `758f242`; Pro `b7cc761`); R3 (suite `28d184c`, headers `afc5e91`, docs `eb9b289`); R4 (tests `62a9bbf`, docs `6668ac0`; Pro `e79e4aa`); R6 (code `a54216c`, tests `4e9f12d`, docs `044cd2b`); final validation (docs, the commit after `044cd2b`). Pro commits and docs are in its repository.
+- **Final validation (2026-11-11, Lite `044cd2b` + Pro `9d4647b`):** every suite on WordPress 7.1.3 / PHP 8.2 and 6.8.11 / PHP 7.4: 245 of 248 checks pass on each; the 3 failures are block issue B-R6-2 ([testing.md](testing.md), final validation).
 - **Uncommitted work:** none in either repository.
-- **Pending:** final validation, after the owner's go-ahead. The detailed checklist is in the session handover note kept outside the repositories (project memory points to it).
+- **Limits to know:** R2's newline-only re-serialization of nested Pro blocks on saves while Pro editing is switched off; the site and widget editors and repeated saves were checked by one-off scripts, not committed suites; with Lite 1.8.0 or older Pro's charts can't draw; the `contract` suite checks names and the listed behaviours, not the props of each shared component.
+
+## Release readiness (2026-11-11)
+The R1–R6 stages are complete. Before a Lite release:
+
+| Item | State | Owner |
+|---|---|---|
+| Lite-to-Pro card link | `includes/library/data/links.php` `pro-upgrade` still points to the `example.com` placeholder (PL-D21) | Owner: the destination page. **Release blocker** |
+| Release version | The main file and `readme.txt` already say **1.9.0**, while the free pilot patterns' `since` and Pro's stated minimum Lite say **1.10.0** (both provisional). Decide which Lite release first ships the contract and align all three | Owner, at release |
+| `n.e.x.t` | 20 placeholders in 9 Lite files (the integration contract, the library classes, the asset and main classes), replaced with that version | Release task |
+| Readme | Changelog entry for the release; requirement headers are already set (`Requires at least: 6.8`, `Requires PHP: 7.4`) | Release task |
+| WordPress.org review | A guideline review of the release build (the test tools in `tools/` are not shipped: `plugin-zip` packs only `build/`, `includes/`, the main file and the readme) | Release task |
+| Pilot designs | Waiting for the owner's review; Stage F (more patterns) waits for it | Owner |
+| Pro release items | Tracked in the Pro repository | Pro |
+| Not tested here | Multisite; MySQL; a native-PHP editor with every block on (R-12); newer WordPress or Gutenberg builds | Before release, on another environment |
+| Block issues | B-R4-3, B-R4-4 (fix before the next Lite release: the stray attribute is not released yet), B-R6-1, B-R6-2 and the earlier block list in [known-issues.md](known-issues.md) | Separate developer (PL-D29) |
 
 ## Next steps
-1. **Owner:** approve final validation (every suite on both supported WordPress and PHP versions, then the release-readiness summary).
+1. **Owner:** the release decisions above (card link, release version).
 2. **Owner: review the pilot designs** (below). Stage F waits for it.
-3. After the Pattern Library: the block issues in [known-issues.md](known-issues.md) go to a separate developer (PL-D29).
+3. The block issues in [known-issues.md](known-issues.md) go to a separate developer (PL-D29); B-R4-4 is best fixed before the next Lite release.
+4. **Owner, test tools (optional):** keep `wp-editor`'s experimental-export check strict (it fails until B-R6-2 is fixed) or narrow it to exports the code uses; give the gate's editability step the same 60 s wait as its insert step (one 30 s timeout seen in R6, [testing.md](testing.md)).
 
 ## Audit summary (2026-11-05)
 - **Holds:** Lite alone, Lite + Pro, Pro inactive or older, Pro without Lite (notice), licence lock, role rules, real-HTTP protections, and saved pages through in-place Lite and Pro updates, licence and plugin deactivation. WordPress 6.8.11 and 7.1.3; PHP 7.4, 8.0, 8.2 and 8.5.

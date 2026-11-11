@@ -543,3 +543,26 @@ With Lite 1.8.0 or older, Pro's charts can't draw either way; the check that wou
 **Block code untouched:** checksums of `src/blocks`, `includes/templates` and `build/` in both checkouts were identical before and after every R6 run.
 
 **Not covered:** an editor without the canvas iframe on WordPress 7.1.3 (it kept the iframe in all three editors); the site and widget editors (the stylesheet change was verified in the post editor); Inspector rendering of every block type on the newest WordPress (the roadmap's broader R6 idea; the editability gate covers the blocks the patterns use).
+
+## Final validation, 2026-11-11
+
+**Code tested:** Lite `044cd2b` and Pro `9d4647b` (the final R1–R6 commits; both working trees clean), each copy built from its commit (`--lite=HEAD --pro=HEAD`). Every suite on both supported WordPress and PHP pairs, one suite at a time.
+
+| Suite | WordPress 7.1.3 / PHP 8.2 | WordPress 6.8.11 / PHP 7.4 |
+|---|---|---|
+| `php-parse` (every file of both plugins on PHP 7.4) | **2/2** | **2/2** |
+| `robustness` | **26/26** | **26/26** |
+| `rest` | **17/17** | **17/17** |
+| `contract` | **26/26** | **26/26** |
+| `editor` (every available pattern through the gate, editability included) | **10/10** | **10/10** |
+| `wp-editor` | **14/17** | **14/17** |
+| `team-grid` (PHP 7.4.33 and 8.2.33; markup identical to `85390bb` in all 12 cases, hostile values escaped) | **8/8** | **8/8** |
+| `matrix` (all 10 Lite/Pro combinations, the shipped Lite 1.8.0 included) | **109/109** | **109/109** |
+| `upgrade --mutation=1` (both update orders; saved pages byte-identical) | **30/30** | **30/30** |
+| **Total** | **245/248** | **245/248** |
+
+**The 6 failures are one known block issue:** in each of `wp-editor`'s three editors, on both versions, the check "all 22 experimental WordPress exports Lite and Pro import still exist" fails because Call To Action imports `__experimentalStack`, which exists in neither WordPress version and which the block never uses (B-R6-2, [known-issues.md](known-issues.md)). The check stays strict; it passes once the block is fixed. No other failure, no PHP notices, no fatal errors, no outbound network attempt.
+
+**Block code untouched:** no commit since R4 changed a block folder in either repository, and checksums of `src/blocks`, `includes/templates` and `build/` in both checkouts were identical before and after the run. (A Finder `.DS_Store` file in Pro's `src/blocks` changed between sessions; it is ignored by Git and not code, and the checksum script now skips such files.)
+
+**Not covered (unchanged):** multisite; MySQL (the harness uses SQLite); the licence server; newer WordPress or Gutenberg builds; WordPress.org's own 1.8.0 download (the suites use the code-identical zip tracked on `release/1.8.0`); one editor with every Lite and Pro block switched on (R-12); the site and widget editors and repeated saves (one-off scripts in R2); WooCommerce and Gravity Forms blocks.
