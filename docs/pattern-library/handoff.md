@@ -48,12 +48,12 @@ The R1–R6 stages are complete. Before a Lite release:
 | Pilot designs | Waiting for the owner's review; Stage F (more patterns) waits for it | Owner |
 | Pro release items | Tracked in the Pro repository | Pro |
 | Not tested here | Multisite; MySQL; a native-PHP editor with every block on (R-12); newer WordPress or Gutenberg builds | Before release, on another environment |
-| Block issues | B-R4-3, B-R4-4 (fix before the next Lite release: the stray attribute is not released yet), B-R6-1, B-R6-2 and the earlier block list in [known-issues.md](known-issues.md) | Separate developer (PL-D29) |
+| Block issues | **ON HOLD (owner, 2026-11-11).** B-R4-3, B-R4-4 (the stray attribute is not released yet, so it is best fixed before the next Lite release), B-R6-1, B-R6-2 and the earlier block list in [known-issues.md](known-issues.md). None is fixed or changed (PL-D29). **Before the final Lite release: remind the owner of this list and get the owner's approval before separate-developer work starts** | Owner approval, then a separate developer |
 
 ## Next steps
 1. **Owner:** the release decisions above (card link, release version).
 2. **Owner: review the pilot designs** (below). Stage F waits for it.
-3. The block issues in [known-issues.md](known-issues.md) go to a separate developer (PL-D29); B-R4-4 is best fixed before the next Lite release.
+3. **Block issues: ON HOLD** (owner, 2026-11-11). Don't fix or change any of them. Before the final Lite release, remind the owner of the list in [known-issues.md](known-issues.md) (B-R4-4 is best fixed before that release) and ask for approval before a separate developer starts (PL-D29).
 4. **Owner, test tools (optional):** keep `wp-editor`'s experimental-export check strict (it fails until B-R6-2 is fixed) or narrow it to exports the code uses; give the gate's editability step the same 60 s wait as its insert step (one 30 s timeout seen in R6, [testing.md](testing.md)).
 
 ## Audit summary (2026-11-05)
