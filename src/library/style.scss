@@ -45,7 +45,16 @@
 	--wpmozo-lib-sidebar: 220px;
 }
 
-// Header launcher sidebar.
+// Header icon (PL-D31). The launcher sidebar is replaced before the browser
+// paints, but WordPress animates sidebars in and out, so its wrapper could
+// still show for a frame. When the icon opens the library directly, the
+// element that holds the launcher sidebar is never shown. Without the
+// `-direct` class (an editor without the sidebar store) the fallback shows.
+:has(> [id="wpmozo-pattern-library:wpmozo-pattern-library"] .wpmozo-library-launcher-direct) {
+	display: none;
+}
+
+// Launcher sidebar fallback.
 .wpmozo-library-launcher {
 	padding: var(--wpmozo-lib-space-4);
 
