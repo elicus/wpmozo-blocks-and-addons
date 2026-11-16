@@ -1,6 +1,6 @@
 # Pattern Library handoff
 
-**Updated:** 2026-11-11 (final validation). Read [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) first.
+**Updated:** 2026-11-16 (header icon opens the library directly, PL-D31). 2026-11-11: final validation. Read [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) first.
 **Branches:**
 - Lite `dev/sunil` → `origin/dev/sunil`;
 - Pro `release/pattern-lib` → `origin/release/pattern-lib`.
@@ -27,6 +27,7 @@ Pro `dev/ayush` is off-limits.
 | R4: contract surface freeze | **Done 2026-11-06:** tests `62a9bbf`; Pro stops registering Chart.js `e79e4aa` (Pro repository). `contract` 26/26 on WordPress 6.8.11 / PHP 7.4 and 7.1.3 / PHP 8.2, every new check with a mutation proof ([testing.md](testing.md) R4) |
 | R6: WordPress-future hardening | **Done 2026-11-06:** editor stylesheet on `enqueue_block_assets` `a54216c` (KI-05, PL-D30), tests `4e9f12d`. `wp-editor` 14/17 on WordPress 6.8.11 / PHP 7.4 and 7.1.3 / PHP 8.2: every R6 check passes; the 3 failures are one block issue (B-R6-2) ([testing.md](testing.md) R6) |
 | Final validation | **Done 2026-11-11:** every suite on WordPress 7.1.3 / PHP 8.2 and 6.8.11 / PHP 7.4 with Lite `044cd2b` and Pro `9d4647b`: 245 of 248 checks on each; the 3 failures are block issue B-R6-2 ([testing.md](testing.md)) |
+| Header icon opens the library directly (PL-D31) | **Done 2026-11-16:** code `485e5e7`, `launcher` suite `21ae47c`. Owner request: no launcher sidebar step. `launcher` 21/21 on WordPress 7.1.3 / PHP 8.2 and 6.8.11 / PHP 7.4; `editor`, `matrix`, `wp-editor` (14/17, B-R6-2), `contract` and `upgrade` as at final validation ([testing.md](testing.md)) |
 | Stage F, X-1, release | Not started |
 
 ## Session handover (2026-11-11, final validation done; R1–R6 complete)

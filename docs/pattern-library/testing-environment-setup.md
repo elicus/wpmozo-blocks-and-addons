@@ -8,7 +8,7 @@ How to prepare a developer's machine to test WPMozo Blocks and Addons (Lite), WP
 
 **If the developer has already cloned, built and activated both plugins themself**, start from [testing-handoff.md](testing-handoff.md) instead: it has those steps, the prompt for that case, the project context and the remaining test plan. It uses this guide as its reference.
 
-**Status:** updated on 2026-11-13, from an audit of Lite `0805b47` (`dev/sunil`) and Pro `faf19a3` (`release/pattern-lib`). Neither repository has a code change since the final validation (Lite `044cd2b`, Pro `9d4647b`; checked with `git diff --stat`).
+**Status:** updated on 2026-11-13, from an audit of Lite `0805b47` (`dev/sunil`) and Pro `faf19a3` (`release/pattern-lib`). Neither repository had a code change since the final validation (Lite `044cd2b`, Pro `9d4647b`; checked with `git diff --stat`). Since then, on 2026-11-16, one Lite editor change: the header icon opens the library directly (`485e5e7`, PL-D31; the `launcher` suite).
 
 **Labels.** Every instruction carries one:
 - **[Verified]**: run or checked on the owner's Mac (macOS, zsh, Node 22.17.0, npm 11.4.2, Local with WordPress 7.1.4 / PHP 8.2) on the date given, or read in the code at the commits above.
@@ -488,7 +488,7 @@ From the Lite checkout, after loading the settings (section 8.1):
    **Expected:** `rest: 17/17 passed`, in about 75 s.
 2. **The full set.** Run browser suites one at a time: several Playground sites and Chrome at once can slow the editor enough to stop the gate.
    ```bash
-   node tools/pattern-library/tests/run.cjs php-parse robustness rest contract editor wp-editor team-grid
+   node tools/pattern-library/tests/run.cjs php-parse robustness rest contract editor launcher wp-editor team-grid
    ```
    ```bash
    node tools/pattern-library/tests/run.cjs upgrade --mutation=1
@@ -497,14 +497,14 @@ From the Lite checkout, after loading the settings (section 8.1):
    node tools/pattern-library/tests/run.cjs matrix --oldest-lite=zip:origin/release/1.8.0
    ```
    ```bash
-   node tools/pattern-library/tests/run.cjs php-parse robustness rest contract editor wp-editor team-grid --wp=6.8.11 --php=7.4
+   node tools/pattern-library/tests/run.cjs php-parse robustness rest contract editor launcher wp-editor team-grid --wp=6.8.11 --php=7.4
    ```
    - **`matrix` in a fresh clone: [Untested].**
      - Its default `zip:release/1.8.0` needs a local branch named `release/1.8.0`. A fresh clone has only `origin/release/1.8.0`, which the option above names.
      - Don't create a branch to work around it.
      - On the owner's machine the default works ([testing.md](testing.md)).
 
-**Expected results.** Recorded on the owner's Mac on 2026-11-11 ([testing.md](testing.md), final validation) for the same code as today.
+**Expected results.** Recorded on the owner's Mac on 2026-11-11 ([testing.md](testing.md), final validation); `launcher` and a re-run of the browser suites on 2026-11-16, after the header-icon change ([testing.md](testing.md), PL-D31).
 
 | Suite | Checks | Time |
 |---|---|---|
@@ -513,6 +513,7 @@ From the Lite checkout, after loading the settings (section 8.1):
 | `rest` | 17/17 | ~4 min |
 | `contract` | 26/26 | ~4 min |
 | `editor` | 10/10 | ~10 min |
+| `launcher` | 21/21 | ~2 min |
 | `wp-editor` | **14/17**: the 3 failures are the known block issue B-R6-2. Call To Action imports `__experimentalStack`, which WordPress doesn't have. **ON HOLD; not a setup problem** | ~1 min |
 | `team-grid` | 8/8 | — |
 | `matrix` | 109/109 | ~20 min |
@@ -564,7 +565,7 @@ curl -s "$WPMOZO_SITE_URL/wp-content/plugins/wpmozo-blocks-and-addons/includes/l
 1. **Blocks and Addons → General:** the **Pattern Library** switch is on.
 2. Open **Pages → Add New** and title the page `WPMozo PL test - free hero`. There are three entry points:
    - **Open Pattern Library** in the editor's Options menu (⋮);
-   - a pinned **Pattern Library** icon in the header;
+   - a pinned **Pattern Library** icon in the header, which opens the library window directly, with no sidebar (PL-D31);
    - a **Pattern Library** block in the inserter.
 3. Open the library.
    **Expected:**

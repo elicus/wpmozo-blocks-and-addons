@@ -566,3 +566,28 @@ With Lite 1.8.0 or older, Pro's charts can't draw either way; the check that wou
 **Block code untouched:** no commit since R4 changed a block folder in either repository, and checksums of `src/blocks`, `includes/templates` and `build/` in both checkouts were identical before and after the run. (A Finder `.DS_Store` file in Pro's `src/blocks` changed between sessions; it is ignored by Git and not code, and the checksum script now skips such files.)
 
 **Not covered (unchanged):** multisite; MySQL (the harness uses SQLite); the licence server; newer WordPress or Gutenberg builds; WordPress.org's own 1.8.0 download (the suites use the code-identical zip tracked on `release/1.8.0`); one editor with every Lite and Pro block switched on (R-12); the site and widget editors and repeated saves (one-off scripts in R2); WooCommerce and Gravity Forms blocks.
+
+## Header icon opens the library directly (PL-D31), 2026-11-16
+
+**Change:** the header icon (and the "Pattern Library" item WordPress adds for it to the Options menu) opens the library window at once; the launcher sidebar step is gone ([editor-ui.md](editor-ui.md), header icon). Code: Lite `485e5e7` (`src/library/index.js`, `launcher.js`, `style.scss`, unit tests), suite `21ae47c`; Pro `df8c4b0` unchanged. Copies built from the working trees, one suite at a time. The table's runs used that code before one no-op simplification in `launcher.js` (`open: true`); `launcher` passed again on the committed code (7.1.3, 21/21).
+
+**New tests:**
+- `src/library/test/launcher.test.js`: 5 unit tests for what is restored when the launcher sidebar becomes active (`npx wp-scripts test-unit-js src/library`: **18/18** library tests).
+- `launcher` suite, 21 checks: the header icon with the settings sidebar open and closed, Escape and the Close button, focus back on the icon, reopening, one window only, inserting a pattern, both Options menu items, the placeholder block (opens the same window, is replaced), a 600 px editor, save and reload, no page errors, no PHP log entries, no network. At every animation frame it records the width of the launcher sidebar and its wrapper and of the editor's content area.
+
+**First run, before the stylesheet rule:** 19/21 on WordPress 7.1.3. The layout effect alone left the launcher's wrapper visible for at least one frame (280 px) when another sidebar was open, during WordPress's sidebar animation. With the sidebar closed nothing was painted. The `:has()` rule in `style.scss` fixed it; the same check then passed, so it does catch a flash.
+
+| Suite | WordPress 7.1.3 / PHP 8.2 | WordPress 6.8.11 / PHP 7.4 |
+|---|---|---|
+| `launcher` (new) | **21/21** | **21/21** |
+| `editor` (every available pattern through the gate) | **10/10** | **10/10** |
+| `wp-editor` | **14/17** | **14/17** |
+| `contract` | **26/26** | not run |
+| `matrix` (all 10 Lite/Pro combinations, the shipped Lite 1.8.0 included) | **109/109** | **109/109** |
+| `upgrade --mutation=1` | **30/30** | not run |
+
+- **Every launcher frame check:** 0 px of the launcher sidebar painted and the content area at one width throughout: 1160 px with the settings open, 1440 px closed and 600 px narrow. The launcher element enters the document for an instant, hidden. Settings stay open or closed as before; the editor's Settings button opens the settings afterwards, not the library.
+- **The 6 `wp-editor` failures** are the known block issue B-R6-2 (Call To Action imports `__experimentalStack`), the same as at final validation. It is on hold.
+- **Harness note:** on a new page WordPress's "Choose a pattern" modal reopens while the page is empty and covers the header. The suite switches it off with the `core` → `enableChoosePatternModal` preference and closes it with its Close button.
+- **Lint:** `npx wp-scripts lint-js` on the changed and new JS files and `lint-style` on `style.scss` passed; `npm run build` passed (`build/library/index.js` 28.8 KB, script dependencies unchanged).
+- **Not run:** `php-parse`, `robustness`, `rest` and `team-grid`, because no PHP changed; `contract` and `upgrade` on 6.8.11. A screen reader. A real LocalWP site: the Lite handoff's test T4b covers it.

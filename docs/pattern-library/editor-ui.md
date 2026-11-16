@@ -27,10 +27,23 @@ All three open the same window through the `wpmozo/library` data store (`open( t
 | Entry point | What the user sees | API |
 |---|---|---|
 | Options menu | "Open Pattern Library" | `PluginMoreMenuItem` |
-| Header launcher | A pinned "Pattern Library" icon. It opens a sidebar with an "Open Pattern Library" button. WordPress also lists that sidebar in the Options menu as "Pattern Library" (kept, PL-D17) | `PluginSidebar` |
+| Header icon | A pinned "Pattern Library" icon. One click opens the library window directly (PL-D31). WordPress also lists it in the Options menu as "Pattern Library"; that item opens the window too (kept, PL-D17) | `PluginSidebar`, see below |
 | Placeholder block | A "Pattern Library" block in the inserter. Its button opens the library, and the chosen pattern replaces the block | Block `wpmozo/pattern-library` |
 
 No markup is injected into the editor's DOM. Every entry point is a public API.
+
+### Header icon (PL-D31)
+WordPress has no public API for a header button with its own action, so the icon is a `PluginSidebar` (sidebar `wpmozo-pattern-library/wpmozo-pattern-library`), as before. What changed on 2026-11-16 is what happens when that sidebar becomes active, from the icon or from its Options menu item. `src/library/launcher.js` and a layout effect in `src/library/index.js`:
+- put the sidebar state from before back at once, through the `core/interface` store in the `core` scope: an open sidebar (post or block settings) stays open, a closed one stays closed;
+- open the library window.
+
+This happens before the browser paints. WordPress still animates sidebars in and out, so with another sidebar open the launcher's wrapper could show for a frame (the first test run measured one 280 px frame). A rule in `style.scss` hides the element that holds the launcher sidebar (`:has()`), only when the panel carries the `wpmozo-library-launcher-direct` class, which `index.js` sets in this mode. The `launcher` suite checks every animation frame: nothing of the launcher sidebar is painted and the editor's content area never changes width.
+
+Closing the window returns focus to the icon. If the editor ever loads with the launcher sidebar active, the post settings take its place and the window stays closed.
+
+**Fallback:** in an editor without the `core/interface` store, the sidebar keeps its old content: a short text and an **Open Pattern Library** button. WordPress 6.8 and 7.1 both have the store.
+
+**Limit:** the star that pins or unpins a sidebar icon lives in the sidebar's header, which no longer shows. The icon is pinned by default. A user who unpinned it before this change still has both Options menu items. Pinning it again then needs the user's `core` → `pinnedItems` preference changed, for example with `wp.data.dispatch( 'core/interface' ).pinItem( 'core', 'wpmozo-pattern-library/wpmozo-pattern-library' )`.
 
 ## Placeholder block (`wpmozo/pattern-library`)
 Decision PL-D15.
@@ -49,7 +62,7 @@ So the block appears only where the library loads. If the editor lacks `reapplyB
 
 **Opening.** Inserting the block doesn't open the library by itself; the user clicks the button. A pattern inserted from there replaces the placeholder in one undoable step.
 
-**On/off.** It is listed in the settings page's block on/off panel as "Pattern Library". Turning it off unregisters the block. The library stays available from the Options menu and the header launcher.
+**On/off.** It is listed in the settings page's block on/off panel as "Pattern Library". Turning it off unregisters the block. The library stays available from the Options menu and the header icon.
 
 **Inside patterns.** Pattern content may not contain it: the validator rejects it ([security.md](security.md)).
 
@@ -113,7 +126,8 @@ Checked at 360, 768 and 1440 px: the grid, the preview and the placeholder block
 ## Files
 | File | Role |
 |---|---|
-| `src/library/index.js` | Plugin registration: Options menu item, header launcher, window, placeholder inserter filter |
+| `src/library/index.js` | Plugin registration: Options menu item, header icon, window, placeholder inserter filter |
+| `src/library/launcher.js` | The header icon opens the window directly: what to restore when the launcher sidebar becomes active (unit-tested) |
 | `src/library/store.js` | `wpmozo/library` store: open/close and the insertion target |
 | `src/library/api.js` | Catalog (cached for the editor session) and content requests |
 | `src/library/search.js` | Search, filters and sort (unit-tested) |
