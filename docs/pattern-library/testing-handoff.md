@@ -331,7 +331,7 @@ They are temporary designs awaiting the owner's design review. No new patterns a
 
 | ID | What | Status | Effect on testing |
 |---|---|---|---|
-| KI-01 | Catalog cache missed changes outside a source | **Fixed in R1** (`98d4013`; `robustness` checks it). The row in `known-issues.md` isn't marked fixed yet | Not expected |
+| KI-01 | Catalog cache missed changes outside a source | **Fixed in R1** (`98d4013`; `robustness` checks it) | Not expected |
 | KI-02 | One broken add-on file took the library down | **Fixed in R1** (same) | Not expected |
 | KI-03 | Missing cross-source map key gave a generic message | **Fixed in R1**: now `lite_outdated` | Not expected |
 | KI-04 | Wrong requirement headers | **Fixed in R3** | — |
