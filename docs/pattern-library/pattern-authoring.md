@@ -1,6 +1,6 @@
 # Pattern authoring
 
-How to create, change and replace Pattern Library patterns. It covers the files, the tools in `tools/pattern-library/`, and the rules learned while building the pilot (LPL-T, 2026-11-04). The contract itself (sources, metadata schema, tokens) is in [registry-and-contract.md](registry-and-contract.md).
+How to create, change and replace Pattern Library patterns. It covers the files, the tools in `tools/pattern-library/`, and the rules learned while building the pilot (LPL-T, 2026-11-04). The contract itself (sources, metadata schema, tokens) is in [registry-and-contract.md](registry-and-contract.md). For the step-by-step production workflow (Lite and Pro, the WordPress 6.8 authoring site, exact commands, what needs a developer), see [production-pattern-authoring.md](production-pattern-authoring.md).
 
 ## Where everything lives
 

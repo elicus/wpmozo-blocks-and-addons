@@ -63,7 +63,7 @@ Detail: [registry-and-contract.md](registry-and-contract.md).
 | UI: Options menu, header launcher, placeholder block; library switch | [editor-ui.md](editor-ui.md) |
 
 ## 6. Pattern registration and assets
-Detail: [pattern-authoring.md](pattern-authoring.md), [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md).
+Detail: [pattern-authoring.md](pattern-authoring.md), [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md). Production workflow for new and replaced patterns: [production-pattern-authoring.md](production-pattern-authoring.md).
 
 - One folder per pattern: `patterns/<slug>/pattern.php` (metadata schema 1) and `content.php` (block markup with tokens).
 - Tokens `{{wpmozo:media|link|icon|text:<source>/<key>}}` are resolved on the server from each source's maps. A source may use another source's map keys (Pro patterns use Lite icons), so **released map keys are part of the contract: never remove or rename one**.
@@ -95,7 +95,7 @@ Detail: [handoff.md](handoff.md).
 - **Done:** contract (LPL-1), server side (LPL-2), UI and importer (LPL-3); in Pro: security port, contract adoption, Pro source and entitlement.
 - **Pilot (LPL-T):** 2 free + 2 Pro patterns, built and verified on WordPress 6.8.11 and 7.1.3. **Waiting for the owner's design review. Add no patterns before approval.**
 - **Compatibility audit (2026-11-05):** findings in [known-issues.md](known-issues.md); stages R1–R6 in [roadmap.md](roadmap.md), **approved 2026-11-05**. R1 (library robustness) and R5 (reusable test suites) are done; R2 (Pro with an older Lite) is done (Lite `ee18c89`, `23d89d6`; Pro `b7cc761`); R3 (PHP floor and requirement headers) is done (Lite `28d184c`, `afc5e91`); R4 (contract surface freeze) is done (Lite tests `62a9bbf`; Pro `e79e4aa`); R6 (WordPress-future hardening: editor stylesheet, editor without the canvas iframe) is done (Lite `a54216c`, tests `4e9f12d`). Final validation is done (2026-11-11): every suite passes on both supported WordPress and PHP pairs except three checks that fail on one unused block import (B-R6-2). Release readiness: [handoff.md](handoff.md).
-- **Regression suites:** `tools/pattern-library/tests/` (not shipped): library robustness, REST, editor gate, Lite/Pro combinations, in-place updates, contract surfaces, PHP parse; run them for every library change ([testing.md](testing.md)).
+- **Regression suites:** `tools/pattern-library/tests/` (not shipped): library robustness, REST, editor gate, Lite/Pro combinations, in-place updates, contract surfaces, PHP parse; run them for every library change ([testing.md](testing.md)). Testing on another machine: start with [testing-handoff.md](testing-handoff.md); setup reference [testing-environment-setup.md](testing-environment-setup.md).
 - **Release blockers:** the `example.com` placeholder for the Lite-to-Pro card link; provisional pattern `since` values; `n.e.x.t` tags; Pro's minimum-Lite handling (Pro repository).
 
 ## 10. Key decisions (with reasons)
@@ -132,9 +132,12 @@ Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D30).
 | [import-workflow.md](import-workflow.md) | How a pattern is checked, rebuilt and inserted |
 | [editor-ui.md](editor-ui.md) | Where the library loads, entry points, placeholder block, switch |
 | [pattern-authoring.md](pattern-authoring.md) | Pattern files, tokens, tools, replacing a pattern |
+| [production-pattern-authoring.md](production-pattern-authoring.md) | Step-by-step production guide (Lite and Pro), authoring-site setup, commands; untested steps marked |
 | [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) | Approved asset and future-CDN requirement |
 | [compatibility.md](compatibility.md) | Requirements, support policy, tested combinations |
 | [testing.md](testing.md) | Test procedure, harness, results, automated-test plan |
+| [testing-handoff.md](testing-handoff.md) | Testing handoff for another developer: manual setup steps, Claude prompt, context, boundaries, test plan, reporting |
+| [testing-environment-setup.md](testing-environment-setup.md) | Test setup on another machine: Playground suites, manual checks on an existing LocalWP site, `.env`, cleanup; prompt for a developer's Claude session |
 | [decisions.md](decisions.md) | Approved decisions with reasons |
 | [roadmap.md](roadmap.md) | Completed, pending and deferred work |
 | [known-issues.md](known-issues.md) | Confirmed issues and potential risks, with owners |

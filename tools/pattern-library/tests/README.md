@@ -16,6 +16,8 @@ Results and the reasoning behind each suite: `docs/pattern-library/testing.md`.
 
 Optional: `WPMOZO_TEST_CACHE` (default `~/.cache/wpmozo-pattern-library-tests`; no spaces in the path) holds plugin copies, Playground's home folder, run logs and result files.
 
+To keep these settings in one file, copy `tools/pattern-library/.env.example` to `tools/pattern-library/.env`. The copy is ignored by Git. Load it in each terminal with `set -a; . tools/pattern-library/.env; set +a`. Full machine setup: [`docs/pattern-library/testing-environment-setup.md`](../../../docs/pattern-library/testing-environment-setup.md).
+
 ## Run
 From the Lite repository root:
 

@@ -18,7 +18,7 @@ Pro `dev/ayush` is off-limits.
 | LPL-UX: UI prototype | **Approved as is** 2026-11-03 (PL-D17) |
 | Stage D, LPL-3: UI, importer, placeholder block, entry points, library switch | **Done** (tested on WordPress 6.8.11 and 7.1.3; see [testing.md](testing.md)). Docs: [editor-ui.md](editor-ui.md), [import-workflow.md](import-workflow.md) |
 | Stage E, PPL-2: Pro source + entitlement | **Done** (tracked in the Pro repository) |
-| LPL-T + pilot (2 free + 2 Pro) | **Built and gated; waiting for the owner's design review.** No catalog expansion before approval. Tools and procedure: [pattern-authoring.md](pattern-authoring.md) |
+| LPL-T + pilot (2 free + 2 Pro) | **Built and gated; waiting for the owner's design review.** No catalog expansion before approval. Tools and procedure: [pattern-authoring.md](pattern-authoring.md); production workflow: [production-pattern-authoring.md](production-pattern-authoring.md) (2026-11-11) |
 | Compatibility and future-proofing audit | **Done 2026-11-05** (docs `ec97921`). Findings: [known-issues.md](known-issues.md); results: [compatibility.md](compatibility.md), [testing.md](testing.md); stages R1–R6: [roadmap.md](roadmap.md). **Approved 2026-11-05** |
 | R1: library robustness | **Done 2026-11-05:** code `98d4013`, suites `56dbfcb`. Passed on WordPress 6.8.11 / PHP 7.4 and 7.1.3 / PHP 8.2 ([testing.md](testing.md)) |
 | R5: reusable test suites | **Done 2026-11-05:** suites `4ca209f`. Baselines before R2 and R3 recorded in [testing.md](testing.md) (R5 results) |
@@ -52,9 +52,20 @@ The R1–R6 stages are complete. Before a Lite release:
 
 ## Next steps
 1. **Owner:** the release decisions above (card link, release version).
-2. **Owner: review the pilot designs** (below). Stage F waits for it.
+2. **Owner: review the pilot designs** (below). Stage F waits for it. Production patterns follow [production-pattern-authoring.md](production-pattern-authoring.md) (written 2026-11-11 from a read-only audit). Before the first production pattern, a developer sets up its WordPress 6.8 authoring site once (section 9.1, still **[Untested]**) and records the result in [testing.md](testing.md). Section 6.6 lists the changes that need a developer.
 3. **Block issues: ON HOLD** (owner, 2026-11-11). Don't fix or change any of them. Before the final Lite release, remind the owner of the list in [known-issues.md](known-issues.md) (B-R4-4 is best fixed before that release) and ask for approval before a separate developer starts (PL-D29).
-4. **Owner, test tools (optional):** keep `wp-editor`'s experimental-export check strict (it fails until B-R6-2 is fixed) or narrow it to exports the code uses; give the gate's editability step the same 60 s wait as its insert step (one 30 s timeout seen in R6, [testing.md](testing.md)).
+4. **Testing on another machine (Ayush):** start from [testing-handoff.md](testing-handoff.md) (2026-11-16) and the Pro repository's `docs/pattern-library/testing-handoff.md`.
+   - Ayush clones, builds and activates both plugins himself (handoff section 0), then pastes the prompt in its section 1 into his Claude session.
+   - Section 7 is the remaining test plan (T1–T11; Pro adds P1–P6).
+   - Setup reference: [testing-environment-setup.md](testing-environment-setup.md) (2026-11-13). Its section 2.2 is an alternative prompt for a Claude-driven setup.
+   - **Track A:** automated Playground suites.
+   - **Track B:** manual checks on one of his existing LocalWP sites. Claude inspects the sites read-only and recommends one; a new site only if none qualifies. No WordPress or PHP version changes.
+   - Machine-specific values go in one Git-ignored file, `tools/pattern-library/.env`, made from the tracked `.env.example`. That includes the site URL, checked with section 8.2.
+   - Test pages and users are named for cleanup (section 12).
+   - Most setup steps are still **[Untested]** on another machine. Results come back as the report in section 13.
+   - Section 14.3 lists optional **[Developer required]** tool changes; none is needed to test.
+   - **Owner first:** give Ayush read access to the Pro repository and a development licence key for the Pro patterns.
+5. **Owner, test tools (optional):** keep `wp-editor`'s experimental-export check strict (it fails until B-R6-2 is fixed) or narrow it to exports the code uses; give the gate's editability step the same 60 s wait as its insert step (one 30 s timeout seen in R6, [testing.md](testing.md)).
 
 ## Audit summary (2026-11-05)
 - **Holds:** Lite alone, Lite + Pro, Pro inactive or older, Pro without Lite (notice), licence lock, role rules, real-HTTP protections, and saved pages through in-place Lite and Pro updates, licence and plugin deactivation. WordPress 6.8.11 and 7.1.3; PHP 7.4, 8.0, 8.2 and 8.5.

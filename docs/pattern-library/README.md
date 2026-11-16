@@ -25,6 +25,9 @@ See [handoff.md](handoff.md).
 | [editor-ui.md](editor-ui.md) | Where the library loads, entry points, the placeholder block, the library switch, the window |
 | [import-workflow.md](import-workflow.md) | How a pattern is checked, rebuilt and inserted |
 | [pattern-authoring.md](pattern-authoring.md) | Pattern files, tokens, the authoring workflow and tools, replacing a pattern |
+| [production-pattern-authoring.md](production-pattern-authoring.md) | Step-by-step production guide for Lite and Pro patterns: files, images, metadata, the WordPress 6.8 authoring site, commands, Lite/Pro differences. Marks untested steps and developer-required changes |
+| [testing-handoff.md](testing-handoff.md) | Testing handoff for another developer: steps to do by hand (clone, build, activate), the prompt for their Claude session, project overview and status, boundaries, known-issue status, the remaining test plan and reporting. The Pro part is in the Pro repository |
+| [testing-environment-setup.md](testing-environment-setup.md) | Setting up another machine for testing Lite, Pro and the Pattern Library: automated Playground suites and manual checks on an existing LocalWP site (chosen by a read-only inspection), build, the one local settings file and site URL, cleanup, reporting; instructions and a ready prompt for the developer's Claude session |
 | [decisions.md](decisions.md) | Approved decisions, with their reasons |
 | [rest-api.md](rest-api.md) | REST routes, responses, status codes, availability reasons |
 | [security.md](security.md) | Access rules, validation rules, restricted-HTML handling |
