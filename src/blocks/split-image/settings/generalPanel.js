@@ -21,33 +21,14 @@ import {
 
 export const GeneralPanel = ( { attributes, setAttributes } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };
-	let splitImg = ( attributes.splitImg ) ? attributes.splitImg : WPMozoEditorObj.placeholderImg;
 
 	return ( <>
 		<PanelBody title={ __( 'Configuration', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" initialOpen={true}>
 			<BaseControl label={ __( 'Split Image', 'wpmozo-blocks-and-addons' ) }>
-				<MediaUploadCheck>
-				<MediaUpload
-					allowedTypes={["image"]}
-					accept="image/*"
-					value={splitImg}
-					onSelect={ ( media ) => { setAttributes( { splitImg: media.url } ) } }
-					render={ ( { open } ) => {
-						return ( <>
-							<button className="wpmozo-background-img-selction-wrap components-button block-editor-block-styles__item">
-								<div className="wpmozo-background-img-selction-overlay"
-									 onClick={ ( event ) => {
-										 event.stopPropagation();
-										 open();
-									 } }
-								>{ __( 'Select Image', 'wpmozo-blocks-and-addons' ) }</div>
-								<img src={splitImg} />
-							</button>
-						</> )
-					} }
-				>
-				</MediaUpload>
-			</MediaUploadCheck>
+				<WpmozoMediaUploader 
+					attrKye="splitImg" 
+					props={props} 
+				/>
 			</BaseControl>
 			<RangeControl
 				label={__('Rows', 'wpmozo-blocks-and-addons')}

@@ -16,9 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Get blocks.
 $blocks = glob( WPMOZO_BNA_PLUGIN_DIR_PATH . 'build/blocks/*', GLOB_ONLYDIR );
 if ( is_array( $blocks ) && ! empty( $blocks ) ) {
-	$plugin_option = get_option( WPMOZO_BNA_OPTION );
 	$blocks        = array_map( 'basename', $blocks );
-	$inactives     = ! empty( $plugin_option['wpmozo_inactive_widgets'] ) ? array_diff( explode( ',', $plugin_option['wpmozo_inactive_widgets'] ), $blocks ) : array();
+	// Disabled blocks, from the same `wpmozo_inactive_blocks` key the panel saves.
+	$inactives     = array_values( array_filter( Mozo_Bna_Blocks_And_Addons::get_deactivate_blocks() ) );
 	$blocks_list = array();
 	foreach ( $blocks as $block ) {
 		// Skip child or item blocks.

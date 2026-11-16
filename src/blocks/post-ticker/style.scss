@@ -253,3 +253,16 @@
 .wpmozo_post_ticker_items{
 	padding: 0;
 }
+
+/* The shared swiper CSS reverses the arrows at ≤480px (other blocks print next before prev); the ticker prints
+   prev before next, so it keeps the row order. */
+.wp-block-wpmozo-post-ticker .wpmozo_swiper_wrapper .wpmozo_swiper_navigation.wpmozo_arrows_position {
+	flex-direction: row;
+}
+
+@media only screen and (max-width: 600px) {
+	/* The label sits above the posts on phones: a long label wraps instead of being cut off. */
+	.wp-block-wpmozo-post-ticker .wpmozo_post_ticker_label {
+		white-space: normal;
+	}
+}

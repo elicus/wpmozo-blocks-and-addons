@@ -25,11 +25,18 @@ function initPostTicker($galleryContainer, attributes) {
 	const thisObj = $($galleryContainer),
 		wrapObj = thisObj.find(".wpmozo_post_ticker_wrap"),
 		$orderId = thisObj.attr('id'),
-		clientId = wrapObj.attr( 'data-clientid' );
-		// Destroy if already exists.
-		if ( wpmozoPostTickerSwipers[clientId] && ! wpmozo_is_empty( wpmozoPostTickerSwipers[clientId] ) && wpmozoPostTickerSwipers[clientId].el && wpmozoPostTickerSwipers[clientId].el.children ) {
-			wpmozoPostTickerSwipers[clientId].destroy( true, true );
+		clientId = wrapObj.attr( 'data-clientid' ) || $orderId;
+	// Destroy if already exists.
+	const oldSwiper = wpmozoPostTickerSwipers[clientId];
+	if ( oldSwiper && ! wpmozo_is_empty( oldSwiper ) ) {
+		// An instance without el/slidesEl was never mounted; destroying it with loop on throws inside Swiper.
+		if ( ! oldSwiper.destroyed && oldSwiper.el && oldSwiper.slidesEl ) {
+			try {
+				oldSwiper.destroy( true, true );
+			} catch ( e ) {}
 		}
+	}
+	delete wpmozoPostTickerSwipers[clientId];
 
 	const tickerEffect = attributes.ticker_effect;
 	// Scroll effect.
@@ -39,6 +46,12 @@ function initPostTicker($galleryContainer, attributes) {
 
 	// Fade effect, init swipper slider.
 	if ("fade" === tickerEffect || "slide" === tickerEffect) {
+		// Nothing to init while the editor shows the loading/empty notice.
+		const containerEl = wrapObj.find( '.swiper-container' )[0];
+		if ( ! containerEl || 0 === $( containerEl ).find( '.swiper-slide' ).length ) {
+			return;
+		}
+
 		let slideAlign = attributes.slide_align;
 		let autoplaySpeed = attributes.fade_effect_delay;
 		let transitionDuration = attributes.fade_effect_transition;
@@ -57,7 +70,7 @@ function initPostTicker($galleryContainer, attributes) {
 			fadeEffect = { crossFade: true };
 		}
 
-		var swipperSlider = new Swiper( '#' + $orderId + ' .swiper-container', {
+		var swipperSlider = new Swiper( containerEl, {
 				direction: "slide" === tickerEffect ? slideAlign : "horizontal",
 				slidesPerView: 1,
 				slidesPerGroup: 1,
@@ -94,7 +107,7 @@ function initPostTicker($galleryContainer, attributes) {
 			} );
 		}
 
-		wpmozoPostTickerSwipers[$orderId] = swipperSlider;
+		wpmozoPostTickerSwipers[clientId] = swipperSlider;
 	}
 }
 

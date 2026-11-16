@@ -1,9 +1,11 @@
 import $ from 'jquery';
+import { wpmozoBnaGetBlocksFromEvent, wpmozoBnaRefreshScrollTriggers, wpmozoBnaObserveForRefresh } from '../../common/scroll-trigger-utils';
 
-$(document).ready(function () {
+$(document).ready(function ($) {
 
-	window.addEventListener('WPMozoScrollZoomGalleryPropsChanged', () => {
-		$('.wp-block-wpmozo-scrolling-zoom-gallery').each(function () {
+	// Editor: re-init only the block whose props changed.
+	window.addEventListener('WPMozoScrollZoomGalleryPropsChanged', (event) => {
+		wpmozoBnaGetBlocksFromEvent(event, '.wp-block-wpmozo-scrolling-zoom-gallery').each(function () {
 			gsap.registerPlugin(ScrollTrigger);
 			initScrollZoomGallery($(this));
 		});
@@ -17,9 +19,9 @@ $(document).ready(function () {
 
 });
 
-
 function initScrollZoomGallery($gallery) {
 	let $scroller     = $gallery.find('.wpmozo_scroll_zoom_gallery_scroller'),
+		$wrapper     = $gallery.find('.wpmozo_scroll_zoom_gallery_wrapper'),
 		$innerObj     = $gallery.find('.wpmozo_scroll_zoom_gallery_inner'),
 		$images       = $gallery.find('.wpmozo_scroll_zoom_gallery_item'),
 		startOpacity  = parseFloat($scroller.attr('data-start_opacity')),
@@ -58,5 +60,6 @@ function initScrollZoomGallery($gallery) {
 		tl.to($innerObj[0], { z: translateZ })
 			.fromTo(this, { opacity: startOpacity, z: transZ }, { opacity: 1, z: transZ }, i);
 	});
-
+	wpmozoBnaObserveForRefresh($wrapper[0]);
+	wpmozoBnaRefreshScrollTriggers();
 }

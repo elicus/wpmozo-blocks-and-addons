@@ -261,6 +261,10 @@ const Edit = (props) => {
 	}
 
 	useEffect( () => {
+		// Skip while posts load: the slider markup isn't rendered then.
+		if ( ! posts?.length ) {
+			return;
+		}
 		const event = new CustomEvent( 'WPMozoPortfolioPropsChanged' );
 		window.dispatchEvent( event );
 

@@ -3,8 +3,13 @@ import $ from 'jquery';
 
 $(document).ready(function(e) {
 
-	window.addEventListener('WPMozoMasonryGalleryPropsChanged', () => {
-		$('.wp-block-wpmozo-masonry-gallery').each(function() {
+	window.addEventListener('WPMozoMasonryGalleryPropsChanged', (e) => {
+		const blockId = e?.detail?.id;
+		let $targets = blockId ? $('#block-' + blockId + '.wp-block-wpmozo-masonry-gallery') : $();
+		if (!$targets.length) {
+			$targets = $('.wp-block-wpmozo-masonry-gallery');
+		}
+		$targets.each(function() {
 			initMasonryGallery($(this));
 		});
 	});
@@ -27,10 +32,16 @@ function initMasonryGallery($galleryContainer) {
 			gutter: '.wpmozo_masonry_gallery_item_gutter'
 		}
 	});
-	$this.imagesLoaded(function () {
-		$gallery.isotope('layout');
-		$gallery.isotope('reloadItems');
-	});
+	// Pick up items React may have added/replaced (reloadItems), re-filter + lay them out
+	// (arrange; plain 'layout' skips newly added items), then relayout as images load.
+	$gallery.isotope('reloadItems').isotope('arrange');
+	$this.imagesLoaded()
+		.progress(function () {
+			$gallery.isotope('layout');
+		})
+		.always(function () {
+			$gallery.isotope('layout');
+		});
 
 	// Remove previous magnificPopup to avoid duplicates
 	if ($this.data('magnificPopup')) {

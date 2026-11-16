@@ -1,8 +1,10 @@
+import { wpmozoBnaGetBlocksFromEvent, wpmozoBnaRefreshScrollTriggers, wpmozoBnaObserveForRefresh } from '../../common/scroll-trigger-utils';
+
 jQuery( document ).ready( function($) {
 
-    function wpmozo_init_scroll_stack_cards(){ 
-        if ( $( '.wp-block-wpmozo-scroll-stack-cards' ).length > 0 ) {
-            $( document ).find('.wp-block-wpmozo-scroll-stack-cards').each( function() {
+    function wpmozo_init_scroll_stack_cards( $blocks ){ 
+        if ( $blocks.length > 0 ) {
+            $blocks.each( function() {
                 let thisObj = $( this );
                 let wrapObj = thisObj.find( '.wpmozo-bna-scroll-stack-cards-wrapper' );
                 if ( 'horizontal' === wrapObj.attr( 'data-layout' ) ) {
@@ -22,8 +24,8 @@ jQuery( document ).ready( function($) {
                 }
             } );
 
-            // On windows resize.
-            $( window ).on( 'resize', () => {
+            // On windows resize (bound once, even when re-initialised from the editor).
+            $( window ).off( 'resize.wpmozoBnaScrollStackCards' ).on( 'resize.wpmozoBnaScrollStackCards', () => {
                 $( document ).find('.wp-block-wpmozo-scroll-stack-cards').each( function() {
                     let thisObj = $( this );
                     let wrapObj = thisObj.find( '.wpmozo-bna-scroll-stack-cards-wrapper' );
@@ -51,20 +53,18 @@ jQuery( document ).ready( function($) {
                                 height: 'auto'
                             } );
                         }
-                        ScrollTrigger.refresh();
                     }
                 } );
             } );
 
-            // Refresh after a while.
-            setTimeout( () => ScrollTrigger.refresh(), 300 );
         }
     }
 
-    wpmozo_init_scroll_stack_cards();
+    wpmozo_init_scroll_stack_cards( $( '.wp-block-wpmozo-scroll-stack-cards' ) );
 
-    window.addEventListener('WPMozoScrollStackCardsPropsChanged', () => {
-        wpmozo_init_scroll_stack_cards();
+    // Editor: re-init only the block whose props changed.
+    window.addEventListener('WPMozoScrollStackCardsPropsChanged', ( event ) => {
+        wpmozo_init_scroll_stack_cards( wpmozoBnaGetBlocksFromEvent( event, '.wp-block-wpmozo-scroll-stack-cards' ) );
     });
 } ); // Document ready over.
 
@@ -144,8 +144,8 @@ function wpmozoBnaInitVerticalScrollStackCards(thisObj) {
             );
         }
     });
-
-    ScrollTrigger.refresh();
+    wpmozoBnaObserveForRefresh( $wrapper[0] );
+    wpmozoBnaRefreshScrollTriggers();
 
 }
 
@@ -235,8 +235,8 @@ function wpmozoBnaInitHorizontalScrollStackCards( thisObj ) {
             ease: "power2.out"
         }, "finalExpand" );
     } );
-
-    ScrollTrigger.refresh();
+    wpmozoBnaObserveForRefresh( $wrapper[0] );
+    wpmozoBnaRefreshScrollTriggers();
 }
 
 // Check is large screen.

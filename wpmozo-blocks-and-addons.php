@@ -37,6 +37,28 @@ define( 'WPMOZO_BNA_BASENAME', plugin_basename( __FILE__ ) ); // Plugin basename
 
 require_once WPMOZO_BNA_INC_DIR_PATH . 'class-mozo-bna-blocks-and-addons.php';
 
+// "Deactivate options" page (choose whether deleting the plugin removes its settings).
+if ( is_admin() ) {
+	require_once WPMOZO_BNA_INC_DIR_PATH . 'admin/class-mozo-bna-deactivation.php';
+}
+
+/**
+ * Runs on deactivation: clears caches only (settings and content are kept;
+ * uninstall.php handles opt-in removal).
+ *
+ * @param bool $network_wide Whether the plugin is being network-deactivated.
+ */
+function wpmozo_bna_deactivate( $network_wide = false ) {
+	require_once WPMOZO_BNA_INC_DIR_PATH . 'class-mozo-bna-data-cleanup.php';
+
+	if ( $network_wide ) {
+		Mozo_Bna_Data_Cleanup::for_each_site( array( 'Mozo_Bna_Data_Cleanup', 'clear_site_caches' ) );
+	} else {
+		Mozo_Bna_Data_Cleanup::clear_site_caches();
+	}
+}
+register_deactivation_hook( __FILE__, 'wpmozo_bna_deactivate' );
+
 /**
  * Registers the block using a `blocks-manifest.php` file, which improves the performance of block type registration.
  * Behind the scenes, it also registers all assets so they can be enqueued

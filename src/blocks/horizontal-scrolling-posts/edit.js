@@ -211,7 +211,7 @@ export default function Edit(props) {
 			detail: { clientId: attributes.ID }
 		} );
 		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
-		iframe?.contentWindow?.dispatchEvent( event );
+		( iframe?.contentWindow || window ).dispatchEvent( event );
 	}, [ posts, attributes ] );
 
     return (

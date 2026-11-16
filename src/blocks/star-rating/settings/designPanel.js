@@ -5,6 +5,7 @@ import {
 	WpmozoColorPicker, 
 	WpmozoDimensions, 
 	WpmozoBorder,
+	WpmozoRangeSize,
 	MozoStates
 } from '../../../common/components/index.js';
 import {
@@ -181,8 +182,22 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 				/>
 			</PanelBody>
 		)}
+		{/* Rating Number. */}
+		{ attributes.image && (
+			<PanelBody title={ __( 'Image', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
+				<WpmozoAlignment
+					label={ __( 'Image Alignment', 'wpmozo-blocks-and-addons' ) }
+					value={ attributes.imageAlign }
+					onChange={ ( newValue ) => setAttributes( { imageAlign: newValue } ) }
+				/>
+				<WpmozoRangeSize props={props}
+					label={ __( 'Image Width', 'wpmozo-blocks-and-addons') }
+					rangeSizeKey='imageWidth'
+				/>
+			</PanelBody>
+		)}
 		{/* Rate Icons/Stars. */}
-		<PanelBody title={ __( 'Rate Icons/Stars', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel5'} onToggle={()=> handleToggle('panel5')}>
+		<PanelBody title={ __( 'Rate Icons/Stars', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel6'} onToggle={()=> handleToggle('panel6')}>
 			<RangeControl
 				label={ __( 'Icon Size', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.starFontSize }

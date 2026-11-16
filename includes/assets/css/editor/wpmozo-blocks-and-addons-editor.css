@@ -465,10 +465,6 @@
 	display: none;
 }
 
-[class*="wp-block-wpmozo-"] a {
-	pointer-events: none;
-}
-
 .block-editor-inserter__panel-title, .block-editor-inserter__panel-title button{
     text-transform: capitalize;
 }

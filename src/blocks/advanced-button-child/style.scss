@@ -5,11 +5,7 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_horizontal_shutter_fill:hover .wpmozo-background-effect-wrap:after,
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_horizontal_shutter_fill:hover .wpmozo-background-effect-wrap:before,
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo-button-link,
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_vertical_shutter_fill:hover .wpmozo-background-effect-wrap:after,
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_vertical_shutter_fill:hover .wpmozo-background-effect-wrap:before {
+.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo-button-link {
 	background-size: cover;
 	background-repeat: no-repeat
 }
@@ -136,103 +132,6 @@
 	display: block
 }
 
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo-background-effect-wrap:after,
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo-background-effect-wrap:before {
-	position: absolute;
-	z-index: 1;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	transition: .3s linear;
-	content: ""
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_wipe_fill .wpmozo-background-effect-wrap:before {
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	transform: translate(-100%, 0) skew(-45deg);
-	transform-origin: 0 0
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_wipe_fill:hover .wpmozo-background-effect-wrap:before {
-	transform: translate(0, 0)
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_slide_down_fill .wpmozo-background-effect-wrap:before, .wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_slide_up_fill .wpmozo-background-effect-wrap:before,
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_vertical_shutter_fill .wpmozo-background-effect-wrap:after, .wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_vertical_shutter_fill .wpmozo-background-effect-wrap:before {
-	left: 0;
-	width: 100%;
-	height: 100%
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_slide_up_fill .wpmozo-background-effect-wrap:before,
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_vertical_shutter_fill .wpmozo-background-effect-wrap:after {
-	bottom: -100%
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_slide_up_fill:hover .wpmozo-background-effect-wrap:before {
-	bottom: 0
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_slide_down_fill .wpmozo-background-effect-wrap:before,
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_vertical_shutter_fill .wpmozo-background-effect-wrap:before {
-	top: -100%
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_slide_down_fill:hover .wpmozo-background-effect-wrap:before {
-	top: 0
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_slide_left_fill .wpmozo-background-effect-wrap:before,
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_slide_right_fill .wpmozo-background-effect-wrap:before {
-	top: 0;
-	width: 100%;
-	height: 100%
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_horizontal_shutter_fill .wpmozo-background-effect-wrap:after,
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_slide_left_fill .wpmozo-background-effect-wrap:before {
-	right: -100%
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_slide_left_fill:hover .wpmozo-background-effect-wrap:before {
-	right: 0
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_horizontal_shutter_fill .wpmozo-background-effect-wrap:before,
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_slide_right_fill .wpmozo-background-effect-wrap:before {
-	left: -100%
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_slide_right_fill:hover .wpmozo-background-effect-wrap:before {
-	left: 0
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_vertical_shutter_fill:hover .wpmozo-background-effect-wrap:before {
-	top: -50%
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_vertical_shutter_fill:hover .wpmozo-background-effect-wrap:after {
-	bottom: -50%
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_horizontal_shutter_fill .wpmozo-background-effect-wrap:after,
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_horizontal_shutter_fill .wpmozo-background-effect-wrap:before {
-	top: 0;
-	height: 100%;
-	width: 100%
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_horizontal_shutter_fill:hover .wpmozo-background-effect-wrap:before {
-	left: -50%
-}
-
-.wp-block-wpmozo-advanced-button-child .wpmozo-button-item .wpmozo_button_horizontal_shutter_fill:hover .wpmozo-background-effect-wrap:after {
-	right: -50%
-}
-
 .wp-block-wpmozo-advanced-button-child .wpmozo-button-wrapper .wpmozo-primary-text-with-icon {
 	display: inline-flex;
 	align-items: center;
@@ -270,7 +169,8 @@
 	display: block;
 }
 
-/* Default (no fancy hover) */
+
+/* Default fill: the hover background is applied to the button itself (style.js). */
 .wpmozo_button_default_fill {
 	background: #e3e3e3;
 	transition: background 0.3s;
@@ -278,198 +178,137 @@
 
 .wpmozo_button_default_fill:hover {
 	background: #333;
-	color: #fff;
 }
 
-/* Wipe Fill */
-.wpmozo_button_wipe_fill {
+/*
+ * Fill effects: a ::before (and ::after for the shutters) layer slides into the button.
+ * The hover background from style.js is applied to these layers only, never to the button,
+ * so the button keeps its normal background while the fill moves in.
+ */
+.wpmozo_button_wipe_fill,
+.wpmozo_button_slide_up_fill,
+.wpmozo_button_slide_down_fill,
+.wpmozo_button_slide_left_fill,
+.wpmozo_button_slide_right_fill,
+.wpmozo_button_vertical_shutter_fill,
+.wpmozo_button_horizontal_shutter_fill {
 	position: relative;
 	overflow: hidden;
 }
 
-.wpmozo_button_wipe_fill::before {
+.wpmozo_button_wipe_fill::before,
+.wpmozo_button_slide_up_fill::before,
+.wpmozo_button_slide_down_fill::before,
+.wpmozo_button_slide_left_fill::before,
+.wpmozo_button_slide_right_fill::before,
+.wpmozo_button_vertical_shutter_fill::before,
+.wpmozo_button_vertical_shutter_fill::after,
+.wpmozo_button_horizontal_shutter_fill::before,
+.wpmozo_button_horizontal_shutter_fill::after {
 	content: '';
 	position: absolute;
+	z-index: 1;
+	background: #333;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+/* Keep the text and icon above the fill. */
+.wpmozo_button_wipe_fill span,
+.wpmozo_button_slide_up_fill span,
+.wpmozo_button_slide_down_fill span,
+.wpmozo_button_slide_left_fill span,
+.wpmozo_button_slide_right_fill span,
+.wpmozo_button_vertical_shutter_fill span,
+.wpmozo_button_horizontal_shutter_fill span {
+	position: relative;
+	z-index: 2;
+}
+
+/* Wipe: a skewed layer sweeps in from the left and straightens to cover the whole button. */
+.wpmozo_button_wipe_fill::before {
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #333;
-	transform: translate(-100%, 0) skew(-45deg); /* start hidden */
+	transform: translate(-100%, 0) skew(-45deg);
 	transform-origin: 0 0;
 	transition: transform 0.3s ease;
-	z-index: 1;
 }
 
 .wpmozo_button_wipe_fill:hover::before {
-	transform: translate(0, 0) skew(-45deg); /* slide in */
+	transform: translate(0, 0);
 }
 
-.wpmozo_button_wipe_fill span {
-	position: relative;
-	z-index: 2;
-	color: #000;
-}
-
-.wpmozo_button_wipe_fill:hover span {
-	color: #fff;
-}
-
-
-/* Slide Up Fill */
-.wpmozo_button_slide_up_fill {
-	position: relative;
-	overflow: hidden;
-}
-
+/* Slide Up: enters from the bottom. */
 .wpmozo_button_slide_up_fill::before {
-	content: '';
-	position: absolute;
 	top: 100%;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #333;
 	transition: top 0.3s ease;
-	z-index: 1;
 }
 
 .wpmozo_button_slide_up_fill:hover::before {
 	top: 0;
 }
 
-.wpmozo_button_slide_up_fill span {
-	position: relative;
-	z-index: 2; /* keep text above */
-	color: #000;
-}
-
-.wpmozo_button_slide_up_fill:hover span {
-	color: #fff;
-}
-
-/* Slide Down Fill */
-.wpmozo_button_slide_down_fill {
-	position: relative;
-	overflow: hidden;
-}
-
+/* Slide Down: enters from the top. */
 .wpmozo_button_slide_down_fill::before {
-	content: '';
-	position: absolute;
-	top: -100%; /* start hidden above */
+	top: -100%;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #333;
 	transition: top 0.3s ease;
-	z-index: 1;
 }
 
 .wpmozo_button_slide_down_fill:hover::before {
-	top: 0; /* slide down to cover */
-}
-
-.wpmozo_button_slide_down_fill span {
-	position: relative;
-	z-index: 2; /* keep text above */
-	color: #000;
-}
-
-.wpmozo_button_slide_down_fill:hover span {
-	color: #fff;
-}
-
-
-/* Slide Left Fill */
-.wpmozo_button_slide_left_fill {
-	position: relative;
-	overflow: hidden;
-}
-
-.wpmozo_button_slide_left_fill::before {
-	content: '';
-	position: absolute;
 	top: 0;
-	left: -100%;
-	width: 100%;
-	height: 100%;
-	background: #333;
-	transition: left 0.3s ease;
-	z-index: 1;
 }
 
-.wpmozo_button_slide_left_fill:hover::before {
-	left: 0;
-}
-
-.wpmozo_button_slide_left_fill span {
-	position: relative;
-	z-index: 2;
-	color: #000;
-}
-
-.wpmozo_button_slide_left_fill:hover span {
-	color: #fff;
-}
-
-/* Slide Right Fill */
-.wpmozo_button_slide_right_fill {
-	position: relative;
-	overflow: hidden;
-}
-
-.wpmozo_button_slide_right_fill::before {
-	content: '';
-	position: absolute;
+/* Slide Left: enters from the right and moves left. */
+.wpmozo_button_slide_left_fill::before {
 	top: 0;
 	right: -100%;
 	width: 100%;
 	height: 100%;
-	background: #333;
 	transition: right 0.3s ease;
-	z-index: 1;
 }
 
-.wpmozo_button_slide_right_fill:hover::before {
+.wpmozo_button_slide_left_fill:hover::before {
 	right: 0;
 }
 
-.wpmozo_button_slide_right_fill span {
-	position: relative;
-	z-index: 2;
-	color: #000;
+/* Slide Right: enters from the left and moves right. */
+.wpmozo_button_slide_right_fill::before {
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	transition: left 0.3s ease;
 }
 
-.wpmozo_button_slide_right_fill:hover span {
-	color: #fff;
+.wpmozo_button_slide_right_fill:hover::before {
+	left: 0;
 }
 
-/* Vertical Shutter */
-.wpmozo_button_vertical_shutter_fill {
-	position: relative;
-	overflow: hidden;
-}
-
+/* Vertical Shutter: the top half closes from above and the bottom half from below, both full width. */
 .wpmozo_button_vertical_shutter_fill::before,
 .wpmozo_button_vertical_shutter_fill::after {
-	content: '';
-	position: absolute;
-	top: 0;
-	width: 50%;
-	height: 100%;
-	background: #333;
+	left: 0;
+	width: 100%;
+	height: 50%;
 	transition: transform 0.3s ease;
-	z-index: 1;
 }
 
 .wpmozo_button_vertical_shutter_fill::before {
-	left: 0;
+	top: 0;
 	transform: translateY(-100%);
 }
 
 .wpmozo_button_vertical_shutter_fill::after {
-	right: 0;
+	bottom: 0;
 	transform: translateY(100%);
 }
 
@@ -478,32 +317,13 @@
 	transform: translateY(0);
 }
 
-.wpmozo_button_vertical_shutter_fill span {
-	position: relative;
-	z-index: 2;
-	color: #000;
-}
-
-.wpmozo_button_vertical_shutter_fill:hover span {
-	color: #fff;
-}
-
-/* Horizontal Shutter */
-.wpmozo_button_horizontal_shutter_fill {
-	position: relative;
-	overflow: hidden;
-}
-
+/* Horizontal Shutter: the left half closes from the left and the right half from the right, both full height. */
 .wpmozo_button_horizontal_shutter_fill::before,
 .wpmozo_button_horizontal_shutter_fill::after {
-	content: '';
-	position: absolute;
 	top: 0;
-	height: 100%;
 	width: 50%;
-	background: #333;
+	height: 100%;
 	transition: transform 0.3s ease;
-	z-index: 1;
 }
 
 .wpmozo_button_horizontal_shutter_fill::before {
@@ -519,14 +339,4 @@
 .wpmozo_button_horizontal_shutter_fill:hover::before,
 .wpmozo_button_horizontal_shutter_fill:hover::after {
 	transform: translateX(0);
-}
-
-.wpmozo_button_horizontal_shutter_fill span {
-	position: relative;
-	z-index: 2;
-	color: #000;
-}
-
-.wpmozo_button_horizontal_shutter_fill:hover span {
-	color: #fff;
 }

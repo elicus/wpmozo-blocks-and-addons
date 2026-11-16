@@ -82,15 +82,16 @@ export default function Edit(props) {
                 jQuery( main ).find('.wp-block-wpmozo-scroll-stack-cards-item').removeAttr("style");
             }
             setTimeout(() => {
-                const event = new CustomEvent('WPMozoScrollStackCardsPropsChanged');
-                window.dispatchEvent(event);
+                // Re-init only this block, in the window that renders it (the editor iframe when present).
+                const event = new CustomEvent('WPMozoScrollStackCardsPropsChanged', {
+                    detail: { clientId: attributes.ID }
+                });
                 const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
-                if ( iframe?.contentWindow ) {
-                    iframe.contentWindow.dispatchEvent( event );
-                }
+                ( iframe?.contentWindow || window ).dispatchEvent( event );
             }, 100);
          });
-    }, [props]);
+    // Only when this block or its cards change, not on every render (selection, hover, etc.).
+    }, [ JSON.stringify( attributes ), JSON.stringify( innerBlocks.map( ( block ) => block.attributes ) ) ]); // eslint-disable-line react-hooks/exhaustive-deps
 
     let dataCollapsedWidth = ( 'horizontal' === attributes.layout ) 
         ? { 'data-collapsed_width': `${attributes.collapsedWidth}px` } 

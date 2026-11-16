@@ -1,14 +1,11 @@
 import $ from 'jquery';
+import { wpmozoBnaGetBlocksFromEvent, wpmozoBnaRefreshScrollTriggers, wpmozoBnaObserveForRefresh } from '../../common/scroll-trigger-utils';
 
-let animationId;
 $(document).ready(function () {
 
-	window.addEventListener('WPMozoWavyGalleryPropsChanged', () => {
-		$('.wp-block-wpmozo-wavy-gallery').each(function () {
-			if(null !== animationId){
-				cancelAnimationFrame(animationId);
-			}
-
+	// Editor: re-init only the block whose props changed.
+	window.addEventListener('WPMozoWavyGalleryPropsChanged', (event) => {
+		wpmozoBnaGetBlocksFromEvent(event, '.wp-block-wpmozo-wavy-gallery').each(function () {
 			initWavyGallery($(this));
 		});
 	});
@@ -28,9 +25,30 @@ function initWavyGallery( thisObj ) {
 	if(window.self !== window.top){
 		ScrollTrigger.getById(`stwg-${blockId}`) ? ScrollTrigger.getById(`stwg-${blockId}`).kill(true) : '';
 	}
-	ScrollTrigger.normalizeScroll( true );
+	// Enable once; calling it again on every init creates extra scroll normalizers.
+	if ( ! ScrollTrigger.normalizeScroll() ) {
+		ScrollTrigger.normalizeScroll( true );
+	}
 
 	const orderClass = thisObj.attr('id');
+
+	// Unique event namespace per gallery, kept across re-inits.
+	if ( ! thisObj.data( 'wpmozoBnaWavyNs' ) ) {
+		window.wpmozoBnaWavyCount = ( window.wpmozoBnaWavyCount || 0 ) + 1;
+		thisObj.data( 'wpmozoBnaWavyNs', `.wpmozoBnaWavy${ window.wpmozoBnaWavyCount }` );
+	}
+	const eventNs = thisObj.data( 'wpmozoBnaWavyNs' );
+
+	// Clean up a previous init of this block (editor re-init): animation loop, overlay and events.
+	const prevAnimationId = thisObj.data( 'wpmozoBnaWavyAnimationId' );
+	if ( prevAnimationId ) {
+		cancelAnimationFrame( prevAnimationId );
+	}
+	const $prevOverlay = thisObj.data( 'wpmozoBnaWavyOverlay' );
+	if ( $prevOverlay ) {
+		$prevOverlay.remove();
+	}
+	jQuery( window ).off( eventNs );
 
 	let $section         = thisObj.find( '.wpmozo_wavy_gallery_wrapper' ),
 		$wrapper         = $section.find( '.wpmozo_wavy_gallery_items' ),
@@ -85,7 +103,7 @@ function initWavyGallery( thisObj ) {
 		}
 	} );
 
-	$section.on( 'wheel', function(e) {
+	$section.off( 'wheel' + eventNs ).on( 'wheel' + eventNs, function(e) {
 		if ( Math.abs( e.originalEvent.deltaX) > 0 || ( e.shiftKey && e.originalEvent.deltaY !== 0 ) ) {
 			e.preventDefault();
 			window.scrollBy( { top: e.originalEvent.deltaX, behavior: 'auto' } );
@@ -98,6 +116,7 @@ function initWavyGallery( thisObj ) {
 		.append( jQuery( '<div>', { class: 'wpmozo_wavy_gallery_overlay_item_title' } ) );
 
 	jQuery('body').append( $overlay );
+	thisObj.data( 'wpmozoBnaWavyOverlay', $overlay );
 
 	let $overlayContent = $overlay.find( '.wpmozo_wavy_gallery_overlay_items' );
 	let $overlayTitle   = $overlay.find( '.wpmozo_wavy_gallery_overlay_item_title' );
@@ -147,7 +166,7 @@ function initWavyGallery( thisObj ) {
 		if ( closestImage ) {
 			closestImage.addClass( 'active' );
 		}
-		animationId = requestAnimationFrame( wpmozo_wavy_gallery_animate );
+		thisObj.data( 'wpmozoBnaWavyAnimationId', requestAnimationFrame( wpmozo_wavy_gallery_animate ) );
 	}
 	wpmozo_wavy_gallery_animate();
 
@@ -182,7 +201,7 @@ function initWavyGallery( thisObj ) {
 		}
 	}
 	$overlayContent.on( 'scroll', updateOverlayTitle );
-	jQuery( window ).on( 'resize', updateOverlayTitle );
+	jQuery( window ).on( 'resize' + eventNs, updateOverlayTitle );
 
 	function openOverlayWithImage($originalImage) {
 		$overlayContent.empty();
@@ -238,7 +257,7 @@ function initWavyGallery( thisObj ) {
 		jQuery( 'body' ).css( 'overflow', '' );
 	}
 
-	$images.on( 'click', function() {
+	$images.off( 'click' + eventNs ).on( 'click' + eventNs, function() {
 		openOverlayWithImage( jQuery(this) );
 	} );
 
@@ -253,15 +272,17 @@ function initWavyGallery( thisObj ) {
 		}
 	}
 	$overlayContent.on( 'wheel touchmove', handleManualScrollClose );
-	jQuery( window ).on( 'wheel touchmove', handleManualScrollClose );
+	jQuery( window ).on( `wheel${eventNs} touchmove${eventNs}`, handleManualScrollClose );
 
-	jQuery( window ).on( 'keydown', function(e) {
+	jQuery( window ).on( 'keydown' + eventNs, function(e) {
 		if ( e.key === 'Escape' || e.key === 'Esc' ) {
 			if ( $overlay.css('display') === 'flex' ) {
 				closeOverlay();
 			}
 		}
 	} );
+	wpmozoBnaObserveForRefresh( $wrapper[0] );
+	wpmozoBnaRefreshScrollTriggers();
 }
 
 function wpmozo_lerp( start, end, amt ) {

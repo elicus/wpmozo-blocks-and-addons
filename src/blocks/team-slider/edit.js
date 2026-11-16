@@ -117,6 +117,10 @@ const Edit = (props) => {
 	}
 
 	useEffect(() => {
+		// Skip while posts load: the slider markup isn't rendered then.
+		if ( ! posts?.length ) {
+			return;
+		}
 		const event = new CustomEvent('WPMozoTeamSliderPropsChanged');
 		const iframe = document.querySelector('iframe[name="editor-canvas"]');
 		if (iframe?.contentWindow) {

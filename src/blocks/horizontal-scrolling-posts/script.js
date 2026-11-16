@@ -1,9 +1,11 @@
 import $ from 'jquery';
+import { wpmozoBnaGetBlocksFromEvent, wpmozoBnaRefreshScrollTriggers, wpmozoBnaObserveForRefresh } from '../../common/scroll-trigger-utils';
 
 $(document).ready(function () {
 
-	window.addEventListener('WPMozoScrollPostsPropsChanged', () => {
-		$('.wp-block-wpmozo-horizontal-scrolling-posts').each(function () {
+	// Editor: re-init only the block whose props changed.
+	window.addEventListener('WPMozoScrollPostsPropsChanged', (event) => {
+		wpmozoBnaGetBlocksFromEvent(event, '.wp-block-wpmozo-horizontal-scrolling-posts').each(function () {
 			initHorizontalScrollPost($(this));
 		});
 	});
@@ -46,31 +48,8 @@ function initHorizontalScrollPost($section){
 				end: () => `+=${totalScroll}`
 			}
 		} );
+		// Created after images load, so re-sort to keep page order for the pins below.
+		wpmozoBnaRefreshScrollTriggers();
 	});
-	const loggedElements = new WeakSet();
-  
- 	// Create an Intersection Observer
-  	const observer = new IntersectionObserver(function(entries) {
-		entries.forEach(function(entry) {
-		if (entry.isIntersecting) {
-			// Element is entering or is in viewport
-			if (!loggedElements.has(entry.target)) {
-			loggedElements.add(entry.target);
-			ScrollTrigger.getAll().forEach(trigger => {
-					trigger.refresh();
-			});
-			}
-		} else {
-			// Element is leaving viewport - remove from logged set 
-			// so it logs again when it re-enters
-			loggedElements.delete(entry.target);
-		}
-		});
-	});
-	
-	// Observe each element individually
-	$container.each(function() {
-		$(this).data('inViewport', false);
-		observer.observe(this);
-	});
+	wpmozoBnaObserveForRefresh($container[0]);
 }

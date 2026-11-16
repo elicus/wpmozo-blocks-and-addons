@@ -43,6 +43,8 @@ const generateDynamicStyle = ( { attributes, isEdit } ) => {
 			: ''
 		);
 	}
+	normalcss.push(attributes.image && attributes.imageWidth ? `.wpmozo_star_rating_wrapper .wpmozo_star_rating_image{ width: ${attributes.imageWidth}; }` : '' );
+	normalcss.push(attributes.image && attributes.imageAlign ? `.wpmozo_star_rating_wrapper .wpmozo_star_rating_image_container{ text-align: ${attributes.imageAlign}; }` : '' );
 
 	normalcss.push(
 		( attributes.descriptionColor || convertedStyle.description ) 

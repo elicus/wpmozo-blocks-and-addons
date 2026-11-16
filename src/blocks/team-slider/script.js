@@ -158,8 +158,21 @@ function initWPMozoTeamMemberSlider( blockObj ) {
 
 
 	//Destroy if already exists.
-	if ( wpmozoTeamMemberSwipers[clientId] && ! wpmozo_is_empty( wpmozoTeamMemberSwipers[clientId] ) ) {
-		wpmozoTeamMemberSwipers[clientId].destroy( true, true );
+	const oldSwiper = wpmozoTeamMemberSwipers[clientId];
+	if ( oldSwiper && ! wpmozo_is_empty( oldSwiper ) ) {
+		// An instance without el/slidesEl was never mounted; destroying it with loop on throws inside Swiper.
+		if ( ! oldSwiper.destroyed && oldSwiper.el && oldSwiper.slidesEl ) {
+			try {
+				oldSwiper.destroy( true, true );
+			} catch ( e ) {}
+		}
+	}
+	delete wpmozoTeamMemberSwipers[clientId];
+
+	// Nothing to init while the editor shows the loading/empty notice.
+	const containerEl = blockObj.find( '.swiper-container' )[0];
+	if ( ! containerEl || 0 === jQuery( containerEl ).find( '.swiper-slide' ).length ) {
+		return;
 	}
 
 	// Get the settings.
@@ -284,7 +297,7 @@ function initWPMozoTeamMemberSlider( blockObj ) {
 		$fade = { crossFade: true };
 	}
 
-	var swipperSlider = new Swiper( '#' + $orderId + ' .swiper-container', {
+	var swipperSlider = new Swiper( containerEl, {
 		slidesPerView: parseInt( $slides_per_view ),
 		autoplay: $autoplay_param,
 		spaceBetween: parseInt( $space_between_slides ),

@@ -160,7 +160,7 @@ class Mozo_Bna_Block_Helpers {
 					}
 				}
 			} // Shorthand
-			elseif ( is_string( $radius ) || is_numeric( $radius ) ) {
+			elseif ( ( is_string( $radius ) && '' !== trim( $radius ) ) || is_numeric( $radius ) ) {
 				$styles .= sprintf( 'border-radius: %s%s;', $radius, $imp );
 			}
 		}

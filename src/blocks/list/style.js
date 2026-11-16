@@ -165,11 +165,12 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 	} else {
 		normalcss.push(`${blockID} .list-item-wrap {align-items: center;width: 100%;}`);
 		if('right'=== attributes.listAlignment){
-			normalcss.push(`${blockID} .list-item-wrap {grid-template-columns: 1fr auto auto;} ${blockID} .wpmozo-bna-list-icon.use-icon {justify-content: flex-end; justify-self: end;} ${blockID} .wpmozo-bna-list-item-text {justify-content: flex-end; justify-self: end;}`);
+			normalcss.push(`
+				${blockID} .list-item-wrap {grid-template-columns: 1fr auto auto;} ${blockID} .wpmozo-bna-list-icon.use-icon,${blockID} .wpmozo-bna-marker-image {justify-content: flex-end; justify-self: end;} ${blockID} .wpmozo-bna-list-item-text {justify-content: flex-end; justify-self: end;}`);
 		} else if('left' === attributes.listAlignment){
-			normalcss.push(`${blockID} .list-item-wrap {grid-template-columns: auto 1fr;} ${blockID} .wpmozo-bna-list-icon.use-icon {align-items: center;justify-content: flex-start; justify-self: start;} ${blockID} .wpmozo-bna-list-item-text {align-items: center;justify-content: flex-start; justify-self: start;}`);
+			normalcss.push(`${blockID} .list-item-wrap {grid-template-columns: auto 1fr;} ${blockID} .wpmozo-bna-list-icon.use-icon,${blockID} .wpmozo-bna-marker-image {align-items: center;justify-content: flex-start; justify-self: start;} ${blockID} .wpmozo-bna-list-item-text {align-items: center;justify-content: flex-start; justify-self: start;}`);
 		} else {
-			normalcss.push(`${blockID} .list-item-wrap {grid-template-columns: 1fr 1fr;} ${blockID} .wpmozo-bna-list-icon.use-icon {align-items: center;justify-content: flex-end; justify-self: end;} ${blockID} .wpmozo-bna-list-item-text {align-items: center;justify-content: flex-start; justify-self: start;}`);
+			normalcss.push(`${blockID} .list-item-wrap {grid-template-columns: 1fr 1fr;} ${blockID} .wpmozo-bna-list-icon.use-icon,${blockID} .wpmozo-bna-marker-image {align-items: center;justify-content: flex-end; justify-self: end;} ${blockID} .wpmozo-bna-list-item-text {align-items: center;justify-content: flex-start; justify-self: start;}`);
 		}
 	}
 

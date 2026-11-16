@@ -188,13 +188,44 @@ export function extractCssByClass() {
 	return extractedCSS;
 }
 
+/**
+ * Minify generated block CSS to a single line and drop empty rules.
+ *
+ * - Quoted strings (e.g. `content: ' > '`) are kept as written.
+ * - Whitespace before `:` is kept, so a descendant pseudo-class selector such as
+ *   `.title :is(h1, h2)` keeps its meaning; whitespace after `:` is removed.
+ * - Empty rules (`sel{}`), including nested or @media rules left empty, are removed.
+ * Mirrors Mozo_Bna_Pro_Block_Helpers::minify_css() in the pro plugin.
+ *
+ * @param {string} css CSS to minify.
+ * @return {string} Minified CSS.
+ */
 export function minifyCSS(css) {
-	return css
+	if ( typeof css !== 'string' || '' === css ) {
+		return '';
+	}
+
+	const strings = [];
+	let out = css
 		.replace(/\/\*[\s\S]*?\*\//g, '')
-		.replace(/url\(\s*(['"]?)(.*?)\1\s*\)/g, 'url($1$2$1)')
+		.replace(/"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'/g, (match) => {
+			strings.push(match);
+			return `\u0000${strings.length - 1}\u0000`;
+		})
 		.replace(/\s+/g, ' ')
-		.replace(/\s*({|}|;|:|,)\s*/g, '$1')
-		.replace(/;}+/g, '}')
+		.replace(/\s*([{};,])\s*/g, '$1')
+		.replace(/:\s+/g, ':')
+		.replace(/;+/g, ';')
+		.replace(/;}/g, '}');
+
+	let previous;
+	do {
+		previous = out;
+		out = out.replace(/(^|[{};])[^{};]*\{\}/g, '$1');
+	} while ( out !== previous );
+
+	return out
+		.replace(/\u0000(\d+)\u0000/g, (match, index) => strings[index])
 		.trim();
 }
 
@@ -555,6 +586,11 @@ if ( typeof window !== 'undefined' ) {
 		truncateContent,
 		getWrapperProps,
 		mergeWrapperProps,
+		// Dynamic CSS helpers (used by pro block style.js files).
+		minifyCSS,
+		wpmozo_generate_style,
+		wpmozo_parse_style,
+		wpmozo_is_empty,
 		// Add more functions here if needed.
 	} );
 }

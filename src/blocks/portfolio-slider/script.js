@@ -51,16 +51,21 @@ function initWPMozoPortfolioSlider( blockObj ) {
 	const clientId = wrapObj.attr( 'data-clientid' ) || wrapObj.attr( 'data-clientId' );
 
 	// Destroy if already exists.
-	if ( wpmozoPortfolioSwipers[clientId] && ! wpmozo_is_empty( wpmozoPortfolioSwipers[clientId] ) ) {
-		try {
-			if ( wpmozoPortfolioSwipers[clientId].params.loop ) {
-				wpmozoPortfolioSwipers[clientId].loopDestroy();
-			}
-			wpmozoPortfolioSwipers[clientId].destroy( true, true );
-			wpmozoPortfolioSwipers[clientId] = null; 
-		} catch(e) {
-			console.error('Swiper destroy error:', e);
+	const oldSwiper = wpmozoPortfolioSwipers[clientId];
+	if ( oldSwiper && ! wpmozo_is_empty( oldSwiper ) ) {
+		// An instance without el/slidesEl was never mounted; destroying it with loop on throws inside Swiper.
+		if ( ! oldSwiper.destroyed && oldSwiper.el && oldSwiper.slidesEl ) {
+			try {
+				oldSwiper.destroy( true, true );
+			} catch ( e ) {}
 		}
+	}
+	delete wpmozoPortfolioSwipers[clientId];
+
+	// Nothing to init while the editor shows the loading/empty notice.
+	const containerEl = blockObj.find( '.swiper-container' )[0];
+	if ( ! containerEl || 0 === $( containerEl ).find( '.swiper-slide' ).length ) {
+		return;
 	}
 
 	// Get the settings.
@@ -185,7 +190,7 @@ function initWPMozoPortfolioSlider( blockObj ) {
 		$fade = { crossFade: true };
 	}
 
-	var swipperSlider = new Swiper( '#' + $orderId + ' .swiper-container', {
+	var swipperSlider = new Swiper( containerEl, {
 		slidesPerView: parseInt( $slides_per_view ),
 		autoplay: $autoplay_param,
 		spaceBetween: parseInt( $space_between_slides ),

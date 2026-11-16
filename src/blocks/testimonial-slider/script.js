@@ -51,8 +51,21 @@ function initWPMozoTestimonialSlider( blockObj ) {
 	const clientId = wrapObj.attr( 'data-clientid' );
 
 	// Destroy if already exists.
-	if ( wpmozoTestimonialSwipers[clientId] && ! wpmozo_is_empty( wpmozoTestimonialSwipers[clientId] ) ) {
-		wpmozoTestimonialSwipers[clientId].destroy( true, true );
+	const oldSwiper = wpmozoTestimonialSwipers[clientId];
+	if ( oldSwiper && ! wpmozo_is_empty( oldSwiper ) ) {
+		// An instance without el/slidesEl was never mounted; destroying it with loop on throws inside Swiper.
+		if ( ! oldSwiper.destroyed && oldSwiper.el && oldSwiper.slidesEl ) {
+			try {
+				oldSwiper.destroy( true, true );
+			} catch ( e ) {}
+		}
+	}
+	delete wpmozoTestimonialSwipers[clientId];
+
+	// Nothing to init while the editor shows the loading/empty notice.
+	const containerEl = blockObj.find( '.swiper-container' )[0];
+	if ( ! containerEl || 0 === $( containerEl ).find( '.swiper-slide' ).length ) {
+		return;
 	}
 
 	// Get the settings.
@@ -180,7 +193,7 @@ function initWPMozoTestimonialSlider( blockObj ) {
 		$fade = { crossFade: true };
 	}
 
-	var swipperSlider = new Swiper( '#' + $orderId + ' .swiper-container', {
+	var swipperSlider = new Swiper( containerEl, {
 		slidesPerView: parseInt( $slides_per_view ),
 		autoplay: $autoplay_param,
 		spaceBetween: parseInt( $space_between_slides ),

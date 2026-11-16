@@ -1,1 +1,50 @@
+/**
+ * Editor-only hover preview.
+ *
+ * When the Hover state is picked in the inspector (MozoStates), edit.js adds the
+ * `is_hover` class to the block wrapper. Each rule below mirrors a `:hover` rule
+ * from style.scss with `.is_hover` in place of `:hover`, so the preview shows the
+ * same background fill effect as the frontend. `:where()` scopes the rules to this
+ * block (the parent Advanced Button also gets `is_hover`) while keeping the same
+ * specificity as the frontend `:hover` rule (one class replaces one pseudo-class).
+ */
 
+/* Show icon on hover. */
+:where(.wp-block-wpmozo-advanced-button-child).is_hover .wpmozo-button-link.show-on-hover i {
+	display: block;
+	opacity: 1;
+	margin-left: 0;
+}
+
+/* Default fill. */
+:where(.wp-block-wpmozo-advanced-button-child).is_hover .wpmozo_button_default_fill {
+	background: #333;
+}
+
+/* Fill effects drawn by the link's ::before / ::after. */
+:where(.wp-block-wpmozo-advanced-button-child).is_hover .wpmozo_button_wipe_fill::before {
+	transform: translate(0, 0);
+}
+
+:where(.wp-block-wpmozo-advanced-button-child).is_hover .wpmozo_button_slide_up_fill::before,
+:where(.wp-block-wpmozo-advanced-button-child).is_hover .wpmozo_button_slide_down_fill::before {
+	top: 0;
+}
+
+:where(.wp-block-wpmozo-advanced-button-child).is_hover .wpmozo_button_slide_left_fill::before {
+	right: 0;
+}
+
+:where(.wp-block-wpmozo-advanced-button-child).is_hover .wpmozo_button_slide_right_fill::before {
+	left: 0;
+}
+
+:where(.wp-block-wpmozo-advanced-button-child).is_hover .wpmozo_button_vertical_shutter_fill::before,
+:where(.wp-block-wpmozo-advanced-button-child).is_hover .wpmozo_button_vertical_shutter_fill::after {
+	transform: translateY(0);
+}
+
+:where(.wp-block-wpmozo-advanced-button-child).is_hover .wpmozo_button_horizontal_shutter_fill::before,
+:where(.wp-block-wpmozo-advanced-button-child).is_hover .wpmozo_button_horizontal_shutter_fill::after {
+	transform: translateX(0);
+}

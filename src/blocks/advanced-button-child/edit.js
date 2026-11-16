@@ -68,6 +68,7 @@ export default function Edit(props) {
 							<a
 								className={`wpmozo-button-link${showOnHover}${bkStyle}`} // Dynamic classes (hover effect + background style)
 								href="javascript:void(0)" // Prevents navigation
+								onClick={(event) => event.preventDefault()} // Editor only: pointer events are on for the hover preview, so cancel the click
 								{...(attributes.buttonLinkTarget !== 'same' ? {target: "_blank"} : {})} // Open in new tab if target ≠ 'same'
 							>
 								{/* Primary text + optional icon */}

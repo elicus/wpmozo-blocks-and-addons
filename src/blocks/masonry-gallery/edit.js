@@ -25,7 +25,7 @@ import { createBlobURL } from '@wordpress/blob';
 import { createBlock } from '@wordpress/blocks';
 import { store as blockEditorStore, MediaPlaceholder, useBlockProps, useInnerBlocksProps, InnerBlocks } from '@wordpress/block-editor';
 import { withNotices } from '@wordpress/components';
-import { Platform, useEffect, useMemo } from '@wordpress/element';
+import { Platform, useEffect, useMemo, useRef } from '@wordpress/element';
 import { useDispatch, useSelect } from '@wordpress/data';
 
 /**
@@ -63,7 +63,10 @@ function Edit(props) {
 	const {
 		replaceInnerBlocks,
 		updateBlockAttributes,
+		__unstableMarkNextChangeAsNotPersistent: markNextChangeAsNotPersistent,
 	} = useDispatch( blockEditorStore );
+
+	const wrapperRef = useRef();
 
 	// Ensure ID is set once (no render-time mutation).
 	useEffect( () => {
@@ -118,27 +121,8 @@ function Edit(props) {
 		[ innerBlockImages ]
 	);
 
-	// Set attributes.images whenever images change
-	useEffect(() => {
-		if (Array.isArray(images) && images.length > 0) {
-			// setAttributes({ images });
-			setAttributes({ images_data:images });
-		}
-	}, [images]);
-
-	useEffect(() => {
-		if( ! attributes.ID ) return;
-		if( ! Array.isArray( images ) ) return;
-		if( ! images.length > 0 ) return;
-		if( ! attributes.images_data ) return;
-		const event = new CustomEvent('WPMozoMasonryGalleryPropsChanged');
-		window.dispatchEvent(event);
-		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
-		if ( iframe?.contentWindow ) {
-			iframe.contentWindow.dispatchEvent( event );
-		}
-	}, [props, images]);
-
+	// Must run before the seeding effect below, so rebuilt image blocks keep the
+	// exact attributes stored in images_data (no extra className => no spurious change).
 	useEffect( () => {
 		const changedAttributes = {};
 		const blocks = [];
@@ -148,6 +132,60 @@ function Edit(props) {
 		} );
 		updateBlockAttributes( blocks, changedAttributes, true );
 	}, [] );
+
+	// The core/image inner blocks are not serialized (save returns null), so after a
+	// reload they are missing. Rebuild them once from the persisted images_data so
+	// the media placeholder and "add to gallery" keep working with existing images.
+	useEffect( () => {
+		if ( innerBlockImages?.length || ! attributes.images_data?.length ) {
+			return;
+		}
+		const seededBlocks = attributes.images_data
+			.filter( ( image ) => image?.attributes?.url || image?.url )
+			.map( ( image ) =>
+				createBlock( 'core/image', image.attributes || { id: image.id, url: image.url } )
+			);
+		if ( ! seededBlocks.length ) {
+			return;
+		}
+		markNextChangeAsNotPersistent?.();
+		replaceInnerBlocks( clientId, seededBlocks, false );
+	}, [] ); // eslint-disable-line react-hooks/exhaustive-deps
+
+	// Compare images ignoring block clientIds, which change whenever inner blocks are rebuilt.
+	const imagesSignature = ( list ) =>
+		JSON.stringify( ( list || [] ).map( ( { clientId: omit, ...rest } ) => rest ) );
+
+	// Set attributes.images_data whenever images change
+	useEffect(() => {
+		if (
+			Array.isArray(images) &&
+			images.length > 0 &&
+			imagesSignature( images ) !== imagesSignature( attributes.images_data )
+		) {
+			setAttributes({ images_data:images });
+		}
+	}, [images]);
+
+	// (Re)initialise the masonry layout for this block whenever its persisted data or
+	// settings change. Gate on images_data (which survives a reload), not on the inner
+	// blocks, and dispatch into the window that actually owns the block markup (the
+	// editor iframe, or the main window when the editor is not iframed).
+	const attributesKey = JSON.stringify( attributes );
+	useEffect(() => {
+		if( ! attributes.ID ) return;
+		if( ! attributes.images_data?.length ) return;
+		const win = wrapperRef.current?.ownerDocument?.defaultView;
+		if ( ! win ) return;
+		const frame = win.requestAnimationFrame( () => {
+			win.dispatchEvent(
+				new win.CustomEvent( 'WPMozoMasonryGalleryPropsChanged', {
+					detail: { id: attributes.ID },
+				} )
+			);
+		} );
+		return () => win.cancelAnimationFrame( frame );
+	}, [ attributesKey ]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	function isValidFileType( file ) {
 		return (
@@ -293,7 +331,7 @@ function Edit(props) {
 			</style>
 			<div {...blockProps}>
 				<div className="wpmozo_pb_module_inner">
-					<div className="wpmozo_masonry_gallery_wrapper">
+					<div className="wpmozo_masonry_gallery_wrapper" ref={ wrapperRef }>
 						<div className="wpmozo_masonry_gallery_item_gutter"></div>
 						{attributes.images_data && attributes.images_data.length > 0 && (
 							attributes.images_data.map((image, idx) => (

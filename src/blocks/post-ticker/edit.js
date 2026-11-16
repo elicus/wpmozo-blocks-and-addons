@@ -46,14 +46,6 @@ export default function Edit(props) {
 		}
 	}, [ clientId, JSON.stringify( attributes ) ] ); // eslint-disable-line react-hooks/exhaustive-deps.
 
-	useEffect(() => {
-		const event = new CustomEvent('WPMozoPostTickerPropsChanged');
-		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
-		if ( iframe?.contentWindow ) {
-			iframe.contentWindow.dispatchEvent( event );
-		}
-	}, [JSON.stringify(attributes), props]);
-
 	const postsToShow = parseInt(attributes.postsToShow) ?? 5;
 	const postOrder = attributes.postOrder ?? 'DESC';
 	const postOrderBy = attributes.postOrderBy ?? 'date';
@@ -101,6 +93,18 @@ export default function Edit(props) {
 			allPosts = [...stickyPosts, ...posts];
 		}
 	}
+
+	// Re-init the ticker once the posts are in; skip while they load: the ticker markup isn't rendered then.
+	useEffect(() => {
+		if ( ! allPosts?.length ) {
+			return;
+		}
+		const event = new CustomEvent('WPMozoPostTickerPropsChanged');
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		if ( iframe?.contentWindow ) {
+			iframe.contentWindow.dispatchEvent( event );
+		}
+	}, [JSON.stringify(attributes), posts, stickyPosts]);
 
 	let postTitles = [];
 	if (allPosts && allPosts.length > 0) {

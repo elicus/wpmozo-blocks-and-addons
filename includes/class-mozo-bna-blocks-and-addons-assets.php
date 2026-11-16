@@ -60,6 +60,14 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 			true
 		);
 
+		wp_register_script(
+			$this->plugin_name . '-editor-link-guard',
+			WPMOZO_BNA_ASSETS_DIR_URL . 'js/editor/link-guard.js',
+			array( 'wp-hooks', 'wp-compose', 'wp-element' ),
+			WPMOZO_BNA_VERSION,
+			true
+		);
+
 		wp_register_style(
 			$this->plugin_name . '-swiper-style',
 			WPMOZO_BNA_ASSETS_DIR_URL . 'css/vendors/swiper-bundle.css',
@@ -265,6 +273,7 @@ class Mozo_Bna_Blocks_And_Addons_Assets {
 
 		wp_enqueue_style( $this->plugin_name . '-editor-style' );
 		wp_enqueue_script( $this->plugin_name . '-editor-script' );
+		wp_enqueue_script( $this->plugin_name . '-editor-link-guard' );
 		wp_enqueue_style( $this->plugin_name . '-blocks-style' );
 		wp_enqueue_script( $this->plugin_name . '-tilt-script' );
 		wp_enqueue_script( $this->plugin_name . '-popper-script' );

@@ -23,7 +23,6 @@ import {
 	MozoStates
 } from '../../../common/components/index';
 import { useState } from "@wordpress/element";
-import { chevronLeft, Marker, chevronRight } from '@wordpress/icons';
 
 export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverState } ) => {
 	const props = { attributes, setAttributes, preAttributes: {} };

@@ -84,6 +84,8 @@
 		"image": { "type": "string", "default": "" },
 		"imageAlt": { "type": "string", "default": "" },
 		"imageCustomAlt": { "type": "string", "default": "" },
+		"imageWidth": { "type": "string", "default": "" },
+		"imageAlign": { "type": "string" },
 		"description": { "type": "string", "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
 		"descriptionColor": { "type": "string" },
 		"descriptionFont": { "type": "string" },

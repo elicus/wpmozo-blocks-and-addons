@@ -60,7 +60,7 @@ const generateDynamicStyle = ({ attributes, isEdit }) => {
 			transition: column-gap 0.3s;
 			column-gap: 0px;
 		}
-		.wpmozo-button-link.show-on-hover:hover {
+		.wpmozo-button-link.show-on-hover:hover${isEditor('.wpmozo-button-link.show-on-hover')} {
 			column-gap: 10px;
 		}
 		`;
@@ -71,7 +71,7 @@ const generateDynamicStyle = ({ attributes, isEdit }) => {
 		.wpmozo-button-link.show-on-hover i{
 			margin-right: -${attributes.buttonTextFontSize ? attributes.buttonTextFontSize : '20px'};
 		}
-		.wpmozo-button-link.show-on-hover:hover i{
+		.wpmozo-button-link.show-on-hover:hover i${isEditor('.wpmozo-button-link.show-on-hover i')}{
 			margin-right: 0;
 		}
 		`;
@@ -81,7 +81,7 @@ const generateDynamicStyle = ({ attributes, isEdit }) => {
 		.wpmozo-button-link.show-on-hover i{
 			margin-left: -${attributes.buttonTextFontSize ? attributes.buttonTextFontSize : '20px'};
 		}
-		.wpmozo-button-link.show-on-hover:hover i{
+		.wpmozo-button-link.show-on-hover:hover i${isEditor('.wpmozo-button-link.show-on-hover i')}{
 			margin-left: 0;
 		}
 		`;
@@ -114,40 +114,40 @@ const generateDynamicStyle = ({ attributes, isEdit }) => {
 		`;
 	}
 
-	// Hover background
+	// Hover background.
+	// Default fill: the button's own background changes on hover.
+	// Other fill styles: only the sliding ::before / ::after layers get the hover background,
+	// so the button keeps its normal background while the fill moves in.
+	const isDefaultFill = ! attributes.backgroundFillStyle || 'default_fill' === attributes.backgroundFillStyle;
+	const hoverBackgroundSelector = isDefaultFill
+		? `.wpmozo-button-link:hover${isEditor('.wpmozo-button-link')}`
+		: `.wpmozo-button-link::before,
+		.wpmozo-button-link::after`;
+	let hoverBackground = '';
+
 	if (attributes.filledBackgroundTypeHover === 'classic') {
 		if (attributes.classicBackgroundImageHover) {
-			styles += `
-		.wpmozo-button-link:hover${isEditor('.wpmozo-button-link')} {
-			background-image: url(${attributes.classicBackgroundImageHover});
-		}
-		.wpmozo-button-link::before,
-		.wpmozo-button-link::after{
-			background-color:transparent;
-			background-image:url(${attributes.classicBackgroundImageHover});
-		}
-		`;
+			hoverBackground = isDefaultFill
+				? `background-image: url(${attributes.classicBackgroundImageHover});`
+				: `background-color: transparent;
+			background-image: url(${attributes.classicBackgroundImageHover});`;
 		} else if (attributes.classicBackgroundColorHover) {
-			styles += `
-			.wpmozo-button-link:hover${isEditor('.wpmozo-button-link')} {
-				background-color: ${attributes.classicBackgroundColorHover};
-				background-image: none !important;
-			}
-			.wpmozo-button-link::before,
-			.wpmozo-button-link::after{
-				background-color:${attributes.classicBackgroundColorHover}
-			}
-			`;
+			hoverBackground = isDefaultFill
+				? `background-color: ${attributes.classicBackgroundColorHover};
+			background-image: none !important;`
+				: `background-color: ${attributes.classicBackgroundColorHover};`;
 		}
 	} else if (attributes.filledBackgroundTypeHover === 'gradient' && attributes.gradientBackgroundColorHover) {
+		hoverBackground = isDefaultFill
+			? `background-image: ${attributes.gradientBackgroundColorHover};`
+			: `background-color: transparent;
+			background-image: ${attributes.gradientBackgroundColorHover};`;
+	}
+
+	if (hoverBackground) {
 		styles += `
-		.wpmozo-button-link:hover${isEditor('.wpmozo-button-link')} {
-			background-image: ${attributes.gradientBackgroundColorHover};
-		}
-		.wpmozo-button-link::before,
-		.wpmozo-button-link::after{
-			background-color:transparent;
-			background-image:${attributes.gradientBackgroundColorHover}
+		${hoverBackgroundSelector} {
+			${hoverBackground}
 		}
 		`;
 	}

@@ -80,12 +80,12 @@ export default function Edit(props) {
 	} = useDispatch( blockEditorStore );
 
 	useEffect(() => {
-		const event = new CustomEvent('WPMozoScrollZoomGalleryPropsChanged');
-		window.dispatchEvent(event);
+		// Re-init only this block, in the window that renders it (the editor iframe when present).
+		const event = new CustomEvent('WPMozoScrollZoomGalleryPropsChanged', {
+			detail: { clientId: attributes.ID }
+		});
 		const iframe = document.querySelector('iframe[name="editor-canvas"]');
-		if (iframe?.contentWindow) {
-			iframe.contentWindow.dispatchEvent(event);
-		}
+		(iframe?.contentWindow || window).dispatchEvent(event);
 	}, [JSON.stringify(attributes)]);
 
 
