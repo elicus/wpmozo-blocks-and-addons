@@ -504,7 +504,7 @@ From the Lite checkout, after loading the settings (section 8.1):
      - Don't create a branch to work around it.
      - On the owner's machine the default works ([testing.md](testing.md)).
 
-**Expected results.** Recorded on the owner's Mac on 2026-11-11 ([testing.md](testing.md), final validation); `launcher` and a re-run of the browser suites on 2026-11-16, after the header-icon change ([testing.md](testing.md), PL-D31).
+**Expected results.** Recorded on the owner's Mac on 2026-11-11 ([testing.md](testing.md), final validation); `launcher` and a re-run of the browser suites on 2026-11-16 and 2026-11-17, after the header-icon and Options menu changes ([testing.md](testing.md), PL-D31 and PL-D32).
 
 | Suite | Checks | Time |
 |---|---|---|
@@ -513,7 +513,7 @@ From the Lite checkout, after loading the settings (section 8.1):
 | `rest` | 17/17 | ~4 min |
 | `contract` | 26/26 | ~4 min |
 | `editor` | 10/10 | ~10 min |
-| `launcher` | 21/21 | ~2 min |
+| `launcher` | 23/23 | ~2 min |
 | `wp-editor` | **14/17**: the 3 failures are the known block issue B-R6-2. Call To Action imports `__experimentalStack`, which WordPress doesn't have. **ON HOLD; not a setup problem** | ~1 min |
 | `team-grid` | 8/8 | — |
 | `matrix` | 109/109 | ~20 min |
@@ -564,7 +564,7 @@ curl -s "$WPMOZO_SITE_URL/wp-content/plugins/wpmozo-blocks-and-addons/includes/l
 ### 11.2 Catalog, preview and insertion (administrator)
 1. **Blocks and Addons → General:** the **Pattern Library** switch is on.
 2. Open **Pages → Add New** and title the page `WPMozo PL test - free hero`. There are three entry points:
-   - **Open Pattern Library** in the editor's Options menu (⋮);
+   - **Pattern Library** in the editor's Options menu (⋮), the only library item there (PL-D32);
    - a pinned **Pattern Library** icon in the header, which opens the library window directly, with no sidebar (PL-D31);
    - a **Pattern Library** block in the inserter.
 3. Open the library.

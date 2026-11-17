@@ -8,7 +8,7 @@ Newest first. "Unreleased" entries move into `readme.txt` when a Lite release is
 - Pilot patterns: Product launch hero and Three pricing plans (free), temporary designs for review. (LPL-T)
 - Pattern authoring tools in `tools/pattern-library/` (not shipped): export, content builder, quality gate with preview capture, illustration renderer. (LPL-T)
 - Pattern Library editor UI (LPL-UX, LPL-3), in the post editor for users who can edit posts:
-  - entry points in the Options menu and a pinnable header icon that opens the library directly, with no sidebar step (PL-D31);
+  - a pinnable header icon that opens the library directly, with no sidebar step (PL-D31), and one "Pattern Library" item in the Options menu (PL-D32);
   - a window with categories, search, Free/Pro and availability filters, sort, previews, and locked or unavailable states with their reasons;
   - insertion as one undoable step with an Undo snackbar; blocks are rebuilt with fresh IDs.
 - Pattern Library placeholder block (`wpmozo/pattern-library`): it opens the library and is replaced by the chosen pattern. It saves nothing and renders nothing on the site. Listed in the block on/off panel. (LPL-3)

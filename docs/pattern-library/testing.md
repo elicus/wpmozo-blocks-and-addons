@@ -591,3 +591,33 @@ With Lite 1.8.0 or older, Pro's charts can't draw either way; the check that wou
 - **Harness note:** on a new page WordPress's "Choose a pattern" modal reopens while the page is empty and covers the header. The suite switches it off with the `core` → `enableChoosePatternModal` preference and closes it with its Close button.
 - **Lint:** `npx wp-scripts lint-js` on the changed and new JS files and `lint-style` on `style.scss` passed; `npm run build` passed (`build/library/index.js` 28.8 KB, script dependencies unchanged).
 - **Not run:** `php-parse`, `robustness`, `rest` and `team-grid`, because no PHP changed; `contract` and `upgrade` on 6.8.11. A screen reader. A real LocalWP site: the Lite handoff's test T4b covers it.
+
+## One Options menu item (PL-D32), 2026-11-17
+
+**Change:** after a manual LocalWP test of PL-D31, the owner found two library items in the editor's Options menu: "Open Pattern Library" and "Pattern Library", both opening the same window.
+- **Cause:** "Open Pattern Library" was the `PluginMoreMenuItem` in `src/library/index.js`; "Pattern Library" is the item WordPress adds for the header icon's `PluginSidebar` (`ComplementaryAreaMoreMenuItem`). Both go to the `core/plugin-more-menu` group.
+- **Fix:** the `PluginMoreMenuItem` was removed ([editor-ui.md](editor-ui.md), Options menu item).
+- **Code:** Lite `5ca1e69`, suite `80f8a12` (tested as the working tree before those commits); Pro `df8c4b0` unchanged. Copies built from the working trees, one suite at a time.
+
+**Suite change (`launcher`, now 23 checks):**
+- The Options menu step now opens the menu with the icon pinned and unpinned. Each time it checks that exactly one item mentions the Pattern Library: "Pattern Library", the sidebar's (`aria-controls` of the launcher sidebar), with no "Open Pattern Library". Clicking it opens the window directly, closes the menu, leaves the sidebar as it was and paints nothing of the launcher sidebar.
+- Menu selectors are scoped to the editor's dropdown menu; the admin bar's hidden menus also have `role="menu"`.
+
+**Mutation proof:** the same suite against Lite `9f190ae` (the old menu item still there): **21/23**. Exactly the two new "one item" checks fail, listing `Open Pattern Library` (`menuitem`) and `Pattern Library` (`menuitemcheckbox`), as the owner saw.
+
+| Suite | WordPress 7.1.3 / PHP 8.2 | WordPress 6.8.11 / PHP 7.4 |
+|---|---|---|
+| `launcher` | **23/23** | **23/23** |
+| `editor` (every available pattern through the gate) | **10/10** | **10/10** (re-run; see below) |
+| `wp-editor` | **14/17** | **14/17** |
+| `contract` | **26/26** | not run |
+| `matrix` | **109/109** | **109/109** |
+| `upgrade --mutation=1` | **30/30** | not run |
+
+- **`editor` on 6.8.11, first run: 5/6.**
+  - The gate's editability step (step 6) timed out after Playwright's default 30 s waiting for the **Insert** button of "Three pricing plans", after that pattern had passed insertion, save, reload and the front end.
+  - That step opens the library through the `wpmozo/library` store, not through a menu item or the icon. Its main insertion step waits 60 s.
+  - A re-run on the same code passed **10/10**: a timing flake on the slower PHP 7.4 WebAssembly site. The gate was not changed.
+- **The 6 `wp-editor` failures** are block issue B-R6-2 (on hold), as before.
+- **Lint and build:** `lint-js` on the changed files passed; `npm run build` passed (`build/library/index.js` 28.7 KB, script dependencies unchanged).
+- **Not run:** the PHP-only suites, because no PHP changed. The menu change is not checked on the owner's LocalWP site; test T4b in the testing handoff covers it.

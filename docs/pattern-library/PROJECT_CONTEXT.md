@@ -60,7 +60,7 @@ Detail: [registry-and-contract.md](registry-and-contract.md).
 | Content: `GET wpmozo/v1/library/patterns/<source>/<slug>`, every check repeated, content validated again, `no-store` | [rest-api.md](rest-api.md) |
 | Validation: size, block allowlist, unsafe HTML, schemes, CSS, URL attributes, tokens; restricted-HTML detection by fingerprint | [security.md](security.md) |
 | Import: parse, check blocks and attributes, rebuild with fresh IDs, insert as one undo step, nothing inserted on any problem | [import-workflow.md](import-workflow.md) |
-| UI: Options menu, header launcher, placeholder block; library switch | [editor-ui.md](editor-ui.md) |
+| UI: header icon and its Options menu item, placeholder block; library switch | [editor-ui.md](editor-ui.md) |
 
 ## 6. Pattern registration and assets
 Detail: [pattern-authoring.md](pattern-authoring.md), [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md). Production workflow for new and replaced patterns: [production-pattern-authoring.md](production-pattern-authoring.md).
@@ -96,11 +96,12 @@ Detail: [handoff.md](handoff.md).
 - **Pilot (LPL-T):** 2 free + 2 Pro patterns, built and verified on WordPress 6.8.11 and 7.1.3. **Waiting for the owner's design review. Add no patterns before approval.**
 - **Compatibility audit (2026-11-05):** findings in [known-issues.md](known-issues.md); stages R1–R6 in [roadmap.md](roadmap.md), **approved 2026-11-05**. R1 (library robustness) and R5 (reusable test suites) are done; R2 (Pro with an older Lite) is done (Lite `ee18c89`, `23d89d6`; Pro `b7cc761`); R3 (PHP floor and requirement headers) is done (Lite `28d184c`, `afc5e91`); R4 (contract surface freeze) is done (Lite tests `62a9bbf`; Pro `e79e4aa`); R6 (WordPress-future hardening: editor stylesheet, editor without the canvas iframe) is done (Lite `a54216c`, tests `4e9f12d`). Final validation is done (2026-11-11): every suite passes on both supported WordPress and PHP pairs except three checks that fail on one unused block import (B-R6-2). Release readiness: [handoff.md](handoff.md).
 - **2026-11-16:** the header icon opens the library window directly, with no sidebar step (PL-D31, Lite `485e5e7`; `launcher` suite).
+- **2026-11-17:** the Options menu has one library item, "Pattern Library"; "Open Pattern Library" was removed (PL-D32, Lite `5ca1e69`).
 - **Regression suites:** `tools/pattern-library/tests/` (not shipped): library robustness, REST, editor gate, editor entry points, Lite/Pro combinations, in-place updates, contract surfaces, PHP parse; run them for every library change ([testing.md](testing.md)). Testing on another machine: start with [testing-handoff.md](testing-handoff.md); setup reference [testing-environment-setup.md](testing-environment-setup.md).
 - **Release blockers:** the `example.com` placeholder for the Lite-to-Pro card link; provisional pattern `since` values; `n.e.x.t` tags; Pro's minimum-Lite handling (Pro repository).
 
 ## 10. Key decisions (with reasons)
-Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D31).
+Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D32).
 
 | ID | Decision | Why |
 |---|---|---|
@@ -115,6 +116,7 @@ Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D31).
 | PL-D27, PL-D28 | Add-on surfaces frozen and machine-checked without a new layer; Lite is the only owner of shared handles | Released Pro already relies on them; one owner per handle (R4) |
 | PL-D29 | Pattern Library work never changes block code; block issues are recorded for a separate developer | Owner rule: no unrelated block changes |
 | PL-D31 | The header icon opens the library window directly; the launcher sidebar never shows and the editor's sidebar stays as it was | Owner request: one click instead of two, with public APIs only |
+| PL-D32 | The Options menu has one library item, "Pattern Library" (the icon's); "Open Pattern Library" was removed | Owner request: both opened the same window |
 
 ## 11. Known issues and pending work
 - Known issues (library and blocks): [known-issues.md](known-issues.md).
