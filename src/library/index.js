@@ -1,13 +1,14 @@
 /**
  * Pattern Library editor entry (docs/pattern-library/editor-ui.md).
  *
- * Entry points use public editor APIs only: an item in the editor's More menu, a
- * pinnable header icon that opens the library directly (src/library/launcher.js), and the
- * placeholder block (`wpmozo/pattern-library`, src/blocks/pattern-library).
+ * Entry points use public editor APIs only: a pinnable header icon that opens the library
+ * directly (src/library/launcher.js), its "Pattern Library" item that WordPress adds to the
+ * Options menu (the only library item there, PL-D32), and the placeholder block
+ * (`wpmozo/pattern-library`, src/blocks/pattern-library).
  */
 import { __ } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
-import { PluginMoreMenuItem, PluginSidebar } from '@wordpress/editor';
+import { PluginSidebar } from '@wordpress/editor';
 import { Button } from '@wordpress/components';
 import { dispatch, useDispatch, useRegistry, useSelect } from '@wordpress/data';
 import { useLayoutEffect, useRef } from '@wordpress/element';
@@ -91,9 +92,7 @@ function PatternLibrary() {
 
 	return (
 		<>
-			<PluginMoreMenuItem icon={ libraryIcon } onClick={ () => open() }>
-				{ __( 'Open Pattern Library', 'wpmozo-blocks-and-addons' ) }
-			</PluginMoreMenuItem>
+			{ /* WordPress also lists this sidebar in the Options menu as "Pattern Library". */ }
 			<PluginSidebar
 				name={ LAUNCHER_NAME }
 				title={ __( 'Pattern Library', 'wpmozo-blocks-and-addons' ) }
