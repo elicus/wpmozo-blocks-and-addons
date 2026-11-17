@@ -1,13 +1,16 @@
 /**
- * Editor entry points (PL-D31). The header icon opens the library window directly, with no
- * sidebar step:
+ * Editor entry points (PL-D31, PL-D32). The header icon opens the library window directly, with
+ * no sidebar step:
  * - with the editor's sidebar open and closed, the window opens, the launcher sidebar is never
  *   painted, and the sidebar is left as it was (the editor's Settings button still opens the
  *   settings, not the library);
  * - closing with Escape and with the Close button, focus back on the icon, reopening, exactly one
  *   window, inserting a pattern from it;
- * - the Options menu items ("Open Pattern Library" and the sidebar's "Pattern Library") and the
- *   placeholder block open the same window; the placeholder is replaced by the inserted pattern;
+ * - the Options menu has exactly one Pattern Library item, the icon's "Pattern Library" (no
+ *   "Open Pattern Library" item: PL-D32); it opens the same window directly, closes the menu and
+ *   keeps working with the icon unpinned;
+ * - the placeholder block opens the same window; the placeholder is replaced by the inserted
+ *   pattern;
  * - a narrow editor (600 px);
  * - every block valid after save and reload, no page errors, no PHP log entries, no network.
  */
@@ -22,7 +25,11 @@ const {
 
 const PANEL_ID = 'wpmozo-pattern-library:wpmozo-pattern-library';
 const ICON = `.interface-pinned-items button[aria-controls="${ PANEL_ID }"]`;
-const MENU_ITEM = `[role="menu"] [aria-controls="${ PANEL_ID }"]`;
+const AREA = 'wpmozo-pattern-library/wpmozo-pattern-library';
+// The open Options menu (not the admin bar's hidden menus, which also have role="menu").
+const MENU = '.components-dropdown-menu__menu[role="menu"]';
+const MENU_ITEM = `${ MENU } [aria-controls="${ PANEL_ID }"]`;
+const OPTIONS = '.editor-header button[aria-label="Options"]';
 const WINDOW = '.wpmozo-library';
 const CANVAS = 'iframe[name="editor-canvas"]';
 
@@ -119,6 +126,35 @@ const noFlash = ( rec ) =>
 	! rec.launcherText &&
 	rec.frames > 10 &&
 	rec.contentMax - rec.contentMin <= 1;
+
+// Pins or unpins the header icon (the user's `core` → `pinnedItems` preference).
+const setPinned = ( page, pinned ) =>
+	page.evaluate(
+		( [ area, pin ] ) =>
+			wp.data
+				.dispatch( 'core/interface' )
+				[ pin ? 'pinItem' : 'unpinItem' ]( 'core', area ),
+		[ AREA, pinned ]
+	);
+
+// Every item of the open Options menu whose text mentions the Pattern Library.
+const optionsMenuLibraryItems = ( page ) =>
+	page.evaluate(
+		( menu ) =>
+			[
+				...document.querySelectorAll(
+					`${ menu } [role^="menuitem"], ${ menu } button`
+				),
+			]
+				.filter( ( el, i, all ) => all.indexOf( el ) === i )
+				.map( ( el ) => ( {
+					text: el.innerText.replace( /\s+/g, ' ' ).trim(),
+					role: el.getAttribute( 'role' ),
+					controls: el.getAttribute( 'aria-controls' ),
+				} ) )
+				.filter( ( item ) => /pattern library/i.test( item.text ) ),
+		MENU
+	);
 
 const waitForWindow = ( page ) =>
 	page.waitForSelector( WINDOW, { timeout: 60000 } );
@@ -358,33 +394,47 @@ async function run( { cli, report } ) {
 			inserted
 		);
 
-		// 4. The Options menu items.
-		for ( const [ label, item ] of [
-			[
-				'"Open Pattern Library"',
-				'[role="menu"] button:has-text("Open Pattern Library")',
-			],
-			[ 'the sidebar\'s "Pattern Library"', MENU_ITEM ],
-		] ) {
+		// 4. The Options menu: one Pattern Library item, the icon's own (PL-D32), pinned and not.
+		for ( const pinned of [ true, false ] ) {
+			const label = pinned ? 'icon pinned' : 'icon unpinned';
+			if ( ! pinned ) {
+				await setPinned( page, false );
+				await page.waitForTimeout( 1000 );
+			}
 			const before = ( await state( page ) ).area;
-			await page
-				.locator( '.editor-header button[aria-label="Options"]' )
-				.click();
+			await page.locator( OPTIONS ).click();
+			await page.waitForSelector( MENU, { timeout: 30000 } );
+			const items = await optionsMenuLibraryItems( page );
+			report.check(
+				`${ label }: the Options menu has exactly one Pattern Library item, "Pattern Library", and no "Open Pattern Library"`,
+				items.length === 1 &&
+					items[ 0 ].text === 'Pattern Library' &&
+					items[ 0 ].controls === PANEL_ID &&
+					( pinned ? 1 : 0 ) ===
+						( await page.locator( ICON ).count() ),
+				{ items, icon: await page.locator( ICON ).count() }
+			);
 			await startRecording( page );
-			await page.locator( item ).first().click();
+			await page.locator( MENU_ITEM ).click();
 			await waitForWindow( page );
 			rec = await settle( page );
 			now = await state( page );
+			const menuOpen = await page.locator( MENU ).count();
 			report.check(
-				`Options menu ${ label } opens the window directly; the sidebar stays as it was`,
+				`${ label }: the Options menu item opens the window directly and closes the menu; the sidebar stays as it was`,
 				now.open &&
 					now.windows === 1 &&
 					now.area === before &&
+					! menuOpen &&
 					noFlash( rec ),
-				{ before, now, rec }
+				{ before, now, menuOpen, rec }
 			);
 			await page.keyboard.press( 'Escape' );
 			await waitForClosed( page );
+			if ( ! pinned ) {
+				await setPinned( page, true );
+				await page.waitForSelector( ICON, { timeout: 30000 } );
+			}
 		}
 
 		// 5. The placeholder block opens the same window and is replaced.
@@ -450,10 +500,8 @@ async function run( { cli, report } ) {
 		if ( narrowIcon ) {
 			await page.locator( ICON ).click();
 		} else {
-			await page
-				.locator( '.editor-header button[aria-label="Options"]' )
-				.click();
-			await page.locator( MENU_ITEM ).first().click();
+			await page.locator( OPTIONS ).click();
+			await page.locator( MENU_ITEM ).click();
 		}
 		await waitForWindow( page );
 		rec = await settle( page );
