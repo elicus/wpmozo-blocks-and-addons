@@ -1,6 +1,6 @@
 # Pattern Library handoff
 
-**Updated:** 2026-11-17 (one Pattern Library item in the Options menu, PL-D32). 2026-11-16: header icon opens the library directly, PL-D31. 2026-11-11: final validation. Read [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) first.
+**Updated:** 2026-11-18 (docs only: CDN deferred with a clean migration path, PL-D33; all-or-nothing premium entitlement, PL-D34). 2026-11-17: one Pattern Library item in the Options menu, PL-D32. 2026-11-16: header icon opens the library directly, PL-D31. 2026-11-11: final validation. Read [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) first.
 **Branches:**
 - Lite `dev/sunil` → `origin/dev/sunil`;
 - Pro `release/pattern-lib` → `origin/release/pattern-lib`.
@@ -29,6 +29,7 @@ Pro `dev/ayush` is off-limits.
 | Final validation | **Done 2026-11-11:** every suite on WordPress 7.1.3 / PHP 8.2 and 6.8.11 / PHP 7.4 with Lite `044cd2b` and Pro `9d4647b`: 245 of 248 checks on each; the 3 failures are block issue B-R6-2 ([testing.md](testing.md)) |
 | Header icon opens the library directly (PL-D31) | **Done 2026-11-16:** code `485e5e7`, `launcher` suite `21ae47c`. Owner request: no launcher sidebar step. `launcher` 21/21 on WordPress 7.1.3 / PHP 8.2 and 6.8.11 / PHP 7.4; `editor`, `matrix`, `wp-editor` (14/17, B-R6-2), `contract` and `upgrade` as at final validation ([testing.md](testing.md)) |
 | One library item in the Options menu (PL-D32) | **Done 2026-11-17:** code `5ca1e69`, suite `80f8a12`. "Open Pattern Library" removed after the owner's LocalWP test; "Pattern Library" (the icon's item) remains. `launcher` 23/23 on both versions, with a mutation proof (the old code fails exactly the two new checks); `editor`, `matrix`, `wp-editor` (14/17, B-R6-2), `contract` and `upgrade` as before ([testing.md](testing.md)) |
+| Premium entitlement rule and future CDN path (PL-D33, PL-D34) | **Recorded 2026-11-18, docs only; not implemented.** CDN integration is deferred to a later stage ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 11). Licence policy details and the proposed phases: Pro repository. Implementation waits for the owner's Phase 0 prompt |
 | Stage F, X-1, release | Not started |
 
 ## Session handover (2026-11-11, final validation done; R1–R6 complete)
@@ -53,6 +54,8 @@ The R1–R6 stages are complete. Before a Lite release:
 | Block issues | **ON HOLD (owner, 2026-11-11).** B-R4-3, B-R4-4 (the stray attribute is not released yet, so it is best fixed before the next Lite release), B-R6-1, B-R6-2 and the earlier block list in [known-issues.md](known-issues.md). None is fixed or changed (PL-D29). **Before the final Lite release: remind the owner of this list and get the owner's approval before separate-developer work starts** | Owner approval, then a separate developer |
 
 ## Next steps
+**Gate (2026-11-19):** the Phase 0 plan is approved; Phase 1 starts only on the owner's instruction. Lite's proposed part of Phase 1 is PL-D34 only (entitled-only rule, `published` optional, new expired-licence message, `rest` suite cases through a test-only source). The CDN target design is in [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 11 and is not built now. Licence details and the full plan: the Pro repository's `docs/pattern-library/licensing-architecture.md`.
+
 1. **Owner:** the release decisions above (card link, release version).
 2. **Owner: review the pilot designs** (below). Stage F waits for it. Production patterns follow [production-pattern-authoring.md](production-pattern-authoring.md) (written 2026-11-11 from a read-only audit). Before the first production pattern, a developer sets up its WordPress 6.8 authoring site once (section 9.1, still **[Untested]**) and records the result in [testing.md](testing.md). Section 6.6 lists the changes that need a developer.
 3. **Block issues: ON HOLD** (owner, 2026-11-11). Don't fix or change any of them. Before the final Lite release, remind the owner of the list in [known-issues.md](known-issues.md) (B-R4-4 is best fixed before that release) and ask for approval before a separate developer starts (PL-D29).

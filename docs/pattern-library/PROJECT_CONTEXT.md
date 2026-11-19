@@ -2,7 +2,7 @@
 
 **Start here.** Every Pattern Library task, by a person or an AI session, begins by reading this file, then [handoff.md](handoff.md) (current state and the exact next step), then the topic files the task touches. Nothing here replaces a topic file: each section names the file that holds the detail.
 
-**Updated:** 2026-11-11 (final validation). **Pro side:** the private Pro repository keeps its own `docs/pattern-library/PROJECT_CONTEXT.md` (Pro architecture, entitlement, licence and Pro security). This public file never repeats private Pro details.
+**Updated:** 2026-11-18 (docs only: future CDN migration path, PL-D33; all-or-nothing premium entitlement, PL-D34). 2026-11-11: final validation. **Pro side:** the private Pro repository keeps its own `docs/pattern-library/PROJECT_CONTEXT.md` (Pro architecture, entitlement, licence and Pro security). This public file never repeats private Pro details.
 
 ## 1. Objective and scope
 The Pattern Library lets editors browse ready-made sections in the block editor and insert them as normal, fully editable blocks.
@@ -67,7 +67,7 @@ Detail: [pattern-authoring.md](pattern-authoring.md), [cdn-and-asset-requirement
 
 - One folder per pattern: `patterns/<slug>/pattern.php` (metadata schema 1) and `content.php` (block markup with tokens).
 - Tokens `{{wpmozo:media|link|icon|text:<source>/<key>}}` are resolved on the server from each source's maps. A source may use another source's map keys (Pro patterns use Lite icons), so **released map keys are part of the contract: never remove or rename one**.
-- `Mozo_Bna_Library_Resolver::asset_url()` is the only place that builds asset URLs; a future CDN setting changes only that method.
+- `Mozo_Bna_Library_Resolver::asset_url()` is the only place that builds asset URLs. It builds both preview URLs and content-image URLs, so before a future CDN switch it must know which one it is building, to keep content images local (PL-D03). CDN integration is deferred; until then the code keeps a clean migration path (PL-D33, [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 11).
 - Images placed into page content are local plugin files and permanent once released (PL-D03): never rename or delete a released `media/` file.
 - Patterns are authored and exported on the minimum supported WordPress (6.8, PL-D18).
 
@@ -97,11 +97,12 @@ Detail: [handoff.md](handoff.md).
 - **Compatibility audit (2026-11-05):** findings in [known-issues.md](known-issues.md); stages R1–R6 in [roadmap.md](roadmap.md), **approved 2026-11-05**. R1 (library robustness) and R5 (reusable test suites) are done; R2 (Pro with an older Lite) is done (Lite `ee18c89`, `23d89d6`; Pro `b7cc761`); R3 (PHP floor and requirement headers) is done (Lite `28d184c`, `afc5e91`); R4 (contract surface freeze) is done (Lite tests `62a9bbf`; Pro `e79e4aa`); R6 (WordPress-future hardening: editor stylesheet, editor without the canvas iframe) is done (Lite `a54216c`, tests `4e9f12d`). Final validation is done (2026-11-11): every suite passes on both supported WordPress and PHP pairs except three checks that fail on one unused block import (B-R6-2). Release readiness: [handoff.md](handoff.md).
 - **2026-11-16:** the header icon opens the library window directly, with no sidebar step (PL-D31, Lite `485e5e7`; `launcher` suite).
 - **2026-11-17:** the Options menu has one library item, "Pattern Library"; "Open Pattern Library" was removed (PL-D32, Lite `5ca1e69`).
+- **2026-11-18 (docs only, not implemented):** CDN integration is deferred to a later stage, and the code must keep a clean migration path (PL-D33). Premium entitlement is all-or-nothing per source, with no release-date exceptions (PL-D34). Implementation waits for the owner's Phase 0 prompt.
 - **Regression suites:** `tools/pattern-library/tests/` (not shipped): library robustness, REST, editor gate, editor entry points, Lite/Pro combinations, in-place updates, contract surfaces, PHP parse; run them for every library change ([testing.md](testing.md)). Testing on another machine: start with [testing-handoff.md](testing-handoff.md); setup reference [testing-environment-setup.md](testing-environment-setup.md).
 - **Release blockers:** the `example.com` placeholder for the Lite-to-Pro card link; provisional pattern `since` values; `n.e.x.t` tags; Pro's minimum-Lite handling (Pro repository).
 
 ## 10. Key decisions (with reasons)
-Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D32).
+Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D34).
 
 | ID | Decision | Why |
 |---|---|---|
@@ -117,6 +118,8 @@ Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D32).
 | PL-D29 | Pattern Library work never changes block code; block issues are recorded for a separate developer | Owner rule: no unrelated block changes |
 | PL-D31 | The header icon opens the library window directly; the launcher sidebar never shows and the editor's sidebar stays as it was | Owner request: one click instead of two, with public APIs only |
 | PL-D32 | The Options menu has one library item, "Pattern Library" (the icon's); "Open Pattern Library" was removed | Owner request: both opened the same window |
+| PL-D33 | CDN integration is deferred; asset URLs, source configuration and pattern loading stay centralised so a later move to a CDN or remote source changes configuration, not the library UI or insert flow; Lite makes no external requests; premium content is never public | Owner requirement: easy later migration without premature infrastructure |
+| PL-D34 | Premium entitlement is all-or-nothing per source: only `entitled` allows inserting; no release-date exceptions; previews always available (not implemented yet) | Owner's final licensing policy (details in the Pro repository) |
 
 ## 11. Known issues and pending work
 - Known issues (library and blocks): [known-issues.md](known-issues.md).
