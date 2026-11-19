@@ -49,7 +49,7 @@ Requirements: Node with this plugin's `node_modules` (Playwright, Google Chrome)
 4. **Build the content file:** `php tools/pattern-library/build-content.php --source=<lite|pro> --library=<source library folder> --lite-library=<Lite includes/library> --slug=<slug> --in=<out.html>`.
    - It replaces values with tokens and checks the round trip.
    - It stops on any value it can't map (an image outside the media maps, a site URL, an unknown link key).
-5. **Write `pattern.php`** (schema 1; see the existing patterns). Set `revision`, `since` and, for Pro, `published`.
+5. **Write `pattern.php`** (schema 1; see the existing patterns). Set `revision`, `since` and, optionally, `published` (information only; never used for access, PL-D34).
 6. **Gate and previews:** `node tools/pattern-library/gate.cjs <site-url> <source/slug>… --log=<file.json> --previews=lite:<Lite library>,pro:<Pro library>`.
    - It writes both preview images, named with the pattern's `revision`.
    - Put the full preview's height into `pattern.php`.

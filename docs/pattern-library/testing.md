@@ -621,3 +621,51 @@ With Lite 1.8.0 or older, Pro's charts can't draw either way; the check that wou
 - **The 6 `wp-editor` failures** are block issue B-R6-2 (on hold), as before.
 - **Lint and build:** `lint-js` on the changed files passed; `npm run build` passed (`build/library/index.js` 28.7 KB, script dependencies unchanged).
 - **Not run:** the PHP-only suites, because no PHP changed. The menu change is not checked on the owner's LocalWP site; test T4b in the testing handoff covers it.
+
+## Phase 1: premium entitlement rule (PL-D34), 2026-11-19
+Lite: only `entitled` allows inserting a premium pattern; `entitlement()` ignores a `cutoff`; `published` is optional; the expired-licence message asks for a renewal. The add-on's licence hardening in the same phase is tested in the Pro repository.
+
+### Suite changes
+- **New suite `entitlement`.** It uses a test-only premium source, `testpro`, that the driver registers while a suite has stored its answer (`set&entitlement=<JSON>`). The source has two patterns: one with a `published` date (2020-01-01) and one without. Cases:
+  - entitled;
+  - entitled with an old `cutoff`;
+  - expired with a `cutoff` after the pattern's date (the old rule);
+  - expired without a `cutoff`;
+  - revoked;
+  - not activated;
+  - an unknown state, a throwing callback and a non-array answer.
+
+  In every case it checks the catalog state and reason, the content route for administrator, editor and author (403 `wpmozo_library_locked`, no content), thumbnails and previews listed and served, no markup and no `cutoff` in the catalog, free patterns unchanged for every role, and a page made of a premium and a free pattern (unchanged, shown, editable by an editor through REST, published again). It ends with PHP notices and network checks.
+- **Driver changes:** the `rest` action reads a query string in the route as request parameters (`?context=edit`); the `set` action takes `entitlement`.
+- **Jest:** `src/library/test/messages.test.js` (5 tests): the expired-licence message asks for a renewal to insert, says patterns on pages keep working, never mentions release dates, and the other licence messages are unchanged. `npx wp-scripts test-unit-js src/library`: 23/23.
+
+### Mutation proofs (WordPress 7.1.3 / PHP 8.2, `--pro=none`; throwaway copies outside both repositories)
+| Run | Result | What failed |
+|---|---|---|
+| `entitlement --lite=bdbce36` (before PL-D34) | 32/58 | The pattern without `published` is refused (`missing_published`); with an expired licence and a later `cutoff`, `zz-dated` stays available and is delivered (the old rule) |
+| `entitlement` on a broken copy: previews hidden when locked, free patterns locked when the premium source is not entitled, page content emptied when not entitled | 39/58 | "thumbnails and previews" in all 7 locked states, "free patterns unchanged" in all 7 non-entitled states, "existing page unchanged…" in the 5 states that mutant targets |
+| Jest `messages.test.js` against the old `messages.js` | 2/5 | The 3 new message checks; the 2 checks of unchanged messages pass, as they should |
+
+### Results
+Lite plugin code `b54b9de`, suites `0286e2c`; Pro `dca3c1b` (the add-on's Phase 1 change). Run 2026-11-19.
+
+| Suite | WordPress 7.1.3 / PHP 8.2 | WordPress 6.8.11 / PHP 7.4 |
+|---|---|---|
+| `php-parse` (every PHP file of both plugins on PHP 7.4) | 2/2 | (one run covers both) |
+| `robustness` | 26/26 | 26/26 |
+| `rest` | 17/17 | 17/17 |
+| `entitlement` (new) | 58/58 | 58/58 |
+| `contract` | 26/26 | 26/26 |
+| `editor` | 10/10 | 10/10 |
+| `launcher` | 23/23 | 23/23 |
+| `wp-editor` | 14/17 | 14/17 |
+| `upgrade` | 28/28 | 28/28 |
+| `matrix` | 109/109 | Not run |
+| Pro `licence` (Pro repository) | 28/28 | 28/28 |
+
+- **The 3 `wp-editor` failures** are block issue B-R6-2 (on hold), as at final validation.
+- **`upgrade` has 28 checks instead of 30:** these runs didn't pass `--mutation=1`, which adds the two saved-output mutation proofs. No check was removed.
+- **Jest:** 23/23.
+- **Lint and build:** `lint-js` passed on the changed files; `npm run build` passed (the bundle carries the new message).
+- **PHP checks:** PHPCS WordPress is clean on the two changed library files; `php -l` passed on PHP 8.4.
+- **Network:** nothing left the machine in any run, and no library request made an outbound call.

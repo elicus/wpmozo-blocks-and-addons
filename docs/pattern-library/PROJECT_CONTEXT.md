@@ -97,7 +97,12 @@ Detail: [handoff.md](handoff.md).
 - **Compatibility audit (2026-11-05):** findings in [known-issues.md](known-issues.md); stages R1–R6 in [roadmap.md](roadmap.md), **approved 2026-11-05**. R1 (library robustness) and R5 (reusable test suites) are done; R2 (Pro with an older Lite) is done (Lite `ee18c89`, `23d89d6`; Pro `b7cc761`); R3 (PHP floor and requirement headers) is done (Lite `28d184c`, `afc5e91`); R4 (contract surface freeze) is done (Lite tests `62a9bbf`; Pro `e79e4aa`); R6 (WordPress-future hardening: editor stylesheet, editor without the canvas iframe) is done (Lite `a54216c`, tests `4e9f12d`). Final validation is done (2026-11-11): every suite passes on both supported WordPress and PHP pairs except three checks that fail on one unused block import (B-R6-2). Release readiness: [handoff.md](handoff.md).
 - **2026-11-16:** the header icon opens the library window directly, with no sidebar step (PL-D31, Lite `485e5e7`; `launcher` suite).
 - **2026-11-17:** the Options menu has one library item, "Pattern Library"; "Open Pattern Library" was removed (PL-D32, Lite `5ca1e69`).
-- **2026-11-18 (docs only, not implemented):** CDN integration is deferred to a later stage, and the code must keep a clean migration path (PL-D33). Premium entitlement is all-or-nothing per source, with no release-date exceptions (PL-D34). Implementation waits for the owner's Phase 0 prompt.
+- **2026-11-18 (docs only):** CDN integration is deferred to a later stage, and the code must keep a clean migration path (PL-D33). Premium entitlement is all-or-nothing per source, with no release-date exceptions (PL-D34).
+- **2026-11-19, Phase 1:**
+  - PL-D34 is implemented (`b54b9de`): only `entitled` inserts, `published` is optional, and there is a new expired-licence message.
+  - New `entitlement` suite (`0286e2c`). Every suite passes on both supported WordPress and PHP pairs, apart from the known B-R6-2 checks ([testing.md](testing.md)).
+  - The add-on's licence hardening is recorded in the Pro repository.
+  - Phase 2 waits for the owner's review.
 - **Regression suites:** `tools/pattern-library/tests/` (not shipped): library robustness, REST, editor gate, editor entry points, Lite/Pro combinations, in-place updates, contract surfaces, PHP parse; run them for every library change ([testing.md](testing.md)). Testing on another machine: start with [testing-handoff.md](testing-handoff.md); setup reference [testing-environment-setup.md](testing-environment-setup.md).
 - **Release blockers:** the `example.com` placeholder for the Lite-to-Pro card link; provisional pattern `since` values; `n.e.x.t` tags; Pro's minimum-Lite handling (Pro repository).
 
@@ -119,7 +124,7 @@ Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D34).
 | PL-D31 | The header icon opens the library window directly; the launcher sidebar never shows and the editor's sidebar stays as it was | Owner request: one click instead of two, with public APIs only |
 | PL-D32 | The Options menu has one library item, "Pattern Library" (the icon's); "Open Pattern Library" was removed | Owner request: both opened the same window |
 | PL-D33 | CDN integration is deferred; asset URLs, source configuration and pattern loading stay centralised so a later move to a CDN or remote source changes configuration, not the library UI or insert flow; Lite makes no external requests; premium content is never public | Owner requirement: easy later migration without premature infrastructure |
-| PL-D34 | Premium entitlement is all-or-nothing per source: only `entitled` allows inserting; no release-date exceptions; previews always available (not implemented yet) | Owner's final licensing policy (details in the Pro repository) |
+| PL-D34 | Premium entitlement is all-or-nothing per source: only `entitled` allows inserting; no release-date exceptions; previews always available (implemented 2026-11-19, Phase 1) | Owner's final licensing policy (details in the Pro repository) |
 
 ## 11. Known issues and pending work
 - Known issues (library and blocks): [known-issues.md](known-issues.md).

@@ -245,7 +245,7 @@ None of the four pilots has been released: their `since` values are provisional,
 | Thumbnail only | Raise `revision`, run the gate with `--previews`, update `pattern.php` | The file name carries the revision |
 | Retire | `'status' => 'deprecated'` (optionally `'replaced_by' => 'pro/<new-slug>'`). **Never reuse the slug** | Deprecated and hidden patterns leave the catalog (`class-mozo-bna-library-rest.php:117`). `hidden` also makes the content route return 404 (line 204). `replaced_by` is stored but not shown anywhere yet |
 | Old previews | Unused once `pattern.php` points at the new revision. Before any CDN exists they can be removed (a recommendation, not a recorded decision). Once a CDN is used, the retention rule is still open (CDN doc U6) | Nothing in saved pages uses previews |
-| `since`, `published` | Never change them after release. `published` decides which Pro patterns an expired licence keeps (licence phase 2) | `is_entitled()`, `class-mozo-bna-library.php:360` |
+| `since`, `published` | Never change them after release. `published` is information only: access never depends on it (PL-D34) | `normalise()`, `class-mozo-bna-library-registry.php` |
 
 ---
 
@@ -263,7 +263,7 @@ None of the four pilots has been released: their `since` values are provisional,
 | `access` | yes | `'free'` in Lite, `'pro'` in Pro (`access_mismatch`) |
 | `thumbnail` | yes | `{ file, width, height }` (`invalid_thumbnail`) |
 | `since` | yes | `x.y` or `x.y.z`: the first plugin release that ships the pattern (`invalid_since`) |
-| `published` | Pro: yes | `YYYY-MM-DD`: the date of first release (`missing_published`) |
+| `published` | No | `YYYY-MM-DD`: the date of first release; information only, never used for access (PL-D34) |
 | `description` | no | Shown on the card and in the preview |
 | `tags` | no | Ids from Lite `data/tags.php`. **Unknown tags are dropped silently** (no error) |
 | `keywords` | no | Search words, each wrapped in `__()` |
@@ -508,7 +508,7 @@ For an image change: add `media/<key>.2.webp`, change the map entry's `file`, ke
 |---|---|---|
 | Folder | `wpmozo-blocks-and-addons/includes/library/` | `wpmozo-blocks-and-addons-pro/includes/library/` |
 | `access` | `'free'` | `'pro'` |
-| `published` | Optional (not used) | **Required**, `YYYY-MM-DD`, first release date; never changed |
+| `published` | Optional (information only) | Optional (information only), `YYYY-MM-DD`, first release date; never changed |
 | `since` | Lite version (pilot: `1.10.0`, provisional) | Pro version (pilot: `1.1.0`, provisional) |
 | Text domain | `wpmozo-blocks-and-addons` | `wpmozo-blocks-and-addons-pro` |
 | Blocks allowed | Core and **Lite** blocks only; a Pro block would be `block_missing` on free sites | Core, Lite and Pro blocks |

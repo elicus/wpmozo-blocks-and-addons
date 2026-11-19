@@ -121,9 +121,9 @@ add_action( 'wpmozo_bna_library_register_sources', function ( $registry ) {
 
 **Entitlement callback:**
 - **Called with:** `array( 'user_id' => int )`.
-- **Returns:** `array( 'state' => 'entitled'|'license_inactive'|'license_expired'|'license_revoked', 'cutoff' => 'YYYY-MM-DD'|null, 'manage' => bool )`.
+- **Returns:** `array( 'state' => 'entitled'|'license_inactive'|'license_expired'|'license_revoked', 'manage' => bool )`. Any other key is ignored (an older add-on's `cutoff` included).
 - **Called once per request.** Anything else, or an exception, locks the source (`entitlement_unavailable`).
-- **Expired licences:** with `license_expired` and a `cutoff`, patterns whose `published` date is on or before the cutoff stay available.
+- **Only `entitled` allows inserting** (PL-D34, since 2026-11-19). Every other state locks every pattern of the source, whatever its `published` date; previews stay available. Until 2026-11-18 an expired state with a `cutoff` kept older patterns available; that rule is removed.
 
 **Source folder:**
 
@@ -138,7 +138,7 @@ data/media.php, links.php, icons.php, demo-text.php   central maps for tokens
 Lite's own folder is `includes/library/`. Its central maps also hold the categories and tags shared by every source (`data/categories.php`, `data/tags.php`). Sources can add categories but never override them.
 
 **Metadata, schema 1:**
-- **Required:** `schema`, `slug` (equals the folder name), `revision`, `title`, `category`, `access` (must equal the source's), `thumbnail { file, width, height }`, `since`. `published` is also required for `pro`.
+- **Required:** `schema`, `slug` (equals the folder name), `revision`, `title`, `category`, `access` (must equal the source's), `thumbnail { file, width, height }`, `since`. `published` (`YYYY-MM-DD`) is optional information for every source and never used for access (PL-D34).
 - **Optional:** `description`, `tags`, `keywords`, `preview`, `requires { plugins, lite, wp }`, `layout`, `order`, `status` (`active`/`deprecated`/`hidden`), `replaced_by`, `type`.
 - **Invalid metadata** skips the pattern and is reported in the catalog's `issues` (administrators only).
 - **Newer schemas** are counted in `newer_schema` and hidden.
