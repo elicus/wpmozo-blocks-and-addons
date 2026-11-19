@@ -427,10 +427,8 @@ final class Mozo_Bna_Library_Registry {
 		if ( empty( $meta['since'] ) || ! is_string( $meta['since'] ) || ! preg_match( '/^\d+\.\d+(\.\d+)?$/', $meta['since'] ) ) {
 			return $this->issue( $id, 'invalid_since' );
 		}
+		// Optional information only; never used for access (PL-D34).
 		$published = isset( $meta['published'] ) && is_string( $meta['published'] ) && preg_match( '/^\d{4}-\d{2}-\d{2}$/', $meta['published'] ) ? $meta['published'] : null;
-		if ( 'pro' === $access && null === $published ) {
-			return $this->issue( $id, 'missing_published' );
-		}
 
 		$tags = array();
 		if ( isset( $meta['tags'] ) && is_array( $meta['tags'] ) ) {

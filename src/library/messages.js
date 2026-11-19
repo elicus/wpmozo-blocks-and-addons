@@ -41,7 +41,7 @@ export function reasonMessage( reason, manage = false ) {
 				  );
 		case 'license_expired':
 			return __(
-				'Your WPMozo Pro licence has expired. Renew it to use patterns released after it expired.',
+				'Your WPMozo Pro licence has expired. Renew it to insert Pro patterns. Pro patterns already on your pages keep working.',
 				'wpmozo-blocks-and-addons'
 			);
 		case 'license_revoked':

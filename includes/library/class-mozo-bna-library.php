@@ -257,7 +257,7 @@ final class Mozo_Bna_Library {
 
 		if ( 'pro' === $pattern['access'] ) {
 			$entitlement = $this->entitlement( $pattern['source'] );
-			if ( ! $this->is_entitled( $entitlement, $pattern ) ) {
+			if ( ! $this->is_entitled( $entitlement ) ) {
 				$locked    = true;
 				$reasons[] = $entitlement['state'];
 			}
@@ -316,9 +316,10 @@ final class Mozo_Bna_Library {
 	 * Entitlement state of a premium source for the current user, asked once per request.
 	 *
 	 * Fails closed: a missing callback, an exception or an unknown answer locks the source.
+	 * Any other key in the answer (such as a `cutoff` date from an older add-on) is ignored.
 	 *
 	 * @param string $source Source id.
-	 * @return array { state: string, cutoff: string|null, manage: bool }
+	 * @return array { state: string, manage: bool }
 	 */
 	public function entitlement( $source ) {
 		if ( isset( $this->entitlements[ $source ] ) ) {
@@ -326,7 +327,6 @@ final class Mozo_Bna_Library {
 		}
 		$state = array(
 			'state'  => 'entitlement_unavailable',
-			'cutoff' => null,
 			'manage' => false,
 		);
 		$data  = $this->registry()->get_source( $source );
@@ -340,7 +340,6 @@ final class Mozo_Bna_Library {
 			if ( is_array( $answer ) && isset( $answer['state'] ) && in_array( $answer['state'], $known, true ) ) {
 				$state = array(
 					'state'  => $answer['state'],
-					'cutoff' => isset( $answer['cutoff'] ) && is_string( $answer['cutoff'] ) && preg_match( '/^\d{4}-\d{2}-\d{2}$/', $answer['cutoff'] ) ? $answer['cutoff'] : null,
 					'manage' => ! empty( $answer['manage'] ),
 				);
 			}
@@ -350,21 +349,15 @@ final class Mozo_Bna_Library {
 	}
 
 	/**
-	 * Whether a pattern is covered by the entitlement. After expiry, patterns first
-	 * published on or before the cutoff date stay available.
+	 * Whether a premium source allows inserting its patterns (PL-D34): only `entitled` does.
+	 * Every other state locks every pattern of the source, whatever the pattern's `published`
+	 * date. Previews are not affected (the catalog lists locked patterns with their images).
 	 *
 	 * @param array $entitlement Entitlement state.
-	 * @param array $pattern     Pattern metadata.
 	 * @return bool
 	 */
-	private function is_entitled( $entitlement, $pattern ) {
-		if ( 'entitled' === $entitlement['state'] ) {
-			return true;
-		}
-		return 'license_expired' === $entitlement['state']
-			&& null !== $entitlement['cutoff']
-			&& null !== $pattern['published']
-			&& $pattern['published'] <= $entitlement['cutoff'];
+	private function is_entitled( $entitlement ) {
+		return 'entitled' === $entitlement['state'];
 	}
 
 	/**
