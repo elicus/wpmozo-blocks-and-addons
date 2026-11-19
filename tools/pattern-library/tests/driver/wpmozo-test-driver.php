@@ -110,6 +110,70 @@ if ( ! empty( $_GET['wpmozo_test_api2'] ) ) {
 }
 
 /**
+ * Write the files of the test-only premium source once: two patterns, one with a `published` date
+ * and one without, each with a thumbnail and a preview image.
+ *
+ * @param string $dir Source folder.
+ */
+function wpmozo_test_premium_files( $dir ) {
+	$png = base64_decode( 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==' ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions
+	$patterns = array(
+		'zz-dated'   => "'published' => '2020-01-01', ",
+		'zz-undated' => '',
+	);
+	foreach ( $patterns as $slug => $published ) {
+		$folder = $dir . 'patterns/' . $slug;
+		if ( file_exists( $folder . '/content.php' ) ) {
+			continue;
+		}
+		wp_mkdir_p( $folder );
+		wp_mkdir_p( $dir . 'previews' );
+		// phpcs:disable WordPress.WP.AlternativeFunctions -- test-only fixture files.
+		file_put_contents( $folder . '/pattern.php', "<?php\ndefined( 'ABSPATH' ) || exit;\nreturn array( 'schema' => 1, 'slug' => '{$slug}', 'revision' => 1, 'title' => 'Test premium {$slug}', 'category' => 'features', 'access' => 'pro', {$published}'since' => '1.0.0', 'thumbnail' => array( 'file' => 'previews/{$slug}.1.png', 'width' => 1, 'height' => 1 ), 'preview' => array( 'file' => 'previews/{$slug}-full.1.png', 'width' => 1, 'height' => 1 ) );\n" );
+		file_put_contents( $folder . '/content.php', "<?php\ndefined( 'ABSPATH' ) || exit;\nreturn '<!-- wp:paragraph --><p>WPMozo test premium pattern {$slug}</p><!-- /wp:paragraph -->';\n" );
+		file_put_contents( $dir . 'previews/' . $slug . '.1.png', $png );
+		file_put_contents( $dir . 'previews/' . $slug . '-full.1.png', $png );
+		// phpcs:enable
+	}
+}
+
+// A test-only premium source `testpro` whose entitlement answer the suites set (`set&entitlement=`),
+// so every entitlement state can be checked without a real add-on. Registered only while the
+// answer is stored.
+if ( false !== get_option( 'wpmozo_test_entitlement', false ) ) {
+	add_action(
+		'wpmozo_bna_library_register_sources',
+		function ( $registry ) {
+			$dir = WP_CONTENT_DIR . '/wpmozo-test-source/';
+			wpmozo_test_premium_files( $dir );
+			$registry->register_source(
+				'testpro',
+				array(
+					'contract'    => 1,
+					'label'       => 'Test premium',
+					'version'     => '1.0.0',
+					'path'        => $dir,
+					'url'         => content_url( '/wpmozo-test-source/' ),
+					'access'      => 'pro',
+					'entitlement' => function () {
+						$answer = get_option( 'wpmozo_test_entitlement' );
+						$mode   = is_array( $answer ) && isset( $answer['mode'] ) ? $answer['mode'] : '';
+						if ( 'throw' === $mode ) {
+							throw new Exception( 'test entitlement failure' );
+						}
+						if ( 'garbage' === $mode ) {
+							return 'entitled';
+						}
+						return $answer;
+					},
+					'links'       => array( 'license' => admin_url( 'options-general.php' ) ),
+				)
+			);
+		}
+	);
+}
+
+/**
  * User id for a role keyword; test users are created on first use.
  *
  * @param string $who 'admin' (user 1), 'anon', or a role name.
@@ -170,7 +234,17 @@ add_action(
 
 			case 'rest':
 				wp_set_current_user( wpmozo_test_user( sanitize_key( isset( $_GET['as'] ) ? $_GET['as'] : 'anon' ) ) );
-				$request = new WP_REST_Request( 'GET', wp_unslash( isset( $_GET['route'] ) ? $_GET['route'] : '/' ) );
+				// A query string in the route becomes request parameters (for example `?context=edit`).
+				$route = wp_unslash( isset( $_GET['route'] ) ? $_GET['route'] : '/' );
+				$query = array();
+				if ( false !== strpos( $route, '?' ) ) {
+					list( $route, $query_string ) = explode( '?', $route, 2 );
+					wp_parse_str( $query_string, $query );
+				}
+				$request = new WP_REST_Request( 'GET', $route );
+				if ( $query ) {
+					$request->set_query_params( $query );
+				}
 				if ( ! empty( $_GET['inm'] ) ) {
 					$request->set_header( 'If-None-Match', wp_unslash( $_GET['inm'] ) );
 				}
@@ -207,6 +281,11 @@ add_action(
 				if ( isset( $_GET['licence'] ) ) {
 					// A test value standing for a recorded Pro activation (the Pro entitlement reads this site option).
 					'' === $_GET['licence'] ? delete_site_option( 'wpmozo_blocks_and_addons_license_key' ) : update_site_option( 'wpmozo_blocks_and_addons_license_key', 'wpmozo-test-activation' );
+				}
+				if ( isset( $_GET['entitlement'] ) ) {
+					// The answer of the test-only premium source (JSON), or '' to remove that source.
+					$answer = json_decode( wp_unslash( $_GET['entitlement'] ), true );
+					'' === $_GET['entitlement'] ? delete_option( 'wpmozo_test_entitlement' ) : update_option( 'wpmozo_test_entitlement', is_array( $answer ) ? $answer : array() );
 				}
 				if ( isset( $_GET['flush'] ) ) {
 					global $wpdb;

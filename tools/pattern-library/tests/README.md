@@ -42,6 +42,7 @@ Exit code 0 when every check passed, 1 when any failed. Each run writes a JSON r
 | `robustness` | Library robustness (roadmap R1): the catalog cache follows Lite, WordPress, allowed-HTML and other sources' map changes; a missing Lite map key reports `lite_outdated`; broken pattern, content and map files are isolated and reported; catalog and content route agree for every pattern and role; protection without a licence; no PHP notices; no network | ~5 min |
 | `editor` | Every available pattern through the repository's quality gate (`tools/pattern-library/gate.cjs`): insert through the library, valid after save and reload, front end at three widths, editability (PL-D22) | ~10 min |
 | `rest` | REST permissions per role, licence lock, links and issues only for the right users, no markup or licence value in the catalog, cache headers and ETag, the library switch, real HTTP (no nonce, query-string route, JSONP, direct requests to pattern and map files, the editor's nonce) | ~4 min |
+| `entitlement` | Premium entitlement (PL-D34) through the driver's test-only premium source `testpro` (one pattern with a `published` date, one without): only `entitled` allows inserting; expired (with and without an old `cutoff`), revoked, not activated, an unknown state, a throwing callback and a non-array answer lock both patterns for every role, with no content in the refusal; `published` is optional; thumbnails and previews are listed and served in every state; the catalog has no markup and no cutoff; free patterns are unchanged for every role; a page made of a premium and a free pattern stays unchanged, is shown, stays editable by an editor and publishes again; no PHP notices; no network. Runs with or without Pro | ~3 min |
 | `matrix` | Lite/Pro combinations, one site each, with expected outcomes. With a Lite that has no shared editor script (`lite-before-contract`, `lite-1.8.0`): Pro blocks work while Lite's blocks are on, then the same site with every Lite block off must show Pro blocks as unsupported, warn, and save edits without changing them (`--only=<name,…>`; `--older-lite=`, `--oldest-lite=`, `--older-pro=` choose the old copies, defaults `b91a5ec`, `zip:release/1.8.0`, `ef1909d`) | ~20 min |
 | `upgrade` | In-place updates in both orders on one running site, licence and plugin deactivation, Lite deactivated under Pro (`--from-lite=`, `--from-pro=`; `--mutation=1` adds the saved-output mutation proof; `--only=lite-first` or `pro-first`) | ~15 min |
 | `contract` | Roadmap R4: every shared surface in `lib/surface.cjs` exists and behaves (runtime, editor, settings page, source), including blocks add-ons insert and their saved markup, block on/off for add-on blocks and an add-on's `dynamic-style.php`; Pro uses no other Lite surface, registers no handle under a Lite name and defines the constants Lite reads; Pro's editor guard and start-up check cover every Lite global and helper method Pro uses. Checks that need Pro are skipped with `--pro=none` | ~4 min |
@@ -56,7 +57,7 @@ Typical runs:
 
 ```bash
 # Everything for a change in Lite, against the current Pro:
-node tools/pattern-library/tests/run.cjs php-parse robustness rest contract editor launcher
+node tools/pattern-library/tests/run.cjs php-parse robustness rest entitlement contract editor launcher
 # Version combinations and updates (slow):
 node tools/pattern-library/tests/run.cjs matrix upgrade
 # The minimum supported WordPress and PHP:
@@ -70,6 +71,7 @@ node tools/pattern-library/tests/run.cjs robustness --lite=<commit before the fi
 - `lib/net-guard.cjs` is preloaded into the Playground process: every non-loopback connection or DNS lookup is blocked and logged (`net.log`).
 - `driver/wpmozo-test-driver.php` is mounted as a must-use plugin. It works only when the runner defines `WPMOZO_TEST_DRIVER` and the request comes from the loopback address. It blocks outbound WordPress HTTP, records fatal errors on the host (a site that can't boot loses its debug log), and gives the suites test endpoints: REST as a role, options, a licence test value, plugin activation, posts, cache keys.
 - Licence states use a test value in the site option that a real activation writes. No real licence key is ever used.
+- Other entitlement states use a test-only premium source, `testpro`, that the driver registers only while a suite has stored its answer (`set&entitlement=<JSON>`; `''` removes it). Its pattern files are written into the site's `wp-content/wpmozo-test-source/`.
 
 ## Writing a suite
 - A suite is `suites/<name>.cjs` exporting `{ description, run( { cli, report } ) }`.
