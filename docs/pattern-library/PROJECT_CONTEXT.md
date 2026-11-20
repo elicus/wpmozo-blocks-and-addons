@@ -103,7 +103,15 @@ Detail: [handoff.md](handoff.md).
   - New `entitlement` suite (`0286e2c`). Every suite passes on both supported WordPress and PHP pairs, apart from the known B-R6-2 checks ([testing.md](testing.md)).
   - The add-on's licence hardening is recorded in the Pro repository.
   - Phase 2 waits for the owner's review.
-- **2026-11-20 (docs only, not approved):** audit of the owner's proposal to download premium content on Insert, with a licence-status check when the library opens, JSON content and XML metadata. The flow fits the existing catalog and content requests; Lite stays network-free. Recommendations: a source provider in contract 1, declared metadata with a checksum, XML edited and compiled to a JSON index, a new 503 "unreachable" state ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 12).
+- **2026-11-20 (docs only, not approved):** audit of the owner's proposal to download premium content on Insert, with a licence-status check when the library opens, JSON content and XML metadata. The flow fits the existing catalog and content requests; Lite stays network-free. Recommendations: a source provider in contract 1, declared metadata with a checksum, XML edited and compiled to a JSON index, a new 503 "unreachable" state ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 12). The same day, the owner's clarifications were added:
+  - a fresh licence check on every window open, so the window refetches the catalog each time;
+  - only a verified active licence inserts;
+  - every download is checked remotely;
+  - XML and JSON source files in both repositories;
+  - Lite content stays bundled;
+  - the UI and compatibility checks stay unchanged.
+
+  Still waiting for the owner's approval.
 - **Regression suites:** `tools/pattern-library/tests/` (not shipped): library robustness, REST, editor gate, editor entry points, Lite/Pro combinations, in-place updates, contract surfaces, PHP parse; run them for every library change ([testing.md](testing.md)). Testing on another machine: start with [testing-handoff.md](testing-handoff.md); setup reference [testing-environment-setup.md](testing-environment-setup.md).
 - **Release blockers:** the `example.com` placeholder for the Lite-to-Pro card link; provisional pattern `since` values; `n.e.x.t` tags; Pro's minimum-Lite handling (Pro repository).
 

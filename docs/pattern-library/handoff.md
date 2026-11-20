@@ -31,7 +31,15 @@ Pro `dev/ayush` is off-limits.
 | One library item in the Options menu (PL-D32) | **Done 2026-11-17:** code `5ca1e69`, suite `80f8a12`. "Open Pattern Library" removed after the owner's LocalWP test; "Pattern Library" (the icon's item) remains. `launcher` 23/23 on both versions, with a mutation proof (the old code fails exactly the two new checks); `editor`, `matrix`, `wp-editor` (14/17, B-R6-2), `contract` and `upgrade` as before ([testing.md](testing.md)) |
 | Premium entitlement rule and future CDN path (PL-D33, PL-D34) | Recorded 2026-11-18. CDN integration is deferred to a later stage ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 11). Licence policy details and phases: Pro repository |
 | Phase 1: PL-D34 implemented | **Done 2026-11-19:** code `b54b9de`, suites `0286e2c`. Only `entitled` inserts a premium pattern; `published` is optional; there is a new expired-licence message. The new `entitlement` suite passes 58/58, and every suite passes on WordPress 7.1.3 / PHP 8.2 and 6.8.11 / PHP 7.4 apart from B-R6-2, with mutation proofs ([testing.md](testing.md), Phase 1). **Phase 2 waits for the owner's review** |
-| Remote-delivery audit (owner proposal: premium content downloaded on Insert, licence status when the library opens, JSON content, XML metadata) | **Done 2026-11-20, docs only; not approved.** Engine findings and recommendations: [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 12 (Lite stays network-free, provider in contract 1, declared metadata, XML edited and compiled to a JSON index, the 503 state). Licence protocol, backend contract and owner decisions: the Pro repository's `docs/pattern-library/remote-delivery-audit.md`. **No implementation before the owner's approval and the backend's answers** |
+| Remote-delivery audit (owner proposal: premium content downloaded on Insert, licence status when the library opens, JSON content, XML metadata) | **Done 2026-11-20, docs only (`bc1591f`); revised the same day with the owner's clarifications:**
+- a fresh status check on every window open, with nothing cached;
+- only a verified active licence inserts; errors and timeouts mean Preview only;
+- every download checked remotely;
+- XML and JSON source files with a compiled JSON catalog;
+- premium content out of the add-on zip; Lite's bundled;
+- the UI and compatibility checks unchanged.
+
+**Not yet approved.** Engine findings and recommendations: [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 12 (Lite stays network-free, provider in contract 1, declared metadata, XML edited and compiled to a JSON index, the 503 state). Licence protocol, backend contract and owner decisions: the Pro repository's `docs/pattern-library/remote-delivery-audit.md`. **No implementation before the owner's approval and the backend's answers** |
 | Stage F, X-1, release | Not started |
 
 ## Session handover (2026-11-11, final validation done; R1–R6 complete)
