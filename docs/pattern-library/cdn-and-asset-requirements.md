@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | Approved requirement, 2026-10-31; revised the same day after review. Future-migration addendum approved 2026-11-18 ([section 11](#11-future-cdn-migration-owner-requirement-2026-11-18), PL-D33). The local resolver exists (LPL-2); **the CDN switch, a remote catalog and remote content are not implemented** and are not part of the current implementation phases. Planning constraint for the Pattern Library. **2026-11-20:** an owner proposal to fetch premium content on Insert has been audited ([section 12](#12-owner-proposal-2026-11-20-premium-content-fetched-on-insert-approved-not-implemented)); approved 2026-11-20 (PL-D35), not implemented. |
+| Status | Approved requirement, 2026-10-31; revised the same day after review. Future-migration addendum approved 2026-11-18 ([section 11](#11-future-cdn-migration-owner-requirement-2026-11-18), PL-D33). The local resolver exists (LPL-2); **the CDN switch, a remote catalog and remote content are not implemented** and are not part of the current implementation phases. Planning constraint for the Pattern Library. **2026-11-20:** an owner proposal to fetch premium content on Insert has been audited ([section 12](#12-owner-proposal-2026-11-20-premium-content-fetched-on-insert-approved-not-implemented)); approved 2026-11-20 (PL-D35), not implemented. **PL-D36 (2026-11-20):** the remaining remote-delivery work, including the engine parts in section 12, belongs to Ayush and starts only on the owner's approval. Premium patterns keep their bundled content until then. |
 | Applies to | Pattern Library in Lite (`wpmozo-blocks-and-addons`) and Pro (`wpmozo-blocks-and-addons-pro`) |
 | Ownership | Lite owns the asset-resolution contract, the production CDN setting and the pattern registry. Pro registers its patterns and assets through Lite. |
 
@@ -150,6 +150,11 @@ Until these are verified, production readiness must not be claimed.
 After this one-time engine change, moving hosts or paths is configuration only. The seams are not built before the CDN stage, because unused interfaces now would be premature infrastructure.
 
 ## 12. Owner proposal, 2026-11-20: premium content fetched on Insert (approved; not implemented)
+
+**Ownership (PL-D36, 2026-11-20):**
+- **Ayush owns everything in this section,** including the engine parts. That covers the provider, declared metadata, the unreachable state, the media guard, a fresh catalog on every open, the build tools, the `asset_url()` purpose argument, migration and deploy, and the final integration. It starts only on the owner's approval.
+- **Until then:** premium patterns keep their bundled content and current behaviour.
+- **His handoff:** the private Pro repository's `docs/pattern-library/AYUSH-PATTERN-LIBRARY-HANDOFF.md`.
 
 **Status:** audited, then revised and **approved by the owner on 2026-11-20** (PL-D35). Nothing is implemented; implementation waits for the owner's go-ahead after the open questions are answered. If the owner approves it, the content part of section 11 moves forward from "later" to the next stage, and PL-D33's timing changes. The add-on's licence protocol, the backend contract and the owner decisions are private (Pro repository, `docs/pattern-library/remote-delivery-audit.md`).
 

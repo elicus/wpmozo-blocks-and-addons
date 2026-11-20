@@ -50,10 +50,10 @@ Implemented in the order R1, R5, R2, R3, R4, R6. None of them changes saved bloc
 | Stage H, release | Versions, readme, `n.e.x.t`, headers, final Lite-to-Pro link, pattern `since`/`published`, WordPress.org guideline review, Pro release items | X-1 and the release blockers in [handoff.md](handoff.md) |
 
 ## Deferred (decided later, not scheduled)
-- Licence states in Pro (expired and others): the owner's final policy was recorded on 2026-11-18 in the Pro repository; it needs licence-server data. Lite's part is PL-D34 (remove the dormant release-date comparison). It starts only with the owner's Phase 0 prompt.
+- Licence states in Pro (expired and others): the owner's final policy was recorded on 2026-11-18 in the Pro repository; it needs licence-server data. Lite's part is PL-D34 (remove the dormant release-date comparison). It starts only with the owner's Phase 0 prompt. **Update 2026-11-20:** Phase 1 is done (PL-D34). The approved design (PL-D35) is assigned to Ayush (PL-D36).
 - A generated metadata index for large catalogs: only when the catalog approaches 500 patterns ([testing.md](testing.md), performance).
 - Importing content images into the Media Library (removes R-08).
 - The library in the Site Editor, widgets editor and Customizer (decision D8).
-- Future CDN for previews, the catalog and remote pattern content (PL-D33; [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 11 and U1–U8). Not part of the current implementation phases; the code keeps a clean migration path until then.
+- Future CDN for previews, the catalog and remote pattern content (PL-D33; [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) sections 11–12 and U1–U8). Not part of the current implementation phases; the code keeps a clean migration path until then. **Owner, 2026-11-20 (PL-D36):** Ayush owns this work and the final completion of the Pattern Library; his handoff is the private Pro repository's `docs/pattern-library/AYUSH-PATTERN-LIBRARY-HANDOFF.md`.
 - Multisite runtime test: Playground's multisite step needs the network, which the offline harness blocks; run it on another environment before release.
 - Block issues found by Pattern Library work ([known-issues.md](known-issues.md), blocks; Pro block issues in the Pro repository): left to a separate developer after the Pattern Library is complete (PL-D29).

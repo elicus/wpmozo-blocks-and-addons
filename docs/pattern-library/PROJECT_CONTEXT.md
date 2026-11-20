@@ -2,7 +2,7 @@
 
 **Start here.** Every Pattern Library task, by a person or an AI session, begins by reading this file, then [handoff.md](handoff.md) (current state and the exact next step), then the topic files the task touches. Nothing here replaces a topic file: each section names the file that holds the detail.
 
-**Updated:** 2026-11-20 (docs only: remote-delivery audit, [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 12; not approved). 2026-11-18 (docs only: future CDN migration path, PL-D33; all-or-nothing premium entitlement, PL-D34). 2026-11-11: final validation. **Pro side:** the private Pro repository keeps its own `docs/pattern-library/PROJECT_CONTEXT.md` (Pro architecture, entitlement, licence and Pro security). This public file never repeats private Pro details.
+**Updated:** 2026-11-20, later: Ayush owns the remaining remote-delivery work and the final completion (PL-D36; handoff in the private Pro repository's `docs/pattern-library/AYUSH-PATTERN-LIBRARY-HANDOFF.md`); Phase 2 changes no Lite code. 2026-11-20 (docs only: remote-delivery audit, [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 12; not approved). 2026-11-18 (docs only: future CDN migration path, PL-D33; all-or-nothing premium entitlement, PL-D34). 2026-11-11: final validation. **Pro side:** the private Pro repository keeps its own `docs/pattern-library/PROJECT_CONTEXT.md` (Pro architecture, entitlement, licence and Pro security). This public file never repeats private Pro details.
 
 ## 1. Objective and scope
 The Pattern Library lets editors browse ready-made sections in the block editor and insert them as normal, fully editable blocks.
@@ -116,7 +116,7 @@ Detail: [handoff.md](handoff.md).
 - **Release blockers:** the `example.com` placeholder for the Lite-to-Pro card link; provisional pattern `since` values; `n.e.x.t` tags; Pro's minimum-Lite handling (Pro repository).
 
 ## 10. Key decisions (with reasons)
-Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D34).
+Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D36).
 
 | ID | Decision | Why |
 |---|---|---|
@@ -133,6 +133,7 @@ Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D34).
 | PL-D31 | The header icon opens the library window directly; the launcher sidebar never shows and the editor's sidebar stays as it was | Owner request: one click instead of two, with public APIs only |
 | PL-D32 | The Options menu has one library item, "Pattern Library" (the icon's); "Open Pattern Library" was removed | Owner request: both opened the same window |
 | PL-D33 | CDN integration is deferred; asset URLs, source configuration and pattern loading stay centralised so a later move to a CDN or remote source changes configuration, not the library UI or insert flow; Lite makes no external requests; premium content is never public | Owner requirement: easy later migration without premature infrastructure |
+| PL-D36 | Ayush owns the remaining remote-delivery work (CDN, remote catalog and data, premium content delivery, previews and images, migration, deploy) and the final completion; the engine parts of PL-D35 are on hold for him; premium patterns keep their bundled content | Owner decision, 2026-11-20 |
 | PL-D35 | Premium content may be fetched on Insert by its add-on: a fresh entitlement check on every window open, only a verified active licence inserts, catalog and previews always available, JSON content and XML metadata sources, Lite still makes no requests (approved 2026-11-20, not implemented) | Owner decision after the remote-delivery audit |
 | PL-D34 | Premium entitlement is all-or-nothing per source: only `entitled` allows inserting; no release-date exceptions; previews always available (implemented 2026-11-19, Phase 1) | Owner's final licensing policy (details in the Pro repository) |
 
