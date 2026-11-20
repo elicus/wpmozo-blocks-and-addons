@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | Approved requirement, 2026-10-31; revised the same day after review. Future-migration addendum approved 2026-11-18 ([section 11](#11-future-cdn-migration-owner-requirement-2026-11-18), PL-D33). The local resolver exists (LPL-2); **the CDN switch, a remote catalog and remote content are not implemented** and are not part of the current implementation phases. Planning constraint for the Pattern Library. **2026-11-20:** an owner proposal to fetch premium content on Insert has been audited ([section 12](#12-owner-proposal-2026-11-20-premium-content-fetched-on-insert-audit-only-not-approved)); not approved. |
+| Status | Approved requirement, 2026-10-31; revised the same day after review. Future-migration addendum approved 2026-11-18 ([section 11](#11-future-cdn-migration-owner-requirement-2026-11-18), PL-D33). The local resolver exists (LPL-2); **the CDN switch, a remote catalog and remote content are not implemented** and are not part of the current implementation phases. Planning constraint for the Pattern Library. **2026-11-20:** an owner proposal to fetch premium content on Insert has been audited ([section 12](#12-owner-proposal-2026-11-20-premium-content-fetched-on-insert-approved-not-implemented)); approved 2026-11-20 (PL-D35), not implemented. |
 | Applies to | Pattern Library in Lite (`wpmozo-blocks-and-addons`) and Pro (`wpmozo-blocks-and-addons-pro`) |
 | Ownership | Lite owns the asset-resolution contract, the production CDN setting and the pattern registry. Pro registers its patterns and assets through Lite. |
 
@@ -149,15 +149,19 @@ Until these are verified, production readiness must not be claimed.
 
 After this one-time engine change, moving hosts or paths is configuration only. The seams are not built before the CDN stage, because unused interfaces now would be premature infrastructure.
 
-## 12. Owner proposal, 2026-11-20: premium content fetched on Insert (audit only; not approved)
+## 12. Owner proposal, 2026-11-20: premium content fetched on Insert (approved; not implemented)
 
-**Status:** audit only, docs only, revised 2026-11-20 with the owner's clarifications (below). Nothing is implemented, and the decisions wait for the owner's approval. If the owner approves it, the content part of section 11 moves forward from "later" to the next stage, and PL-D33's timing changes. The add-on's licence protocol, the backend contract and the owner decisions are private (Pro repository, `docs/pattern-library/remote-delivery-audit.md`).
+**Status:** audited, then revised and **approved by the owner on 2026-11-20** (PL-D35). Nothing is implemented; implementation waits for the owner's go-ahead after the open questions are answered. If the owner approves it, the content part of section 11 moves forward from "later" to the next stage, and PL-D33's timing changes. The add-on's licence protocol, the backend contract and the owner decisions are private (Pro repository, `docs/pattern-library/remote-delivery-audit.md`).
 
 **The proposal, in engine terms:**
 - **Every time the library window opens**, the premium add-on checks its licence status on the server. Nothing is cached or stored between opens.
 - **Only a verified active licence allows inserting premium patterns.** An unverified or unknown answer, an error or a timeout means Preview only.
 - **On Insert, the add-on downloads the pattern's content on the server.** The remote service checks the licence again for every download.
 - **The catalog and previews stay available without an active licence.** The UI, Preview, Insert and the compatibility checks stay as they are.
+- **Catalog, cards and previews are available in every licence state.** Protected premium content is delivered only after the remote service verifies the licence.
+- **Licence refusals and service errors are told apart by machine-readable codes.** Only a licence refusal shows "locked"; any error, timeout or unreadable reply means "can't be checked or loaded right now".
+- **The licence check is separate from plugin update checks.**
+- **Image availability is validated at build and release time**, not only by version requirements.
 - Premium content no longer ships inside the add-on.
 - Pattern content is stored as JSON, metadata as XML. Both are kept in the Lite and Pro repositories and deployed unchanged to the CDN.
 - PHP holds no pattern content.
@@ -169,6 +173,7 @@ After this one-time engine change, moving hosts or paths is configuration only. 
 
   The proposal attaches its two server calls to these requests. The window, Preview, Insert, the REST routes and the importer can stay as they are.
 - **The editor reuses the first catalog for the whole editor load.** `components/library-modal.js` loads it with `load( false )`, and `api.js` caches the request. A check on every open therefore needs the window to fetch the catalog again each time it opens.
+- **A content image is never checked for existence.** The resolver turns a `media` token into a URL if its key is in the map, without checking that the file exists. Thumbnails and previews are checked: a missing file gives a placeholder. The authoring gate (`tools/pattern-library/gate.cjs`) checks that images load, but only on a development site, never on the release zip.
 - **Lite asks a source's entitlement callback at most once per request** (`Mozo_Bna_Library::entitlement()`). It fails closed: any unknown answer, exception or missing callback becomes `entitlement_unavailable`, shown as "Pro patterns can't be checked right now." (`src/library/messages.js`).
 - **Previews are images** (`previews/<slug>.<rev>.webp`). Previewing never loads content, so users without an entitlement see every catalog card and preview, locked.
 - **Pattern files are PHP:** metadata in `pattern.php`, with `__()` titles that `make-pot` extracts; content in `content.php`, a nowdoc behind an `ABSPATH` guard, generated by `tools/pattern-library/build-content.php`; maps in `data/*.php`.
@@ -221,22 +226,33 @@ After this one-time engine change, moving hosts or paths is configuration only. 
    Nothing partial is inserted.
 8. **Caching:** premium content and entitlement answers are never cached (no files, transients or edge caches). Catalog and previews keep today's rules (section 5; ETag and `private, no-cache` on the catalog route).
 9. **Content images stay local** (PL-D03). Remote content may use only media that the installed plugins ship; the minimum-version field makes sure of it. Media Library import remains a later option. `asset_url()` still needs its purpose argument (section 11, known gaps).
-10. **A pattern that needs a newer plugin** shows as **unavailable** ("update the plugin"), not locked. Locked stays reserved for entitlement.
+10. **Image validation at build and release** (blocking; it runs on the built zip and the deploy set):
+   - every thumbnail and preview exists;
+   - every `media` token in every pattern's content, including content that is not in the zip, has a map key whose file is in the zip;
+   - the `requires` versions name releases that contain those images;
+   - no released image is removed, renamed or changed in place;
+   - formats and sizes follow the agreed rules;
+   - a deploy refuses content whose images aren't released.
+
+   Plus a runtime guard: the resolver refuses a `media` token whose file is missing, so the card shows unavailable instead of inserting a broken image.
+11. **A pattern that needs a newer plugin** shows as **unavailable** ("update the plugin"), not locked. Locked stays reserved for entitlement.
 
 **Waiting for:**
-- the owner's approval of the decision table (Pro repository);
+- the owner's go-ahead for implementation (the decision table is approved; Pro repository);
 - the add-on vendor's backend answers;
 - answers on build and release. For Lite:
   - how the WordPress.org zip is built;
   - whether `pattern.xml` ships in it;
   - whether WordPress.org's translation import reads the generated `data/strings.php` **[Assumption: it scans every PHP file]**;
-  - whether Lite's public build tools also build the add-on's files.
+  - whether Lite's public build tools also build the add-on's files;
+  - where the image validation runs and whether it blocks a release;
+  - the image rules (formats, sizes, alt text).
 
 U8 has a proposed answer: the remote endpoints are configured in the add-on.
 
 ## Out of scope now
 
-CDN deployment, remote catalog, remote media, the production switch itself, and CDN hostnames. Section 12 is a proposal, not an approval.
+CDN deployment, remote catalog, remote media, the production switch itself, and CDN hostnames. Section 12 is approved (PL-D35) but not implemented; nothing is built before the owner's go-ahead.
 
 ## Related
 

@@ -111,7 +111,7 @@ Detail: [handoff.md](handoff.md).
   - Lite content stays bundled;
   - the UI and compatibility checks stay unchanged.
 
-  Still waiting for the owner's approval.
+  **Approved by the owner on 2026-11-20 (PL-D35)**, with four more points: machine-readable error codes, catalog and previews in every licence state, licence checks separate from update checks, and image validation at build and release. Not implemented; implementation waits for the owner's go-ahead.
 - **Regression suites:** `tools/pattern-library/tests/` (not shipped): library robustness, REST, editor gate, editor entry points, Lite/Pro combinations, in-place updates, contract surfaces, PHP parse; run them for every library change ([testing.md](testing.md)). Testing on another machine: start with [testing-handoff.md](testing-handoff.md); setup reference [testing-environment-setup.md](testing-environment-setup.md).
 - **Release blockers:** the `example.com` placeholder for the Lite-to-Pro card link; provisional pattern `since` values; `n.e.x.t` tags; Pro's minimum-Lite handling (Pro repository).
 
@@ -133,6 +133,7 @@ Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D34).
 | PL-D31 | The header icon opens the library window directly; the launcher sidebar never shows and the editor's sidebar stays as it was | Owner request: one click instead of two, with public APIs only |
 | PL-D32 | The Options menu has one library item, "Pattern Library" (the icon's); "Open Pattern Library" was removed | Owner request: both opened the same window |
 | PL-D33 | CDN integration is deferred; asset URLs, source configuration and pattern loading stay centralised so a later move to a CDN or remote source changes configuration, not the library UI or insert flow; Lite makes no external requests; premium content is never public | Owner requirement: easy later migration without premature infrastructure |
+| PL-D35 | Premium content may be fetched on Insert by its add-on: a fresh entitlement check on every window open, only a verified active licence inserts, catalog and previews always available, JSON content and XML metadata sources, Lite still makes no requests (approved 2026-11-20, not implemented) | Owner decision after the remote-delivery audit |
 | PL-D34 | Premium entitlement is all-or-nothing per source: only `entitled` allows inserting; no release-date exceptions; previews always available (implemented 2026-11-19, Phase 1) | Owner's final licensing policy (details in the Pro repository) |
 
 ## 11. Known issues and pending work
