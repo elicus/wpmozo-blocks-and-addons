@@ -2,7 +2,7 @@
 
 **Start here.** Every Pattern Library task, by a person or an AI session, begins by reading this file, then [handoff.md](handoff.md) (current state and the exact next step), then the topic files the task touches. Nothing here replaces a topic file: each section names the file that holds the detail.
 
-**Updated:** 2026-11-18 (docs only: future CDN migration path, PL-D33; all-or-nothing premium entitlement, PL-D34). 2026-11-11: final validation. **Pro side:** the private Pro repository keeps its own `docs/pattern-library/PROJECT_CONTEXT.md` (Pro architecture, entitlement, licence and Pro security). This public file never repeats private Pro details.
+**Updated:** 2026-11-20 (docs only: remote-delivery audit, [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 12; not approved). 2026-11-18 (docs only: future CDN migration path, PL-D33; all-or-nothing premium entitlement, PL-D34). 2026-11-11: final validation. **Pro side:** the private Pro repository keeps its own `docs/pattern-library/PROJECT_CONTEXT.md` (Pro architecture, entitlement, licence and Pro security). This public file never repeats private Pro details.
 
 ## 1. Objective and scope
 The Pattern Library lets editors browse ready-made sections in the block editor and insert them as normal, fully editable blocks.
@@ -103,6 +103,7 @@ Detail: [handoff.md](handoff.md).
   - New `entitlement` suite (`0286e2c`). Every suite passes on both supported WordPress and PHP pairs, apart from the known B-R6-2 checks ([testing.md](testing.md)).
   - The add-on's licence hardening is recorded in the Pro repository.
   - Phase 2 waits for the owner's review.
+- **2026-11-20 (docs only, not approved):** audit of the owner's proposal to download premium content on Insert, with a licence-status check when the library opens, JSON content and XML metadata. The flow fits the existing catalog and content requests; Lite stays network-free. Recommendations: a source provider in contract 1, declared metadata with a checksum, XML edited and compiled to a JSON index, a new 503 "unreachable" state ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 12).
 - **Regression suites:** `tools/pattern-library/tests/` (not shipped): library robustness, REST, editor gate, editor entry points, Lite/Pro combinations, in-place updates, contract surfaces, PHP parse; run them for every library change ([testing.md](testing.md)). Testing on another machine: start with [testing-handoff.md](testing-handoff.md); setup reference [testing-environment-setup.md](testing-environment-setup.md).
 - **Release blockers:** the `example.com` placeholder for the Lite-to-Pro card link; provisional pattern `since` values; `n.e.x.t` tags; Pro's minimum-Lite handling (Pro repository).
 
