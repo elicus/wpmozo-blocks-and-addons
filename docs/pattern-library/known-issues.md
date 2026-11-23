@@ -1,10 +1,10 @@
 # Known issues and risks
 
-Confirmed issues were reproduced; each names the run that shows it. Potential risks were found by reading code or platform changes and were not reproduced as failures. Fixes are proposals until the owner approves the roadmap ([roadmap.md](roadmap.md)); nothing here has been fixed yet unless its status says so.
+Confirmed issues were reproduced; each names the run that shows it. Potential risks were found by reading code or platform changes and were not reproduced as failures. The roadmap was approved on 2026-11-05 and its stages R1–R6 are done ([roadmap.md](roadmap.md)); an issue is fixed only where its status says so. Block issues are **on hold** (below).
 
 Issues specific to Pro (licence flow, Pro blocks, Pro requirements) are tracked in the private Pro repository; this public file names them only where they affect compatibility with Lite.
 
-**Updated:** 2026-11-16 (the KI-01, KI-02 and KI-03 rows now carry their R1 fix, as the status below already recorded; nothing else changed). 2026-11-11: final validation, no new issue. Harness runs: `sessions/audit/` ([testing.md](testing.md), "Compatibility audit").
+**Updated:** 2026-11-23 (on-hold marker on every block issue; `ID` reset testing hazard; the LocalWP browser check found no new library issue, [handoff.md](handoff.md)). 2026-11-16 (the KI-01, KI-02 and KI-03 rows now carry their R1 fix, as the status below already recorded; nothing else changed). 2026-11-11: final validation, no new issue. Harness runs: `sessions/audit/` ([testing.md](testing.md), "Compatibility audit").
 
 ## Confirmed: Pattern Library
 
@@ -19,12 +19,20 @@ Issues specific to Pro (licence flow, Pro blocks, Pro requirements) are tracked 
 | KI-05 | **Fixed in R6 (PL-D30):** the stylesheet is enqueued on `enqueue_block_assets` (editor screens only), so WordPress puts it in the canvas itself; the warning is gone in all three editors tested (default, with a classic meta box, with a block on API version 2) on WordPress 6.8.11 and 7.1.3, and in the editor without the canvas iframe (WordPress 6.8.11) the stylesheet still loads once ([testing.md](testing.md) R6). **Lite's editor stylesheet is added to the editor iframe "incorrectly".** WordPress 7.1.3 warns: `wpmozo-blocks-and-addons-editor-style-css was added to the iframe incorrectly. Please use block.json or enqueue_block_assets` | All Lite and Pro blocks in the editor canvas | Works today because WordPress still copies it. If a later WordPress stops copying such styles, block styling in the editor canvas disappears | Every browser run on 7.1.3 and 6.8.11 | Enqueue it on `enqueue_block_assets` (editor only), or per block in `block.json` | Browser smoke: no "added to the iframe incorrectly" warning for a WPMozo handle |
 
 ## Confirmed: blocks (found by library work; separate tasks)
+**ON HOLD (owner, 2026-11-11).** Every block issue in this file is on hold:
+- the unnumbered items below: Advanced Button link, undeclared jQuery, Pricing Table details, Star Rating half stars, the `ID` reset, the text-domain loader, the stale `save-dynamic-style` URL;
+- B-R4-3, and B-R4-4 (best fixed before the next Lite release);
+- B-R6-1, B-R6-2;
+- R-11 (opting in to the new control sizes is block work).
+
+They are for a separate developer after the owner approves that work, never during Pattern Library work (PL-D29). Before the final Lite release, remind the owner of this list.
+
 Found during the pilot (2026-11-04, [testing.md](testing.md)); not part of the library and not fixed:
 - Advanced Button saves `href="javascript:void(0)"` and never outputs its URL.
 - Thirteen Lite block scripts use jQuery without declaring it (listed in testing.md, LPL-T).
 - Pricing Table: no way to remove the theme's link underline on its button; `price` declared as a string with a numeric default; price and period share one colour; the divider is always black.
 - Star Rating rounds to half stars.
-- Lite blocks reset their `ID` to the editor's client ID on every load, so a post always shows as changed after opening (seen again in every 2026-11-05 browser run).
+- Lite blocks reset their `ID` to the editor's client ID on every load, so a post always shows as changed after opening (seen again in every 2026-11-05 browser run). **Testing hazard (2026-11-23 LocalWP check):** draft autosave then rewrites a draft by the same author. During tests, never open an existing draft in the editor; use new test posts.
 - Text-domain loader registered from code that runs after it (probably never runs); stale `wpmozo/v1/save-dynamic-style` URL sent to the editor.
 
 **Found during R4 (2026-11-06).** Pattern Library work never changes block code (PL-D29): these are recorded for a separate developer, to be handled after the Pattern Library is complete. Pro block issues found at the same time (Bar and Pie Chart without a Chart.js check, Image Hotspot saving Lite's placeholder URL) are recorded in the Pro repository.

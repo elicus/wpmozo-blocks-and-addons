@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | **Historical record.** Review written 2026-10-31; decision closure (section 0) added 2026-11-03. The baseline (A1–A7 and the section 0.3 defaults) was **approved on 2026-11-03**. Current decisions: [decisions.md](decisions.md). Current status: [handoff.md](handoff.md). |
+| Status | **Historical record.** "Phase 2" in this review means an earlier licensing plan of the add-on; the add-on's current Phase 2 (its own licence-status check, not part of Lite) is implemented, and its live backend integration is pending (note 2026-11-23). Review written 2026-10-31; decision closure (section 0) added 2026-11-03. The baseline (A1–A7 and the section 0.3 defaults) was **approved on 2026-11-03**. Current decisions: [decisions.md](decisions.md). Current status: [handoff.md](handoff.md). |
 | Applies to | Pattern Library in Lite (`wpmozo-blocks-and-addons`) and Pro (`wpmozo-blocks-and-addons-pro`) |
 | Authoritative input | [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) (approved requirement). This review does not change it; proposed amendments are listed as decisions. |
 | Companion | Pro repository, `docs/pattern-library/architecture-readiness-review-pro.md`: licensing, entitlement, and Pro security and release items. This repository is public, so those details are kept out of it. |
@@ -148,7 +148,7 @@ Forty patterns for launch would mostly measure volume. Recommendation:
 
 ### 0.8 Release-only blockers (C)
 - **Headers:** Lite's requirement headers (real minimum WordPress 6.8; PHP claim unproven).
-- **Lite version:** the next Lite version number and its `readme.txt` entry (an entry dated "1.9.0 – 2026-10-07" already exists, and 1.9.0 is treated as development-only).
+- **Lite version:** the next Lite version number and its `readme.txt` entry (an entry dated "1.9.0 – 2026-10-07" already exists, and 1.9.0 is treated as development-only). **Note (2026-11-23):** Lite 1.9.0 has been released from `main` ("1.9.0 LIVE", `e053d8e`, dated 2026-10-30) without the Pattern Library, so the first release with the library needs another version number. That version is an open decision for the owner ([handoff.md](handoff.md), "Release readiness").
 - **Baselines:** the release-baseline questions Q1 and Q2 (Pro companion).
 - **Pro release items:** listed in the Pro companion.
 - **WordPress.org:** a guideline review of the Lite release build.

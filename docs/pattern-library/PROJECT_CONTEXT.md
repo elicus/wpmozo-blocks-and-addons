@@ -2,7 +2,7 @@
 
 **Start here.** Every Pattern Library task, by a person or an AI session, begins by reading this file, then [handoff.md](handoff.md) (current state and the exact next step), then the topic files the task touches. Nothing here replaces a topic file: each section names the file that holds the detail.
 
-**Updated:** 2026-11-20, later: Ayush owns the remaining remote-delivery work and the final completion (PL-D36; handoff in the private Pro repository's `docs/pattern-library/AYUSH-PATTERN-LIBRARY-HANDOFF.md`); Phase 2 changes no Lite code. 2026-11-20 (docs only: remote-delivery audit, [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 12; not approved). 2026-11-18 (docs only: future CDN migration path, PL-D33; all-or-nothing premium entitlement, PL-D34). 2026-11-11: final validation. **Pro side:** the private Pro repository keeps its own `docs/pattern-library/PROJECT_CONTEXT.md` (Pro architecture, entitlement, licence and Pro security). This public file never repeats private Pro details.
+**Updated:** 2026-11-23: the add-on's Phase 2 (its own licence-status check, in the private add-on repository) is implemented, tested, committed and pushed; its live backend integration is pending, so the check stays dormant and the add-on keeps its earlier entitlement rule. **Lite has no status check and made no change:** it only applies the state the add-on's entitlement callback returns (PL-D34) and makes no external requests (PL-D02). A LocalWP browser check of Lite `6d0a8c9` with the add-on passed ([handoff.md](handoff.md)). Open owner decisions are listed in section 9. 2026-11-20, later: Ayush owns the remaining remote-delivery work and the final completion (PL-D36; handoff in the private Pro repository's `docs/pattern-library/AYUSH-PATTERN-LIBRARY-HANDOFF.md`); Phase 2 changes no Lite code. 2026-11-20 (docs only: remote-delivery audit, [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 12; approved the same day as PL-D35, not implemented). 2026-11-18 (docs only: future CDN migration path, PL-D33; all-or-nothing premium entitlement, PL-D34). 2026-11-11: final validation. **Pro side:** the private Pro repository keeps its own `docs/pattern-library/PROJECT_CONTEXT.md` (Pro architecture, entitlement, licence and Pro security). This public file never repeats private Pro details.
 
 ## 1. Objective and scope
 The Pattern Library lets editors browse ready-made sections in the block editor and insert them as normal, fully editable blocks.
@@ -19,7 +19,7 @@ The Pattern Library lets editors browse ready-made sections in the block editor 
 | Pattern Library branch | `dev/sunil` → `origin/dev/sunil` | `release/pattern-lib` → `origin/release/pattern-lib` |
 | Docs | `docs/pattern-library/` | `docs/pattern-library/` |
 
-- Pro `dev/ayush` is off-limits: never inspect, edit, merge or push it.
+- Pro `dev/ayush` is off-limits for the current developer's sessions: never inspect, edit, merge or push it. Ayush's own branch and pull-request workflow, and its reviewer, are an **open decision (owner)**.
 - No force-push, destructive reset, branch switching or merging of other branches. Verify branch, working tree and staged files before every commit; code and docs go in separate, short commits.
 - **Public repository:** describe protections, never unfixed security issues or private licensing details. Those live in the Pro repository.
 - Record verified facts only, with how they were verified and on which versions. Mark anything planned as planned.
@@ -89,7 +89,7 @@ Detail and the tested matrix: [compatibility.md](compatibility.md).
 4. Saved content never depends on licence state, plugin state or a CDN, and plugin updates never change it.
 5. Every contract change is additive and documented here and in registry-and-contract.md.
 
-## 9. Current status (2026-11-11)
+## 9. Current status (2026-11-23)
 Detail: [handoff.md](handoff.md).
 
 - **Done:** contract (LPL-1), server side (LPL-2), UI and importer (LPL-3); in Pro: security port, contract adoption, Pro source and entitlement.
@@ -102,8 +102,8 @@ Detail: [handoff.md](handoff.md).
   - PL-D34 is implemented (`b54b9de`): only `entitled` inserts, `published` is optional, and there is a new expired-licence message.
   - New `entitlement` suite (`0286e2c`). Every suite passes on both supported WordPress and PHP pairs, apart from the known B-R6-2 checks ([testing.md](testing.md)).
   - The add-on's licence hardening is recorded in the Pro repository.
-  - Phase 2 waits for the owner's review.
-- **2026-11-20 (docs only, not approved):** audit of the owner's proposal to download premium content on Insert, with a licence-status check when the library opens, JSON content and XML metadata. The flow fits the existing catalog and content requests; Lite stays network-free. Recommendations: a source provider in contract 1, declared metadata with a checksum, XML edited and compiled to a JSON index, a new 503 "unreachable" state ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 12). The same day, the owner's clarifications were added:
+  - Phase 2 (the add-on's own licence handling, no Lite change) was approved on 2026-11-20 and implemented on 2026-11-23 (below); its live backend integration is pending.
+- **2026-11-20 (docs only; approved the same day, below):** audit of the owner's proposal to download premium content on Insert, with a licence-status check by the add-on when the library opens, JSON content and XML metadata. The flow fits the existing catalog and content requests; Lite stays network-free. Recommendations: a source provider in contract 1, declared metadata with a checksum, XML edited and compiled to a JSON index, a new 503 "unreachable" state ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 12). The same day, the owner's clarifications were added:
   - a fresh licence check on every window open, so the window refetches the catalog each time;
   - only a verified active licence inserts;
   - every download is checked remotely;
@@ -112,8 +112,13 @@ Detail: [handoff.md](handoff.md).
   - the UI and compatibility checks stay unchanged.
 
   **Approved by the owner on 2026-11-20 (PL-D35)**, with four more points: machine-readable error codes, catalog and previews in every licence state, licence checks separate from update checks, and image validation at build and release. Not implemented; implementation waits for the owner's go-ahead.
-- **Regression suites:** `tools/pattern-library/tests/` (not shipped): library robustness, REST, editor gate, editor entry points, Lite/Pro combinations, in-place updates, contract surfaces, PHP parse; run them for every library change ([testing.md](testing.md)). Testing on another machine: start with [testing-handoff.md](testing-handoff.md); setup reference [testing-environment-setup.md](testing-environment-setup.md).
-- **Release blockers:** the `example.com` placeholder for the Lite-to-Pro card link; provisional pattern `since` values; `n.e.x.t` tags; Pro's minimum-Lite handling (Pro repository).
+- **2026-11-23:**
+  - The add-on's Phase 2 (private add-on repository, code `7ac00e3`, tests `cb4800f`, docs `7d0b2f8`): its own licence-status check is **implemented, tested, committed and pushed**. Its **live backend integration is pending**, so the check stays dormant and the add-on keeps its earlier entitlement rule. **No Lite change, and Lite has no status check:** Lite code is as at PL-D34; Lite only applies the state the add-on's entitlement callback returns.
+  - Lite suites rerun with that add-on code on both supported pairs: every suite passes apart from the known B-R6-2 checks ([testing.md](testing.md), 2026-11-23).
+  - LocalWP browser check of Lite `6d0a8c9` with the add-on (WordPress 7.1.5, PHP 8.2): passed ([handoff.md](handoff.md)).
+- **Open decisions (owner):** the version of the first Lite release with the library (1.9.0 is already released from `main` without it); who merges `dev/sunil` into `main` and `dev/base`, and when; whether Lite may be released before PL-D35's provider seam joins contract 1; Ayush's branch and pull-request workflow; who owns the release checklist. Detail: [handoff.md](handoff.md), "Release readiness".
+- **Regression suites:** `tools/pattern-library/tests/` (not shipped): library robustness, REST, premium entitlement, editor gate, editor entry points, Lite/Pro combinations, in-place updates, contract surfaces, PHP parse; run them for every library change ([testing.md](testing.md)). Testing on another machine: start with [testing-handoff.md](testing-handoff.md); setup reference [testing-environment-setup.md](testing-environment-setup.md).
+- **Release blockers:** the `example.com` placeholder for the Lite-to-Pro card link; the release version (open decision, above); provisional pattern `since` values; `n.e.x.t` tags; Pro's minimum-Lite handling (Pro repository).
 
 ## 10. Key decisions (with reasons)
 Full list and reasons: [decisions.md](decisions.md) (PL-D01 to PL-D36).

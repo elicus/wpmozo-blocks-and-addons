@@ -8,7 +8,7 @@ How to prepare a developer's machine to test WPMozo Blocks and Addons (Lite), WP
 
 **If the developer has already cloned, built and activated both plugins themself**, start from [testing-handoff.md](testing-handoff.md) instead: it has those steps, the prompt for that case, the project context and the remaining test plan. It uses this guide as its reference.
 
-**Status:** updated on 2026-11-13, from an audit of Lite `0805b47` (`dev/sunil`) and Pro `faf19a3` (`release/pattern-lib`). Neither repository had a code change since the final validation (Lite `044cd2b`, Pro `9d4647b`; checked with `git diff --stat`). Since then, on 2026-11-16, one Lite editor change: the header icon opens the library directly (`485e5e7`, PL-D31; the `launcher` suite).
+**Status:** updated on 2026-11-13, from an audit of Lite `0805b47` (`dev/sunil`) and Pro `faf19a3` (`release/pattern-lib`). Neither repository had a code change since the final validation (Lite `044cd2b`, Pro `9d4647b`; checked with `git diff --stat`). Since then, on 2026-11-16, one Lite editor change: the header icon opens the library directly (`485e5e7`, PL-D31; the `launcher` suite). **Updated 2026-11-23:** the Options menu keeps one library item (`5ca1e69`, PL-D32); the premium entitlement rule (`b54b9de`, PL-D34, 2026-11-19) added the `entitlement` suite; Lite code has not changed since (Lite `6d0a8c9`). Pro's code changed on 2026-11-19 and 2026-11-23 (details in the Pro repository). The suite lists and expected results below include `entitlement`.
 
 **Labels.** Every instruction carries one:
 - **[Verified]**: run or checked on the owner's Mac (macOS, zsh, Node 22.17.0, npm 11.4.2, Local with WordPress 7.1.4 / PHP 8.2) on the date given, or read in the code at the commits above.
@@ -49,7 +49,7 @@ The plugins themselves need no settings: WordPress resolves their paths and URLs
 ### 2.1 The file to read
 - **In the Lite repository:** `docs/pattern-library/testing-environment-setup.md` (this file), branch `dev/sunil`.
 - **Before Lite is cloned:** `https://raw.githubusercontent.com/elicus/wpmozo-blocks-and-addons/dev/sunil/docs/pattern-library/testing-environment-setup.md`.
-- **[Developer required]** The file reaches GitHub only after the owner commits and pushes it to `dev/sunil`.
+- The file is committed and pushed to `dev/sunil` (checked 2026-11-23: the local branch matches `origin/dev/sunil`), so the link above serves the pushed version.
 
 ### 2.2 The prompt to give Claude
 Start a Claude session in any folder (for example your home folder) and paste:
@@ -488,7 +488,7 @@ From the Lite checkout, after loading the settings (section 8.1):
    **Expected:** `rest: 17/17 passed`, in about 75 s.
 2. **The full set.** Run browser suites one at a time: several Playground sites and Chrome at once can slow the editor enough to stop the gate.
    ```bash
-   node tools/pattern-library/tests/run.cjs php-parse robustness rest contract editor launcher wp-editor team-grid
+   node tools/pattern-library/tests/run.cjs php-parse robustness rest entitlement contract editor launcher wp-editor team-grid
    ```
    ```bash
    node tools/pattern-library/tests/run.cjs upgrade --mutation=1
@@ -497,20 +497,21 @@ From the Lite checkout, after loading the settings (section 8.1):
    node tools/pattern-library/tests/run.cjs matrix --oldest-lite=zip:origin/release/1.8.0
    ```
    ```bash
-   node tools/pattern-library/tests/run.cjs php-parse robustness rest contract editor launcher wp-editor team-grid --wp=6.8.11 --php=7.4
+   node tools/pattern-library/tests/run.cjs php-parse robustness rest entitlement contract editor launcher wp-editor team-grid --wp=6.8.11 --php=7.4
    ```
    - **`matrix` in a fresh clone: [Untested].**
      - Its default `zip:release/1.8.0` needs a local branch named `release/1.8.0`. A fresh clone has only `origin/release/1.8.0`, which the option above names.
      - Don't create a branch to work around it.
      - On the owner's machine the default works ([testing.md](testing.md)).
 
-**Expected results.** Recorded on the owner's Mac on 2026-11-11 ([testing.md](testing.md), final validation); `launcher` and a re-run of the browser suites on 2026-11-16 and 2026-11-17, after the header-icon and Options menu changes ([testing.md](testing.md), PL-D31 and PL-D32).
+**Expected results.** Recorded on the owner's Mac on 2026-11-11 ([testing.md](testing.md), final validation); `launcher` and a re-run of the browser suites on 2026-11-16 and 2026-11-17, after the header-icon and Options menu changes ([testing.md](testing.md), PL-D31 and PL-D32); `entitlement` on 2026-11-19 (Phase 1). A rerun on 2026-11-23 with Pro's latest code gave the same results (`upgrade` without `--mutation=1`: 28/28) ([testing.md](testing.md), 2026-11-23).
 
 | Suite | Checks | Time |
 |---|---|---|
 | `php-parse` | 2/2 | ~1 min |
 | `robustness` | 26/26 | ~5 min |
 | `rest` | 17/17 | ~4 min |
+| `entitlement` | 58/58 | ~3 min |
 | `contract` | 26/26 | ~4 min |
 | `editor` | 10/10 | ~10 min |
 | `launcher` | 23/23 | ~2 min |
@@ -545,6 +546,8 @@ They are temporary designs awaiting the owner's review. Later patterns replace t
 - users: names starting with `wpmozo-test-`.
 
 Keep a list of each page's and user's ID.
+
+**Use new test posts only.** Lite blocks reset their `ID` on load (a known block issue, on hold), so opening a post marks it changed, and draft autosave can then rewrite an existing draft. Never open an existing draft in the editor during tests (seen on 2026-11-23).
 
 ### 11.1 Command-line checks (Claude can run these)
 With the settings loaded. **[Verified] 2026-11-13** on the owner's Local site.
@@ -657,6 +660,8 @@ Log in as each user in a private window.
    - Option B: the user switches their checkouts back to their own branches.
    - Option C: move the folders from `app/wpmozo-backup/` back to `wp-content/plugins/` and reactivate them.
 7. **Disk:** `$WPMOZO_TEST_CACHE` grows with every run (plugin copies and logs). Remove it only with approval and only when no suite is running. The Playground CLI and the zips can stay for later runs.
+   - Playground also leaves a copy of the WordPress release zip in the test cache for every site it starts (`$WPMOZO_TEST_CACHE/home/.wordpress-playground/custom-*.zip`). On 2026-11-20 about 390 such copies filled the owner's disk, and sites failed to start ("No space left on device").
+   - Check free space before long runs (`df -h "$WPMOZO_TEST_CACHE"`). Whether and when to remove those copies is the developer's own decision, made only when no suite is running. Claude never deletes them on its own.
 
 **WP-CLI alternative** (Local's site shell), **[Untested]**: list first, then act only on the confirmed IDs.
 ```bash
@@ -717,7 +722,7 @@ What the audit found, so nobody needs to look again.
   - Lite defines `WPMOZO_BNA_PLUGIN_DIR_PATH` and `WPMOZO_BNA_PLUGIN_DIR_URL` from `plugin_dir_path( __FILE__ )` and `plugin_dir_url( __FILE__ )`; Pro does the same with `WPMOZO_BNA_PRO_PLUGIN_DIR` and `WPMOZO_BNA_PRO_PLUGIN_URL`.
   - Each library source registers its `path` and `url` from those: Lite's library at `includes/library/`, Pro's in its own plugin.
 - **Pattern assets.**
-  - The asset resolver builds every thumbnail, preview and media URL from the source's `url`: `Mozo_Bna_Library_Resolver::asset_url()`, the only place a future CDN setting changes ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md)).
+  - The asset resolver builds every thumbnail, preview and media URL from the source's `url`: `Mozo_Bna_Library_Resolver::asset_url()`. A future CDN setting also needs a purpose argument in that method (previews may move; content images stay local, PL-D03) and the provider seam ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) sections 11 and 12).
   - Pattern content holds tokens, never a site URL.
   - Section 11.1 confirms the URLs on a real Local site.
 - **No hard-coded host or path in either plugin.** `git grep` finds no `localhost`, `127.0.0.1`, `.local`/`.test` URL, `wp-content/plugins/` path or absolute machine path in Lite's or Pro's `includes/` or main plugin file.
@@ -779,6 +784,8 @@ What the audit found, so nobody needs to look again.
 | A check fails only on the reused site | Note the site's other active plugins and theme in the report. Try again with other plugins deactivated only if the user approves |
 | A browser suite times out | Run browser suites one at a time, with no other Playground site running |
 | Errors with a cache path that contains spaces | Set `WPMOZO_TEST_CACHE` to a path without spaces |
+| `No space left on device`, or sites fail to start | The disk is full; Playground's zip copies in the test cache can cause it (section 12, step 7). Stop and tell the developer; removing anything is their decision |
+| An `upgrade` order times out on its first page and a Playground server keeps running | Known test-tool gap: `suites/upgrade.cjs` opens that page outside its `try … finally` (not fixed). Report it; the developer decides whether to stop the leftover server and rerun that order alone |
 | `wp-editor` 14/17 | Expected: block issue B-R6-2, ON HOLD ([known-issues.md](known-issues.md)) |
 
 ---

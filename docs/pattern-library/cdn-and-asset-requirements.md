@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | Approved requirement, 2026-10-31; revised the same day after review. Future-migration addendum approved 2026-11-18 ([section 11](#11-future-cdn-migration-owner-requirement-2026-11-18), PL-D33). The local resolver exists (LPL-2); **the CDN switch, a remote catalog and remote content are not implemented** and are not part of the current implementation phases. Planning constraint for the Pattern Library. **2026-11-20:** an owner proposal to fetch premium content on Insert has been audited ([section 12](#12-owner-proposal-2026-11-20-premium-content-fetched-on-insert-approved-not-implemented)); approved 2026-11-20 (PL-D35), not implemented. **PL-D36 (2026-11-20):** the remaining remote-delivery work, including the engine parts in section 12, belongs to Ayush and starts only on the owner's approval. Premium patterns keep their bundled content until then. |
+| Status | Approved requirement, 2026-10-31; revised the same day after review. Future-migration addendum approved 2026-11-18 ([section 11](#11-future-cdn-migration-owner-requirement-2026-11-18), PL-D33). The local resolver exists (LPL-2); **the CDN switch, a remote catalog and remote content are not implemented** and are not part of the current implementation phases (PL-D35 brings remote premium content forward to the next stage; section 12). Planning constraint for the Pattern Library. **2026-11-20:** an owner proposal to fetch premium content on Insert has been audited ([section 12](#12-owner-proposal-2026-11-20-premium-content-fetched-on-insert-approved-not-implemented)); approved 2026-11-20 (PL-D35), not implemented. **PL-D36 (2026-11-20):** the remaining remote-delivery work, including the engine parts in section 12, belongs to Ayush and starts only on the owner's approval. Premium patterns keep their bundled content until then. |
 | Applies to | Pattern Library in Lite (`wpmozo-blocks-and-addons`) and Pro (`wpmozo-blocks-and-addons-pro`) |
 | Ownership | Lite owns the asset-resolution contract, the production CDN setting and the pattern registry. Pro registers its patterns and assets through Lite. |
 
@@ -108,14 +108,14 @@ Until these are verified, production readiness must not be claimed.
 | U2 | May Lite (a WordPress.org plugin) output CDN URLs for Pro-registered assets when Pro is active, and under which consent and disclosure model? | Unresolved; needs a guideline review, possibly a question to the WordPress.org plugin review team |
 | U3 | Does the production setting switch all eligible sources at once, or each source separately? | Undecided |
 | U4 | Exact cache lifetimes and purge tooling | Depends on the CDN provider (TBD) |
-| U5 | Design of the authenticated route for premium content | Part of decisions PL-2 and PL-3 |
+| U5 | Design of the authenticated route for premium content | Settled for local delivery by PL-D04 and PL-D06 (2026-11-03): the content route authorises every request on the server. Remote delivery: PL-D35 (section 12). PL-2 and PL-3 were the pre-implementation names of those decisions ([architecture-readiness-review.md](architecture-readiness-review.md)) |
 | U6 | How long old asset revisions stay online | Tied to the supported-version policy (TBD) |
 | U7 | Can images inside inserted content come from the CDN? | **Resolved 2026-11-03: no** (section 6) |
 | U8 | Where are the endpoints of an add-on's remote catalog and remote content configured (Lite makes no requests, so most likely in the add-on), and does the central setting in section 1 still cover that source's previews? | Undecided; settled in the CDN stage (added 2026-11-18). Proposed answer (2026-11-20, section 12): in the add-on, which fetches on the server |
 
 ## 11. Future CDN migration (owner requirement, 2026-11-18)
 
-**Status:** requirement only (PL-D33). CDN integration comes later, in its own approved stage, **not in the current implementation phases.** Nothing in this section adds code, settings or infrastructure now. It sets the rules that keep the later migration small: ideally a change of CDN base URLs, paths and configuration only.
+**Status:** requirement only (PL-D33). CDN integration comes later, in its own approved stage, **not in the current implementation phases.** PL-D35 (2026-11-20) brings the premium content part forward (section 12): approved, not implemented. Nothing in this section adds code, settings or infrastructure now. It sets the rules that keep the later migration small: ideally a change of CDN base URLs, paths and configuration only.
 
 **Intended experience after the migration**
 - Library previews and thumbnails load from the CDN instead of a plugin folder (which sources may do so: U1, U2).
@@ -126,14 +126,14 @@ Until these are verified, production readiness must not be claimed.
 **Rules for code written before the migration**
 1. **One URL builder.** Library asset URLs come only from `Mozo_Bna_Library_Resolver::asset_url()`. The editor uses the URLs in REST responses and builds none itself. No hard-coded hostnames, absolute URLs or plugin paths in patterns, maps, PHP or JavaScript.
 2. **One place per source.** Each source gives its base URL, folder and relative paths once, at registration. Moving to the CDN should change only that configuration (and the central setting in section 1), not library code.
-3. **One loading seam.** Pattern metadata and content are read only through the registry's per-source loading (`load_source_patterns()` and `get_content()`). A later, additive contract version can then let a source supply a remote provider instead of a folder, while the REST routes, availability checks, validator, importer and UI stay as they are.
+3. **One loading seam.** Pattern metadata and content are read only through the registry's per-source loading (`load_source_patterns()` and `get_content()`). An additive change to the source contract can then let a source supply a remote provider instead of a folder, while the REST routes, availability checks, validator, importer and UI stay as they are. Per PL-D35 the provider joins **contract 1** before Lite's first release with the library (section 12, recommendation 3). A later contract version would be needed only if Lite is released with the library before the seam exists (open decision, owner).
 4. **Lite makes no external requests** (PL-D02). A remote catalog and remote content are fetched on the server by the add-on that owns the remote source. Lite only resolves, checks, validates and imports what it receives. Lite's own patterns, JavaScript and CSS stay in the plugin (section 8).
 5. **Protected content stays protected.** Premium content is never put on a public CDN path or in any shared cache. Remote delivery of premium content is authenticated, server to server, decided on the server for every request, and sent with `Cache-Control: private, no-store`. Hosting on a CDN never makes premium content public. Previews and public metadata may be public and cacheable (sections 3–5).
 6. **Remote failures are their own state.** An unreachable or failing remote source shows a "temporarily unavailable" message, never "locked", and inserts nothing (section 6).
 
 **Known gaps to close in the CDN stage** (verified in code 2026-11-18; not changed now):
 - `asset_url()` builds both preview URLs (catalog) and content-image URLs (`media` tokens). A CDN base applied there alone would also move content images, which PL-D03 forbids, so the method first needs to know the purpose (preview or content image).
-- Sources are local folders today: `register_source()` requires an existing `path`, and the registry reads each pattern's `pattern.php` and `content.php`. A remote source needs a new, additive contract version (section 1, compatibility rules).
+- Sources are local folders today: `register_source()` requires an existing `path`, and the registry reads each pattern's `pattern.php` and `content.php`. A remote source needs an additive contract change (section 1, compatibility rules): in contract 1 before Lite's first release with the library (PL-D35, section 12), or a later contract version if Lite is released first (open decision, owner).
 - The catalog analyses each pattern's content to find its blocks and its restricted-HTML need. For a remote source the content isn't available when the catalog is built, so its metadata has to declare both, and delivery keeps validating the received content as it does today.
 
 **Target design** (Phase 0, 2026-11-18; planned for the CDN stage, **not built now**):
@@ -141,7 +141,7 @@ Until these are verified, production readiness must not be claimed.
 | Part | Today | CDN stage |
 |---|---|---|
 | URL building | `asset_url( $source, $relative )` for previews and content images | `asset_url( $source, $relative, $purpose )`: `preview` may use a CDN base; `media` (content images) stays local or goes into the Media Library (PL-D03) |
-| Source location | A local `path` is required | Additive contract 2: a local `path`, or provider callbacks supplied by the add-on (`catalog()`, `content( $slug, $revision )`) plus a preview base URL |
+| Source location | A local `path` is required | Additive, in contract 1 before Lite's first library release (PL-D35; a contract 2 only if Lite is released first): a local `path`, or provider callbacks supplied by the add-on (`catalog()`, `content( $slug, $revision )`) plus a preview base URL |
 | Catalog analysis | Reads each pattern's content | Remote metadata declares the blocks used and the restricted-HTML need; delivery validates the received content |
 | Editor and REST | Two routes; Preview and Insert | Unchanged; one new error, 503 `wpmozo_library_unreachable` ("can't be loaded right now") |
 | Network | None | None in Lite; the add-on's provider fetches on the server |
@@ -156,9 +156,9 @@ After this one-time engine change, moving hosts or paths is configuration only. 
 - **Until then:** premium patterns keep their bundled content and current behaviour.
 - **His handoff:** the private Pro repository's `docs/pattern-library/AYUSH-PATTERN-LIBRARY-HANDOFF.md`.
 
-**Status:** audited, then revised and **approved by the owner on 2026-11-20** (PL-D35). Nothing is implemented; implementation waits for the owner's go-ahead after the open questions are answered. If the owner approves it, the content part of section 11 moves forward from "later" to the next stage, and PL-D33's timing changes. The add-on's licence protocol, the backend contract and the owner decisions are private (Pro repository, `docs/pattern-library/remote-delivery-audit.md`).
+**Status:** audited, then revised and **approved by the owner on 2026-11-20** (PL-D35). Nothing in Lite is implemented (the add-on's own licence-status check, its Phase 2, is implemented but not live; 2026-11-23); implementation waits for the owner's go-ahead after the open questions are answered. With that approval (PL-D35), the content part of section 11 moves forward from "later" to the next stage, and PL-D33's timing changes; it is not implemented yet. The add-on's licence protocol, the backend contract and the owner decisions are private (Pro repository, `docs/pattern-library/remote-delivery-audit.md`).
 
-**The proposal, in engine terms:**
+**The proposal, in engine terms** (target design; the licence-status check below is the add-on's, not Lite's):
 - **Every time the library window opens**, the premium add-on checks its licence status on the server. Nothing is cached or stored between opens.
 - **Only a verified active licence allows inserting premium patterns.** An unverified or unknown answer, an error or a timeout means Preview only.
 - **On Insert, the add-on downloads the pattern's content on the server.** The remote service checks the licence again for every download.
@@ -167,11 +167,11 @@ After this one-time engine change, moving hosts or paths is configuration only. 
 - **Licence refusals and service errors are told apart by machine-readable codes.** Only a licence refusal shows "locked"; any error, timeout or unreadable reply means "can't be checked or loaded right now".
 - **The licence check is separate from plugin update checks.**
 - **Image availability is validated at build and release time**, not only by version requirements.
-- Premium content no longer ships inside the add-on.
+- **Target state:** premium content no longer ships inside the add-on. Until remote delivery works end to end and the owner approves the migration, premium content stays bundled (PL-D36).
 - Pattern content is stored as JSON, metadata as XML. Both are kept in the Lite and Pro repositories and deployed unchanged to the CDN.
 - PHP holds no pattern content.
 
-**Verified today** (Lite `3aa0cfa`):
+**Verified today** (Lite `3aa0cfa`; Lite code unchanged at `6d0a8c9`, 2026-11-23):
 - **The editor makes two requests:**
   - **The catalog:** when the window first opens, once per editor load (`src/library/api.js` caches it).
   - **The content of one pattern:** on Insert. The content route checks access again, resolves tokens, validates the exact content and sends it with `no-store`. The browser importer then checks blocks and attributes before inserting.
@@ -188,13 +188,13 @@ After this one-time engine change, moving hosts or paths is configuration only. 
 
 **Recommendations for the engine** (they keep section 11's rules):
 1. **Lite makes no external requests** (PL-D02, rule 4). The add-on fetches on the server; Lite resolves, checks, validates and imports what it receives. Lite's free patterns stay bundled (section 8, U1).
-2. **The window fetches the catalog on every open,** so the entitlement is decided freshly each time. The existing loading state covers the wait. For a remote source, a failed status check gives `entitlement_unavailable`: the catalog still loads, and premium cards stay Preview only.
+2. **The window fetches the catalog on every open,** so the entitlement is decided freshly each time. The existing loading state covers the wait. For a remote source, a failed licence-status check (made by the add-on, never by Lite) gives `entitlement_unavailable`: the catalog still loads, and premium cards stay Preview only.
 3. **A source can supply a provider instead of a folder:**
    - `catalog()` returns metadata;
    - `content( slug, revision )` returns the markup or an error: locked, unreachable, not found or invalid.
 
    No released Lite contains the library, so this can join contract 1 before its first release, instead of a contract 2. For a remote source, the content route runs the compatibility checks and then the provider. It doesn't ask the entitlement callback again, because the remote service checks the licence on every download, and the provider's refusal is the lock.
-4. **Provider metadata declares** the blocks used, the restricted-HTML need, a SHA-256 of the content and a minimum version of the source's own plugin. The build generates these fields; nobody types them. After the download, the server checks again that:
+4. **Provider metadata declares** the blocks used, the restricted-HTML need, the content's media keys, a SHA-256 of the content and a minimum version of the source's own plugin (for the Pro source, the field `requires.pro`). The build generates these fields; nobody types them. After the download, the server checks again that:
    - the id, revision and checksum match;
    - the blocks found are among the declared ones;
    - the kses check passes with the site's own rules.
@@ -242,6 +242,18 @@ After this one-time engine change, moving hosts or paths is configuration only. 
    Plus a runtime guard: the resolver refuses a `media` token whose file is missing, so the card shows unavailable instead of inserting a broken image.
 11. **A pattern that needs a newer plugin** shows as **unavailable** ("update the plugin"), not locked. Locked stays reserved for entitlement.
 
+**Engine tasks** (status 2026-11-23). Every task in this list is **approved (PL-D35), not implemented, and Ayush's (PL-D36); each starts only after the owner approves it:**
+1. The provider seam (recommendation 3), in contract 1 before Lite's first release with the library.
+2. A fresh catalog on every window open (recommendation 2).
+3. Declared metadata (recommendation 4): blocks used, restricted-HTML need, the content's media keys, SHA-256, and the minimum version of the source's own plugin (`requires.pro` for the Pro source).
+4. The failure states, including the 503 unreachable state (recommendation 7).
+5. The `asset_url()` purpose argument (section 11, known gaps; recommendation 9).
+6. JSON content, XML metadata, the compiled JSON catalog and the strings file (recommendations 5 and 6).
+7. Image validation at build and release, and the runtime media guard (recommendation 10).
+8. "Update the plugin" for a pattern that needs a newer plugin (recommendation 11).
+
+**Open decision (owner), not part of PL-D35:** should Lite accept `entitlement_unavailable` from a source's entitlement callback and keep that callback's `manage` flag, so administrators keep the licence link when the add-on can't check? Today `Mozo_Bna_Library::entitlement()` accepts only `entitled`, `license_inactive`, `license_expired` and `license_revoked`. Any other answer, `entitlement_unavailable` included, becomes `entitlement_unavailable` with `manage` false, so the catalog sends no licence link for that source. A change would be tested in the `entitlement` suite.
+
 **Waiting for:**
 - the owner's go-ahead for implementation (the decision table is approved; Pro repository);
 - the add-on vendor's backend answers;
@@ -261,4 +273,4 @@ CDN deployment, remote catalog, remote media, the production switch itself, and 
 
 ## Related
 
-Pattern Library decisions PL-1 to PL-5 (registration, REST and permissions, Lite/Pro visibility, shared contract, catalog) are still open. This requirement constrains them.
+Pattern Library decisions PL-1 to PL-5 (registration, REST and permissions, Lite/Pro visibility, shared contract, catalog) were the pre-implementation names in [architecture-readiness-review.md](architecture-readiness-review.md) and were **settled in the baseline approved on 2026-11-03** ([decisions.md](decisions.md)): PL-D04 (registration, REST, importer), PL-D06 (premium access), PL-D07 (catalog), PL-D10 (Lite-only promotion), PL-D11 (shared contract). This requirement constrains them.

@@ -8,7 +8,7 @@ Results and the reasoning behind each suite: `docs/pattern-library/testing.md`.
 | What | Notes |
 |---|---|
 | Node.js 22 | Tested with 22.17.0 |
-| This repository's `node_modules` | `npm install` once. Used for the build and for Playwright |
+| This repository's `node_modules` | `npm ci` once (never `npm install`, which can rewrite `package-lock.json`). Used for the build and for Playwright |
 | The Pro repository (optional) | Sibling folder `../wpmozo-blocks-and-addons-pro`, or set `WPMOZO_PRO_REPO`. Its `node_modules` too, to build Pro copies |
 | `@wp-playground/cli` | Installed anywhere, for example `npm install @wp-playground/cli@3.1.58` in a folder outside this repository. Set `WPMOZO_PLAYGROUND_CLI` to its `node_modules/.bin/wp-playground-cli` |
 | WordPress release zips | `<version>.zip` files (for example `7.1.3.zip`, `6.8.11.zip`) in `~/.wordpress-playground/`, or set `WPMOZO_WP_ZIPS` |

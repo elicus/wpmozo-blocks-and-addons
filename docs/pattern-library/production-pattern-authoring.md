@@ -55,6 +55,8 @@ Three things are still needed:
 
 Patterns are **PHP files that return values**. There is no JSON and no loose HTML.
 
+**Future format (note, 2026-11-23):** PL-D35 approved JSON content and XML metadata as the future source format ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 12). It is not implemented, so the PHP format in this guide is current. Whether Stage F patterns wait for the new format, and who authors them, is an **open decision (owner)**.
+
 | File | Format | Purpose |
 |---|---|---|
 | `patterns/<slug>/pattern.php` | PHP that returns an **array** | Metadata: title, description, category, tags, keywords, access, thumbnail, preview, revision, `since`, `published`, order. PHP lets titles be translated with `__()`. |

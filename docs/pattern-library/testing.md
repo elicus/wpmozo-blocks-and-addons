@@ -219,7 +219,7 @@ Target was ≤ 300 ms warm at 500 patterns. A generated metadata index stays def
   The pilot puts each table in a card with a core button.
 - Star Rating rounds to half stars (4.9 shows as 5).
 
-**Not tested in LPL-T:** a screen reader, multisite, themes other than the default theme, and an expired or revoked licence (phase 2 data).
+**Not tested in LPL-T:** a screen reader, multisite, themes other than the default theme, and an expired or revoked licence (phase 2 data; still not testable on 2026-11-23: the add-on's Phase 2 check is implemented, but its live backend integration is pending).
 
 ## LPL-T editability, roles and protection, 2026-11-04
 
@@ -258,7 +258,7 @@ Checked against the bug: with the deprecation rule removed, the deprecation test
 - a between-blocks popover can cover a field, so the gate focuses fields instead of clicking;
 - `innerText` applies `text-transform`.
 
-**Not tested:** a screen reader, multisite, other themes, image replacement through the Media Library dialog (the test sets the image attribute directly, as the dialog does), and expired or revoked licences (phase 2).
+**Not tested:** a screen reader, multisite, other themes, image replacement through the Media Library dialog (the test sets the image attribute directly, as the dialog does), and expired or revoked licences (phase 2; still not testable on 2026-11-23, see above).
 
 ## Compatibility audit, 2026-11-05
 
@@ -317,7 +317,7 @@ Checked against the bug: with the deprecation rule removed, the deprecation test
 
 **Test problems found and fixed (not product defects):**
 - The first fresh-analysis check looked for a nowdoc terminator named `HTML`; the pattern files use `WPMOZO_PATTERN`, so its edit never applied. The check now finds the terminator by pattern and fails if its edit doesn't apply.
-- The network check counted WordPress's own update checks (`api.wordpress.org`) and Pro's updater (`cdn.wpmozo.com`), which the driver blocks. Now: anything that tries to leave the Playground process fails; a library request that makes an outbound call fails; other blocked calls are listed.
+- The network check counted WordPress's own update checks (`api.wordpress.org`) and calls to the add-on's updater host, which the driver blocks. Now: anything that tries to leave the Playground process fails; a library request that makes an outbound call fails; other blocked calls are listed.
 - One `editor` run stopped inside the gate while two other sites were running on the same machine; it passed when run alone. Run browser suites one at a time.
 - Two runs started at the same time shared copy folders; copies are now per run.
 
@@ -669,3 +669,29 @@ Lite plugin code `b54b9de`, suites `0286e2c`; Pro `dca3c1b` (the add-on's Phase 
 - **Lint and build:** `lint-js` passed on the changed files; `npm run build` passed (the bundle carries the new message).
 - **PHP checks:** PHPCS WordPress is clean on the two changed library files; `php -l` passed on PHP 8.4.
 - **Network:** nothing left the machine in any run, and no library request made an outbound call.
+
+## Rerun with the add-on's Phase 2, and LocalWP browser check, 2026-11-23
+**No Lite code change.** Lite `6d0a8c9` (plugin code as at `b54b9de`, PL-D34). The add-on's Phase 2 (private add-on repository: code `7ac00e3`, tests `cb4800f`) adds its own licence-status check: implemented, tested, committed and pushed. Its live backend integration is pending, so the check is dormant and the add-on keeps its earlier entitlement rule. Lite has no status check. The Lite suites were rerun with that add-on code.
+
+| Suite | WordPress 7.1.3 / PHP 8.2 | WordPress 6.8.11 / PHP 7.4 |
+|---|---|---|
+| `php-parse` (every PHP file of both plugins on PHP 7.4) | 2/2 | (one run covers both) |
+| `robustness` | 26/26 | 26/26 |
+| `rest` | 17/17 | 17/17 |
+| `entitlement` | 58/58 | 58/58 |
+| `contract` | 26/26 | 26/26 |
+| `editor` | 10/10 | 10/10 |
+| `launcher` | 23/23 | 23/23 |
+| `wp-editor` | 14/17 | 14/17 |
+| `team-grid` (renders on PHP 7.4 and 8.2 itself) | 8/8 | (one run covers both) |
+| `matrix` | 109/109 | Not run (as in Phase 1) |
+| `upgrade` | 28/28 | 28/28 |
+
+- **The 3 `wp-editor` failures** are block issue B-R6-2 (on hold), as before.
+- **Jest:** `npx wp-scripts test-unit-js src/library` 23/23 (Phase 1; no Lite JavaScript changed since).
+- **Incidents (no result changed; no timeout counted as a pass):**
+  - **Full disk, 2026-11-20.** Playground leaves a copy of the WordPress release zip in the test cache for every site it starts; about 390 copies had filled the disk, so some sites didn't start. The affected suites were rerun and passed (the totals above).
+  - **`upgrade` tool gap (not fixed).** `suites/upgrade.cjs` opens its first page outside its `try … finally`, so a timeout there skips the site's stop and leaves the Playground server running. It happened once on 6.8.11; that order was rerun alone and passed. Recorded for a later tools change.
+
+### LocalWP browser check
+WordPress 7.1.5, PHP 8.2.23, MySQL 8.0.35; Lite 1.9.0 at `6d0a8c9` with the add-on; administrator; Chromium. **Passed:** header icon and the one Options-menu item; × and Escape with focus back on the icon; catalog (2 free, 2 premium), filters, categories, search, A–Z sort, empty state; layouts at 1440×900, 1024×600 and phone width; 4 previews, Previous/Next, Preview never inserts; 1 free and 2 premium patterns inserted (62 blocks, none invalid), saved and reloaded identical, images and front end correct; an existing published post and page unchanged; no library JavaScript errors, failed library requests or library PHP errors. Observations (not library defects) and what was not tested: [handoff.md](handoff.md), "LocalWP browser check".

@@ -10,7 +10,8 @@ The Pattern Library lets editors browse ready-made sections and insert them into
 - the editor UI, importer, placeholder block and library switch (Stage D).
 
 - authoring tools and the pilot patterns (LPL-T), waiting for the owner's design review;
-- a compatibility audit (2026-11-05) with a proposed roadmap, waiting for the owner's approval.
+- a compatibility audit (2026-11-05); its stages R1–R6 were approved on 2026-11-05 and done by 2026-11-06, with final validation on 2026-11-11;
+- later decisions PL-D31 to PL-D36 (header icon, Options menu, CDN migration path, premium entitlement, remote premium content, ownership of the remaining work): [decisions.md](decisions.md).
 
 See [handoff.md](handoff.md).
 
@@ -21,7 +22,7 @@ See [handoff.md](handoff.md).
 | [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) | Overview of the whole project and the start rule. Read first |
 | [handoff.md](handoff.md) | Current status, last verified state and the exact next step |
 | [architecture.md](architecture.md) | Components, ownership, data flow |
-| [registry-and-contract.md](registry-and-contract.md) | The Lite–add-on integration contract (implemented) and the pattern registry contract (planned) |
+| [registry-and-contract.md](registry-and-contract.md) | The Lite–add-on integration contract (implemented) and the pattern registry contract (implemented) |
 | [editor-ui.md](editor-ui.md) | Where the library loads, entry points, the placeholder block, the library switch, the window |
 | [import-workflow.md](import-workflow.md) | How a pattern is checked, rebuilt and inserted |
 | [pattern-authoring.md](pattern-authoring.md) | Pattern files, tokens, the authoring workflow and tools, replacing a pattern |

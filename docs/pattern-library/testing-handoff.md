@@ -5,7 +5,14 @@ The starting point for a developer who continues the Pattern Library testing on 
 - **What it gives:** the whole project context, the boundaries, the remaining test plan and the reporting format, so nothing has to be pieced together.
 - **The Pro side:** the private Pro repository has its own `docs/pattern-library/testing-handoff.md` (Pro architecture, licence behaviour, Pro known issues). Private Pro details stay there.
 
-**Updated:** 2026-11-16, from Lite `dev/sunil` and Pro `release/pattern-lib`. Since the final validation (Lite `044cd2b`, Pro `9d4647b`), two Lite editor changes: the header icon opens the library window directly, with no sidebar step (`485e5e7`, PL-D31), and the Options menu keeps one library item, "Pattern Library" (`5ca1e69`, PL-D32, 2026-11-17); test T4b and the `launcher` suite. Pro code is unchanged; the rest is documentation and the `.env` template. Machine setup details: [testing-environment-setup.md](testing-environment-setup.md).
+**Updated:** 2026-11-23, from Lite `dev/sunil` (`6d0a8c9`) and Pro `release/pattern-lib`. Since the final validation (Lite `044cd2b`, Pro `9d4647b`):
+- two Lite editor changes: the header icon opens the library window directly, with no sidebar step (`485e5e7`, PL-D31), and the Options menu keeps one library item, "Pattern Library" (`5ca1e69`, PL-D32, 2026-11-17); test T4b and the `launcher` suite;
+- the premium entitlement rule (PL-D34, Lite `b54b9de`, 2026-11-19): only `entitled` inserts premium patterns; new `entitlement` suite. Lite code has not changed since; the rest is documentation and the `.env` template;
+- **Pro code changed** on 2026-11-19 (its Phase 1) and 2026-11-23 (its Phase 2: its own licence-status check, implemented, tested, committed and pushed; its live backend integration is pending, so it is dormant). Lite has no status check. Details: the Pro handoff.
+
+Machine setup details: [testing-environment-setup.md](testing-environment-setup.md).
+
+**Scope of the rules in this file:** "never edit plugin code" and "never commit" apply to testing sessions. Implementation work follows the private Pro repository's `docs/pattern-library/AYUSH-PATTERN-LIBRARY-HANDOFF.md` and the owner's approval.
 
 **Labels:**
 - **[Verified]**: run or checked on the owner's Mac, or read in the code.
@@ -102,7 +109,7 @@ Read these files in order. Paths are relative to each clone.
 | 3 | `docs/pattern-library/handoff.md` | Current state, release readiness, on-hold block issues |
 | 4 | `docs/pattern-library/testing-environment-setup.md` | Site requirements and inspection (section 5), URL check (8.2), suites (10), manual checks (11), cleanup (12), report (13) |
 | 5 | `docs/pattern-library/known-issues.md` | Known issues; see also section 6 below for their current status |
-| 6 | `docs/pattern-library/testing.md`, section "Final validation, 2026-11-11" | The recorded results to compare with |
+| 6 | `docs/pattern-library/testing.md`, sections "Final validation, 2026-11-11", "Phase 1" and "Rerun with the add-on's Phase 2, and LocalWP browser check, 2026-11-23" | The recorded results to compare with |
 | 7 | As needed: `editor-ui.md`, `import-workflow.md`, `rest-api.md`, `security.md`, `compatibility.md`, `decisions.md` | Detail on a failing area |
 
 | # | Pro (`wpmozo-blocks-and-addons-pro/`) | Why |
@@ -151,7 +158,7 @@ Ask the developer for the plugins folder path; call it `<plugins>`. Run only rea
    ```bash
    grep -m1 "Version:" "<plugins>/wpmozo-blocks-and-addons/wpmozo-blocks-and-addons.php" "<plugins>/wpmozo-blocks-and-addons-pro/wpmozo-blocks-and-addons-pro.php"
    ```
-   **Expected:** Lite `1.9.0`, Pro `1.0.0` (both provisional; release decisions pending).
+   **Expected:** Lite `1.9.0`, Pro `1.0.0` (both provisional; release decisions pending: Lite 1.9.0 is already released from `main` without the library, so the release version is an open owner decision).
 5. **Only one copy of each plugin is installed:**
    ```bash
    grep -lE "^[[:space:]]*\*[[:space:]]*Plugin Name:[[:space:]]*WPMozo Blocks and Addons( Pro)?[[:space:]]*$" "<plugins>"/*/*.php
@@ -219,7 +226,7 @@ The Pattern Library lets editors browse ready-made page sections in the block ed
 **Patterns:**
 - Each pattern is `patterns/<slug>/pattern.php` (metadata) plus `content.php` (block markup with tokens `{{wpmozo:media|link|icon|text:<source>/<key>}}`).
 - Tokens are resolved on the server.
-- `Mozo_Bna_Library_Resolver::asset_url()` builds every image URL from the plugin's own URL. A future CDN setting changes only that method.
+- `Mozo_Bna_Library_Resolver::asset_url()` builds every image URL from the plugin's own URL. A future CDN setting also needs a purpose argument in that method (previews may move; content images stay local, PL-D03) and the provider seam ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) sections 11 and 12).
 
 **Access rules:**
 - **Who sees the library:** users with `edit_posts`.
@@ -272,13 +279,17 @@ They are temporary designs awaiting the owner's design review. No new patterns a
 | Guides | Production authoring guide, testing environment setup, this handoff | 2026-11-13 to 2026-11-16 |
 | PL-D31 | The header icon opens the library window directly (no sidebar step); `launcher` suite | Done 2026-11-16 (`485e5e7`, suite `21ae47c`) |
 | PL-D32 | One library item in the Options menu, "Pattern Library" ("Open Pattern Library" removed) | Done 2026-11-17 (`5ca1e69`, suite `80f8a12`) |
+| Phase 1, PL-D34 | Only `entitled` inserts premium patterns; `published` optional; expired-licence message; `entitlement` suite (58/58) | Done 2026-11-19 (`b54b9de`, suites `0286e2c`) |
+| Pro Phase 2 | Pro's own licence-status check (not in Lite): implemented and tested; live backend integration pending, so dormant; no Lite change; Lite suites rerun | Implemented 2026-11-23 (Pro repository); live integration pending |
+| LocalWP browser check | Lite `6d0a8c9` with Pro, WordPress 7.1.5 / PHP 8.2, administrator | Passed 2026-11-23 ([handoff.md](handoff.md)) |
 
 **Not started:** Stage F (more patterns, after the design review), X-1, the release.
 
 **Waiting on the owner:**
 - the pilot design review;
-- the release version (headers say 1.9.0, provisional pattern values say 1.10.0);
-- the Lite-to-Pro card link (`example.com` placeholder, a release blocker).
+- the release version (headers say 1.9.0, which is already released from `main` without the library; provisional pattern values say 1.10.0);
+- the Lite-to-Pro card link (`example.com` placeholder, a release blocker);
+- the other open decisions in [handoff.md](handoff.md), "Release readiness" (merge, provider seam timing, Ayush's workflow, release checklist owner).
 
 ### 4.2 Repositories and branches
 
@@ -340,11 +351,20 @@ They are temporary designs awaiting the owner's design review. No new patterns a
 | KI-05 | Editor stylesheet warning in the canvas iframe | **Fixed in R6** | — |
 | B-R6-2 | Call To Action imports `__experimentalStack`, which WordPress doesn't have | **ON HOLD** | `wp-editor` suite 14/17 (3 checks fail, one per editor) |
 | B-R6-1 | Before After Slider and Wavy Gallery bundle React's server renderer | **ON HOLD** | Larger editor scripts only |
-| B-R4-3, B-R4-4 | Content Wrapper hidden by an impossible parent; stray `wrapstyle` attribute in its saved markup | **ON HOLD** | Visible in saved markup of blocks that use it |
-| Pilot block notes | Advanced Button's link not output; 13 Lite block scripts use jQuery without declaring it; Pricing Table details; Star Rating half stars; Lite blocks reset their `ID` on load, so a post always shows as changed after opening | **ON HOLD** (recorded 2026-11-04) | "Unsaved changes" after only opening a post is expected |
+| B-R4-3, B-R4-4 | Content Wrapper hidden by an impossible parent; stray `wrapstyle` attribute in its saved markup | **ON HOLD** (B-R4-4 is best fixed before the next Lite release) | Visible in saved markup of blocks that use it |
+| Pilot block notes | Advanced Button's link not output; 13 Lite block scripts use jQuery without declaring it; Pricing Table details; Star Rating half stars; Lite blocks reset their `ID` on load, so a post always shows as changed after opening | **ON HOLD** (recorded 2026-11-04) | "Unsaved changes" after only opening a post is expected. **Hazard:** draft autosave then rewrites a draft by the same author, so never open an existing draft in the editor during tests; use new test posts |
+| Other block notes | Text-domain loader registered from code that runs after it; stale `wpmozo/v1/save-dynamic-style` URL sent to the editor | **ON HOLD** | None for this testing |
+| R-11 | WordPress 7.0+ control sizes and margins; opting in is block work (PL-D29) | **ON HOLD** (recorded in R6) | Size and margin deprecation warnings on 6.8 are expected |
 | R-12 | The editor with every Lite and Pro block active was never tested (the Playground harness can't load it) | Open; **a LocalWP site can test it** (T3) | Record what happens |
-| R-04, R-05, R-06, R-08, R-10, R-11 | Risks recorded for later releases | Open (see `known-issues.md`) | None for this testing |
+| R-04, R-05, R-06, R-08, R-10 | Risks recorded for later releases | Open (see `known-issues.md`) | None for this testing |
 | Pro issues | PKI-01…PKI-10, PR-01…PR-09 | See the Pro `testing-handoff.md` | — |
+
+The block issues above are the complete Lite on-hold list in [known-issues.md](known-issues.md) (owner, 2026-11-11). They are for a separate developer after the owner approves that work, never during testing or Pattern Library work (PL-D29).
+
+**Observations from the owner's LocalWP browser check (2026-11-23; not library defects; [handoff.md](handoff.md)):**
+- Category counts don't follow the Free/Pro filter: an unconfirmed UX question for the owner. Note it; it is not a failure.
+- On WordPress 7.1.5, inserted core Image blocks show "Block successfully updated" on the next load: WordPress updates their image markup (expected, PL-D18). The blocks stay valid.
+- The `ID` reset hazard above.
 
 ---
 
@@ -366,7 +386,7 @@ Details for every manual step are in [testing-environment-setup.md](testing-envi
 | T7 | Roles | Setup guide 11.4 | Administrator and Editor: all patterns. Author and Contributor: free pilots **Unavailable** ("Your user role can’t save this pattern’s styling…"), Pro pilots available with the licence. Subscriber: no editor | **[Verified]** in the suites |
 | T8 | Library switch | Setup guide 11.5 | Off: no entry points, saved placeholder says the library isn't available, content unchanged. Then restore | **[Verified]** in the suites |
 | T9 | Other editors | Open **Appearance → Editor** (Site Editor) and, if the theme has it, **Appearance → Widgets** | No "Pattern Library" item in the Options menu, no Pattern Library header icon, no Pattern Library block in the inserter: the library loads only in the post editor | [editor-ui.md](editor-ui.md); one-off checks only before |
-| T10 | Automated suites **[Optional]** | Setup guide sections 8.1, 9, 10 (needs the Playground CLI and WordPress zips: about 640 MB of downloads, with the developer's approval) | `php-parse` 2/2, `rest` 17/17, `robustness` 26/26, `contract` 26/26, `editor` 10/10, `launcher` 23/23, `wp-editor` 14/17 (B-R6-2), `team-grid` 8/8, `matrix` 109/109 (with `--oldest-lite=zip:origin/release/1.8.0`), `upgrade --mutation=1` 30/30 | **[Verified]** on the owner's Mac |
+| T10 | Automated suites **[Optional]** | Setup guide sections 8.1, 9, 10 (needs the Playground CLI and WordPress zips: about 640 MB of downloads, with the developer's approval) | `php-parse` 2/2, `rest` 17/17, `robustness` 26/26, `entitlement` 58/58, `contract` 26/26, `editor` 10/10, `launcher` 23/23, `wp-editor` 14/17 (B-R6-2), `team-grid` 8/8, `matrix` 109/109 (with `--oldest-lite=zip:origin/release/1.8.0`), `upgrade --mutation=1` 30/30 | **[Verified]** on the owner's Mac |
 | T11 | Cleanup | Setup guide section 12 | Test pages and users removed after confirmation; switch and settings as before | **[Untested]** procedure |
 
 Not in scope unless the owner asks:
