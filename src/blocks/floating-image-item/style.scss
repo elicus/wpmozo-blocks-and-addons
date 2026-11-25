@@ -16,6 +16,7 @@
 }
 .wpmozo-bna-floating-image-wrapper{
     position: relative;
+    overflow-x: clip;
 }
 .floating-image-item {
     display: inline-block;

@@ -18,7 +18,7 @@
  *   WPMozo Elementor add-on data.
  *
  * @link       https://elicus.com
- * @since      1.9.2
+ * @since      1.9.1
  * @package    WPMozo_Blocks_And_Addons
  * @subpackage WPMozo_Blocks_And_Addons/includes
  */

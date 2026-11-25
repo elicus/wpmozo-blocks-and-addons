@@ -78,6 +78,9 @@ html:not(.block-editor-iframe__html) .wpmozo-bna-price-list{
 }
 .wpmozo-bna-price-list-icon i{
     text-align: center;
+    // Wide glyphs (e.g. fa-mug-saucer) must not overflow the square box onto the item name.
+    width: auto !important;
+    min-width: 1em;
 }
 .wpmozo-bna-price-list-icon.hexagon {
     position: relative;

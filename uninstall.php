@@ -16,7 +16,7 @@
  * Addons Pro is never touched. The plugin's main file is not loaded here.
  *
  * @link       https://elicus.com
- * @since      1.9.2
+ * @since      1.9.1
  * @package    WPMozo_Blocks_And_Addons
  */
 

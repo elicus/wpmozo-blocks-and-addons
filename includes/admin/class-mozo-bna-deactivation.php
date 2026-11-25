@@ -302,7 +302,7 @@ if ( ! class_exists( 'Mozo_Bna_Deactivation' ) ) {
 			if ( $remove ) {
 				$message .= '<p><strong>' . esc_html__( 'Before you delete the plugin, please note:', 'wpmozo-blocks-and-addons' ) . '</strong> '
 					. esc_html__( 'deleting it from the Plugins screen will remove the block on/off settings and the editor\'s recently used icons. Your content is kept.', 'wpmozo-blocks-and-addons' ) . '</p>'
-					. '<p>' . esc_html__( 'Changed your mind? Reactivate the plugin and choose "Keep" in Deactivate options.', 'wpmozo-blocks-and-addons' ) . '</p>';
+					. '<p>' . esc_html__( 'Changed your mind? Reactivating the plugin cancels this choice.', 'wpmozo-blocks-and-addons' ) . '</p>';
 			} else {
 				$message .= '<p>' . esc_html__( 'Your settings and content were kept.', 'wpmozo-blocks-and-addons' ) . '</p>';
 			}

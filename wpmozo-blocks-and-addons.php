@@ -60,6 +60,17 @@ function wpmozo_bna_deactivate( $network_wide = false ) {
 register_deactivation_hook( __FILE__, 'wpmozo_bna_deactivate' );
 
 /**
+ * Runs on activation: reactivating cancels an earlier "Remove settings"
+ * choice, so deleting the plugin later keeps everything unless the user
+ * chooses it again in Deactivate options.
+ */
+function wpmozo_bna_activate() {
+	require_once WPMOZO_BNA_INC_DIR_PATH . 'class-mozo-bna-data-cleanup.php';
+	update_site_option( Mozo_Bna_Data_Cleanup::DELETE_ON_UNINSTALL_OPTION, 'no' );
+}
+register_activation_hook( __FILE__, 'wpmozo_bna_activate' );
+
+/**
  * Registers the block using a `blocks-manifest.php` file, which improves the performance of block type registration.
  * Behind the scenes, it also registers all assets so they can be enqueued
  * through the block editor in the corresponding context.

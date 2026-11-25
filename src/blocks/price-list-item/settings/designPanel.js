@@ -122,7 +122,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 					{ key: 'Color', label: __( 'Name Color', 'wpmozo-blocks-and-addons' ) }
 				] }
 			/>
-			<BaseControl label={ __( 'Heading Lavel', 'wpmozo-blocks-and-addons' ) }>
+			<BaseControl label={ __( 'Heading Level', 'wpmozo-blocks-and-addons' ) }>
 				<ButtonGroup>
 					{ headingLevelsList.map( ( item, index ) => (
 						<Button

@@ -40,9 +40,9 @@ const Inspector = ( { attributes, setAttributes } ) => {
 					{ tab.name === 'general' && 
 						<GeneralPanel attributes={attributes} setAttributes={setAttributes} />
 					}
-					{ tab.name === 'design' &&
+					{/* { tab.name === 'design' &&
 						<DesignPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState} />
-					}
+					} */}
 					{ tab.name === 'design' && <CommonDesignPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState} writeHoverAttribute /> }
 					{ tab.name === 'advanced' &&
 						<AdvancedPanel attributes={attributes} setAttributes={setAttributes} hoverState={hoverState} setHoverState={setHoverState} writeHoverAttribute />

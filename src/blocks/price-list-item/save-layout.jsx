@@ -18,6 +18,9 @@ function WPMozoPriceListLayout({ attributes }) {
     styleIcon
   } = attributes;
 
+  // parentAtts is set by edit.js on render; core can call save() before that (e.g. right after insert).
+  parentAtts = parentAtts || {};
+
   let thumbnail = null,
     price = null,
     currency = null,
@@ -29,15 +32,12 @@ function WPMozoPriceListLayout({ attributes }) {
     </div>
   ) : null;
 
-  let itmeHeadingTag = attributes.nameHeadingLavel,
-      parentHeadingLavel = parentAtts.nameHeadingLavel,
-      HeadingTag = ( 'h4' !== itmeHeadingTag ) ? itmeHeadingTag : parentHeadingLavel,
-      iconShapeClass = ( styleIcon ) ? ' '+iconShape : '';
+  let iconShapeClass = ( styleIcon ) ? ' '+iconShape : '';
 
   const title = (
     <RichText.Content
       className="wpmozo-bna-price-list-item-name"
-      tagName={HeadingTag}
+      tagName={'h4' !== attributes.nameHeadingLavel ? attributes.nameHeadingLavel : ( parentAtts.nameHeadingLavel || 'h4' )}
       value={attributes.itemName}
     />
   );
@@ -66,6 +66,7 @@ function WPMozoPriceListLayout({ attributes }) {
 
   description = (
     <RichText.Content
+      key={`${ID}_description`}
       className="wpmozo-bna-price-list-item-description"
       tagName="div"
       value={attributes.content}

@@ -12,8 +12,10 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 		'item'
 	];
     let convertedStyle = convertInlineStyleStr( toConvertStyles, attributes ),
-    	parentAtts = attributes.parentAtts,
-    	iconFontSize = ( ! wpmozo_is_empty( attributes.iconFontSize ) ) ? attributes.iconFontSize : parentAtts.iconFontSize;
+    	parentAtts = attributes.parentAtts || {},
+    	iconFontSize = ( 'use_icon' === attributes.itemThumbnailOption )
+    		? ( ! wpmozo_is_empty( attributes.iconFontSize ) ? attributes.iconFontSize : parentAtts.iconFontSize )
+    		: '';
 
 	const imageAlign = attributes.thumbnailAlignment === 'left' ? 'flex-start' :
 		attributes.thumbnailAlignment === 'right' ? 'flex-end' : 'center';
@@ -87,7 +89,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 		normalcss.push(attributes.styleIcon ? `.wpmozo-bna-price-list-layout2 .wpmozo-bna-price-list-item-icon{ display: inline-block; }` : '');
 		
 		
-		if ( ! attributes.styleIcon || ( attributes.styleIcon && 'hexagon' !== attributes.iconShape ) ) {
+		if ( 'use_icon' === attributes.itemThumbnailOption && ! attributes.styleIcon || ( attributes.styleIcon && 'hexagon' !== attributes.iconShape ) ) {
 			normalcss.push(iconFontSize ? `.wpmozo-bna-price-list-icon i{ font-size: ${iconFontSize}; width: ${iconFontSize}; }` : '');
 		}
 
@@ -110,7 +112,7 @@ const generateDynamicStyle = ({ attributes, clientId, isEdit }) => {
 					}`
 				);
 			}
-			if ( 'hexagon' === attributes.iconShape ) {
+			if ( 'use_icon' === attributes.itemThumbnailOption && 'hexagon' === attributes.iconShape ) {
 				normalcss.push( iconFontSize ? `.wpmozo-bna-price-list-icon.hexagon{ font-size: ${iconFontSize}; }` : '' );
 
 				normalcss.push( attributes.iconShapBackground ? `.wpmozo-bna-price-list-icon.hexagon::before{ background-color: ${ attributes.iconShapBackground }; }` : '' );

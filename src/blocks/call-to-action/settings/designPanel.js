@@ -332,7 +332,7 @@ export const DesignPanel = ( { attributes, setAttributes, hoverState, setHoverSt
 			</PanelBody>
 		</> ) }
 		{/* Block. */}
-		<PanelBody title={ __( 'Block', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={() => handleToggle('panel4')}>
+		<PanelBody title={ __( 'Wrapper', 'wpmozo-blocks-and-addons' ) } className="wpmozo-typography-panel" opened={openPanel === 'panel4'} onToggle={() => handleToggle('panel4')}>
 			<ToggleGroupControl
 				label={ __( 'Content Verticle Align', 'wpmozo-blocks-and-addons' ) }
 				value={ attributes.blockVerticleAlign }

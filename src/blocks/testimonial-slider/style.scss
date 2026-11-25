@@ -189,3 +189,8 @@
 .wpmozo-bna-testimonial-slider-pagination .swiper-pagination {
 	width: auto !important;
 }
+
+// Inside arrows hidden until hover sit at -50px; clip so they don't widen the page.
+.wp-block-wpmozo-testimonial-slider .wpmozo_swiper_inner_wrap:has(> .wpmozo_arrows_inside) {
+	overflow-x: clip;
+}

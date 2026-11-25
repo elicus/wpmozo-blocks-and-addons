@@ -21,6 +21,9 @@ function WPMozoPriceListLayout({ props }) {
     styleIcon
   } = attributes;
 
+  // Parent attributes can be missing for a moment (no parent block found yet).
+  parentAtts = parentAtts || {};
+
   let thumbnail = null,
     price = null,
     currency = null,
@@ -32,15 +35,12 @@ function WPMozoPriceListLayout({ props }) {
     </div>
   ) : null;
 
-  let itmeHeadingTag = attributes.nameHeadingLavel,
-      parentHeadingLavel = parentAtts.nameHeadingLavel,
-      HeadingTag = ( 'h4' !== itmeHeadingTag ) ? itmeHeadingTag : parentHeadingLavel,
-      iconShapeClass = ( styleIcon ) ? ' '+iconShape : '';
+  let iconShapeClass = ( styleIcon ) ? ' '+iconShape : '';
 
   const title = (
     <RichText
       className="wpmozo-bna-price-list-item-name"
-      tagName={HeadingTag}
+      tagName={'h4' !== attributes.nameHeadingLavel ? attributes.nameHeadingLavel : ( parentAtts.nameHeadingLavel || 'h4' )}
       value={attributes.itemName}
       onChange={(newValue) => setAttributes({ itemName: newValue })}
       placeholder={__('Item Title', 'wpmozo-blocks-and-addons')}
@@ -71,6 +71,7 @@ function WPMozoPriceListLayout({ props }) {
 
   description = (
     <RichText
+      key={`${ID}_description`}
       className="wpmozo-bna-price-list-item-description"
       tagName="div"
       value={ attributes.content }
