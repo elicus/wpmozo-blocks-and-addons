@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | Approved requirement, 2026-10-31; revised the same day after review. Future-migration addendum approved 2026-11-18 ([section 11](#11-future-cdn-migration-owner-requirement-2026-11-18), PL-D33). The local resolver exists (LPL-2); **the CDN switch, a remote catalog and remote content are not implemented** and are not part of the current implementation phases (PL-D35 brings remote premium content forward to the next stage; section 12). Planning constraint for the Pattern Library. **2026-11-20:** an owner proposal to fetch premium content on Insert has been audited ([section 12](#12-owner-proposal-2026-11-20-premium-content-fetched-on-insert-approved-not-implemented)); approved 2026-11-20 (PL-D35), not implemented. **PL-D36 (2026-11-20):** the remaining remote-delivery work, including the engine parts in section 12, belongs to Ayush and starts only on the owner's approval. Premium patterns keep their bundled content until then. |
+| Status | Approved requirement, 2026-10-31; revised the same day after review. Future-migration addendum approved 2026-11-18 ([section 11](#11-future-cdn-migration-owner-requirement-2026-11-18), PL-D33). The local resolver exists (LPL-2); **the CDN switch, a remote catalog and remote content are not implemented** and are not part of the current implementation phases (PL-D35 brings remote premium content forward to the next stage; section 12). Planning constraint for the Pattern Library. **2026-11-20:** an owner proposal to fetch premium content on Insert has been audited ([section 12](#12-owner-proposal-2026-11-20-premium-content-fetched-on-insert-approved-not-implemented)); approved 2026-11-20 (PL-D35), not implemented. **PL-D36 (2026-11-20):** the remaining remote-delivery work, including the engine parts in section 12, belongs to Ayush and starts only on the owner's approval. Premium patterns keep their bundled content until then. **2026-11-26 (PL-D37):** the JSON and XML pattern data formats, their readers and build tools are implemented (section 12); remote delivery is still not. |
 | Applies to | Pattern Library in Lite (`wpmozo-blocks-and-addons`) and Pro (`wpmozo-blocks-and-addons-pro`) |
 | Ownership | Lite owns the asset-resolution contract, the production CDN setting and the pattern registry. Pro registers its patterns and assets through Lite. |
 
@@ -40,6 +40,7 @@ Each pattern definition holds its metadata apart from the code that renders the 
 
 - Pro pattern content is delivered only after server-side authorisation and entitlement checks (for example a REST endpoint that checks the user's capability and the Pro entitlement before returning content).
 - Premium content is never stored as a directly downloadable static file (for example `.json` or `.html`) inside a publicly reachable plugin folder. Pattern definitions use a protected delivery architecture, for example PHP files that output nothing when requested directly, read only by the server.
+- **How this is met since 2026-11-26 (PL-D37):** premium content is guarded JSON. Each premium pattern's content is `patterns/<slug>/content.json.php`: the first line is exactly `<?php exit; __halt_compiler();`, then the JSON wrapper. A direct web request runs PHP, which stops at that line, so the answer is empty; the library reads the file as text and never executes it. Lite refuses a premium pattern stored as plain `content.json` (`content_unprotected`) or without the guard line (`content_unguarded`). Verified 2026-11-26: empty answer on nginx 1.26.1 (LocalWP), PHP's built-in server and WordPress Playground; a plain `.json` file is served as-is by those servers. Free content (`content.json`) is public by design.
 - What this protects: delivery through the site's endpoints and any future remote route, so a user without entitlement cannot fetch premium content by calling them directly.
 - What it does not protect: Pro is GPL software. Files already installed on a customer's server can be read by whoever controls that server. No DRM or source-code secrecy is promised.
 
@@ -133,8 +134,8 @@ Until these are verified, production readiness must not be claimed.
 
 **Known gaps to close in the CDN stage** (verified in code 2026-11-18; not changed now):
 - `asset_url()` builds both preview URLs (catalog) and content-image URLs (`media` tokens). A CDN base applied there alone would also move content images, which PL-D03 forbids, so the method first needs to know the purpose (preview or content image).
-- Sources are local folders today: `register_source()` requires an existing `path`, and the registry reads each pattern's `pattern.php` and `content.php`. A remote source needs an additive contract change (section 1, compatibility rules): in contract 1 before Lite's first release with the library (PL-D35, section 12), or a later contract version if Lite is released first (open decision, owner).
-- The catalog analyses each pattern's content to find its blocks and its restricted-HTML need. For a remote source the content isn't available when the catalog is built, so its metadata has to declare both, and delivery keeps validating the received content as it does today.
+- Sources are local folders today: `register_source()` requires an existing `path`, and the registry reads each pattern's `pattern.php` and `content.php` (since PL-D37, 2026-11-26: the source's `catalog.json` and each pattern's content file, `content.json` or, for a premium source, `content.json.php`). A remote source needs an additive contract change (section 1, compatibility rules): in contract 1 before Lite's first release with the library (PL-D35, section 12), or a later contract version if Lite is released first (open decision, owner).
+- The catalog analyses each pattern's content to find its blocks and its restricted-HTML need. For a remote source the content isn't available when the catalog is built, so its metadata has to declare both, and delivery keeps validating the received content as it does today. Since PL-D37 (2026-11-26) `catalog.json` declares the blocks (checked against the content) and the content's SHA-256; the restricted-HTML need is still found from the content.
 
 **Target design** (Phase 0, 2026-11-18; planned for the CDN stage, **not built now**):
 
@@ -170,6 +171,7 @@ After this one-time engine change, moving hosts or paths is configuration only. 
 - **Target state:** premium content no longer ships inside the add-on. Until remote delivery works end to end and the owner approves the migration, premium content stays bundled (PL-D36).
 - Pattern content is stored as JSON, metadata as XML. Both are kept in the Lite and Pro repositories and deployed unchanged to the CDN.
 - PHP holds no pattern content.
+- **2026-11-26:** the formats are implemented (PL-D37); the CDN deployment is not.
 
 **Verified today** (Lite `3aa0cfa`; Lite code unchanged at `6d0a8c9`, 2026-11-23):
 - **The editor makes two requests:**
@@ -181,9 +183,9 @@ After this one-time engine change, moving hosts or paths is configuration only. 
 - **A content image is never checked for existence.** The resolver turns a `media` token into a URL if its key is in the map, without checking that the file exists. Thumbnails and previews are checked: a missing file gives a placeholder. The authoring gate (`tools/pattern-library/gate.cjs`) checks that images load, but only on a development site, never on the release zip.
 - **Lite asks a source's entitlement callback at most once per request** (`Mozo_Bna_Library::entitlement()`). It fails closed: any unknown answer, exception or missing callback becomes `entitlement_unavailable`, shown as "Pro patterns can't be checked right now." (`src/library/messages.js`).
 - **Previews are images** (`previews/<slug>.<rev>.webp`). Previewing never loads content, so users without an entitlement see every catalog card and preview, locked.
-- **Pattern files are PHP:** metadata in `pattern.php`, with `__()` titles that `make-pot` extracts; content in `content.php`, a nowdoc behind an `ABSPATH` guard, generated by `tools/pattern-library/build-content.php`; maps in `data/*.php`.
+- **Pattern files were PHP** when this was verified: metadata in `pattern.php`, with `__()` titles that `make-pot` extracts; content in `content.php`, a nowdoc behind an `ABSPATH` guard, generated by `tools/pattern-library/build-content.php`; maps in `data/*.php`. **Replaced 2026-11-26 (PL-D37)** by the formats of recommendations 5 and 6.
 - **A pattern can require only** WooCommerce, a Lite version or a WordPress version. It has no field for the add-on's own version.
-- **The catalog learns from the content itself** which blocks a pattern uses and whether it needs `unfiltered_html`.
+- **The catalog learns from the content itself** which blocks a pattern uses and whether it needs `unfiltered_html`. Since PL-D37 the blocks are also declared in `catalog.json` and must equal the blocks in the content.
 - **Packaging:** `wp-scripts plugin-zip` packs `includes/**` but not other top-level folders, when `package.json` has no `files` field. This repository has none.
 
 **Recommendations for the engine** (they keep section 11's rules):
@@ -200,7 +202,9 @@ After this one-time engine change, moving hosts or paths is configuration only. 
    - the kses check passes with the site's own rules.
 
    The importer keeps its checks too.
-5. **File formats (owner direction):**
+
+   **Partly done 2026-11-26 (PL-D37):** `catalog.json` declares each pattern's `blocks` and `content_sha256`, and every content read checks the id, revision and checksum; the analysis checks that the declared blocks equal the blocks in the content. Still pending: the content's media keys, the restricted-HTML need, `requires.pro`, and listing a pattern without local content.
+5. **File formats (owner direction; implemented 2026-11-26, PL-D37):**
    - **Content** is a JSON envelope (`schema`, `id`, `revision`, `content`) holding WordPress's serialized block markup, not a block tree.
    - **XML metadata is the source file in the repository** (the owner's direction: content JSON and metadata XML in both repositories). The build checks it against a schema and generates a JSON `catalog.json` plus a strings file for translation. Sites never parse XML at runtime. Reasons:
      - `make-pot` doesn't read XML;
@@ -222,6 +226,8 @@ After this one-time engine change, moving hosts or paths is configuration only. 
    ```
 
    A premium add-on ships only its public parts (index, previews, content media) and keeps its content files outside the release zip.
+
+   **Implemented 2026-11-26 (PL-D37):** Lite has exactly this layout: `catalog.json`, `patterns/<slug>/pattern.xml` + `content.json`, `data/*.json` and `data/strings.php`. The premium add-on has the same layout, except that it keeps its content inside the plugin, in guarded `patterns/<slug>/content.json.php` files, until remote delivery exists (PL-D36). A remote catalog and remote premium content can reuse these exact formats: `catalog.json`, and the content JSON wrapper without the guard line in private storage. Not implemented.
 7. **Failure states:**
    - an unreachable source gives a new 503 `wpmozo_library_unreachable` ("can't be loaded right now"), never "locked";
    - a refused download gives "locked";
@@ -242,13 +248,13 @@ After this one-time engine change, moving hosts or paths is configuration only. 
    Plus a runtime guard: the resolver refuses a `media` token whose file is missing, so the card shows unavailable instead of inserting a broken image.
 11. **A pattern that needs a newer plugin** shows as **unavailable** ("update the plugin"), not locked. Locked stays reserved for entitlement.
 
-**Engine tasks** (status 2026-11-23). Every task in this list is **approved (PL-D35), not implemented, and Ayush's (PL-D36); each starts only after the owner approves it:**
+**Engine tasks** (status 2026-11-26). Every task in this list except task 6 is **approved (PL-D35), not implemented, and Ayush's (PL-D36); each starts only after the owner approves it.** Task 6 is done and task 3 is partly done (PL-D37):
 1. The provider seam (recommendation 3), in contract 1 before Lite's first release with the library.
 2. A fresh catalog on every window open (recommendation 2).
-3. Declared metadata (recommendation 4): blocks used, restricted-HTML need, the content's media keys, SHA-256, and the minimum version of the source's own plugin (`requires.pro` for the Pro source).
+3. Declared metadata (recommendation 4): blocks used, restricted-HTML need, the content's media keys, SHA-256, and the minimum version of the source's own plugin (`requires.pro` for the Pro source). **Partly done 2026-11-26:** blocks used and SHA-256 are in `catalog.json`. Pending: the content's media keys, the restricted-HTML need, `requires.pro`, and listing a pattern without local content.
 4. The failure states, including the 503 unreachable state (recommendation 7).
 5. The `asset_url()` purpose argument (section 11, known gaps; recommendation 9).
-6. JSON content, XML metadata, the compiled JSON catalog and the strings file (recommendations 5 and 6).
+6. **Done 2026-11-26 (PL-D37):** JSON content, XML metadata, the compiled JSON catalog and the strings file (recommendations 5 and 6), with their readers and build tools (`compile.php`, `build-content.php`) and the `formats` suite. No longer Ayush's.
 7. Image validation at build and release, and the runtime media guard (recommendation 10).
 8. "Update the plugin" for a pattern that needs a newer plugin (recommendation 11).
 
@@ -259,9 +265,9 @@ After this one-time engine change, moving hosts or paths is configuration only. 
 - the add-on vendor's backend answers;
 - answers on build and release. For Lite:
   - how the WordPress.org zip is built;
-  - whether `pattern.xml` ships in it;
-  - whether WordPress.org's translation import reads the generated `data/strings.php` **[Assumption: it scans every PHP file]**;
-  - whether Lite's public build tools also build the add-on's files;
+  - whether `pattern.xml` ships in it: today it does, because `plugin-zip` packs all of `includes/**` (harmless: the metadata is public); open decision (owner);
+  - whether WordPress.org's translation import reads the generated `data/strings.php` **[Assumption: it scans every PHP file]**; open decision (owner);
+  - whether Lite's public build tools also build the add-on's files (today they do: `build-content.php` and `compile.php` take `--source=pro`);
   - where the image validation runs and whether it blocks a release;
   - the image rules (formats, sizes, alt text).
 
@@ -269,7 +275,7 @@ U8 has a proposed answer: the remote endpoints are configured in the add-on.
 
 ## Out of scope now
 
-CDN deployment, remote catalog, remote media, the production switch itself, and CDN hostnames. Section 12 is approved (PL-D35) but not implemented; nothing is built before the owner's go-ahead.
+CDN deployment, remote catalog, remote media, the production switch itself, and CDN hostnames. Section 12 is approved (PL-D35); only its file formats are implemented (PL-D37, 2026-11-26). Nothing else is built before the owner's go-ahead.
 
 ## Related
 

@@ -5,9 +5,10 @@ The starting point for a developer who continues the Pattern Library testing on 
 - **What it gives:** the whole project context, the boundaries, the remaining test plan and the reporting format, so nothing has to be pieced together.
 - **The Pro side:** the private Pro repository has its own `docs/pattern-library/testing-handoff.md` (Pro architecture, licence behaviour, Pro known issues). Private Pro details stay there.
 
-**Updated:** 2026-11-23, from Lite `dev/sunil` (`6d0a8c9`) and Pro `release/pattern-lib`. Since the final validation (Lite `044cd2b`, Pro `9d4647b`):
+**Updated:** 2026-11-26 (PL-D37, below); before that 2026-11-23, from Lite `dev/sunil` (`6d0a8c9`) and Pro `release/pattern-lib`. Since the final validation (Lite `044cd2b`, Pro `9d4647b`):
 - two Lite editor changes: the header icon opens the library window directly, with no sidebar step (`485e5e7`, PL-D31), and the Options menu keeps one library item, "Pattern Library" (`5ca1e69`, PL-D32, 2026-11-17); test T4b and the `launcher` suite;
-- the premium entitlement rule (PL-D34, Lite `b54b9de`, 2026-11-19): only `entitled` inserts premium patterns; new `entitlement` suite. Lite code has not changed since; the rest is documentation and the `.env` template;
+- the premium entitlement rule (PL-D34, Lite `b54b9de`, 2026-11-19): only `entitled` inserts premium patterns; new `entitlement` suite. Lite code then did not change until PL-D37 (next item); the rest was documentation and the `.env` template;
+- **2026-11-26: pattern data is JSON and XML (PL-D37).** Lite code changed: `pattern.xml` metadata compiled into `catalog.json`, JSON content (premium content in guarded `content.json.php`), JSON maps; REST routes and responses, importer and UI unchanged. New `formats` suite; `rest` and `robustness` extended ([testing.md](testing.md), "JSON/XML pattern data, 2026-11-26"). The Pro pilots were converted in the Pro repository;
 - **Pro code changed** on 2026-11-19 (its Phase 1) and 2026-11-23 (its Phase 2: its own licence-status check, implemented, tested, committed and pushed; its live backend integration is pending, so it is dormant). Lite has no status check. Details: the Pro handoff.
 
 Machine setup details: [testing-environment-setup.md](testing-environment-setup.md).
@@ -211,12 +212,12 @@ The Pattern Library lets editors browse ready-made page sections in the block ed
 |---|---|---|
 | Integration contract | `includes/class-mozo-bna-integration.php`, `includes/mozo-bna-integration-functions.php` | `wpmozo_bna_integration()->supports( $feature, $version )`; features `integration`, `shared-js`, `library` (version 1); action `wpmozo_bna_loaded` |
 | Shared editor script | `src/shared/` → `build/shared/` | Exposes Lite's editor components and utilities to add-ons (`window.WPMozoBNAComponents`, `WPMozoBNAUtils`, `WPMozoBNA`) |
-| Library service, registry, resolver, validator, REST | `includes/library/class-mozo-bna-library*.php` | Finds patterns (one folder each), validates them, resolves tokens, decides availability per user, serves the catalog and content |
-| Central maps | `includes/library/data/` | Categories, tags, media, links, icons, demo text |
-| Free patterns and their images | `includes/library/patterns/`, `previews/`, `media/` | Two pilot patterns today |
+| Library service, registry, resolver, validator, REST | `includes/library/class-mozo-bna-library*.php` | Reads each source's `catalog.json` and content files (JSON, never executed), validates them, resolves tokens, decides availability per user, serves the catalog and content |
+| Central maps | `includes/library/data/*.json` | Categories, tags, media, links, icons, demo text |
+| Free patterns and their images | `includes/library/catalog.json`, `patterns/`, `previews/`, `media/` | Two pilot patterns today |
 | Editor UI, importer, store | `src/library/` → `build/library/` | The library window, search and filters, preview, insertion |
 | Placeholder block | `src/blocks/pattern-library/` | The "Pattern Library" block (a block folder: never edit it) |
-| Authoring tools and test suites (not shipped) | `tools/pattern-library/` | Export, content build, quality gate, regression suites |
+| Authoring tools and test suites (not shipped) | `tools/pattern-library/` | Export, content build, catalog compiler, quality gate, regression suites |
 
 **Flows:**
 - **Catalog:** `GET wpmozo/v1/library/catalog` returns metadata and per-user availability, never content.
@@ -224,7 +225,7 @@ The Pattern Library lets editors browse ready-made page sections in the block ed
 - **Import:** the editor parses the content, checks blocks and attributes, and rebuilds them with fresh IDs. It inserts everything as one undo step, or nothing if there is any problem.
 
 **Patterns:**
-- Each pattern is `patterns/<slug>/pattern.php` (metadata) plus `content.php` (block markup with tokens `{{wpmozo:media|link|icon|text:<source>/<key>}}`).
+- Each pattern is `patterns/<slug>/pattern.xml` (metadata, compiled into the source's `catalog.json`) plus `content.json` (a JSON wrapper holding the block markup with tokens `{{wpmozo:media|link|icon|text:<source>/<key>}}`). A premium source keeps its content in `content.json.php`, behind a guard line, so a direct web request answers empty (PL-D37, 2026-11-26).
 - Tokens are resolved on the server.
 - `Mozo_Bna_Library_Resolver::asset_url()` builds every image URL from the plugin's own URL. A future CDN setting also needs a purpose argument in that method (previews may move; content images stay local, PL-D03) and the provider seam ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) sections 11 and 12).
 
@@ -282,6 +283,7 @@ They are temporary designs awaiting the owner's design review. No new patterns a
 | Phase 1, PL-D34 | Only `entitled` inserts premium patterns; `published` optional; expired-licence message; `entitlement` suite (58/58) | Done 2026-11-19 (`b54b9de`, suites `0286e2c`) |
 | Pro Phase 2 | Pro's own licence-status check (not in Lite): implemented and tested; live backend integration pending, so dormant; no Lite change; Lite suites rerun | Implemented 2026-11-23 (Pro repository); live integration pending |
 | LocalWP browser check | Lite `6d0a8c9` with Pro, WordPress 7.1.5 / PHP 8.2, administrator | Passed 2026-11-23 ([handoff.md](handoff.md)) |
+| PL-D37 | Pattern data is JSON and XML (`pattern.xml` → `catalog.json`, JSON content, JSON maps); pilots converted with identical content and REST output; `formats` suite (23/23) | Done 2026-11-26 ([testing.md](testing.md)) |
 
 **Not started:** Stage F (more patterns, after the design review), X-1, the release.
 
@@ -289,7 +291,7 @@ They are temporary designs awaiting the owner's design review. No new patterns a
 - the pilot design review;
 - the release version (headers say 1.9.0, which is already released from `main` without the library; provisional pattern values say 1.10.0);
 - the Lite-to-Pro card link (`example.com` placeholder, a release blocker);
-- the other open decisions in [handoff.md](handoff.md), "Release readiness" (merge, provider seam timing, Ayush's workflow, release checklist owner).
+- the other open decisions in [handoff.md](handoff.md), "Release readiness" (merge, provider seam timing, Ayush's workflow, release checklist owner, release zip contents).
 
 ### 4.2 Repositories and branches
 
@@ -303,8 +305,8 @@ They are temporary designs awaiting the owner's design review. No new patterns a
 
 ### 4.3 Important files (Lite)
 - **Library engine:** `includes/library/class-mozo-bna-library.php`, `-registry.php`, `-resolver.php`, `-validator.php`, `-rest.php`.
-- **Maps:** `includes/library/data/*.php`.
-- **Patterns:** `includes/library/patterns/<slug>/`.
+- **Maps:** `includes/library/data/*.json`.
+- **Patterns:** `includes/library/catalog.json` (generated) and `includes/library/patterns/<slug>/` (`pattern.xml`, `content.json`).
 - **Library switch:** `includes/admin/panel/partials/general.php`, `includes/admin/assets/js/panel-library.js`.
 - **Editor UI:** `src/library/` (built to `build/library/`).
 - **Suites:** `tools/pattern-library/tests/run.cjs`, `suites/*.cjs`, [README](../../tools/pattern-library/tests/README.md).
@@ -345,7 +347,7 @@ They are temporary designs awaiting the owner's design review. No new patterns a
 | ID | What | Status | Effect on testing |
 |---|---|---|---|
 | KI-01 | Catalog cache missed changes outside a source | **Fixed in R1** (`98d4013`; `robustness` checks it) | Not expected |
-| KI-02 | One broken add-on file took the library down | **Fixed in R1** (same) | Not expected |
+| KI-02 | One broken add-on file took the library down | **Fixed in R1** (same); since PL-D37 (2026-11-26) data files are JSON, read and never included, with the same isolation | Not expected |
 | KI-03 | Missing cross-source map key gave a generic message | **Fixed in R1**: now `lite_outdated` | Not expected |
 | KI-04 | Wrong requirement headers | **Fixed in R3** | — |
 | KI-05 | Editor stylesheet warning in the canvas iframe | **Fixed in R6** | — |
@@ -377,7 +379,7 @@ Details for every manual step are in [testing-environment-setup.md](testing-envi
 | # | Test | Steps | Expected | Basis |
 |---|---|---|---|---|
 | T1 | Environment | Section 2.2 | Both clones on their branch, clean, built, matching GitHub; WordPress ≥ 6.8, PHP ≥ 7.4, single site; both plugins active, no notice | **[Verified]** commands on the owner's site |
-| T2 | Asset URLs and file protection | Setup guide 11.1 (three `curl` commands) | `200`, `200`, `0` | **[Verified]** on the owner's Local site |
+| T2 | Asset URLs and file protection | Setup guide 11.1 (three `curl` commands; the third requests a premium `content.json.php`) | `200`, `200`, `0` | **[Verified]** on the owner's Local site (the third on 2026-11-26) |
 | T3 | Editor with every block active (R-12) | Open **Pages → Add New** (title `WPMozo PL test - editor`). Note console errors and how long the editor takes to load | No recorded expectation: this is the first test of this state. Report what happens | New |
 | T4 | Catalog, preview, insertion (administrator) | Setup guide 11.2 | Four pilot cards; thumbnails from each plugin's own folder on the site's host; free pattern inserts with no invalid-block warning, stays valid after publish and reload; front end shows it, console clean | **[Verified]** behaviour in the suites (gate) |
 | T4b | Header icon and Options menu | With the settings sidebar open, click the **Pattern Library** icon in the header; close the window with Escape; close the settings sidebar and click the icon again; close with **×**; click the icon a third time and insert a free pattern. Then open the Options menu (⋮) and click **Pattern Library** | Each click opens the library window at once, with no sidebar in between; the settings sidebar stays as it was (open, then closed); focus returns to the icon; the pattern inserts. The Options menu has exactly one library item, **Pattern Library** (no **Open Pattern Library**), and it opens the same window | **[Verified]** in the `launcher` suite (PL-D31, PL-D32); the icon also on the owner's LocalWP site |
@@ -386,7 +388,7 @@ Details for every manual step are in [testing-environment-setup.md](testing-envi
 | T7 | Roles | Setup guide 11.4 | Administrator and Editor: all patterns. Author and Contributor: free pilots **Unavailable** ("Your user role can’t save this pattern’s styling…"), Pro pilots available with the licence. Subscriber: no editor | **[Verified]** in the suites |
 | T8 | Library switch | Setup guide 11.5 | Off: no entry points, saved placeholder says the library isn't available, content unchanged. Then restore | **[Verified]** in the suites |
 | T9 | Other editors | Open **Appearance → Editor** (Site Editor) and, if the theme has it, **Appearance → Widgets** | No "Pattern Library" item in the Options menu, no Pattern Library header icon, no Pattern Library block in the inserter: the library loads only in the post editor | [editor-ui.md](editor-ui.md); one-off checks only before |
-| T10 | Automated suites **[Optional]** | Setup guide sections 8.1, 9, 10 (needs the Playground CLI and WordPress zips: about 640 MB of downloads, with the developer's approval) | `php-parse` 2/2, `rest` 17/17, `robustness` 26/26, `entitlement` 58/58, `contract` 26/26, `editor` 10/10, `launcher` 23/23, `wp-editor` 14/17 (B-R6-2), `team-grid` 8/8, `matrix` 109/109 (with `--oldest-lite=zip:origin/release/1.8.0`), `upgrade --mutation=1` 30/30 | **[Verified]** on the owner's Mac |
+| T10 | Automated suites **[Optional]** | Setup guide sections 8.1, 9, 10 (needs the Playground CLI and WordPress zips: about 640 MB of downloads, with the developer's approval) | `php-parse` 2/2, `formats` 23/23, `rest` and `robustness` all checks (extended 2026-11-26; counts in [testing.md](testing.md), "JSON/XML pattern data, 2026-11-26"), `entitlement` 58/58, `contract` 26/26, `editor` 10/10, `launcher` 23/23, `wp-editor` 14/17 (B-R6-2), `team-grid` 8/8, `matrix` 109/109 (with `--oldest-lite=zip:origin/release/1.8.0`), `upgrade --mutation=1` 30/30 | **[Verified]** on the owner's Mac |
 | T11 | Cleanup | Setup guide section 12 | Test pages and users removed after confirmation; switch and settings as before | **[Untested]** procedure |
 
 Not in scope unless the owner asks:

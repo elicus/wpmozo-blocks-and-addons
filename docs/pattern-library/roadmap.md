@@ -1,6 +1,6 @@
 # Pattern Library roadmap
 
-Completed, pending and deferred work, kept apart. The stages from the 2026-11-05 compatibility audit (R1–R6) were **approved by the owner on 2026-11-05 and are done** (2026-11-05 to 2026-11-06; final validation 2026-11-11). New work still starts only on the owner's approval. **Updated:** 2026-11-23 (open owner decisions; PL-D35 engine tasks). Pro-only tasks are detailed in the private Pro repository (`docs/pattern-library/roadmap.md`); this file names them so the dependencies are visible.
+Completed, pending and deferred work, kept apart. The stages from the 2026-11-05 compatibility audit (R1–R6) were **approved by the owner on 2026-11-05 and are done** (2026-11-05 to 2026-11-06; final validation 2026-11-11). New work still starts only on the owner's approval. **Updated:** 2026-11-26 (PL-D37: JSON/XML pattern data done; removed from the PL-D35 engine tasks). 2026-11-23 (open owner decisions; PL-D35 engine tasks). Pro-only tasks are detailed in the private Pro repository (`docs/pattern-library/roadmap.md`); this file names them so the dependencies are visible.
 
 Issue IDs (KI-…, R-…) refer to [known-issues.md](known-issues.md).
 
@@ -22,6 +22,7 @@ Issue IDs (KI-…, R-…) refer to [known-issues.md](known-issues.md).
 | R4 (2026-11-06) | Contract surface freeze: every Lite surface add-ons use is inventoried, classified and machine-checked by the `contract` suite, including the R2 findings (the internal content wrapper, block on/off for add-on blocks, the Chart.js handle) and the editor object, post meta and names Lite reads from Pro found in R4. Lite is the only owner of the shared handles; Pro no longer registers Chart.js. No Lite plugin code changed (Lite tests `62a9bbf`; Pro `e79e4aa`) | [registry-and-contract.md](registry-and-contract.md) section 4, [testing.md](testing.md) R4, decisions PL-D27–PL-D29 |
 | R6 (2026-11-06) | WordPress-future hardening within the no-block-edits rule: Lite's editor stylesheet moved to `enqueue_block_assets` (KI-05 fixed, PL-D30); the `wp-editor` suite now also runs the editor without the canvas iframe; R-02 checked by that suite, R-03 found moot for the components, R-11 recorded; block follow-ups recorded for a separate developer (B-R6-1, B-R6-2) (Lite code `a54216c`, tests `4e9f12d`) | [testing.md](testing.md) R6, [known-issues.md](known-issues.md) |
 | Final validation (2026-11-11) | Every suite on WordPress 7.1.3 / PHP 8.2 and 6.8.11 / PHP 7.4 with Lite `044cd2b` and Pro `9d4647b`: 245 of 248 checks on each; the 3 failures are one unused block import (B-R6-2). Release readiness in [handoff.md](handoff.md) | [testing.md](testing.md), [compatibility.md](compatibility.md) |
+| PL-D37 (2026-11-26) | Pattern data is JSON and XML: `pattern.xml` metadata compiled by `tools/pattern-library/compile.php` into `catalog.json` and `data/strings.php`; JSON content (premium: guarded `content.json.php`); `data/*.json` maps; read with `read_json()`, never included. The four pilots converted with identical content, maps and REST output. New `formats` suite (23 checks); `robustness` and `rest` extended. This was PL-D35 engine task 6 | [registry-and-contract.md](registry-and-contract.md) section 3, [testing.md](testing.md) ("JSON/XML pattern data, 2026-11-26"), decision PL-D37 |
 
 ## Waiting for the owner
 1. **Pilot design review** (LPL-T checkpoint). Blocks Stage F only.
@@ -30,10 +31,11 @@ Issue IDs (KI-…, R-…) refer to [known-issues.md](known-issues.md).
 4. **Merge:** who merges `dev/sunil` into `main` and `dev/base`, and when.
 5. **Provider seam timing:** whether Lite may be released before PL-D35's provider seam joins contract 1 (otherwise a later contract version is needed).
 6. **Ayush's workflow:** his branch and pull-request workflow and its reviewer.
-7. **Stage F:** who authors the patterns, and whether they wait for the JSON/XML source format approved in PL-D35 ([production-pattern-authoring.md](production-pattern-authoring.md)).
+7. **Stage F:** who authors the patterns ([production-pattern-authoring.md](production-pattern-authoring.md)). The JSON/XML format is implemented (PL-D37, 2026-11-26), so the patterns are written in it directly; nothing waits for a conversion. How a new pattern gets its first compile before the gate has made its previews is also open (that guide, section 12).
 8. **Release checklist owner:** who runs `n.e.x.t`, the readme and the WordPress.org review.
+9. **Release zip contents:** whether the WordPress.org zip should leave out the `pattern.xml` files (they ship today; harmless, the metadata is public), and whether WordPress.org's translation import reads the generated `data/strings.php`.
 
-All of these are open decisions for the owner (2026-11-23).
+All of these are open decisions for the owner (2026-11-26).
 
 **Stages R1 to R6 were approved on 2026-11-05**, in the order R1, R5, R2, R3, R4, R6, with five decisions: Lite PHP floor only as verified by runtime tests; Team Grid rewritten for PHP 7.4 rather than raising Pro's minimum; Pro must never crash with an older Lite and disables only what depends on the missing contract; the reusable suites move into `tools/pattern-library/tests/`; the upgrade URL stays one central, clearly marked release-blocking setting, and no licence-server behaviour is invented.
 
@@ -58,24 +60,25 @@ Implemented in the order R1, R5, R2, R3, R4, R6. None of them changes saved bloc
 | Stage G, X-1 | Full cross-plugin matrix ([compatibility.md](compatibility.md)), now automated by R5 | Stage F |
 | Stage H, release | Versions, readme, `n.e.x.t`, headers, final Lite-to-Pro link, pattern `since`/`published`, WordPress.org guideline review, Pro release items | X-1 and the release blockers in [handoff.md](handoff.md) |
 
-## Approved, not started: PL-D35 engine tasks (2026-11-23)
-Ayush's work (PL-D36). Each task starts only after the owner approves it; none is started. The list is [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 12, "Engine tasks":
+## Approved, not started: PL-D35 engine tasks (2026-11-26)
+Ayush's work (PL-D36). Each task starts only after the owner approves it; none of these is started. The list is [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) section 12, "Engine tasks":
 - the provider seam in contract 1, before Lite's first release with the library;
 - a fresh catalog on every window open;
-- declared metadata (blocks, restricted-HTML need, content media keys, checksum, minimum plugin version);
+- the rest of the declared metadata (content media keys, restricted-HTML need, the minimum version of the source's own plugin, `requires.pro`) and listing a pattern without local content; the declared blocks and the checksum are done (PL-D37);
 - the failure states, including 503 unreachable;
 - the `asset_url()` purpose argument;
-- JSON content, XML metadata and the compiled catalog;
 - image validation at build and release, and the runtime media guard;
 - "update the plugin" for patterns that need a newer plugin.
+
+**Done, no longer Ayush's:** JSON content, XML metadata, the compiled catalog and the strings file, with their readers and build tools (PL-D37, 2026-11-26; "Completed" above). A remote catalog and remote premium content can reuse these formats; not implemented.
 
 Related open decision (owner): whether Lite should keep a source's `manage` flag when its entitlement callback answers `entitlement_unavailable` (same section).
 
 ## Deferred (decided later, not scheduled)
 - Licence states in Pro (expired and others): the owner's final policy was recorded on 2026-11-18 in the Pro repository; it needs licence-server data. Lite's part is PL-D34 (remove the dormant release-date comparison). It starts only with the owner's Phase 0 prompt. **Update 2026-11-20:** Phase 1 is done (PL-D34). The approved design (PL-D35) is assigned to Ayush (PL-D36). **2026-11-23:** the add-on's Phase 2 (its own licence-status check, in the private add-on repository) is implemented, tested, committed and pushed; its live backend integration is pending, so the check stays dormant and the add-on keeps its earlier entitlement rule. **Lite has no status check and made no change:** it only applies the state the add-on's entitlement callback returns (PL-D34) and makes no external requests (PL-D02).
-- A generated metadata index for large catalogs: only when the catalog approaches 500 patterns ([testing.md](testing.md), performance).
+- A generated metadata index for large catalogs: only when the catalog approaches 500 patterns ([testing.md](testing.md), performance). **2026-11-26:** `catalog.json` (PL-D37) is a generated metadata index; the 500-pattern measurement predates it.
 - Importing content images into the Media Library (removes R-08).
 - The library in the Site Editor, widgets editor and Customizer (decision D8).
-- Future CDN for previews, the catalog and remote pattern content (PL-D33; [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) sections 11–12 and U1–U8). The CDN switch for previews and the catalog is not part of the current implementation phases; the code keeps a clean migration path until then. PL-D35 (2026-11-20) brings remote premium content forward to the next stage: approved, not implemented (engine tasks above). **Owner, 2026-11-20 (PL-D36):** Ayush owns this work and the final completion of the Pattern Library; his handoff is the private Pro repository's `docs/pattern-library/AYUSH-PATTERN-LIBRARY-HANDOFF.md`.
+- Future CDN for previews, the catalog and remote pattern content (PL-D33; [cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) sections 11–12 and U1–U8). The CDN switch for previews and the catalog is not part of the current implementation phases; the code keeps a clean migration path until then. PL-D35 (2026-11-20) brings remote premium content forward to the next stage: approved, not implemented (engine tasks above); its file formats are implemented (PL-D37, 2026-11-26). **Owner, 2026-11-20 (PL-D36):** Ayush owns this work and the final completion of the Pattern Library; his handoff is the private Pro repository's `docs/pattern-library/AYUSH-PATTERN-LIBRARY-HANDOFF.md`.
 - Multisite runtime test: Playground's multisite step needs the network, which the offline harness blocks; run it on another environment before release.
 - Block issues found by Pattern Library work ([known-issues.md](known-issues.md), blocks; Pro block issues in the Pro repository): left to a separate developer after the Pattern Library is complete (PL-D29).

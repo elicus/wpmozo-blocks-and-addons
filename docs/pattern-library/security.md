@@ -13,14 +13,22 @@ Protections built into the library. Content is never trusted because it ships wi
 - **Content responses** are `Cache-Control: no-store`.
 - **Limits of what server-side checks protect:** plugin files installed on a server can be read by whoever controls that server. These checks protect delivery through the site's endpoints.
 
-## Isolation of broken files (PL-D24)
-Pattern, content and map files are loaded through one safe include. A file that throws or fails to parse never takes the library down:
-- a broken `pattern.php` skips that pattern (`metadata_error`);
-- a broken `content.php` makes that pattern unavailable (`invalid_content`; the content route answers 422);
-- a broken map fails closed: its tokens are unknown, so the patterns using them are unavailable;
-- output printed by a file is discarded, so it can't corrupt a REST response.
+## Isolation of broken files (PL-D24, PL-D37)
+Since 2026-11-26 (PL-D37) pattern data is JSON and XML. The catalog, content and map files are read as text with `Mozo_Bna_Library_Registry::read_json()` and never included or executed; this replaced PL-D24's safe include. Size limits: 1 MB for a catalog or content file, 256 KB for a map. One broken file never takes the library down:
+- a broken catalog entry skips only that pattern (for example `missing_title`, `invalid_blocks`, `invalid_checksum`, `duplicate_slug`);
+- a broken content file makes only its pattern unavailable (for example `content_invalid_json` or `content_too_large`; a missing content file is reported as `wpmozo_library_invalid_content`);
+- content that doesn't match its catalog entry (`content_mismatch`), its checksum (`content_checksum`) or its declared blocks (`blocks_mismatch`) makes the pattern unavailable (`invalid_content`; the content route answers 422);
+- a broken map fails closed: its tokens are unknown, so the patterns using them are unavailable (`map_invalid_json`);
+- a broken or missing `catalog.json` hides only its own source's patterns (`catalog_invalid_json`, `catalog_missing`, `catalog_mismatch`; item `catalog:<source>`); every other source keeps working.
 
 Each problem is listed in the catalog's `issues`, shown only to administrators.
+
+## Premium content files (PL-D37)
+- A premium source's content is `patterns/<slug>/content.json.php`: the first line is exactly `<?php exit; __halt_compiler();`, then the JSON. A direct web request runs PHP, which stops at that line, so the answer is empty. The library reads the file as text and never executes it.
+- Lite refuses a premium pattern stored as plain `content.json` (`content_unprotected`) or without the guard line (`content_unguarded`). A plain `.json` file is served as-is by web servers (verified 2026-11-26 on nginx 1.26.1 in LocalWP, PHP's built-in server and WordPress Playground).
+- Free content (`content.json`) is public by design: it ships in the public zip.
+- Metadata (`catalog.json`, `pattern.xml`) holds no content.
+- Direct requests to every library PHP file, the premium content files and `data/strings.php` included, give an empty answer (`rest` suite, [testing.md](testing.md)).
 
 ## Validation rules (every pattern, every user)
 | Rule | Rejects |

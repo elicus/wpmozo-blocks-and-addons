@@ -9,20 +9,23 @@ Approved design: [decisions.md](decisions.md) (PL-D04). Full reasoning: [archite
 | Integration contract (`wpmozo_bna_integration()`, `wpmozo_bna_loaded`) | Lite | `includes/class-mozo-bna-integration.php`, `includes/mozo-bna-integration-functions.php` | **Implemented** (LPL-1) |
 | Shared editor script (`wpmozo-blocks-and-addons-shared`) | Lite | `src/shared/index.js` → `build/shared/` | **Implemented** (LPL-1) |
 | Library service, source registry, asset resolver | Lite | `includes/library/class-mozo-bna-library*.php` | **Implemented** (LPL-2) |
-| Central maps (categories, tags, media, links, icons, demo text) | Lite | `includes/library/data/` | **Implemented** (LPL-2; media empty until the pilot) |
+| Central maps (categories, tags, media, links, icons, demo text) | Lite | `includes/library/data/*.json` | **Implemented** (LPL-2; media empty until the pilot). JSON since 2026-11-26 (PL-D37) |
 | Validator and REST routes (`wpmozo/v1/library/*`) | Lite | `includes/library/` | **Implemented** (LPL-2): [rest-api.md](rest-api.md), [security.md](security.md) |
 | Library UI, importer, entry points, placeholder block, library switch | Lite | `src/library/`, `src/blocks/pattern-library/`, `includes/admin/` | **Implemented** (LPL-3): [editor-ui.md](editor-ui.md), [import-workflow.md](import-workflow.md) |
-| Free patterns, shared demo media, previews | Lite | `includes/library/patterns/`, `media/`, `previews/` | **Pilot** (LPL-T, 2 patterns; review pending). Full catalog: Stage F |
-| Authoring tools | Lite (not shipped) | `tools/pattern-library/` | **Implemented** (LPL-T): [pattern-authoring.md](pattern-authoring.md) |
+| Free patterns, shared demo media, previews | Lite | `includes/library/catalog.json`, `patterns/<slug>/pattern.xml` + `content.json`, `media/`, `previews/` | **Pilot** (LPL-T, 2 patterns; review pending). JSON and XML since 2026-11-26 (PL-D37). Full catalog: Stage F |
+| Authoring tools | Lite (not shipped) | `tools/pattern-library/` | **Implemented** (LPL-T; `compile.php` and the XML schema added 2026-11-26, PL-D37): [pattern-authoring.md](pattern-authoring.md) |
 | Pro source registration and entitlement callback | Pro | Pro repository | **Implemented** (PPL-2) |
 | Pro patterns | Pro | Pro repository | **Pilot** (2 patterns; review pending). Full catalog: Stage F |
 
 Everything shipped lives under `build/` or `includes/`; release zips contain only those, the main PHP file and the readme.
 
+**Pattern data format (PL-D37, 2026-11-26):** metadata is authored as `patterns/<slug>/pattern.xml` and compiled into each source's `catalog.json`; content is a JSON wrapper (`content.json` for free sources, the guarded `content.json.php` for premium ones); maps are `data/*.json`. The library reads them as text and never includes or executes a data file. Details: [registry-and-contract.md](registry-and-contract.md) section 3.
+
 ## Data flow (implemented)
 
 ```
 Editor (Lite UI) ──GET /wpmozo/v1/library/catalog──▶ Lite REST ──▶ registry (sources: lite, pro…)
+                                                                   each source's catalog.json:
                                                                    metadata only, availability per user
 Editor ──GET /wpmozo/v1/library/patterns/<source>/<slug>──▶ Lite REST
           capability + availability + source's entitlement callback (server-side, every request)

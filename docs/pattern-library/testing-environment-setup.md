@@ -8,7 +8,7 @@ How to prepare a developer's machine to test WPMozo Blocks and Addons (Lite), WP
 
 **If the developer has already cloned, built and activated both plugins themself**, start from [testing-handoff.md](testing-handoff.md) instead: it has those steps, the prompt for that case, the project context and the remaining test plan. It uses this guide as its reference.
 
-**Status:** updated on 2026-11-13, from an audit of Lite `0805b47` (`dev/sunil`) and Pro `faf19a3` (`release/pattern-lib`). Neither repository had a code change since the final validation (Lite `044cd2b`, Pro `9d4647b`; checked with `git diff --stat`). Since then, on 2026-11-16, one Lite editor change: the header icon opens the library directly (`485e5e7`, PL-D31; the `launcher` suite). **Updated 2026-11-23:** the Options menu keeps one library item (`5ca1e69`, PL-D32); the premium entitlement rule (`b54b9de`, PL-D34, 2026-11-19) added the `entitlement` suite; Lite code has not changed since (Lite `6d0a8c9`). Pro's code changed on 2026-11-19 and 2026-11-23 (details in the Pro repository). The suite lists and expected results below include `entitlement`.
+**Status:** updated on 2026-11-13, from an audit of Lite `0805b47` (`dev/sunil`) and Pro `faf19a3` (`release/pattern-lib`). Neither repository had a code change since the final validation (Lite `044cd2b`, Pro `9d4647b`; checked with `git diff --stat`). Since then, on 2026-11-16, one Lite editor change: the header icon opens the library directly (`485e5e7`, PL-D31; the `launcher` suite). **Updated 2026-11-23:** the Options menu keeps one library item (`5ca1e69`, PL-D32); the premium entitlement rule (`b54b9de`, PL-D34, 2026-11-19) added the `entitlement` suite; Lite code has not changed since (Lite `6d0a8c9`). Pro's code changed on 2026-11-19 and 2026-11-23 (details in the Pro repository). The suite lists and expected results below include `entitlement`. **Updated 2026-11-26:** pattern data is JSON and XML (PL-D37). New `formats` suite (23 checks, no site); `rest` and `robustness` were extended, so their current counts are in [testing.md](testing.md) ("JSON/XML pattern data, 2026-11-26"); section 11.1's third check now requests a premium `content.json.php`.
 
 **Labels.** Every instruction carries one:
 - **[Verified]**: run or checked on the owner's Mac (macOS, zsh, Node 22.17.0, npm 11.4.2, Local with WordPress 7.1.4 / PHP 8.2) on the date given, or read in the code at the commits above.
@@ -213,7 +213,7 @@ Python, Composer, Docker and a LocalWP site are not needed for Track A.
 | A browser | Chrome recommended: the recorded browser checks used Chrome | **[Verified]** |
 | A Pro licence key | Only to insert Pro patterns | **[Developer required]** |
 | WP-CLI | Not needed. wp-admin covers every step. Local's site shell has WP-CLI if you prefer it | **[Optional]** |
-| PHP CLI, `cwebp` | Only for the authoring tools (section 11.6) | **[Optional]** |
+| PHP CLI (with the DOM extension), `cwebp` | Only for the authoring tools (section 11.6). The suites don't need PHP CLI: `php-parse` and `formats` use php-wasm | **[Optional]** |
 
 ### 4.3 Other local environments
 - Any other local WordPress stack (wp-env, DDEV, MAMP, Laravel Valet, Docker) can host Track B in principle, if it meets section 5.1. **[Untested]**
@@ -485,10 +485,14 @@ From the Lite checkout, after loading the settings (section 8.1):
    ```bash
    node tools/pattern-library/tests/run.cjs rest
    ```
-   **Expected:** `rest: 17/17 passed`, in about 75 s.
+   **Expected:** every `rest` check passes, in about 75 s (17 checks on 2026-11-13; the suite was extended on 2026-11-26, current count in [testing.md](testing.md), "JSON/XML pattern data, 2026-11-26").
+   ```bash
+   node tools/pattern-library/tests/run.cjs formats
+   ```
+   **Expected:** `formats: 23/23 passed`. It starts no site, but uses php-wasm from the Playground CLI's `node_modules` (`WPMOZO_PLAYGROUND_CLI`).
 2. **The full set.** Run browser suites one at a time: several Playground sites and Chrome at once can slow the editor enough to stop the gate.
    ```bash
-   node tools/pattern-library/tests/run.cjs php-parse robustness rest entitlement contract editor launcher wp-editor team-grid
+   node tools/pattern-library/tests/run.cjs php-parse formats robustness rest entitlement contract editor launcher wp-editor team-grid
    ```
    ```bash
    node tools/pattern-library/tests/run.cjs upgrade --mutation=1
@@ -497,20 +501,21 @@ From the Lite checkout, after loading the settings (section 8.1):
    node tools/pattern-library/tests/run.cjs matrix --oldest-lite=zip:origin/release/1.8.0
    ```
    ```bash
-   node tools/pattern-library/tests/run.cjs php-parse robustness rest entitlement contract editor launcher wp-editor team-grid --wp=6.8.11 --php=7.4
+   node tools/pattern-library/tests/run.cjs php-parse formats robustness rest entitlement contract editor launcher wp-editor team-grid --wp=6.8.11 --php=7.4
    ```
    - **`matrix` in a fresh clone: [Untested].**
      - Its default `zip:release/1.8.0` needs a local branch named `release/1.8.0`. A fresh clone has only `origin/release/1.8.0`, which the option above names.
      - Don't create a branch to work around it.
      - On the owner's machine the default works ([testing.md](testing.md)).
 
-**Expected results.** Recorded on the owner's Mac on 2026-11-11 ([testing.md](testing.md), final validation); `launcher` and a re-run of the browser suites on 2026-11-16 and 2026-11-17, after the header-icon and Options menu changes ([testing.md](testing.md), PL-D31 and PL-D32); `entitlement` on 2026-11-19 (Phase 1). A rerun on 2026-11-23 with Pro's latest code gave the same results (`upgrade` without `--mutation=1`: 28/28) ([testing.md](testing.md), 2026-11-23).
+**Expected results.** Recorded on the owner's Mac on 2026-11-11 ([testing.md](testing.md), final validation); `launcher` and a re-run of the browser suites on 2026-11-16 and 2026-11-17, after the header-icon and Options menu changes ([testing.md](testing.md), PL-D31 and PL-D32); `entitlement` on 2026-11-19 (Phase 1). A rerun on 2026-11-23 with Pro's latest code gave the same results (`upgrade` without `--mutation=1`: 28/28) ([testing.md](testing.md), 2026-11-23). `formats` was added and `robustness` and `rest` were extended on 2026-11-26 ([testing.md](testing.md), "JSON/XML pattern data, 2026-11-26").
 
 | Suite | Checks | Time |
 |---|---|---|
 | `php-parse` | 2/2 | ~1 min |
-| `robustness` | 26/26 | ~5 min |
-| `rest` | 17/17 | ~4 min |
+| `formats` | 23/23 (no site; runs the compiler on PHP 7.4 and 8.2) | — |
+| `robustness` | Extended 2026-11-26: current count in [testing.md](testing.md) (26/26 before) | ~5 min |
+| `rest` | Extended 2026-11-26: current count in [testing.md](testing.md) (17/17 before) | ~4 min |
 | `entitlement` | 58/58 | ~3 min |
 | `contract` | 26/26 | ~4 min |
 | `editor` | 10/10 | ~10 min |
@@ -520,7 +525,7 @@ From the Lite checkout, after loading the settings (section 8.1):
 | `matrix` | 109/109 | ~20 min |
 | `upgrade --mutation=1` | 30/30 | ~15 min |
 
-- The results were the same on WordPress 7.1.3 / PHP 8.2 and 6.8.11 / PHP 7.4.
+- The results were the same on WordPress 7.1.3 / PHP 8.2 and 6.8.11 / PHP 7.4 (`formats` doesn't depend on `--wp` or `--php`).
 - Times are the tests README's estimates and vary by machine (`rest` took 74 s on 2026-11-13).
 - Any other failure is a finding: report it (section 13) and don't change the code or the test.
 
@@ -550,7 +555,7 @@ Keep a list of each page's and user's ID.
 **Use new test posts only.** Lite blocks reset their `ID` on load (a known block issue, on hold), so opening a post marks it changed, and draft autosave can then rewrite an existing draft. Never open an existing draft in the editor during tests (seen on 2026-11-23).
 
 ### 11.1 Command-line checks (Claude can run these)
-With the settings loaded. **[Verified] 2026-11-13** on the owner's Local site.
+With the settings loaded. **[Verified] 2026-11-13** on the owner's Local site (the first two). The third replaced a request to Lite's old `content.php` on 2026-11-26 (PL-D37): a guarded premium content file gave an empty answer on LocalWP's nginx 1.26.1 that day.
 ```bash
 curl -s -o /dev/null -w '%{http_code}\n' "$WPMOZO_SITE_URL/wp-content/plugins/wpmozo-blocks-and-addons/includes/library/previews/hero-product-launch.1.webp"
 ```
@@ -558,11 +563,11 @@ curl -s -o /dev/null -w '%{http_code}\n' "$WPMOZO_SITE_URL/wp-content/plugins/wp
 curl -s -o /dev/null -w '%{http_code}\n' "$WPMOZO_SITE_URL/wp-content/plugins/wpmozo-blocks-and-addons-pro/includes/library/media/tour-plan.1.webp"
 ```
 ```bash
-curl -s "$WPMOZO_SITE_URL/wp-content/plugins/wpmozo-blocks-and-addons/includes/library/patterns/hero-product-launch/content.php" | wc -c
+curl -s "$WPMOZO_SITE_URL/wp-content/plugins/wpmozo-blocks-and-addons-pro/includes/library/patterns/about-process-timeline/content.json.php" | wc -c
 ```
 **Expected:**
 - `200`, `200`: thumbnails and media are served from each plugin's own folder on this site's URL.
-- `0`: pattern files return nothing when requested directly.
+- `0`: premium content files return nothing when requested directly. A free `content.json` is served as-is: free content is public by design.
 
 ### 11.2 Catalog, preview and insertion (administrator)
 1. **Blocks and Addons → General:** the **Pattern Library** switch is on.
@@ -631,6 +636,7 @@ Log in as each user in a private window.
 **[Optional]** Only for creating or replacing patterns. Follow [production-pattern-authoring.md](production-pattern-authoring.md) section 9.
 - It needs a WordPress 6.8.x site: use a separate site, never a downgraded reused one.
 - It uses `WPMOZO_SITE_URL` and `WPMOZO_AUTH_STATE` from the same `.env`.
+- `build-content.php` and `compile.php` need PHP CLI; `compile.php` also needs its DOM extension (pattern data is JSON and XML since 2026-11-26, PL-D37).
 - Creating a logged-in browser state for `export.cjs` and `gate.cjs` is **[Untested]**. Until now the tools ran only on the owner's offline harness, which logs in on its own.
 
 ---
@@ -729,7 +735,7 @@ What the audit found, so nobody needs to look again.
   - The only such strings are in `build-content.php`, which rejects them so they can't get into pattern content.
   - The test driver allows only loopback requests.
 - **Tools.**
-  - `export.cjs`, `gate.cjs`, `render-art.cjs` and `build-content.php` take the site URL and folders as arguments.
+  - `export.cjs`, `gate.cjs`, `render-art.cjs`, `build-content.php` and `compile.php` take the site URL or the folders as arguments.
   - They load Playwright from Lite's own `node_modules` by a relative path.
   - The browser can reach only the given site's host.
 - **Suites.**
