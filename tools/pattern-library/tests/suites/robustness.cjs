@@ -6,7 +6,8 @@
  * - the catalog's cache follows every input of the analysis (Lite and WordPress versions, the
  *   HTML allowed for posts, other sources' maps);
  * - a pattern that needs a Lite map key the installed Lite lacks says "Lite outdated";
- * - one broken pattern, content or map file never takes the rest of the library down;
+ * - one broken catalog entry, content or map file never takes the rest of the library down, and a
+ *   broken catalog.json only its own source; premium content stored unprotected is refused;
  * - the catalog and the content route always agree, and the content route analyses afresh;
  * - premium protection and role rules are unchanged.
  */
@@ -22,6 +23,17 @@ const {
 	pause,
 	networkChecks,
 } = require( '../lib/setup.cjs' );
+const {
+	GUARD,
+	contentPath,
+	readContent,
+	contentBody,
+	sha256,
+	catalogPath,
+	writeCatalog,
+	mapPath,
+	testEntry,
+} = require( '../lib/library-files.cjs' );
 
 const LIB = ( folder ) => path.join( folder, 'includes', 'library' );
 
@@ -138,7 +150,7 @@ async function run( { cli, report } ) {
 				LIB( lite ),
 				'data',
 				{ link: 'links', icon: 'icons', text: 'demo-text' }[ type ] +
-					'.php'
+					'.json'
 			);
 			await catalog( client );
 			const restore = removeMapKey( mapFile, key );
@@ -184,7 +196,7 @@ async function run( { cli, report } ) {
 				LIB( lite ),
 				'data',
 				{ link: 'links', icon: 'icons', text: 'demo-text' }[ type ] +
-					'.php'
+					'.json'
 			);
 			const restore = removeMapKey( mapFile, key );
 			await pause( 1500 );
@@ -202,51 +214,104 @@ async function run( { cli, report } ) {
 			await pause( 1500 );
 		}
 
-		// KI-02: broken files are isolated.
+		// KI-02: broken files are isolated. Each case adds one test pattern to a source's catalog
+		// (Pro when it is there, so the premium protection rules are exercised too).
 		const target = pro || lite;
 		const sourceId = pro ? 'pro' : 'lite';
-		const patterns = path.join( LIB( target ), 'patterns' );
-		const meta = ( slug ) =>
-			`<?php\ndefined( 'ABSPATH' ) || exit;\nreturn array( 'schema' => 1, 'slug' => '${ slug }', 'revision' => 1, 'title' => 'Test ${ slug }', 'category' => 'features', 'access' => '${
-				sourceId === 'pro' ? 'pro' : 'free'
-			}', 'published' => '2026-01-01', 'since' => '1.0.0', 'thumbnail' => array( 'file' => 'previews/${ slug }.1.webp', 'width' => 800, 'height' => 600 ) );\n`;
+		const protect = sourceId !== 'lite';
+		const original = fs.readFileSync( catalogPath( target ), 'utf8' );
+		const paragraph =
+			'<!-- wp:paragraph --><p>Test</p><!-- /wp:paragraph -->';
+		const wrapper = ( slug, extra = {} ) => ( {
+			schema: 1,
+			id: `${ sourceId }/${ slug }`,
+			revision: 1,
+			content: paragraph,
+			...extra,
+		} );
+		const access = protect ? 'pro' : 'free';
+		// [ slug, change the entry, content file body (null: none), content file kind, expected code, content route ]
 		const cases = [
 			[
-				'zz-test-parse',
-				"<?php\nreturn array( 'schema' => 1,\n",
+				'zz-test-entry',
+				( e ) => delete e.title,
+				contentBody( wrapper( 'zz-test-entry' ), protect ),
+				protect,
+				'missing_title',
 				null,
-				'metadata_error',
 			],
 			[
-				'zz-test-throw',
-				"<?php\nthrow new Exception( 'test' );\n",
+				'zz-test-json',
 				null,
-				'metadata_error',
+				protect ? `${ GUARD }\n{ "schema": 1,` : '{ "schema": 1,',
+				protect,
+				'content_invalid_json',
+				422,
 			],
 			[
-				'zz-test-output',
-				"<?php\necho 'stray output';\n" +
-					meta( 'zz-test-output' ).replace( '<?php\n', '' ),
-				"<?php\nreturn '<!-- wp:paragraph --><p>Test</p><!-- /wp:paragraph -->';\n",
-				'metadata_unexpected_output',
+				'zz-test-mismatch',
+				null,
+				contentBody(
+					wrapper( 'zz-test-mismatch', {
+						id: `${ sourceId }/other`,
+					} ),
+					protect
+				),
+				protect,
+				'content_mismatch',
+				422,
 			],
 			[
-				'zz-test-content',
-				meta( 'zz-test-content' ),
-				"<?php\nreturn <<<'HTML'\n<!-- wp:paragraph --><p>Test</p>\n",
-				'wpmozo_library_content_error',
+				'zz-test-checksum',
+				( e ) => ( e.content_sha256 = sha256( 'something else' ) ),
+				contentBody( wrapper( 'zz-test-checksum' ), protect ),
+				protect,
+				'content_checksum',
+				422,
+			],
+			[
+				'zz-test-blocks',
+				( e ) => ( e.blocks = [ 'core/heading' ] ),
+				contentBody( wrapper( 'zz-test-blocks' ), protect ),
+				protect,
+				'blocks_mismatch',
+				422,
 			],
 		];
-		for ( const [ slug, metaSource, contentSource, code ] of cases ) {
-			fs.mkdirSync( path.join( patterns, slug ), { recursive: true } );
-			fs.writeFileSync(
-				path.join( patterns, slug, 'pattern.php' ),
-				metaSource
+		if ( protect ) {
+			cases.push(
+				[
+					'zz-test-plain',
+					null,
+					contentBody( wrapper( 'zz-test-plain' ), false ),
+					false,
+					'content_unprotected',
+					422,
+				],
+				[
+					'zz-test-unguarded',
+					null,
+					contentBody( wrapper( 'zz-test-unguarded' ), false ),
+					true,
+					'content_unguarded',
+					422,
+				]
 			);
-			fs.writeFileSync(
-				path.join( patterns, slug, 'content.php' ),
-				contentSource || "<?php\nreturn '';\n"
-			);
+		}
+		for ( const [ slug, change, body, kind, code, route ] of cases ) {
+			const cat0 = JSON.parse( original );
+			const entry = testEntry( slug, access, paragraph );
+			if ( change ) {
+				change( entry );
+			}
+			cat0.patterns.push( entry );
+			fs.mkdirSync( path.join( LIB( target ), 'patterns', slug ), {
+				recursive: true,
+			} );
+			if ( body !== null ) {
+				fs.writeFileSync( contentPath( target, slug, kind ), body );
+			}
+			writeCatalog( target, cat0 );
 			await pause( 1500 );
 			const cat = await catalog( client );
 			const stillAvailable = available.filter(
@@ -275,39 +340,74 @@ async function run( { cli, report } ) {
 				{
 					status: cat.status,
 					issue,
+					issues: issue ? undefined : cat.data.issues,
 					stillAvailable: stillAvailable.length,
 					of: available.length,
 					raw: cat.status === 200 ? undefined : cat.raw,
 				}
 			);
-			if ( slug === 'zz-test-content' ) {
+			if ( route ) {
 				const item = cat.patterns[ `${ sourceId }/${ slug }` ];
 				const got = await content( client, `${ sourceId }/${ slug }` );
 				report.check(
-					'isolation: the pattern with broken content is unavailable and its content route answers 422',
+					`isolation: ${ sourceId }/${ slug } is unavailable (invalid_content) and its content route answers ${ route } with no content`,
 					item &&
 						item.availability.reasons.includes(
 							'invalid_content'
 						) &&
-						got.status === 422,
+						got.status === route &&
+						! got.hasContent,
 					{
 						availability: item && item.availability,
 						status: got.status,
 					}
 				);
 			}
-			fs.rmSync( path.join( patterns, slug ), {
+			fs.writeFileSync( catalogPath( target ), original );
+			fs.rmSync( path.join( LIB( target ), 'patterns', slug ), {
 				recursive: true,
 				force: true,
 			} );
+		}
+
+		// A broken catalog takes down its own source only.
+		if ( pro ) {
+			fs.writeFileSync( catalogPath( pro ), '{ "schema": 1,' );
+			await pause( 1500 );
+			const cat = await catalog( client );
+			const issue = ( cat.data.issues || [] ).find(
+				( i ) =>
+					i.item === 'catalog:pro' &&
+					i.code === 'catalog_invalid_json'
+			);
+			const lites = available.filter( ( id ) =>
+				id.startsWith( 'lite/' )
+			);
+			report.check(
+				'isolation: a broken Pro catalog.json hides the Pro patterns only, is reported, and leaves Lite patterns available',
+				cat.status === 200 &&
+					issue &&
+					! Object.keys( cat.patterns ).some( ( id ) =>
+						id.startsWith( 'pro/' )
+					) &&
+					lites.every(
+						( id ) =>
+							cat.patterns[ id ] &&
+							cat.patterns[ id ].availability.state ===
+								'available'
+					),
+				{ status: cat.status, issues: cat.data.issues }
+			);
+			fs.writeFileSync( catalogPath( pro ), original );
+			await pause( 1500 );
 		}
 		const mediaUsers = pro
 			? patternsUsingTokens( pro, 'pro', 'media' )
 			: [];
 		if ( pro && mediaUsers.length ) {
-			const mapFile = path.join( LIB( pro ), 'data', 'media.php' );
-			const original = fs.readFileSync( mapFile, 'utf8' );
-			fs.writeFileSync( mapFile, '<?php\nreturn array(\n' );
+			const mapFile = mapPath( pro, 'media' );
+			const originalMap = fs.readFileSync( mapFile, 'utf8' );
+			fs.writeFileSync( mapFile, '{ "tour-plan": ' );
 			await pause( 1500 );
 			const cat = await catalog( client );
 			const broken = cat.patterns[ `pro/${ mediaUsers[ 0 ].slug }` ];
@@ -334,7 +434,7 @@ async function run( { cli, report } ) {
 					issue,
 				}
 			);
-			fs.writeFileSync( mapFile, original );
+			fs.writeFileSync( mapFile, originalMap );
 			await pause( 1500 );
 		}
 		const recovered = await catalog( client );
@@ -355,34 +455,52 @@ async function run( { cli, report } ) {
 		);
 		if ( authorItem ) {
 			const [ src, slug ] = authorItem.id.split( '/' );
-			const file = path.join(
-				LIB( src === 'pro' ? pro : lite ),
-				'patterns',
-				slug,
-				'content.php'
+			const folder = src === 'pro' ? pro : lite;
+			const stored = readContent( folder, slug );
+			const originalContent = fs.readFileSync( stored.file, 'utf8' );
+			const originalCatalog = fs.readFileSync(
+				catalogPath( folder ),
+				'utf8'
 			);
-			const original = fs.readFileSync( file, 'utf8' );
-			const stat = fs.statSync( file );
-			// Same revision and modification time, so the cache can't notice; the new paragraph needs
-			// unfiltered_html. The block goes before the nowdoc terminator, whatever its name.
-			const changed = original.replace(
-				/\n([A-Z_]+);\s*$/,
-				'\n<!-- wp:paragraph --><p>Test<input type="checkbox"></p><!-- /wp:paragraph -->\n$1;\n'
+			const stat = fs.statSync( stored.file );
+			const catStat = fs.statSync( catalogPath( folder ) );
+			// Same revision and modification times, so the cache can't notice; the new paragraph
+			// needs unfiltered_html. The catalog's checksum (and declared blocks) follow the change,
+			// as compile.php would write them.
+			const changed = `${ stored.wrapper.content }\n<!-- wp:paragraph --><p>Test<input type="checkbox"></p><!-- /wp:paragraph -->`;
+			fs.writeFileSync(
+				stored.file,
+				contentBody(
+					{ ...stored.wrapper, content: changed },
+					stored.protect
+				)
 			);
-			if ( changed === original ) {
-				throw new Error(
-					`Test set-up: no nowdoc terminator found in ${ file }`
-				);
-			}
-			fs.writeFileSync( file, changed );
-			fs.utimesSync( file, stat.atime, stat.mtime );
+			const cat0 = JSON.parse( originalCatalog );
+			const entry = cat0.patterns.find( ( e ) => e.slug === slug );
+			entry.content_sha256 = sha256( changed );
+			entry.blocks = [
+				...new Set( [ ...entry.blocks, 'core/paragraph' ] ),
+			].sort();
+			writeCatalog( folder, cat0 );
+			fs.utimesSync( stored.file, stat.atime, stat.mtime );
+			fs.utimesSync(
+				catalogPath( folder ),
+				catStat.atime,
+				catStat.mtime
+			);
 			await pause( 1500 );
 			const got = await content( client, authorItem.id, 'author' );
 			const after = ( await catalog( client, 'author' ) ).patterns[
 				authorItem.id
 			];
-			fs.writeFileSync( file, original );
-			fs.utimesSync( file, stat.atime, stat.mtime );
+			fs.writeFileSync( stored.file, originalContent );
+			fs.writeFileSync( catalogPath( folder ), originalCatalog );
+			fs.utimesSync( stored.file, stat.atime, stat.mtime );
+			fs.utimesSync(
+				catalogPath( folder ),
+				catStat.atime,
+				catStat.mtime
+			);
 			report.check(
 				`fresh analysis: ${ authorItem.id } changed behind the cache is refused to an author (403 wpmozo_library_role)`,
 				got.status === 403 &&

@@ -4,6 +4,7 @@
  */
 const fs = require( 'fs' );
 const path = require( 'path' );
+const { readContent } = require( './library-files.cjs' );
 const env = require( './env.cjs' );
 const { pluginCopy, mutableCopy } = require( './copies.cjs' );
 const { startSite } = require( './site.cjs' );
@@ -116,7 +117,8 @@ function expectedStatus( availability ) {
 }
 
 /**
- * Patterns whose content uses a token of a given source, found by reading content.php files.
+ * Patterns whose content uses a token of a given source, found by reading their content files
+ * (content.json, or content.json.php behind its guard line).
  *
  * @param {string} folder      Plugin folder.
  * @param {string} tokenSource Token source to look for ("lite", "pro").
@@ -130,8 +132,8 @@ function patternsUsingTokens( folder, tokenSource, type ) {
 	}
 	const found = [];
 	for ( const slug of fs.readdirSync( base ).sort() ) {
-		const file = path.join( base, slug, 'content.php' );
-		if ( ! fs.existsSync( file ) ) {
+		const stored = readContent( folder, slug );
+		if ( ! stored ) {
 			continue;
 		}
 		const re = new RegExp(
@@ -140,7 +142,7 @@ function patternsUsingTokens( folder, tokenSource, type ) {
 			}):${ tokenSource }\\/([a-z0-9-]+)\\}\\}`,
 			'g'
 		);
-		const match = re.exec( fs.readFileSync( file, 'utf8' ) );
+		const match = re.exec( stored.wrapper.content );
 		if ( match ) {
 			found.push( { slug, type: match[ 1 ], key: match[ 2 ] } );
 		}
@@ -157,14 +159,14 @@ function patternsUsingTokens( folder, tokenSource, type ) {
  */
 function removeMapKey( file, key ) {
 	const original = fs.readFileSync( file, 'utf8' );
-	if ( ( original.match( /return array\(/g ) || [] ).length !== 1 ) {
-		throw new Error( `Unexpected map format: ${ file }` );
+	const map = JSON.parse( original );
+	if ( ! map || typeof map !== 'object' || ! ( key in map ) ) {
+		throw new Error(
+			`Unexpected map format or no key ${ key }: ${ file }`
+		);
 	}
-	fs.writeFileSync(
-		file,
-		original.replace( 'return array(', '$wpmozo_test_map = array(' ) +
-			`\nunset( $wpmozo_test_map['${ key }'] );\nreturn $wpmozo_test_map;\n`
-	);
+	delete map[ key ];
+	fs.writeFileSync( file, JSON.stringify( map, null, 4 ) + '\n' );
 	return () => fs.writeFileSync( file, original );
 }
 

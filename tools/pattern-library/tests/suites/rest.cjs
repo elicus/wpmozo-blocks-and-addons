@@ -297,9 +297,80 @@ async function run( { cli, report } ) {
 			}
 		}
 		report.check(
-			'HTTP: every library PHP file (patterns, content, maps) gives an empty answer when requested directly',
+			'HTTP: every library PHP file (protected premium content, translation strings, index files) gives an empty answer when requested directly',
 			! exposed.length,
 			exposed
+		);
+
+		// Premium content: stored only as content.json.php behind the guard line, so the direct
+		// requests above (which include every content.json.php) return nothing. A plain JSON copy
+		// would be served as-is, so none may exist, and the guard must be the file's first line.
+		if ( pro ) {
+			const premium = path.join( pro, 'includes', 'library', 'patterns' );
+			const slugs = fs.existsSync( premium )
+				? fs
+						.readdirSync( premium, { withFileTypes: true } )
+						.filter( ( d ) => d.isDirectory() )
+						.map( ( d ) => d.name )
+				: [];
+			const problems = [];
+			let requested = 0;
+			for ( const slug of slugs ) {
+				const dir = path.join( premium, slug );
+				if ( fs.existsSync( path.join( dir, 'content.json' ) ) ) {
+					problems.push( `${ slug }: plain content.json` );
+				}
+				const file = path.join( dir, 'content.json.php' );
+				if (
+					! fs.existsSync( file ) ||
+					! fs
+						.readFileSync( file, 'utf8' )
+						.startsWith( '<?php exit; __halt_compiler();' )
+				) {
+					problems.push( `${ slug }: no guarded content.json.php` );
+					continue;
+				}
+				const got = await visitor.request(
+					`/wp-content/plugins/${ path.basename(
+						pro
+					) }/includes/library/patterns/${ slug }/content.json.php`
+				);
+				requested++;
+				if (
+					got.text.includes( 'wp:' ) ||
+					got.text.includes( '"content"' )
+				) {
+					problems.push(
+						`${ slug }: content served (${ got.status })`
+					);
+				}
+			}
+			report.check(
+				`HTTP: every Pro pattern's content is a guarded content.json.php that returns no content when requested directly (${ requested } checked), and no plain content.json exists`,
+				slugs.length > 0 &&
+					requested === slugs.length &&
+					! problems.length,
+				problems
+			);
+		}
+		// Free content is public by design (it ships in the public Lite zip): its content.json is a
+		// static file the web server serves. Recorded so a change is noticed.
+		const freeDir = path.join( lite, 'includes', 'library', 'patterns' );
+		const freeSlug = fs
+			.readdirSync( freeDir )
+			.find( ( s ) =>
+				fs.existsSync( path.join( freeDir, s, 'content.json' ) )
+			);
+		const liteContent = await visitor.request(
+			'/wp-content/plugins/' +
+				path.basename( lite ) +
+				`/includes/library/patterns/${ freeSlug }/content.json`
+		);
+		report.check(
+			'HTTP: free content.json is served as a static file (public by design, as the Lite zip is)',
+			liteContent.status === 200 &&
+				liteContent.text.includes( '"content"' ),
+			liteContent.status
 		);
 
 		const probe = await client.driver( { wpmozo_test: 'probe' } );

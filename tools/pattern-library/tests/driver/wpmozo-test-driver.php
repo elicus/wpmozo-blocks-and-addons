@@ -110,31 +110,78 @@ if ( ! empty( $_GET['wpmozo_test_api2'] ) ) {
 }
 
 /**
- * Write the files of the test-only premium source once: two patterns, one with a `published` date
- * and one without, each with a thumbnail and a preview image.
+ * Write the files of the test-only premium source once, in the library's data format
+ * (registry-and-contract.md): a catalog.json with two patterns, one with a `published` date and
+ * one without, each with its content in a protected content.json.php, a thumbnail and a preview.
  *
  * @param string $dir Source folder.
  */
 function wpmozo_test_premium_files( $dir ) {
-	$png = base64_decode( 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==' ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions
-	$patterns = array(
-		'zz-dated'   => "'published' => '2020-01-01', ",
+	if ( file_exists( $dir . 'catalog.json' ) ) {
+		return;
+	}
+	$png     = base64_decode( 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==' ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions
+	$entries = array();
+	wp_mkdir_p( $dir . 'previews' );
+	// phpcs:disable WordPress.WP.AlternativeFunctions -- test-only fixture files.
+	$fixtures = array(
+		'zz-dated'   => '2020-01-01',
 		'zz-undated' => '',
 	);
-	foreach ( $patterns as $slug => $published ) {
-		$folder = $dir . 'patterns/' . $slug;
-		if ( file_exists( $folder . '/content.php' ) ) {
-			continue;
-		}
+	foreach ( $fixtures as $slug => $published ) {
+		$folder  = $dir . 'patterns/' . $slug;
+		$content = "<!-- wp:paragraph --><p>WPMozo test premium pattern {$slug}</p><!-- /wp:paragraph -->";
 		wp_mkdir_p( $folder );
-		wp_mkdir_p( $dir . 'previews' );
-		// phpcs:disable WordPress.WP.AlternativeFunctions -- test-only fixture files.
-		file_put_contents( $folder . '/pattern.php', "<?php\ndefined( 'ABSPATH' ) || exit;\nreturn array( 'schema' => 1, 'slug' => '{$slug}', 'revision' => 1, 'title' => 'Test premium {$slug}', 'category' => 'features', 'access' => 'pro', {$published}'since' => '1.0.0', 'thumbnail' => array( 'file' => 'previews/{$slug}.1.png', 'width' => 1, 'height' => 1 ), 'preview' => array( 'file' => 'previews/{$slug}-full.1.png', 'width' => 1, 'height' => 1 ) );\n" );
-		file_put_contents( $folder . '/content.php', "<?php\ndefined( 'ABSPATH' ) || exit;\nreturn '<!-- wp:paragraph --><p>WPMozo test premium pattern {$slug}</p><!-- /wp:paragraph -->';\n" );
+		file_put_contents(
+			$folder . '/content.json.php',
+			Mozo_Bna_Library_Registry::PROTECTED_GUARD . "\n" . wp_json_encode(
+				array(
+					'schema'   => 1,
+					'id'       => 'testpro/' . $slug,
+					'revision' => 1,
+					'content'  => $content,
+				)
+			)
+		);
+		$entry = array(
+			'schema'         => 1,
+			'slug'           => $slug,
+			'revision'       => 1,
+			'title'          => 'Test premium ' . $slug,
+			'category'       => 'features',
+			'access'         => 'pro',
+			'since'          => '1.0.0',
+			'thumbnail'      => array(
+				'file'   => 'previews/' . $slug . '.1.png',
+				'width'  => 1,
+				'height' => 1,
+			),
+			'preview'        => array(
+				'file'   => 'previews/' . $slug . '-full.1.png',
+				'width'  => 1,
+				'height' => 1,
+			),
+			'blocks'         => array( 'core/paragraph' ),
+			'content_sha256' => hash( 'sha256', $content ),
+		);
+		if ( '' !== $published ) {
+			$entry['published'] = $published;
+		}
+		$entries[] = $entry;
 		file_put_contents( $dir . 'previews/' . $slug . '.1.png', $png );
 		file_put_contents( $dir . 'previews/' . $slug . '-full.1.png', $png );
-		// phpcs:enable
 	}
+	file_put_contents(
+		$dir . 'catalog.json',
+		wp_json_encode(
+			array(
+				'schema'   => 1,
+				'source'   => 'testpro',
+				'patterns' => $entries,
+			)
+		)
+	);
+	// phpcs:enable
 }
 
 // A test-only premium source `testpro` whose entitlement answer the suites set (`set&entitlement=`),
