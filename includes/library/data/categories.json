@@ -1,0 +1,38 @@
+{
+    "hero": {
+        "label": "Hero",
+        "order": 10
+    },
+    "features": {
+        "label": "Features",
+        "order": 20
+    },
+    "about": {
+        "label": "About & services",
+        "order": 30
+    },
+    "testimonials": {
+        "label": "Testimonials",
+        "order": 40
+    },
+    "team": {
+        "label": "Team",
+        "order": 50
+    },
+    "pricing": {
+        "label": "Pricing",
+        "order": 60
+    },
+    "call-to-action": {
+        "label": "Call to action",
+        "order": 70
+    },
+    "faq": {
+        "label": "FAQ",
+        "order": 80
+    },
+    "contact": {
+        "label": "Contact",
+        "order": 90
+    }
+}

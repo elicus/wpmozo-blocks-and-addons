@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Pattern Library metadata: lite/hero-product-launch. Edit this file, then run tools/pattern-library/compile.php (Lite repository); it updates catalog.json. Schema: tools/pattern-library/schema/pattern.xsd (Lite repository). -->
+<pattern schema="1">
+	<slug>hero-product-launch</slug>
+	<revision>1</revision>
+	<title>Product launch hero</title>
+	<description>Two-column launch hero with a stacked headline, two buttons, a star rating and a product illustration.</description>
+	<category>hero</category>
+	<tags>
+		<tag>light</tag>
+		<tag>image-heavy</tag>
+	</tags>
+	<keywords>
+		<keyword>hero</keyword>
+		<keyword>launch</keyword>
+		<keyword>product</keyword>
+		<keyword>saas</keyword>
+		<keyword>header</keyword>
+	</keywords>
+	<access>free</access>
+	<layout>full</layout>
+	<thumbnail file="previews/hero-product-launch.1.webp" width="800" height="600"/>
+	<preview file="previews/hero-product-launch.1-full.webp" width="1200" height="677"/>
+	<!-- Provisional: set to the first plugin release that ships this pattern. -->
+	<since>1.10.0</since>
+	<order>10</order>
+	<requires>
+		<!-- Every block the content uses; compile.php checks it. -->
+		<blocks>
+			<block>core/button</block>
+			<block>core/buttons</block>
+			<block>core/column</block>
+			<block>core/columns</block>
+			<block>core/group</block>
+			<block>core/image</block>
+			<block>core/paragraph</block>
+			<block>wpmozo/fancy-heading</block>
+			<block>wpmozo/star-rating</block>
+		</blocks>
+	</requires>
+</pattern>

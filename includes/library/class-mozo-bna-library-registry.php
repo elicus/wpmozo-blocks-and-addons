@@ -2,9 +2,13 @@
 /**
  * Pattern Library: pattern sources and pattern metadata.
  *
- * A source (Lite itself, or an add-on such as Pro) supplies a folder with
- * `patterns/<slug>/pattern.php` (metadata) and `patterns/<slug>/content.php`
- * (block markup). See docs/pattern-library/registry-and-contract.md.
+ * A source (Lite itself, or an add-on such as Pro) supplies a folder with data files only:
+ * - `catalog.json`: every pattern's metadata, compiled from `patterns/<slug>/pattern.xml`;
+ * - `patterns/<slug>/content.json`: the block markup in a JSON wrapper (free sources), or
+ *   `patterns/<slug>/content.json.php`: the same JSON behind a one-line PHP guard, so a direct
+ *   web request returns nothing (premium sources; required for them);
+ * - `data/*.json`: central maps.
+ * These files are read as data and never executed. See docs/pattern-library/registry-and-contract.md.
  *
  * @link       https://elicus.com
  * @since      n.e.x.t
@@ -51,6 +55,58 @@ final class Mozo_Bna_Library_Registry {
 	 * @var string
 	 */
 	const FILE_PATTERN = '#^[a-z0-9][a-z0-9_-]*(?:/[a-z0-9][a-z0-9_.-]*)*\.(?:webp|png|jpe?g|svg)$#';
+
+	/**
+	 * Allowed format of a block name ("namespace/name").
+	 *
+	 * @var string
+	 */
+	const BLOCK_NAME_PATTERN = '#^[a-z][a-z0-9_-]*/[a-z][a-z0-9_-]*$#';
+
+	/**
+	 * A source's compiled metadata index, relative to its folder.
+	 *
+	 * @var string
+	 */
+	const CATALOG_FILE = 'catalog.json';
+
+	/**
+	 * Content file of a free source's pattern, inside `patterns/<slug>/`.
+	 *
+	 * @var string
+	 */
+	const CONTENT_FILE = 'content.json';
+
+	/**
+	 * Content file of a premium source's pattern, inside `patterns/<slug>/`: the same JSON behind
+	 * PROTECTED_GUARD. A web server runs it as PHP, so a direct request returns nothing; the library
+	 * reads it as text and never executes it.
+	 *
+	 * @var string
+	 */
+	const PROTECTED_CONTENT_FILE = 'content.json.php';
+
+	/**
+	 * First line of a protected content file. `__halt_compiler()` stops PHP before the data, so
+	 * nothing after it is parsed or printed.
+	 *
+	 * @var string
+	 */
+	const PROTECTED_GUARD = '<?php exit; __halt_compiler();';
+
+	/**
+	 * Largest catalog and content file read, in bytes.
+	 *
+	 * @var int
+	 */
+	const MAX_JSON_BYTES = 1048576;
+
+	/**
+	 * Text domain of each source's catalog strings, keyed by source id.
+	 *
+	 * @var array
+	 */
+	private $textdomains = array();
 
 	/**
 	 * Registered sources, keyed by id.
@@ -104,7 +160,8 @@ final class Mozo_Bna_Library_Registry {
 	 *     @type int      $contract    Source contract version the caller was written for.
 	 *     @type string   $label       Display name.
 	 *     @type string   $version     Version of the plugin that provides the source.
-	 *     @type string   $path        Absolute path of the source's library folder.
+	 *     @type string   $path        Absolute path of the source's library folder (catalog.json,
+	 *                                 patterns/<slug>/content.json or content.json.php, data/*.json).
 	 *     @type string   $url         URL of the same folder.
 	 *     @type string   $access      'free' or 'pro'.
 	 *     @type callable $entitlement Server-side entitlement check; required for 'pro'.
@@ -295,21 +352,58 @@ final class Mozo_Bna_Library_Registry {
 		if ( null === $pattern ) {
 			return new WP_Error( 'wpmozo_library_not_found', __( 'Pattern not found.', 'wpmozo-blocks-and-addons' ) );
 		}
-		$file = $this->safe_file( $this->sources[ $source ]['path'], 'patterns/' . $slug . '/content.php' );
+		$id        = $source . '/' . $slug;
+		$data      = $this->sources[ $source ];
+		$protected = self::is_protected( $data );
+		$file      = $this->content_file( $data, $slug );
 		if ( false === $file ) {
+			// A premium pattern stored as plain JSON would be downloadable from the plugin folder: refused.
+			if ( $protected && false !== $this->safe_file( $data['path'], 'patterns/' . $slug . '/' . self::CONTENT_FILE ) ) {
+				$this->issue( $id, 'content_unprotected' );
+			}
 			return new WP_Error( 'wpmozo_library_invalid_content', __( 'Pattern content is missing.', 'wpmozo-blocks-and-addons' ) );
 		}
-		$content = self::safe_include( $file, $error );
-		if ( 'load_error' === $error ) {
+		$wrapper = self::read_json( $file, self::MAX_JSON_BYTES, $protected ? self::PROTECTED_GUARD : '', $error );
+		if ( null !== $error ) {
+			$this->issue( $id, 'content_' . $error );
 			return new WP_Error( 'wpmozo_library_content_error', __( 'Pattern content could not be loaded.', 'wpmozo-blocks-and-addons' ) );
 		}
-		if ( null !== $error ) {
-			$this->issue( $source . '/' . $slug, 'content_' . $error );
+		if ( ! isset( $wrapper['schema'], $wrapper['id'], $wrapper['revision'], $wrapper['content'] ) || self::SCHEMA !== $wrapper['schema'] || $id !== $wrapper['id'] || $pattern['revision'] !== $wrapper['revision'] || ! is_string( $wrapper['content'] ) ) {
+			$this->issue( $id, 'content_mismatch' );
+			return new WP_Error( 'wpmozo_library_invalid_content', __( 'Pattern content does not match its metadata.', 'wpmozo-blocks-and-addons' ) );
 		}
-		if ( ! is_string( $content ) || '' === trim( $content ) ) {
+		if ( '' === trim( $wrapper['content'] ) ) {
 			return new WP_Error( 'wpmozo_library_invalid_content', __( 'Pattern content is empty or not a string.', 'wpmozo-blocks-and-addons' ) );
 		}
-		return $content;
+		if ( ! hash_equals( $pattern['content_sha256'], hash( 'sha256', $wrapper['content'] ) ) ) {
+			// The content changed without compiling the catalog again (or a partial deploy).
+			$this->issue( $id, 'content_checksum' );
+			return new WP_Error( 'wpmozo_library_invalid_content', __( 'Pattern content does not match its checksum.', 'wpmozo-blocks-and-addons' ) );
+		}
+		return $wrapper['content'];
+	}
+
+	/**
+	 * Whether a source's content must be stored in protected files (premium sources).
+	 *
+	 * @param array $source Source.
+	 * @return bool
+	 */
+	private static function is_protected( $source ) {
+		return 'pro' === $source['access'];
+	}
+
+	/**
+	 * Path of a pattern's content file: content.json for free sources, content.json.php for
+	 * premium ones; false when it is missing.
+	 *
+	 * @param array  $source Source.
+	 * @param string $slug   Pattern slug.
+	 * @return string|false
+	 */
+	private function content_file( $source, $slug ) {
+		$name = self::is_protected( $source ) ? self::PROTECTED_CONTENT_FILE : self::CONTENT_FILE;
+		return $this->safe_file( $source['path'], 'patterns/' . $slug . '/' . $name );
 	}
 
 	/**
@@ -321,7 +415,7 @@ final class Mozo_Bna_Library_Registry {
 	 */
 	public function get_content_mtime( $source, $slug ) {
 		$source = $this->get_source( $source );
-		$file   = $source ? $this->safe_file( $source['path'], 'patterns/' . $slug . '/content.php' ) : false;
+		$file   = $source ? $this->content_file( $source, $slug ) : false;
 		return false === $file ? 0 : (int) filemtime( $file );
 	}
 
@@ -351,31 +445,36 @@ final class Mozo_Bna_Library_Registry {
 	 * @param array $source Source.
 	 */
 	private function load_source_patterns( $source ) {
-		$folders = glob( $source['path'] . 'patterns/*', GLOB_ONLYDIR );
-		if ( empty( $folders ) ) {
+		$item = 'catalog:' . $source['id'];
+		$file = $this->safe_file( $source['path'], self::CATALOG_FILE );
+		if ( false === $file ) {
+			if ( is_dir( $source['path'] . 'patterns' ) ) {
+				$this->issue( $item, 'catalog_missing' );
+			}
 			return;
 		}
-		sort( $folders );
-		foreach ( $folders as $folder ) {
-			$slug = basename( $folder );
+		// A broken catalog skips this source only; every other source keeps working.
+		$catalog = self::read_json( $file, self::MAX_JSON_BYTES, '', $error );
+		if ( null !== $error ) {
+			$this->issue( $item, 'catalog_' . $error );
+			return;
+		}
+		if ( ! isset( $catalog['source'], $catalog['patterns'] ) || $source['id'] !== $catalog['source'] || ! is_array( $catalog['patterns'] ) ) {
+			$this->issue( $item, 'catalog_mismatch' );
+			return;
+		}
+		$this->textdomains[ $source['id'] ] = isset( $catalog['textdomain'] ) && is_string( $catalog['textdomain'] ) && preg_match( self::ID_PATTERN, $catalog['textdomain'] ) ? $catalog['textdomain'] : '';
+
+		foreach ( $catalog['patterns'] as $meta ) {
+			// One invalid entry skips only that pattern.
+			$slug = is_array( $meta ) && isset( $meta['slug'] ) && is_string( $meta['slug'] ) ? $meta['slug'] : '';
 			$id   = $source['id'] . '/' . $slug;
 			if ( ! preg_match( self::ID_PATTERN, $slug ) || strlen( $slug ) > 64 ) {
 				$this->issue( $id, 'invalid_slug' );
 				continue;
 			}
-			$file  = $this->safe_file( $source['path'], 'patterns/' . $slug . '/pattern.php' );
-			$error = null;
-			$meta  = false === $file ? null : self::safe_include( $file, $error );
-			if ( 'load_error' === $error ) {
-				// One broken file (a parse error, for example) skips only this pattern.
-				$this->issue( $id, 'metadata_error' );
-				continue;
-			}
-			if ( null !== $error ) {
-				$this->issue( $id, 'metadata_' . $error );
-			}
-			if ( ! is_array( $meta ) ) {
-				$this->issue( $id, 'metadata_missing' );
+			if ( isset( $this->patterns[ $id ] ) ) {
+				$this->issue( $id, 'duplicate_slug' );
 				continue;
 			}
 			$pattern = $this->normalise( $meta, $source, $slug );
@@ -383,6 +482,23 @@ final class Mozo_Bna_Library_Registry {
 				$this->patterns[ $id ] = $pattern;
 			}
 		}
+	}
+
+	/**
+	 * A catalog string in the user's language, from the source's text domain. The strings are
+	 * listed for translation tools in the source's generated data/strings.php.
+	 *
+	 * @param string $text      English string from the catalog.
+	 * @param string $source_id Source id.
+	 * @return string
+	 */
+	private function translated( $text, $source_id ) {
+		$domain = isset( $this->textdomains[ $source_id ] ) ? $this->textdomains[ $source_id ] : '';
+		if ( '' === $domain ) {
+			return $text;
+		}
+		// phpcs:ignore WordPress.WP.I18n.LowLevelTranslationFunction, WordPress.WP.I18n.NonSingularStringLiteralText, WordPress.WP.I18n.NonSingularStringLiteralDomain -- Catalog strings; data/strings.php lists them for translation tools.
+		return translate( $text, $domain );
 	}
 
 	/**
@@ -427,6 +543,26 @@ final class Mozo_Bna_Library_Registry {
 		if ( empty( $meta['since'] ) || ! is_string( $meta['since'] ) || ! preg_match( '/^\d+\.\d+(\.\d+)?$/', $meta['since'] ) ) {
 			return $this->issue( $id, 'invalid_since' );
 		}
+		// The blocks the content uses, declared in pattern.xml and checked against the content when
+		// the catalog is compiled and again when the content is analysed.
+		$blocks = array();
+		if ( isset( $meta['blocks'] ) && is_array( $meta['blocks'] ) ) {
+			foreach ( $meta['blocks'] as $block ) {
+				if ( ! is_string( $block ) || ! preg_match( self::BLOCK_NAME_PATTERN, $block ) ) {
+					$blocks = array();
+					break;
+				}
+				$blocks[] = $block;
+			}
+		}
+		if ( empty( $blocks ) ) {
+			return $this->issue( $id, 'invalid_blocks' );
+		}
+		$blocks = array_values( array_unique( $blocks ) );
+		sort( $blocks );
+		if ( ! isset( $meta['content_sha256'] ) || ! is_string( $meta['content_sha256'] ) || ! preg_match( '/^[a-f0-9]{64}$/', $meta['content_sha256'] ) ) {
+			return $this->issue( $id, 'invalid_checksum' );
+		}
 		// Optional information only; never used for access (PL-D34).
 		$published = isset( $meta['published'] ) && is_string( $meta['published'] ) && preg_match( '/^\d{4}-\d{2}-\d{2}$/', $meta['published'] ) ? $meta['published'] : null;
 
@@ -442,7 +578,7 @@ final class Mozo_Bna_Library_Registry {
 		if ( isset( $meta['keywords'] ) && is_array( $meta['keywords'] ) ) {
 			foreach ( $meta['keywords'] as $keyword ) {
 				if ( is_string( $keyword ) && '' !== $keyword ) {
-					$keywords[] = $keyword;
+					$keywords[] = $this->translated( $keyword, $source['id'] );
 				}
 			}
 		}
@@ -472,27 +608,29 @@ final class Mozo_Bna_Library_Registry {
 		$replaced_by = isset( $meta['replaced_by'] ) && is_string( $meta['replaced_by'] ) && preg_match( '#^[a-z0-9-]+/[a-z0-9-]+$#', $meta['replaced_by'] ) ? $meta['replaced_by'] : '';
 
 		return array(
-			'id'          => $id,
-			'source'      => $source['id'],
-			'slug'        => $slug,
-			'schema'      => $schema,
-			'revision'    => $revision,
-			'type'        => $type,
-			'title'       => $meta['title'],
-			'description' => isset( $meta['description'] ) && is_string( $meta['description'] ) ? $meta['description'] : '',
-			'category'    => $meta['category'],
-			'tags'        => $tags,
-			'keywords'    => $keywords,
-			'access'      => $access,
-			'thumbnail'   => $thumbnail,
-			'preview'     => $this->image( $meta, 'preview', $source ),
-			'since'       => $meta['since'],
-			'published'   => $published,
-			'requires'    => $requires,
-			'layout'      => $layout,
-			'order'       => isset( $meta['order'] ) ? (int) $meta['order'] : 1000,
-			'status'      => $status,
-			'replaced_by' => $replaced_by,
+			'id'             => $id,
+			'source'         => $source['id'],
+			'slug'           => $slug,
+			'schema'         => $schema,
+			'revision'       => $revision,
+			'type'           => $type,
+			'title'          => $this->translated( $meta['title'], $source['id'] ),
+			'description'    => isset( $meta['description'] ) && is_string( $meta['description'] ) && '' !== $meta['description'] ? $this->translated( $meta['description'], $source['id'] ) : '',
+			'category'       => $meta['category'],
+			'tags'           => $tags,
+			'keywords'       => $keywords,
+			'access'         => $access,
+			'thumbnail'      => $thumbnail,
+			'preview'        => $this->image( $meta, 'preview', $source ),
+			'since'          => $meta['since'],
+			'published'      => $published,
+			'requires'       => $requires,
+			'layout'         => $layout,
+			'order'          => isset( $meta['order'] ) ? (int) $meta['order'] : 1000,
+			'status'         => $status,
+			'replaced_by'    => $replaced_by,
+			'blocks'         => $blocks,
+			'content_sha256' => $meta['content_sha256'],
 		);
 	}
 
@@ -539,29 +677,44 @@ final class Mozo_Bna_Library_Registry {
 	}
 
 	/**
-	 * Include a library file (pattern, content or map) in an isolated scope and return its value.
+	 * Read a library data file (catalog, content or map) as JSON. The file is read as text and never
+	 * executed. A file that is missing, too large, unguarded or not a JSON object returns null and
+	 * sets $error, so one broken file can't take the library down.
 	 *
-	 * Library files come from add-ons too, so a file that throws or fails to parse must never
-	 * take the library down: it returns null and sets $error to 'load_error'. Anything the file
-	 * prints is discarded (it would corrupt the REST response) and sets $error to
-	 * 'unexpected_output'; the value is still returned.
-	 *
-	 * @param string      $file  Absolute path.
-	 * @param string|null $error Set to the problem code, or null.
-	 * @return mixed
+	 * @param string      $file      Absolute path.
+	 * @param int         $max_bytes Largest accepted JSON size.
+	 * @param string      $guard     Required first line (PROTECTED_GUARD), or '' for plain JSON.
+	 * @param string|null $error     Set to the problem code ('missing', 'too_large', 'unreadable',
+	 *                               'unguarded', 'invalid_json'), or null.
+	 * @return array|null
 	 */
-	public static function safe_include( $file, &$error = null ) {
+	public static function read_json( $file, $max_bytes, $guard = '', &$error = null ) {
 		$error = null;
-		ob_start();
-		try {
-			$value = include $file;
-		} catch ( Throwable $e ) {
-			$value = null;
-			$error = 'load_error';
+		$size  = is_file( $file ) ? filesize( $file ) : false;
+		if ( false === $size ) {
+			$error = 'missing';
+			return null;
 		}
-		$output = ob_get_clean();
-		if ( null === $error && is_string( $output ) && '' !== $output ) {
-			$error = 'unexpected_output';
+		if ( $size > $max_bytes + strlen( $guard ) + 2 ) {
+			$error = 'too_large';
+			return null;
+		}
+		$raw = file_get_contents( $file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- A local plugin data file.
+		if ( ! is_string( $raw ) ) {
+			$error = 'unreadable';
+			return null;
+		}
+		if ( '' !== $guard ) {
+			if ( 0 !== strpos( $raw, $guard ) ) {
+				$error = 'unguarded';
+				return null;
+			}
+			$raw = (string) preg_replace( '/^\r?\n/', '', (string) substr( $raw, strlen( $guard ) ) );
+		}
+		$value = json_decode( $raw, true, 64 );
+		if ( JSON_ERROR_NONE !== json_last_error() || ! is_array( $value ) ) {
+			$error = 'invalid_json';
+			return null;
 		}
 		return $value;
 	}

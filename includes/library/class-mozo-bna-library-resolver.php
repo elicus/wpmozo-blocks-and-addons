@@ -4,7 +4,7 @@
  *
  * The only place that builds library asset URLs (see the CDN and asset
  * requirement) and resolves `{{wpmozo:<type>:<source>/<key>}}` tokens from each
- * source's central maps (`data/media.php`, `links.php`, `icons.php`, `demo-text.php`).
+ * source's central maps (`data/media.json`, `links.json`, `icons.json`, `demo-text.json`).
  *
  * @link       https://elicus.com
  * @since      n.e.x.t
@@ -42,6 +42,13 @@ final class Mozo_Bna_Library_Resolver {
 		'icon'  => 'icons',
 		'text'  => 'demo-text',
 	);
+
+	/**
+	 * Largest map file read, in bytes.
+	 *
+	 * @var int
+	 */
+	const MAX_MAP_BYTES = 262144;
 
 	/**
 	 * Characters allowed in a resolved value, per token type. Values must be safe
@@ -112,14 +119,13 @@ final class Mozo_Bna_Library_Resolver {
 			$data                     = $this->registry->get_source( $source );
 			$allowed                  = array( 'media', 'links', 'icons', 'demo-text', 'categories', 'tags' );
 			if ( null !== $data && in_array( $map, $allowed, true ) ) {
-				$file = $data['path'] . 'data/' . $map . '.php';
+				$file = $data['path'] . 'data/' . $map . '.json';
 				if ( is_file( $file ) ) {
-					$value = Mozo_Bna_Library_Registry::safe_include( $file, $error );
+					$value = Mozo_Bna_Library_Registry::read_json( $file, self::MAX_MAP_BYTES, '', $error );
 					if ( null !== $error ) {
 						// A broken map fails closed: its tokens are unknown, so patterns using them are unavailable.
 						$this->registry->add_issue( 'map:' . $source . '/' . $map, 'map_' . $error );
-					}
-					if ( is_array( $value ) ) {
+					} else {
 						$this->maps[ $cache_key ] = $value;
 					}
 				}

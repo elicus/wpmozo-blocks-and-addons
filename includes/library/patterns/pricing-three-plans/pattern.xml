@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Pattern Library metadata: lite/pricing-three-plans. Edit this file, then run tools/pattern-library/compile.php (Lite repository); it updates catalog.json. Schema: tools/pattern-library/schema/pattern.xsd (Lite repository). -->
+<pattern schema="1">
+	<slug>pricing-three-plans</slug>
+	<revision>1</revision>
+	<title>Three pricing plans</title>
+	<description>Three plan cards with prices, feature lists and buttons, with the middle plan highlighted.</description>
+	<category>pricing</category>
+	<tags>
+		<tag>light</tag>
+	</tags>
+	<keywords>
+		<keyword>pricing</keyword>
+		<keyword>plans</keyword>
+		<keyword>price</keyword>
+		<keyword>subscription</keyword>
+		<keyword>compare</keyword>
+	</keywords>
+	<access>free</access>
+	<layout>full</layout>
+	<thumbnail file="previews/pricing-three-plans.1.webp" width="800" height="600"/>
+	<preview file="previews/pricing-three-plans.1-full.webp" width="1200" height="863"/>
+	<!-- Provisional: set to the first plugin release that ships this pattern. -->
+	<since>1.10.0</since>
+	<order>20</order>
+	<requires>
+		<!-- Every block the content uses; compile.php checks it. -->
+		<blocks>
+			<block>core/button</block>
+			<block>core/buttons</block>
+			<block>core/column</block>
+			<block>core/columns</block>
+			<block>core/group</block>
+			<block>core/heading</block>
+			<block>core/paragraph</block>
+			<block>wpmozo/pricing-table</block>
+		</blocks>
+	</requires>
+</pattern>

@@ -1,0 +1,96 @@
+{
+    "schema": 1,
+    "source": "lite",
+    "textdomain": "wpmozo-blocks-and-addons",
+    "generator": "tools/pattern-library/compile.php (Lite repository) from patterns/*/pattern.xml; do not edit",
+    "patterns": [
+        {
+            "schema": 1,
+            "slug": "hero-product-launch",
+            "revision": 1,
+            "title": "Product launch hero",
+            "description": "Two-column launch hero with a stacked headline, two buttons, a star rating and a product illustration.",
+            "category": "hero",
+            "tags": [
+                "light",
+                "image-heavy"
+            ],
+            "keywords": [
+                "hero",
+                "launch",
+                "product",
+                "saas",
+                "header"
+            ],
+            "access": "free",
+            "layout": "full",
+            "thumbnail": {
+                "file": "previews/hero-product-launch.1.webp",
+                "width": 800,
+                "height": 600
+            },
+            "preview": {
+                "file": "previews/hero-product-launch.1-full.webp",
+                "width": 1200,
+                "height": 677
+            },
+            "since": "1.10.0",
+            "order": 10,
+            "blocks": [
+                "core/button",
+                "core/buttons",
+                "core/column",
+                "core/columns",
+                "core/group",
+                "core/image",
+                "core/paragraph",
+                "wpmozo/fancy-heading",
+                "wpmozo/star-rating"
+            ],
+            "content_sha256": "4183e0f57f19704740153d1cb1f28931a36773a3722f247746cef4c381debdfb"
+        },
+        {
+            "schema": 1,
+            "slug": "pricing-three-plans",
+            "revision": 1,
+            "title": "Three pricing plans",
+            "description": "Three plan cards with prices, feature lists and buttons, with the middle plan highlighted.",
+            "category": "pricing",
+            "tags": [
+                "light"
+            ],
+            "keywords": [
+                "pricing",
+                "plans",
+                "price",
+                "subscription",
+                "compare"
+            ],
+            "access": "free",
+            "layout": "full",
+            "thumbnail": {
+                "file": "previews/pricing-three-plans.1.webp",
+                "width": 800,
+                "height": 600
+            },
+            "preview": {
+                "file": "previews/pricing-three-plans.1-full.webp",
+                "width": 1200,
+                "height": 863
+            },
+            "since": "1.10.0",
+            "order": 20,
+            "blocks": [
+                "core/button",
+                "core/buttons",
+                "core/column",
+                "core/columns",
+                "core/group",
+                "core/heading",
+                "core/paragraph",
+                "wpmozo/pricing-table"
+            ],
+            "content_sha256": "38f0c96746b910506982b04b6ade73dc3bb1a211d7bc7b3d8a22ae1201d5ea3f"
+        }
+    ]
+}

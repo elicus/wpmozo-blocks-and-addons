@@ -207,6 +207,12 @@ final class Mozo_Bna_Library {
 			}
 		} else {
 			$result = $this->validator()->validate( $content );
+			// The blocks declared in pattern.xml must be exactly the blocks the content uses, so the
+			// metadata can be trusted for compatibility checks (and, later, before a remote download).
+			if ( $result['blocks'] !== $pattern['blocks'] ) {
+				$result['errors'][] = 'blocks_mismatch';
+				$result['valid']    = false;
+			}
 		}
 
 		$this->analysis[ $source ]['items'][ $pattern['slug'] ] = array(
@@ -399,15 +405,20 @@ final class Mozo_Bna_Library {
 	 */
 	private function register_lite_source( $registry ) {
 		$path = WPMOZO_BNA_INC_DIR_PATH . 'library/';
-		foreach ( self::include_file( $path . 'data/categories.php' ) as $id => $category ) {
-			if ( ! is_array( $category ) || ! isset( $category['label'], $category['order'] ) ) {
+		// Labels are listed for translation tools in data/strings.php.
+		// phpcs:disable WordPress.WP.I18n.LowLevelTranslationFunction, WordPress.WP.I18n.NonSingularStringLiteralText
+		foreach ( self::read_map( $path . 'data/categories.json' ) as $id => $category ) {
+			if ( ! is_array( $category ) || ! isset( $category['label'], $category['order'] ) || ! is_string( $category['label'] ) ) {
 				continue;
 			}
-			$registry->add_category( $id, $category['label'], 'lite', $category['order'] );
+			$registry->add_category( $id, translate( $category['label'], 'wpmozo-blocks-and-addons' ), 'lite', $category['order'] );
 		}
-		foreach ( self::include_file( $path . 'data/tags.php' ) as $id => $label ) {
-			$registry->add_tag( $id, $label );
+		foreach ( self::read_map( $path . 'data/tags.json' ) as $id => $label ) {
+			if ( is_string( $label ) ) {
+				$registry->add_tag( $id, translate( $label, 'wpmozo-blocks-and-addons' ) );
+			}
 		}
+		// phpcs:enable
 		$registry->register_source(
 			'lite',
 			array(
@@ -446,8 +457,9 @@ final class Mozo_Bna_Library {
 	 * Everything outside a source's own pattern files that the analysis depends on:
 	 * - the Lite version and the validator rules version;
 	 * - the WordPress version and the HTML allowed for posts (the restricted-HTML check);
-	 * - every registered source's version and central maps, because a pattern may use
-	 *   another source's map keys (Pro patterns use Lite icons).
+	 * - every registered source's version, catalog (the declared blocks are checked against the
+	 *   content) and central maps, because a pattern may use another source's map keys (Pro
+	 *   patterns use Lite icons).
 	 *
 	 * @return string
 	 */
@@ -461,9 +473,12 @@ final class Mozo_Bna_Library {
 			);
 			foreach ( $this->registry()->get_sources() as $id => $data ) {
 				$parts[] = $id . ':' . $data['version'];
+				$files   = array( Mozo_Bna_Library_Registry::CATALOG_FILE );
 				foreach ( array( 'media', 'links', 'icons', 'demo-text' ) as $map ) {
-					$file    = $data['path'] . 'data/' . $map . '.php';
-					$parts[] = is_file( $file ) ? (int) filemtime( $file ) : 0;
+					$files[] = 'data/' . $map . '.json';
+				}
+				foreach ( $files as $file ) {
+					$parts[] = is_file( $data['path'] . $file ) ? (int) filemtime( $data['path'] . $file ) : 0;
 				}
 			}
 			$this->environment = implode( '|', $parts );
@@ -472,14 +487,16 @@ final class Mozo_Bna_Library {
 	}
 
 	/**
-	 * Include a data file in an isolated scope; arrays only. A file that fails to load
-	 * (a parse error, for example) yields an empty array instead of a fatal error.
+	 * Read one of Lite's JSON maps; an empty array when it is missing or broken.
 	 *
 	 * @param string $file Absolute path.
 	 * @return array
 	 */
-	private static function include_file( $file ) {
-		$value = is_file( $file ) ? Mozo_Bna_Library_Registry::safe_include( $file ) : array();
+	private static function read_map( $file ) {
+		if ( ! is_file( $file ) ) {
+			return array();
+		}
+		$value = Mozo_Bna_Library_Registry::read_json( $file, Mozo_Bna_Library_Resolver::MAX_MAP_BYTES );
 		return is_array( $value ) ? $value : array();
 	}
 }
