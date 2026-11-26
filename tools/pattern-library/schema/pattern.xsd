@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Pattern Library metadata: the schema of patterns/<slug>/pattern.xml (schema 1).
+
+	pattern.xml is the file authors edit. tools/pattern-library/compile.php checks every file
+	against this schema and compiles them into the source's catalog.json (the runtime index) and
+	data/strings.php (translation strings). WordPress never reads XML.
+	Field rules: docs/pattern-library/registry-and-contract.md. Not shipped.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+	<xs:simpleType name="id">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-z0-9]+(-[a-z0-9]+)*"/>
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- One line of text, no leading or trailing spaces. -->
+	<xs:simpleType name="line">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S([^\r\n]*\S)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="title">
+		<xs:restriction base="line">
+			<xs:maxLength value="60"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="description">
+		<xs:restriction base="line">
+			<xs:maxLength value="160"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="keyword">
+		<xs:restriction base="line">
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="version">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d+\.\d+(\.\d+)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- A version constraint such as ">=6.8"; a bare version means ">=". -->
+	<xs:simpleType name="constraint">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(>=|>|&lt;=|&lt;|=)?\d+(\.\d+){0,2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="date">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{4}-\d{2}-\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- A file inside the source folder (Mozo_Bna_Library_Registry::FILE_PATTERN). -->
+	<xs:simpleType name="file">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-z0-9][a-z0-9_\-]*(/[a-z0-9][a-z0-9_.\-]*)*\.(webp|png|jpg|jpeg|svg)"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="block">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-z][a-z0-9_\-]*/[a-z][a-z0-9_\-]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="image">
+		<xs:attribute name="file" type="file" use="required"/>
+		<xs:attribute name="width" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="height" type="xs:positiveInteger" use="required"/>
+	</xs:complexType>
+
+	<xs:element name="pattern">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="slug" type="id"/>
+				<xs:element name="revision" type="xs:positiveInteger"/>
+				<xs:element name="type" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="section"/>
+							<xs:enumeration value="page"/>
+							<xs:enumeration value="template"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="title" type="title"/>
+				<xs:element name="description" type="description" minOccurs="0"/>
+				<xs:element name="category" type="id"/>
+				<xs:element name="tags" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="tag" type="id" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="keywords" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="keyword" type="keyword" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="access">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="free"/>
+							<xs:enumeration value="pro"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="layout" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="full"/>
+							<xs:enumeration value="wide"/>
+							<xs:enumeration value="content"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="thumbnail" type="image"/>
+				<xs:element name="preview" type="image" minOccurs="0"/>
+				<!-- The plugin version that first ships the pattern. -->
+				<xs:element name="since" type="version"/>
+				<!-- Information only; never used for access (PL-D34). -->
+				<xs:element name="published" type="date" minOccurs="0"/>
+				<xs:element name="order" type="xs:nonNegativeInteger" minOccurs="0"/>
+				<xs:element name="status" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="active"/>
+							<xs:enumeration value="deprecated"/>
+							<xs:enumeration value="hidden"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="replaced-by" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="[a-z0-9]+(-[a-z0-9]+)*/[a-z0-9]+(-[a-z0-9]+)*"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="requires">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="wordpress" type="constraint" minOccurs="0"/>
+							<xs:element name="lite" type="constraint" minOccurs="0"/>
+							<xs:element name="plugin" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="slug" type="id" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<!-- Every block the content uses; compile.php checks it against the content. -->
+							<xs:element name="blocks">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="block" type="block" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="schema" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:positiveInteger">
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
