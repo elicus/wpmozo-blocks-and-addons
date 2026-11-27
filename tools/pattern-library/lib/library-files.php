@@ -3,7 +3,7 @@
  * Pattern Library data files: the rules the authoring tools share (CLI only, not shipped).
  *
  * The runtime counterpart is Mozo_Bna_Library_Registry (includes/library/class-mozo-bna-library-registry.php):
- * the guard line, the file names and the content wrapper here must match it exactly.
+ * the file names and the content wrapper here must match it exactly.
  * Format reference: docs/pattern-library/registry-and-contract.md.
  *
  * PHP 7.4 syntax (the tests run these tools on PHP 7.4 and 8.2).
@@ -18,15 +18,15 @@ if ( 'cli' !== PHP_SAPI && ! defined( 'WPMOZO_PL_TOOL_TEST' ) ) {
 }
 
 /**
- * First line of a protected (premium) content file. Same as Mozo_Bna_Library_Registry::PROTECTED_GUARD.
+ * Content file of every pattern: plain JSON. Same as Mozo_Bna_Library_Registry::CONTENT_FILE.
  */
-const WPMOZO_PL_GUARD = '<?php exit; __halt_compiler();';
+const WPMOZO_PL_CONTENT_FILE = 'content.json';
 
 /**
- * Content file names: plain JSON for free sources, guarded JSON for premium ones.
+ * Files that must no longer exist in a pattern folder: the PHP pattern data of earlier versions
+ * (pattern.php, content.php) and the guarded content.json.php used briefly on 2026-11-26.
  */
-const WPMOZO_PL_CONTENT_FILE   = 'content.json';
-const WPMOZO_PL_PROTECTED_FILE = 'content.json.php';
+const WPMOZO_PL_LEGACY_FILES = array( 'pattern.php', 'content.php', 'content.json.php' );
 
 /**
  * Encode data as the library's JSON files are written: pretty-printed, unescaped slashes and
@@ -40,27 +40,19 @@ function wpmozo_pl_json( $data ) {
 }
 
 /**
- * Read a JSON data file (optionally behind the guard line) as an array.
+ * Read a JSON data file as an array.
  *
  * @param string      $file  Path.
- * @param bool        $guard Whether the file must start with the guard line.
  * @param string|null $error Problem, or null.
  * @return array|null
  */
-function wpmozo_pl_read_json( $file, $guard = false, &$error = null ) {
+function wpmozo_pl_read_json( $file, &$error = null ) {
 	$error = null;
 	if ( ! is_file( $file ) ) {
 		$error = 'missing';
 		return null;
 	}
-	$raw = file_get_contents( $file );
-	if ( $guard ) {
-		if ( 0 !== strpos( $raw, WPMOZO_PL_GUARD ) ) {
-			$error = 'not protected (the guard line is missing)';
-			return null;
-		}
-		$raw = (string) preg_replace( '/^\r?\n/', '', substr( $raw, strlen( WPMOZO_PL_GUARD ) ) );
-	}
+	$raw   = file_get_contents( $file );
 	$value = json_decode( $raw, true, 64 );
 	if ( JSON_ERROR_NONE !== json_last_error() || ! is_array( $value ) ) {
 		$error = 'not a JSON object (' . json_last_error_msg() . ')';
@@ -72,27 +64,25 @@ function wpmozo_pl_read_json( $file, $guard = false, &$error = null ) {
 /**
  * Path of a pattern's content file.
  *
- * @param string $library   Library folder with trailing slash.
- * @param string $slug      Pattern slug.
- * @param bool   $is_protected Premium source.
+ * @param string $library Library folder with trailing slash.
+ * @param string $slug    Pattern slug.
  * @return string
  */
-function wpmozo_pl_content_path( $library, $slug, $is_protected ) {
-	return $library . 'patterns/' . $slug . '/' . ( $is_protected ? WPMOZO_PL_PROTECTED_FILE : WPMOZO_PL_CONTENT_FILE );
+function wpmozo_pl_content_path( $library, $slug ) {
+	return $library . 'patterns/' . $slug . '/' . WPMOZO_PL_CONTENT_FILE;
 }
 
 /**
- * The body of a content file: the JSON wrapper, behind the guard line for premium sources.
+ * The body of a content file: the JSON wrapper.
  *
- * @param string $source    Source id.
- * @param string $slug      Pattern slug.
- * @param int    $revision  Pattern revision.
- * @param string $markup    Serialized block markup with library tokens.
- * @param bool   $is_protected Premium source.
+ * @param string $source   Source id.
+ * @param string $slug     Pattern slug.
+ * @param int    $revision Pattern revision.
+ * @param string $markup   Serialized block markup with library tokens.
  * @return string
  */
-function wpmozo_pl_content_file_body( $source, $slug, $revision, $markup, $is_protected ) {
-	$json = wpmozo_pl_json(
+function wpmozo_pl_content_file_body( $source, $slug, $revision, $markup ) {
+	return wpmozo_pl_json(
 		array(
 			'schema'   => 1,
 			'id'       => $source . '/' . $slug,
@@ -100,7 +90,6 @@ function wpmozo_pl_content_file_body( $source, $slug, $revision, $markup, $is_pr
 			'content'  => $markup,
 		)
 	);
-	return $is_protected ? WPMOZO_PL_GUARD . "\n" . $json : $json;
 }
 
 /**

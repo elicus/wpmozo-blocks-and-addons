@@ -26,9 +26,8 @@ require_once __DIR__ . '/library-files.php';
  * @return array { problems: string[], stale: string[], written: string[], patterns: int, strings: int }
  */
 function wpmozo_pl_compile( $source, $library, $lite, $textdomain, $check ) {
-	$protected = 'lite' !== $source;
-	$access    = $protected ? 'pro' : 'free';
-	$package   = 'wpmozo-blocks-and-addons' === $textdomain ? 'WPMozo_Blocks_And_Addons' : 'WPMozo_Blocks_And_Addons_Pro';
+	$access  = 'lite' !== $source ? 'pro' : 'free';
+	$package = 'wpmozo-blocks-and-addons' === $textdomain ? 'WPMozo_Blocks_And_Addons' : 'WPMozo_Blocks_And_Addons_Pro';
 
 	$problems = array();
 	$fail     = function ( $where, $message ) use ( &$problems ) {
@@ -36,12 +35,12 @@ function wpmozo_pl_compile( $source, $library, $lite, $textdomain, $check ) {
 	};
 
 	// Lite's categories and tags: the only ones a pattern may use.
-	$categories = wpmozo_pl_read_json( $lite . 'data/categories.json', false, $error );
+	$categories = wpmozo_pl_read_json( $lite . 'data/categories.json', $error );
 	if ( null === $categories ) {
 		$fail( $lite . 'data/categories.json', $error );
 		$categories = array();
 	}
-	$tags = wpmozo_pl_read_json( $lite . 'data/tags.json', false, $error );
+	$tags = wpmozo_pl_read_json( $lite . 'data/tags.json', $error );
 	if ( null === $tags ) {
 		$fail( $lite . 'data/tags.json', $error );
 		$tags = array();
@@ -54,7 +53,7 @@ function wpmozo_pl_compile( $source, $library, $lite, $textdomain, $check ) {
 			continue;
 		}
 		if ( '.json' === substr( $name, -5 ) ) {
-			if ( null === wpmozo_pl_read_json( $file, false, $error ) ) {
+			if ( null === wpmozo_pl_read_json( $file, $error ) ) {
 				$fail( $file, $error );
 			}
 		} else {
@@ -74,9 +73,9 @@ function wpmozo_pl_compile( $source, $library, $lite, $textdomain, $check ) {
 	foreach ( $folders as $folder ) {
 		$slug  = basename( $folder );
 		$where = "$source/$slug";
-		foreach ( array( 'pattern.php', 'content.php' ) as $legacy ) {
+		foreach ( WPMOZO_PL_LEGACY_FILES as $legacy ) {
 			if ( file_exists( "$folder/$legacy" ) ) {
-				$fail( $where, "old PHP data file $legacy: pattern data is pattern.xml and a JSON content file" );
+				$fail( $where, "old PHP data file $legacy: pattern data is pattern.xml and content.json" );
 			}
 		}
 
@@ -217,18 +216,10 @@ function wpmozo_pl_compile( $source, $library, $lite, $textdomain, $check ) {
 			}
 		}
 
-		// Content: the right file for the source, matching this pattern.
-		$plain   = wpmozo_pl_content_path( $library, $slug, false );
-		$guarded = wpmozo_pl_content_path( $library, $slug, true );
-		if ( $protected && file_exists( $plain ) ) {
-			$fail( $where, 'premium content must not be stored as plain content.json (it would be downloadable from the plugin folder); use content.json.php' );
-		}
-		if ( ! $protected && file_exists( $guarded ) ) {
-			$fail( $where, 'free content is content.json, not content.json.php' );
-		}
-		$wrapper = wpmozo_pl_read_json( $protected ? $guarded : $plain, $protected, $error );
+		// Content: plain JSON (every source), matching this pattern.
+		$wrapper = wpmozo_pl_read_json( wpmozo_pl_content_path( $library, $slug ), $error );
 		if ( null === $wrapper ) {
-			$fail( $where, basename( $protected ? $guarded : $plain ) . ": $error" );
+			$fail( $where, WPMOZO_PL_CONTENT_FILE . ": $error" );
 			continue;
 		}
 		$wrapper_schema   = isset( $wrapper['schema'] ) ? $wrapper['schema'] : null;

@@ -13,10 +13,9 @@
  *
  * Checks, besides the schema: the slug matches its folder; access matches the source (Lite is
  * free, any other source premium); the category and tags exist in Lite's maps; the images exist;
- * the content file has the right form (content.json for free sources, content.json.php behind the
- * guard line for premium ones, never both) and matches the pattern's id and revision; the blocks
- * declared in <requires><blocks> are exactly the blocks the content uses; no old PHP data file
- * (pattern.php, content.php, data/*.php maps) remains.
+ * the content file (plain JSON, content.json, for every source) matches the pattern's id and
+ * revision; the blocks declared in <requires><blocks> are exactly the blocks the content uses; no
+ * old PHP data file (pattern.php, content.php, content.json.php, data/*.php maps) remains.
  *
  * --check writes nothing and fails when catalog.json or data/strings.php is out of date.
  * Exit codes: 0 done, 1 problems found (listed on stderr), 2 usage error.

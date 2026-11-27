@@ -6,8 +6,7 @@
  *   php tools/pattern-library/build-content.php --source=lite|pro --library=<source includes/library/>
  *       --lite-library=<Lite includes/library/> --slug=<slug> --in=<exported.html>
  *
- * Writes patterns/<slug>/content.json (free sources) or content.json.php (premium sources: the same
- * JSON behind a one-line guard, so a direct web request returns nothing), wrapping the markup as
+ * Writes patterns/<slug>/content.json (plain JSON, for every source), wrapping the markup as
  * { schema, id, revision, content }. The revision comes from the pattern's pattern.xml when it exists.
  * Then run compile.php to check pattern.xml (including its declared blocks) and update catalog.json.
  *
@@ -174,9 +173,7 @@ if ( $problems ) {
 	exit( 1 );
 }
 
-// Premium content is stored behind the guard line (never as plain JSON in the plugin folder).
-$protected = 'pro' === $source;
-$file      = wpmozo_pl_content_path( $library, $slug, $protected );
+$file = wpmozo_pl_content_path( $library, $slug );
 if ( ! is_dir( dirname( $file ) ) && ! mkdir( dirname( $file ), 0755, true ) ) {
 	fwrite( STDERR, "Cannot create the pattern folder\n" );
 	exit( 1 );
@@ -186,7 +183,7 @@ $xml      = dirname( $file ) . '/pattern.xml';
 if ( is_file( $xml ) && preg_match( '#<revision>\s*(\d+)\s*</revision>#', (string) file_get_contents( $xml ), $m ) ) {
 	$revision = (int) $m[1];
 }
-file_put_contents( $file, wpmozo_pl_content_file_body( $source, $slug, $revision, $markup, $protected ) );
+file_put_contents( $file, wpmozo_pl_content_file_body( $source, $slug, $revision, $markup ) );
 
 $counts = array_count_values( $used );
 echo json_encode(
