@@ -81,7 +81,7 @@ What the official pages say, summarised:
 Requirements that follow:
 
 1. **Lite JavaScript and CSS always ship in the plugin.** Never from a CDN.
-2. **Lite's own assets (the `lite` source) ship locally in the WordPress.org plugin.** A readme disclosure alone does not make loading them from a CDN acceptable. In our reading of the pages above, a default-off opt-in checkbox on its own does not either, because the exception depends on the plugin performing a service. **2026-11-27 (PL-D39):** the owner's target is that Lite's library data and assets (not its JavaScript and CSS) come from the CDN; what this section requires for that is settled in the CDN stage, before Lite loads any of them from the CDN (section 13, point 2).
+2. **Lite's own assets (the `lite` source) ship locally in the WordPress.org plugin.** A readme disclosure alone does not make loading them from a CDN acceptable. In our reading of the pages above, a default-off opt-in checkbox on its own does not either, because the exception depends on the plugin performing a service. **2026-11-27 (PL-D39):** the owner's target is that Lite's library data and assets (not its application code: PHP, JavaScript, CSS) come from the CDN; what this section requires for that is settled in the CDN stage, before Lite loads any of them from the CDN (section 13, point 2).
 3. **Any future external pattern service in Lite** must provide real functionality (Guideline 6), contact external servers only after explicit, informed, default-off consent (Guideline 7), and be documented in the readme as described above. Acceptance is decided by the WordPress.org review team case by case, so it is an open question until confirmed (see section 10).
 4. **Pro** is not bound by the WordPress.org guidelines, but any external contact it causes (including CDN thumbnails) is disclosed to customers: what is sent (for example the visitor's IP address and browser details), to which service, and why.
 
@@ -105,7 +105,7 @@ Until these are verified, production readiness must not be claimed.
 
 | # | Question | Current assumption |
 |---|---|---|
-| U1 | May Lite's own assets ever be served from the CDN in the WordPress.org build? | No; they ship locally. **Owner target 2026-11-27 (PL-D39):** Lite's library data and assets yes, later, once section 8 is met (section 13); Lite JavaScript and CSS no |
+| U1 | May Lite's own assets ever be served from the CDN in the WordPress.org build? | No; they ship locally. **Owner target 2026-11-27 (PL-D39):** Lite's library data and assets yes, later, once section 8 is met (section 13); Lite application code (PHP, JavaScript, CSS) no |
 | U2 | May Lite (a WordPress.org plugin) output CDN URLs for Pro-registered assets when Pro is active, and under which consent and disclosure model? | Unresolved; needs a guideline review, possibly a question to the WordPress.org plugin review team. **Owner target 2026-11-27 (PL-D39):** yes, later; the consent and disclosure model is still open (section 13) |
 | U3 | Does the production setting switch all eligible sources at once, or each source separately? | Undecided |
 | U4 | Exact cache lifetimes and purge tooling | Depends on the CDN provider (TBD) |
@@ -129,7 +129,7 @@ Until these are verified, production readiness must not be claimed.
 1. **One URL builder.** Library asset URLs come only from `Mozo_Bna_Library_Resolver::asset_url()`. The editor uses the URLs in REST responses and builds none itself. No hard-coded hostnames, absolute URLs or plugin paths in patterns, maps, PHP or JavaScript.
 2. **One place per source.** Each source gives its base URL, folder and relative paths once, at registration. Moving to the CDN should change only that configuration (and the central setting in section 1), not library code.
 3. **One loading seam.** Pattern metadata and content are read only through the registry's per-source loading (`load_source_patterns()` and `get_content()`). An additive change to the source contract can then let a source supply a remote provider instead of a folder, while the REST routes, availability checks, validator, importer and UI stay as they are. Per PL-D35 the provider joins **contract 1** before Lite's first release with the library (section 12, recommendation 3). A later contract version would be needed only if Lite is released with the library before the seam exists (open decision, owner).
-4. **Lite makes no external requests** (PL-D02). A remote catalog and remote content are fetched on the server by the add-on that owns the remote source. Lite only resolves, checks, validates and imports what it receives. Lite's own patterns, JavaScript and CSS stay in the plugin (section 8). **Changed 2026-11-27 (PL-D39):** this holds until the CDN stage; Lite's own library data and assets are to come from the CDN then, its JavaScript and CSS never (section 13).
+4. **Lite makes no external requests** (PL-D02). A remote catalog and remote content are fetched on the server by the add-on that owns the remote source. Lite only resolves, checks, validates and imports what it receives. Lite's own patterns, JavaScript and CSS stay in the plugin (section 8). **Changed 2026-11-27 (PL-D39):** this holds until the CDN stage; Lite's own library data and assets are to come from the CDN then, its application code (PHP, JavaScript, CSS) never (section 13).
 5. **Protected content stays protected.** Premium content is never put on a public CDN path or in any shared cache. Remote delivery of premium content is authenticated, server to server, decided on the server for every request, and sent with `Cache-Control: private, no-store`. Hosting on a CDN never makes premium content public. Previews and public metadata may be public and cacheable (sections 3–5).
 6. **Remote failures are their own state.** An unreachable or failing remote source shows a "temporarily unavailable" message, never "locked", and inserts nothing (section 6).
 
@@ -285,7 +285,7 @@ U8 has a proposed answer: the remote endpoints are configured in the add-on.
 | Thumbnails and preview images (`previews/`) | In each plugin | From the CDN |
 | Images and media used inside patterns (`media/`) | In each plugin | From the CDN |
 
-**Not covered:** Lite's JavaScript and CSS and its other non-library assets always ship in the plugin (section 8, requirement 1). The library code (registry, REST routes, validator, importer, UI) stays in Lite.
+**Not covered (owner, confirmed 2026-11-27):** application code. The PHP, JavaScript and CSS of Lite and of any add-on, and Lite's non-library assets, always ship in their plugins (section 8, requirement 1); this includes the library code (registry, REST routes, validator, importer, UI). Only Pattern Library data and assets move.
 
 **Now:** nothing changes in code or behaviour. No CDN code, setting, request or infrastructure; section 7 still holds. Released `media/` files are never renamed or deleted, because pages already saved use them.
 
@@ -298,6 +298,8 @@ U8 has a proposed answer: the remote endpoints are configured in the add-on.
 2. **WordPress.org.** Before Lite loads its own library data and assets from the CDN, section 8 must be met: a service of real substance (Guideline 6), explicit consent before contacting the CDN (Guideline 7, whose examples name offloaded images) and a readme disclosure. The WordPress.org review team decides acceptance (U1, U2). Visitors' browsers loading CDN images on saved pages are an external contact too.
 3. **Failures and offline sites.** What the window shows and what Insert does when the CDN can't be reached (section 6; section 12, recommendation 7), and whether local copies stay in the plugins as a fallback (section 5, rollback).
 4. **The resolver's purpose argument** (section 11, known gaps): previews and content images may need different bases or handling, for example a Media Library import.
+5. **Locations, access and caching** of each asset type, and whether bundled copies leave the plugins after the move. No URL, path or delivery mechanism is assumed before this design is approved.
+6. **Translations:** catalog, category and tag labels are translated through `data/strings.php` today; a catalog from the CDN needs another way, settled in the design.
 
 ## Out of scope now
 
