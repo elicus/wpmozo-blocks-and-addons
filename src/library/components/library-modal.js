@@ -2,7 +2,7 @@
  * The Pattern Library window: catalog, filters, grid, preview and insertion.
  */
 import { __, _n, sprintf } from '@wordpress/i18n';
-import { Button, Modal, Notice } from '@wordpress/components';
+import { Button, Icon, Modal, Notice } from '@wordpress/components';
 import { useDispatch, useSelect, dispatch } from '@wordpress/data';
 import { useDebounce, useViewportMatch } from '@wordpress/compose';
 import { speak } from '@wordpress/a11y';
@@ -225,7 +225,8 @@ export default function LibraryModal() {
 	return (
 		<Modal
 			title={ __( 'Pattern Library', 'wpmozo-blocks-and-addons' ) }
-			icon={ libraryIcon }
+			// `Icon` gives the SVG its 24px size: the modal adds no size of its own.
+			icon={ <Icon icon={ libraryIcon } size={ 24 } /> }
 			className="wpmozo-library"
 			size="fill"
 			isFullScreen={ isSmall }

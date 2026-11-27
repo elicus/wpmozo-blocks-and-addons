@@ -102,6 +102,15 @@
 	.components-modal__header {
 		border-block-end: 1px solid var(--wpmozo-lib-border);
 	}
+
+	// Title icon. WordPress 6.8 and 7.1 render it in
+	// `components-modal__icon-container` but style
+	// `components-modal__header-icon-container`, so it gets no spacing or
+	// alignment of its own: centred on the title, 8px before it.
+	.components-modal__icon-container {
+		display: flex;
+		margin-inline-end: var(--wpmozo-lib-space-2);
+	}
 }
 
 .wpmozo-library__layout {
