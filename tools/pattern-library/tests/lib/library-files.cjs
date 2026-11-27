@@ -1,64 +1,48 @@
 /**
  * The library's data files, as the suites read and change them (registry-and-contract.md):
- * catalog.json, patterns/<slug>/content.json (free) or content.json.php (premium: the JSON behind
- * GUARD), and data/<map>.json. Must match Mozo_Bna_Library_Registry and tools/pattern-library/lib.
+ * catalog.json, patterns/<slug>/content.json (plain JSON, every source) and data/<map>.json.
+ * Must match Mozo_Bna_Library_Registry and tools/pattern-library/lib.
  */
 const crypto = require( 'crypto' );
 const fs = require( 'fs' );
 const path = require( 'path' );
-
-const GUARD = '<?php exit; __halt_compiler();';
 
 const lib = ( folder ) => path.join( folder, 'includes', 'library' );
 
 /**
  * Content file of a pattern.
  *
- * @param {string}  folder  Plugin folder.
- * @param {string}  slug    Pattern slug.
- * @param {boolean} protect Premium source (content.json.php).
+ * @param {string} folder Plugin folder.
+ * @param {string} slug   Pattern slug.
  * @return {string} Path.
  */
-function contentPath( folder, slug, protect ) {
-	return path.join(
-		lib( folder ),
-		'patterns',
-		slug,
-		protect ? 'content.json.php' : 'content.json'
-	);
+function contentPath( folder, slug ) {
+	return path.join( lib( folder ), 'patterns', slug, 'content.json' );
 }
 
 /**
- * The content file of a pattern, whichever form it has.
+ * The content file of a pattern.
  *
  * @param {string} folder Plugin folder.
  * @param {string} slug   Pattern slug.
- * @return {?Object} { file, protect, wrapper } or null.
+ * @return {?Object} { file, wrapper } or null.
  */
 function readContent( folder, slug ) {
-	for ( const protect of [ true, false ] ) {
-		const file = contentPath( folder, slug, protect );
-		if ( fs.existsSync( file ) ) {
-			let raw = fs.readFileSync( file, 'utf8' );
-			if ( protect ) {
-				raw = raw.slice( GUARD.length ).replace( /^\r?\n/, '' );
-			}
-			return { file, protect, wrapper: JSON.parse( raw ) };
-		}
+	const file = contentPath( folder, slug );
+	if ( ! fs.existsSync( file ) ) {
+		return null;
 	}
-	return null;
+	return { file, wrapper: JSON.parse( fs.readFileSync( file, 'utf8' ) ) };
 }
 
 /**
  * The body of a content file.
  *
- * @param {Object}  wrapper { schema, id, revision, content }.
- * @param {boolean} protect Behind the guard line.
+ * @param {Object} wrapper { schema, id, revision, content }.
  * @return {string} File body.
  */
-function contentBody( wrapper, protect ) {
-	const json = JSON.stringify( wrapper, null, 4 ) + '\n';
-	return protect ? `${ GUARD }\n${ json }` : json;
+function contentBody( wrapper ) {
+	return JSON.stringify( wrapper, null, 4 ) + '\n';
 }
 
 const sha256 = ( text ) =>
@@ -108,7 +92,6 @@ function testEntry( slug, access, content ) {
 }
 
 module.exports = {
-	GUARD,
 	contentPath,
 	readContent,
 	contentBody,

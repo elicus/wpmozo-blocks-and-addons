@@ -1,17 +1,19 @@
 /**
- * Pattern data formats (PL-D37; registry-and-contract.md): metadata is XML (patterns/<slug>/pattern.xml,
- * the file authors edit), compiled into catalog.json; content is JSON (content.json for free
- * sources, content.json.php behind a guard line for premium ones); maps are data/*.json. No PHP
- * file holds pattern content or metadata.
+ * Pattern data formats (PL-D37, PL-D38; registry-and-contract.md): metadata is XML
+ * (patterns/<slug>/pattern.xml, the file authors edit), compiled into catalog.json; content is plain
+ * JSON (content.json, every source); maps are data/*.json. No PHP file holds pattern content or
+ * metadata.
  *
  * Checks, without starting a site:
- * - the files of every Lite and Pro pattern have the right form, and no old PHP data file remains;
- * - the runtime (Mozo_Bna_Library_Registry) and the tools share the same guard line;
+ * - the files of every Lite and Pro pattern have the right form (content.json is standard JSON),
+ *   and no PHP content or metadata file (pattern.php, content.php, content.json.php) remains;
+ * - the runtime (Mozo_Bna_Library_Registry) and the tools use the same content file name and no
+ *   PHP guard;
  * - on PHP 7.4 and 8.2 (php-wasm), compile.php --check passes for Lite and Pro, so catalog.json and
  *   data/strings.php are up to date with every pattern.xml and content file;
  * - the compiler refuses: a schema error, a DOCTYPE (no entities, so no XXE or entity expansion),
  *   an unknown element, declared blocks that differ from the content, a content file that doesn't
- *   match its pattern, premium content stored as plain JSON, an old PHP data file; and --check
+ *   match its pattern, an old PHP data file and a leftover content.json.php; and --check
  *   reports a catalog that is out of date.
  * Runtime behaviour (catalog, content route, isolation, direct requests): suites robustness and rest.
  */
@@ -19,7 +21,6 @@ const fs = require( 'fs' );
 const path = require( 'path' );
 const env = require( '../lib/env.cjs' );
 const { pluginCopy } = require( '../lib/copies.cjs' );
-const { GUARD } = require( '../lib/library-files.cjs' );
 
 const LIB = ( folder ) => path.join( folder, 'includes', 'library' );
 
@@ -37,7 +38,6 @@ function walk( dir, out = [] ) {
 
 function staticChecks( report, folder, source ) {
 	const lib = LIB( folder );
-	const protect = source !== 'lite';
 	const problems = [];
 	const patterns = fs
 		.readdirSync( path.join( lib, 'patterns' ), { withFileTypes: true } )
@@ -46,28 +46,35 @@ function staticChecks( report, folder, source ) {
 	for ( const slug of patterns ) {
 		const dir = path.join( lib, 'patterns', slug );
 		const files = fs.readdirSync( dir ).sort();
-		const want = [
-			protect ? 'content.json.php' : 'content.json',
-			'pattern.xml',
-		];
+		const want = [ 'content.json', 'pattern.xml' ];
 		if ( JSON.stringify( files ) !== JSON.stringify( want ) ) {
 			problems.push( `${ slug }: files ${ files.join( ', ' ) }` );
 		}
-		if (
-			protect &&
-			fs.existsSync( path.join( dir, 'content.json.php' ) ) &&
-			! fs
-				.readFileSync( path.join( dir, 'content.json.php' ), 'utf8' )
-				.startsWith( GUARD + '\n' )
-		) {
-			problems.push(
-				`${ slug }: content.json.php without the guard line`
-			);
+		// Standard JSON: a JSON object from the first byte, no PHP tag anywhere.
+		const file = path.join( dir, 'content.json' );
+		if ( fs.existsSync( file ) ) {
+			const raw = fs.readFileSync( file, 'utf8' );
+			let value = null;
+			try {
+				value = JSON.parse( raw );
+			} catch ( e ) {}
+			if (
+				! raw.startsWith( '{' ) ||
+				raw.includes( '<?php' ) ||
+				! value ||
+				typeof value.content !== 'string'
+			) {
+				problems.push(
+					`${ slug }: content.json is not a plain JSON wrapper`
+				);
+			}
 		}
 	}
 	for ( const file of walk( lib ) ) {
 		const rel = path.relative( lib, file );
-		if ( /(^|\/)(pattern|content)\.php$/.test( rel ) ) {
+		if (
+			/(^|\/)(pattern\.php|content\.php|content\.json\.php)$/.test( rel )
+		) {
 			problems.push( `old PHP data file ${ rel }` );
 		}
 		if (
@@ -79,9 +86,7 @@ function staticChecks( report, folder, source ) {
 		}
 	}
 	report.check(
-		`files: every ${ source } pattern is pattern.xml + ${
-			protect ? 'a guarded content.json.php' : 'content.json'
-		}; maps are JSON; no old PHP data file (${ patterns.length } patterns)`,
+		`files: every ${ source } pattern is pattern.xml + a plain JSON content.json; maps are JSON; no PHP content or metadata file (${ patterns.length } patterns)`,
 		patterns.length > 0 && ! problems.length,
 		problems
 	);
@@ -139,9 +144,13 @@ async function run( { cli, report } ) {
 		'utf8'
 	);
 	report.check(
-		'the runtime and the tools use the same guard line',
-		registry.includes( `const PROTECTED_GUARD = '${ GUARD }';` ) &&
-			tools.includes( `const WPMOZO_PL_GUARD = '${ GUARD }';` )
+		'the runtime and the tools use the same content file name (content.json) and no PHP guard',
+		registry.includes( "const CONTENT_FILE = 'content.json';" ) &&
+			tools.includes(
+				"const WPMOZO_PL_CONTENT_FILE = 'content.json';"
+			) &&
+			! registry.includes( '__halt_compiler' ) &&
+			! tools.includes( '__halt_compiler' )
 	);
 
 	const nodeModules = path.resolve(
@@ -297,14 +306,14 @@ async function run( { cli, report } ) {
 			];
 			if ( pro ) {
 				cases.push( [
-					'premium content stored as plain content.json',
+					'a leftover content.json.php next to a premium pattern',
 					'pro',
 					( d ) =>
 						php.writeFile(
-							`${ d }patterns/${ proSlug }/content.json`,
-							'{}'
+							`${ d }patterns/${ proSlug }/content.json.php`,
+							'<?php exit; __halt_compiler();\n{}'
 						),
-					/must not be stored as plain content\.json/,
+					/old PHP data file content\.json\.php/,
 				] );
 			}
 			let n = 0;
@@ -358,6 +367,6 @@ async function run( { cli, report } ) {
 
 module.exports = {
 	description:
-		'Pattern data formats: XML metadata compiled to catalog.json, JSON content (premium behind a guard), JSON maps',
+		'Pattern data formats: XML metadata compiled to catalog.json, plain JSON content, JSON maps',
 	run,
 };

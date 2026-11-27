@@ -7,7 +7,8 @@
  *   HTML allowed for posts, other sources' maps);
  * - a pattern that needs a Lite map key the installed Lite lacks says "Lite outdated";
  * - one broken catalog entry, content or map file never takes the rest of the library down, and a
- *   broken catalog.json only its own source; premium content stored unprotected is refused;
+ *   broken catalog.json only its own source; a PHP content file is never read (content is plain
+ *   JSON, content.json, for every source);
  * - the catalog and the content route always agree, and the content route analyses afresh;
  * - premium protection and role rules are unchanged.
  */
@@ -24,8 +25,6 @@ const {
 	networkChecks,
 } = require( '../lib/setup.cjs' );
 const {
-	GUARD,
-	contentPath,
 	readContent,
 	contentBody,
 	sha256,
@@ -215,10 +214,9 @@ async function run( { cli, report } ) {
 		}
 
 		// KI-02: broken files are isolated. Each case adds one test pattern to a source's catalog
-		// (Pro when it is there, so the premium protection rules are exercised too).
+		// (Pro when it is there, so the premium source is exercised too).
 		const target = pro || lite;
 		const sourceId = pro ? 'pro' : 'lite';
-		const protect = sourceId !== 'lite';
 		const original = fs.readFileSync( catalogPath( target ), 'utf8' );
 		const paragraph =
 			'<!-- wp:paragraph --><p>Test</p><!-- /wp:paragraph -->';
@@ -229,22 +227,22 @@ async function run( { cli, report } ) {
 			content: paragraph,
 			...extra,
 		} );
-		const access = protect ? 'pro' : 'free';
-		// [ slug, change the entry, content file body (null: none), content file kind, expected code, content route ]
+		const access = sourceId === 'lite' ? 'free' : 'pro';
+		// [ slug, change the entry, content file body (null: none), content file name, expected code, content route ]
 		const cases = [
 			[
 				'zz-test-entry',
 				( e ) => delete e.title,
-				contentBody( wrapper( 'zz-test-entry' ), protect ),
-				protect,
+				contentBody( wrapper( 'zz-test-entry' ) ),
+				'content.json',
 				'missing_title',
 				null,
 			],
 			[
 				'zz-test-json',
 				null,
-				protect ? `${ GUARD }\n{ "schema": 1,` : '{ "schema": 1,',
-				protect,
+				'{ "schema": 1,',
+				'content.json',
 				'content_invalid_json',
 				422,
 			],
@@ -254,51 +252,42 @@ async function run( { cli, report } ) {
 				contentBody(
 					wrapper( 'zz-test-mismatch', {
 						id: `${ sourceId }/other`,
-					} ),
-					protect
+					} )
 				),
-				protect,
+				'content.json',
 				'content_mismatch',
 				422,
 			],
 			[
 				'zz-test-checksum',
 				( e ) => ( e.content_sha256 = sha256( 'something else' ) ),
-				contentBody( wrapper( 'zz-test-checksum' ), protect ),
-				protect,
+				contentBody( wrapper( 'zz-test-checksum' ) ),
+				'content.json',
 				'content_checksum',
 				422,
 			],
 			[
 				'zz-test-blocks',
 				( e ) => ( e.blocks = [ 'core/heading' ] ),
-				contentBody( wrapper( 'zz-test-blocks' ), protect ),
-				protect,
+				contentBody( wrapper( 'zz-test-blocks' ) ),
+				'content.json',
 				'blocks_mismatch',
 				422,
 			],
+			// Only a PHP content file (the guarded form used briefly before plain JSON): never
+			// read or executed, so the pattern has no content.
+			[
+				'zz-test-php-file',
+				null,
+				`<?php exit; __halt_compiler();\n${ contentBody(
+					wrapper( 'zz-test-php-file' )
+				) }`,
+				'content.json.php',
+				'wpmozo_library_invalid_content',
+				422,
+			],
 		];
-		if ( protect ) {
-			cases.push(
-				[
-					'zz-test-plain',
-					null,
-					contentBody( wrapper( 'zz-test-plain' ), false ),
-					false,
-					'content_unprotected',
-					422,
-				],
-				[
-					'zz-test-unguarded',
-					null,
-					contentBody( wrapper( 'zz-test-unguarded' ), false ),
-					true,
-					'content_unguarded',
-					422,
-				]
-			);
-		}
-		for ( const [ slug, change, body, kind, code, route ] of cases ) {
+		for ( const [ slug, change, body, fileName, code, route ] of cases ) {
 			const cat0 = JSON.parse( original );
 			const entry = testEntry( slug, access, paragraph );
 			if ( change ) {
@@ -309,7 +298,10 @@ async function run( { cli, report } ) {
 				recursive: true,
 			} );
 			if ( body !== null ) {
-				fs.writeFileSync( contentPath( target, slug, kind ), body );
+				fs.writeFileSync(
+					path.join( LIB( target ), 'patterns', slug, fileName ),
+					body
+				);
 			}
 			writeCatalog( target, cat0 );
 			await pause( 1500 );
@@ -470,10 +462,7 @@ async function run( { cli, report } ) {
 			const changed = `${ stored.wrapper.content }\n<!-- wp:paragraph --><p>Test<input type="checkbox"></p><!-- /wp:paragraph -->`;
 			fs.writeFileSync(
 				stored.file,
-				contentBody(
-					{ ...stored.wrapper, content: changed },
-					stored.protect
-				)
+				contentBody( { ...stored.wrapper, content: changed } )
 			);
 			const cat0 = JSON.parse( originalCatalog );
 			const entry = cat0.patterns.find( ( e ) => e.slug === slug );

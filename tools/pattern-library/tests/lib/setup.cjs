@@ -118,7 +118,7 @@ function expectedStatus( availability ) {
 
 /**
  * Patterns whose content uses a token of a given source, found by reading their content files
- * (content.json, or content.json.php behind its guard line).
+ * (content.json).
  *
  * @param {string} folder      Plugin folder.
  * @param {string} tokenSource Token source to look for ("lite", "pro").

@@ -112,7 +112,7 @@ if ( ! empty( $_GET['wpmozo_test_api2'] ) ) {
 /**
  * Write the files of the test-only premium source once, in the library's data format
  * (registry-and-contract.md): a catalog.json with two patterns, one with a `published` date and
- * one without, each with its content in a protected content.json.php, a thumbnail and a preview.
+ * one without, each with its content in a plain content.json, a thumbnail and a preview.
  *
  * @param string $dir Source folder.
  */
@@ -133,8 +133,8 @@ function wpmozo_test_premium_files( $dir ) {
 		$content = "<!-- wp:paragraph --><p>WPMozo test premium pattern {$slug}</p><!-- /wp:paragraph -->";
 		wp_mkdir_p( $folder );
 		file_put_contents(
-			$folder . '/content.json.php',
-			Mozo_Bna_Library_Registry::PROTECTED_GUARD . "\n" . wp_json_encode(
+			$folder . '/' . Mozo_Bna_Library_Registry::CONTENT_FILE,
+			wp_json_encode(
 				array(
 					'schema'   => 1,
 					'id'       => 'testpro/' . $slug,

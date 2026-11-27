@@ -297,14 +297,15 @@ async function run( { cli, report } ) {
 			}
 		}
 		report.check(
-			'HTTP: every library PHP file (protected premium content, translation strings, index files) gives an empty answer when requested directly',
+			'HTTP: every library PHP file (translation strings, index files) gives an empty answer when requested directly',
 			! exposed.length,
 			exposed
 		);
 
-		// Premium content: stored only as content.json.php behind the guard line, so the direct
-		// requests above (which include every content.json.php) return nothing. A plain JSON copy
-		// would be served as-is, so none may exist, and the guard must be the file's first line.
+		// Premium content: plain JSON (content.json), like Lite's, with no PHP content file. Until
+		// remote delivery replaces the local source it is a static file the web server serves
+		// (temporary, documented limitation; inserting still needs the entitlement). Recorded so a
+		// change is noticed.
 		if ( pro ) {
 			const premium = path.join( pro, 'includes', 'library', 'patterns' );
 			const slugs = fs.existsSync( premium )
@@ -314,41 +315,40 @@ async function run( { cli, report } ) {
 						.map( ( d ) => d.name )
 				: [];
 			const problems = [];
-			let requested = 0;
+			let served = 0;
 			for ( const slug of slugs ) {
 				const dir = path.join( premium, slug );
-				if ( fs.existsSync( path.join( dir, 'content.json' ) ) ) {
-					problems.push( `${ slug }: plain content.json` );
+				for ( const old of [ 'content.json.php', 'content.php' ] ) {
+					if ( fs.existsSync( path.join( dir, old ) ) ) {
+						problems.push( `${ slug }: PHP content file ${ old }` );
+					}
 				}
-				const file = path.join( dir, 'content.json.php' );
-				if (
-					! fs.existsSync( file ) ||
-					! fs
-						.readFileSync( file, 'utf8' )
-						.startsWith( '<?php exit; __halt_compiler();' )
-				) {
-					problems.push( `${ slug }: no guarded content.json.php` );
+				let wrapper = null;
+				try {
+					wrapper = JSON.parse(
+						fs.readFileSync(
+							path.join( dir, 'content.json' ),
+							'utf8'
+						)
+					);
+				} catch ( e ) {}
+				if ( ! wrapper || typeof wrapper.content !== 'string' ) {
+					problems.push( `${ slug }: no plain JSON content.json` );
 					continue;
 				}
 				const got = await visitor.request(
 					`/wp-content/plugins/${ path.basename(
 						pro
-					) }/includes/library/patterns/${ slug }/content.json.php`
+					) }/includes/library/patterns/${ slug }/content.json`
 				);
-				requested++;
-				if (
-					got.text.includes( 'wp:' ) ||
-					got.text.includes( '"content"' )
-				) {
-					problems.push(
-						`${ slug }: content served (${ got.status })`
-					);
+				if ( got.status === 200 && got.text.includes( '"content"' ) ) {
+					served++;
 				}
 			}
 			report.check(
-				`HTTP: every Pro pattern's content is a guarded content.json.php that returns no content when requested directly (${ requested } checked), and no plain content.json exists`,
+				`HTTP: every Pro pattern's content is a plain content.json with no PHP content file; until remote delivery it is served as a static file like Lite's (temporary limitation; ${ served } of ${ slugs.length } served)`,
 				slugs.length > 0 &&
-					requested === slugs.length &&
+					served === slugs.length &&
 					! problems.length,
 				problems
 			);
