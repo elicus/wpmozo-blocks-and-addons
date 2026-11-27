@@ -697,6 +697,8 @@ Lite plugin code `b54b9de`, suites `0286e2c`; Pro `dca3c1b` (the add-on's Phase 
 WordPress 7.1.5, PHP 8.2.23, MySQL 8.0.35; Lite 1.9.0 at `6d0a8c9` with the add-on; administrator; Chromium. **Passed:** header icon and the one Options-menu item; × and Escape with focus back on the icon; catalog (2 free, 2 premium), filters, categories, search, A–Z sort, empty state; layouts at 1440×900, 1024×600 and phone width; 4 previews, Previous/Next, Preview never inserts; 1 free and 2 premium patterns inserted (62 blocks, none invalid), saved and reloaded identical, images and front end correct; an existing published post and page unchanged; no library JavaScript errors, failed library requests or library PHP errors. Observations (not library defects) and what was not tested: [handoff.md](handoff.md), "LocalWP browser check".
 
 ## JSON/XML pattern data, 2026-11-26
+**Superseded in part the same day by PL-D38 (next section):** the premium content files described here as guarded `content.json.php` are now plain `content.json`. The other results stand.
+
 Decision PL-D37 (owner, 2026-11-26): pattern metadata is `patterns/<slug>/pattern.xml`, compiled by `tools/pattern-library/compile.php` into each source's `catalog.json` and `data/strings.php`; content is a JSON wrapper (`content.json`; premium sources `content.json.php` behind a guard line); maps are `data/*.json`. The library reads them as text with `read_json()` and never includes a data file. REST routes and responses, importer, editor UI, tokens, validator and entitlement are unchanged; no editor (JavaScript) code changed. Lite code `7f140f8`, tools `e9256d0`, tests `3f57576`; the add-on's pilots were converted in its private repository.
 
 The results are in two parts: **A** proves the new implementation (formats, protection); **B** shows that existing behaviour is unchanged (regression).
@@ -771,3 +773,37 @@ The results are in two parts: **A** proves the new implementation (formats, prot
 - A broken or missing `catalog.json` hides its whole source (before PL-D37 each `pattern.php` was isolated); one invalid catalog entry still skips only its pattern.
 - A new pattern can't be compiled before its preview images exist, while the gate makes the previews from the compiled catalog: open decision (owner), [production-pattern-authoring.md](production-pattern-authoring.md) section 12.
 - Premium content in the plugin folder is protected from direct requests, not from whoever controls the server (as before, [security.md](security.md)). An Apache server was not available to test; it is expected to run `.php` files the same way.
+
+## Plain JSON content for every source (PL-D38), 2026-11-26
+Decision PL-D38 (owner, 2026-11-26): every pattern's content is plain `patterns/<slug>/content.json`, free and premium; the guarded `content.json.php` of PL-D37 is withdrawn. The add-on's two pilots were converted in its private repository. Lite code `bd76d67` (no PHP guard in the runtime; the local file names and loading points defined in the registry only), tools `13238a6`, tests `ee20c3f`.
+
+### A. Verification of the change
+- **Files:** the four content files are standard JSON (each parses as a JSON object from its first byte and contains no PHP tag): Lite `includes/library/patterns/hero-product-launch/content.json` and `pricing-three-plans/content.json`; the add-on's `features-cards-results/content.json` and `about-process-timeline/content.json`. No `pattern.php`, `content.php` or `content.json.php` remains in either plugin. The add-on's JSON is byte-identical to the JSON that followed the guard line, and every content file is byte-identical to what `build-content.php` writes. A read-only script over both plugins (44 checks, every one passed) confirmed this and that no `.php` file in either plugin contains pattern content.
+- **Metadata unchanged:** `compile.php --check` passes for Lite (2 patterns, 26 strings) and the add-on (2 patterns, 14 strings), so `catalog.json` and `data/strings.php` did not change.
+- **REST contract unchanged:** the library's REST output (the catalog for an administrator and an author, licence on and off, and every pattern's content) is byte-identical (163,784 bytes, port-normalised) between Lite `ddc1b45` with the add-on's guarded content and the plain-JSON working trees (WordPress 7.1.3 / PHP 8.2).
+- **Suites written for the change:** `formats` 23/23 (PHP 7.4 and 8.2 inside the suite): every pattern is `pattern.xml` + a plain JSON `content.json`; the runtime and the tools use the same file name and no PHP guard; the compiler refuses a leftover `content.json.php`. `robustness`: a pattern with only a PHP content file is never read (unavailable, nothing breaks). `rest`: every add-on pattern's content is a plain `content.json` with no PHP content file, served as a static file like Lite's (the temporary limitation, recorded so a change is noticed); every library PHP file still gives an empty answer.
+- **Mutation proofs (WordPress 7.1.3 / PHP 8.2):** `formats --lite=ddc1b45 --pro=3e761ab` (the guarded form) 19/23: the add-on's `content.json.php` files, the guard still in the runtime and the tools, and the earlier compiler accepting a leftover `content.json.php` (PHP 7.4 and 8.2). `rest --pro=3e761ab` (Lite after PL-D38, the add-on before) 18/19: the plain-JSON check finds `content.json.php` and no `content.json`.
+
+### B. Regression
+| Suite | WordPress 7.1.3 / PHP 8.2 | WordPress 6.8.11 / PHP 7.4 |
+|---|---|---|
+| `formats` | 23/23 | (one run covers both) |
+| `php-parse` | 2/2 | (one run covers both) |
+| `robustness` (35 → 33: the two guard cases were replaced by one "PHP content file is never read" case, 2 checks each) | 33/33 | 33/33 |
+| `rest` | 19/19 | 19/19 |
+| `entitlement` | 58/58 | 58/58 |
+| `contract` | 26/26 | 26/26 |
+| `editor` | 10/10 | 10/10 |
+| `launcher` | 23/23 | 23/23 |
+| `wp-editor` | 14/17 | 14/17 |
+| `team-grid` | 8/8 | (one run covers both) |
+| `upgrade` | 28/28 | 28/28 |
+| `matrix` | 109/109 | Not run (as before) |
+| Add-on `licence`, `status` (private repository) | 28/28, 57/57 | 28/28, 57/57 |
+
+- **The 3 `wp-editor` failures** are block issue B-R6-2 (on hold), as before. No other check failed.
+- **Lint and static checks:** `wp-scripts lint-js` clean on the changed suites; PHPCS (WordPress) clean on the library classes and the tools; `php -l` passes.
+
+**Browser:** **LocalWP** (WordPress 7.1.5, PHP 8.2.23, nginx 1.26.1; both working trees; administrator): a test post with patterns inserted earlier stayed valid after the switch (62 blocks); the library window listed 2 free and 2 premium patterns with every thumbnail; the premium Preview showed its full image and details; 2 premium and 1 free pattern were inserted (136 blocks in the post, none invalid; content images from both plugins load); saved and reloaded unchanged; the front end showed every content image and no PHP error. A published post and a page were unchanged afterwards. The console showed only known block issues (on hold); `debug.log` only a known warning from a stale add-on block build. **WordPress 7.1.3 / PHP 8.2 and 6.8.11 / PHP 7.4** (temporary offline Playground sites from the test harness, stopped afterwards): on each, the library window listed the 4 patterns with their thumbnails, a premium Preview worked, 1 free and 2 premium patterns were inserted (62 blocks, none invalid), saved and reloaded unchanged, and the front end showed every content image with no PHP error. With the test licence removed, both premium patterns were locked in the catalog and at the content route (403, no markup), the window showed the activation message and Insert only for the free patterns, and the inserted premium blocks stayed valid. No fatal error and no network connection. On these two sites the library buttons were triggered with DOM clicks (coordinate clicks were unreliable in the scaled browser pane); on LocalWP real mouse clicks were used. **Not repeated in the browser this time:** the expired, revoked and "can't be checked" states (the `entitlement` and the add-on's `status` suites cover every state on both pairs; the content format doesn't change how entitlement is decided); other browsers; non-administrator roles.
+
+**Temporary limitation (stated in PL-D38):** a premium add-on's bundled `content.json` is as readable as the plugin that ships it (its zip and its folder; a web server serves it as a static file). Inserting premium patterns still requires the entitlement at the content route. Remote delivery is planned to replace the bundled files.

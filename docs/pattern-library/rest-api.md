@@ -48,7 +48,7 @@ Metadata for every active pattern, with availability for the **current user**. N
 - **`sources[].state`** is the premium source's entitlement state.
   - `links` (for example the licence page) are included only for users the source says can manage it.
 - **`thumbnail.url`** is empty when the file is missing; the UI then shows a placeholder.
-- **`issues`** is present only for users with `manage_options`. It lists metadata problems and content that failed validation. Since PL-D37 it also lists catalog, content-file and map problems, for example `catalog_missing` (item `catalog:<source>`), `content_checksum`, `content_unprotected` or `map_invalid_json`.
+- **`issues`** is present only for users with `manage_options`. It lists metadata problems and content that failed validation. Since PL-D37 it also lists catalog, content-file and map problems, for example `catalog_missing` (item `catalog:<source>`), `content_checksum` or `map_invalid_json`.
 - **`context.newer_schema`** counts patterns hidden because they need a newer plugin version.
 
 **Caching:** `Cache-Control: private, no-cache` plus an `ETag`. A request with a matching `If-None-Match` gets `304` and no body.

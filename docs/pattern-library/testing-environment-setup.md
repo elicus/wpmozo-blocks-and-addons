@@ -555,7 +555,7 @@ Keep a list of each page's and user's ID.
 **Use new test posts only.** Lite blocks reset their `ID` on load (a known block issue, on hold), so opening a post marks it changed, and draft autosave can then rewrite an existing draft. Never open an existing draft in the editor during tests (seen on 2026-11-23).
 
 ### 11.1 Command-line checks (Claude can run these)
-With the settings loaded. **[Verified] 2026-11-13** on the owner's Local site (the first two). The third replaced a request to Lite's old `content.php` on 2026-11-26 (PL-D37): a guarded premium content file gave an empty answer on LocalWP's nginx 1.26.1 that day.
+With the settings loaded. **[Verified] 2026-11-13** on the owner's Local site (the first two). The third requests the library's generated `data/strings.php` (it replaced a request to Lite's old `content.php` on 2026-11-26, when pattern data became JSON and XML, PL-D37/PL-D38); it gave an empty answer on LocalWP's nginx 1.26.1 that day.
 ```bash
 curl -s -o /dev/null -w '%{http_code}\n' "$WPMOZO_SITE_URL/wp-content/plugins/wpmozo-blocks-and-addons/includes/library/previews/hero-product-launch.1.webp"
 ```
@@ -563,11 +563,11 @@ curl -s -o /dev/null -w '%{http_code}\n' "$WPMOZO_SITE_URL/wp-content/plugins/wp
 curl -s -o /dev/null -w '%{http_code}\n' "$WPMOZO_SITE_URL/wp-content/plugins/wpmozo-blocks-and-addons-pro/includes/library/media/tour-plan.1.webp"
 ```
 ```bash
-curl -s "$WPMOZO_SITE_URL/wp-content/plugins/wpmozo-blocks-and-addons-pro/includes/library/patterns/about-process-timeline/content.json.php" | wc -c
+curl -s "$WPMOZO_SITE_URL/wp-content/plugins/wpmozo-blocks-and-addons/includes/library/data/strings.php" | wc -c
 ```
 **Expected:**
 - `200`, `200`: thumbnails and media are served from each plugin's own folder on this site's URL.
-- `0`: premium content files return nothing when requested directly. A free `content.json` is served as-is: free content is public by design.
+- `0`: the library's PHP files return nothing when requested directly. Content files (`content.json`, free and premium since PL-D38) are plain JSON and are served as-is: bundled content is as readable as the plugin that ships it.
 
 ### 11.2 Catalog, preview and insertion (administrator)
 1. **Blocks and Addons → General:** the **Pattern Library** switch is on.

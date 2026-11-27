@@ -23,12 +23,12 @@ Since 2026-11-26 (PL-D37) pattern data is JSON and XML. The catalog, content and
 
 Each problem is listed in the catalog's `issues`, shown only to administrators.
 
-## Premium content files (PL-D37)
-- A premium source's content is `patterns/<slug>/content.json.php`: the first line is exactly `<?php exit; __halt_compiler();`, then the JSON. A direct web request runs PHP, which stops at that line, so the answer is empty. The library reads the file as text and never executes it.
-- Lite refuses a premium pattern stored as plain `content.json` (`content_unprotected`) or without the guard line (`content_unguarded`). A plain `.json` file is served as-is by web servers (verified 2026-11-26 on nginx 1.26.1 in LocalWP, PHP's built-in server and WordPress Playground).
-- Free content (`content.json`) is public by design: it ships in the public zip.
+## Content files (PL-D37, PL-D38)
+- Every pattern's content is `patterns/<slug>/content.json`: plain JSON, read as text and never executed (PL-D38, 2026-11-26; the guarded `content.json.php` that PL-D37 used for premium sources for a few hours is withdrawn, and a leftover one is never read).
+- A web server serves `content.json` as a static file, and a bundled file is as readable as the plugin that ships it. Free content is public by design.
+- **Premium content bundled in an add-on is not private** (temporary, until remote delivery, PL-D35/PL-D36). What controls premium patterns is the content route: it checks the user and the add-on's entitlement on every request, a refusal carries no content, and the catalog never contains markup.
 - Metadata (`catalog.json`, `pattern.xml`) holds no content.
-- Direct requests to every library PHP file, the premium content files and `data/strings.php` included, give an empty answer (`rest` suite, [testing.md](testing.md)).
+- Direct requests to the library's PHP files (the classes, `data/strings.php`, directory guards) give an empty answer (`rest` suite, [testing.md](testing.md)).
 
 ## Validation rules (every pattern, every user)
 | Rule | Rejects |

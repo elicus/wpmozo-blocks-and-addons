@@ -19,7 +19,7 @@ Approved design: [decisions.md](decisions.md) (PL-D04). Full reasoning: [archite
 
 Everything shipped lives under `build/` or `includes/`; release zips contain only those, the main PHP file and the readme.
 
-**Pattern data format (PL-D37, 2026-11-26):** metadata is authored as `patterns/<slug>/pattern.xml` and compiled into each source's `catalog.json`; content is a JSON wrapper (`content.json` for free sources, the guarded `content.json.php` for premium ones); maps are `data/*.json`. The library reads them as text and never includes or executes a data file. Details: [registry-and-contract.md](registry-and-contract.md) section 3.
+**Pattern data format (PL-D37 and PL-D38, 2026-11-26):** metadata is authored as `patterns/<slug>/pattern.xml` and compiled into each source's `catalog.json`; content is a plain JSON wrapper, `content.json`, for every source (premium sources used a guarded `content.json.php` for a few hours, withdrawn by PL-D38); maps are `data/*.json`. The local file names and the loading points are defined in the registry only, so a later remote source replaces them in one place ([registry-and-contract.md](registry-and-contract.md) section 3). The library reads them as text and never includes or executes a data file. Details: [registry-and-contract.md](registry-and-contract.md) section 3.
 
 ## Data flow (implemented)
 
