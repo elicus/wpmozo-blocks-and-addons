@@ -119,9 +119,9 @@ final class Mozo_Bna_Library_Resolver {
 			$data                     = $this->registry->get_source( $source );
 			$allowed                  = array( 'media', 'links', 'icons', 'demo-text', 'categories', 'tags' );
 			if ( null !== $data && in_array( $map, $allowed, true ) ) {
-				$file = $data['path'] . 'data/' . $map . '.json';
+				$file = $data['path'] . Mozo_Bna_Library_Registry::map_path( $map );
 				if ( is_file( $file ) ) {
-					$value = Mozo_Bna_Library_Registry::read_json( $file, self::MAX_MAP_BYTES, '', $error );
+					$value = Mozo_Bna_Library_Registry::read_json( $file, self::MAX_MAP_BYTES, $error );
 					if ( null !== $error ) {
 						// A broken map fails closed: its tokens are unknown, so patterns using them are unavailable.
 						$this->registry->add_issue( 'map:' . $source . '/' . $map, 'map_' . $error );

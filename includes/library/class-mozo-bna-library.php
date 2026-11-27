@@ -407,13 +407,13 @@ final class Mozo_Bna_Library {
 		$path = WPMOZO_BNA_INC_DIR_PATH . 'library/';
 		// Labels are listed for translation tools in data/strings.php.
 		// phpcs:disable WordPress.WP.I18n.LowLevelTranslationFunction, WordPress.WP.I18n.NonSingularStringLiteralText
-		foreach ( self::read_map( $path . 'data/categories.json' ) as $id => $category ) {
+		foreach ( self::read_map( $path . Mozo_Bna_Library_Registry::map_path( 'categories' ) ) as $id => $category ) {
 			if ( ! is_array( $category ) || ! isset( $category['label'], $category['order'] ) || ! is_string( $category['label'] ) ) {
 				continue;
 			}
 			$registry->add_category( $id, translate( $category['label'], 'wpmozo-blocks-and-addons' ), 'lite', $category['order'] );
 		}
-		foreach ( self::read_map( $path . 'data/tags.json' ) as $id => $label ) {
+		foreach ( self::read_map( $path . Mozo_Bna_Library_Registry::map_path( 'tags' ) ) as $id => $label ) {
 			if ( is_string( $label ) ) {
 				$registry->add_tag( $id, translate( $label, 'wpmozo-blocks-and-addons' ) );
 			}
@@ -475,7 +475,7 @@ final class Mozo_Bna_Library {
 				$parts[] = $id . ':' . $data['version'];
 				$files   = array( Mozo_Bna_Library_Registry::CATALOG_FILE );
 				foreach ( array( 'media', 'links', 'icons', 'demo-text' ) as $map ) {
-					$files[] = 'data/' . $map . '.json';
+					$files[] = Mozo_Bna_Library_Registry::map_path( $map );
 				}
 				foreach ( $files as $file ) {
 					$parts[] = is_file( $data['path'] . $file ) ? (int) filemtime( $data['path'] . $file ) : 0;

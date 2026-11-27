@@ -4,11 +4,12 @@
  *
  * A source (Lite itself, or an add-on such as Pro) supplies a folder with data files only:
  * - `catalog.json`: every pattern's metadata, compiled from `patterns/<slug>/pattern.xml`;
- * - `patterns/<slug>/content.json`: the block markup in a JSON wrapper (free sources), or
- *   `patterns/<slug>/content.json.php`: the same JSON behind a one-line PHP guard, so a direct
- *   web request returns nothing (premium sources; required for them);
+ * - `patterns/<slug>/content.json`: the block markup in a JSON wrapper (every source);
  * - `data/*.json`: central maps.
- * These files are read as data and never executed. See docs/pattern-library/registry-and-contract.md.
+ * These files are plain JSON, read as data and never executed. The local file names are defined
+ * here only (CATALOG_FILE, content_path(), map_path()); the catalog is loaded in
+ * load_source_patterns() and content in get_content(), so a later remote source replaces those
+ * two places. See docs/pattern-library/registry-and-contract.md.
  *
  * @link       https://elicus.com
  * @since      n.e.x.t
@@ -71,28 +72,18 @@ final class Mozo_Bna_Library_Registry {
 	const CATALOG_FILE = 'catalog.json';
 
 	/**
-	 * Content file of a free source's pattern, inside `patterns/<slug>/`.
+	 * Content file of every pattern (plain JSON), inside `patterns/<slug>/`.
 	 *
 	 * @var string
 	 */
 	const CONTENT_FILE = 'content.json';
 
 	/**
-	 * Content file of a premium source's pattern, inside `patterns/<slug>/`: the same JSON behind
-	 * PROTECTED_GUARD. A web server runs it as PHP, so a direct request returns nothing; the library
-	 * reads it as text and never executes it.
+	 * Folder of a source's central maps (`<map>.json`), relative to its folder.
 	 *
 	 * @var string
 	 */
-	const PROTECTED_CONTENT_FILE = 'content.json.php';
-
-	/**
-	 * First line of a protected content file. `__halt_compiler()` stops PHP before the data, so
-	 * nothing after it is parsed or printed.
-	 *
-	 * @var string
-	 */
-	const PROTECTED_GUARD = '<?php exit; __halt_compiler();';
+	const MAP_FOLDER = 'data/';
 
 	/**
 	 * Largest catalog and content file read, in bytes.
@@ -161,7 +152,7 @@ final class Mozo_Bna_Library_Registry {
 	 *     @type string   $label       Display name.
 	 *     @type string   $version     Version of the plugin that provides the source.
 	 *     @type string   $path        Absolute path of the source's library folder (catalog.json,
-	 *                                 patterns/<slug>/content.json or content.json.php, data/*.json).
+	 *                                 patterns/<slug>/content.json, data/*.json).
 	 *     @type string   $url         URL of the same folder.
 	 *     @type string   $access      'free' or 'pro'.
 	 *     @type callable $entitlement Server-side entitlement check; required for 'pro'.
@@ -352,18 +343,12 @@ final class Mozo_Bna_Library_Registry {
 		if ( null === $pattern ) {
 			return new WP_Error( 'wpmozo_library_not_found', __( 'Pattern not found.', 'wpmozo-blocks-and-addons' ) );
 		}
-		$id        = $source . '/' . $slug;
-		$data      = $this->sources[ $source ];
-		$protected = self::is_protected( $data );
-		$file      = $this->content_file( $data, $slug );
+		$id   = $source . '/' . $slug;
+		$file = $this->content_file( $this->sources[ $source ], $slug );
 		if ( false === $file ) {
-			// A premium pattern stored as plain JSON would be downloadable from the plugin folder: refused.
-			if ( $protected && false !== $this->safe_file( $data['path'], 'patterns/' . $slug . '/' . self::CONTENT_FILE ) ) {
-				$this->issue( $id, 'content_unprotected' );
-			}
 			return new WP_Error( 'wpmozo_library_invalid_content', __( 'Pattern content is missing.', 'wpmozo-blocks-and-addons' ) );
 		}
-		$wrapper = self::read_json( $file, self::MAX_JSON_BYTES, $protected ? self::PROTECTED_GUARD : '', $error );
+		$wrapper = self::read_json( $file, self::MAX_JSON_BYTES, $error );
 		if ( null !== $error ) {
 			$this->issue( $id, 'content_' . $error );
 			return new WP_Error( 'wpmozo_library_content_error', __( 'Pattern content could not be loaded.', 'wpmozo-blocks-and-addons' ) );
@@ -384,26 +369,34 @@ final class Mozo_Bna_Library_Registry {
 	}
 
 	/**
-	 * Whether a source's content must be stored in protected files (premium sources).
+	 * A pattern's content file, relative to its source's folder.
 	 *
-	 * @param array $source Source.
-	 * @return bool
+	 * @param string $slug Pattern slug.
+	 * @return string
 	 */
-	private static function is_protected( $source ) {
-		return 'pro' === $source['access'];
+	public static function content_path( $slug ) {
+		return 'patterns/' . $slug . '/' . self::CONTENT_FILE;
 	}
 
 	/**
-	 * Path of a pattern's content file: content.json for free sources, content.json.php for
-	 * premium ones; false when it is missing.
+	 * A central map's file, relative to its source's folder.
+	 *
+	 * @param string $map Map name ('media', 'links', 'icons', 'demo-text', 'categories', 'tags').
+	 * @return string
+	 */
+	public static function map_path( $map ) {
+		return self::MAP_FOLDER . $map . '.json';
+	}
+
+	/**
+	 * Absolute path of a pattern's content file; false when it is missing.
 	 *
 	 * @param array  $source Source.
 	 * @param string $slug   Pattern slug.
 	 * @return string|false
 	 */
 	private function content_file( $source, $slug ) {
-		$name = self::is_protected( $source ) ? self::PROTECTED_CONTENT_FILE : self::CONTENT_FILE;
-		return $this->safe_file( $source['path'], 'patterns/' . $slug . '/' . $name );
+		return $this->safe_file( $source['path'], self::content_path( $slug ) );
 	}
 
 	/**
@@ -454,7 +447,7 @@ final class Mozo_Bna_Library_Registry {
 			return;
 		}
 		// A broken catalog skips this source only; every other source keeps working.
-		$catalog = self::read_json( $file, self::MAX_JSON_BYTES, '', $error );
+		$catalog = self::read_json( $file, self::MAX_JSON_BYTES, $error );
 		if ( null !== $error ) {
 			$this->issue( $item, 'catalog_' . $error );
 			return;
@@ -678,24 +671,23 @@ final class Mozo_Bna_Library_Registry {
 
 	/**
 	 * Read a library data file (catalog, content or map) as JSON. The file is read as text and never
-	 * executed. A file that is missing, too large, unguarded or not a JSON object returns null and
-	 * sets $error, so one broken file can't take the library down.
+	 * executed. A file that is missing, too large or not a JSON object returns null and sets $error,
+	 * so one broken file can't take the library down.
 	 *
 	 * @param string      $file      Absolute path.
-	 * @param int         $max_bytes Largest accepted JSON size.
-	 * @param string      $guard     Required first line (PROTECTED_GUARD), or '' for plain JSON.
+	 * @param int         $max_bytes Largest accepted file size.
 	 * @param string|null $error     Set to the problem code ('missing', 'too_large', 'unreadable',
-	 *                               'unguarded', 'invalid_json'), or null.
+	 *                               'invalid_json'), or null.
 	 * @return array|null
 	 */
-	public static function read_json( $file, $max_bytes, $guard = '', &$error = null ) {
+	public static function read_json( $file, $max_bytes, &$error = null ) {
 		$error = null;
 		$size  = is_file( $file ) ? filesize( $file ) : false;
 		if ( false === $size ) {
 			$error = 'missing';
 			return null;
 		}
-		if ( $size > $max_bytes + strlen( $guard ) + 2 ) {
+		if ( $size > $max_bytes ) {
 			$error = 'too_large';
 			return null;
 		}
@@ -703,13 +695,6 @@ final class Mozo_Bna_Library_Registry {
 		if ( ! is_string( $raw ) ) {
 			$error = 'unreadable';
 			return null;
-		}
-		if ( '' !== $guard ) {
-			if ( 0 !== strpos( $raw, $guard ) ) {
-				$error = 'unguarded';
-				return null;
-			}
-			$raw = (string) preg_replace( '/^\r?\n/', '', (string) substr( $raw, strlen( $guard ) ) );
 		}
 		$value = json_decode( $raw, true, 64 );
 		if ( JSON_ERROR_NONE !== json_last_error() || ! is_array( $value ) ) {
