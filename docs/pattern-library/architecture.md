@@ -43,4 +43,4 @@ Editor ──GET /wpmozo/v1/library/patterns/<source>/<slug>──▶ Lite REST
 - **Nothing on the front end.** The library loads only in the block editor and on library REST requests.
 - **Content is never trusted because it is ours:** it is validated on the server and checked again in the editor before insertion.
 - **Replaceable values live in one place each:** URLs, media, icons, demo text, categories and design tokens (review section E).
-- **Local-first:** no external requests ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md)).
+- **Local-first:** no external requests ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md)). This is the current state: PL-D39 (2026-11-27) sets the target that all library data and assets of every source, Lite's included, come from the CDN later (requirement section 13); not implemented.

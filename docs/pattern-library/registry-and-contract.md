@@ -197,7 +197,7 @@ All issues are reported in the catalog's `issues`, to administrators only.
 - **Syntax:** `{{wpmozo:media|link|icon|text:<source>/<key>}}`.
 - **Lookup:** each value comes from the source's map file (`data/<map>.json`).
 - **Safe values:** a value must match its type's safe character set, so it is valid unchanged in block JSON and HTML.
-- **Media URLs** come from the asset resolver: `Mozo_Bna_Library_Resolver::asset_url()` is the only place that builds library asset URLs. A future CDN setting also needs a purpose argument there (previews may move; content images stay local, PL-D03) and the provider seam ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) sections 11 and 12; noted 2026-11-23).
+- **Media URLs** come from the asset resolver: `Mozo_Bna_Library_Resolver::asset_url()` is the only place that builds library asset URLs. A future CDN setting also needs a purpose argument there (previews and content images may need different handling; content images are to come from the CDN too since PL-D39, 2026-11-27, and how saved pages keep them is settled in the CDN stage) and the provider seam ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) sections 11 and 12; noted 2026-11-23).
 
 **What the library computes** (never authored):
 - id; the blocks used (compared with the declared `blocks`);

@@ -227,7 +227,7 @@ The Pattern Library lets editors browse ready-made page sections in the block ed
 **Patterns:**
 - Each pattern is `patterns/<slug>/pattern.xml` (metadata, compiled into the source's `catalog.json`) plus `content.json` (a JSON wrapper holding the block markup with tokens `{{wpmozo:media|link|icon|text:<source>/<key>}}`). Every source keeps its content in plain `content.json` (PL-D38, 2026-11-26); a premium add-on's bundled content is as readable as the plugin, and inserting it still needs the entitlement.
 - Tokens are resolved on the server.
-- `Mozo_Bna_Library_Resolver::asset_url()` builds every image URL from the plugin's own URL. A future CDN setting also needs a purpose argument in that method (previews may move; content images stay local, PL-D03) and the provider seam ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) sections 11 and 12).
+- `Mozo_Bna_Library_Resolver::asset_url()` builds every image URL from the plugin's own URL. A future CDN setting also needs a purpose argument in that method (previews and content images may need different handling; since PL-D39, 2026-11-27, all library data and assets, content images included, are to come from the CDN later; nothing changes now) and the provider seam ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) sections 11 and 12).
 
 **Access rules:**
 - **Who sees the library:** users with `edit_posts`.
@@ -240,7 +240,7 @@ The Pattern Library lets editors browse ready-made page sections in the block ed
 - Feature detection, never version numbers, decides behaviour.
 - Nothing loads on the front end.
 - Content is validated on the server and checked again in the editor.
-- Local first: no external requests.
+- Local first: no external requests (the CDN target of PL-D39 is not implemented).
 
 Detail: [architecture.md](architecture.md), [registry-and-contract.md](registry-and-contract.md), [editor-ui.md](editor-ui.md), [import-workflow.md](import-workflow.md), [rest-api.md](rest-api.md), [security.md](security.md).
 

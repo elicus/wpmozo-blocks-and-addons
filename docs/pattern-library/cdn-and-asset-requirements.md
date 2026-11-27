@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | Approved requirement, 2026-10-31; revised the same day after review. Future-migration addendum approved 2026-11-18 ([section 11](#11-future-cdn-migration-owner-requirement-2026-11-18), PL-D33). The local resolver exists (LPL-2); **the CDN switch, a remote catalog and remote content are not implemented** and are not part of the current implementation phases (PL-D35 brings remote premium content forward to the next stage; section 12). Planning constraint for the Pattern Library. **2026-11-20:** an owner proposal to fetch premium content on Insert has been audited ([section 12](#12-owner-proposal-2026-11-20-premium-content-fetched-on-insert-approved-not-implemented)); approved 2026-11-20 (PL-D35), not implemented. **PL-D36 (2026-11-20):** the remaining remote-delivery work, including the engine parts in section 12, belongs to Ayush and starts only on the owner's approval. Premium patterns keep their bundled content until then. **2026-11-26 (PL-D37):** the JSON and XML pattern data formats, their readers and build tools are implemented (section 12); remote delivery is still not. |
+| Status | Approved requirement, 2026-10-31; revised the same day after review. Future-migration addendum approved 2026-11-18 ([section 11](#11-future-cdn-migration-owner-requirement-2026-11-18), PL-D33). The local resolver exists (LPL-2); **the CDN switch, a remote catalog and remote content are not implemented** and are not part of the current implementation phases (PL-D35 brings remote premium content forward to the next stage; section 12). Planning constraint for the Pattern Library. **2026-11-20:** an owner proposal to fetch premium content on Insert has been audited ([section 12](#12-owner-proposal-2026-11-20-premium-content-fetched-on-insert-approved-not-implemented)); approved 2026-11-20 (PL-D35), not implemented. **PL-D36 (2026-11-20):** the remaining remote-delivery work, including the engine parts in section 12, belongs to Ayush and starts only on the owner's approval. Premium patterns keep their bundled content until then. **2026-11-26 (PL-D37):** the JSON and XML pattern data formats, their readers and build tools are implemented (section 12); remote delivery is still not. **2026-11-27 (PL-D39):** owner requirement: all library data and assets of every source, Lite's included, and the images used inside patterns are to come from the CDN later ([section 13](#13-owner-requirement-2026-11-27-all-library-data-and-assets-from-the-cdn-pl-d39-not-implemented)); everything stays local now. |
 | Applies to | Pattern Library in Lite (`wpmozo-blocks-and-addons`) and Pro (`wpmozo-blocks-and-addons-pro`) |
 | Ownership | Lite owns the asset-resolution contract, the production CDN setting and the pattern registry. Pro registers its patterns and assets through Lite. |
 
@@ -59,12 +59,12 @@ Each pattern definition holds its metadata apart from the code that renders the 
 - **Thumbnail fails to load:** show a placeholder image; the Pattern Library interface keeps working.
 - **Pattern content fails to load or validate:** show a clear error message and insert nothing; never insert incomplete or invalid content.
 - **Local fallback:** where a source's assets ship locally, the local copies remain the fallback.
-- **Unaffected by CDN outages:** existing blocks, saved content and front-end rendering never depend on the CDN or the Pattern Library.
-- **Images inside inserted content never come from the CDN** (approved 2026-11-03, decision PL-D03 / U7). Library thumbnails and previews may move to the CDN in future. Images that a pattern places into a page are local, project-owned files, because they become saved content. Importing them into the Media Library is a later, separate option.
+- **Unaffected by CDN outages:** existing blocks, saved content and front-end rendering never depend on the CDN or the Pattern Library. (How this holds once images inside patterns come from the CDN is settled in the CDN stage: section 13, point 1.)
+- **Images inside inserted content never come from the CDN** (approved 2026-11-03, decision PL-D03 / U7). Library thumbnails and previews may move to the CDN in future. Images that a pattern places into a page are local, project-owned files, because they become saved content. Importing them into the Media Library is a later, separate option. **Replaced 2026-11-27 by PL-D39** (section 13): these images are to come from the CDN later; until then they stay local, as described here.
 
 ## 7. Local-first now
 
-The current implementation makes no CDN requests and uses no remote catalog or remote media. Adding any of these needs a separate approval.
+The current implementation makes no CDN requests and uses no remote catalog or remote media. Adding any of these needs a separate approval. The target is set by PL-D39 (2026-11-27): all library data and assets from the CDN later (section 13).
 
 ## 8. WordPress.org and privacy rules
 
@@ -81,7 +81,7 @@ What the official pages say, summarised:
 Requirements that follow:
 
 1. **Lite JavaScript and CSS always ship in the plugin.** Never from a CDN.
-2. **Lite's own assets (the `lite` source) ship locally in the WordPress.org plugin.** A readme disclosure alone does not make loading them from a CDN acceptable. In our reading of the pages above, a default-off opt-in checkbox on its own does not either, because the exception depends on the plugin performing a service.
+2. **Lite's own assets (the `lite` source) ship locally in the WordPress.org plugin.** A readme disclosure alone does not make loading them from a CDN acceptable. In our reading of the pages above, a default-off opt-in checkbox on its own does not either, because the exception depends on the plugin performing a service. **2026-11-27 (PL-D39):** the owner's target is that Lite's library data and assets (not its JavaScript and CSS) come from the CDN; what this section requires for that is settled in the CDN stage, before Lite loads any of them from the CDN (section 13, point 2).
 3. **Any future external pattern service in Lite** must provide real functionality (Guideline 6), contact external servers only after explicit, informed, default-off consent (Guideline 7), and be documented in the readme as described above. Acceptance is decided by the WordPress.org review team case by case, so it is an open question until confirmed (see section 10).
 4. **Pro** is not bound by the WordPress.org guidelines, but any external contact it causes (including CDN thumbnails) is disclosed to customers: what is sent (for example the visitor's IP address and browser details), to which service, and why.
 
@@ -105,13 +105,13 @@ Until these are verified, production readiness must not be claimed.
 
 | # | Question | Current assumption |
 |---|---|---|
-| U1 | May Lite's own assets ever be served from the CDN in the WordPress.org build? | No; they ship locally |
-| U2 | May Lite (a WordPress.org plugin) output CDN URLs for Pro-registered assets when Pro is active, and under which consent and disclosure model? | Unresolved; needs a guideline review, possibly a question to the WordPress.org plugin review team |
+| U1 | May Lite's own assets ever be served from the CDN in the WordPress.org build? | No; they ship locally. **Owner target 2026-11-27 (PL-D39):** Lite's library data and assets yes, later, once section 8 is met (section 13); Lite JavaScript and CSS no |
+| U2 | May Lite (a WordPress.org plugin) output CDN URLs for Pro-registered assets when Pro is active, and under which consent and disclosure model? | Unresolved; needs a guideline review, possibly a question to the WordPress.org plugin review team. **Owner target 2026-11-27 (PL-D39):** yes, later; the consent and disclosure model is still open (section 13) |
 | U3 | Does the production setting switch all eligible sources at once, or each source separately? | Undecided |
 | U4 | Exact cache lifetimes and purge tooling | Depends on the CDN provider (TBD) |
 | U5 | Design of the authenticated route for premium content | Settled for local delivery by PL-D04 and PL-D06 (2026-11-03): the content route authorises every request on the server. Remote delivery: PL-D35 (section 12). PL-2 and PL-3 were the pre-implementation names of those decisions ([architecture-readiness-review.md](architecture-readiness-review.md)) |
 | U6 | How long old asset revisions stay online | Tied to the supported-version policy (TBD) |
-| U7 | Can images inside inserted content come from the CDN? | **Resolved 2026-11-03: no** (section 6) |
+| U7 | Can images inside inserted content come from the CDN? | **Resolved 2026-11-03: no** (section 6). **Changed 2026-11-27 (PL-D39): yes, later** (section 13) |
 | U8 | Where are the endpoints of an add-on's remote catalog and remote content configured (Lite makes no requests, so most likely in the add-on), and does the central setting in section 1 still cover that source's previews? | Undecided; settled in the CDN stage (added 2026-11-18). Proposed answer (2026-11-20, section 12): in the add-on, which fetches on the server |
 
 ## 11. Future CDN migration (owner requirement, 2026-11-18)
@@ -120,6 +120,7 @@ Until these are verified, production readiness must not be claimed.
 
 **Intended experience after the migration**
 - Library previews and thumbnails load from the CDN instead of a plugin folder (which sources may do so: U1, U2).
+- **PL-D39 (2026-11-27):** every source, Lite's included, and the images and media used inside patterns as well (section 13).
 - The pattern catalog (metadata) can come from the CDN.
 - Pattern content can be fetched remotely.
 - **The editor experience stays the same:** the same Pattern Library window, cards, Preview and Insert, the same REST routes for the editor, the same import path and checks.
@@ -128,12 +129,12 @@ Until these are verified, production readiness must not be claimed.
 1. **One URL builder.** Library asset URLs come only from `Mozo_Bna_Library_Resolver::asset_url()`. The editor uses the URLs in REST responses and builds none itself. No hard-coded hostnames, absolute URLs or plugin paths in patterns, maps, PHP or JavaScript.
 2. **One place per source.** Each source gives its base URL, folder and relative paths once, at registration. Moving to the CDN should change only that configuration (and the central setting in section 1), not library code.
 3. **One loading seam.** Pattern metadata and content are read only through the registry's per-source loading (`load_source_patterns()` and `get_content()`). An additive change to the source contract can then let a source supply a remote provider instead of a folder, while the REST routes, availability checks, validator, importer and UI stay as they are. Per PL-D35 the provider joins **contract 1** before Lite's first release with the library (section 12, recommendation 3). A later contract version would be needed only if Lite is released with the library before the seam exists (open decision, owner).
-4. **Lite makes no external requests** (PL-D02). A remote catalog and remote content are fetched on the server by the add-on that owns the remote source. Lite only resolves, checks, validates and imports what it receives. Lite's own patterns, JavaScript and CSS stay in the plugin (section 8).
+4. **Lite makes no external requests** (PL-D02). A remote catalog and remote content are fetched on the server by the add-on that owns the remote source. Lite only resolves, checks, validates and imports what it receives. Lite's own patterns, JavaScript and CSS stay in the plugin (section 8). **Changed 2026-11-27 (PL-D39):** this holds until the CDN stage; Lite's own library data and assets are to come from the CDN then, its JavaScript and CSS never (section 13).
 5. **Protected content stays protected.** Premium content is never put on a public CDN path or in any shared cache. Remote delivery of premium content is authenticated, server to server, decided on the server for every request, and sent with `Cache-Control: private, no-store`. Hosting on a CDN never makes premium content public. Previews and public metadata may be public and cacheable (sections 3–5).
 6. **Remote failures are their own state.** An unreachable or failing remote source shows a "temporarily unavailable" message, never "locked", and inserts nothing (section 6).
 
 **Known gaps to close in the CDN stage** (verified in code 2026-11-18; not changed now):
-- `asset_url()` builds both preview URLs (catalog) and content-image URLs (`media` tokens). A CDN base applied there alone would also move content images, which PL-D03 forbids, so the method first needs to know the purpose (preview or content image).
+- `asset_url()` builds both preview URLs (catalog) and content-image URLs (`media` tokens). A CDN base applied there alone would also move content images, which PL-D03 forbids, so the method first needs to know the purpose (preview or content image). **2026-11-27 (PL-D39):** content images are to come from the CDN too; whether they share the previews' base or are imported into the Media Library is settled in the CDN stage (section 13), so the purpose argument stays useful.
 - Sources are local folders today: `register_source()` requires an existing `path`, and the registry reads each pattern's `pattern.php` and `content.php` (since PL-D37, 2026-11-26: the source's `catalog.json` and each pattern's content file, `content.json`, plain JSON for every source since PL-D38). A remote source needs an additive contract change (section 1, compatibility rules): in contract 1 before Lite's first release with the library (PL-D35, section 12), or a later contract version if Lite is released first (open decision, owner).
 - The catalog analyses each pattern's content to find its blocks and its restricted-HTML need. For a remote source the content isn't available when the catalog is built, so its metadata has to declare both, and delivery keeps validating the received content as it does today. Since PL-D37 (2026-11-26) `catalog.json` declares the blocks (checked against the content) and the content's SHA-256; the restricted-HTML need is still found from the content.
 
@@ -141,12 +142,12 @@ Until these are verified, production readiness must not be claimed.
 
 | Part | Today | CDN stage |
 |---|---|---|
-| URL building | `asset_url( $source, $relative )` for previews and content images | `asset_url( $source, $relative, $purpose )`: `preview` may use a CDN base; `media` (content images) stays local or goes into the Media Library (PL-D03) |
+| URL building | `asset_url( $source, $relative )` for previews and content images | `asset_url( $source, $relative, $purpose )`: `preview` may use a CDN base; `media` (content images) stays local or goes into the Media Library (PL-D03). **PL-D39:** from the CDN; how saved pages keep them is settled in the CDN stage (section 13) |
 | Source location | A local `path` is required | Additive, in contract 1 before Lite's first library release (PL-D35; a contract 2 only if Lite is released first): a local `path`, or provider callbacks supplied by the add-on (`catalog()`, `content( $slug, $revision )`) plus a preview base URL |
 | Catalog analysis | Reads each pattern's content | Remote metadata declares the blocks used and the restricted-HTML need; delivery validates the received content |
 | Editor and REST | Two routes; Preview and Insert | Unchanged; one new error, 503 `wpmozo_library_unreachable` ("can't be loaded right now") |
-| Network | None | None in Lite; the add-on's provider fetches on the server |
-| Lite's own patterns | Bundled | Bundled (U1) |
+| Network | None | None in Lite; the add-on's provider fetches on the server. **PL-D39:** Lite also fetches its own library data and assets from the CDN, once section 8 is met (section 13) |
+| Lite's own patterns | Bundled | Bundled (U1). **PL-D39:** from the CDN (section 13) |
 
 After this one-time engine change, moving hosts or paths is configuration only. The seams are not built before the CDN stage, because unused interfaces now would be premature infrastructure.
 
@@ -189,7 +190,7 @@ After this one-time engine change, moving hosts or paths is configuration only. 
 - **Packaging:** `wp-scripts plugin-zip` packs `includes/**` but not other top-level folders, when `package.json` has no `files` field. This repository has none.
 
 **Recommendations for the engine** (they keep section 11's rules):
-1. **Lite makes no external requests** (PL-D02, rule 4). The add-on fetches on the server; Lite resolves, checks, validates and imports what it receives. Lite's free patterns stay bundled (section 8, U1).
+1. **Lite makes no external requests** (PL-D02, rule 4). The add-on fetches on the server; Lite resolves, checks, validates and imports what it receives. Lite's free patterns stay bundled (section 8, U1). **Changed 2026-11-27 (PL-D39):** Lite's free patterns are to come from the CDN too (section 13).
 2. **The window fetches the catalog on every open,** so the entitlement is decided freshly each time. The existing loading state covers the wait. For a remote source, a failed licence-status check (made by the add-on, never by Lite) gives `entitlement_unavailable`: the catalog still loads, and premium cards stay Preview only.
 3. **A source can supply a provider instead of a folder:**
    - `catalog()` returns metadata;
@@ -236,7 +237,7 @@ After this one-time engine change, moving hosts or paths is configuration only. 
 
    Nothing partial is inserted.
 8. **Caching:** premium content and entitlement answers are never cached (no files, transients or edge caches). Catalog and previews keep today's rules (section 5; ETag and `private, no-cache` on the catalog route).
-9. **Content images stay local** (PL-D03). Remote content may use only media that the installed plugins ship; the minimum-version field makes sure of it. Media Library import remains a later option. `asset_url()` still needs its purpose argument (section 11, known gaps).
+9. **Content images stay local** (PL-D03). Remote content may use only media that the installed plugins ship; the minimum-version field makes sure of it. Media Library import remains a later option. `asset_url()` still needs its purpose argument (section 11, known gaps). **Replaced 2026-11-27 (PL-D39):** content images are to come from the CDN later (section 13); until then this recommendation describes the bundled state.
 10. **Image validation at build and release** (blocking; it runs on the built zip and the deploy set):
    - every thumbnail and preview exists;
    - every `media` token in every pattern's content, including content that is not in the zip, has a map key whose file is in the zip;
@@ -273,9 +274,34 @@ After this one-time engine change, moving hosts or paths is configuration only. 
 
 U8 has a proposed answer: the remote endpoints are configured in the add-on.
 
+## 13. Owner requirement, 2026-11-27: all library data and assets from the CDN (PL-D39; not implemented)
+
+**Requirement (owner, 2026-11-27):** all Pattern Library data and assets will eventually come from the CDN, for every source: Lite's free patterns and a premium add-on's patterns alike. This is the work of the remote-delivery owner (PL-D36). **The current implementation stays local.**
+
+| Covered | Today | Target (CDN stage) |
+|---|---|---|
+| Catalog, pattern metadata and maps (`catalog.json`, `data/*.json`) | In each plugin | From the CDN |
+| Pattern content JSON (`content.json`) | In each plugin | From the CDN; premium content only after a server-side check (section 4, section 11 rule 5, section 12) |
+| Thumbnails and preview images (`previews/`) | In each plugin | From the CDN |
+| Images and media used inside patterns (`media/`) | In each plugin | From the CDN |
+
+**Not covered:** Lite's JavaScript and CSS and its other non-library assets always ship in the plugin (section 8, requirement 1). The library code (registry, REST routes, validator, importer, UI) stays in Lite.
+
+**Now:** nothing changes in code or behaviour. No CDN code, setting, request or infrastructure; section 7 still holds. Released `media/` files are never renamed or deleted, because pages already saved use them.
+
+**What it replaces or changes in this file:** PL-D03 and U7 (section 6, last bullet) are replaced. PL-D02, PL-D33 (section 11, rule 4) and the bundled parts of PL-D35 (section 12, recommendations 1 and 9) now describe the state until the CDN stage. U1 and U2 have an owner target (section 10).
+
+**Unchanged:** premium content protection (section 4; section 11, rule 5); immutable versioned paths, caching and rollback (section 5); the window, Preview, Insert, the REST routes and the importer; one URL builder and one loading place per source (section 11, rules 1–3).
+
+**To settle in the CDN stage** (design by the owner of the work, then the owner's approval):
+1. **Saved pages.** An image inserted with a CDN URL makes the saved page depend on the CDN, which compatibility requirement 4 ([PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) section 8) rules out today. Either saved content keeps CDN URLs (that requirement then changes, and the paths stay online for good, section 5), or Insert imports the images into the site's Media Library so saved pages use local copies (this also removes known issue R-08).
+2. **WordPress.org.** Before Lite loads its own library data and assets from the CDN, section 8 must be met: a service of real substance (Guideline 6), explicit consent before contacting the CDN (Guideline 7, whose examples name offloaded images) and a readme disclosure. The WordPress.org review team decides acceptance (U1, U2). Visitors' browsers loading CDN images on saved pages are an external contact too.
+3. **Failures and offline sites.** What the window shows and what Insert does when the CDN can't be reached (section 6; section 12, recommendation 7), and whether local copies stay in the plugins as a fallback (section 5, rollback).
+4. **The resolver's purpose argument** (section 11, known gaps): previews and content images may need different bases or handling, for example a Media Library import.
+
 ## Out of scope now
 
-CDN deployment, remote catalog, remote media, the production switch itself, and CDN hostnames. Section 12 is approved (PL-D35); only its file formats are implemented (PL-D37, 2026-11-26). Nothing else is built before the owner's go-ahead.
+CDN deployment, remote catalog, remote media, the production switch itself, and CDN hostnames. Section 12 is approved (PL-D35); only its file formats are implemented (PL-D37, 2026-11-26). Nothing else is built before the owner's go-ahead. Section 13 (PL-D39, 2026-11-27) is a target for the CDN stage, not implemented.
 
 ## Related
 

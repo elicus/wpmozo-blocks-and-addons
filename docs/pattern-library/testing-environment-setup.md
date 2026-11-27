@@ -728,7 +728,7 @@ What the audit found, so nobody needs to look again.
   - Lite defines `WPMOZO_BNA_PLUGIN_DIR_PATH` and `WPMOZO_BNA_PLUGIN_DIR_URL` from `plugin_dir_path( __FILE__ )` and `plugin_dir_url( __FILE__ )`; Pro does the same with `WPMOZO_BNA_PRO_PLUGIN_DIR` and `WPMOZO_BNA_PRO_PLUGIN_URL`.
   - Each library source registers its `path` and `url` from those: Lite's library at `includes/library/`, Pro's in its own plugin.
 - **Pattern assets.**
-  - The asset resolver builds every thumbnail, preview and media URL from the source's `url`: `Mozo_Bna_Library_Resolver::asset_url()`. A future CDN setting also needs a purpose argument in that method (previews may move; content images stay local, PL-D03) and the provider seam ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) sections 11 and 12).
+  - The asset resolver builds every thumbnail, preview and media URL from the source's `url`: `Mozo_Bna_Library_Resolver::asset_url()`. A future CDN setting also needs a purpose argument in that method (previews and content images may need different handling; since PL-D39, 2026-11-27, all library data and assets, content images included, are to come from the CDN later; nothing changes now) and the provider seam ([cdn-and-asset-requirements.md](cdn-and-asset-requirements.md) sections 11 and 12).
   - Pattern content holds tokens, never a site URL.
   - Section 11.1 confirms the URLs on a real Local site.
 - **No hard-coded host or path in either plugin.** `git grep` finds no `localhost`, `127.0.0.1`, `.local`/`.test` URL, `wp-content/plugins/` path or absolute machine path in Lite's or Pro's `includes/` or main plugin file.
